@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 56.076313,
+    "fuzzy_match_percent": 56.077034,
     "total_code": "1904472",
-    "matched_code": "866764",
-    "matched_code_percent": 45.512035,
+    "matched_code": "868028",
+    "matched_code_percent": 45.578407,
     "total_data": "28428164",
     "matched_data": "28224260",
     "matched_data_percent": 99.282745,
     "total_functions": 4529,
-    "matched_functions": 2986,
-    "matched_functions_percent": 65.93067,
+    "matched_functions": 2988,
+    "matched_functions_percent": 65.97483,
     "total_units": 200
   },
   "units": [
@@ -27310,14 +27310,14 @@
     {
       "name": "ps2/veronica/prog/dread",
       "measures": {
-        "fuzzy_match_percent": 99.41233,
+        "fuzzy_match_percent": 100.0,
         "total_code": "2076",
-        "matched_code": "1964",
-        "matched_code_percent": 94.60501,
+        "matched_code": "2076",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 3,
-        "matched_functions": 2,
-        "matched_functions_percent": 66.66667,
+        "matched_functions": 3,
+        "matched_functions_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -27333,7 +27333,7 @@
         {
           "name": ".text",
           "size": "2080",
-          "fuzzy_match_percent": 99.41233,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -27359,7 +27359,7 @@
         {
           "name": "bhKeepObjWork",
           "size": "112",
-          "fuzzy_match_percent": 89.10714,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1968"
         }
@@ -30143,16 +30143,16 @@
     {
       "name": "ps2/veronica/prog/ps2_sg_pad",
       "measures": {
-        "fuzzy_match_percent": 99.9557,
+        "fuzzy_match_percent": 100.0,
         "total_code": "3612",
-        "matched_code": "2460",
-        "matched_code_percent": 68.10631,
+        "matched_code": "3612",
+        "matched_code_percent": 100.0,
         "total_data": "1240",
         "matched_data": "1240",
         "matched_data_percent": 100.0,
         "total_functions": 10,
-        "matched_functions": 9,
-        "matched_functions_percent": 90.0,
+        "matched_functions": 10,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
@@ -30185,7 +30185,7 @@
         {
           "name": ".text",
           "size": "3680",
-          "fuzzy_match_percent": 99.9557,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -30232,7 +30232,7 @@
         {
           "name": "Ps2_pad_read",
           "size": "1152",
-          "fuzzy_match_percent": 99.861115,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "816"
         },
@@ -40893,16 +40893,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 54.04929,
+        "fuzzy_match_percent": 54.050045,
         "total_code": "1820460",
-        "matched_code": "782752",
-        "matched_code_percent": 42.997486,
+        "matched_code": "784016",
+        "matched_code_percent": 43.066917,
         "total_data": "28336764",
         "matched_data": "28157972",
         "matched_data_percent": 99.36904,
         "total_functions": 3834,
-        "matched_functions": 2291,
-        "matched_functions_percent": 59.754826,
+        "matched_functions": 2293,
+        "matched_functions_percent": 59.80699,
         "total_units": 152
       }
     },

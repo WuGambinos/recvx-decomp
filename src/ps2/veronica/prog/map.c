@@ -1197,23 +1197,28 @@ void MapEntrySprite(_enum_0 set_no, int mode)
 	// Line 2085, Address: 0x2b4890, Func Offset: 0x80
 	// Line 2089, Address: 0x2b4894, Func Offset: 0x84
 	// Func End, Address: 0x2b48a8, Func Offset: 0x98
-}
+}*/
 
-// 
-// Start address: 0x2b48b0
-int FsprSpriteDraw(_anon22* fsP)
+// 100% matching!
+static int FsprSpriteDraw(FS_WORK* fsP) 
 {
-	_anon25* fsdP;
-	// Line 2099, Address: 0x2b48b0, Func Offset: 0
-	// Line 2104, Address: 0x2b48b8, Func Offset: 0x8
-	// Line 2106, Address: 0x2b48e8, Func Offset: 0x38
-	// Line 2109, Address: 0x2b4904, Func Offset: 0x54
-	// Line 2108, Address: 0x2b4908, Func Offset: 0x58
-	// Line 2109, Address: 0x2b490c, Func Offset: 0x5c
-	// Func End, Address: 0x2b4914, Func Offset: 0x64
+    FSD_WORK* fsdP;
+    
+    fsdP = (FSD_WORK*)&fsP->spr_dsp;
+
+    if (!(fsP->spr_dsp.act_bit & (1 << *(fsP->spr_dsp.act_mdeP)))) 
+    {
+        MapFuncFree((func_wrk_typ*)fsP);
+    } 
+    else if (fsP->mode == 0) 
+    {
+        MapDrawSprite(&fsdP->spr_pos, fsdP->spr_col, fsdP->spr_no);
+    }
+    
+    return 1;
 }
 
-// 
+/*// 
 // Start address: 0x2b4920
 int FsprSilhouetteDraw(_anon22* fsP)
 {

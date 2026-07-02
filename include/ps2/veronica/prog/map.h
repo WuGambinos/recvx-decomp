@@ -248,6 +248,31 @@ typedef struct FM_WORK
     MD_WORK* mdP; // offset 0x4, size 0x4
 } FM_WORK;
 
+typedef struct FSD_WORK
+{
+    // total size: 0x1C
+    mp_mod* act_mdeP;   // offset 0x0, size 0x4
+    int act_bit;        // offset 0x4, size 0x4
+    mp_spr spr_no;      // offset 0x8, size 0x4
+    int spr_col;        // offset 0xC, size 0x4
+    NJS_POINT3 spr_pos; // offset 0x10, size 0xC
+} FSD_WORK;
+
+typedef struct SPR_WORK
+{
+    // total size: 0x8
+    int spr_mde; // offset 0x0, size 0x4
+    int count;   // offset 0x4, size 0x4
+} SPR_WORK;
+
+typedef struct FS_WORK 
+{
+    // total size: 0x28
+    int mode;         // offset 0x0, size 0x4
+    FSD_WORK spr_dsp; // offset 0x4, size 0x1C
+    SPR_WORK spr_cnt; // offset 0x20, size 0x8
+} FS_WORK;
+
 void bhInitMap(enum_2 set_mod);
 void bhSetMap();
 void bhExitMap();
@@ -274,10 +299,10 @@ void MapFuncExec();
 int FsubMapDraw(func_wrk_typ* fwP);
 int FsubBackDraw();
 void MapEntrySprite(mp_set set_no, int mode);
-/*int FsprSpriteDraw(_anon22* fsP);
-int FsprSilhouetteDraw(_anon22* fsP);
-int FsprArrowDraw(_anon22* fsP);
-int FsprArrowDraw2(_anon22* fsP);*/
+int FsprSpriteDraw(FS_WORK* fsP);
+int FsprSilhouetteDraw(FS_WORK* fsP);
+int FsprArrowDraw(FS_WORK* fsP);
+int FsprArrowDraw2(FS_WORK* fsP);
 FT_WORK* MapEntryTask(int(*tskP)(FTS_WORK*), mp_mod chg_mde, int param0);
 int FsubTaskMain(FT_WORK* ftP);
 int FtskMapWait();

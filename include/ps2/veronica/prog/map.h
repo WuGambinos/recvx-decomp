@@ -296,19 +296,19 @@ typedef struct FSD_WORK
     NJS_POINT3 spr_pos; // offset 0x10, size 0xC
 } FSD_WORK;
 
-typedef struct SPR_WORK
+typedef struct FSC_WORK
 {
     // total size: 0x8
     int spr_mde; // offset 0x0, size 0x4
     int count;   // offset 0x4, size 0x4
-} SPR_WORK;
+} FSC_WORK;
 
 typedef struct FS_WORK 
 {
     // total size: 0x28
     int mode;         // offset 0x0, size 0x4
     FSD_WORK spr_dsp; // offset 0x4, size 0x1C
-    SPR_WORK spr_cnt; // offset 0x20, size 0x8
+    FSC_WORK spr_cnt; // offset 0x20, size 0x8
 } FS_WORK;
 
 typedef struct FC_WORK 

@@ -1219,34 +1219,47 @@ static int FsprSpriteDraw(FS_WORK* fsP)
     return 1;
 }
 
-/*// 
-// Start address: 0x2b4920
-int FsprSilhouetteDraw(_anon22* fsP)
+// 100% matching!
+static int FsprSilhouetteDraw(FS_WORK* fsP)
 {
-	int col_bak;
-	int bol;
-	_anon29* fscP;
-	_anon25* fsdP;
-	// Line 2119, Address: 0x2b4920, Func Offset: 0
-	// Line 2125, Address: 0x2b4930, Func Offset: 0x10
-	// Line 2122, Address: 0x2b4934, Func Offset: 0x14
-	// Line 2120, Address: 0x2b4938, Func Offset: 0x18
-	// Line 2125, Address: 0x2b493c, Func Offset: 0x1c
-	// Line 2130, Address: 0x2b4954, Func Offset: 0x34
-	// Line 2128, Address: 0x2b4958, Func Offset: 0x38
-	// Line 2130, Address: 0x2b495c, Func Offset: 0x3c
-	// Line 2131, Address: 0x2b4964, Func Offset: 0x44
-	// Line 2132, Address: 0x2b497c, Func Offset: 0x5c
-	// Line 2133, Address: 0x2b4984, Func Offset: 0x64
-	// Line 2136, Address: 0x2b4988, Func Offset: 0x68
-	// Line 2138, Address: 0x2b49a0, Func Offset: 0x80
-	// Line 2142, Address: 0x2b49a8, Func Offset: 0x88
-	// Line 2145, Address: 0x2b49b0, Func Offset: 0x90
-	// Line 2150, Address: 0x2b49b8, Func Offset: 0x98
-	// Func End, Address: 0x2b49cc, Func Offset: 0xac
+    FSD_WORK* fsdP; 
+    FSC_WORK* fscP; 
+    int bol;       
+    int col_bak;    
+ 
+    fsdP = &fsP->spr_dsp;
+    fscP = &fsP->spr_cnt;
+    
+    bol = 1; 
+    
+    switch (fscP->spr_mde) 
+    {                          
+    case 0:
+        col_bak = fsdP->spr_col;
+        
+        fscP->count++;
+        
+        if (++fscP->count >= 0xFF) 
+        {
+            fscP->count   = 0xFF;
+            fscP->spr_mde = 1;
+        }
+        
+        fsdP->spr_col = (fsdP->spr_col & 0xFFFFFF) | (fscP->count << 24);
+        
+        bol = FsprSpriteDraw(fsP);
+        
+        fsdP->spr_col = col_bak;
+        break;
+    case 1:
+        bol = FsprSpriteDraw(fsP);
+        break;
+    }
+
+    return bol; 
 }
 
-// 
+/*// 
 // Start address: 0x2b49d0
 int FsprArrowDraw(_anon22* fsP)
 {

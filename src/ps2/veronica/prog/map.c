@@ -1355,24 +1355,32 @@ int FsprArrowDraw2(_anon22* fsP)
 	// Line 2275, Address: 0x2b4ef8, Func Offset: 0x1e8
 	// Line 2276, Address: 0x2b4efc, Func Offset: 0x1ec
 	// Func End, Address: 0x2b4f04, Func Offset: 0x1f4
-}
-
-// 
-// Start address: 0x2b4f10
-_anon56* MapEntryTask(int(*tskP)(_anon35*), _enum_1 chg_mde, int param0)
-{
-	_anon56* ftP;
-	_func_wrk_typ* fwP;
-	// Line 2286, Address: 0x2b4f10, Func Offset: 0
-	// Line 2290, Address: 0x2b4f2c, Func Offset: 0x1c
-	// Line 2295, Address: 0x2b4f48, Func Offset: 0x38
-	// Line 2296, Address: 0x2b4f58, Func Offset: 0x48
-	// Line 2297, Address: 0x2b4f5c, Func Offset: 0x4c
-	// Line 2307, Address: 0x2b4f60, Func Offset: 0x50
-	// Line 2310, Address: 0x2b4f68, Func Offset: 0x58
-	// Line 2311, Address: 0x2b4f6c, Func Offset: 0x5c
-	// Func End, Address: 0x2b4f84, Func Offset: 0x74
 }*/
+
+// 100% matching!
+static FT_WORK* MapEntryTask(int(*tskP)(FTS_WORK*), mp_mod chg_mde, int param0) 
+{
+    func_wrk_typ* fwP;
+    FT_WORK* ftP;
+
+    fwP = MapFuncAlloc((void*)FsubTaskMain, 0);
+    ftP = NULL;
+    
+    if (fwP != NULL) 
+    {
+        fwP->param0 = (int)&mwP->map_mode;
+        fwP->param1 = chg_mde; 
+        fwP->param2 = (int)tskP;
+        
+        fwP->FreeWrk[0] = param0;
+
+        ftP = (FT_WORK*)fwP;
+        
+        return ftP;
+    }
+    
+    return ftP;
+}
 
 // 100% matching!
 static int FsubTaskMain(FT_WORK* ftP) 

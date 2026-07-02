@@ -1442,42 +1442,63 @@ static int FtskMapRead(FTS_WORK* ftsP)
     return bol;
 }
 
-/*// 
-// Start address: 0x2b50b0
-int FtskMapNormal(_anon35* ftsP)
+// 100% matching!
+static int FtskMapNormal(FTS_WORK* ftsP)
 {
-	_anon1* mnP;
-	int bol;
-	// Line 2429, Address: 0x2b50b0, Func Offset: 0
-	// Line 2432, Address: 0x2b50c4, Func Offset: 0x14
-	// Line 2430, Address: 0x2b50c8, Func Offset: 0x18
-	// Line 2432, Address: 0x2b50cc, Func Offset: 0x1c
-	// Line 2435, Address: 0x2b50e4, Func Offset: 0x34
-	// Line 2436, Address: 0x2b50f0, Func Offset: 0x40
-	// Line 2437, Address: 0x2b5104, Func Offset: 0x54
-	// Line 2436, Address: 0x2b5108, Func Offset: 0x58
-	// Line 2437, Address: 0x2b5114, Func Offset: 0x64
-	// Line 2443, Address: 0x2b511c, Func Offset: 0x6c
-	// Line 2437, Address: 0x2b5120, Func Offset: 0x70
-	// Line 2443, Address: 0x2b5124, Func Offset: 0x74
-	// Line 2444, Address: 0x2b5130, Func Offset: 0x80
-	// Line 2443, Address: 0x2b5134, Func Offset: 0x84
-	// Line 2444, Address: 0x2b5138, Func Offset: 0x88
-	// Line 2445, Address: 0x2b5150, Func Offset: 0xa0
-	// Line 2446, Address: 0x2b516c, Func Offset: 0xbc
-	// Line 2447, Address: 0x2b5188, Func Offset: 0xd8
-	// Line 2449, Address: 0x2b51a4, Func Offset: 0xf4
-	// Line 2450, Address: 0x2b51ac, Func Offset: 0xfc
-	// Line 2453, Address: 0x2b51b4, Func Offset: 0x104
-	// Line 2455, Address: 0x2b51cc, Func Offset: 0x11c
-	// Line 2456, Address: 0x2b51d4, Func Offset: 0x124
-	// Line 2457, Address: 0x2b51dc, Func Offset: 0x12c
-	// Line 2472, Address: 0x2b51fc, Func Offset: 0x14c
-	// Line 2473, Address: 0x2b5200, Func Offset: 0x150
-	// Func End, Address: 0x2b5218, Func Offset: 0x168
+    int bol;   
+    map_nxt* mnP; 
+    
+    bol = 1;
+    
+    switch (ftsP->param3) 
+    {                              
+    case 0:
+        CallSystemSe(0, 5);
+        
+        mwP->dst_pos = mwP->vew_pos_bak;
+        mwP->dst_zom = mwP->vew_zom_bak;
+        
+        mnP = MapCheckNextMap(&mwP->map_nxt);
+        
+        if (mnP->map_up != -1) 
+        {
+            MapEntrySprite(MP_SET_ARROW_UP, 0);
+        }
+        
+        if (mnP->map_down != -1) 
+        {
+            MapEntrySprite(MP_SET_ARROW_DOWN, 1);
+        }
+        
+        if (mnP->map_left != -1) 
+        {
+            MapEntrySprite(MP_SET_ARROW_LEFT, 2);
+        }
+        
+        if (mnP->map_right != -1) 
+        {
+            MapEntrySprite(MP_SET_ARROW_RIGHT, 3);
+        }
+        
+        ftsP->param3++;
+        break;
+    case 1:
+        if (mwP->map_mode == MP_MOD_MAP_READ) 
+        {
+            MapFuncFree((func_wrk_typ*)&ftsP[-1]);
+        } 
+        else if (((mwP->pad_ps & 0x100)) && (mwP->cur_tagP != NULL)) 
+        {
+            bol = 0;
+        }
+        
+        break;
+    }
+    
+    return bol;
 }
 
-// 
+/*// 
 // Start address: 0x2b5220
 int FtskMapZoom(_anon35* ftsP)
 {

@@ -4,6 +4,22 @@
 #include "types.h"
 #include "enums.h"
 
+typedef enum _mp_set 
+{
+    MP_SET_SILHOUETTE = 0,
+    MP_SET_ARROW_UP = 1,
+    MP_SET_ARROW_DOWN = 2,
+    MP_SET_ARROW_LEFT = 3,
+    MP_SET_ARROW_RIGHT = 4,
+    MP_SET_ARROW2_UP = 5,
+    MP_SET_ARROW2_DOWN = 6,
+    MP_SET_ARROW2_LEFT = 7,
+    MP_SET_ARROW2_RIGHT = 8,
+    MP_SET_LR_ZOOM = 9,
+    MP_SET_TITLE = 10,
+    MP_SET_NUM = 11,
+} mp_set;
+
 typedef enum _mp_mod 
 {
     MP_MOD_FIRST       =  0,
@@ -232,7 +248,7 @@ void MapCodeProcess();
 void MapBoolSet(int bol, int mod);
 void MapDrawMarker(int mrk_no, NJS_POINT3* posP, int pal_no);
 void MapDrawBackground(float depth, NJS_POINT2* p0P, NJS_POINT2* p1P);
-/*void MapDrawSprite(NJS_POINT3* posP, int col, _enum_4 spr_no);*/
+void MapDrawSprite(NJS_POINT3* posP, int col, mp_spr spr_no);
 int MapGetFloorNo(void* datP, int rom_no, float pos_y);
 void MapPurgeTree(ML_WORK* mlwP);
 void MapFuncInit(int func_num);
@@ -243,18 +259,18 @@ func_wrk_typ* MapFuncIns(func_wrk_typ* bsP, func_wrk_typ* fwP);
 void MapFuncExec();
 int FsubMapDraw(func_wrk_typ* fwP);
 int FsubBackDraw();
-/*void MapEntrySprite(_enum_0 set_no, int mode);
-int FsprSpriteDraw(_anon22* fsP);
+void MapEntrySprite(mp_set set_no, int mode);
+/*int FsprSpriteDraw(_anon22* fsP);
 int FsprSilhouetteDraw(_anon22* fsP);
 int FsprArrowDraw(_anon22* fsP);
-int FsprArrowDraw2(_anon22* fsP);
-FT_WORK* MapEntryTask(int(*tskP)(_anon35*), mp_mod chg_mde, int param0)*/;
+int FsprArrowDraw2(_anon22* fsP);*/
+FT_WORK* MapEntryTask(int(*tskP)(FTS_WORK*), mp_mod chg_mde, int param0);
 int FsubTaskMain(FT_WORK* ftP);
 int FtskMapWait();
 int FtskMapExit();
-/*int FtskMapRead(_anon35* ftsP);
-int FtskMapNormal(_anon35* ftsP);
-int FtskMapZoom(_anon35* ftsP);*/
+int FtskMapRead(FTS_WORK* ftsP);
+int FtskMapNormal(FTS_WORK* ftsP);
+int FtskMapZoom(FTS_WORK* ftsP);
 int FsubGaugeDrawZ(FG_WORK* fgP);
 int FsubGaugeDrawX(FG_WORK* fgP);
 int FsubGaugeDraw(FG_WORK* fgP);

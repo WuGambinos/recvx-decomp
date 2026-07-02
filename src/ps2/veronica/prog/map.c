@@ -1743,60 +1743,44 @@ int FsubGaugeDrawX(_anon3* fgP)
 	// Line 2862, Address: 0x2b5c88, Func Offset: 0x398
 	// Line 2863, Address: 0x2b5c8c, Func Offset: 0x39c
 	// Func End, Address: 0x2b5c94, Func Offset: 0x3a4
-}
-
-// 
-// Start address: 0x2b5ca0
-int FsubGaugeDraw(_anon3* fgP)
-{
-	_anon14 p0;
-	float scl_y;
-	// Line 2873, Address: 0x2b5ca0, Func Offset: 0
-	// Line 2876, Address: 0x2b5cb8, Func Offset: 0x18
-	// Line 2877, Address: 0x2b5cc0, Func Offset: 0x20
-	// Line 2882, Address: 0x2b5cc8, Func Offset: 0x28
-	// Line 2890, Address: 0x2b5cd8, Func Offset: 0x38
-	// Line 2882, Address: 0x2b5ce4, Func Offset: 0x44
-	// Line 2891, Address: 0x2b5cec, Func Offset: 0x4c
-	// Line 2882, Address: 0x2b5cf4, Func Offset: 0x54
-	// Line 2890, Address: 0x2b5cf8, Func Offset: 0x58
-	// Line 2882, Address: 0x2b5cfc, Func Offset: 0x5c
-	// Line 2891, Address: 0x2b5d00, Func Offset: 0x60
-	// Line 2892, Address: 0x2b5d0c, Func Offset: 0x6c
-	// Line 2882, Address: 0x2b5d10, Func Offset: 0x70
-	// Line 2890, Address: 0x2b5d14, Func Offset: 0x74
-	// Line 2891, Address: 0x2b5d18, Func Offset: 0x78
-	// Line 2893, Address: 0x2b5d1c, Func Offset: 0x7c
-	// Line 2882, Address: 0x2b5d28, Func Offset: 0x88
-	// Line 2891, Address: 0x2b5d30, Func Offset: 0x90
-	// Line 2892, Address: 0x2b5d40, Func Offset: 0xa0
-	// Line 2893, Address: 0x2b5d44, Func Offset: 0xa4
-	// Line 2895, Address: 0x2b5d4c, Func Offset: 0xac
-	// Line 2898, Address: 0x2b5d58, Func Offset: 0xb8
-	// Line 2896, Address: 0x2b5d5c, Func Offset: 0xbc
-	// Line 2895, Address: 0x2b5d60, Func Offset: 0xc0
-	// Line 2898, Address: 0x2b5d64, Func Offset: 0xc4
-	// Line 2896, Address: 0x2b5d6c, Func Offset: 0xcc
-	// Line 2895, Address: 0x2b5d74, Func Offset: 0xd4
-	// Line 2896, Address: 0x2b5d78, Func Offset: 0xd8
-	// Line 2897, Address: 0x2b5d84, Func Offset: 0xe4
-	// Line 2898, Address: 0x2b5d88, Func Offset: 0xe8
-	// Line 2900, Address: 0x2b5d90, Func Offset: 0xf0
-	// Line 2901, Address: 0x2b5dac, Func Offset: 0x10c
-	// Line 2903, Address: 0x2b5db0, Func Offset: 0x110
-	// Line 2900, Address: 0x2b5db4, Func Offset: 0x114
-	// Line 2903, Address: 0x2b5dc4, Func Offset: 0x124
-	// Line 2900, Address: 0x2b5dcc, Func Offset: 0x12c
-	// Line 2901, Address: 0x2b5dd8, Func Offset: 0x138
-	// Line 2902, Address: 0x2b5dec, Func Offset: 0x14c
-	// Line 2903, Address: 0x2b5df0, Func Offset: 0x150
-	// Line 2906, Address: 0x2b5df8, Func Offset: 0x158
-	// Line 2907, Address: 0x2b5e10, Func Offset: 0x170
-	// Line 2911, Address: 0x2b5e18, Func Offset: 0x178
-	// Line 2910, Address: 0x2b5e2c, Func Offset: 0x18c
-	// Line 2911, Address: 0x2b5e30, Func Offset: 0x190
-	// Func End, Address: 0x2b5e38, Func Offset: 0x198
 }*/
+
+// 86.86% matching
+static int FsubGaugeDraw(FG_WORK* fgP)
+{
+    float scl_y;   
+    NJS_POINT3 p0; 
+    
+    FsubGaugeDrawZ(fgP);
+    FsubGaugeDrawX(fgP);
+    
+    scl_y = (_nj_screen_.dist * (5.0f / mwP->vew_mtxP[0][14])) / 5.0f;
+    
+    p0.x = 2.0f + fgP->gge_pos.x;
+    p0.y = 8.0f + (fgP->gge_pos.y - (100.0f * scl_y));
+    p0.z = fgP->gge_pos.z;
+    
+    MapDrawSprite(&p0, -1, MP_SPR_10M_L);
+    
+    p0.x = fgP->gge_pos.x - 2.0f;
+    p0.y = 1.0f + fgP->gge_pos.y;
+    p0.z = fgP->gge_pos.z;
+    
+    MapDrawSprite(&p0, -1, MP_SPR_0M);
+    
+    p0.x = (fgP->gge_pos.x + (100.0f * (1.174f * scl_y))) - 8.0f;
+    p0.y = fgP->gge_pos.y - 2.0f;
+    p0.z = fgP->gge_pos.z;
+    
+    MapDrawSprite(&p0, -1, MP_SPR_10M_D);
+    
+    if (mwP->map_mode != MP_MOD_WAIT_ZOOM)
+    {
+        MapFuncFree((func_wrk_typ*)fgP);
+    }
+    
+    return 1;
+}
 
 // 100% matching!
 static void MapTagInit(int tag_num)

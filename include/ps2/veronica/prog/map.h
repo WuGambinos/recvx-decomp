@@ -21,6 +21,29 @@ typedef enum _mp_mod
     MP_MOD_UNKNOWN     = -1
 } mp_mod;
 
+typedef enum _mp_spr 
+{
+    MP_SPR_SILHOUETTE = 0,
+    MP_SPR_ARROW_DOWN = 1,
+    MP_SPR_ARROW_UP = 2,
+    MP_SPR_ARROW_LEFT = 3,
+    MP_SPR_ARROW_RIGHT = 4,
+    MP_SPR_X_BUTTON = 5,
+    MP_SPR_B_BUTTON = 6,
+    MP_SPR_A_BUTTON = 7,
+    MP_SPR_LR_ZOOM = 8,
+    MP_SPR_CHANGE = 9,
+    MP_SPR_ITEM = 10,
+    MP_SPR_BOX = 11,
+    MP_SPR_SAVEPOINT = 12,
+    MP_SPR_DIAMOND = 13,
+    MP_SPR_10M_D = 14,
+    MP_SPR_10M_L = 15,
+    MP_SPR_0M = 16,
+    MP_SPR_TITLE = 17,
+    MP_SPR_NUM = 18
+} mp_spr;
+
 typedef struct _tag_wrk_typ 
 {
     // total size: 0x20
@@ -187,6 +210,14 @@ typedef struct FT_WORK
     FTS_WORK tsk_sub;       // offset 0x10, size 0x10
 } FT_WORK;
 
+typedef struct FG_WORK
+{
+    // total size: 0x14
+    int mode;           // offset 0x0, size 0x4
+    int param0;         // offset 0x4, size 0x4
+    NJS_POINT3 gge_pos; // offset 0x8, size 0xC
+} FG_WORK;
+
 void bhInitMap(enum_2 set_mod);
 void bhSetMap();
 void bhExitMap();
@@ -223,10 +254,10 @@ int FtskMapWait();
 int FtskMapExit();
 /*int FtskMapRead(_anon35* ftsP);
 int FtskMapNormal(_anon35* ftsP);
-int FtskMapZoom(_anon35* ftsP);
-int FsubGaugeDrawZ(_anon3* fgP);
-int FsubGaugeDrawX(_anon3* fgP);
-int FsubGaugeDraw(_anon3* fgP);*/
+int FtskMapZoom(_anon35* ftsP);*/
+int FsubGaugeDrawZ(FG_WORK* fgP);
+int FsubGaugeDrawX(FG_WORK* fgP);
+int FsubGaugeDraw(FG_WORK* fgP);
 void MapTagInit(int tag_num);
 void MapTagEntry(NJS_MATRIX* basP, int rom_no, NJS_POINT3* posP);
 tag_wrk_typ* MapTagConnect(int rom_no);

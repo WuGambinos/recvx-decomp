@@ -4,6 +4,7 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
@@ -2317,43 +2318,54 @@ int FsubZoomScreen(_anon30* fsP)
 	// Line 3436, Address: 0x2b6f30, Func Offset: 0x5c0
 	// Line 3437, Address: 0x2b6f34, Func Offset: 0x5c4
 	// Func End, Address: 0x2b6f3c, Func Offset: 0x5cc
-}
-
-// 
-// Start address: 0x2b6f40
-int FsubCompass(_anon38* fcP)
-{
-	_anon55 CmpArw[4];
-	// Line 3447, Address: 0x2b6f40, Func Offset: 0
-	// Line 3461, Address: 0x2b6f4c, Func Offset: 0xc
-	// Line 3464, Address: 0x2b6f6c, Func Offset: 0x2c
-	// Line 3465, Address: 0x2b6f78, Func Offset: 0x38
-	// Line 3466, Address: 0x2b6f80, Func Offset: 0x40
-	// Line 3467, Address: 0x2b6f88, Func Offset: 0x48
-	// Line 3469, Address: 0x2b6f98, Func Offset: 0x58
-	// Line 3470, Address: 0x2b6fa4, Func Offset: 0x64
-	// Line 3467, Address: 0x2b6fa8, Func Offset: 0x68
-	// Line 3469, Address: 0x2b6fb0, Func Offset: 0x70
-	// Line 3470, Address: 0x2b6fb4, Func Offset: 0x74
-	// Line 3471, Address: 0x2b6fb8, Func Offset: 0x78
-	// Line 3469, Address: 0x2b6fc4, Func Offset: 0x84
-	// Line 3470, Address: 0x2b6fcc, Func Offset: 0x8c
-	// Line 3471, Address: 0x2b6fe0, Func Offset: 0xa0
-	// Line 3472, Address: 0x2b6ff4, Func Offset: 0xb4
-	// Line 3473, Address: 0x2b6ff8, Func Offset: 0xb8
-	// Line 3477, Address: 0x2b7004, Func Offset: 0xc4
-	// Line 3479, Address: 0x2b700c, Func Offset: 0xcc
-	// Line 3480, Address: 0x2b7014, Func Offset: 0xd4
-	// Line 3482, Address: 0x2b7020, Func Offset: 0xe0
-	// Line 3483, Address: 0x2b7028, Func Offset: 0xe8
-	// Line 3484, Address: 0x2b703c, Func Offset: 0xfc
-	// Line 3486, Address: 0x2b7050, Func Offset: 0x110
-	// Line 3488, Address: 0x2b7064, Func Offset: 0x124
-	// Line 3493, Address: 0x2b706c, Func Offset: 0x12c
-	// Line 3492, Address: 0x2b7074, Func Offset: 0x134
-	// Line 3493, Address: 0x2b7078, Func Offset: 0x138
-	// Func End, Address: 0x2b7080, Func Offset: 0x140
 }*/
+
+// 100% matching!
+static int FsubCompass(FC_WORK* fcP)
+{
+    static NJS_POLYGON_VTX CmpArw[4] = 
+    {
+        {   0.0f, -30.0f, 0.0f, 0x6000C000 }, { -12.0f, -22.0f, 0.0f, 0x6000C000 },
+        {  12.0f, -22.0f, 0.0f, 0x6000C000 }, {   0.0f,  30.0f, 0.0f, 0x6000C000 }
+    }; 
+    
+    switch (fcP->mode) 
+    {               
+    case 0:
+        fcP->pos.x = 585.0f;
+        fcP->pos.y = 62.0f;
+        fcP->pos.z = -4.0f;
+        
+        fcP->scl_y = fabsf(-4.0f) / _nj_screen_.dist;
+        fcP->scl_x = fcP->scl_y / 1.174f;
+        
+        fcP->pos.x = (fcP->pos.x - 320.0f) * fcP->scl_x;
+        fcP->pos.y = (240.0f - fcP->pos.y) * fcP->scl_y;
+        
+        fcP->ang = 0;
+        
+        fcP->mode++;
+    case 1:
+        njPushMatrixEx();
+        
+        njUnitMatrix(NULL);
+        
+        njRotateX(NULL, 32768);
+        
+        njTranslateEx(&fcP->pos);
+        
+        njScale(NULL, fcP->scl_y, fcP->scl_y, fcP->scl_y);
+        
+        njRotateY(NULL, fcP->ang += 1456); // the second parameter here is written in an unusual form
+        
+        njDrawPolygon3DEx(CmpArw, 4, 1);
+        
+        njPopMatrixEx();
+        break;
+    }
+    
+    return 1;
+}
 
 // 100% matching!
 static int FsubModeMessage(FM_WORK* fmP)

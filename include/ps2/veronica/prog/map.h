@@ -4,6 +4,44 @@
 #include "types.h"
 #include "enums.h"
 
+typedef enum _mp_no 
+{
+    MP000 = 0,
+    MP001 = 1,
+    MP100 = 16,
+    MP101 = 17,
+    MP102 = 18,
+    MP200 = 32,
+    MP201 = 33,
+    MP202 = 34,
+    MP203 = 35,
+    MP300 = 48,
+    MP301 = 49,
+    MP302 = 50,
+    MP400 = 64,
+    MP401 = 65,
+    MP500 = 80,
+    MP600 = 96,
+    MP601 = 97,
+    MP602 = 98,
+    MP700 = 112,
+    MP701 = 113,
+    MP702 = 114,
+    MP703 = 115,
+    MP704 = 116,
+    MP800 = 128,
+    MP801 = 129,
+    MP900 = 144,
+    MP901 = 145,
+    MP902 = 146,
+    MP903 = 147,
+    MP904 = 148,
+    MP905 = 149,
+    MPa00 = 160,
+    MPa01 = 161,
+    MPa02 = 162
+} mp_no;
+
 typedef enum _mp_set 
 {
     MP_SET_SILHOUETTE = 0,
@@ -273,66 +311,76 @@ typedef struct FS_WORK
     SPR_WORK spr_cnt; // offset 0x20, size 0x8
 } FS_WORK;
 
+typedef struct FC_WORK 
+{
+    // total size: 0x1C
+    int mode;       // offset 0x0, size 0x4
+    NJS_POINT3 pos; // offset 0x4, size 0xC
+    int ang;        // offset 0x10, size 0x4
+    float scl_x;    // offset 0x14, size 0x4
+    float scl_y;    // offset 0x18, size 0x4
+} FC_WORK;
+
 void bhInitMap(enum_2 set_mod);
 void bhSetMap();
 void bhExitMap();
-int bhReadMapData(char* namP);
-void MapCnvStatus2Flag();
+static int bhReadMapData(char* namP);
+static void MapCnvStatus2Flag();
 int bhControlMap();
-void MapPadMain();
-void MapViewMain();
-void MapLightMain();
-void MapPaletteMain();
-void MapCodeProcess();
-void MapBoolSet(int bol, int mod);
-void MapDrawMarker(int mrk_no, NJS_POINT3* posP, int pal_no);
-void MapDrawBackground(float depth, NJS_POINT2* p0P, NJS_POINT2* p1P);
-void MapDrawSprite(NJS_POINT3* posP, int col, mp_spr spr_no);
-int MapGetFloorNo(void* datP, int rom_no, float pos_y);
-void MapPurgeTree(ML_WORK* mlwP);
-void MapFuncInit(int func_num);
-func_wrk_typ* MapFuncAlloc(int(*funcP)(func_wrk_typ*), int param0);
-void MapFuncFree(func_wrk_typ* fwP);
-void MapFuncDel(func_wrk_typ* fwP);
-func_wrk_typ* MapFuncIns(func_wrk_typ* bsP, func_wrk_typ* fwP);
-void MapFuncExec();
-int FsubMapDraw(func_wrk_typ* fwP);
-int FsubBackDraw();
-void MapEntrySprite(mp_set set_no, int mode);
-int FsprSpriteDraw(FS_WORK* fsP);
-int FsprSilhouetteDraw(FS_WORK* fsP);
-int FsprArrowDraw(FS_WORK* fsP);
-int FsprArrowDraw2(FS_WORK* fsP);
-FT_WORK* MapEntryTask(int(*tskP)(FTS_WORK*), mp_mod chg_mde, int param0);
-int FsubTaskMain(FT_WORK* ftP);
-int FtskMapWait();
-int FtskMapExit();
-int FtskMapRead(FTS_WORK* ftsP);
-int FtskMapNormal(FTS_WORK* ftsP);
-int FtskMapZoom(FTS_WORK* ftsP);
-int FsubGaugeDrawZ(FG_WORK* fgP);
-int FsubGaugeDrawX(FG_WORK* fgP);
-int FsubGaugeDraw(FG_WORK* fgP);
-void MapTagInit(int tag_num);
-void MapTagEntry(NJS_MATRIX* basP, int rom_no, NJS_POINT3* posP);
-tag_wrk_typ* MapTagConnect(int rom_no);
-tag_wrk_typ* MapTagCenter();
-void MapDrawLine2(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal);
-void MapDrawLine(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal);
-void MapDrawFill(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal);
+static void MapPadMain();
+static void MapViewMain();
+static void MapLightMain();
+static void MapPaletteMain();
+static void MapCodeProcess();
+static void MapBoolSet(int bol, int mod);
+static void MapDrawMarker(int mrk_no, NJS_POINT3* posP, int pal_no);
+static void MapDrawBackground(float depth, NJS_POINT2* p0P, NJS_POINT2* p1P);
+static void MapDrawSprite(NJS_POINT3* posP, int col, mp_spr spr_no);
+static int MapGetFloorNo(void* datP, int rom_no, float pos_y);
+static void MapPurgeTree(ML_WORK* mlwP);
+static void MapFuncInit(int func_num);
+static func_wrk_typ* MapFuncAlloc(int(*funcP)(func_wrk_typ*), int param0);
+static void MapFuncFree(func_wrk_typ* fwP);
+static void MapFuncDel(func_wrk_typ* fwP);
+static func_wrk_typ* MapFuncIns(func_wrk_typ* bsP, func_wrk_typ* fwP);
+static void MapFuncExec();
+static int FsubMapDraw(func_wrk_typ* fwP);
+static int FsubBackDraw();
+static void MapEntrySprite(mp_set set_no, int mode);
+static int FsprSpriteDraw(FS_WORK* fsP);
+static int FsprSilhouetteDraw(FS_WORK* fsP);
+static int FsprArrowDraw(FS_WORK* fsP);
+static int FsprArrowDraw2(FS_WORK* fsP);
+static FT_WORK* MapEntryTask(int(*tskP)(FTS_WORK*), mp_mod chg_mde, int param0);
+static int FsubTaskMain(FT_WORK* ftP);
+static int FtskMapWait();
+static int FtskMapExit();
+static int FtskMapRead(FTS_WORK* ftsP);
+static int FtskMapNormal(FTS_WORK* ftsP);
+static int FtskMapZoom(FTS_WORK* ftsP);
+static int FsubGaugeDrawZ(FG_WORK* fgP);
+static int FsubGaugeDrawX(FG_WORK* fgP);
+static int FsubGaugeDraw(FG_WORK* fgP);
+static void MapTagInit(int tag_num);
+static void MapTagEntry(NJS_MATRIX* basP, int rom_no, NJS_POINT3* posP);
+static tag_wrk_typ* MapTagConnect(int rom_no);
+static tag_wrk_typ* MapTagCenter();
+static void MapDrawLine2(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal);
+static void MapDrawLine(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal);
+static void MapDrawFill(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal);
 static void MapDrawPolyFill(NJS_POINT2* pnt, float pri, int pal);
-void MapDrawMessage();
-/*int FsubZoomCursor(_anon8* fzP);
-int FsubZoomInfomation(_anon21* fiP);
-_anon39 MapCnvArgb2Color(_anon11* argbP);
-int FsubZoomScreen(_anon30* fsP);
-int FsubCompass(_anon38* fcP);*/
-int FsubModeMessage(FM_WORK* fmP);
-void MapCncInit(int map_num, int flr_num);
-/*_cnc_wrk_typ* MapCncGet(int map_no, int flr_no);
-void MapCnc(_enum_3 dst, _enum_3 src, int status);*/
-void MapCncConnect(unsigned short* datP);
-map_nxt* MapCheckNextMap(map_nxt* mnP);
+static void MapDrawMessage();
+/*static int FsubZoomCursor(_anon8* fzP);
+static int FsubZoomInfomation(_anon21* fiP);*/
+static NJS_COLOR MapCnvArgb2Color(NJS_ARGB* argbP);
+/*static int FsubZoomScreen(_anon30* fsP);*/
+static int FsubCompass(FC_WORK* fcP);
+static int FsubModeMessage(FM_WORK* fmP);
+static void MapCncInit(int map_num, int flr_num);
+static cnc_wrk_typ* MapCncGet(int map_no, int flr_no);
+static void MapCnc(mp_no dst, mp_no src, int status);
+static void MapCncConnect(unsigned short* datP);
+static map_nxt* MapCheckNextMap(map_nxt* mnP);
 static int GetGameMode();
 
 #endif

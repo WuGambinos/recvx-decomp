@@ -2348,30 +2348,45 @@ int FsubCompass(_anon38* fcP)
 	// Line 3492, Address: 0x2b7074, Func Offset: 0x134
 	// Line 3493, Address: 0x2b7078, Func Offset: 0x138
 	// Func End, Address: 0x2b7080, Func Offset: 0x140
-}
+}*/
 
-// 
-// Start address: 0x2b7080
-int FsubModeMessage(_anon49* fmP)
+// 100% matching!
+static int FsubModeMessage(FM_WORK* fmP)
 {
-	_anon46* mdP;
-	int typ;
-	_anon46 NmlMes[2];
-	// Line 3503, Address: 0x2b7080, Func Offset: 0
-	// Line 3519, Address: 0x2b708c, Func Offset: 0xc
-	// Line 3521, Address: 0x2b7098, Func Offset: 0x18
-	// Line 3523, Address: 0x2b70a8, Func Offset: 0x28
-	// Line 3534, Address: 0x2b70bc, Func Offset: 0x3c
-	// Line 3536, Address: 0x2b70c8, Func Offset: 0x48
-	// Line 3537, Address: 0x2b70d4, Func Offset: 0x54
-	// Line 3539, Address: 0x2b70e8, Func Offset: 0x68
-	// Line 3546, Address: 0x2b70f8, Func Offset: 0x78
-	// Line 3545, Address: 0x2b7100, Func Offset: 0x80
-	// Line 3546, Address: 0x2b7104, Func Offset: 0x84
-	// Func End, Address: 0x2b710c, Func Offset: 0x8c
+    int typ;
+    MD_WORK* mdP;
+	static const MD_WORK NmlMes[2] = 
+    {
+        { { 464.0f, 441.0f, -7.0f }, 5 },
+        { { 480.0f, 441.0f, -7.0f }, 9 }
+    };
+    
+    typ = sys->keytype;
+    
+    if (typ > 2)
+    {
+        typ = 0;
+    }
+    
+    switch (fmP->mode) 
+    {
+    case 0:
+        fmP->mdP = NmlMes;
+        mdP      = fmP->mdP;
+        
+        if (mdP != NULL)
+        {
+            MapDrawSprite(&mdP[0].pos, -1, mdP[0].spr + typ);
+            MapDrawSprite(&mdP[1].pos, -1, mdP[1].spr);
+        }
+        
+        break;
+    }
+    
+    return 1;
 }
 
-// 
+/*// 
 // Start address: 0x2b7110
 void MapCncInit(int map_num, int flr_num)
 {

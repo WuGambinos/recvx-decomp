@@ -234,6 +234,20 @@ typedef struct FG_WORK
     NJS_POINT3 gge_pos; // offset 0x8, size 0xC
 } FG_WORK;
 
+typedef struct MD_WORK
+{
+    // total size: 0x10
+    NJS_POINT3 pos; // offset 0x0, size 0xC
+    mp_spr spr;     // offset 0xC, size 0x4
+} MD_WORK;
+
+typedef struct FM_WORK 
+{
+    // total size: 0x8
+    int mode;     // offset 0x0, size 0x4
+    MD_WORK* mdP; // offset 0x4, size 0x4
+} FM_WORK;
+
 void bhInitMap(enum_2 set_mod);
 void bhSetMap();
 void bhExitMap();
@@ -287,8 +301,8 @@ void MapDrawMessage();
 int FsubZoomInfomation(_anon21* fiP);
 _anon39 MapCnvArgb2Color(_anon11* argbP);
 int FsubZoomScreen(_anon30* fsP);
-int FsubCompass(_anon38* fcP);
-int FsubModeMessage(_anon49* fmP);*/
+int FsubCompass(_anon38* fcP);*/
+int FsubModeMessage(FM_WORK* fmP);
 void MapCncInit(int map_num, int flr_num);
 /*_cnc_wrk_typ* MapCncGet(int map_no, int flr_no);
 void MapCnc(_enum_3 dst, _enum_3 src, int status);*/

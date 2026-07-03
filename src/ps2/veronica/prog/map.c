@@ -1048,22 +1048,25 @@ void MapPurgeTree(_anon19* mlwP)
 	// Func End, Address: 0x2b44f0, Func Offset: 0x150
 }*/
 
-// 
-// Start address: 0x2b44f0
-void MapFuncInit(int func_num)
+// 100% matching! 
+static void MapFuncInit(int func_num) 
 {
-	//_func_wrk_typ* fwP;
-	// Line 1832, Address: 0x2b44f0, Func Offset: 0
-	// Line 1835, Address: 0x2b4500, Func Offset: 0x10
-	// Line 1836, Address: 0x2b4524, Func Offset: 0x34
-	// Line 1838, Address: 0x2b452c, Func Offset: 0x3c
-	// Line 1839, Address: 0x2b453c, Func Offset: 0x4c
-	// Line 1841, Address: 0x2b4544, Func Offset: 0x54
-	// Line 1842, Address: 0x2b454c, Func Offset: 0x5c
-	// Line 1843, Address: 0x2b4560, Func Offset: 0x70
-	// Line 1848, Address: 0x2b4570, Func Offset: 0x80
-	// Func End, Address: 0x2b4584, Func Offset: 0x94
-	scePrintf("MapFuncInit - UNIMPLEMENTED!\n");
+    func_wrk_typ* fwP; 
+
+    fwP = mwP->busy_funcP = (func_wrk_typ*)bhGetFreeMemory((func_num + 2) * 64, 4);
+    
+    fwP->nextP = fwP->prevP = fwP;
+    
+    mwP->free_funcP = ++fwP;
+    
+    fwP->nextP = fwP->prevP = fwP;
+    
+    fwP++; 
+    
+    for ( ; func_num > 0; func_num--, fwP++) 
+    {
+        MapFuncIns(mwP->free_funcP, fwP);
+    }
 }
 
 // 100% matching!

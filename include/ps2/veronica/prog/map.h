@@ -321,6 +321,64 @@ typedef struct FC_WORK
     float scl_y;    // offset 0x18, size 0x4
 } FC_WORK;
 
+typedef struct FS_WRK 
+{
+    // total size: 0x1C
+    int mode;        // offset 0x0, size 0x4
+    NJS_POINT2 pos0; // offset 0x4, size 0x8
+    NJS_POINT2 pos1; // offset 0xC, size 0x8
+    float rad;       // offset 0x14, size 0x4
+    int ang;         // offset 0x18, size 0x4
+} FS_WRK;
+
+typedef struct FZ_WORK 
+{
+    // total size: 0x2C
+    int mode;          // offset 0x0, size 0x4
+    int time;          // offset 0x4, size 0x4
+    NJS_POINT2* dstP;  // offset 0x8, size 0x4
+    NJS_POINT2 pos_a0; // offset 0xC, size 0x8
+    NJS_POINT2 pos_a1; // offset 0x14, size 0x8
+    NJS_POINT2 pos_b0; // offset 0x1C, size 0x8
+    NJS_POINT2 pos_b1; // offset 0x24, size 0x8
+} FZ_WORK;
+
+typedef struct FI_WORK 
+{
+    // total size: 0x1C
+    int mode;        // offset 0x0, size 0x4
+    NJS_POINT3 pos0; // offset 0x4, size 0xC
+    NJS_POINT2 pos1; // offset 0x10, size 0x8
+    int time;        // offset 0x18, size 0x4
+} FI_WORK;
+
+typedef struct FT_WRK
+{
+    // total size: 0x8
+    float label;  // offset 0x0, size 0x4
+    short map_no; // offset 0x4, size 0x2
+    short flr_no; // offset 0x6, size 0x2
+} FT_WRK;
+
+typedef struct SS_WORK 
+{
+    // total size: 0x1C
+    mp_spr spr_no;      // offset 0x0, size 0x4
+    void* funcP;        // offset 0x4, size 0x4
+    int act_bit;        // offset 0x8, size 0x4
+    int spr_col;        // offset 0xC, size 0x4
+    NJS_POINT3 spr_pos; // offset 0x10, size 0xC
+} SS_WORK;
+
+typedef struct MA_WORK
+{
+    // total size: 0x10
+    int mrk_no;   // offset 0x0, size 0x4
+    float scale;  // offset 0x4, size 0x4
+    float offset; // offset 0x8, size 0x4
+    int pal_no;   // offset 0xC, size 0x4
+} MA_WORK;
+
 void bhInitMap(enum_2 set_mod);
 void bhSetMap();
 void bhExitMap();
@@ -369,17 +427,17 @@ static void MapDrawLine2(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal)
 static void MapDrawLine(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal);
 static void MapDrawFill(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal);
 static void MapDrawPolyFill(NJS_POINT2* pnt, float pri, int pal);
-static void MapDrawMessage();
-/*static int FsubZoomCursor(_anon8* fzP);
-static int FsubZoomInfomation(_anon21* fiP);*/
+static void MapDrawMessage(int rom, map_wrk* mwP, float x, float y);
+static int FsubZoomCursor(FZ_WORK* fzP);
+static int FsubZoomInfomation(FI_WORK* fiP);
 static NJS_COLOR MapCnvArgb2Color(NJS_ARGB* argbP);
-/*static int FsubZoomScreen(_anon30* fsP);*/
+static int FsubZoomScreen(FS_WRK* fsP);
 static int FsubCompass(FC_WORK* fcP);
 static int FsubModeMessage(FM_WORK* fmP);
 static void MapCncInit(int map_num, int flr_num);
 static cnc_wrk_typ* MapCncGet(int map_no, int flr_no);
 static void MapCnc(mp_no dst, mp_no src, int status);
-static void MapCncConnect(unsigned short* datP);
+static void MapCncConnect(const unsigned short* datP);
 static map_nxt* MapCheckNextMap(map_nxt* mnP);
 static int GetGameMode();
 

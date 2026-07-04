@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/map.h"
+#include "../../../ps2/veronica/prog/binfunc.h"
 #include "../../../ps2/veronica/prog/event.h"
 #include "../../../ps2/veronica/prog/flag.h"
 #include "../../../ps2/veronica/prog/main.h"
@@ -251,12 +252,12 @@ static int bhReadMapData(char* namP)
 
 // 
 // Start address: 0x2b25b0
-void MapCnvStatus2Flag()
+static void MapCnvStatus2Flag()
 {
 	unsigned int* itmP;
 	int itm;
 	int chk;
-	//_anon13* datP;
+	ID_WORK* datP;
 	unsigned int* itm_basP;
 	int id;
 	// Line 686, Address: 0x2b25b0, Func Offset: 0
@@ -289,188 +290,254 @@ void MapCnvStatus2Flag()
 	scePrintf("MapCnvStatus2Flag - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2b2710
+// 99.82% matching
 int bhControlMap()
 {
-	//_anon14* srcP;
-	//_anon14* dstP;
-	int* pacP;
-	int next;
-	unsigned int tmp;
-	int i;
-	//_anon19* mlwP;
-	//int* pacP;
-	//int next;
-	//_anon9 scrn;
-	int bol;
-	// Line 746, Address: 0x2b2710, Func Offset: 0
-	// Line 749, Address: 0x2b2728, Func Offset: 0x18
-	// Line 747, Address: 0x2b2730, Func Offset: 0x20
-	// Line 749, Address: 0x2b2734, Func Offset: 0x24
-	// Line 751, Address: 0x2b2760, Func Offset: 0x50
-	// Line 752, Address: 0x2b2780, Func Offset: 0x70
-	// Line 753, Address: 0x2b2790, Func Offset: 0x80
-	// Line 754, Address: 0x2b27a0, Func Offset: 0x90
-	// Line 755, Address: 0x2b27b4, Func Offset: 0xa4
-	// Line 758, Address: 0x2b27c0, Func Offset: 0xb0
-	// Line 761, Address: 0x2b27d0, Func Offset: 0xc0
-	// Line 762, Address: 0x2b27f8, Func Offset: 0xe8
-	// Line 764, Address: 0x2b2804, Func Offset: 0xf4
-	// Line 768, Address: 0x2b280c, Func Offset: 0xfc
-	// Line 770, Address: 0x2b2828, Func Offset: 0x118
-	// Line 771, Address: 0x2b2844, Func Offset: 0x134
-	// Line 775, Address: 0x2b2854, Func Offset: 0x144
-	// Line 776, Address: 0x2b285c, Func Offset: 0x14c
-	// Line 777, Address: 0x2b2864, Func Offset: 0x154
-	// Line 778, Address: 0x2b286c, Func Offset: 0x15c
-	// Line 779, Address: 0x2b2874, Func Offset: 0x164
-	// Line 780, Address: 0x2b2878, Func Offset: 0x168
-	// Line 786, Address: 0x2b2884, Func Offset: 0x174
-	// Line 794, Address: 0x2b28a0, Func Offset: 0x190
-	// Line 795, Address: 0x2b28ac, Func Offset: 0x19c
-	// Line 799, Address: 0x2b28b4, Func Offset: 0x1a4
-	// Line 802, Address: 0x2b28b8, Func Offset: 0x1a8
-	// Line 806, Address: 0x2b28cc, Func Offset: 0x1bc
-	// Line 803, Address: 0x2b28d0, Func Offset: 0x1c0
-	// Line 806, Address: 0x2b28d4, Func Offset: 0x1c4
-	// Line 807, Address: 0x2b28d8, Func Offset: 0x1c8
-	// Line 810, Address: 0x2b28dc, Func Offset: 0x1cc
-	// Line 811, Address: 0x2b28e4, Func Offset: 0x1d4
-	// Line 812, Address: 0x2b28f0, Func Offset: 0x1e0
-	// Line 813, Address: 0x2b28f4, Func Offset: 0x1e4
-	// Line 814, Address: 0x2b28f8, Func Offset: 0x1e8
-	// Line 813, Address: 0x2b28fc, Func Offset: 0x1ec
-	// Line 814, Address: 0x2b2900, Func Offset: 0x1f0
-	// Line 817, Address: 0x2b291c, Func Offset: 0x20c
-	// Line 818, Address: 0x2b2924, Func Offset: 0x214
-	// Line 817, Address: 0x2b2928, Func Offset: 0x218
-	// Line 818, Address: 0x2b292c, Func Offset: 0x21c
-	// Line 817, Address: 0x2b2930, Func Offset: 0x220
-	// Line 818, Address: 0x2b2938, Func Offset: 0x228
-	// Line 820, Address: 0x2b2948, Func Offset: 0x238
-	// Line 821, Address: 0x2b2954, Func Offset: 0x244
-	// Line 822, Address: 0x2b2958, Func Offset: 0x248
-	// Line 829, Address: 0x2b2960, Func Offset: 0x250
-	// Line 831, Address: 0x2b2968, Func Offset: 0x258
-	// Line 830, Address: 0x2b296c, Func Offset: 0x25c
-	// Line 831, Address: 0x2b2978, Func Offset: 0x268
-	// Line 832, Address: 0x2b2980, Func Offset: 0x270
-	// Line 833, Address: 0x2b2984, Func Offset: 0x274
-	// Line 834, Address: 0x2b298c, Func Offset: 0x27c
-	// Line 835, Address: 0x2b2990, Func Offset: 0x280
-	// Line 839, Address: 0x2b29a0, Func Offset: 0x290
-	// Line 842, Address: 0x2b29ac, Func Offset: 0x29c
-	// Line 844, Address: 0x2b29cc, Func Offset: 0x2bc
-	// Line 845, Address: 0x2b29d0, Func Offset: 0x2c0
-	// Line 844, Address: 0x2b29d4, Func Offset: 0x2c4
-	// Line 850, Address: 0x2b29dc, Func Offset: 0x2cc
-	// Line 844, Address: 0x2b29e4, Func Offset: 0x2d4
-	// Line 845, Address: 0x2b29e8, Func Offset: 0x2d8
-	// Line 850, Address: 0x2b29f0, Func Offset: 0x2e0
-	// Line 852, Address: 0x2b29f8, Func Offset: 0x2e8
-	// Line 855, Address: 0x2b2a08, Func Offset: 0x2f8
-	// Line 859, Address: 0x2b2a18, Func Offset: 0x308
-	// Line 860, Address: 0x2b2a30, Func Offset: 0x320
-	// Line 861, Address: 0x2b2a34, Func Offset: 0x324
-	// Line 860, Address: 0x2b2a38, Func Offset: 0x328
-	// Line 861, Address: 0x2b2a3c, Func Offset: 0x32c
-	// Line 862, Address: 0x2b2a44, Func Offset: 0x334
-	// Line 861, Address: 0x2b2a48, Func Offset: 0x338
-	// Line 862, Address: 0x2b2a4c, Func Offset: 0x33c
-	// Line 863, Address: 0x2b2a54, Func Offset: 0x344
-	// Line 865, Address: 0x2b2a5c, Func Offset: 0x34c
-	// Line 866, Address: 0x2b2a60, Func Offset: 0x350
-	// Line 865, Address: 0x2b2a64, Func Offset: 0x354
-	// Line 866, Address: 0x2b2a68, Func Offset: 0x358
-	// Line 867, Address: 0x2b2a70, Func Offset: 0x360
-	// Line 866, Address: 0x2b2a74, Func Offset: 0x364
-	// Line 867, Address: 0x2b2a78, Func Offset: 0x368
-	// Line 873, Address: 0x2b2a84, Func Offset: 0x374
-	// Line 874, Address: 0x2b2a90, Func Offset: 0x380
-	// Line 873, Address: 0x2b2a94, Func Offset: 0x384
-	// Line 874, Address: 0x2b2a98, Func Offset: 0x388
-	// Line 873, Address: 0x2b2a9c, Func Offset: 0x38c
-	// Line 874, Address: 0x2b2aa4, Func Offset: 0x394
-	// Line 875, Address: 0x2b2aac, Func Offset: 0x39c
-	// Line 874, Address: 0x2b2ab0, Func Offset: 0x3a0
-	// Line 875, Address: 0x2b2ab8, Func Offset: 0x3a8
-	// Line 877, Address: 0x2b2ac0, Func Offset: 0x3b0
-	// Line 875, Address: 0x2b2ac4, Func Offset: 0x3b4
-	// Line 877, Address: 0x2b2ac8, Func Offset: 0x3b8
-	// Line 878, Address: 0x2b2adc, Func Offset: 0x3cc
-	// Line 879, Address: 0x2b2ae8, Func Offset: 0x3d8
-	// Line 881, Address: 0x2b2af8, Func Offset: 0x3e8
-	// Line 888, Address: 0x2b2b04, Func Offset: 0x3f4
-	// Line 897, Address: 0x2b2b38, Func Offset: 0x428
-	// Line 898, Address: 0x2b2b44, Func Offset: 0x434
-	// Line 902, Address: 0x2b2b4c, Func Offset: 0x43c
-	// Line 905, Address: 0x2b2b50, Func Offset: 0x440
-	// Line 907, Address: 0x2b2b64, Func Offset: 0x454
-	// Line 913, Address: 0x2b2b68, Func Offset: 0x458
-	// Line 908, Address: 0x2b2b6c, Func Offset: 0x45c
-	// Line 909, Address: 0x2b2b70, Func Offset: 0x460
-	// Line 911, Address: 0x2b2b74, Func Offset: 0x464
-	// Line 913, Address: 0x2b2b78, Func Offset: 0x468
-	// Line 917, Address: 0x2b2b80, Func Offset: 0x470
-	// Line 914, Address: 0x2b2b88, Func Offset: 0x478
-	// Line 915, Address: 0x2b2b8c, Func Offset: 0x47c
-	// Line 917, Address: 0x2b2b90, Func Offset: 0x480
-	// Line 918, Address: 0x2b2b9c, Func Offset: 0x48c
-	// Line 919, Address: 0x2b2bac, Func Offset: 0x49c
-	// Line 921, Address: 0x2b2bb4, Func Offset: 0x4a4
-	// Line 919, Address: 0x2b2bb8, Func Offset: 0x4a8
-	// Line 921, Address: 0x2b2bbc, Func Offset: 0x4ac
-	// Line 925, Address: 0x2b2bc4, Func Offset: 0x4b4
-	// Line 922, Address: 0x2b2bc8, Func Offset: 0x4b8
-	// Line 925, Address: 0x2b2bcc, Func Offset: 0x4bc
-	// Line 922, Address: 0x2b2bd0, Func Offset: 0x4c0
-	// Line 926, Address: 0x2b2bd4, Func Offset: 0x4c4
-	// Line 925, Address: 0x2b2bd8, Func Offset: 0x4c8
-	// Line 926, Address: 0x2b2bdc, Func Offset: 0x4cc
-	// Line 925, Address: 0x2b2be0, Func Offset: 0x4d0
-	// Line 926, Address: 0x2b2be8, Func Offset: 0x4d8
-	// Line 931, Address: 0x2b2bf8, Func Offset: 0x4e8
-	// Line 937, Address: 0x2b2c08, Func Offset: 0x4f8
-	// Line 942, Address: 0x2b2c10, Func Offset: 0x500
-	// Line 943, Address: 0x2b2c1c, Func Offset: 0x50c
-	// Line 945, Address: 0x2b2c24, Func Offset: 0x514
-	// Line 948, Address: 0x2b2c28, Func Offset: 0x518
-	// Line 951, Address: 0x2b2c30, Func Offset: 0x520
-	// Line 952, Address: 0x2b2c44, Func Offset: 0x534
-	// Line 953, Address: 0x2b2c50, Func Offset: 0x540
-	// Line 956, Address: 0x2b2c58, Func Offset: 0x548
-	// Line 957, Address: 0x2b2c6c, Func Offset: 0x55c
-	// Line 958, Address: 0x2b2c78, Func Offset: 0x568
-	// Line 961, Address: 0x2b2c80, Func Offset: 0x570
-	// Line 966, Address: 0x2b2c98, Func Offset: 0x588
-	// Line 969, Address: 0x2b2ca0, Func Offset: 0x590
-	// Line 970, Address: 0x2b2cb0, Func Offset: 0x5a0
-	// Line 969, Address: 0x2b2cb4, Func Offset: 0x5a4
-	// Line 970, Address: 0x2b2cc4, Func Offset: 0x5b4
-	// Line 980, Address: 0x2b2cd0, Func Offset: 0x5c0
-	// Line 970, Address: 0x2b2cd4, Func Offset: 0x5c4
-	// Line 971, Address: 0x2b2ce4, Func Offset: 0x5d4
-	// Line 980, Address: 0x2b2cfc, Func Offset: 0x5ec
-	// Line 982, Address: 0x2b2d10, Func Offset: 0x600
-	// Line 984, Address: 0x2b2d1c, Func Offset: 0x60c
-	// Line 985, Address: 0x2b2d2c, Func Offset: 0x61c
-	// Line 986, Address: 0x2b2d38, Func Offset: 0x628
-	// Line 985, Address: 0x2b2d40, Func Offset: 0x630
-	// Line 986, Address: 0x2b2d44, Func Offset: 0x634
-	// Line 988, Address: 0x2b2d50, Func Offset: 0x640
-	// Line 1039, Address: 0x2b2d60, Func Offset: 0x650
-	// Line 1045, Address: 0x2b2d68, Func Offset: 0x658
-	// Line 1050, Address: 0x2b2d6c, Func Offset: 0x65c
-	// Line 1052, Address: 0x2b2d7c, Func Offset: 0x66c
-	// Line 1054, Address: 0x2b2d84, Func Offset: 0x674
-	// Line 1056, Address: 0x2b2d8c, Func Offset: 0x67c
-	// Line 1058, Address: 0x2b2d94, Func Offset: 0x684
-	// Line 1060, Address: 0x2b2d9c, Func Offset: 0x68c
-	// Line 1062, Address: 0x2b2da4, Func Offset: 0x694
-	// Line 1063, Address: 0x2b2da8, Func Offset: 0x698
-	// Func End, Address: 0x2b2dc4, Func Offset: 0x6b4
-	scePrintf("bhControlMap - UNIMPLEMENTED!\n");
+    int bol;         
+    NJS_SCREEN scrn; 
+    int next;        
+    int* pacP;        
+    ML_WORK* mlwP;    
+    int i;            
+    unsigned int tmp; 
+
+    bol = 1;
+    
+    switch (mwP->map_mode) 
+    {
+    case MP_MOD_FIRST:
+        bhSetScreenFade(sys->fade_pbk, 8.0f);
+        
+        MapFuncAlloc(FsubBackDraw, 0);
+        MapFuncAlloc((void*)FsubZoomScreen, 0);
+        
+        MapEntryTask(FtskMapWait, MP_MOD_IDX_READ, 0);
+        
+        mwP->map_mode = MP_MOD_WAIT;
+        
+        MapCncInit(11, 6);
+        
+        if (GetGameMode() == 1) 
+        {
+            MapCncConnect(CncDatA);
+        } 
+        else 
+        {
+            MapCncConnect(CncDatB);
+        }
+        
+        break;
+    case MP_MOD_IDX_READ:
+        njClipZ(-2.0f, -20000.0f);
+        
+        njSetAspect(1.174f, 1.0f);
+        njSetBackColor(0x00000000, 0x00000000, 0x00000000); 
+        
+        scrn.dist = 500.0f;
+        
+        scrn.w = 640.0f;
+        scrn.h = 480.0f;
+        
+        scrn.cx = 320.0f;
+        scrn.cy = 240.0f;
+        
+        njSetScreen(&scrn);
+        
+        MapEntryTask(FtskMapRead, MP_MOD_IDX_ANALYZE, sys->ply_id);
+        
+        mwP->map_mode = MP_MOD_WAIT;
+        break;
+    case MP_MOD_IDX_ANALYZE:
+        pacP = mwP->map_bufP;
+        
+        if (*pacP++ == 0x4341504D)
+        {
+            mlwP = mwP->MrkMdl;
+            
+            pacP = (int*)((int)pacP + *pacP);
+            
+            next = *pacP++;
+            
+            while ((*pacP & 0xFFFFFF) == 0x4C444D) 
+            {
+                bhMlbBinRealize(pacP, mlwP);
+                
+                pacP = (int*)((int)pacP + next);
+                
+                next = *pacP++;
+                
+                mlwP++; 
+            }
+            
+            mwP->status |= 0x8;
+            
+            bhSetMemPvpTexture(mwP->map_texP, (unsigned char*)pacP, 0);
+            
+            if (next != -1) 
+            {
+                pacP = (int*)((int)pacP + next); 
+                
+                next = *pacP++;
+            }
+            
+            for (i = 0; i < 10; i++) 
+            {
+                mwP->mes_bufPP[i] = (unsigned int*)pacP;
+                
+                if (next != -1) 
+                {
+                    pacP = (int*)((int)pacP + next); 
+                    
+                    next = *pacP++;
+                }
+            }
+            
+            mwP->map_bufP = pacP;
+            
+            tmp = MapGetFloorNo(mwP->map_bufP, mwP->ply_rom, plp->py);
+            
+            mwP->map_no  = tmp / 65536;
+            mwP->ply_flr = tmp & 0xFFFF;
+            
+            MapEntrySprite(MP_SET_SILHOUETTE, 0);
+            
+            MapFuncAlloc((void*)FsubCompass, 0);
+            MapFuncAlloc((void*)FsubModeMessage, 0);
+        }
+        
+        if ((mwP->status & 0x2)) 
+        {
+            mwP->stg_no = mwP->bnk_stg;
+            mwP->rom_no = mwP->bnk_rom;
+            mwP->flr_no = mwP->bnk_flr;
+        } 
+        else 
+        {
+            mwP->stg_no = mwP->map_no;
+            mwP->rom_no = mwP->ply_rom;
+            mwP->flr_no = mwP->ply_flr;
+        }
+    case MP_MOD_MAP_READ:
+        mwP->status &= ~0x40;
+        mwP->status &= ~0x100;
+        
+        mwP->map_flr = mwP->flr_no;
+        
+        if ((mwP->status & 0x10)) 
+        {
+            mwP->status &= ~0x10;
+            
+            njReleaseTexture(mwP->stg_texP);
+            
+            bhGarbageTexture(NULL, 0);
+        }
+        
+        MapEntryTask(FtskMapRead, MP_MOD_DAT_SET, (mwP->map_flr + (mwP->stg_no * 6)) + 5);
+        
+        mwP->map_mode = MP_MOD_WAIT;
+        break;
+    case MP_MOD_DAT_SET:
+    {
+        int next;  
+        int* pacP; 
+        
+        pacP = mwP->map_bufP; 
+        
+        if (*pacP++ == 0x4341504D)
+        {
+            pacP = (int*)((int)pacP + *pacP);
+            
+            next = *pacP++;
+            
+            mwP->map_cdeP = (short*)pacP;
+            
+            if (next != -1) 
+            {
+                pacP = (int*)((int)pacP + next);
+                
+                next = *pacP++;
+                
+                bhMlbBinRealize(pacP, &mwP->map_mdl);
+                
+                MapPurgeTree(&mwP->map_mdl);
+                
+                mwP->map_objP = mwP->map_mdl.objP;
+                
+                if (next != -1) 
+                {
+                    mwP->status |= 0x10;
+                    
+                    bhSetMemPvpTexture(mwP->stg_texP, (unsigned char*)(((int)pacP + next) + 4), 0); 
+                }
+            }
+            
+            MapFuncAlloc(FsubMapDraw, 0);
+            
+            MapTagInit(64);
+            
+            mwP->map_mode = MP_MOD_VEW_NORMAL;
+        } 
+        else 
+        {
+            mwP->map_mode = MP_MOD_WAIT_NOMAP;
+        }
+        
+        break;
+    }
+    case MP_MOD_VEW_NORMAL:
+        MapEntryTask(FtskMapNormal, MP_MOD_VEW_ZOOM, 0);
+        
+        mwP->map_mode = MP_MOD_WAIT_NORMAL;
+        break;
+    case MP_MOD_VEW_ZOOM:
+        MapEntryTask(FtskMapZoom, MP_MOD_VEW_NORMAL, 0);
+        
+        mwP->map_mode = MP_MOD_WAIT_ZOOM;
+        break;
+    case MP_MOD_WAIT_NOMAP:
+        MapDrawMessage(mwP->ply_rom, mwP, 160.0f, 220.0f);
+    case MP_MOD_WAIT_NORMAL:
+    case MP_MOD_WAIT_ZOOM:
+    {
+        NJS_POINT3* dstP, *srcP; 
+
+        srcP = &mwP->vew_pos;
+        dstP = &mwP->dst_pos;
+            
+        srcP->x      += 0.5f * (dstP->x      - srcP->x);
+        mwP->vew_zom += 0.5f * (mwP->dst_zom - mwP->vew_zom);
+        srcP->z      += 0.5f * (dstP->z      - srcP->z);
+        
+        if ((mwP->pad_ps & 0x3000)) 
+        {
+            CallSystemSe(0, 0);
+            
+            bhSetScreenFade(0xFF000000, 8.0f);
+            
+            mwP->map_mode = MP_MOD_WAIT;
+            
+            MapEntryTask(FtskMapExit, MP_MOD_EXIT, 0);
+            
+            mwP->status |= 0x400;
+        }
+        
+        break;
+    }
+    case MP_MOD_EXIT:
+        bol = 0;
+        break;
+    }
+    
+    mwP->time++;
+    
+    MapPadMain();
+    MapViewMain();
+    MapLightMain();
+    MapPaletteMain();
+    
+    MapFuncExec();
+    
+    return bol;
 }
 
 // 100% matching!
@@ -555,17 +622,17 @@ static void MapLightMain()
     njPopMatrixEx();
 }
 
-/*// 
+// 
 // Start address: 0x2b31f0
-void MapPaletteMain()
+static void MapPaletteMain()
 {
 	float rate;
-	float rate;
-	float rate;
-	float rate;
+	//float rate;
+	//float rate;
+	//float rate;
 	int i;
-	_anon11* dstP;
-	_anon11* srcP;
+	NJS_ARGB* dstP;
+	NJS_ARGB* srcP;
 	// Line 1165, Address: 0x2b31f0, Func Offset: 0
 	// Line 1167, Address: 0x2b3208, Func Offset: 0x18
 	// Line 1168, Address: 0x2b3224, Func Offset: 0x34
@@ -629,19 +696,20 @@ void MapPaletteMain()
 	// Line 1210, Address: 0x2b3440, Func Offset: 0x250
 	// Line 1212, Address: 0x2b3448, Func Offset: 0x258
 	// Func End, Address: 0x2b3464, Func Offset: 0x274
-}*/
+	scePrintf("MapPaletteMain - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2b3470
-void MapCodeProcess()
+static void MapCodeProcess()
 {
 	int off_tim;
 	int bnk_tim;
 	int snd_no;
-	//_anon14 pos;
+	//NJS_POINT3 pos;
 	int pal_no;
 	int mrk_no;
-	//_anon14 pos;
+	//NJS_POINT3 pos;
 	int rom_no;
 	float scl;
 	unsigned char typ;
@@ -653,10 +721,10 @@ void MapCodeProcess()
 	int az;
 	int ay;
 	int ax;
-	//_anon14 pos;
+	//NJS_POINT3 pos;
 	//int mrk_no;
 	int mode;
-	//npobj* objP;
+	NJS_CNK_MODEL* objP;
 	int* stsP;
 	short* ocP;
 	int SndTbl[1];
@@ -891,12 +959,12 @@ static void MapBoolSet(int bol, int mod)
     }
 }
 
-/*// 
+// 
 // Start address: 0x2b3d80
-void MapDrawMarker(int mrk_no, _anon14* posP, int pal_no)
+static void MapDrawMarker(int mrk_no, NJS_POINT3* posP, int pal_no)
 {
-	_anon52* maP;
-	_anon52 MrkAtr[6];
+	MA_WORK* maP;
+	MA_WORK MrkAtr[6];
 	// Line 1539, Address: 0x2b3d80, Func Offset: 0
 	// Line 1540, Address: 0x2b3d94, Func Offset: 0x14
 	// Line 1539, Address: 0x2b3d98, Func Offset: 0x18
@@ -924,15 +992,16 @@ void MapDrawMarker(int mrk_no, _anon14* posP, int pal_no)
 	// Line 1590, Address: 0x2b3f4c, Func Offset: 0x1cc
 	// Line 1595, Address: 0x2b3f58, Func Offset: 0x1d8
 	// Func End, Address: 0x2b3f70, Func Offset: 0x1f0
-}*/
+	scePrintf("MapDrawBackground - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x2b3f70
-void MapDrawBackground(float depth, NJS_POINT2* p0P, NJS_POINT2* p1P)
+static void MapDrawBackground(float depth, NJS_POINT2* p0P, NJS_POINT2* p1P)
 {
 	float dst;
-	//NJS_POINT2 p1;
-	//NJS_POINT2 p0;
+	NJS_POINT2 p1;
+	NJS_POINT2 p0;
 	// Line 1607, Address: 0x2b3f70, Func Offset: 0
 	// Line 1610, Address: 0x2b3f90, Func Offset: 0x20
 	// Line 1617, Address: 0x2b3fac, Func Offset: 0x3c
@@ -956,13 +1025,13 @@ void MapDrawBackground(float depth, NJS_POINT2* p0P, NJS_POINT2* p1P)
 	scePrintf("MapDrawBackground - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x2b4120
-void MapDrawSprite(_anon14* posP, int col, _enum_4 spr_no)
+static void MapDrawSprite(NJS_POINT3* posP, int col, mp_spr spr_no)
 {
-	_anon11* mtrP;
-	_anon65* sprP;
-	_anon63 TexAnm[18];
+	NJS_ARGB* mtrP;
+	NJS_SPRITE* sprP;
+	NJS_TEXANIM TexAnm[18];
 	// Line 1658, Address: 0x2b4120, Func Offset: 0
 	// Line 1732, Address: 0x2b4138, Func Offset: 0x18
 	// Line 1740, Address: 0x2b4140, Func Offset: 0x20
@@ -988,14 +1057,15 @@ void MapDrawSprite(_anon14* posP, int col, _enum_4 spr_no)
 	// Line 1750, Address: 0x2b42bc, Func Offset: 0x19c
 	// Line 1751, Address: 0x2b42d0, Func Offset: 0x1b0
 	// Func End, Address: 0x2b42ec, Func Offset: 0x1cc
+	scePrintf("MapDrawSprite - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2b42f0
-int MapGetFloorNo(void* datP, int rom_no, float pos_y)
+static int MapGetFloorNo(void* datP, int rom_no, float pos_y)
 {
 	int middle;
-	_anon44* ftP;
+	FT_WRK* ftP;
 	int low;
 	float key;
 	int high;
@@ -1015,15 +1085,16 @@ int MapGetFloorNo(void* datP, int rom_no, float pos_y)
 	// Line 1778, Address: 0x2b435c, Func Offset: 0x6c
 	// Line 1781, Address: 0x2b4390, Func Offset: 0xa0
 	// Func End, Address: 0x2b4398, Func Offset: 0xa8
+	scePrintf("MapGetFloorNo - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2b43a0
-void MapPurgeTree(_anon19* mlwP)
+static void MapPurgeTree(ML_WORK* mlwP)
 {
 	int obj_num;
-	float mtxP[16];
-	npobj* objP;
+	NJS_MATRIX* mtxP;
+	NJS_CNK_OBJECT* objP;
 	// Line 1791, Address: 0x2b43a0, Func Offset: 0
 	// Line 1792, Address: 0x2b43b4, Func Offset: 0x14
 	// Line 1793, Address: 0x2b43b8, Func Offset: 0x18
@@ -1046,7 +1117,8 @@ void MapPurgeTree(_anon19* mlwP)
 	// Line 1820, Address: 0x2b44d0, Func Offset: 0x130
 	// Line 1822, Address: 0x2b44d8, Func Offset: 0x138
 	// Func End, Address: 0x2b44f0, Func Offset: 0x150
-}*/
+	scePrintf("MapPurgeTree - UNIMPLEMENTED!\n");
+}
 
 // 100% matching! 
 static void MapFuncInit(int func_num) 
@@ -1177,14 +1249,14 @@ static int FsubBackDraw()
     return 1;
 }
 
-/*// 
+// 
 // Start address: 0x2b4810
-void MapEntrySprite(_enum_0 set_no, int mode)
+static void MapEntrySprite(mp_set set_no, int mode)
 {
-	_anon25* fsdP;
-	_anon36* ssP;
-	_func_wrk_typ* fwP;
-	_anon36 SprSet[11];
+	FSD_WORK* fsdP;
+	SS_WORK* ssP;
+	func_wrk_typ* fwP;
+	SS_WORK SprSet[11];
 	// Line 2069, Address: 0x2b4810, Func Offset: 0
 	// Line 2009, Address: 0x2b4818, Func Offset: 0x8
 	// Line 2069, Address: 0x2b481c, Func Offset: 0xc
@@ -1201,7 +1273,8 @@ void MapEntrySprite(_enum_0 set_no, int mode)
 	// Line 2085, Address: 0x2b4890, Func Offset: 0x80
 	// Line 2089, Address: 0x2b4894, Func Offset: 0x84
 	// Func End, Address: 0x2b48a8, Func Offset: 0x98
-}*/
+	scePrintf("MapEntrySprite - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 static int FsprSpriteDraw(FS_WORK* fsP) 
@@ -1262,22 +1335,22 @@ static int FsprSilhouetteDraw(FS_WORK* fsP)
     return bol; 
 }
 
-/*// 
+// 
 // Start address: 0x2b49d0
-int FsprArrowDraw(_anon22* fsP)
+static int FsprArrowDraw(FS_WORK* fsP)
 {
 	int flr_top;
-	_cnc_wrk_typ* srcP;
-	_cnc_wrk_typ* dstP;
-	_enum_3 cn_d;
-	_enum_3 cn_s;
+	cnc_wrk_typ* srcP;
+	cnc_wrk_typ* dstP;
+	mp_no cn_d;
+	mp_no cn_s;
 	int* prmP;
 	int p_prs;
-	_anon1* mnP;
-	_anon14 bak;
+	map_nxt* mnP;
+	NJS_POINT3 bak;
 	int count;
-	_anon29* fscP;
-	_anon25* fsdP;
+	FSC_WORK* fscP;
+	FSD_WORK* fsdP;
 	// Line 2161, Address: 0x2b49d0, Func Offset: 0
 	// Line 2167, Address: 0x2b49ec, Func Offset: 0x1c
 	// Line 2170, Address: 0x2b49f0, Func Offset: 0x20
@@ -1337,18 +1410,19 @@ int FsprArrowDraw(_anon22* fsP)
 	// Line 2235, Address: 0x2b4d00, Func Offset: 0x330
 	// Line 2236, Address: 0x2b4d04, Func Offset: 0x334
 	// Func End, Address: 0x2b4d0c, Func Offset: 0x33c
+	scePrintf("FsprArrowDraw - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2b4d10
-int FsprArrowDraw2(_anon22* fsP)
+static int FsprArrowDraw2(FS_WORK* fsP)
 {
-	_anon14 bak;
+	NJS_POINT3 bak;
 	int tab;
 	int count;
-	_tag_wrk_typ* twP;
-	_anon29* fscP;
-	_anon25* fsdP;
+	tag_wrk_typ* twP;
+	FSC_WORK* fscP;
+	FSD_WORK* fsdP;
 	// Line 2246, Address: 0x2b4d10, Func Offset: 0
 	// Line 2249, Address: 0x2b4d30, Func Offset: 0x20
 	// Line 2252, Address: 0x2b4d3c, Func Offset: 0x2c
@@ -1377,7 +1451,8 @@ int FsprArrowDraw2(_anon22* fsP)
 	// Line 2275, Address: 0x2b4ef8, Func Offset: 0x1e8
 	// Line 2276, Address: 0x2b4efc, Func Offset: 0x1ec
 	// Func End, Address: 0x2b4f04, Func Offset: 0x1f4
-}*/
+	scePrintf("FsprArrowDraw2 - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 static FT_WORK* MapEntryTask(int(*tskP)(FTS_WORK*), mp_mod chg_mde, int param0) 
@@ -1528,15 +1603,15 @@ static int FtskMapNormal(FTS_WORK* ftsP)
     return bol;
 }
 
-/*// 
+// 
 // Start address: 0x2b5220
-int FtskMapZoom(_anon35* ftsP)
+static int FtskMapZoom(FTS_WORK* ftsP)
 {
 	int tag;
-	_tag_wrk_typ* twP;
+	tag_wrk_typ* twP;
 	unsigned int p_prs;
-	_anon3* fgP;
-	_tag_wrk_typ* twP;
+	FG_WORK* fgP;
+	//tag_wrk_typ* twP;
 	int bol;
 	// Line 2483, Address: 0x2b5220, Func Offset: 0
 	// Line 2486, Address: 0x2b5230, Func Offset: 0x10
@@ -1627,21 +1702,22 @@ int FtskMapZoom(_anon35* ftsP)
 	// Line 2592, Address: 0x2b5548, Func Offset: 0x328
 	// Line 2593, Address: 0x2b554c, Func Offset: 0x32c
 	// Func End, Address: 0x2b5560, Func Offset: 0x340
+	scePrintf("FtskMapZoom - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2b5560
-int FsubGaugeDrawZ(_anon3* fgP)
+static int FsubGaugeDrawZ(FG_WORK* fgP)
 {
 	float size;
 	float tmp;
 	float dsp;
 	float pos;
 	int cnt;
-	_anon5 pnt[2];
-	_anon39 col[2];
+	NJS_POINT2 pnt[2];
+	NJS_COLOR col[2];
 	float scl;
-	_anon57 p2c;
+	NJS_POINT2COL p2c;
 	// Line 2712, Address: 0x2b5560, Func Offset: 0
 	// Line 2719, Address: 0x2b558c, Func Offset: 0x2c
 	// Line 2728, Address: 0x2b559c, Func Offset: 0x3c
@@ -1711,21 +1787,22 @@ int FsubGaugeDrawZ(_anon3* fgP)
 	// Line 2782, Address: 0x2b58e0, Func Offset: 0x380
 	// Line 2783, Address: 0x2b58e4, Func Offset: 0x384
 	// Func End, Address: 0x2b58ec, Func Offset: 0x38c
+	scePrintf("FsubGaugeDrawZ - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2b58f0
-int FsubGaugeDrawX(_anon3* fgP)
+static int FsubGaugeDrawX(FG_WORK* fgP)
 {
 	float size;
 	float tmp;
 	float dsp;
 	float pos;
 	int cnt;
-	_anon5 pnt[2];
-	_anon39 col[2];
+	NJS_POINT2 pnt[2];
+	NJS_COLOR col[2];
 	float scl;
-	_anon57 p2c;
+	NJS_POINT2COL p2c;
 	// Line 2793, Address: 0x2b58f0, Func Offset: 0
 	// Line 2800, Address: 0x2b591c, Func Offset: 0x2c
 	// Line 2810, Address: 0x2b592c, Func Offset: 0x3c
@@ -1794,7 +1871,8 @@ int FsubGaugeDrawX(_anon3* fgP)
 	// Line 2862, Address: 0x2b5c88, Func Offset: 0x398
 	// Line 2863, Address: 0x2b5c8c, Func Offset: 0x39c
 	// Func End, Address: 0x2b5c94, Func Offset: 0x3a4
-}*/
+	scePrintf("FsubGaugeDrawX - UNIMPLEMENTED!\n");
+}
 
 // 86.86% matching
 static int FsubGaugeDraw(FG_WORK* fgP)
@@ -1861,7 +1939,7 @@ static void MapTagEntry(NJS_MATRIX* basP, int rom_no, NJS_POINT3* posP)
 
 // 
 // Start address: 0x2b5ef0
-tag_wrk_typ* MapTagConnect(int rom_no)
+static tag_wrk_typ* MapTagConnect(int rom_no)
 {
 	int dir;
 	float d;
@@ -1904,7 +1982,7 @@ tag_wrk_typ* MapTagConnect(int rom_no)
 
 // 
 // Start address: 0x2b6050
-tag_wrk_typ* MapTagCenter()
+static tag_wrk_typ* MapTagCenter()
 {
 	float d;
 	tag_wrk_typ* rtnP;
@@ -2021,18 +2099,18 @@ static void MapDrawPolyFill(NJS_POINT2* pnt, float pri, int pal)
 }
 
 // 100% matching!
-static void MapDrawMessage()
+static void MapDrawMessage(int rom, map_wrk* mwP, float x, float y) // parameters not present on DWARF
 {
 
 }
 
-/*// 
+// 
 // Start address: 0x2b6320
-int FsubZoomCursor(_anon8* fzP)
+static int FsubZoomCursor(FZ_WORK* fzP)
 {
-	_anon5 dst_pos2[4];
-	_anon5 dst_pos1[4];
-	_anon5 dst_pos0[4];
+	NJS_POINT2 dst_pos2[4];
+	NJS_POINT2 dst_pos1[4];
+	NJS_POINT2 dst_pos0[4];
 	// Line 3165, Address: 0x2b6320, Func Offset: 0
 	// Line 3182, Address: 0x2b6330, Func Offset: 0x10
 	// Line 3186, Address: 0x2b635c, Func Offset: 0x3c
@@ -2090,14 +2168,15 @@ int FsubZoomCursor(_anon8* fzP)
 	// Line 3235, Address: 0x2b6650, Func Offset: 0x330
 	// Line 3240, Address: 0x2b6658, Func Offset: 0x338
 	// Func End, Address: 0x2b666c, Func Offset: 0x34c
+	scePrintf("FsubZoomCursor - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2b6670
-int FsubZoomInfomation(_anon21* fiP)
+static int FsubZoomInfomation(FI_WORK* fiP)
 {
-	_anon14 pos;
-	_anon14 set_pos;
+	NJS_POINT3 pos;
+	NJS_POINT3 set_pos;
 	// Line 3250, Address: 0x2b6670, Func Offset: 0
 	// Line 3257, Address: 0x2b6680, Func Offset: 0x10
 	// Line 3260, Address: 0x2b66a0, Func Offset: 0x30
@@ -2164,7 +2243,8 @@ int FsubZoomInfomation(_anon21* fiP)
 	// Line 3312, Address: 0x2b68bc, Func Offset: 0x24c
 	// Line 3313, Address: 0x2b68c0, Func Offset: 0x250
 	// Func End, Address: 0x2b68c8, Func Offset: 0x258
-}*/
+	scePrintf("FsubZoomInfomation - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 static NJS_COLOR MapCnvArgb2Color(NJS_ARGB* argbP)
@@ -2179,15 +2259,15 @@ static NJS_COLOR MapCnvArgb2Color(NJS_ARGB* argbP)
     return col;
 }
 
-/*// 
+// 
 // Start address: 0x2b6970
-int FsubZoomScreen(_anon30* fsP)
+static int FsubZoomScreen(FS_WRK* fsP)
 {
 	int tmp;
 	int ang;
-	_anon5 pnt[4];
-	_anon5 ScrOut[2];
-	_anon5 ScrIn[2];
+	NJS_POINT2 pnt[4];
+	NJS_POINT2 ScrOut[2];
+	NJS_POINT2 ScrIn[2];
 	// Line 3343, Address: 0x2b6970, Func Offset: 0
 	// Line 3353, Address: 0x2b6984, Func Offset: 0x14
 	// Line 3356, Address: 0x2b69a4, Func Offset: 0x34
@@ -2334,7 +2414,8 @@ int FsubZoomScreen(_anon30* fsP)
 	// Line 3436, Address: 0x2b6f30, Func Offset: 0x5c0
 	// Line 3437, Address: 0x2b6f34, Func Offset: 0x5c4
 	// Func End, Address: 0x2b6f3c, Func Offset: 0x5cc
-}*/
+	scePrintf("FsubZoomScreen - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 static int FsubCompass(FC_WORK* fcP)
@@ -2419,11 +2500,11 @@ static int FsubModeMessage(FM_WORK* fmP)
     return 1;
 }
 
-/*// 
+// 
 // Start address: 0x2b7110
-void MapCncInit(int map_num, int flr_num)
+static void MapCncInit(int map_num, int flr_num)
 {
-	_cnc_wrk_typ* cwP;
+	cnc_wrk_typ* cwP;
 	int flr_no;
 	int map_no;
 	// Line 3557, Address: 0x2b7110, Func Offset: 0
@@ -2444,11 +2525,12 @@ void MapCncInit(int map_num, int flr_num)
 	// Line 3576, Address: 0x2b71b0, Func Offset: 0xa0
 	// Line 3579, Address: 0x2b71c0, Func Offset: 0xb0
 	// Func End, Address: 0x2b71dc, Func Offset: 0xcc
+	scePrintf("MapCncInit - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2b71e0
-_cnc_wrk_typ* MapCncGet(int map_no, int flr_no)
+static cnc_wrk_typ* MapCncGet(int map_no, int flr_no)
 {
 	// Line 3591, Address: 0x2b71e0, Func Offset: 0
 	// Line 3594, Address: 0x2b71f0, Func Offset: 0x10
@@ -2456,18 +2538,19 @@ _cnc_wrk_typ* MapCncGet(int map_no, int flr_no)
 	// Line 3594, Address: 0x2b71f8, Func Offset: 0x18
 	// Line 3595, Address: 0x2b7204, Func Offset: 0x24
 	// Func End, Address: 0x2b720c, Func Offset: 0x2c
+	scePrintf("MapCncGet - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x2b7210
-void MapCnc(_enum_3 dst, _enum_3 src, int status)
+static void MapCnc(mp_no dst, mp_no src, int status)
 {
 	int src_flr;
 	int src_map;
 	int dst_flr;
 	int dst_map;
-	_cnc_wrk_typ* dstP;
-	_cnc_wrk_typ* srcP;
+	cnc_wrk_typ* dstP;
+	cnc_wrk_typ* srcP;
 	int AdjMapA[3];
 	// Line 3605, Address: 0x2b7210, Func Offset: 0
 	// Line 3611, Address: 0x2b7214, Func Offset: 0x4
@@ -2492,10 +2575,11 @@ void MapCnc(_enum_3 dst, _enum_3 src, int status)
 	// Line 3646, Address: 0x2b72f8, Func Offset: 0xe8
 	// Line 3647, Address: 0x2b72fc, Func Offset: 0xec
 	// Func End, Address: 0x2b7308, Func Offset: 0xf8
-}*/
+	scePrintf("MapCnc - UNIMPLEMENTED!\n");
+}
 
 // 81.59% matching (matches on NGC)
-static void MapCncConnect(unsigned short* datP) 
+static void MapCncConnect(const unsigned short* datP) 
 {
     int sts;          
     int dat_u;  
@@ -2534,12 +2618,12 @@ static void MapCncConnect(unsigned short* datP)
     }
 }
 
-/*// 
+// 
 // Start address: 0x2b7380
-_anon1* MapCheckNextMap(_anon1* mnP)
+static map_nxt* MapCheckNextMap(map_nxt* mnP)
 {
-	_cnc_wrk_typ* cwP;
-	_cnc_wrk_typ* curP;
+	cnc_wrk_typ* cwP;
+	cnc_wrk_typ* curP;
 	// Line 3691, Address: 0x2b7380, Func Offset: 0
 	// Line 3694, Address: 0x2b7388, Func Offset: 0x8
 	// Line 3699, Address: 0x2b73a0, Func Offset: 0x20
@@ -2570,7 +2654,8 @@ _anon1* MapCheckNextMap(_anon1* mnP)
 	// Line 3738, Address: 0x2b74c8, Func Offset: 0x148
 	// Line 3739, Address: 0x2b74cc, Func Offset: 0x14c
 	// Func End, Address: 0x2b74d4, Func Offset: 0x154
-}*/
+	scePrintf("MapCheckNextMap - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 static int GetGameMode()

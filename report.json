@@ -1,6 +1,6 @@
 {
   "measures": {
-    "fuzzy_match_percent": 56.18895,
+    "fuzzy_match_percent": 56.819263,
     "total_code": "1904472",
     "matched_code": "869832",
     "matched_code_percent": 45.673134,
@@ -15294,7 +15294,7 @@
     {
       "name": "ps2/veronica/prog/effsub1",
       "measures": {
-        "fuzzy_match_percent": 13.308245,
+        "fuzzy_match_percent": 27.381823,
         "total_code": "85296",
         "matched_code": "4968",
         "matched_code_percent": 5.8244233,
@@ -15322,12 +15322,13 @@
         {
           "name": ".rodata",
           "size": "432",
+          "fuzzy_match_percent": 22.340425,
           "metadata": {}
         },
         {
           "name": ".text",
           "size": "85840",
-          "fuzzy_match_percent": 13.308245,
+          "fuzzy_match_percent": 27.381823,
           "metadata": {}
         },
         {
@@ -15836,7 +15837,7 @@
         {
           "name": "bhEff130",
           "size": "12044",
-          "fuzzy_match_percent": 0.076386586,
+          "fuzzy_match_percent": 99.74593,
           "metadata": {},
           "address": "71200"
         },
@@ -40900,7 +40901,7 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 54.16712,
+        "fuzzy_match_percent": 54.826527,
         "total_code": "1820460",
         "matched_code": "785820",
         "matched_code_percent": 43.16601,

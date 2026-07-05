@@ -1273,31 +1273,40 @@ static int FsubBackDraw()
     return 1;
 }
 
-// 
-// Start address: 0x2b4810
+// 100% matching!
 static void MapEntrySprite(mp_set set_no, int mode)
 {
-	FSD_WORK* fsdP;
-	SS_WORK* ssP;
-	func_wrk_typ* fwP;
-	SS_WORK SprSet[11];
-	// Line 2069, Address: 0x2b4810, Func Offset: 0
-	// Line 2009, Address: 0x2b4818, Func Offset: 0x8
-	// Line 2069, Address: 0x2b481c, Func Offset: 0xc
-	// Line 2009, Address: 0x2b4824, Func Offset: 0x14
-	// Line 2069, Address: 0x2b482c, Func Offset: 0x1c
-	// Line 2009, Address: 0x2b4830, Func Offset: 0x20
-	// Line 2069, Address: 0x2b4834, Func Offset: 0x24
-	// Line 2071, Address: 0x2b483c, Func Offset: 0x2c
-	// Line 2075, Address: 0x2b4850, Func Offset: 0x40
-	// Line 2076, Address: 0x2b4860, Func Offset: 0x50
-	// Line 2077, Address: 0x2b4868, Func Offset: 0x58
-	// Line 2078, Address: 0x2b4870, Func Offset: 0x60
-	// Line 2079, Address: 0x2b4878, Func Offset: 0x68
-	// Line 2085, Address: 0x2b4890, Func Offset: 0x80
-	// Line 2089, Address: 0x2b4894, Func Offset: 0x84
-	// Func End, Address: 0x2b48a8, Func Offset: 0x98
-	scePrintf("MapEntrySprite - UNIMPLEMENTED!\n");
+    func_wrk_typ* fwP;
+    SS_WORK* ssP;
+    FSD_WORK* fsdP;
+	static const SS_WORK SprSet[11] = 
+    {
+        { MP_SPR_SILHOUETTE,  (void*)FsprSilhouetteDraw, 1535, 0xFF004000, { 585.0f,  66.0f, -8.0f } },
+        { MP_SPR_ARROW_UP,    (void*)FsprArrowDraw,      128,  0xFF008000, { 320.0f,  40.0f, -6.0f } },
+        { MP_SPR_ARROW_DOWN,  (void*)FsprArrowDraw,      128,  0xFF008000, { 320.0f, 443.0f, -6.0f } },
+        { MP_SPR_ARROW_LEFT,  (void*)FsprArrowDraw,      128,  0xFF008000, {  32.0f, 240.0f, -6.0f } },
+        { MP_SPR_ARROW_RIGHT, (void*)FsprArrowDraw,      128,  0xFF008000, { 610.0f, 240.0f, -6.0f } },
+        { MP_SPR_ARROW_UP,    (void*)FsprArrowDraw2,     256,  0xFF4050A0, { 320.0f,  40.0f, -6.0f } },
+        { MP_SPR_ARROW_DOWN,  (void*)FsprArrowDraw2,     256,  0xFF4050A0, { 320.0f, 443.0f, -6.0f } },
+        { MP_SPR_ARROW_LEFT,  (void*)FsprArrowDraw2,     256,  0xFF4050A0, {  32.0f, 240.0f, -6.0f } },
+        { MP_SPR_ARROW_RIGHT, (void*)FsprArrowDraw2,     256,  0xFF4050A0, { 610.0f, 240.0f, -6.0f } },
+        { MP_SPR_LR_ZOOM,     (void*)FsprSpriteDraw,     256,  0xFFFFFFFF, { 320.0f,  80.0f, -8.0f } },
+        { MP_SPR_TITLE,       (void*)FsprSpriteDraw,     1120, 0xFFFFFFFF, {  64.0f,  32.0f, -8.0f } }
+    };
+    
+    ssP = &SprSet[set_no];
+    fwP = MapFuncAlloc(ssP->funcP, 0);
+    
+    if (fwP != NULL) 
+    {
+        fwP->param0 = (int)&mwP->map_mode;
+        fwP->param1 = ssP->act_bit;
+        fwP->param2 = ssP->spr_no;
+        
+        fwP->FreeWrk[0]                = ssP->spr_col;
+        *(NJS_POINT3*)&fwP->FreeWrk[1] = *(NJS_POINT3*)&ssP->spr_pos;
+        fwP->FreeWrk[4]                = mode;
+    }
 }
 
 // 100% matching!

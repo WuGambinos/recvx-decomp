@@ -1098,36 +1098,50 @@ static int MapGetFloorNo(void* datP, int rom_no, float pos_y)
     return (ftP[high].map_no << 16) | ftP[high].flr_no;
 }
 
-// 
-// Start address: 0x2b43a0
+// 100% matching!
 static void MapPurgeTree(ML_WORK* mlwP)
 {
-	int obj_num;
-	NJS_MATRIX* mtxP;
-	NJS_CNK_OBJECT* objP;
-	// Line 1791, Address: 0x2b43a0, Func Offset: 0
-	// Line 1792, Address: 0x2b43b4, Func Offset: 0x14
-	// Line 1793, Address: 0x2b43b8, Func Offset: 0x18
-	// Line 1796, Address: 0x2b43c0, Func Offset: 0x20
-	// Line 1798, Address: 0x2b43c8, Func Offset: 0x28
-	// Line 1800, Address: 0x2b43d0, Func Offset: 0x30
-	// Line 1802, Address: 0x2b43dc, Func Offset: 0x3c
-	// Line 1804, Address: 0x2b43f0, Func Offset: 0x50
-	// Line 1805, Address: 0x2b4404, Func Offset: 0x64
-	// Line 1807, Address: 0x2b4418, Func Offset: 0x78
-	// Line 1808, Address: 0x2b4420, Func Offset: 0x80
-	// Line 1809, Address: 0x2b4444, Func Offset: 0xa4
-	// Line 1810, Address: 0x2b4468, Func Offset: 0xc8
-	// Line 1811, Address: 0x2b448c, Func Offset: 0xec
-	// Line 1812, Address: 0x2b4494, Func Offset: 0xf4
-	// Line 1813, Address: 0x2b449c, Func Offset: 0xfc
-	// Line 1815, Address: 0x2b44a4, Func Offset: 0x104
-	// Line 1817, Address: 0x2b44b8, Func Offset: 0x118
-	// Line 1818, Address: 0x2b44c0, Func Offset: 0x120
-	// Line 1820, Address: 0x2b44d0, Func Offset: 0x130
-	// Line 1822, Address: 0x2b44d8, Func Offset: 0x138
-	// Func End, Address: 0x2b44f0, Func Offset: 0x150
-	scePrintf("MapPurgeTree - UNIMPLEMENTED!\n");
+    NJS_CNK_OBJECT* objP; 
+    NJS_MATRIX* mtxP;    
+    int obj_num;         
+    
+    objP = mlwP->objP;
+    mtxP = lcmat;
+    
+    njPushMatrixEx();
+    
+    njUnitMatrix(NULL);
+    
+    for (obj_num = mlwP->obj_num; obj_num > 0; obj_num--, objP++) 
+    {
+        if (objP->sibling != NULL)
+        {
+            njPushMatrixEx();
+        }
+        
+        njTranslate(NULL, objP->pos[0], objP->pos[1], objP->pos[2]);
+        njRotateXYZ(NULL, objP->ang[0], objP->ang[1], objP->ang[2]);
+        
+        njGetMatrix(mtxP);
+        
+        objP->ang[0] = 10430.381f * atan2f(mtxP[0][6], mtxP[0][10]);
+        objP->ang[1] = 10430.381f * asinf(-mtxP[0][2]);
+        objP->ang[2] = 10430.381f * atan2f(mtxP[0][1], mtxP[0][0]);
+        
+        objP->pos[0] = mtxP[0][12];
+        objP->pos[1] = mtxP[0][13];
+        objP->pos[2] = mtxP[0][14];
+        
+        if (objP->child == NULL) 
+        {
+            njPopMatrixEx();
+        }
+        
+        objP->child   = NULL;
+        objP->sibling = NULL;
+    } 
+    
+    njPopMatrixEx();
 }
 
 // 100% matching! 

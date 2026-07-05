@@ -1060,32 +1060,42 @@ static void MapDrawSprite(NJS_POINT3* posP, int col, mp_spr spr_no)
 	scePrintf("MapDrawSprite - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2b42f0
+// 100% matching!
 static int MapGetFloorNo(void* datP, int rom_no, float pos_y)
 {
-	int middle;
-	FT_WRK* ftP;
-	int low;
-	float key;
-	int high;
-	// Line 1765, Address: 0x2b42f0, Func Offset: 0
-	// Line 1764, Address: 0x2b42fc, Func Offset: 0xc
-	// Line 1767, Address: 0x2b4300, Func Offset: 0x10
-	// Line 1766, Address: 0x2b4304, Func Offset: 0x14
-	// Line 1765, Address: 0x2b4308, Func Offset: 0x18
-	// Line 1764, Address: 0x2b430c, Func Offset: 0x1c
-	// Line 1765, Address: 0x2b4310, Func Offset: 0x20
-	// Line 1767, Address: 0x2b4314, Func Offset: 0x24
-	// Line 1765, Address: 0x2b4318, Func Offset: 0x28
-	// Line 1775, Address: 0x2b431c, Func Offset: 0x2c
-	// Line 1771, Address: 0x2b4320, Func Offset: 0x30
-	// Line 1774, Address: 0x2b4328, Func Offset: 0x38
-	// Line 1775, Address: 0x2b4350, Func Offset: 0x60
-	// Line 1778, Address: 0x2b435c, Func Offset: 0x6c
-	// Line 1781, Address: 0x2b4390, Func Offset: 0xa0
-	// Func End, Address: 0x2b4398, Func Offset: 0xa8
-	scePrintf("MapGetFloorNo - UNIMPLEMENTED!\n");
+    int high;  
+    float key;  
+    int low;    
+    FT_WRK* ftP; 
+    int middle;  
+
+    low  = 0;
+    high = ((short*)datP)[3] - 1;
+    
+    key = 100.0f * rom_no;
+    
+    ftP = (FT_WRK*)((int)datP + ((short*)datP)[2]);
+    
+    do 
+    {
+        middle = (low + high) / 2;
+        
+        if ((key + pos_y) <= ftP[middle].label) 
+        {
+            high = middle;
+        }
+        else
+        {
+            low = middle;
+        }
+    } while ((high - low) != 1);
+    
+    if (ftP[high].label < (100.0f * rom_no)) 
+    {
+        return -1;
+    }
+    
+    return (ftP[high].map_no << 16) | ftP[high].flr_no;
 }
 
 // 

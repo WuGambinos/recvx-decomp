@@ -2598,17 +2598,13 @@ static void MapCncInit(int map_num, int flr_num)
 	scePrintf("MapCncInit - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2b71e0
+// 100% matching!
 static cnc_wrk_typ* MapCncGet(int map_no, int flr_no)
 {
-	// Line 3591, Address: 0x2b71e0, Func Offset: 0
-	// Line 3594, Address: 0x2b71f0, Func Offset: 0x10
-	// Line 3592, Address: 0x2b71f4, Func Offset: 0x14
-	// Line 3594, Address: 0x2b71f8, Func Offset: 0x18
-	// Line 3595, Address: 0x2b7204, Func Offset: 0x24
-	// Func End, Address: 0x2b720c, Func Offset: 0x2c
-	scePrintf("MapCncGet - UNIMPLEMENTED!\n");
+    map_no *= mwP->cnc_flr;
+    map_no += flr_no;
+    
+    return &mwP->cnc_wrkP[map_no];
 }
 
 // 

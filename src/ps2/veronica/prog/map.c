@@ -995,34 +995,45 @@ static void MapDrawMarker(int mrk_no, NJS_POINT3* posP, int pal_no)
 	scePrintf("MapDrawBackground - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2b3f70
+// 100% matching!
 static void MapDrawBackground(float depth, NJS_POINT2* p0P, NJS_POINT2* p1P)
 {
-	float dst;
-	NJS_POINT2 p1;
-	NJS_POINT2 p0;
-	// Line 1607, Address: 0x2b3f70, Func Offset: 0
-	// Line 1610, Address: 0x2b3f90, Func Offset: 0x20
-	// Line 1617, Address: 0x2b3fac, Func Offset: 0x3c
-	// Line 1618, Address: 0x2b3fc4, Func Offset: 0x54
-	// Line 1619, Address: 0x2b3fd4, Func Offset: 0x64
-	// Line 1620, Address: 0x2b3fe0, Func Offset: 0x70
-	// Line 1621, Address: 0x2b3fec, Func Offset: 0x7c
-	// Line 1622, Address: 0x2b4000, Func Offset: 0x90
-	// Line 1627, Address: 0x2b4008, Func Offset: 0x98
-	// Line 1629, Address: 0x2b4024, Func Offset: 0xb4
-	// Line 1632, Address: 0x2b405c, Func Offset: 0xec
-	// Line 1633, Address: 0x2b4074, Func Offset: 0x104
-	// Line 1634, Address: 0x2b4080, Func Offset: 0x110
-	// Line 1635, Address: 0x2b4088, Func Offset: 0x118
-	// Line 1636, Address: 0x2b4094, Func Offset: 0x124
-	// Line 1637, Address: 0x2b409c, Func Offset: 0x12c
-	// Line 1642, Address: 0x2b40a4, Func Offset: 0x134
-	// Line 1644, Address: 0x2b40c0, Func Offset: 0x150
-	// Line 1646, Address: 0x2b40fc, Func Offset: 0x18c
-	// Func End, Address: 0x2b4120, Func Offset: 0x1b0
-	scePrintf("MapDrawBackground - UNIMPLEMENTED!\n");
+    NJS_POINT2 p0, p1;
+    float dst;     
+    
+    MapDrawFill(p0P, p1P, depth, mwP->MapCol[0].color);
+    
+    p0.x = ceilf(-16.0f + p0P->x);
+    p0.y = ceilf(p0P->y);
+    
+    p1.x = floorf(p1P->x);
+    p1.y = p0.y;
+    
+    dst = floorf(p1P->y);
+    
+    while (p0.y <= dst) 
+    {
+        MapDrawLine(&p0, &p1, 20.0f + depth, mwP->MapCol[1].color);
+        
+        p0.y += 32.0f;
+        p1.y += 32.0f;
+    }
+    
+    p0.x = ceilf(-16.0f + p0P->x);
+    p0.y = ceilf(p0P->y);
+    
+    p1.x = p0.x;
+    p1.y = floorf(p1P->y);
+    
+    dst = floorf(p1P->x);
+    
+    while (p0.x <= dst)
+    {
+        MapDrawLine(&p0, &p1, 20.0f + depth, mwP->MapCol[1].color);
+        
+        p0.x += 32.0f;
+        p1.x += 32.0f;
+    }
 }
 
 // 

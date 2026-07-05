@@ -959,40 +959,66 @@ static void MapBoolSet(int bol, int mod)
     }
 }
 
-// 
-// Start address: 0x2b3d80
+// 100% matching!
 static void MapDrawMarker(int mrk_no, NJS_POINT3* posP, int pal_no)
 {
 	MA_WORK* maP;
-	MA_WORK MrkAtr[6];
-	// Line 1539, Address: 0x2b3d80, Func Offset: 0
-	// Line 1540, Address: 0x2b3d94, Func Offset: 0x14
-	// Line 1539, Address: 0x2b3d98, Func Offset: 0x18
-	// Line 1540, Address: 0x2b3d9c, Func Offset: 0x1c
-	// Line 1559, Address: 0x2b3dc0, Func Offset: 0x40
-	// Line 1561, Address: 0x2b3dd0, Func Offset: 0x50
-	// Line 1562, Address: 0x2b3de4, Func Offset: 0x64
-	// Line 1564, Address: 0x2b3dfc, Func Offset: 0x7c
-	// Line 1566, Address: 0x2b3e0c, Func Offset: 0x8c
-	// Line 1568, Address: 0x2b3e20, Func Offset: 0xa0
-	// Line 1569, Address: 0x2b3e28, Func Offset: 0xa8
-	// Line 1571, Address: 0x2b3e48, Func Offset: 0xc8
-	// Line 1572, Address: 0x2b3e6c, Func Offset: 0xec
-	// Line 1573, Address: 0x2b3e88, Func Offset: 0x108
-	// Line 1574, Address: 0x2b3ea0, Func Offset: 0x120
-	// Line 1576, Address: 0x2b3ec4, Func Offset: 0x144
-	// Line 1577, Address: 0x2b3ecc, Func Offset: 0x14c
-	// Line 1578, Address: 0x2b3ee8, Func Offset: 0x168
-	// Line 1579, Address: 0x2b3f00, Func Offset: 0x180
-	// Line 1582, Address: 0x2b3f24, Func Offset: 0x1a4
-	// Line 1584, Address: 0x2b3f2c, Func Offset: 0x1ac
-	// Line 1588, Address: 0x2b3f34, Func Offset: 0x1b4
-	// Line 1590, Address: 0x2b3f40, Func Offset: 0x1c0
-	// Line 1588, Address: 0x2b3f48, Func Offset: 0x1c8
-	// Line 1590, Address: 0x2b3f4c, Func Offset: 0x1cc
-	// Line 1595, Address: 0x2b3f58, Func Offset: 0x1d8
-	// Func End, Address: 0x2b3f70, Func Offset: 0x1f0
-	scePrintf("MapDrawBackground - UNIMPLEMENTED!\n");
+	static MA_WORK MrkAtr[6] = 
+    {
+        { 0, 3.0f, 24.0f, 16 }, { 1, 3.0f, 20.0f, 28 }, { 1, 3.0f, 16.0f, 13 },
+        { 1, 3.0f, 12.0f, 14 }, { 3, 1.0f, 12.0f, 30 }, { 2, 2.0f,  8.0f, 31 }
+    };
+
+    switch (mrk_no)
+    {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        maP = &MrkAtr[mrk_no];
+        
+        if (pal_no == -1) 
+        {
+            pal_no = maP->pal_no;
+        }
+        
+        njSetConstantMaterial(&mwP->MapPal[pal_no]);
+        
+        njPushMatrix(mwP->vew_mtxP);
+        
+        njMultiMatrix(NULL, mwP->cur_mtxP);
+        
+        if (mrk_no == 0) 
+        {
+            if (mwP->ply_flr == mwP->map_flr)
+            {
+                njTranslate(NULL, plp->px, plp->py + maP->offset, plp->pz);
+                njRotateXYZ(NULL, plp->ax, plp->ay, plp->az);
+                
+                njScale(NULL, maP->scale, 1.0f, maP->scale);
+                
+                njCnkEasyMultiDrawObject(mwP->MrkMdl[maP->mrk_no].objP);
+            }
+        } 
+        else 
+        {
+            njTranslate(NULL, posP->x, posP->y + maP->offset, posP->z);
+            
+            njScale(NULL, maP->scale, 1.0f, maP->scale);
+            
+            njCnkEasyMultiDrawObject(mwP->MrkMdl[maP->mrk_no].objP);
+        }
+        
+        njPopMatrixEx();
+        break;
+    case 6:
+        posP->z -= 1.0f;
+        
+        MapDrawSprite(posP, -1, MP_SPR_TITLE);
+        break;
+    }
 }
 
 // 100% matching!

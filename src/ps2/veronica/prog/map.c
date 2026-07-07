@@ -2570,32 +2570,31 @@ static int FsubModeMessage(FM_WORK* fmP)
     return 1;
 }
 
-// 
-// Start address: 0x2b7110
+// 100% matching!
 static void MapCncInit(int map_num, int flr_num)
 {
+    int map_no, flr_no;
 	cnc_wrk_typ* cwP;
-	int flr_no;
-	int map_no;
-	// Line 3557, Address: 0x2b7110, Func Offset: 0
-	// Line 3558, Address: 0x2b7128, Func Offset: 0x18
-	// Line 3562, Address: 0x2b7138, Func Offset: 0x28
-	// Line 3558, Address: 0x2b713c, Func Offset: 0x2c
-	// Line 3559, Address: 0x2b7140, Func Offset: 0x30
-	// Line 3561, Address: 0x2b7148, Func Offset: 0x38
-	// Line 3562, Address: 0x2b714c, Func Offset: 0x3c
-	// Line 3559, Address: 0x2b7154, Func Offset: 0x44
-	// Line 3562, Address: 0x2b7158, Func Offset: 0x48
-	// Line 3568, Address: 0x2b7168, Func Offset: 0x58
-	// Line 3569, Address: 0x2b7178, Func Offset: 0x68
-	// Line 3571, Address: 0x2b7188, Func Offset: 0x78
-	// Line 3572, Address: 0x2b7194, Func Offset: 0x84
-	// Line 3573, Address: 0x2b7198, Func Offset: 0x88
-	// Line 3575, Address: 0x2b719c, Func Offset: 0x8c
-	// Line 3576, Address: 0x2b71b0, Func Offset: 0xa0
-	// Line 3579, Address: 0x2b71c0, Func Offset: 0xb0
-	// Func End, Address: 0x2b71dc, Func Offset: 0xcc
-	scePrintf("MapCncInit - UNIMPLEMENTED!\n");
+	
+    mwP->cnc_map = map_num;
+    mwP->cnc_flr = flr_num;
+    
+    map_num *= flr_num;
+    
+    mwP->cnc_wrkP = (cnc_wrk_typ*)bhGetFreeMemory(map_num * 28, 4);
+    
+    for (map_no = 0; map_no < map_num; map_no++)
+    {
+        for (flr_no = 0; flr_no < flr_num; flr_no++) 
+        {
+            cwP = MapCncGet(map_no, flr_no);
+            
+            cwP->map_no = map_no;
+            cwP->flr_no = flr_no;
+            
+            cwP->status = 0;
+        } 
+    } 
 }
 
 // 100% matching!

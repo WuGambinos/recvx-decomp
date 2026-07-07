@@ -2684,43 +2684,86 @@ static void MapCncConnect(const unsigned short* datP)
     }
 }
 
-// 
-// Start address: 0x2b7380
+// 92.80% matching (matches on NGC)
 static map_nxt* MapCheckNextMap(map_nxt* mnP)
 {
-	cnc_wrk_typ* cwP;
-	cnc_wrk_typ* curP;
-	// Line 3691, Address: 0x2b7380, Func Offset: 0
-	// Line 3694, Address: 0x2b7388, Func Offset: 0x8
-	// Line 3699, Address: 0x2b73a0, Func Offset: 0x20
-	// Line 3700, Address: 0x2b73ac, Func Offset: 0x2c
-	// Line 3701, Address: 0x2b73b8, Func Offset: 0x38
-	// Line 3702, Address: 0x2b73c8, Func Offset: 0x48
-	// Line 3704, Address: 0x2b73dc, Func Offset: 0x5c
-	// Line 3705, Address: 0x2b73e4, Func Offset: 0x64
-	// Line 3708, Address: 0x2b73ec, Func Offset: 0x6c
-	// Line 3709, Address: 0x2b73f8, Func Offset: 0x78
-	// Line 3710, Address: 0x2b7404, Func Offset: 0x84
-	// Line 3711, Address: 0x2b7410, Func Offset: 0x90
-	// Line 3713, Address: 0x2b7424, Func Offset: 0xa4
-	// Line 3714, Address: 0x2b742c, Func Offset: 0xac
-	// Line 3720, Address: 0x2b7434, Func Offset: 0xb4
-	// Line 3721, Address: 0x2b7440, Func Offset: 0xc0
-	// Line 3722, Address: 0x2b744c, Func Offset: 0xcc
-	// Line 3723, Address: 0x2b7458, Func Offset: 0xd8
-	// Line 3725, Address: 0x2b746c, Func Offset: 0xec
-	// Line 3726, Address: 0x2b7474, Func Offset: 0xf4
-	// Line 3729, Address: 0x2b747c, Func Offset: 0xfc
-	// Line 3730, Address: 0x2b7488, Func Offset: 0x108
-	// Line 3731, Address: 0x2b7494, Func Offset: 0x114
-	// Line 3732, Address: 0x2b74a0, Func Offset: 0x120
-	// Line 3734, Address: 0x2b74b4, Func Offset: 0x134
-	// Line 3735, Address: 0x2b74bc, Func Offset: 0x13c
-	// Line 3739, Address: 0x2b74c4, Func Offset: 0x144
-	// Line 3738, Address: 0x2b74c8, Func Offset: 0x148
-	// Line 3739, Address: 0x2b74cc, Func Offset: 0x14c
-	// Func End, Address: 0x2b74d4, Func Offset: 0x154
-	scePrintf("MapCheckNextMap - UNIMPLEMENTED!\n");
+    cnc_wrk_typ* curP, *cwP;
+
+    curP = MapCncGet(mwP->stg_no, mwP->flr_no);
+    
+    for (cwP = curP->flr_nextP; cwP != NULL; cwP = cwP->flr_nextP)
+    {
+        if (cwP->status != 0)
+        {
+            break;
+        }
+    }
+    
+    if (cwP == NULL) 
+    {
+        mnP->map_up = -1;
+    }
+    else 
+    {
+        mnP->map_up = cwP->map_no;
+        mnP->flr_up = cwP->flr_no;
+    }
+
+    for (cwP = curP->flr_prevP; cwP != NULL; cwP = cwP->flr_prevP)
+    {
+        if (cwP->status != 0) 
+        {
+            break;
+        }
+    }
+    
+    if (cwP == NULL) 
+    {
+        mnP->map_down = -1;
+    } 
+    else 
+    {
+        mnP->map_down = cwP->map_no;
+        mnP->flr_down = cwP->flr_no;
+    }
+
+    for (cwP = curP->map_prevP; cwP != NULL; cwP = cwP->map_prevP)
+    {
+        if (cwP->status != 0) 
+        {
+            break;
+        }
+    }
+    
+    if (cwP == NULL) 
+    {
+        mnP->map_left = -1;
+    } 
+    else
+    {
+        mnP->map_left = cwP->map_no;
+        mnP->flr_left = cwP->flr_no;
+    }
+    
+    for (cwP = curP->map_nextP; cwP != NULL; cwP = cwP->map_nextP)
+    {
+        if (cwP->status != 0) 
+        {
+            break;
+        }
+    }
+    
+    if (cwP == NULL)
+    {
+        mnP->map_right = -1;
+    } 
+    else 
+    {
+        mnP->map_right = cwP->map_no;
+        mnP->flr_right = cwP->flr_no;
+    }
+
+    return mnP;
 }
 
 // 100% matching!

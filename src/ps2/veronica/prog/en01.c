@@ -2767,11 +2767,6 @@ BH_PWORK ene[0];
 float lcmat[16][0];
 _anon1 eff[0];*/
 
-void (* bhEne01_MoveTypeB[16])(struct BH_PWORK *);
-void (* bhEne01_NageTypeB[16])(struct BH_PWORK *);
-void (* bhEne01_DamageTypeB[16])(struct BH_PWORK *);
-void (* bhEne01_DieTypeB[16])(struct BH_PWORK *);
-
 // 100% matching!
 void bhEne01_DmgCheckTypeDmmy()
 {

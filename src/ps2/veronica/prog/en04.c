@@ -714,7 +714,7 @@ void bhEne04_ChgDmgMode(BH_PWORK* epw)
         act = wp_tbl->cb_act;
     }
 
-    if (act < (unsigned int) 4)
+    if ((unsigned int)act < 4)
     {
         epw->mode0 = 3;
         epw->mode1 = 0;
@@ -790,7 +790,7 @@ void bhEne04_DamageAdd(BH_PWORK* epw)
                 if (epw->hp < 0)
                 {
                     epw->mdflg |= 0x400;
-                    npSetAllMatColor(epw->mlwP->objP, epw->mlwP->obj_num, 0xFF000000U);
+                    npSetAllMatColor(epw->mlwP->objP, epw->mlwP->obj_num, 0xFF000000);
                 }
             } 
             else
@@ -2370,7 +2370,7 @@ void bhEne04_MV07(BH_PWORK* epw)
     case 6:  
         if ((epw->frm_no / 65536) < 8)
         {
-            epw->ay += epw->ayp >> 3;
+            epw->ay += epw->ayp / 8;
         }
         epw->spd = (2.0 - epw->ct0 * 0.1f);
         bhAddSpeed(epw, 0);        
@@ -2875,7 +2875,7 @@ int bhEne04_Escape(BH_PWORK* epw, int res, int r) {
         }
         break;
     case 3:
-        if (((bhEne_CheckDirWall(epw, epw->waz << 0xE, 3.0f) == NULL) && (EXP0_I(0x50) == 0)) || (((unsigned short)EXP0_S(0x6) & 1) != 0))
+        if (((bhEne_CheckDirWall(epw, epw->waz * 16384, 3.0f) == NULL) && (EXP0_I(0x50) == 0)) || (((unsigned short)EXP0_S(0x6) & 1) != 0))
         {
             d_tmp = 0;
             EXP0_I(0x48) = 4;
@@ -2913,15 +2913,7 @@ int bhEne04_Escape(BH_PWORK* epw, int res, int r) {
     }
     
     
-    if (d_tmp != 0)
-    {
-        var_v0 = d_tmp > 0 ? 1 : -1;
-    }
-    else
-    {
-        var_v0 = 0;
-    }
-    return var_v0 + 1;
+    return ((d_tmp != 0) ? ((d_tmp > 0) ? 1 : -1) : 0) + 1;
 }
 
 // 100% matching!
@@ -3578,7 +3570,7 @@ int bhEne04_PlyDamageCheck(BH_PWORK* epw, int type)
         return 0;
     }
     
-    bhEne_CalcPartsPos(epw, lcmat, &at.c, *en04_tree, 6, 1);
+    bhEne_CalcPartsPos(epw, lcmat, &at.c, en04_tree[0], 6, 1);
     
     at.r = 1.2f;
     

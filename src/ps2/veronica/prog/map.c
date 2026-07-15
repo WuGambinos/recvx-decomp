@@ -712,248 +712,311 @@ static void MapPaletteMain()
     } 
 }
 
-// 
-// Start address: 0x2b3470
+#pragma divbyzerocheck on 
+
+// 100% matching!
 static void MapCodeProcess()
 {
-	int off_tim;
-	int bnk_tim;
-	int snd_no;
-	//NJS_POINT3 pos;
-	int pal_no;
-	int mrk_no;
-	//NJS_POINT3 pos;
-	int rom_no;
-	float scl;
-	unsigned char typ;
-	//unsigned char typ;
-	int ck_rom;
-	float tz;
-	float ty;
-	float tx;
-	int az;
-	int ay;
-	int ax;
-	//NJS_POINT3 pos;
-	//int mrk_no;
-	int mode;
-	NJS_CNK_MODEL* objP;
-	int* stsP;
-	short* ocP;
-	int SndTbl[1];
-	// Line 1222, Address: 0x2b3470, Func Offset: 0
-	// Line 1223, Address: 0x2b3488, Func Offset: 0x18
-	// Line 1227, Address: 0x2b3494, Func Offset: 0x24
-	// Line 1228, Address: 0x2b349c, Func Offset: 0x2c
-	// Line 1230, Address: 0x2b34a8, Func Offset: 0x38
-	// Line 1232, Address: 0x2b34b0, Func Offset: 0x40
-	// Line 1233, Address: 0x2b34b8, Func Offset: 0x48
-	// Line 1236, Address: 0x2b34d8, Func Offset: 0x68
-	// Line 1240, Address: 0x2b34e0, Func Offset: 0x70
-	// Line 1246, Address: 0x2b350c, Func Offset: 0x9c
-	// Line 1248, Address: 0x2b3510, Func Offset: 0xa0
-	// Line 1250, Address: 0x2b353c, Func Offset: 0xcc
-	// Line 1252, Address: 0x2b3544, Func Offset: 0xd4
-	// Line 1253, Address: 0x2b3558, Func Offset: 0xe8
-	// Line 1254, Address: 0x2b356c, Func Offset: 0xfc
-	// Line 1256, Address: 0x2b357c, Func Offset: 0x10c
-	// Line 1258, Address: 0x2b3584, Func Offset: 0x114
-	// Line 1264, Address: 0x2b358c, Func Offset: 0x11c
-	// Line 1262, Address: 0x2b3594, Func Offset: 0x124
-	// Line 1264, Address: 0x2b3598, Func Offset: 0x128
-	// Line 1266, Address: 0x2b35a4, Func Offset: 0x134
-	// Line 1267, Address: 0x2b35b8, Func Offset: 0x148
-	// Line 1268, Address: 0x2b35d0, Func Offset: 0x160
-	// Line 1269, Address: 0x2b35e0, Func Offset: 0x170
-	// Line 1270, Address: 0x2b35f0, Func Offset: 0x180
-	// Line 1272, Address: 0x2b3618, Func Offset: 0x1a8
-	// Line 1275, Address: 0x2b3640, Func Offset: 0x1d0
-	// Line 1276, Address: 0x2b3650, Func Offset: 0x1e0
-	// Line 1277, Address: 0x2b3664, Func Offset: 0x1f4
-	// Line 1279, Address: 0x2b3668, Func Offset: 0x1f8
-	// Line 1281, Address: 0x2b3670, Func Offset: 0x200
-	// Line 1289, Address: 0x2b3678, Func Offset: 0x208
-	// Line 1288, Address: 0x2b3684, Func Offset: 0x214
-	// Line 1292, Address: 0x2b3688, Func Offset: 0x218
-	// Line 1289, Address: 0x2b368c, Func Offset: 0x21c
-	// Line 1292, Address: 0x2b3690, Func Offset: 0x220
-	// Line 1289, Address: 0x2b3694, Func Offset: 0x224
-	// Line 1290, Address: 0x2b36a0, Func Offset: 0x230
-	// Line 1291, Address: 0x2b36b8, Func Offset: 0x248
-	// Line 1292, Address: 0x2b36d4, Func Offset: 0x264
-	// Line 1294, Address: 0x2b36dc, Func Offset: 0x26c
-	// Line 1301, Address: 0x2b36e4, Func Offset: 0x274
-	// Line 1298, Address: 0x2b36ec, Func Offset: 0x27c
-	// Line 1299, Address: 0x2b36f0, Func Offset: 0x280
-	// Line 1300, Address: 0x2b36f4, Func Offset: 0x284
-	// Line 1301, Address: 0x2b36f8, Func Offset: 0x288
-	// Line 1303, Address: 0x2b3704, Func Offset: 0x294
-	// Line 1307, Address: 0x2b370c, Func Offset: 0x29c
-	// Line 1308, Address: 0x2b3714, Func Offset: 0x2a4
-	// Line 1309, Address: 0x2b3718, Func Offset: 0x2a8
-	// Line 1307, Address: 0x2b371c, Func Offset: 0x2ac
-	// Line 1310, Address: 0x2b3720, Func Offset: 0x2b0
-	// Line 1307, Address: 0x2b3724, Func Offset: 0x2b4
-	// Line 1310, Address: 0x2b3728, Func Offset: 0x2b8
-	// Line 1307, Address: 0x2b372c, Func Offset: 0x2bc
-	// Line 1309, Address: 0x2b3730, Func Offset: 0x2c0
-	// Line 1310, Address: 0x2b3734, Func Offset: 0x2c4
-	// Line 1307, Address: 0x2b3738, Func Offset: 0x2c8
-	// Line 1308, Address: 0x2b373c, Func Offset: 0x2cc
-	// Line 1309, Address: 0x2b3740, Func Offset: 0x2d0
-	// Line 1308, Address: 0x2b3748, Func Offset: 0x2d8
-	// Line 1309, Address: 0x2b3754, Func Offset: 0x2e4
-	// Line 1310, Address: 0x2b3764, Func Offset: 0x2f4
-	// Line 1312, Address: 0x2b376c, Func Offset: 0x2fc
-	// Line 1321, Address: 0x2b3774, Func Offset: 0x304
-	// Line 1316, Address: 0x2b377c, Func Offset: 0x30c
-	// Line 1321, Address: 0x2b3780, Func Offset: 0x310
-	// Line 1322, Address: 0x2b37a4, Func Offset: 0x334
-	// Line 1324, Address: 0x2b37b8, Func Offset: 0x348
-	// Line 1326, Address: 0x2b37c8, Func Offset: 0x358
-	// Line 1328, Address: 0x2b37d0, Func Offset: 0x360
-	// Line 1332, Address: 0x2b37d8, Func Offset: 0x368
-	// Line 1333, Address: 0x2b37dc, Func Offset: 0x36c
-	// Line 1332, Address: 0x2b37e0, Func Offset: 0x370
-	// Line 1333, Address: 0x2b37e4, Func Offset: 0x374
-	// Line 1335, Address: 0x2b37fc, Func Offset: 0x38c
-	// Line 1341, Address: 0x2b3804, Func Offset: 0x394
-	// Line 1359, Address: 0x2b3810, Func Offset: 0x3a0
-	// Line 1342, Address: 0x2b3818, Func Offset: 0x3a8
-	// Line 1341, Address: 0x2b381c, Func Offset: 0x3ac
-	// Line 1343, Address: 0x2b3820, Func Offset: 0x3b0
-	// Line 1341, Address: 0x2b3824, Func Offset: 0x3b4
-	// Line 1345, Address: 0x2b3828, Func Offset: 0x3b8
-	// Line 1359, Address: 0x2b382c, Func Offset: 0x3bc
-	// Line 1344, Address: 0x2b3830, Func Offset: 0x3c0
-	// Line 1346, Address: 0x2b3834, Func Offset: 0x3c4
-	// Line 1341, Address: 0x2b3838, Func Offset: 0x3c8
-	// Line 1346, Address: 0x2b383c, Func Offset: 0x3cc
-	// Line 1359, Address: 0x2b3840, Func Offset: 0x3d0
-	// Line 1343, Address: 0x2b3844, Func Offset: 0x3d4
-	// Line 1342, Address: 0x2b3848, Func Offset: 0x3d8
-	// Line 1343, Address: 0x2b3850, Func Offset: 0x3e0
-	// Line 1345, Address: 0x2b3858, Func Offset: 0x3e8
-	// Line 1342, Address: 0x2b3860, Func Offset: 0x3f0
-	// Line 1345, Address: 0x2b3864, Func Offset: 0x3f4
-	// Line 1342, Address: 0x2b3868, Func Offset: 0x3f8
-	// Line 1345, Address: 0x2b386c, Func Offset: 0x3fc
-	// Line 1344, Address: 0x2b3870, Func Offset: 0x400
-	// Line 1346, Address: 0x2b3874, Func Offset: 0x404
-	// Line 1344, Address: 0x2b387c, Func Offset: 0x40c
-	// Line 1346, Address: 0x2b3880, Func Offset: 0x410
-	// Line 1344, Address: 0x2b3884, Func Offset: 0x414
-	// Line 1346, Address: 0x2b3888, Func Offset: 0x418
-	// Line 1359, Address: 0x2b3894, Func Offset: 0x424
-	// Line 1360, Address: 0x2b38ac, Func Offset: 0x43c
-	// Line 1361, Address: 0x2b38d0, Func Offset: 0x460
-	// Line 1362, Address: 0x2b38f4, Func Offset: 0x484
-	// Line 1363, Address: 0x2b3900, Func Offset: 0x490
-	// Line 1367, Address: 0x2b3908, Func Offset: 0x498
-	// Line 1369, Address: 0x2b3914, Func Offset: 0x4a4
-	// Line 1372, Address: 0x2b391c, Func Offset: 0x4ac
-	// Line 1373, Address: 0x2b3938, Func Offset: 0x4c8
-	// Line 1374, Address: 0x2b3944, Func Offset: 0x4d4
-	// Line 1377, Address: 0x2b394c, Func Offset: 0x4dc
-	// Line 1378, Address: 0x2b3968, Func Offset: 0x4f8
-	// Line 1379, Address: 0x2b3974, Func Offset: 0x504
-	// Line 1382, Address: 0x2b397c, Func Offset: 0x50c
-	// Line 1383, Address: 0x2b3990, Func Offset: 0x520
-	// Line 1387, Address: 0x2b3998, Func Offset: 0x528
-	// Line 1388, Address: 0x2b399c, Func Offset: 0x52c
-	// Line 1387, Address: 0x2b39a0, Func Offset: 0x530
-	// Line 1388, Address: 0x2b39a4, Func Offset: 0x534
-	// Line 1390, Address: 0x2b39bc, Func Offset: 0x54c
-	// Line 1393, Address: 0x2b39c4, Func Offset: 0x554
-	// Line 1394, Address: 0x2b39d4, Func Offset: 0x564
-	// Line 1396, Address: 0x2b39dc, Func Offset: 0x56c
-	// Line 1400, Address: 0x2b3a00, Func Offset: 0x590
-	// Line 1401, Address: 0x2b3a08, Func Offset: 0x598
-	// Line 1397, Address: 0x2b3a0c, Func Offset: 0x59c
-	// Line 1396, Address: 0x2b3a10, Func Offset: 0x5a0
-	// Line 1400, Address: 0x2b3a18, Func Offset: 0x5a8
-	// Line 1396, Address: 0x2b3a1c, Func Offset: 0x5ac
-	// Line 1397, Address: 0x2b3a20, Func Offset: 0x5b0
-	// Line 1401, Address: 0x2b3a24, Func Offset: 0x5b4
-	// Line 1397, Address: 0x2b3a28, Func Offset: 0x5b8
-	// Line 1398, Address: 0x2b3a38, Func Offset: 0x5c8
-	// Line 1397, Address: 0x2b3a3c, Func Offset: 0x5cc
-	// Line 1398, Address: 0x2b3a48, Func Offset: 0x5d8
-	// Line 1399, Address: 0x2b3a54, Func Offset: 0x5e4
-	// Line 1398, Address: 0x2b3a58, Func Offset: 0x5e8
-	// Line 1399, Address: 0x2b3a68, Func Offset: 0x5f8
-	// Line 1400, Address: 0x2b3a74, Func Offset: 0x604
-	// Line 1399, Address: 0x2b3a78, Func Offset: 0x608
-	// Line 1400, Address: 0x2b3a8c, Func Offset: 0x61c
-	// Line 1401, Address: 0x2b3a94, Func Offset: 0x624
-	// Line 1400, Address: 0x2b3a98, Func Offset: 0x628
-	// Line 1401, Address: 0x2b3aa0, Func Offset: 0x630
-	// Line 1403, Address: 0x2b3aac, Func Offset: 0x63c
-	// Line 1408, Address: 0x2b3ab4, Func Offset: 0x644
-	// Line 1410, Address: 0x2b3ac4, Func Offset: 0x654
-	// Line 1408, Address: 0x2b3acc, Func Offset: 0x65c
-	// Line 1412, Address: 0x2b3ad8, Func Offset: 0x668
-	// Line 1410, Address: 0x2b3ae0, Func Offset: 0x670
-	// Line 1408, Address: 0x2b3ae4, Func Offset: 0x674
-	// Line 1411, Address: 0x2b3ae8, Func Offset: 0x678
-	// Line 1408, Address: 0x2b3aec, Func Offset: 0x67c
-	// Line 1410, Address: 0x2b3af4, Func Offset: 0x684
-	// Line 1412, Address: 0x2b3af8, Func Offset: 0x688
-	// Line 1410, Address: 0x2b3afc, Func Offset: 0x68c
-	// Line 1411, Address: 0x2b3b04, Func Offset: 0x694
-	// Line 1412, Address: 0x2b3b0c, Func Offset: 0x69c
-	// Line 1411, Address: 0x2b3b10, Func Offset: 0x6a0
-	// Line 1412, Address: 0x2b3b18, Func Offset: 0x6a8
-	// Line 1413, Address: 0x2b3b20, Func Offset: 0x6b0
-	// Line 1412, Address: 0x2b3b24, Func Offset: 0x6b4
-	// Line 1413, Address: 0x2b3b2c, Func Offset: 0x6bc
-	// Line 1416, Address: 0x2b3b34, Func Offset: 0x6c4
-	// Line 1413, Address: 0x2b3b38, Func Offset: 0x6c8
-	// Line 1416, Address: 0x2b3b40, Func Offset: 0x6d0
-	// Line 1417, Address: 0x2b3b50, Func Offset: 0x6e0
-	// Line 1416, Address: 0x2b3b54, Func Offset: 0x6e4
-	// Line 1417, Address: 0x2b3b60, Func Offset: 0x6f0
-	// Line 1420, Address: 0x2b3b68, Func Offset: 0x6f8
-	// Line 1421, Address: 0x2b3b70, Func Offset: 0x700
-	// Line 1422, Address: 0x2b3b74, Func Offset: 0x704
-	// Line 1425, Address: 0x2b3b7c, Func Offset: 0x70c
-	// Line 1430, Address: 0x2b3b8c, Func Offset: 0x71c
-	// Line 1433, Address: 0x2b3b98, Func Offset: 0x728
-	// Line 1429, Address: 0x2b3b9c, Func Offset: 0x72c
-	// Line 1433, Address: 0x2b3ba0, Func Offset: 0x730
-	// Line 1430, Address: 0x2b3ba4, Func Offset: 0x734
-	// Line 1433, Address: 0x2b3ba8, Func Offset: 0x738
-	// Line 1430, Address: 0x2b3bac, Func Offset: 0x73c
-	// Line 1431, Address: 0x2b3bb8, Func Offset: 0x748
-	// Line 1432, Address: 0x2b3bd0, Func Offset: 0x760
-	// Line 1433, Address: 0x2b3bec, Func Offset: 0x77c
-	// Line 1434, Address: 0x2b3bf4, Func Offset: 0x784
-	// Line 1450, Address: 0x2b3bfc, Func Offset: 0x78c
-	// Line 1453, Address: 0x2b3c00, Func Offset: 0x790
-	// Line 1463, Address: 0x2b3c08, Func Offset: 0x798
-	// Line 1461, Address: 0x2b3c14, Func Offset: 0x7a4
-	// Line 1462, Address: 0x2b3c18, Func Offset: 0x7a8
-	// Line 1466, Address: 0x2b3c1c, Func Offset: 0x7ac
-	// Line 1463, Address: 0x2b3c20, Func Offset: 0x7b0
-	// Line 1464, Address: 0x2b3c34, Func Offset: 0x7c4
-	// Line 1465, Address: 0x2b3c4c, Func Offset: 0x7dc
-	// Line 1466, Address: 0x2b3c68, Func Offset: 0x7f8
-	// Line 1468, Address: 0x2b3c70, Func Offset: 0x800
-	// Line 1483, Address: 0x2b3c78, Func Offset: 0x808
-	// Line 1482, Address: 0x2b3c80, Func Offset: 0x810
-	// Line 1481, Address: 0x2b3c84, Func Offset: 0x814
-	// Line 1480, Address: 0x2b3c88, Func Offset: 0x818
-	// Line 1483, Address: 0x2b3c8c, Func Offset: 0x81c
-	// Line 1482, Address: 0x2b3c90, Func Offset: 0x820
-	// Line 1483, Address: 0x2b3c94, Func Offset: 0x824
-	// Line 1485, Address: 0x2b3c98, Func Offset: 0x828
-	// Line 1490, Address: 0x2b3ccc, Func Offset: 0x85c
-	// Line 1493, Address: 0x2b3ce0, Func Offset: 0x870
-	// Line 1495, Address: 0x2b3ce8, Func Offset: 0x878
-	// Line 1497, Address: 0x2b3cf0, Func Offset: 0x880
-	// Func End, Address: 0x2b3d0c, Func Offset: 0x89c
-	scePrintf("MapCodeProcess - UNIMPLEMENTED!\n");
+    short* ocP;         
+    int* stsP;          
+    NJS_CNK_OBJECT* objP;
+    int mode;             
+    unsigned char typ;   // needs use  
+    //unsigned char typ; // needs use
+    float scl;     
+    float x, y, z;    // not from DWARF
+    float xx, yy, zz; // not from DWARF
+	static const int SndTbl[1] = { 0x80000247 };
+    
+    ocP  = mwP->map_cdeP;
+    stsP = &mwP->status;
+    
+    njControl3D(0x810);
+    
+    njSetConstantAttr(-1, 0x800);
+    
+    njPushMatrixEx();
+    
+    njUnitMatrix(NULL);
+    
+    njScale(NULL, 1.0f, mwP->lgt_scale, 1.0f);
+    
+    while ((mode = *ocP) != 2) 
+    {
+        ocP++;
+        
+        switch (mode & 0xFFF) 
+        {
+        case 3:
+            objP = mwP->map_objP + *ocP++;
+            
+            mwP->cur_objP = objP;
+            
+            njPushMatrixEx();
+            
+            njTranslate(NULL, objP->pos[0], objP->pos[1], objP->pos[2]);
+            njRotateXYZ(NULL, objP->ang[0], objP->ang[1], objP->ang[2]);
+            
+            njGetMatrix(mwP->cur_mtxP);
+            
+            njPopMatrixEx();
+            break;
+        case 4:
+            mode = *ocP++;
+            
+            njPushMatrix(mwP->vew_mtxP);
+            njMultiMatrix(NULL, mwP->cur_mtxP);
+            
+            if (mwP->cur_objP->model != NULL) 
+            {
+                if (((mwP->status & 0x200)) && (mwP->chk_rom == mwP->bnk_tag_rom))
+                {
+                    if ((mode == 1) || (mode == 2) || (mode == 24)) 
+                    {
+                        mode = mwP->bnk_tag_pal;
+                    }
+                    else if ((mode == 7) || (mode == 8) || (mode == 25)) 
+                    {
+                        mode = mwP->bnk_tag_pal_wal;
+                    } 
+                }
+                
+                njSetConstantMaterial(&mwP->MapPal[mode]);
+                
+                njCnkEasyMultiDrawModel(mwP->cur_objP->model);
+            }
+            
+            njPopMatrixEx();
+            break;
+        case 5:
+        {
+            int mrk_no;       
+            NJS_POINT3 pos;    
+                
+            mrk_no = ocP[0];
+            
+            pos.x = ocP[1] / 32.0f;
+            pos.y = ocP[2] / 32.0f;
+            
+            scl = ocP[3];
+            
+            ocP += 4;
+            
+            pos.z = scl / 32.0f;
+            
+            MapDrawMarker(mrk_no, &pos, -1);
+            break;
+        }
+        case 7:
+        {
+            int ax, ay, az;           
+            
+            ax = ocP[0];
+            ay = ocP[1];
+            az = ocP[2];
+            
+            ocP += 3;
+            
+            njRotateXYZ(mwP->cur_mtxP, ax, ay, az);
+            break;
+        }
+        case 6:
+        {
+            float tx, ty, tz;            
+            
+            tx = ocP[0] / 32.0f;
+            ty = ocP[1] / 32.0f;
+            tz = ocP[2] / 32.0f;
+            
+            ocP += 3;
+            
+            njTranslate(mwP->cur_mtxP, tx, ty, tz);
+            break;
+        }
+        case 11:
+        {
+            int ck_rom;         
+            
+            ck_rom = *ocP++;
+            
+            if ((mwP->ply_flr == mwP->map_flr) && (mwP->rom_no == ck_rom))
+            {
+                MapBoolSet(1, mode & 0xF000);
+            }  
+            else 
+            {
+                MapBoolSet(0, mode & 0xF000);
+            }
+            
+            mwP->chk_rom = ck_rom;
+            break;
+        }
+        case 12:
+            MapBoolSet(bhFlagCk(*ocP++, *ocP++, 0), mode & 0xF000);
+            break;
+        case 13:
+            x = ocP[0] / 32.0f;
+            y = ocP[1] / 32.0f;
+            z = ocP[2] / 32.0f;
+            
+            xx = ocP[3] / 32.0f;
+            yy = ocP[4] / 32.0f;
+            zz = ocP[5] / 32.0f;
+            
+            ocP += 6;
+            
+            if (((x <= plp->px) && (plp->px <= xx)) && ((y <= plp->py) && (plp->py <= yy)) && ((z <= plp->pz) && (plp->pz <= zz))) 
+            {
+                MapBoolSet(1, mode & 0xF000);
+            }
+            else
+            {
+                MapBoolSet(0, mode & 0xF000);
+            }
+            
+            break;
+        case 8:
+            if (mwP->cde_bol == 0)
+            {
+                ocP++;
+            } 
+            else 
+            {
+                ocP = &mwP->map_cdeP[*ocP];
+            }
+            
+            break;
+        case 9:
+            if (mwP->cde_bol != 0)
+            {
+                ocP++;
+            } 
+            else
+            {
+                ocP = &mwP->map_cdeP[*ocP];
+            }
+            
+            break;
+        case 10:
+            ocP = &mwP->map_cdeP[*ocP];
+            break;
+        case 14:
+            MapBoolSet(bhFlagSet(*ocP++, *ocP++, 0), mode & 0xF000);
+            break;
+        case 15:
+            if (!(*stsP & 0x40))
+            {
+                *stsP |= 0x40;
+                
+                mwP->vew_pos.x = 10.0f * (ocP[0] / 32.0f);
+                mwP->vew_pos.y = 10.0f * (ocP[1] / 32.0f);
+                mwP->vew_pos.z = 10.0f * (ocP[2] / 32.0f);
+                mwP->vew_zom   = 10.0f * (ocP[3] / 32.0f);
+                
+                ocP += 4;
+                
+                mwP->vew_min.y = 0.3333f * mwP->vew_zom;
+                mwP->vew_max.y = 1.5f    * mwP->vew_zom;
+                
+                MapViewMain();
+                
+                scl = 1.0f;
+                scl = (scl * mwP->vew_mtxP[0][14]) / _nj_screen_.dist;
+                
+                mwP->vew_min.x = mwP->vew_pos.x - (320.0f * scl);
+                mwP->vew_max.x = mwP->vew_pos.x + (320.0f * scl);
+                
+                mwP->vew_min.z = mwP->vew_pos.z - (240.0f * scl);
+                mwP->vew_max.z = mwP->vew_pos.z + (240.0f * scl);
+                
+                mwP->vew_pos_bak = mwP->vew_pos;
+                mwP->vew_zom_bak = mwP->vew_zom;
+            } 
+            else
+            {
+                ocP += 4;
+            }
+            
+            break;
+        case 16:
+        {
+            int rom_no;         
+            NJS_POINT3 pos;     
+                
+            if (!(*stsP & 0x100))
+            {
+                rom_no = ocP[0];
+                
+                pos.x = ocP[1] / 32.0f;
+                pos.y = ocP[2] / 32.0f;
+                
+                scl = ocP[3];
+                
+                ocP += 4;
+                
+                pos.z = scl / 32.0f;
+                
+                MapTagEntry(mwP->cur_mtxP, rom_no, &pos);
+            } 
+            else 
+            {
+                ocP += 4;
+            }
+            
+            break;
+        }
+        case 17:
+        {
+            int mrk_no, pal_no;        
+            NJS_POINT3 pos;     
+                
+            mrk_no = ocP[0];
+            pal_no = ocP[1];
+            
+            pos.x = ocP[2] / 32.0f;
+            pos.y = ocP[3] / 32.0f;
+            
+            scl = ocP[4];
+            
+            ocP += 5;
+            
+            pos.z = scl / 32.0f;
+            
+            MapDrawMarker(mrk_no, &pos, pal_no);
+            break;
+        }
+        case 18:
+        {
+            int snd_no; 
+            int bnk_tim, off_tim; 
+            
+            snd_no = ocP[0];
+            
+            bnk_tim = ocP[1];
+            off_tim = ocP[2];
+            
+            ocP += 3;
+            
+            if (((off_tim + mwP->time) % bnk_tim) == 0)
+            {
+                CallSystemSe(0, SndTbl[snd_no]);
+            }
+            
+            break;
+        }
+        case 0:
+        case 1:
+        case 2:
+            break;
+        } 
+    }
+                    
+    njPopMatrixEx();
+    
+    njControl3D(0);
 }
+
+#pragma divbyzerocheck off
 
 // 100% matching!
 static void MapBoolSet(int bol, int mod) 

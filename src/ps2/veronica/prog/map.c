@@ -251,44 +251,67 @@ static int bhReadMapData(char* namP)
     return code;
 }
 
-// 
-// Start address: 0x2b25b0
+// 99.41% matching
 static void MapCnvStatus2Flag()
 {
-	unsigned int* itmP;
-	int itm;
-	int chk;
-	ID_WORK* datP;
-	unsigned int* itm_basP;
 	int id;
-	// Line 686, Address: 0x2b25b0, Func Offset: 0
-	// Line 689, Address: 0x2b25c4, Func Offset: 0x14
-	// Line 691, Address: 0x2b25d0, Func Offset: 0x20
-	// Line 692, Address: 0x2b25dc, Func Offset: 0x2c
-	// Line 693, Address: 0x2b25f0, Func Offset: 0x40
-	// Line 694, Address: 0x2b2604, Func Offset: 0x54
-	// Line 697, Address: 0x2b2608, Func Offset: 0x58
-	// Line 698, Address: 0x2b2618, Func Offset: 0x68
-	// Line 699, Address: 0x2b2628, Func Offset: 0x78
-	// Line 700, Address: 0x2b2638, Func Offset: 0x88
-	// Line 713, Address: 0x2b2648, Func Offset: 0x98
-	// Line 718, Address: 0x2b2650, Func Offset: 0xa0
-	// Line 717, Address: 0x2b2658, Func Offset: 0xa8
-	// Line 713, Address: 0x2b265c, Func Offset: 0xac
-	// Line 719, Address: 0x2b266c, Func Offset: 0xbc
-	// Line 722, Address: 0x2b2688, Func Offset: 0xd8
-	// Line 721, Address: 0x2b268c, Func Offset: 0xdc
-	// Line 722, Address: 0x2b2690, Func Offset: 0xe0
-	// Line 725, Address: 0x2b2694, Func Offset: 0xe4
-	// Line 727, Address: 0x2b2698, Func Offset: 0xe8
-	// Line 728, Address: 0x2b26a0, Func Offset: 0xf0
-	// Line 729, Address: 0x2b26b8, Func Offset: 0x108
-	// Line 730, Address: 0x2b26c8, Func Offset: 0x118
-	// Line 732, Address: 0x2b26d0, Func Offset: 0x120
-	// Line 733, Address: 0x2b26e0, Func Offset: 0x130
-	// Line 736, Address: 0x2b26ec, Func Offset: 0x13c
-	// Func End, Address: 0x2b2704, Func Offset: 0x154
-	scePrintf("MapCnvStatus2Flag - UNIMPLEMENTED!\n");
+    unsigned int* itm_basP;
+    ID_WORK* datP;
+    int chk;
+    int itm;
+    unsigned int* itmP;
+
+    id = sys->ply_id;
+    
+    if (id > 2)
+    {
+        if (id == 3) 
+        {
+            id = 2;
+        }
+        else if (id == 4) 
+        {
+            id = 0;
+        }
+        else 
+        {
+            id = 0;
+        }
+    }
+    
+    bhFlagSet(8, 1,      1);
+    bhFlagSet(8, 2,      1);
+    bhFlagSet(8, 3,      1);
+    bhFlagSet(8, id + 1, 0);
+   
+    itm_basP = &sys->itm[sys->ply_id * 16];
+    
+    chk = 22; 
+    
+    datP = ItmDat;
+    
+    for (; chk > 0; chk--, datP++)
+    {
+        bhFlagSet(9, datP->flg_no, 1);
+    }
+
+    chk = 22;
+    
+    datP = ItmDat;
+
+    for (; chk > 0; chk--, datP++)
+    {
+        for (itmP = itm_basP, id = 0; id < 16; id++, itmP++)
+        {
+            itm = (*itmP >> 16) & 0xFF;
+            
+            if ((unsigned int)itm == datP->itm_no)
+            {
+                bhFlagSet(9, datP->flg_no, 0);
+                break;
+            }
+        }
+    }
 }
 
 // 99.82% matching

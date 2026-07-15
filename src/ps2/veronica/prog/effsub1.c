@@ -2,10 +2,12 @@
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/player.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/weapon.h"
@@ -1001,622 +1003,770 @@ void bhEff002(O_WRK* op)
 	scePrintf("bhEff002 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x226960
+// 100% matching!
 void bhDrawWeaponEffect(O_WRK* op)
 {
-	float len;
-	//_anon50 lp;
-	//_anon41 pos;
-	//_anon41 fps;
-	float* wkp;
-	float off;
-	float scl;
-	//_anon5 tvb[4];
-	//_anon5 tv[4];
-	int ani;
-	int i;
-	//_anon8* uvp;
-	//_anon8 uvinfo_t01[9][2];
-	short akpal[3][2];
-	//_anon8 uvinfo_t03[4][2];
-	//_anon8 uvinfo_t00[4][2];
-	// Line 944, Address: 0x226960, Func Offset: 0
-	// Line 1012, Address: 0x226998, Func Offset: 0x38
-	// Line 1014, Address: 0x2269a4, Func Offset: 0x44
-	// Line 1017, Address: 0x2269ec, Func Offset: 0x8c
-	// Line 1019, Address: 0x2269f4, Func Offset: 0x94
-	// Line 1020, Address: 0x226a04, Func Offset: 0xa4
-	// Line 1022, Address: 0x226a14, Func Offset: 0xb4
-	// Line 1024, Address: 0x226a1c, Func Offset: 0xbc
-	// Line 1025, Address: 0x226a34, Func Offset: 0xd4
-	// Line 1026, Address: 0x226a60, Func Offset: 0x100
-	// Line 1027, Address: 0x226a70, Func Offset: 0x110
-	// Line 1029, Address: 0x226a88, Func Offset: 0x128
-	// Line 1030, Address: 0x226a9c, Func Offset: 0x13c
-	// Line 1031, Address: 0x226ab0, Func Offset: 0x150
-	// Line 1032, Address: 0x226ab8, Func Offset: 0x158
-	// Line 1036, Address: 0x226ac0, Func Offset: 0x160
-	// Line 1037, Address: 0x226aec, Func Offset: 0x18c
-	// Line 1038, Address: 0x226b00, Func Offset: 0x1a0
-	// Line 1041, Address: 0x226b14, Func Offset: 0x1b4
-	// Line 1042, Address: 0x226b24, Func Offset: 0x1c4
-	// Line 1044, Address: 0x226b30, Func Offset: 0x1d0
-	// Line 1045, Address: 0x226b3c, Func Offset: 0x1dc
-	// Line 1060, Address: 0x226b48, Func Offset: 0x1e8
-	// Line 1061, Address: 0x226b58, Func Offset: 0x1f8
-	// Line 1062, Address: 0x226b5c, Func Offset: 0x1fc
-	// Line 1061, Address: 0x226b60, Func Offset: 0x200
-	// Line 1062, Address: 0x226b74, Func Offset: 0x214
-	// Line 1064, Address: 0x226b88, Func Offset: 0x228
-	// Line 1066, Address: 0x226b8c, Func Offset: 0x22c
-	// Line 1070, Address: 0x226bb8, Func Offset: 0x258
-	// Line 1071, Address: 0x226be0, Func Offset: 0x280
-	// Line 1072, Address: 0x226bec, Func Offset: 0x28c
-	// Line 1074, Address: 0x226bf8, Func Offset: 0x298
-	// Line 1075, Address: 0x226c0c, Func Offset: 0x2ac
-	// Line 1076, Address: 0x226c18, Func Offset: 0x2b8
-	// Line 1077, Address: 0x226c20, Func Offset: 0x2c0
-	// Line 1078, Address: 0x226c28, Func Offset: 0x2c8
-	// Line 1079, Address: 0x226c48, Func Offset: 0x2e8
-	// Line 1081, Address: 0x226c60, Func Offset: 0x300
-	// Line 1082, Address: 0x226c70, Func Offset: 0x310
-	// Line 1084, Address: 0x226c78, Func Offset: 0x318
-	// Line 1083, Address: 0x226c84, Func Offset: 0x324
-	// Line 1084, Address: 0x226c88, Func Offset: 0x328
-	// Line 1087, Address: 0x226c90, Func Offset: 0x330
-	// Line 1088, Address: 0x226c9c, Func Offset: 0x33c
-	// Line 1087, Address: 0x226ca0, Func Offset: 0x340
-	// Line 1089, Address: 0x226cb0, Func Offset: 0x350
-	// Line 1088, Address: 0x226cbc, Func Offset: 0x35c
-	// Line 1089, Address: 0x226cc0, Func Offset: 0x360
-	// Line 1090, Address: 0x226cc4, Func Offset: 0x364
-	// Line 1091, Address: 0x226ccc, Func Offset: 0x36c
-	// Line 1092, Address: 0x226cd4, Func Offset: 0x374
-	// Line 1093, Address: 0x226ce4, Func Offset: 0x384
-	// Line 1094, Address: 0x226ce8, Func Offset: 0x388
-	// Line 1093, Address: 0x226cec, Func Offset: 0x38c
-	// Line 1095, Address: 0x226cf0, Func Offset: 0x390
-	// Line 1094, Address: 0x226cf4, Func Offset: 0x394
-	// Line 1096, Address: 0x226cf8, Func Offset: 0x398
-	// Line 1095, Address: 0x226cfc, Func Offset: 0x39c
-	// Line 1097, Address: 0x226d00, Func Offset: 0x3a0
-	// Line 1096, Address: 0x226d04, Func Offset: 0x3a4
-	// Line 1097, Address: 0x226d08, Func Offset: 0x3a8
-	// Line 1098, Address: 0x226d0c, Func Offset: 0x3ac
-	// Line 1099, Address: 0x226d10, Func Offset: 0x3b0
-	// Line 1098, Address: 0x226d14, Func Offset: 0x3b4
-	// Line 1099, Address: 0x226d18, Func Offset: 0x3b8
-	// Line 1100, Address: 0x226d1c, Func Offset: 0x3bc
-	// Line 1108, Address: 0x226d24, Func Offset: 0x3c4
-	// Line 1100, Address: 0x226d28, Func Offset: 0x3c8
-	// Line 1101, Address: 0x226d2c, Func Offset: 0x3cc
-	// Line 1102, Address: 0x226d38, Func Offset: 0x3d8
-	// Line 1103, Address: 0x226d4c, Func Offset: 0x3ec
-	// Line 1104, Address: 0x226d58, Func Offset: 0x3f8
-	// Line 1105, Address: 0x226d64, Func Offset: 0x404
-	// Line 1106, Address: 0x226d78, Func Offset: 0x418
-	// Line 1107, Address: 0x226d8c, Func Offset: 0x42c
-	// Line 1108, Address: 0x226da0, Func Offset: 0x440
-	// Line 1110, Address: 0x226dac, Func Offset: 0x44c
-	// Line 1112, Address: 0x226dd0, Func Offset: 0x470
-	// Line 1111, Address: 0x226dd4, Func Offset: 0x474
-	// Line 1112, Address: 0x226dd8, Func Offset: 0x478
-	// Line 1113, Address: 0x226ddc, Func Offset: 0x47c
-	// Line 1114, Address: 0x226dec, Func Offset: 0x48c
-	// Line 1131, Address: 0x226df8, Func Offset: 0x498
-	// Line 1114, Address: 0x226dfc, Func Offset: 0x49c
-	// Line 1119, Address: 0x226e00, Func Offset: 0x4a0
-	// Line 1114, Address: 0x226e08, Func Offset: 0x4a8
-	// Line 1115, Address: 0x226e10, Func Offset: 0x4b0
-	// Line 1116, Address: 0x226e18, Func Offset: 0x4b8
-	// Line 1117, Address: 0x226e1c, Func Offset: 0x4bc
-	// Line 1118, Address: 0x226e20, Func Offset: 0x4c0
-	// Line 1119, Address: 0x226e24, Func Offset: 0x4c4
-	// Line 1120, Address: 0x226e28, Func Offset: 0x4c8
-	// Line 1121, Address: 0x226e2c, Func Offset: 0x4cc
-	// Line 1122, Address: 0x226e30, Func Offset: 0x4d0
-	// Line 1123, Address: 0x226e34, Func Offset: 0x4d4
-	// Line 1124, Address: 0x226e40, Func Offset: 0x4e0
-	// Line 1125, Address: 0x226e4c, Func Offset: 0x4ec
-	// Line 1126, Address: 0x226e60, Func Offset: 0x500
-	// Line 1127, Address: 0x226e6c, Func Offset: 0x50c
-	// Line 1128, Address: 0x226e78, Func Offset: 0x518
-	// Line 1129, Address: 0x226e8c, Func Offset: 0x52c
-	// Line 1130, Address: 0x226ea0, Func Offset: 0x540
-	// Line 1131, Address: 0x226eb4, Func Offset: 0x554
-	// Line 1133, Address: 0x226ec0, Func Offset: 0x560
-	// Line 1132, Address: 0x226ecc, Func Offset: 0x56c
-	// Line 1133, Address: 0x226ed0, Func Offset: 0x570
-	// Line 1134, Address: 0x226ed4, Func Offset: 0x574
-	// Line 1135, Address: 0x226edc, Func Offset: 0x57c
-	// Line 1136, Address: 0x226ee4, Func Offset: 0x584
-	// Line 1137, Address: 0x226eec, Func Offset: 0x58c
-	// Line 1139, Address: 0x226ef0, Func Offset: 0x590
-	// Line 1138, Address: 0x226ef4, Func Offset: 0x594
-	// Line 1139, Address: 0x226ef8, Func Offset: 0x598
-	// Line 1140, Address: 0x226f00, Func Offset: 0x5a0
-	// Line 1141, Address: 0x226f04, Func Offset: 0x5a4
-	// Line 1142, Address: 0x226f08, Func Offset: 0x5a8
-	// Line 1143, Address: 0x226f0c, Func Offset: 0x5ac
-	// Line 1144, Address: 0x226f10, Func Offset: 0x5b0
-	// Line 1145, Address: 0x226f20, Func Offset: 0x5c0
-	// Line 1149, Address: 0x226f28, Func Offset: 0x5c8
-	// Line 1150, Address: 0x226f64, Func Offset: 0x604
-	// Line 1151, Address: 0x226f6c, Func Offset: 0x60c
-	// Line 1150, Address: 0x226f70, Func Offset: 0x610
-	// Line 1151, Address: 0x226f74, Func Offset: 0x614
-	// Line 1152, Address: 0x226f80, Func Offset: 0x620
-	// Line 1153, Address: 0x226f98, Func Offset: 0x638
-	// Line 1155, Address: 0x226fa0, Func Offset: 0x640
-	// Line 1156, Address: 0x226fcc, Func Offset: 0x66c
-	// Line 1157, Address: 0x226fd4, Func Offset: 0x674
-	// Line 1156, Address: 0x226fdc, Func Offset: 0x67c
-	// Line 1157, Address: 0x226fe0, Func Offset: 0x680
-	// Line 1160, Address: 0x226fe8, Func Offset: 0x688
-	// Line 1157, Address: 0x226fec, Func Offset: 0x68c
-	// Line 1158, Address: 0x226ff0, Func Offset: 0x690
-	// Line 1160, Address: 0x226ff4, Func Offset: 0x694
-	// Line 1158, Address: 0x226ffc, Func Offset: 0x69c
-	// Line 1159, Address: 0x227000, Func Offset: 0x6a0
-	// Line 1160, Address: 0x227004, Func Offset: 0x6a4
-	// Line 1159, Address: 0x227008, Func Offset: 0x6a8
-	// Line 1160, Address: 0x22700c, Func Offset: 0x6ac
-	// Line 1161, Address: 0x227014, Func Offset: 0x6b4
-	// Line 1162, Address: 0x22701c, Func Offset: 0x6bc
-	// Line 1163, Address: 0x227020, Func Offset: 0x6c0
-	// Line 1162, Address: 0x227024, Func Offset: 0x6c4
-	// Line 1164, Address: 0x227028, Func Offset: 0x6c8
-	// Line 1163, Address: 0x22702c, Func Offset: 0x6cc
-	// Line 1165, Address: 0x227030, Func Offset: 0x6d0
-	// Line 1164, Address: 0x227034, Func Offset: 0x6d4
-	// Line 1166, Address: 0x227038, Func Offset: 0x6d8
-	// Line 1165, Address: 0x22703c, Func Offset: 0x6dc
-	// Line 1167, Address: 0x227040, Func Offset: 0x6e0
-	// Line 1166, Address: 0x227044, Func Offset: 0x6e4
-	// Line 1167, Address: 0x227048, Func Offset: 0x6e8
-	// Line 1168, Address: 0x22704c, Func Offset: 0x6ec
-	// Line 1176, Address: 0x227054, Func Offset: 0x6f4
-	// Line 1168, Address: 0x227058, Func Offset: 0x6f8
-	// Line 1169, Address: 0x22705c, Func Offset: 0x6fc
-	// Line 1170, Address: 0x227068, Func Offset: 0x708
-	// Line 1171, Address: 0x22707c, Func Offset: 0x71c
-	// Line 1172, Address: 0x227088, Func Offset: 0x728
-	// Line 1173, Address: 0x227094, Func Offset: 0x734
-	// Line 1174, Address: 0x2270a8, Func Offset: 0x748
-	// Line 1175, Address: 0x2270bc, Func Offset: 0x75c
-	// Line 1176, Address: 0x2270d0, Func Offset: 0x770
-	// Line 1178, Address: 0x2270dc, Func Offset: 0x77c
-	// Line 1180, Address: 0x2270f0, Func Offset: 0x790
-	// Line 1179, Address: 0x2270f4, Func Offset: 0x794
-	// Line 1180, Address: 0x2270f8, Func Offset: 0x798
-	// Line 1178, Address: 0x2270fc, Func Offset: 0x79c
-	// Line 1181, Address: 0x227118, Func Offset: 0x7b8
-	// Line 1182, Address: 0x227124, Func Offset: 0x7c4
-	// Line 1187, Address: 0x227128, Func Offset: 0x7c8
-	// Line 1181, Address: 0x227130, Func Offset: 0x7d0
-	// Line 1199, Address: 0x227138, Func Offset: 0x7d8
-	// Line 1187, Address: 0x22713c, Func Offset: 0x7dc
-	// Line 1181, Address: 0x227140, Func Offset: 0x7e0
-	// Line 1182, Address: 0x227144, Func Offset: 0x7e4
-	// Line 1187, Address: 0x227148, Func Offset: 0x7e8
-	// Line 1182, Address: 0x22714c, Func Offset: 0x7ec
-	// Line 1183, Address: 0x227150, Func Offset: 0x7f0
-	// Line 1184, Address: 0x227158, Func Offset: 0x7f8
-	// Line 1185, Address: 0x227160, Func Offset: 0x800
-	// Line 1186, Address: 0x227164, Func Offset: 0x804
-	// Line 1187, Address: 0x227168, Func Offset: 0x808
-	// Line 1188, Address: 0x22716c, Func Offset: 0x80c
-	// Line 1189, Address: 0x227170, Func Offset: 0x810
-	// Line 1190, Address: 0x227174, Func Offset: 0x814
-	// Line 1191, Address: 0x227178, Func Offset: 0x818
-	// Line 1192, Address: 0x227184, Func Offset: 0x824
-	// Line 1193, Address: 0x227190, Func Offset: 0x830
-	// Line 1194, Address: 0x2271a4, Func Offset: 0x844
-	// Line 1195, Address: 0x2271b0, Func Offset: 0x850
-	// Line 1196, Address: 0x2271bc, Func Offset: 0x85c
-	// Line 1197, Address: 0x2271d0, Func Offset: 0x870
-	// Line 1198, Address: 0x2271e4, Func Offset: 0x884
-	// Line 1199, Address: 0x2271f8, Func Offset: 0x898
-	// Line 1201, Address: 0x227204, Func Offset: 0x8a4
-	// Line 1200, Address: 0x227208, Func Offset: 0x8a8
-	// Line 1201, Address: 0x22720c, Func Offset: 0x8ac
-	// Line 1202, Address: 0x227210, Func Offset: 0x8b0
-	// Line 1203, Address: 0x227218, Func Offset: 0x8b8
-	// Line 1204, Address: 0x227224, Func Offset: 0x8c4
-	// Line 1205, Address: 0x22722c, Func Offset: 0x8cc
-	// Line 1206, Address: 0x227234, Func Offset: 0x8d4
-	// Line 1207, Address: 0x227238, Func Offset: 0x8d8
-	// Line 1208, Address: 0x22723c, Func Offset: 0x8dc
-	// Line 1209, Address: 0x227240, Func Offset: 0x8e0
-	// Line 1210, Address: 0x227244, Func Offset: 0x8e4
-	// Line 1211, Address: 0x227248, Func Offset: 0x8e8
-	// Line 1212, Address: 0x22724c, Func Offset: 0x8ec
-	// Line 1215, Address: 0x22725c, Func Offset: 0x8fc
-	// Line 1216, Address: 0x227294, Func Offset: 0x934
-	// Line 1217, Address: 0x2272a0, Func Offset: 0x940
-	// Line 1218, Address: 0x2272ac, Func Offset: 0x94c
-	// Line 1219, Address: 0x2272c0, Func Offset: 0x960
-	// Line 1218, Address: 0x2272c8, Func Offset: 0x968
-	// Line 1220, Address: 0x2272dc, Func Offset: 0x97c
-	// Line 1221, Address: 0x2272e8, Func Offset: 0x988
-	// Line 1223, Address: 0x2272ec, Func Offset: 0x98c
-	// Line 1220, Address: 0x2272f4, Func Offset: 0x994
-	// Line 1219, Address: 0x2272fc, Func Offset: 0x99c
-	// Line 1221, Address: 0x227300, Func Offset: 0x9a0
-	// Line 1223, Address: 0x227304, Func Offset: 0x9a4
-	// Line 1220, Address: 0x227308, Func Offset: 0x9a8
-	// Line 1221, Address: 0x22730c, Func Offset: 0x9ac
-	// Line 1231, Address: 0x227314, Func Offset: 0x9b4
-	// Line 1221, Address: 0x227318, Func Offset: 0x9b8
-	// Line 1222, Address: 0x22731c, Func Offset: 0x9bc
-	// Line 1223, Address: 0x227320, Func Offset: 0x9c0
-	// Line 1231, Address: 0x227324, Func Offset: 0x9c4
-	// Line 1222, Address: 0x227328, Func Offset: 0x9c8
-	// Line 1223, Address: 0x22732c, Func Offset: 0x9cc
-	// Line 1231, Address: 0x227330, Func Offset: 0x9d0
-	// Line 1223, Address: 0x227334, Func Offset: 0x9d4
-	// Line 1224, Address: 0x227338, Func Offset: 0x9d8
-	// Line 1231, Address: 0x22733c, Func Offset: 0x9dc
-	// Line 1224, Address: 0x227340, Func Offset: 0x9e0
-	// Line 1225, Address: 0x227344, Func Offset: 0x9e4
-	// Line 1226, Address: 0x227348, Func Offset: 0x9e8
-	// Line 1234, Address: 0x22734c, Func Offset: 0x9ec
-	// Line 1227, Address: 0x227350, Func Offset: 0x9f0
-	// Line 1228, Address: 0x227354, Func Offset: 0x9f4
-	// Line 1234, Address: 0x227358, Func Offset: 0x9f8
-	// Line 1229, Address: 0x22735c, Func Offset: 0x9fc
-	// Line 1230, Address: 0x227360, Func Offset: 0xa00
-	// Line 1231, Address: 0x227364, Func Offset: 0xa04
-	// Line 1232, Address: 0x227368, Func Offset: 0xa08
-	// Line 1234, Address: 0x22736c, Func Offset: 0xa0c
-	// Line 1233, Address: 0x227370, Func Offset: 0xa10
-	// Line 1243, Address: 0x227374, Func Offset: 0xa14
-	// Line 1234, Address: 0x227378, Func Offset: 0xa18
-	// Line 1235, Address: 0x22737c, Func Offset: 0xa1c
-	// Line 1236, Address: 0x227380, Func Offset: 0xa20
-	// Line 1237, Address: 0x227384, Func Offset: 0xa24
-	// Line 1238, Address: 0x227388, Func Offset: 0xa28
-	// Line 1239, Address: 0x22738c, Func Offset: 0xa2c
-	// Line 1240, Address: 0x227390, Func Offset: 0xa30
-	// Line 1241, Address: 0x227394, Func Offset: 0xa34
-	// Line 1242, Address: 0x227398, Func Offset: 0xa38
-	// Line 1243, Address: 0x22739c, Func Offset: 0xa3c
-	// Line 1259, Address: 0x2273a0, Func Offset: 0xa40
-	// Line 1243, Address: 0x2273a4, Func Offset: 0xa44
-	// Line 1244, Address: 0x2273a8, Func Offset: 0xa48
-	// Line 1245, Address: 0x2273b4, Func Offset: 0xa54
-	// Line 1246, Address: 0x2273c8, Func Offset: 0xa68
-	// Line 1247, Address: 0x2273d4, Func Offset: 0xa74
-	// Line 1248, Address: 0x2273e0, Func Offset: 0xa80
-	// Line 1249, Address: 0x2273f4, Func Offset: 0xa94
-	// Line 1250, Address: 0x227408, Func Offset: 0xaa8
-	// Line 1251, Address: 0x22741c, Func Offset: 0xabc
-	// Line 1252, Address: 0x227424, Func Offset: 0xac4
-	// Line 1253, Address: 0x22742c, Func Offset: 0xacc
-	// Line 1254, Address: 0x22743c, Func Offset: 0xadc
-	// Line 1255, Address: 0x227444, Func Offset: 0xae4
-	// Line 1256, Address: 0x22744c, Func Offset: 0xaec
-	// Line 1257, Address: 0x22745c, Func Offset: 0xafc
-	// Line 1258, Address: 0x22746c, Func Offset: 0xb0c
-	// Line 1259, Address: 0x22747c, Func Offset: 0xb1c
-	// Line 1261, Address: 0x227494, Func Offset: 0xb34
-	// Line 1262, Address: 0x2274a4, Func Offset: 0xb44
-	// Line 1263, Address: 0x2274b4, Func Offset: 0xb54
-	// Line 1264, Address: 0x2274c0, Func Offset: 0xb60
-	// Line 1265, Address: 0x2274d0, Func Offset: 0xb70
-	// Line 1267, Address: 0x2274d8, Func Offset: 0xb78
-	// Line 1268, Address: 0x2274e8, Func Offset: 0xb88
-	// Line 1269, Address: 0x2274f8, Func Offset: 0xb98
-	// Line 1270, Address: 0x227504, Func Offset: 0xba4
-	// Line 1272, Address: 0x227514, Func Offset: 0xbb4
-	// Line 1276, Address: 0x22751c, Func Offset: 0xbbc
-	// Line 1274, Address: 0x227528, Func Offset: 0xbc8
-	// Line 1276, Address: 0x22752c, Func Offset: 0xbcc
-	// Line 1277, Address: 0x227548, Func Offset: 0xbe8
-	// Line 1278, Address: 0x227560, Func Offset: 0xc00
-	// Line 1279, Address: 0x227564, Func Offset: 0xc04
-	// Line 1280, Address: 0x22756c, Func Offset: 0xc0c
-	// Line 1281, Address: 0x227570, Func Offset: 0xc10
-	// Line 1283, Address: 0x227574, Func Offset: 0xc14
-	// Line 1279, Address: 0x227578, Func Offset: 0xc18
-	// Line 1280, Address: 0x22758c, Func Offset: 0xc2c
-	// Line 1296, Address: 0x227590, Func Offset: 0xc30
-	// Line 1282, Address: 0x22759c, Func Offset: 0xc3c
-	// Line 1280, Address: 0x2275a0, Func Offset: 0xc40
-	// Line 1281, Address: 0x2275a4, Func Offset: 0xc44
-	// Line 1296, Address: 0x2275a8, Func Offset: 0xc48
-	// Line 1284, Address: 0x2275b0, Func Offset: 0xc50
-	// Line 1281, Address: 0x2275b4, Func Offset: 0xc54
-	// Line 1282, Address: 0x2275b8, Func Offset: 0xc58
-	// Line 1285, Address: 0x2275c0, Func Offset: 0xc60
-	// Line 1286, Address: 0x2275c4, Func Offset: 0xc64
-	// Line 1287, Address: 0x2275c8, Func Offset: 0xc68
-	// Line 1282, Address: 0x2275cc, Func Offset: 0xc6c
-	// Line 1283, Address: 0x2275d4, Func Offset: 0xc74
-	// Line 1284, Address: 0x2275dc, Func Offset: 0xc7c
-	// Line 1285, Address: 0x2275e4, Func Offset: 0xc84
-	// Line 1296, Address: 0x2275f0, Func Offset: 0xc90
-	// Line 1285, Address: 0x2275f4, Func Offset: 0xc94
-	// Line 1286, Address: 0x2275f8, Func Offset: 0xc98
-	// Line 1296, Address: 0x227600, Func Offset: 0xca0
-	// Line 1286, Address: 0x227608, Func Offset: 0xca8
-	// Line 1287, Address: 0x227610, Func Offset: 0xcb0
-	// Line 1296, Address: 0x227618, Func Offset: 0xcb8
-	// Line 1287, Address: 0x227624, Func Offset: 0xcc4
-	// Line 1288, Address: 0x22762c, Func Offset: 0xccc
-	// Line 1289, Address: 0x227634, Func Offset: 0xcd4
-	// Line 1290, Address: 0x22763c, Func Offset: 0xcdc
-	// Line 1291, Address: 0x227644, Func Offset: 0xce4
-	// Line 1292, Address: 0x22764c, Func Offset: 0xcec
-	// Line 1293, Address: 0x227654, Func Offset: 0xcf4
-	// Line 1294, Address: 0x22765c, Func Offset: 0xcfc
-	// Line 1295, Address: 0x227664, Func Offset: 0xd04
-	// Line 1296, Address: 0x22766c, Func Offset: 0xd0c
-	// Line 1301, Address: 0x227680, Func Offset: 0xd20
-	// Line 1302, Address: 0x227688, Func Offset: 0xd28
-	// Line 1303, Address: 0x227694, Func Offset: 0xd34
-	// Line 1304, Address: 0x2276a8, Func Offset: 0xd48
-	// Line 1305, Address: 0x2276bc, Func Offset: 0xd5c
-	// Line 1306, Address: 0x2276c0, Func Offset: 0xd60
-	// Line 1307, Address: 0x2276c4, Func Offset: 0xd64
-	// Line 1308, Address: 0x2276d0, Func Offset: 0xd70
-	// Line 1307, Address: 0x2276d8, Func Offset: 0xd78
-	// Line 1308, Address: 0x2276dc, Func Offset: 0xd7c
-	// Line 1309, Address: 0x2276e8, Func Offset: 0xd88
-	// Line 1310, Address: 0x2276f0, Func Offset: 0xd90
-	// Line 1313, Address: 0x2276f4, Func Offset: 0xd94
-	// Line 1314, Address: 0x2276f8, Func Offset: 0xd98
-	// Line 1315, Address: 0x2276fc, Func Offset: 0xd9c
-	// Line 1316, Address: 0x227700, Func Offset: 0xda0
-	// Line 1310, Address: 0x227704, Func Offset: 0xda4
-	// Line 1311, Address: 0x227708, Func Offset: 0xda8
-	// Line 1316, Address: 0x22770c, Func Offset: 0xdac
-	// Line 1311, Address: 0x227714, Func Offset: 0xdb4
-	// Line 1312, Address: 0x227718, Func Offset: 0xdb8
-	// Line 1313, Address: 0x227720, Func Offset: 0xdc0
-	// Line 1314, Address: 0x22772c, Func Offset: 0xdcc
-	// Line 1315, Address: 0x227738, Func Offset: 0xdd8
-	// Line 1316, Address: 0x227740, Func Offset: 0xde0
-	// Line 1319, Address: 0x227750, Func Offset: 0xdf0
-	// Line 1318, Address: 0x227754, Func Offset: 0xdf4
-	// Line 1317, Address: 0x22775c, Func Offset: 0xdfc
-	// Line 1329, Address: 0x227760, Func Offset: 0xe00
-	// Line 1321, Address: 0x227764, Func Offset: 0xe04
-	// Line 1318, Address: 0x227768, Func Offset: 0xe08
-	// Line 1319, Address: 0x22776c, Func Offset: 0xe0c
-	// Line 1330, Address: 0x227770, Func Offset: 0xe10
-	// Line 1321, Address: 0x227774, Func Offset: 0xe14
-	// Line 1319, Address: 0x227778, Func Offset: 0xe18
-	// Line 1331, Address: 0x22777c, Func Offset: 0xe1c
-	// Line 1320, Address: 0x227780, Func Offset: 0xe20
-	// Line 1332, Address: 0x227784, Func Offset: 0xe24
-	// Line 1321, Address: 0x227788, Func Offset: 0xe28
-	// Line 1333, Address: 0x22778c, Func Offset: 0xe2c
-	// Line 1322, Address: 0x227790, Func Offset: 0xe30
-	// Line 1334, Address: 0x227794, Func Offset: 0xe34
-	// Line 1323, Address: 0x227798, Func Offset: 0xe38
-	// Line 1335, Address: 0x22779c, Func Offset: 0xe3c
-	// Line 1325, Address: 0x2277a0, Func Offset: 0xe40
-	// Line 1324, Address: 0x2277a4, Func Offset: 0xe44
-	// Line 1336, Address: 0x2277a8, Func Offset: 0xe48
-	// Line 1325, Address: 0x2277ac, Func Offset: 0xe4c
-	// Line 1337, Address: 0x2277b0, Func Offset: 0xe50
-	// Line 1326, Address: 0x2277b4, Func Offset: 0xe54
-	// Line 1338, Address: 0x2277b8, Func Offset: 0xe58
-	// Line 1327, Address: 0x2277bc, Func Offset: 0xe5c
-	// Line 1339, Address: 0x2277c0, Func Offset: 0xe60
-	// Line 1328, Address: 0x2277c4, Func Offset: 0xe64
-	// Line 1341, Address: 0x2277c8, Func Offset: 0xe68
-	// Line 1343, Address: 0x2277d0, Func Offset: 0xe70
-	// Line 1342, Address: 0x2277d4, Func Offset: 0xe74
-	// Line 1343, Address: 0x2277d8, Func Offset: 0xe78
-	// Line 1344, Address: 0x2277dc, Func Offset: 0xe7c
-	// Line 1346, Address: 0x2277e8, Func Offset: 0xe88
-	// Line 1344, Address: 0x2277f0, Func Offset: 0xe90
-	// Line 1350, Address: 0x2277f4, Func Offset: 0xe94
-	// Line 1344, Address: 0x2277f8, Func Offset: 0xe98
-	// Line 1345, Address: 0x2277fc, Func Offset: 0xe9c
-	// Line 1346, Address: 0x227800, Func Offset: 0xea0
-	// Line 1347, Address: 0x227804, Func Offset: 0xea4
-	// Line 1354, Address: 0x22780c, Func Offset: 0xeac
-	// Line 1355, Address: 0x227810, Func Offset: 0xeb0
-	// Line 1347, Address: 0x227814, Func Offset: 0xeb4
-	// Line 1348, Address: 0x227818, Func Offset: 0xeb8
-	// Line 1349, Address: 0x22781c, Func Offset: 0xebc
-	// Line 1350, Address: 0x227820, Func Offset: 0xec0
-	// Line 1351, Address: 0x227824, Func Offset: 0xec4
-	// Line 1352, Address: 0x227828, Func Offset: 0xec8
-	// Line 1353, Address: 0x22782c, Func Offset: 0xecc
-	// Line 1356, Address: 0x227830, Func Offset: 0xed0
-	// Line 1357, Address: 0x22783c, Func Offset: 0xedc
-	// Line 1358, Address: 0x227840, Func Offset: 0xee0
-	// Line 1359, Address: 0x227844, Func Offset: 0xee4
-	// Line 1360, Address: 0x227850, Func Offset: 0xef0
-	// Line 1361, Address: 0x227854, Func Offset: 0xef4
-	// Line 1362, Address: 0x227858, Func Offset: 0xef8
-	// Line 1363, Address: 0x22785c, Func Offset: 0xefc
-	// Line 1364, Address: 0x227860, Func Offset: 0xf00
-	// Line 1365, Address: 0x227864, Func Offset: 0xf04
-	// Line 1368, Address: 0x227868, Func Offset: 0xf08
-	// Line 1369, Address: 0x227870, Func Offset: 0xf10
-	// Line 1370, Address: 0x227888, Func Offset: 0xf28
-	// Line 1371, Address: 0x2278a0, Func Offset: 0xf40
-	// Line 1372, Address: 0x2278b0, Func Offset: 0xf50
-	// Line 1373, Address: 0x2278c0, Func Offset: 0xf60
-	// Line 1374, Address: 0x2278c8, Func Offset: 0xf68
-	// Line 1375, Address: 0x2278d8, Func Offset: 0xf78
-	// Line 1378, Address: 0x2278e0, Func Offset: 0xf80
-	// Line 1379, Address: 0x22791c, Func Offset: 0xfbc
-	// Line 1380, Address: 0x227924, Func Offset: 0xfc4
-	// Line 1379, Address: 0x227928, Func Offset: 0xfc8
-	// Line 1380, Address: 0x22792c, Func Offset: 0xfcc
-	// Line 1381, Address: 0x227938, Func Offset: 0xfd8
-	// Line 1382, Address: 0x227950, Func Offset: 0xff0
-	// Line 1384, Address: 0x227958, Func Offset: 0xff8
-	// Line 1385, Address: 0x227984, Func Offset: 0x1024
-	// Line 1386, Address: 0x227994, Func Offset: 0x1034
-	// Line 1389, Address: 0x22799c, Func Offset: 0x103c
-	// Line 1386, Address: 0x2279a0, Func Offset: 0x1040
-	// Line 1391, Address: 0x2279a8, Func Offset: 0x1048
-	// Line 1389, Address: 0x2279ac, Func Offset: 0x104c
-	// Line 1386, Address: 0x2279b4, Func Offset: 0x1054
-	// Line 1388, Address: 0x2279b8, Func Offset: 0x1058
-	// Line 1389, Address: 0x2279bc, Func Offset: 0x105c
-	// Line 1387, Address: 0x2279c0, Func Offset: 0x1060
-	// Line 1388, Address: 0x2279c4, Func Offset: 0x1064
-	// Line 1389, Address: 0x2279c8, Func Offset: 0x1068
-	// Line 1390, Address: 0x2279d0, Func Offset: 0x1070
-	// Line 1392, Address: 0x2279d8, Func Offset: 0x1078
-	// Line 1391, Address: 0x2279dc, Func Offset: 0x107c
-	// Line 1393, Address: 0x2279e0, Func Offset: 0x1080
-	// Line 1392, Address: 0x2279e4, Func Offset: 0x1084
-	// Line 1394, Address: 0x2279e8, Func Offset: 0x1088
-	// Line 1393, Address: 0x2279ec, Func Offset: 0x108c
-	// Line 1395, Address: 0x2279f0, Func Offset: 0x1090
-	// Line 1394, Address: 0x2279f4, Func Offset: 0x1094
-	// Line 1396, Address: 0x2279f8, Func Offset: 0x1098
-	// Line 1395, Address: 0x2279fc, Func Offset: 0x109c
-	// Line 1396, Address: 0x227a00, Func Offset: 0x10a0
-	// Line 1397, Address: 0x227a04, Func Offset: 0x10a4
-	// Line 1405, Address: 0x227a0c, Func Offset: 0x10ac
-	// Line 1397, Address: 0x227a10, Func Offset: 0x10b0
-	// Line 1398, Address: 0x227a14, Func Offset: 0x10b4
-	// Line 1399, Address: 0x227a20, Func Offset: 0x10c0
-	// Line 1400, Address: 0x227a34, Func Offset: 0x10d4
-	// Line 1401, Address: 0x227a40, Func Offset: 0x10e0
-	// Line 1402, Address: 0x227a4c, Func Offset: 0x10ec
-	// Line 1403, Address: 0x227a60, Func Offset: 0x1100
-	// Line 1404, Address: 0x227a74, Func Offset: 0x1114
-	// Line 1405, Address: 0x227a88, Func Offset: 0x1128
-	// Line 1407, Address: 0x227a94, Func Offset: 0x1134
-	// Line 1408, Address: 0x227aa8, Func Offset: 0x1148
-	// Line 1411, Address: 0x227aac, Func Offset: 0x114c
-	// Line 1407, Address: 0x227ab0, Func Offset: 0x1150
-	// Line 1408, Address: 0x227acc, Func Offset: 0x116c
-	// Line 1409, Address: 0x227ad4, Func Offset: 0x1174
-	// Line 1410, Address: 0x227adc, Func Offset: 0x117c
-	// Line 1428, Address: 0x227ae8, Func Offset: 0x1188
-	// Line 1410, Address: 0x227aec, Func Offset: 0x118c
-	// Line 1416, Address: 0x227af0, Func Offset: 0x1190
-	// Line 1411, Address: 0x227af8, Func Offset: 0x1198
-	// Line 1416, Address: 0x227afc, Func Offset: 0x119c
-	// Line 1410, Address: 0x227b00, Func Offset: 0x11a0
-	// Line 1411, Address: 0x227b04, Func Offset: 0x11a4
-	// Line 1412, Address: 0x227b08, Func Offset: 0x11a8
-	// Line 1416, Address: 0x227b0c, Func Offset: 0x11ac
-	// Line 1412, Address: 0x227b10, Func Offset: 0x11b0
-	// Line 1413, Address: 0x227b14, Func Offset: 0x11b4
-	// Line 1414, Address: 0x227b1c, Func Offset: 0x11bc
-	// Line 1415, Address: 0x227b20, Func Offset: 0x11c0
-	// Line 1416, Address: 0x227b24, Func Offset: 0x11c4
-	// Line 1417, Address: 0x227b28, Func Offset: 0x11c8
-	// Line 1418, Address: 0x227b2c, Func Offset: 0x11cc
-	// Line 1419, Address: 0x227b30, Func Offset: 0x11d0
-	// Line 1420, Address: 0x227b34, Func Offset: 0x11d4
-	// Line 1421, Address: 0x227b40, Func Offset: 0x11e0
-	// Line 1422, Address: 0x227b4c, Func Offset: 0x11ec
-	// Line 1423, Address: 0x227b60, Func Offset: 0x1200
-	// Line 1424, Address: 0x227b6c, Func Offset: 0x120c
-	// Line 1425, Address: 0x227b78, Func Offset: 0x1218
-	// Line 1426, Address: 0x227b8c, Func Offset: 0x122c
-	// Line 1427, Address: 0x227ba0, Func Offset: 0x1240
-	// Line 1428, Address: 0x227bb4, Func Offset: 0x1254
-	// Line 1429, Address: 0x227bc0, Func Offset: 0x1260
-	// Line 1430, Address: 0x227bcc, Func Offset: 0x126c
-	// Line 1432, Address: 0x227bd4, Func Offset: 0x1274
-	// Line 1431, Address: 0x227bd8, Func Offset: 0x1278
-	// Line 1432, Address: 0x227bdc, Func Offset: 0x127c
-	// Line 1433, Address: 0x227be4, Func Offset: 0x1284
-	// Line 1434, Address: 0x227bec, Func Offset: 0x128c
-	// Line 1435, Address: 0x227bf4, Func Offset: 0x1294
-	// Line 1436, Address: 0x227bf8, Func Offset: 0x1298
-	// Line 1437, Address: 0x227bfc, Func Offset: 0x129c
-	// Line 1438, Address: 0x227c00, Func Offset: 0x12a0
-	// Line 1439, Address: 0x227c04, Func Offset: 0x12a4
-	// Line 1440, Address: 0x227c08, Func Offset: 0x12a8
-	// Line 1441, Address: 0x227c0c, Func Offset: 0x12ac
-	// Line 1444, Address: 0x227c1c, Func Offset: 0x12bc
-	// Line 1445, Address: 0x227c54, Func Offset: 0x12f4
-	// Line 1446, Address: 0x227c60, Func Offset: 0x1300
-	// Line 1447, Address: 0x227c6c, Func Offset: 0x130c
-	// Line 1448, Address: 0x227c80, Func Offset: 0x1320
-	// Line 1447, Address: 0x227c90, Func Offset: 0x1330
-	// Line 1449, Address: 0x227ca4, Func Offset: 0x1344
-	// Line 1454, Address: 0x227cb0, Func Offset: 0x1350
-	// Line 1450, Address: 0x227cb4, Func Offset: 0x1354
-	// Line 1449, Address: 0x227cbc, Func Offset: 0x135c
-	// Line 1452, Address: 0x227cc0, Func Offset: 0x1360
-	// Line 1449, Address: 0x227cc8, Func Offset: 0x1368
-	// Line 1452, Address: 0x227ccc, Func Offset: 0x136c
-	// Line 1449, Address: 0x227cd0, Func Offset: 0x1370
-	// Line 1450, Address: 0x227cd4, Func Offset: 0x1374
-	// Line 1460, Address: 0x227cd8, Func Offset: 0x1378
-	// Line 1451, Address: 0x227ce0, Func Offset: 0x1380
-	// Line 1452, Address: 0x227ce4, Func Offset: 0x1384
-	// Line 1450, Address: 0x227ce8, Func Offset: 0x1388
-	// Line 1451, Address: 0x227cec, Func Offset: 0x138c
-	// Line 1452, Address: 0x227cf0, Func Offset: 0x1390
-	// Line 1460, Address: 0x227cf4, Func Offset: 0x1394
-	// Line 1452, Address: 0x227cfc, Func Offset: 0x139c
-	// Line 1453, Address: 0x227d00, Func Offset: 0x13a0
-	// Line 1460, Address: 0x227d04, Func Offset: 0x13a4
-	// Line 1453, Address: 0x227d08, Func Offset: 0x13a8
-	// Line 1454, Address: 0x227d0c, Func Offset: 0x13ac
-	// Line 1455, Address: 0x227d10, Func Offset: 0x13b0
-	// Line 1456, Address: 0x227d14, Func Offset: 0x13b4
-	// Line 1457, Address: 0x227d18, Func Offset: 0x13b8
-	// Line 1458, Address: 0x227d1c, Func Offset: 0x13bc
-	// Line 1463, Address: 0x227d20, Func Offset: 0x13c0
-	// Line 1459, Address: 0x227d28, Func Offset: 0x13c8
-	// Line 1460, Address: 0x227d2c, Func Offset: 0x13cc
-	// Line 1461, Address: 0x227d30, Func Offset: 0x13d0
-	// Line 1463, Address: 0x227d34, Func Offset: 0x13d4
-	// Line 1462, Address: 0x227d38, Func Offset: 0x13d8
-	// Line 1472, Address: 0x227d3c, Func Offset: 0x13dc
-	// Line 1463, Address: 0x227d40, Func Offset: 0x13e0
-	// Line 1464, Address: 0x227d44, Func Offset: 0x13e4
-	// Line 1465, Address: 0x227d48, Func Offset: 0x13e8
-	// Line 1466, Address: 0x227d4c, Func Offset: 0x13ec
-	// Line 1467, Address: 0x227d50, Func Offset: 0x13f0
-	// Line 1469, Address: 0x227d54, Func Offset: 0x13f4
-	// Line 1468, Address: 0x227d58, Func Offset: 0x13f8
-	// Line 1469, Address: 0x227d5c, Func Offset: 0x13fc
-	// Line 1470, Address: 0x227d60, Func Offset: 0x1400
-	// Line 1471, Address: 0x227d64, Func Offset: 0x1404
-	// Line 1472, Address: 0x227d68, Func Offset: 0x1408
-	// Line 1473, Address: 0x227d70, Func Offset: 0x1410
-	// Line 1474, Address: 0x227d7c, Func Offset: 0x141c
-	// Line 1475, Address: 0x227d90, Func Offset: 0x1430
-	// Line 1476, Address: 0x227d9c, Func Offset: 0x143c
-	// Line 1477, Address: 0x227da8, Func Offset: 0x1448
-	// Line 1478, Address: 0x227dbc, Func Offset: 0x145c
-	// Line 1479, Address: 0x227dd0, Func Offset: 0x1470
-	// Line 1480, Address: 0x227de4, Func Offset: 0x1484
-	// Line 1481, Address: 0x227dec, Func Offset: 0x148c
-	// Line 1482, Address: 0x227df4, Func Offset: 0x1494
-	// Line 1483, Address: 0x227e04, Func Offset: 0x14a4
-	// Line 1484, Address: 0x227e0c, Func Offset: 0x14ac
-	// Line 1485, Address: 0x227e14, Func Offset: 0x14b4
-	// Line 1486, Address: 0x227e24, Func Offset: 0x14c4
-	// Line 1487, Address: 0x227e34, Func Offset: 0x14d4
-	// Line 1488, Address: 0x227e44, Func Offset: 0x14e4
-	// Line 1489, Address: 0x227e50, Func Offset: 0x14f0
-	// Line 1490, Address: 0x227e54, Func Offset: 0x14f4
-	// Line 1491, Address: 0x227e64, Func Offset: 0x1504
-	// Line 1492, Address: 0x227e74, Func Offset: 0x1514
-	// Line 1493, Address: 0x227e80, Func Offset: 0x1520
-	// Line 1494, Address: 0x227e90, Func Offset: 0x1530
-	// Line 1496, Address: 0x227e98, Func Offset: 0x1538
-	// Line 1497, Address: 0x227ea8, Func Offset: 0x1548
-	// Line 1498, Address: 0x227eb8, Func Offset: 0x1558
-	// Line 1499, Address: 0x227ec4, Func Offset: 0x1564
-	// Line 1502, Address: 0x227ed4, Func Offset: 0x1574
-	// Line 1504, Address: 0x227ed8, Func Offset: 0x1578
-	// Line 1505, Address: 0x227ee4, Func Offset: 0x1584
-	// Line 1506, Address: 0x227ef0, Func Offset: 0x1590
-	// Func End, Address: 0x227f2c, Func Offset: 0x15cc
-	scePrintf("bhDrawWeaponEffect - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;                 
+    int i;                         
+    int ani;                    
+    NJS_TEXTURE_VTX tv[4], tvb[4];           
+    float scl;                       
+    float off;                       
+    float* wkp;                  
+    NJS_POINT3 fps;                 
+    NJS_POINT3 pos;            
+    NJS_LINE lp;                    
+    float len;                     
+    static UV_WORK uvinfo_t00[2][4] = 
+    {
+        {
+            { 0.265625f, 0.0f,      0.09375f, 0.09375f },
+            { 0.359375f, 0.0f,      0.1875f,  0.09375f },
+            { 0.0f,      0.0f,      0.09375f, 0.09375f },
+            { 0.09375f,  0.0f,      0.125f,   0.09375f }
+        },
+        {
+            { 0.265625f, 0.109375f, 0.0625f,  0.0625f  },
+            { 0.34375f,  0.109375f, 0.0625f,  0.0625f  },
+            { 0.0f,      0.09375f,  0.09375f, 0.09375f },
+            { 0.09375f,  0.09375f,  0.09375f, 0.09375f }
+        }
+    };
+    static UV_WORK uvinfo_t01[2][9] = 
+    {
+        {
+            { 0.625f,    0.0f,     0.0625f,  0.0625f  },
+            { 0.796875f, 0.0625f,  0.09375f, 0.0625f  },
+            { 0.96875f,  0.125f,   0.03125f, 0.09375f },
+            { 0.640625f, 0.0625f,  0.0625f,  0.0625f  },
+            { 0.6875f,   0.0f,     0.15625f, 0.0625f  },
+            { 0.78125f,  0.34375f, 0.0625f,  0.125f   },
+            { 0.21875f,  0.1875f,  0.0625f,  0.0625f  },
+            { 0.0f,      0.1875f,  0.09375f, 0.0625f  },
+            { 0.65625f,  0.34375f, 0.0625f,  0.125f   }
+        },
+        {
+            { 0.546875f, 0.0f,     0.0625f,  0.0625f  },
+            { 0.90625f,  0.0625f,  0.09375f, 0.0625f  },
+            { 0.921875f, 0.125f,   0.03125f, 0.09375f },
+            { 0.71875f,  0.0625f,  0.0625f,  0.0625f  },
+            { 0.84375f,  0.0f,     0.15625f, 0.0625f  },
+            { 0.859375f, 0.34375f, 0.0625f,  0.125f   },
+            { 0.296875f, 0.1875f,  0.0625f,  0.0625f  },
+            { 0.109375f, 0.1875f,  0.09375f, 0.0625f  },
+            { 0.71875f,  0.34375f, 0.0625f,  0.125f   }
+        }
+    };
+    static UV_WORK uvinfo_t03[2][4] = 
+    {
+        {
+            { 0.0f,      0.3125f, 0.03125f, 0.03125f },
+            { 0.046875f, 0.3125f, 0.03125f, 0.03125f },
+            { 0.09375f,  0.3125f, 0.03125f, 0.03125f },
+            { 0.140625f, 0.3125f, 0.03125f, 0.03125f }
+        },
+        {
+            { 0.0f,      0.3125f, 0.03125f, 0.03125f },
+            { 0.046875f, 0.3125f, 0.03125f, 0.03125f },
+            { 0.0625f,   0.25f,   0.0625f,  0.0625f  },
+            { 0.0f,      0.25f,   0.0625f,  0.0625f  }
+        }
+    };
+    static short akpal[2][3] = 
+    { 
+        { 0, 0, 1 }, 
+        { 0, 1, 1 } 
+    };        
+    
+    njUnitMatrix(NULL);
+    
+    if ((((op->flg & 0x1000000)) || ((op->stflg & 0x1000000))) || (((sys->gm_flg & 0x4000)) && ((op->mdflg & 0x40)))) 
+    { 
+        return;  
+    }
+    
+    if ((op->flg & 0x20000000))
+    {
+        njTextureFilterMode(0);
+    } 
+    else 
+    {
+        njTextureFilterMode(1);
+    }
+    
+    njSetTexture(&sys->ef_tlist);
+    njSetTextureNum(sys->ef_tn[op->tex_id] + op->ani_ct);
+    
+    if (!(op->flg & 0x1000)) 
+    {
+        if ((!(op->flg & 0x80)) || ((op->flg & 0x200000))) 
+        {
+            njTranslate(NULL, op->px, op->py, op->pz);
+            njRotateXYZ(NULL, op->ax, op->ay, op->az);
+            
+            njGetMatrix(op->mtx);
+        } 
+        else 
+        {
+            njSetMatrix(op->mtx, &((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
+            
+            njTranslate(op->mtx, op->lox, op->loy, op->loz); 
+            njRotateXYZ(op->mtx, op->ax, op->ay, op->az);
+        }
+    }
+    
+    njSetMatrix(NULL, cam.mtx);
+    
+    njMultiMatrix(NULL, op->mtx);
+    
+    njColorBlendingMode(0, op->bl_src);
+    njColorBlendingMode(1, op->bl_dst);
+    
+    for (i = 0; i < op->pn; i++) 
+    {
+        tv[i].col = tvb[i].col = op->tvp->col;
+    }
+    
+    ani = op->ct0 - 1;
+    
+    switch (op->type) 
+    {
+    case 0:
+    case 5:
+        njSetTextureNum(sys->ef_tn[op->tex_id] + ani);
+        
+        if (op->type == 0) 
+        {
+            if (op->mdlver == 0) 
+            {
+                scl = op->sx;
+                
+                if (ani == 0) 
+                {
+                    off = 0;
+                } 
+                else 
+                {
+                    off = 0.6f;
+                }
+            } 
+            else 
+            {
+                off = 0.9f;
+                
+                if (ani == 0) 
+                {
+                    scl = 0.8f * op->sx;
+                } 
+                else
+                {
+                    scl = 0.6f * op->sx; 
+                }
+            }
+            
+            njScale(NULL, scl, scl, scl);
+        } 
+        else
+        {
+            off = 0;
+            
+            njScale(NULL, op->sx, op->sy, op->sz);
+        }
+        
+        uvp = &uvinfo_t00[op->mdlver][ani * 2];
+        
+        tv[0].x = 0.5f;
+        tv[0].y = -0.45f;
+        tv[0].z = -0.45f;
+        
+        tv[1].x = 0.5f;
+        tv[1].y = 0.45f;
+        tv[1].z = -0.45f;
+        
+        tv[2].x = 0.5f;
+        tv[2].y = -0.45f;
+        tv[2].z = 0.45f;
+        
+        tv[3].x = 0.5f;
+        tv[3].y = 0.45f;
+        tv[3].z = 0.45f;
+        
+        tv[0].u = uvp->u;
+        tv[0].v = uvp->v;
+        
+        tv[1].u = uvp->u + uvp->xs;
+        tv[1].v = uvp->v;
+        
+        tv[2].u = uvp->u;
+        tv[2].v = uvp->v + uvp->ys;
+        
+        tv[3].u = uvp->u + uvp->xs;
+        tv[3].v = uvp->v + uvp->ys;
+        
+        njDrawTexture3DEx(tv, op->pn, 1);
+        
+        uvp = &uvinfo_t00[op->mdlver][(ani * 2) + 1];
+        
+        tv[0].x = 0;
+        tv[0].y = 0;
+        tv[0].z = -0.45f;
+        
+        tv[1].x = 1.8f - off;
+        tv[1].y = 0;
+        tv[1].z = -0.45f;
+        
+        tv[2].x = 0;
+        tv[2].y = 0;
+        tv[2].z = 0.45f;
+        
+        tv[3].x = 1.8f - off;
+        tv[3].y = 0;
+        tv[3].z = 0.45f;
+        
+        tv[1].u = uvp->u;
+        tv[1].v = uvp->v;
+        
+        tv[0].u = uvp->u + uvp->xs;
+        tv[0].v = uvp->v;
+        
+        tv[3].u = uvp->u;
+        tv[3].v = uvp->v + uvp->ys;
+        
+        tv[2].u = uvp->u + uvp->xs;
+        tv[2].v = uvp->v + uvp->ys;
+        
+        njDrawTexture3DEx(tv, op->pn, 1);
+        
+        tv[0].x = 0;
+        tv[0].y = -0.45f;
+        tv[0].z = 0;
+        
+        tv[1].x = 1.8f - off;
+        tv[1].y = -0.45f;
+        tv[1].z = 0;
+        
+        tv[2].x = 0;
+        tv[2].y = 0.45f;
+        tv[2].z = 0;
+        
+        tv[3].x = 1.8f - off;
+        tv[3].y = 0.45f;
+        tv[3].z = 0;
+        
+        njDrawTexture3DEx(tv, op->pn, 1);
+        break;
+    case 1:
+    case 2:
+        njSetTextureNum(sys->ef_tn[op->tex_id] + akpal[0][ani]);
+        
+        scl = op->sx * op->spd;
+        
+        njScale(NULL, scl, scl, scl); 
+        
+        if (op->mdlver == 0) 
+        {
+            off = 0;
+        } 
+        else
+        {
+            off = 0.2f;
+        }
+        
+        uvp = &uvinfo_t01[op->mdlver][ani * 3];
+        
+        tv[0].x = 0.3f;
+        tv[0].y = -0.25f - off;
+        tv[0].z = -0.25f - off;
+
+        tv[1].x = 0.3f;
+        tv[1].y = 0.25f + off;
+        tv[1].z = -0.25f - off;
+        
+        tv[2].x = 0.3f;
+        tv[2].y = -0.25f - off;
+        tv[2].z = 0.25f + off;
+        
+        tv[3].x = 0.3f;
+        tv[3].y = 0.25f + off;
+        tv[3].z = 0.25f + off;
+        
+        tv[0].u = uvp->u;
+        tv[0].v = uvp->v;
+        
+        tv[1].u = uvp->u + uvp->xs;
+        tv[1].v = uvp->v;
+        
+        tv[2].u = uvp->u;
+        tv[2].v = uvp->v + uvp->ys;
+        
+        tv[3].u = uvp->u + uvp->xs;
+        tv[3].v = uvp->v + uvp->ys;
+        
+        njDrawTexture3DEx(tv, op->pn, 1);
+        
+        uvp = &uvinfo_t01[op->mdlver][(ani * 3) + 1];
+        
+        tv[0].x = 0;
+        tv[0].y = 0;
+        tv[0].z = -0.45f - off;
+        
+        tv[1].x = 1.5f;
+        tv[1].y = 0;
+        tv[1].z = -0.45f - off;
+        
+        tv[2].x = 0;
+        tv[2].y = 0;
+        tv[2].z = 0.45f + off;
+        
+        tv[3].x = 1.5f;
+        tv[3].y = 0;
+        tv[3].z = 0.45f + off;
+        
+        tv[1].u = uvp->u;
+        tv[1].v = uvp->v;
+        
+        tv[0].u = uvp->u + uvp->xs;
+        tv[0].v = uvp->v;
+        
+        tv[3].u = uvp->u;
+        tv[3].v = uvp->v + uvp->ys;
+        
+        tv[2].u = uvp->u + uvp->xs;
+        tv[2].v = uvp->v + uvp->ys;
+        
+        njDrawTexture3DEx(tv, op->pn, 1);
+        
+        tv[0].x = 0;
+        tv[0].y = -0.45f - off;
+        tv[0].z = 0;
+        
+        tv[1].x = 1.5f;
+        tv[1].y = -0.45f - off;
+        tv[1].z = 0;
+        
+        tv[2].x = 0;
+        tv[2].y = 0.45f + off;
+        tv[2].z = 0;
+        
+        tv[3].x = 1.5f;
+        tv[3].y = 0.45f + off;
+        tv[3].z = 0;
+        
+        njDrawTexture3DEx(tv, op->pn, 1);
+        
+        njSetTextureNum(sys->ef_tn[op->tex_id] + akpal[1][ani]);
+        
+        njColorBlendingMode(0, 8);
+        njColorBlendingMode(1, 10);
+        
+        uvp = &uvinfo_t01[op->mdlver][(ani * 3) + 2];
+        
+        tv[0].x = 0.3f;
+        tv[0].y = -0.2f - off;
+        tv[0].z = -1.0f - off;
+        
+        tv[1].x = 0.3f;
+        tv[1].y = 0.2f + off;
+        tv[1].z = -1.0f - off;
+        
+        tv[2].x = 0;
+        tv[2].y = -0.2f - off;
+        tv[2].z = 0;
+        
+        tv[3].x = 0;
+        tv[3].y = 0.2f + off;
+        tv[3].z = 0;
+
+        tvb[0].x = 0.1f - off;
+        tvb[0].y = 0; 
+        tvb[0].z = -1.0f - off;
+        
+        tvb[1].x = 0.5f + off;
+        tvb[1].y = 0;
+        tvb[1].z = -1.0f - off;
+        
+        tvb[2].x = -0.2f - off;
+        tvb[2].y = 0; 
+        tvb[2].z = 0;
+        
+        tvb[3].x = 0.2f + off;
+        tvb[3].y = 0; 
+        tvb[3].z = 0;
+        
+        tv[0].u = uvp->u;
+        tv[0].v = uvp->v;
+        
+        tv[1].u = uvp->u + uvp->xs;
+        tv[1].v = uvp->v;
+        
+        tv[2].u = uvp->u;
+        tv[2].v = uvp->v + uvp->ys;
+        
+        tv[3].u = uvp->u + uvp->xs;
+        tv[3].v = uvp->v + uvp->ys;
+        
+        tvb[0].u = uvp->u;
+        tvb[0].v = uvp->v;
+        
+        tvb[1].u = uvp->u + uvp->xs;
+        tvb[1].v = uvp->v;
+        
+        tvb[2].u = uvp->u;
+        tvb[2].v = uvp->v + uvp->ys;
+        
+        tvb[3].u = uvp->u + uvp->xs;
+        tvb[3].v = uvp->v + uvp->ys;
+        
+        if ((op->type == 2) || (op->mdlver != 0))
+        {
+            for (i = 0; i < 4; i++) 
+            {
+                njDrawTexture3DEx(tv,  op->pn, 1);
+                njDrawTexture3DEx(tvb, op->pn, 1);
+                
+                njRotateX(NULL, 16384);
+            } 
+        } 
+        else
+        {
+            for (i = 0; i < 6; i++) 
+            {
+                njDrawTexture3DEx(tv,  op->pn, 1);
+                njDrawTexture3DEx(tvb, op->pn, 1);
+                
+                njRotateX(NULL, 10922);
+            } 
+        }
+        
+        break;
+    case 3:
+        wkp = &op->pv->x; 
+        
+        njSetTextureNum(sys->ef_tn[op->tex_id] + 1);
+        
+        njScale(NULL, op->sx, op->sy, op->sz);
+        
+        for (i = 0; i < 8; i++) 
+        {
+            uvp = &uvinfo_t03[op->jno[i]][ani];
+            
+            tv[0].u = uvp->u;
+            tv[0].v = uvp->v;
+            
+            tv[1].u = uvp->u + uvp->xs; 
+            tv[1].v = uvp->v;
+            
+            tv[2].u = uvp->u;
+            tv[2].v = uvp->v + uvp->ys;
+            
+            tv[3].u = uvp->u + uvp->xs;
+            tv[3].v = uvp->v + uvp->ys;
+            
+            tvb[0].u = tv[0].u;
+            tvb[0].v = tv[0].v;
+            
+            tvb[1].u = tv[1].u;
+            tvb[1].v = tv[1].v;
+            
+            tvb[2].u = tv[2].u;
+            tvb[2].v = tv[2].v;
+            
+            tvb[3].u = tv[3].u;
+            tvb[3].v = tv[3].v;
+            
+            op->spd = 1.0f + ((1.4f * op->ct0) + (i % 3));
+            
+            njPushMatrixEx();
+            
+            njSetMatrix(NULL, op->mtx);
+            
+            njRotateX(NULL, wkp[0]);
+            njRotateY(NULL, wkp[1]);
+            
+            fps.x = 0;
+            fps.y = 0;
+            fps.z = -1.0f - op->spd; 
+            
+            njCalcPoint(NULL, &fps, &pos);
+            
+            njPopMatrixEx();
+            
+            lp.px = op->px;
+            lp.py = op->py;
+            lp.pz = op->pz;
+            
+            lp.vx = pos.x - op->px;
+            lp.vy = pos.y - op->py;
+            lp.vz = pos.z - op->pz;
+            
+            if (bhCheckL2Wall(&lp, 0x400, &len) != 0) 
+            {
+                tv[0].x = 0;
+                tv[0].y = -0.05f;
+                tv[0].z = -len;
+                
+                tv[1].x = 0;
+                tv[1].y = 0.05f;
+                tv[1].z = -len;
+                
+                tv[2].x = 0;
+                tv[2].y = -0.05f;
+                tv[2].z = -0.5f;
+                
+                tv[3].x = 0;
+                tv[3].y = 0.05f;
+                tv[3].z = -0.5f;
+
+                tvb[0].x = -0.05f;
+                tvb[0].y = 0;
+                tvb[0].z = -len;
+                
+                tvb[1].x = 0.05f;
+                tvb[1].y = 0;
+                tvb[1].z = -len;
+                
+                tvb[2].x = -0.05f;
+                tvb[2].y = 0;
+                tvb[2].z = -0.5f;
+                
+                tvb[3].x = 0.05f;
+                tvb[3].y = 0;
+                tvb[3].z = -0.5f;
+            } 
+            else
+            {
+                tv[0].x = 0;
+                tv[0].y = -0.05f;
+                tv[0].z = -1.0f - op->spd;
+                
+                tv[1].x = 0;
+                tv[1].y = 0.05f;
+                tv[1].z = -1.0f - op->spd;
+                
+                tv[2].x = 0;
+                tv[2].y = -0.05f;
+                tv[2].z = -0.5f;
+                
+                tv[3].x = 0;
+                tv[3].y = 0.05f;
+                tv[3].z = -0.5f;
+
+                tvb[0].x = -0.05f;
+                tvb[0].y = 0;
+                tvb[0].z = -1.0f - op->spd;
+                
+                tvb[1].x = 0.05f;
+                tvb[1].y = 0;
+                tvb[1].z = -1.0f - op->spd;
+                
+                tvb[2].x = -0.05f;
+                tvb[2].y = 0;
+                tvb[2].z = -0.5f;
+                
+                tvb[3].x = 0.05f;
+                tvb[3].y = 0;
+                tvb[3].z = -0.5f;
+            }
+            
+            njPushMatrixEx();
+            
+            njRotateX(NULL, *wkp++);
+            njRotateY(NULL, *wkp++);
+            
+            njDrawTexture3DEx(tv,  op->pn, 1);
+            njDrawTexture3DEx(tvb, op->pn, 1);
+            
+            njPopMatrixEx();
+        }  
+        
+        break;
+    case 4:
+        njSetTextureNum(sys->ef_tn[op->tex_id] + akpal[0][ani]);
+        
+        scl = op->sx * op->spd; 
+        
+        njScale(NULL, scl, scl, scl);
+        
+        if (op->mdlver == 0) 
+        {
+            off = 0;
+        } 
+        else 
+        {
+            off = 0.2f;
+        }
+        
+        uvp = &uvinfo_t01[op->mdlver][ani * 3]; 
+        
+        tv[0].z = -0.3f;
+        tv[0].y = -0.25f - off;
+        tv[0].x = -0.25f - off; 
+        
+        tv[1].z = -0.3f;
+        tv[1].y = 0.25f + off;
+        tv[1].x = -0.25f - off;
+        
+        tv[2].z = -0.3f;
+        tv[2].y = -0.25f - off;
+        tv[2].x = 0.25f + off;
+        
+        tv[3].z = -0.3f;
+        tv[3].y = 0.25f + off;
+        tv[3].x = 0.25f + off;
+        
+        tv[0].u = uvp->u;
+        tv[0].v = uvp->v;
+        
+        tv[1].u = uvp->u + uvp->xs;
+        tv[1].v = uvp->v;
+        
+        tv[2].u = uvp->u;
+        tv[2].v = uvp->v + uvp->ys;
+        
+        tv[3].u = uvp->u + uvp->xs;
+        tv[3].v = uvp->v + uvp->ys;
+        
+        njDrawTexture3DEx(tv, op->pn, 1);
+        
+        uvp = &uvinfo_t01[op->mdlver][(ani * 3) + 1];
+        
+        tv[0].z = -0.0f;
+        tv[0].y = 0; 
+        tv[0].x = -0.45f - off;
+        
+        tv[1].z = -1.5f;
+        tv[1].y = 0;
+        tv[1].x = -0.45f - off;
+        
+        tv[2].z = -0.0f;
+        tv[2].y = 0;
+        tv[2].x = 0.45f + off;
+        
+        tv[3].z = -1.5f;
+        tv[3].y = 0;
+        tv[3].x = 0.45f + off;
+        
+        tv[1].u = uvp->u;
+        tv[1].v = uvp->v;
+        
+        tv[0].u = uvp->u + uvp->xs;
+        tv[0].v = uvp->v;
+        
+        tv[3].u = uvp->u;
+        tv[3].v = uvp->v + uvp->ys;
+        
+        tv[2].u = uvp->u + uvp->xs;
+        tv[2].v = uvp->v + uvp->ys;
+        
+        njDrawTexture3DEx(tv, op->pn, 1);
+        
+        tv[0].z = -0.0f;
+        tv[0].y = -0.45f - off;
+        tv[0].x = 0;
+        
+        tv[1].z = -1.5f;
+        tv[1].y = -0.45f - off;
+        tv[1].x = 0;
+        
+        tv[2].z = -0.0f;
+        tv[2].y = 0.45f + off;
+        tv[2].x = 0;
+        
+        tv[3].z = -1.5f;
+        tv[3].y = 0.45f + off;
+        tv[3].x = 0;
+        
+        njDrawTexture3DEx(tv, op->pn, 1);
+        
+        njSetTextureNum(sys->ef_tn[op->tex_id] + akpal[1][ani]);
+        
+        njColorBlendingMode(0, 8);
+        njColorBlendingMode(1, 10);
+
+        uvp = &uvinfo_t01[op->mdlver][(ani * 3) + 2];
+        
+        tv[0].z = -0.3f;
+        tv[0].y = -0.2f - off;
+        tv[0].x = -1.0f - off;
+        
+        tv[1].z = -0.3f;
+        tv[1].y = 0.2f + off;
+        tv[1].x = -1.0f - off;
+        
+        tv[2].z = -0.0f;
+        tv[2].y = -0.2f - off;
+        tv[2].x = 0;
+        
+        tv[3].z = -0.0f;
+        tv[3].y = 0.2f + off;
+        tv[3].x = 0;
+        
+        tvb[0].z = -0.1f - off;
+        tvb[0].y = 0;
+        tvb[0].x = -1.0f - off;
+        
+        tvb[1].z = -0.5f + off;
+        tvb[1].y = 0;
+        tvb[1].x = -1.0f - off;
+        
+        tvb[2].z = -0.2f - off;
+        tvb[2].y = 0;
+        tvb[2].x = 0;
+        
+        tvb[3].z = -0.2f + off;
+        tvb[3].y = 0;
+        tvb[3].x = 0;
+        
+        tv[0].u = uvp->u;
+        tv[0].v = uvp->v;
+        
+        tv[1].u = uvp->u + uvp->xs;
+        tv[1].v = uvp->v;
+        
+        tv[2].u = uvp->u;
+        tv[2].v = uvp->v + uvp->ys;
+        
+        tv[3].u = uvp->u + uvp->xs;
+        tv[3].v = uvp->v + uvp->ys;
+        
+        tvb[0].u = uvp->u;
+        tvb[0].v = uvp->v;
+        
+        tvb[1].u = uvp->u + uvp->xs;
+        tvb[1].v = uvp->v;
+        
+        tvb[2].u = uvp->u;
+        tvb[2].v = uvp->v + uvp->ys;
+        
+        tvb[3].u = uvp->u + uvp->xs;
+        tvb[3].v = uvp->v + uvp->ys;
+        
+        if (op->mdlver != 0) 
+        {
+            for (i = 0; i < 4; i++) 
+            {
+                njDrawTexture3DEx(tv,  op->pn, 1);
+                njDrawTexture3DEx(tvb, op->pn, 1);
+                
+                njRotateZ(NULL, 16384);
+            } 
+        } 
+        else 
+        {
+            for (i = 0; i < 6; i++)
+            {
+                njDrawTexture3DEx(tv,  op->pn, 1);
+                njDrawTexture3DEx(tvb, op->pn, 1);
+                
+                njRotateZ(NULL, 10922);
+            } 
+        }
+        
+        break;
+    }
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
 }
 
 // 

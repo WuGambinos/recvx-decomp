@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 59.46776,
+    "fuzzy_match_percent": 59.7603,
     "total_code": "1904472",
-    "matched_code": "908828",
-    "matched_code_percent": 47.720734,
+    "matched_code": "914408",
+    "matched_code_percent": 48.01373,
     "total_data": "28428164",
-    "matched_data": "28228732",
-    "matched_data_percent": 99.29847,
+    "matched_data": "28228948",
+    "matched_data_percent": 99.299225,
     "total_functions": 4529,
-    "matched_functions": 3105,
-    "matched_functions_percent": 68.55818,
+    "matched_functions": 3106,
+    "matched_functions_percent": 68.58026,
     "total_units": 200
   },
   "units": [
@@ -15504,14 +15504,14 @@
     {
       "name": "ps2/veronica/prog/effsub1",
       "measures": {
-        "fuzzy_match_percent": 27.381823,
+        "fuzzy_match_percent": 33.913666,
         "total_code": "85296",
-        "matched_code": "4968",
-        "matched_code_percent": 5.8244233,
+        "matched_code": "10548",
+        "matched_code_percent": 12.366347,
         "total_data": "12648",
         "total_functions": 74,
-        "matched_functions": 14,
-        "matched_functions_percent": 18.918919,
+        "matched_functions": 15,
+        "matched_functions_percent": 20.27027,
         "total_units": 1
       },
       "sections": [
@@ -15522,7 +15522,7 @@
         {
           "name": ".data",
           "size": "12216",
-          "fuzzy_match_percent": 8.290155,
+          "fuzzy_match_percent": 16.363363,
           "metadata": {}
         },
         {
@@ -15532,13 +15532,13 @@
         {
           "name": ".rodata",
           "size": "432",
-          "fuzzy_match_percent": 22.340425,
+          "fuzzy_match_percent": 28.723404,
           "metadata": {}
         },
         {
           "name": ".text",
           "size": "85840",
-          "fuzzy_match_percent": 27.381823,
+          "fuzzy_match_percent": 33.913666,
           "metadata": {}
         },
         {
@@ -15599,7 +15599,7 @@
         {
           "name": "bhDrawWeaponEffect",
           "size": "5580",
-          "fuzzy_match_percent": 0.16487455,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "10736"
         },
@@ -16047,7 +16047,7 @@
         {
           "name": "bhEff130",
           "size": "12044",
-          "fuzzy_match_percent": 99.74593,
+          "fuzzy_match_percent": 99.750916,
           "metadata": {},
           "address": "71200"
         },
@@ -25995,8 +25995,8 @@
         "matched_code": "664",
         "matched_code_percent": 10.993377,
         "total_data": "232",
-        "matched_data": "16",
-        "matched_data_percent": 6.8965516,
+        "matched_data": "232",
+        "matched_data_percent": 100.0,
         "total_functions": 6,
         "matched_functions": 4,
         "matched_functions_percent": 66.66667,
@@ -26020,7 +26020,7 @@
         {
           "name": ".rodata",
           "size": "216",
-          "fuzzy_match_percent": 17.869415,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -41131,16 +41131,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 57.597244,
+        "fuzzy_match_percent": 57.903286,
         "total_code": "1820460",
-        "matched_code": "824816",
-        "matched_code_percent": 45.30811,
+        "matched_code": "830396",
+        "matched_code_percent": 45.614624,
         "total_data": "28336764",
-        "matched_data": "28162444",
-        "matched_data_percent": 99.38483,
+        "matched_data": "28162660",
+        "matched_data_percent": 99.38559,
         "total_functions": 3834,
-        "matched_functions": 2410,
-        "matched_functions_percent": 62.858635,
+        "matched_functions": 2411,
+        "matched_functions_percent": 62.88472,
         "total_units": 152
       }
     },

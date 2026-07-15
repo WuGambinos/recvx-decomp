@@ -9,6 +9,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaMem.h"
 #include "../../../ps2/veronica/prog/ps2_NaSprite.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
@@ -646,81 +647,69 @@ static void MapLightMain()
     njPopMatrixEx();
 }
 
-// 
-// Start address: 0x2b31f0
+// 100% matching!
 static void MapPaletteMain()
 {
-	float rate;
-	//float rate;
-	//float rate;
-	//float rate;
-	int i;
-	NJS_ARGB* dstP;
-	NJS_ARGB* srcP;
-	// Line 1165, Address: 0x2b31f0, Func Offset: 0
-	// Line 1167, Address: 0x2b3208, Func Offset: 0x18
-	// Line 1168, Address: 0x2b3224, Func Offset: 0x34
-	// Line 1175, Address: 0x2b3240, Func Offset: 0x50
-	// Line 1176, Address: 0x2b3248, Func Offset: 0x58
-	// Line 1179, Address: 0x2b3250, Func Offset: 0x60
-	// Line 1176, Address: 0x2b3258, Func Offset: 0x68
-	// Line 1180, Address: 0x2b325c, Func Offset: 0x6c
-	// Line 1185, Address: 0x2b327c, Func Offset: 0x8c
-	// Line 1180, Address: 0x2b3280, Func Offset: 0x90
-	// Line 1184, Address: 0x2b328c, Func Offset: 0x9c
-	// Line 1181, Address: 0x2b3290, Func Offset: 0xa0
-	// Line 1180, Address: 0x2b3294, Func Offset: 0xa4
-	// Line 1181, Address: 0x2b32a0, Func Offset: 0xb0
-	// Line 1182, Address: 0x2b32a4, Func Offset: 0xb4
-	// Line 1183, Address: 0x2b32b0, Func Offset: 0xc0
-	// Line 1184, Address: 0x2b32bc, Func Offset: 0xcc
-	// Line 1185, Address: 0x2b32c4, Func Offset: 0xd4
-	// Line 1184, Address: 0x2b32c8, Func Offset: 0xd8
-	// Line 1185, Address: 0x2b32cc, Func Offset: 0xdc
-	// Line 1187, Address: 0x2b32d4, Func Offset: 0xe4
-	// Line 1188, Address: 0x2b32dc, Func Offset: 0xec
-	// Line 1193, Address: 0x2b32fc, Func Offset: 0x10c
-	// Line 1188, Address: 0x2b3300, Func Offset: 0x110
-	// Line 1192, Address: 0x2b330c, Func Offset: 0x11c
-	// Line 1189, Address: 0x2b3310, Func Offset: 0x120
-	// Line 1188, Address: 0x2b3314, Func Offset: 0x124
-	// Line 1189, Address: 0x2b3320, Func Offset: 0x130
-	// Line 1190, Address: 0x2b3324, Func Offset: 0x134
-	// Line 1191, Address: 0x2b3330, Func Offset: 0x140
-	// Line 1192, Address: 0x2b333c, Func Offset: 0x14c
-	// Line 1193, Address: 0x2b3344, Func Offset: 0x154
-	// Line 1192, Address: 0x2b3348, Func Offset: 0x158
-	// Line 1193, Address: 0x2b334c, Func Offset: 0x15c
-	// Line 1195, Address: 0x2b3354, Func Offset: 0x164
-	// Line 1196, Address: 0x2b335c, Func Offset: 0x16c
-	// Line 1202, Address: 0x2b337c, Func Offset: 0x18c
-	// Line 1196, Address: 0x2b3380, Func Offset: 0x190
-	// Line 1200, Address: 0x2b338c, Func Offset: 0x19c
-	// Line 1197, Address: 0x2b3390, Func Offset: 0x1a0
-	// Line 1196, Address: 0x2b3394, Func Offset: 0x1a4
-	// Line 1197, Address: 0x2b33a0, Func Offset: 0x1b0
-	// Line 1198, Address: 0x2b33a4, Func Offset: 0x1b4
-	// Line 1199, Address: 0x2b33b0, Func Offset: 0x1c0
-	// Line 1200, Address: 0x2b33bc, Func Offset: 0x1cc
-	// Line 1202, Address: 0x2b33c4, Func Offset: 0x1d4
-	// Line 1200, Address: 0x2b33c8, Func Offset: 0x1d8
-	// Line 1202, Address: 0x2b33cc, Func Offset: 0x1dc
-	// Line 1204, Address: 0x2b33d4, Func Offset: 0x1e4
-	// Line 1205, Address: 0x2b33d8, Func Offset: 0x1e8
-	// Line 1210, Address: 0x2b33f4, Func Offset: 0x204
-	// Line 1205, Address: 0x2b33f8, Func Offset: 0x208
-	// Line 1206, Address: 0x2b3408, Func Offset: 0x218
-	// Line 1205, Address: 0x2b340c, Func Offset: 0x21c
-	// Line 1206, Address: 0x2b3410, Func Offset: 0x220
-	// Line 1207, Address: 0x2b3418, Func Offset: 0x228
-	// Line 1208, Address: 0x2b3424, Func Offset: 0x234
-	// Line 1209, Address: 0x2b3430, Func Offset: 0x240
-	// Line 1210, Address: 0x2b3438, Func Offset: 0x248
-	// Line 1209, Address: 0x2b343c, Func Offset: 0x24c
-	// Line 1210, Address: 0x2b3440, Func Offset: 0x250
-	// Line 1212, Address: 0x2b3448, Func Offset: 0x258
-	// Func End, Address: 0x2b3464, Func Offset: 0x274
-	scePrintf("MapPaletteMain - UNIMPLEMENTED!\n");
+    NJS_ARGB* srcP, *dstP;
+    int i;
+
+    njMemCopy4(mwP->MapPal, MapPal, 64);
+    njMemCopy4(mwP->MapCol, MapCol, 3);
+    
+    srcP = &MapPal[16];
+    dstP = &mwP->MapPal[16];
+    
+    for (i = 4; i > 0; i--, srcP++, dstP++) 
+    {
+        float rate;
+        
+        rate = 2.0f + njSin((mwP->time + (i * 4)) * 1024);
+        rate = 0.3333f * rate;
+        
+        dstP->a = srcP->a;
+        dstP->r = srcP->r * rate;
+        dstP->g = srcP->g * rate;
+        dstP->b = srcP->b * rate;
+    } 
+    
+    for (i = 4; i > 0; i--, srcP++, dstP++)
+    {
+        float rate;
+        
+        rate = 2.0f + njSin((mwP->time + (i * 4)) * 2048);
+        rate = 0.3333f * rate;
+        
+        dstP->a = srcP->a;
+        dstP->r = srcP->r * rate;
+        dstP->g = srcP->g * rate;
+        dstP->b = srcP->b * rate;
+    } 
+    
+    for (i = 4; i > 0; i--, srcP++, dstP++)
+    {
+        float rate;
+        
+        rate = 2.0f + njSin((mwP->time + (i * 4)) * 4096);
+        rate = 0.3333f * rate;
+        
+        dstP->a = srcP->a;
+        dstP->r = srcP->r * rate;
+        dstP->g = srcP->g * rate;
+        dstP->b = srcP->b * rate;
+    }
+    
+    for (i = 4; i > 0; i--, srcP++, dstP++) 
+    {
+        float rate;
+
+        rate = 2.0f + njSin(mwP->time * 4096);
+        rate = 0.3333f * rate;
+        
+        dstP->a = srcP->a * rate;
+        dstP->r = srcP->r * rate;
+        dstP->g = srcP->g * rate;
+        dstP->b = srcP->b * rate;
+    } 
 }
 
 // 

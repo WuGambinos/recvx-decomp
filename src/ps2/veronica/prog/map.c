@@ -9,6 +9,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaSprite.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_NaView.h"
@@ -1062,39 +1063,69 @@ static void MapDrawBackground(float depth, NJS_POINT2* p0P, NJS_POINT2* p1P)
     }
 }
 
-// 
-// Start address: 0x2b4120
+// 97.04% matching
 static void MapDrawSprite(NJS_POINT3* posP, int col, mp_spr spr_no)
 {
+    NJS_SPRITE* sprP;
 	NJS_ARGB* mtrP;
-	NJS_SPRITE* sprP;
-	NJS_TEXANIM TexAnm[18];
-	// Line 1658, Address: 0x2b4120, Func Offset: 0
-	// Line 1732, Address: 0x2b4138, Func Offset: 0x18
-	// Line 1740, Address: 0x2b4140, Func Offset: 0x20
-	// Line 1736, Address: 0x2b414c, Func Offset: 0x2c
-	// Line 1735, Address: 0x2b4150, Func Offset: 0x30
-	// Line 1736, Address: 0x2b4154, Func Offset: 0x34
-	// Line 1737, Address: 0x2b4158, Func Offset: 0x38
-	// Line 1738, Address: 0x2b415c, Func Offset: 0x3c
-	// Line 1740, Address: 0x2b4160, Func Offset: 0x40
-	// Line 1738, Address: 0x2b416c, Func Offset: 0x4c
-	// Line 1739, Address: 0x2b4170, Func Offset: 0x50
-	// Line 1741, Address: 0x2b4174, Func Offset: 0x54
-	// Line 1732, Address: 0x2b4178, Func Offset: 0x58
-	// Line 1733, Address: 0x2b417c, Func Offset: 0x5c
-	// Line 1739, Address: 0x2b4180, Func Offset: 0x60
-	// Line 1741, Address: 0x2b418c, Func Offset: 0x6c
-	// Line 1742, Address: 0x2b41a8, Func Offset: 0x88
-	// Line 1744, Address: 0x2b41b8, Func Offset: 0x98
-	// Line 1745, Address: 0x2b41f8, Func Offset: 0xd8
-	// Line 1746, Address: 0x2b4238, Func Offset: 0x118
-	// Line 1747, Address: 0x2b4278, Func Offset: 0x158
-	// Line 1748, Address: 0x2b42b4, Func Offset: 0x194
-	// Line 1750, Address: 0x2b42bc, Func Offset: 0x19c
-	// Line 1751, Address: 0x2b42d0, Func Offset: 0x1b0
-	// Func End, Address: 0x2b42ec, Func Offset: 0x1cc
-	scePrintf("MapDrawSprite - UNIMPLEMENTED!\n");
+	static const NJS_TEXANIM TexAnm[18] = 
+    {
+        {  40,  56, 20, 26,   0,   0,  80, 112, 0, 0 },
+        {  32,  16, 16,  8, 192,   0, 256,  32, 0, 0 },
+        {  32,  16, 15,  8, 256,  32, 192,   0, 0, 0 },
+        {  16,  32,  8, 15, 160,   0, 192,  64, 0, 0 },
+        {  16,  32,  8, 16, 192,  64, 160,   0, 0, 0 },
+        {  24,  24, 12, 12, 208,  80, 256, 128, 0, 0 },
+        {  24,  24, 12, 12, 208, 128, 256, 176, 0, 0 },
+        {  24,  24, 12, 12, 208,  32, 256,  80, 0, 0 },
+        {  88,  32, 41, 16,   0, 128, 176, 192, 0, 0 },
+        {  88,  16,  0,  8,   0, 192, 176, 224, 0, 0 },
+        {  40,  16,  0,  8,  96,  64, 176,  96, 0, 0 },
+        {  40,  16,  0,  8,  96,  96, 176, 128, 0, 0 },
+        { 104,  16,  0,  8,   0, 224, 208, 256, 0, 0 },
+        {  16,  16,  7,  7, 224, 224, 256, 256, 0, 0 },
+        {  24,  16,  0, 16,  96,   0, 144,  32, 0, 0 },
+        {  24,  16,  0, 16,  96,   0, 144,  32, 0, 0 },
+        {  24,  16, 24,  0,  96,  32, 144,  64, 0, 0 },
+        { 128, 128,  0,  0,   0,   0, 256, 256, 0, 0 }
+    };
+
+    sprP = &mwP->map_spr;
+    mtrP = &mwP->map_mtr;
+    
+    sprP->ang = 0;
+    
+    sprP->sx = 1.0f;
+    sprP->sy = 1.0f;
+    
+    sprP->p.x = posP->x;
+    sprP->p.y = posP->y;
+    
+    sprP->tanim = (NJS_TEXANIM*)&TexAnm[spr_no];
+    
+    if (spr_no < 17) 
+    {
+        sprP->tlist = mwP->map_texP;
+    } 
+    else 
+    {
+        sprP->tlist = mwP->stg_texP;
+    }
+    
+    mtrP->b = (float)(col & 0xFF) * (1.0 / 255.0);
+    col >>= 8;
+    
+    mtrP->g = (float)(col & 0xFF) * (1.0 / 255.0);
+    col >>= 8;
+    
+    mtrP->r = (float)(col & 0xFF) * (1.0 / 255.0);
+    col >>= 8;
+    
+    mtrP->a = (float)(col & 0xFF) * (1.0 / 255.0);
+    
+    njSetConstantMaterial(mtrP);
+    
+    njDrawSprite2D(sprP, 0, posP->z, 0x22);
 }
 
 // 100% matching!

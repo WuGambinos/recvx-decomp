@@ -58,6 +58,11 @@
 #define EPP_EXP0_I(o) (*(int   *)((char *)epp->exp0 + (o)))
 #define EPP_EXP0_F(o) (*(float *)((char *)epp->exp0 + (o)))
 
+#define EXP0_P3_X(i) (*(float *)((char *)epw->exp0 + ((i) * 12) + 0x28))
+#define EXP0_P3_Y(i) (*(float *)((char *)epw->exp0 + ((i) * 12) + 0x2C))
+#define EXP0_P3_Z(i) (*(float *)((char *)epw->exp0 + ((i) * 12) + 0x30))
+#define EXP0_ANG(i)  (*(int   *)((char *)epw->exp0 + ((i) * 4)  + 0x40))
+
 #define PREFETCH(_v) asm("pref 0x0,0(%0)": : "r"(_v) : "memory")
 
 #define SCE_GIF_PRIM(prim, iip, tme, fge, abe, aa1, fst, ctxt, fix) SCE_GIF_SET_TAG(0, 0, 0, SCE_GS_SET_PRIM(prim, iip, tme, fge, abe, aa1, fst, ctxt, fix), 0, 0)

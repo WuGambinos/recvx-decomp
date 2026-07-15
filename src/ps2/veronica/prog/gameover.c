@@ -1,18 +1,67 @@
 #include "../../../ps2/veronica/prog/gameover.h"
+#include "../../../ps2/veronica/prog/adv.h"
+#include "../../../ps2/veronica/prog/effect.h"
+#include "../../../ps2/veronica/prog/flag.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/Motion.h"
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/message.h"
+#include "../../../ps2/veronica/prog/player.h"
+#include "../../../ps2/veronica/prog/ps2_NaFog.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
+#include "../../../ps2/veronica/prog/ps2_NaView.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/room.h"
+#include "../../../ps2/veronica/prog/screen.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/system.h"
-#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/weapon.h"
 
-typedef void (*mode0_proc)();
-mode0_proc bhCtrGov_mode0[4] = { bhSelectContinue, bhInitGameOver, bhMainGameOver, bhExitGameOver };
-/*float gov_yn[16];
-_anon23 gov_etb[7];
-unsigned short cnt_mes[17];
-float cmat[16];
-BH_PWORK* plp;
-_anon34 cam;
-unsigned short PlMtnAct[7][3][2];*/
+void bhDispFontEx(NJS_POINT2* pos, int code, unsigned int argb, float pri); // see message.h for more info about why this is being included here
+
+typedef void (*bhCtrGov_mode0_proc)();
+
+bhCtrGov_mode0_proc bhCtrGov_mode0[4] = { bhSelectContinue, bhInitGameOver, bhMainGameOver, bhExitGameOver };
+
+const float gov_yn[16] = 
+{
+    0.005f, 0.010f, 0.005f, 0.008f,
+    0.012f, 0.012f, 0.010f, 0.002f,
+    0.003f, 0.005f, 0.008f, 0.010f,
+    0.002f, 0.008f, 0.005f, 0.001f
+};
+const struct GV_WRK gov_etb[7] = 
+{
+    { 40, -25.0f, 10.0f, -80.0f },
+    { 54, -14.0f, 10.0f, -60.0f },
+    { 68,   0.0f, 10.0f, -40.0f },
+    { 82,  -6.0f, 10.0f, -20.0f },
+    { 96,   3.0f, 10.0f, -10.0f },
+    { 110, -4.0f, 10.0f,  10.0f },
+    { 0,    0.0f,  0.0f,   0.0f }
+};
+const unsigned short cnt_mes[17] =
+{
+    65281,
+    50,
+    69,
+    84,
+    82,
+    89,
+    31,
+    65280,
+    65281,
+    57,
+    69,
+    83,
+    65281,
+    65281,
+    46,
+    79,
+    0xFFFF
+};
 
 // 100% matching!
 void bhControlGameOver()

@@ -2,6 +2,27 @@
 #define _EN04_H_
 
 #include "types.h"
+#include "macros.h"
+
+typedef struct EN04_ATB {
+    int frm;
+    u_int act;
+} EN04_ATB;
+
+typedef struct EN04_MTBL {
+    int no;
+	EN04_ATB atb[4];
+} EN04_MTBL;
+
+// total size: 0x14
+typedef struct WPNDAMAGE_WORK
+{
+	int flg; // offset 0x0, size 0x4
+	int nm_act; // offset 0x4, size 0x4
+	int nm_blood; // offset 0x8, size 0x4
+	int cb_act; // offset 0xC, size 0x4
+	int cb_blood; // offset 0x10, size 0x4
+} WPNDAMAGE_WORK;
 
 void bhEne04_DmmyBrain();
 void bhEne04(BH_PWORK* epw);
@@ -24,7 +45,7 @@ void bhEne04_MVType01(BH_PWORK* epw);
 void bhEne04_MVType02(BH_PWORK* epw);
 int bhEne04_AtariCheck(BH_PWORK* epw);
 int bhEne04_AtariCheck2(BH_PWORK* epw);
-/*_anon12* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned char ip);*/
+ATR_WORK* bhEne04_EnemyAtariCheck2(BH_PWORK* epw, unsigned char type, unsigned char ip);
 void bhEne04_EneSearch(BH_PWORK* epw);
 void bhEne04_Brain(BH_PWORK* epw);
 void bhEne04_Brain00(BH_PWORK* epw);
@@ -64,8 +85,8 @@ int bhEne04_ChgMtn(BH_PWORK* epw, unsigned int no, int frm, int rate);
 int bhEne04_SetMtn(BH_PWORK* epw);
 void bhEne04_CheckMtnTbl(BH_PWORK* epw, int frm);
 int bhEne04_KaidanCheck(BH_PWORK* epw);
-/*void bhEne04_ShakeWire(_anon0* obwp);*/
-void bhEne04_RotNeck(BH_PWORK* epw, int ry);
+void bhEne04_ShakeWire(O_WRK* obwp);
+void bhEne04_RotNeck(BH_PWORK* epw, int rx, int ry, int rz); // signature differs from DWARF
 int bhEne04_SearchNeck(BH_PWORK* epw);
 void bhEne04_SePlay(BH_PWORK* epw, int no);
 

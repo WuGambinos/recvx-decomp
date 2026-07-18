@@ -971,125 +971,169 @@ Int     njCollisionCheckBC(NJS_BOX *box, NJS_CAPSULE *capsule)
     return 0;
 }
 
-// 
-// Start address: 0x2e4bc0
+// 99.46% matching
 int njCheckPlane4AndLine(NJS_POINT3* pP1, NJS_POINT3* pP2, NJS_POINT3* pP3, NJS_POINT3* pP4, NJS_POINT3* pPN, NJS_LINE* pLine)
 {
-	float fT4;
-	float fT3;
-	float fT2;
-	float fT1;
-	float fVZ4;
-	float fVY4;
-	float fVX4;
-	float fVZ3;
-	float fVY3;
-	float fVX3;
-	float fVZ2;
-	float fVY2;
-	float fVX2;
-	float fVZ1;
-	float fVY1;
-	float fVX1;
-	// Line 1051, Address: 0x2e4bc0, Func Offset: 0
-	// Line 1065, Address: 0x2e4c0c, Func Offset: 0x4c
-	// Line 1066, Address: 0x2e4c10, Func Offset: 0x50
-	// Line 1067, Address: 0x2e4c14, Func Offset: 0x54
-	// Line 1059, Address: 0x2e4c18, Func Offset: 0x58
-	// Line 1060, Address: 0x2e4c1c, Func Offset: 0x5c
-	// Line 1061, Address: 0x2e4c20, Func Offset: 0x60
-	// Line 1068, Address: 0x2e4c24, Func Offset: 0x64
-	// Line 1062, Address: 0x2e4c28, Func Offset: 0x68
-	// Line 1063, Address: 0x2e4c2c, Func Offset: 0x6c
-	// Line 1064, Address: 0x2e4c30, Func Offset: 0x70
-	// Line 1068, Address: 0x2e4c38, Func Offset: 0x78
-	// Line 1069, Address: 0x2e4c54, Func Offset: 0x94
-	// Line 1071, Address: 0x2e4c68, Func Offset: 0xa8
-	// Line 1074, Address: 0x2e4c78, Func Offset: 0xb8
-	// Line 1076, Address: 0x2e4ca0, Func Offset: 0xe0
-	// Line 1080, Address: 0x2e4ca8, Func Offset: 0xe8
-	// Line 1083, Address: 0x2e4cd8, Func Offset: 0x118
-	// Line 1084, Address: 0x2e4ce0, Func Offset: 0x120
-	// Line 1085, Address: 0x2e4ce4, Func Offset: 0x124
-	// Line 1084, Address: 0x2e4ce8, Func Offset: 0x128
-	// Line 1085, Address: 0x2e4cec, Func Offset: 0x12c
-	// Line 1088, Address: 0x2e4cf0, Func Offset: 0x130
-	// Line 1089, Address: 0x2e4cf4, Func Offset: 0x134
-	// Line 1092, Address: 0x2e4cf8, Func Offset: 0x138
-	// Line 1090, Address: 0x2e4d00, Func Offset: 0x140
-	// Line 1092, Address: 0x2e4d04, Func Offset: 0x144
-	// Line 1093, Address: 0x2e4d24, Func Offset: 0x164
-	// Line 1094, Address: 0x2e4d28, Func Offset: 0x168
-	// Line 1095, Address: 0x2e4d2c, Func Offset: 0x16c
-	// Line 1093, Address: 0x2e4d30, Func Offset: 0x170
-	// Line 1094, Address: 0x2e4d34, Func Offset: 0x174
-	// Line 1097, Address: 0x2e4d38, Func Offset: 0x178
-	// Line 1095, Address: 0x2e4d40, Func Offset: 0x180
-	// Line 1097, Address: 0x2e4d44, Func Offset: 0x184
-	// Line 1101, Address: 0x2e4d64, Func Offset: 0x1a4
-	// Line 1104, Address: 0x2e4d68, Func Offset: 0x1a8
-	// Line 1100, Address: 0x2e4d70, Func Offset: 0x1b0
-	// Line 1102, Address: 0x2e4d74, Func Offset: 0x1b4
-	// Line 1103, Address: 0x2e4d78, Func Offset: 0x1b8
-	// Line 1104, Address: 0x2e4d84, Func Offset: 0x1c4
-	// Line 1103, Address: 0x2e4d88, Func Offset: 0x1c8
-	// Line 1104, Address: 0x2e4d8c, Func Offset: 0x1cc
-	// Line 1105, Address: 0x2e4da4, Func Offset: 0x1e4
-	// Line 1108, Address: 0x2e4dac, Func Offset: 0x1ec
-	// Line 1109, Address: 0x2e4db0, Func Offset: 0x1f0
-	// Line 1110, Address: 0x2e4db4, Func Offset: 0x1f4
-	// Line 1112, Address: 0x2e4db8, Func Offset: 0x1f8
-	// Line 1105, Address: 0x2e4dc0, Func Offset: 0x200
-	// Line 1109, Address: 0x2e4dcc, Func Offset: 0x20c
-	// Line 1108, Address: 0x2e4dd0, Func Offset: 0x210
-	// Line 1110, Address: 0x2e4dd4, Func Offset: 0x214
-	// Line 1111, Address: 0x2e4dd8, Func Offset: 0x218
-	// Line 1112, Address: 0x2e4de4, Func Offset: 0x224
-	// Line 1111, Address: 0x2e4de8, Func Offset: 0x228
-	// Line 1112, Address: 0x2e4dec, Func Offset: 0x22c
-	// Line 1113, Address: 0x2e4e04, Func Offset: 0x244
-	// Line 1116, Address: 0x2e4e0c, Func Offset: 0x24c
-	// Line 1117, Address: 0x2e4e10, Func Offset: 0x250
-	// Line 1118, Address: 0x2e4e14, Func Offset: 0x254
-	// Line 1120, Address: 0x2e4e18, Func Offset: 0x258
-	// Line 1113, Address: 0x2e4e20, Func Offset: 0x260
-	// Line 1117, Address: 0x2e4e2c, Func Offset: 0x26c
-	// Line 1116, Address: 0x2e4e30, Func Offset: 0x270
-	// Line 1118, Address: 0x2e4e34, Func Offset: 0x274
-	// Line 1119, Address: 0x2e4e38, Func Offset: 0x278
-	// Line 1120, Address: 0x2e4e44, Func Offset: 0x284
-	// Line 1119, Address: 0x2e4e48, Func Offset: 0x288
-	// Line 1120, Address: 0x2e4e4c, Func Offset: 0x28c
-	// Line 1121, Address: 0x2e4e64, Func Offset: 0x2a4
-	// Line 1124, Address: 0x2e4e6c, Func Offset: 0x2ac
-	// Line 1125, Address: 0x2e4e70, Func Offset: 0x2b0
-	// Line 1126, Address: 0x2e4e74, Func Offset: 0x2b4
-	// Line 1128, Address: 0x2e4e78, Func Offset: 0x2b8
-	// Line 1121, Address: 0x2e4e80, Func Offset: 0x2c0
-	// Line 1125, Address: 0x2e4e8c, Func Offset: 0x2cc
-	// Line 1124, Address: 0x2e4e90, Func Offset: 0x2d0
-	// Line 1126, Address: 0x2e4e94, Func Offset: 0x2d4
-	// Line 1127, Address: 0x2e4e98, Func Offset: 0x2d8
-	// Line 1128, Address: 0x2e4ea4, Func Offset: 0x2e4
-	// Line 1127, Address: 0x2e4ea8, Func Offset: 0x2e8
-	// Line 1128, Address: 0x2e4eac, Func Offset: 0x2ec
-	// Line 1129, Address: 0x2e4ec4, Func Offset: 0x304
-	// Line 1133, Address: 0x2e4ed0, Func Offset: 0x310
-	// Line 1129, Address: 0x2e4ed4, Func Offset: 0x314
-	// Line 1132, Address: 0x2e4edc, Func Offset: 0x31c
-	// Line 1133, Address: 0x2e4ee8, Func Offset: 0x328
-	// Line 1132, Address: 0x2e4eec, Func Offset: 0x32c
-	// Line 1133, Address: 0x2e4ef0, Func Offset: 0x330
-	// Line 1134, Address: 0x2e4f28, Func Offset: 0x368
-	// Line 1135, Address: 0x2e4f38, Func Offset: 0x378
-	// Line 1136, Address: 0x2e4f64, Func Offset: 0x3a4
-	// Line 1137, Address: 0x2e4f74, Func Offset: 0x3b4
-	// Line 1138, Address: 0x2e4fa0, Func Offset: 0x3e0
-	// Line 1139, Address: 0x2e4fb0, Func Offset: 0x3f0
-	// Line 1144, Address: 0x2e4fdc, Func Offset: 0x41c
-	// Line 1151, Address: 0x2e5034, Func Offset: 0x474
-	// Func End, Address: 0x2e5084, Func Offset: 0x4c4
-    scePrintf("njCheckPlane4AndLine - UNIMPLEMENTED!\n");
+    float fVX1, fVY1, fVZ1;
+    float fVX2, fVY2, fVZ2;
+    float fVX3, fVY3, fVZ3; 
+    float fVX4, fVY4, fVZ4; 
+    float fT1, fT2, fT3, fT4;  
+
+    fVX2 = pLine->vx;
+    fVY2 = pLine->vy;
+    fVZ2 = pLine->vz;
+    
+    fVX1 = pPN->x;
+    fVY1 = pPN->y;
+    fVZ1 = pPN->z;
+    
+    fVX3 = pLine->px;
+    fVY3 = pLine->py;
+    fVZ3 = pLine->pz;
+
+    fT2 = (fVX2 * fVX2) + (fVY2 * fVY2) + (fVZ2 * fVZ2);   
+    fT1 = njInvertSqrt(fT2);
+    
+    fVX2 *= fT1; 
+    fVY2 *= fT1; 
+    fVZ2 *= fT1;
+    
+    fT1 = (fVX1 * fVX2) + (fVY1 * fVY2) + (fVZ1 * fVZ2);
+    
+    if (fabsf(fT1) <= 0.025f) 
+    {
+        return 0;
+    }
+    
+    fT1 = -((fVX1 * (fVX3 - pP1->x)) + (fVY1 * (fVY3 - pP1->y)) + (fVZ1 * (fVZ3 - pP1->z))) / fT1;         
+    
+    fVX4 = fVX3 + (fVX2 * fT1);
+    fVY4 = fVY3 + (fVY2 * fT1);
+    fVZ4 = fVZ3 + (fVZ2 * fT1);
+    
+    fVX1 = fVX4 - fVX3;
+    fVY1 = fVY4 - fVY3;
+    fVZ1 = fVZ4 - fVZ3;
+    
+    fT1 = (fVX1 * fVX1) + (fVY1 * fVY1) + (fVZ1 * fVZ1);  
+    
+    if (fT2 < fT1) 
+    {                                
+        return 0;
+    }
+    
+    fVX1 -= pLine->vx;
+    fVY1 -= pLine->vy;
+    fVZ1 -= pLine->vz;
+    
+    if (fT2 < ((fVX1 * fVX1) + (fVY1 * fVY1) + (fVZ1 * fVZ1))) 
+    {               
+        return 0;
+    }
+          
+    fVX2 = pP1->x - fVX4;
+    fVY2 = pP1->y - fVY4;
+    fVZ2 = pP1->z - fVZ4;
+    
+    fT1 = (fVX2 * fVX2) + (fVY2 * fVY2) + (fVZ2 * fVZ2);
+    
+    if (fT1 < 0.001f) 
+    {
+        return 1;
+    }
+    
+    fT1 = njInvertSqrt(fT1);
+    
+    fVX2 *= fT1;
+    fVY2 *= fT1;
+    fVZ2 *= fT1;
+
+    fVX3 = pP2->x - fVX4;
+    fVY3 = pP2->y - fVY4;
+    fVZ3 = pP2->z - fVZ4;
+    
+    fT2 = (fVX3 * fVX3) + (fVY3 * fVY3) + (fVZ3 * fVZ3);
+    
+    if (fT2 < 0.001f) 
+    {
+        return 1;
+    }
+    
+    fT2 = njInvertSqrt(fT2);
+
+    fVX3 *= fT2;
+    fVY3 *= fT2;
+    fVZ3 *= fT2;
+
+    fVX1 = pP3->x - fVX4;
+    fVY1 = pP3->y - fVY4;
+    fVZ1 = pP3->z - fVZ4;
+    
+    fT3 = (fVX1 * fVX1) + (fVY1 * fVY1) + (fVZ1 * fVZ1);
+    
+    if (fT3 < 0.001f)
+    {
+        return 1;
+    }
+    
+    fT3 = njInvertSqrt(fT3);
+    
+    fVX1 *= fT3;
+    fVY1 *= fT3;
+    fVZ1 *= fT3;
+
+    fVX4 = pP4->x - fVX4;
+    fVY4 = pP4->y - fVY4;
+    fVZ4 = pP4->z - fVZ4;
+    
+    fT4 = (fVX4 * fVX4) + (fVY4 * fVY4) + (fVZ4 * fVZ4);
+    
+    if (fT4 < 0.001f) 
+    {
+        return 1;
+    }
+    
+    fT4 = njInvertSqrt(fT4);
+    
+    fVX4 *= fT4;
+    fVY4 *= fT4;
+    fVZ4 *= fT4;
+
+    fT1 = (fVX2 * fVX3) + (fVY2 * fVY3) + (fVZ2 * fVZ3);
+    
+    if ((fT1 < -1.0f) || (1.0f < fT1)) 
+    {
+        return 0;
+    }
+    
+    fT2 = (fVX3 * fVX1) + (fVY3 * fVY1) + (fVZ3 * fVZ1);
+    
+    if ((fT2 < -1.0f) || (1.0f < fT2)) 
+    {
+        return 0;
+    }
+
+    fT3 = (fVX1 * fVX4) + (fVY1 * fVY4) + (fVZ1 * fVZ4);
+    
+    if ((fT3 < -1.0f) || (1.0f < fT3))
+    {
+        return 0;
+    }
+    
+    fT4 = (fVX4 * fVX2) + (fVY4 * fVY2) + (fVZ4 * fVZ2);
+    
+    if ((fT4 < -1.0f) || (1.0f < fT4))
+    {
+        return 0;
+    }
+
+    if ((acosf(fT1) + acosf(fT2) + acosf(fT3) + acosf(fT4)) < 6.25f)
+    {
+        return 0;
+    }
+
+    return 1;
 }
 
 // 100% matching!

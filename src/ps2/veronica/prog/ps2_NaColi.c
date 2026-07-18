@@ -1421,95 +1421,120 @@ int njCollisionCheckBC2(NJS_BOX* pBox, NJS_CAPSULE* pCapsule)
     return 0;
 }
 
-/*// 
-// Start address: 0x2e5ae0
-int njCheckPlane4IncludePoint(_anon0* pP1, _anon0* pP2, _anon0* pP3, _anon0* pP4, _anon0* pPC)
+// 100% matching!
+int njCheckPlane4IncludePoint(NJS_POINT3* pP1, NJS_POINT3* pP2, NJS_POINT3* pP3, NJS_POINT3* pP4, NJS_POINT3* pPC)
 {
-	float fT4;
-	float fT3;
-	float fT2;
-	float fT1;
-	float fVZ4;
-	float fVY4;
-	float fVX4;
-	float fVZ3;
-	float fVY3;
-	float fVX3;
-	float fVZ2;
-	float fVY2;
-	float fVX2;
-	float fVZ1;
-	float fVY1;
-	float fVX1;
-	// Line 1388, Address: 0x2e5ae0, Func Offset: 0
-	// Line 1397, Address: 0x2e5b24, Func Offset: 0x44
-	// Line 1403, Address: 0x2e5b28, Func Offset: 0x48
-	// Line 1398, Address: 0x2e5b2c, Func Offset: 0x4c
-	// Line 1404, Address: 0x2e5b30, Func Offset: 0x50
-	// Line 1399, Address: 0x2e5b34, Func Offset: 0x54
-	// Line 1405, Address: 0x2e5b38, Func Offset: 0x58
-	// Line 1407, Address: 0x2e5b3c, Func Offset: 0x5c
-	// Line 1403, Address: 0x2e5b40, Func Offset: 0x60
-	// Line 1407, Address: 0x2e5b44, Func Offset: 0x64
-	// Line 1404, Address: 0x2e5b50, Func Offset: 0x70
-	// Line 1405, Address: 0x2e5b54, Func Offset: 0x74
-	// Line 1406, Address: 0x2e5b58, Func Offset: 0x78
-	// Line 1407, Address: 0x2e5b64, Func Offset: 0x84
-	// Line 1406, Address: 0x2e5b68, Func Offset: 0x88
-	// Line 1407, Address: 0x2e5b6c, Func Offset: 0x8c
-	// Line 1408, Address: 0x2e5b84, Func Offset: 0xa4
-	// Line 1411, Address: 0x2e5b8c, Func Offset: 0xac
-	// Line 1412, Address: 0x2e5b90, Func Offset: 0xb0
-	// Line 1413, Address: 0x2e5b94, Func Offset: 0xb4
-	// Line 1415, Address: 0x2e5b98, Func Offset: 0xb8
-	// Line 1408, Address: 0x2e5ba0, Func Offset: 0xc0
-	// Line 1412, Address: 0x2e5bac, Func Offset: 0xcc
-	// Line 1411, Address: 0x2e5bb0, Func Offset: 0xd0
-	// Line 1413, Address: 0x2e5bb4, Func Offset: 0xd4
-	// Line 1414, Address: 0x2e5bb8, Func Offset: 0xd8
-	// Line 1415, Address: 0x2e5bc4, Func Offset: 0xe4
-	// Line 1414, Address: 0x2e5bc8, Func Offset: 0xe8
-	// Line 1415, Address: 0x2e5bcc, Func Offset: 0xec
-	// Line 1416, Address: 0x2e5be4, Func Offset: 0x104
-	// Line 1419, Address: 0x2e5bec, Func Offset: 0x10c
-	// Line 1420, Address: 0x2e5bf0, Func Offset: 0x110
-	// Line 1421, Address: 0x2e5bf4, Func Offset: 0x114
-	// Line 1423, Address: 0x2e5bf8, Func Offset: 0x118
-	// Line 1416, Address: 0x2e5c00, Func Offset: 0x120
-	// Line 1420, Address: 0x2e5c0c, Func Offset: 0x12c
-	// Line 1419, Address: 0x2e5c10, Func Offset: 0x130
-	// Line 1421, Address: 0x2e5c14, Func Offset: 0x134
-	// Line 1422, Address: 0x2e5c18, Func Offset: 0x138
-	// Line 1423, Address: 0x2e5c24, Func Offset: 0x144
-	// Line 1422, Address: 0x2e5c28, Func Offset: 0x148
-	// Line 1423, Address: 0x2e5c2c, Func Offset: 0x14c
-	// Line 1424, Address: 0x2e5c44, Func Offset: 0x164
-	// Line 1427, Address: 0x2e5c4c, Func Offset: 0x16c
-	// Line 1428, Address: 0x2e5c50, Func Offset: 0x170
-	// Line 1429, Address: 0x2e5c54, Func Offset: 0x174
-	// Line 1431, Address: 0x2e5c58, Func Offset: 0x178
-	// Line 1424, Address: 0x2e5c60, Func Offset: 0x180
-	// Line 1428, Address: 0x2e5c6c, Func Offset: 0x18c
-	// Line 1427, Address: 0x2e5c70, Func Offset: 0x190
-	// Line 1429, Address: 0x2e5c74, Func Offset: 0x194
-	// Line 1430, Address: 0x2e5c78, Func Offset: 0x198
-	// Line 1431, Address: 0x2e5c84, Func Offset: 0x1a4
-	// Line 1430, Address: 0x2e5c88, Func Offset: 0x1a8
-	// Line 1431, Address: 0x2e5c8c, Func Offset: 0x1ac
-	// Line 1432, Address: 0x2e5ca4, Func Offset: 0x1c4
-	// Line 1436, Address: 0x2e5cb0, Func Offset: 0x1d0
-	// Line 1432, Address: 0x2e5cb4, Func Offset: 0x1d4
-	// Line 1435, Address: 0x2e5cbc, Func Offset: 0x1dc
-	// Line 1436, Address: 0x2e5cc8, Func Offset: 0x1e8
-	// Line 1435, Address: 0x2e5ccc, Func Offset: 0x1ec
-	// Line 1436, Address: 0x2e5cd0, Func Offset: 0x1f0
-	// Line 1437, Address: 0x2e5d08, Func Offset: 0x228
-	// Line 1438, Address: 0x2e5d18, Func Offset: 0x238
-	// Line 1439, Address: 0x2e5d44, Func Offset: 0x264
-	// Line 1440, Address: 0x2e5d54, Func Offset: 0x274
-	// Line 1441, Address: 0x2e5d80, Func Offset: 0x2a0
-	// Line 1442, Address: 0x2e5d90, Func Offset: 0x2b0
-	// Line 1447, Address: 0x2e5dbc, Func Offset: 0x2dc
-	// Line 1454, Address: 0x2e5e14, Func Offset: 0x334
-	// Func End, Address: 0x2e5e5c, Func Offset: 0x37c
-}*/
+    float fVX1, fVY1, fVZ1; 
+    float fVX2, fVY2, fVZ2;
+    float fVX3, fVY3, fVZ3; 
+    float cy, cz, cx; // not from DWARF
+    float fVX4, fVY4, fVZ4; 
+    float fT1, fT2, fT3, fT4;  
+
+    cx = pPC->x;
+    cy = pPC->y;
+    cz = pPC->z;
+
+    fVX1 = pP1->x - cx;
+    fVY1 = pP1->y - cy;
+    fVZ1 = pP1->z - cz;
+    
+    fT1 = (fVX1 * fVX1) + (fVY1 * fVY1) + (fVZ1 * fVZ1);
+    
+    if (fT1 < 0.001f)
+    {
+        return 1;
+    }
+    
+    fT1 = njInvertSqrt(fT1);
+    
+    fVX1 *= fT1;
+    fVY1 *= fT1;
+    fVZ1 *= fT1;
+
+    fVX2 = pP2->x - cx;
+    fVY2 = pP2->y - cy;
+    fVZ2 = pP2->z - cz;
+    
+    fT2 = (fVX2 * fVX2) + (fVY2 * fVY2) + (fVZ2 * fVZ2);
+    
+    if (fT2 < 0.001f) 
+    {
+        return 1;
+    }
+    
+    fT2 = njInvertSqrt(fT2);
+    
+    fVX2 *= fT2;
+    fVY2 *= fT2;
+    fVZ2 *= fT2;
+
+    fVX3 = pP3->x - cx;
+    fVY3 = pP3->y - cy;
+    fVZ3 = pP3->z - cz;
+    
+    fT3 = (fVX3 * fVX3) + (fVY3 * fVY3) + (fVZ3 * fVZ3);
+    
+    if (fT3 < 0.001f)
+    {
+        return 1;
+    }
+    
+    fT3 = njInvertSqrt(fT3);
+    
+    fVX3 *= fT3;
+    fVY3 *= fT3;
+    fVZ3 *= fT3;
+
+    fVX4 = pP4->x - cx;
+    fVY4 = pP4->y - cy;
+    fVZ4 = pP4->z - cz;
+    
+    fT4 = (fVX4 * fVX4) + (fVY4 * fVY4) + (fVZ4 * fVZ4);
+    
+    if (fT4 < 0.001f) 
+    {
+        return 1;
+    }
+    
+    fT4 = njInvertSqrt(fT4);
+    
+    fVX4 *= fT4;
+    fVY4 *= fT4;
+    fVZ4 *= fT4;
+
+    fT1 = (fVX1 * fVX2) + (fVY1 * fVY2) + (fVZ1 * fVZ2);
+    
+    if ((fT1 < -1.0f) || (1.0f < fT1)) 
+    {
+        return 0;
+    }
+    
+    fT2 = (fVX2 * fVX3) + (fVY2 * fVY3) + (fVZ2 * fVZ3);
+    
+    if ((fT2 < -1.0f) || (1.0f < fT2)) 
+    {
+        return 0;
+    }
+
+    fT3 = (fVX3 * fVX4) + (fVY3 * fVY4) + (fVZ3 * fVZ4);
+    
+    if ((fT3 < -1.0f) || (1.0f < fT3)) 
+    {
+        return 0;
+    }
+    
+    fT4 = (fVX4 * fVX1) + (fVY4 * fVY1) + (fVZ4 * fVZ1);
+    
+    if ((fT4 < -1.0f) || (1.0f < fT4)) 
+    {
+        return 0;
+    }
+
+    if ((acosf(fT1) + acosf(fT2) + acosf(fT3) + acosf(fT4)) < 6.25f) 
+    {
+        return 0;
+    }
+
+    return 1;
+}

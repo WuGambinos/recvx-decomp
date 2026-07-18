@@ -380,7 +380,7 @@ void bhInitSpEvtComputer()
     
     ce->scp = comevt_script_tab[sys->com_num];
     
-    bhInitComEvtScript(1);
+    bhInitComEvtScript();
     
     njMemCopy4(&palbuf[3072], palbuf, 1024);
     

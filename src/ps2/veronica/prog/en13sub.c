@@ -25,41 +25,39 @@ MoveMode2_proc bhEne13B_MoveMode2[2] =
 };
 /*(*bhEne13B_BrainType)(BH_PWORK*)[1]; - unused*/
 
-/*// 
-// Start address: 0x1dcd00
+// 100% matching!
 void bhEne13B(BH_PWORK* epw)
 {
-	_anon4* owk;
 	int i;
-	int i;
-	// Line 136, Address: 0x1dcd00, Func Offset: 0
-	// Line 138, Address: 0x1dcd10, Func Offset: 0x10
-	// Line 141, Address: 0x1dcd30, Func Offset: 0x30
-	// Line 143, Address: 0x1dcd48, Func Offset: 0x48
-	// Line 145, Address: 0x1dcd4c, Func Offset: 0x4c
-	// Line 143, Address: 0x1dcd54, Func Offset: 0x54
-	// Line 145, Address: 0x1dcd58, Func Offset: 0x58
-	// Line 146, Address: 0x1dcd60, Func Offset: 0x60
-	// Line 147, Address: 0x1dcd64, Func Offset: 0x64
-	// Line 146, Address: 0x1dcd68, Func Offset: 0x68
-	// Line 147, Address: 0x1dcd78, Func Offset: 0x78
-	// Line 148, Address: 0x1dcd8c, Func Offset: 0x8c
-	// Line 155, Address: 0x1dcd90, Func Offset: 0x90
-	// Line 156, Address: 0x1dcd94, Func Offset: 0x94
-	// Line 155, Address: 0x1dcd98, Func Offset: 0x98
-	// Line 156, Address: 0x1dcd9c, Func Offset: 0x9c
-	// Line 157, Address: 0x1dcda4, Func Offset: 0xa4
-	// Line 158, Address: 0x1dcdb4, Func Offset: 0xb4
-	// Line 157, Address: 0x1dcdb8, Func Offset: 0xb8
-	// Line 158, Address: 0x1dcdc8, Func Offset: 0xc8
-	// Line 157, Address: 0x1dcdcc, Func Offset: 0xcc
-	// Line 158, Address: 0x1dcdd0, Func Offset: 0xd0
-	// Line 162, Address: 0x1dcde4, Func Offset: 0xe4
-	// Line 165, Address: 0x1dcdf8, Func Offset: 0xf8
-	// Line 168, Address: 0x1dce00, Func Offset: 0x100
-	// Line 169, Address: 0x1dce08, Func Offset: 0x108
-	// Func End, Address: 0x1dce18, Func Offset: 0x118
-}*/
+    O_WORK* owk;
+
+    bhEne13B_Mode0[epw->mode0](epw);
+
+    if ((((BH_PWORK*)epw->lkwkp)->stflg & 0x1000000))
+    {
+        int i;
+
+        epw->stflg |= 0x1000000;
+
+        for (i = 0; i < epw->mlwP->obj_num; i++)
+        {
+            EXP0_ATR(i)->flg = 0;
+        }
+    }
+
+	owk = epw->mlwP->owP;
+
+    for (i = 0; i < epw->mlwP->obj_num; i++, owk++)
+    {
+        *EXP0_P3(i) = *(NJS_POINT3*)&owk->mtx[12];
+    }
+
+    bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+
+    bhCalcModel(epw);
+
+    bhEne13B_SetHittab(epw);
+}
 
 // 100% matching!
 void bhEne13B_Init(BH_PWORK* epw)
@@ -104,7 +102,7 @@ void bhEne13B_Init(BH_PWORK* epw)
         for (i = 0; i < epw->mlwP->obj_num; i++)
         {
             EXP0_ATR(i) = &sys->mwalp[sys->mwal_n];
-			
+
             sys->mwal_n++;
 
             EXP0_ATR(i)->flg = 0;

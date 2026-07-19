@@ -332,24 +332,21 @@ void bhEne13B_Damage()
 
 }
 
-/*// 
-// Start address: 0x1dd940
+// 100% matching!
 void bhEne13B_Die(BH_PWORK* epw)
 {
 	int i;
-	// Line 533, Address: 0x1dd940, Func Offset: 0
-	// Line 537, Address: 0x1dd948, Func Offset: 0x8
-	// Line 533, Address: 0x1dd950, Func Offset: 0x10
-	// Line 534, Address: 0x1dd958, Func Offset: 0x18
-	// Line 537, Address: 0x1dd960, Func Offset: 0x20
-	// Line 538, Address: 0x1dd968, Func Offset: 0x28
-	// Line 539, Address: 0x1dd96c, Func Offset: 0x2c
-	// Line 538, Address: 0x1dd970, Func Offset: 0x30
-	// Line 539, Address: 0x1dd980, Func Offset: 0x40
-	// Line 540, Address: 0x1dd994, Func Offset: 0x54
-	// Line 541, Address: 0x1dd9a4, Func Offset: 0x64
-	// Func End, Address: 0x1dd9ac, Func Offset: 0x6c
-}*/
+
+    epw->stflg |= 0x1000000;
+    epw->flg   |= 0x2;
+
+    for (i = 0; i < epw->mlwP->obj_num; i++)
+    {
+        EXP0_ATR(i)->flg = 0;
+    }
+
+    epw->flg &= ~0x80000;
+}
 
 // 100% matching!
 void bhEne13B_SetHittab(BH_PWORK* epw)

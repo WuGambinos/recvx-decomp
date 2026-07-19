@@ -1323,17 +1323,15 @@ void bhEne13B_Move(BH_PWORK* epw)
 {
 	// Line 267, Address: 0x1dd050, Func Offset: 0
 	// Func End, Address: 0x1dd070, Func Offset: 0x20
-}
+}*/
 
-// 
-// Start address: 0x1dd070
+// 100% matching!
 void bhEne13B_MV00()
 {
-	// Line 279, Address: 0x1dd070, Func Offset: 0
-	// Func End, Address: 0x1dd078, Func Offset: 0x8
+	
 }
 
-// 
+/*// 
 // Start address: 0x1dd080
 void bhEne13B_MV01(BH_PWORK* epw)
 {
@@ -1527,7 +1525,7 @@ void bhEne13B_MV01(BH_PWORK* epw)
 // 100% matching!
 void bhEne13B_Nage()
 {
-	
+
 }
 
 // 100% matching!

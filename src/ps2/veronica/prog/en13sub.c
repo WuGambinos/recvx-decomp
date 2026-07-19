@@ -2,20 +2,6 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 
-/*void(*bhEne13B_Mode0)(BH_PWORK*)[6];
-void(*bhEne13B_BrainType)(BH_PWORK*)[1];
-void(*bhEne13B_MoveMode2)(BH_PWORK*)[2];*/
-
-void bhEne13B(BH_PWORK* epw);
-void bhEne13B_Init(BH_PWORK* epw);
-void bhEne13B_Move(BH_PWORK* epw);
-void bhEne13B_MV00();
-void bhEne13B_MV01(BH_PWORK* epw);
-void bhEne13B_Nage();
-void bhEne13B_Damage();
-void bhEne13B_Die(BH_PWORK* epw);
-void bhEne13B_SetHittab(BH_PWORK* epw);
-
 typedef void (*Mode0_proc)(BH_PWORK*);
 typedef void (*MoveMode2_proc)(BH_PWORK*);
 
@@ -34,6 +20,7 @@ MoveMode2_proc bhEne13B_MoveMode2[2] =
     bhEne13B_MV00,
     bhEne13B_MV01
 };
+/*(*bhEne13B_BrainType)(BH_PWORK*)[1]; - unused*/
 
 /*// 
 // Start address: 0x1dcd00
@@ -362,36 +349,41 @@ void bhEne13B_Die(BH_PWORK* epw)
 	// Line 540, Address: 0x1dd994, Func Offset: 0x54
 	// Line 541, Address: 0x1dd9a4, Func Offset: 0x64
 	// Func End, Address: 0x1dd9ac, Func Offset: 0x6c
-}
-
-// 
-// Start address: 0x1dd9b0
-void bhEne13B_SetHittab(BH_PWORK* epw)
-{
-	_anon4* owk;
-	int i;
-	// Line 555, Address: 0x1dd9b0, Func Offset: 0
-	// Line 557, Address: 0x1dd9c4, Func Offset: 0x14
-	// Line 558, Address: 0x1dd9d4, Func Offset: 0x24
-	// Line 559, Address: 0x1dd9ec, Func Offset: 0x3c
-	// Line 563, Address: 0x1dd9f4, Func Offset: 0x44
-	// Line 564, Address: 0x1dda0c, Func Offset: 0x5c
-	// Line 568, Address: 0x1dda14, Func Offset: 0x64
-	// Line 564, Address: 0x1dda18, Func Offset: 0x68
-	// Line 565, Address: 0x1dda1c, Func Offset: 0x6c
-	// Line 566, Address: 0x1dda30, Func Offset: 0x80
-	// Line 567, Address: 0x1dda44, Func Offset: 0x94
-	// Line 568, Address: 0x1dda54, Func Offset: 0xa4
-	// Line 567, Address: 0x1dda58, Func Offset: 0xa8
-	// Line 568, Address: 0x1dda60, Func Offset: 0xb0
-	// Line 569, Address: 0x1dda74, Func Offset: 0xc4
-	// Line 571, Address: 0x1dda7c, Func Offset: 0xcc
-	// Line 572, Address: 0x1dda88, Func Offset: 0xd8
-	// Line 573, Address: 0x1dda8c, Func Offset: 0xdc
-	// Line 572, Address: 0x1dda90, Func Offset: 0xe0
-	// Line 573, Address: 0x1ddaa0, Func Offset: 0xf0
-	// Line 574, Address: 0x1ddab4, Func Offset: 0x104
-	// Line 576, Address: 0x1ddabc, Func Offset: 0x10c
-	// Func End, Address: 0x1ddac4, Func Offset: 0x114
 }*/
 
+// 100% matching!
+void bhEne13B_SetHittab(BH_PWORK* epw)
+{
+	int i;
+    O_WORK* owk;
+
+    if ((epw->flg & 0x80000))
+    {
+        EXP0_I(516)++;
+
+        if (EXP0_I(516) > 15)
+        {
+            EXP0_I(516) = 15;
+        }
+
+        owk = epw->mlwP->owP;
+
+        for (i = 0; i < EXP0_I(516); i++, owk++)
+        {
+            EXP0_ATR(i)->flg = 1;
+
+            EXP0_ATR(i)->px = owk->mtx[12];
+            EXP0_ATR(i)->py = owk->mtx[13];
+            EXP0_ATR(i)->pz = owk->mtx[14];
+        }
+    }
+    else
+    {
+        for (i = 0; i < epw->mlwP->obj_num; i++)
+        {
+            EXP0_ATR(i)->flg = 0;
+        }
+
+        EXP0_I(516) = 0;
+    }
+}

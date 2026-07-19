@@ -1522,20 +1522,18 @@ void bhEne13B_MV01(BH_PWORK* epw)
 	// Line 495, Address: 0x1dd8e8, Func Offset: 0x868
 	// Line 498, Address: 0x1dd8ec, Func Offset: 0x86c
 	// Func End, Address: 0x1dd914, Func Offset: 0x894
-}
+}*/
 
-// 
-// Start address: 0x1dd920
+// 100% matching!
 void bhEne13B_Nage()
 {
-	// Line 509, Address: 0x1dd920, Func Offset: 0
-	// Func End, Address: 0x1dd928, Func Offset: 0x8
-}*/
+	
+}
 
 // 100% matching!
 void bhEne13B_Damage()
 {
-	
+
 }
 
 /*// 

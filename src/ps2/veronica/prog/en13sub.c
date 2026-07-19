@@ -1,4 +1,7 @@
 #include "../../../ps2/veronica/prog/en13sub.h"
+#include "../../../ps2/veronica/prog/eneset.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 
@@ -56,66 +59,70 @@ void bhEne13B(BH_PWORK* epw)
 	// Line 168, Address: 0x1dce00, Func Offset: 0x100
 	// Line 169, Address: 0x1dce08, Func Offset: 0x108
 	// Func End, Address: 0x1dce18, Func Offset: 0x118
-}
+}*/
 
-// 
-// Start address: 0x1dce20
+// 100% matching!
 void bhEne13B_Init(BH_PWORK* epw)
 {
 	int i;
-	// Line 179, Address: 0x1dce20, Func Offset: 0
-	// Line 183, Address: 0x1dce2c, Func Offset: 0xc
-	// Line 184, Address: 0x1dce30, Func Offset: 0x10
-	// Line 188, Address: 0x1dce34, Func Offset: 0x14
-	// Line 189, Address: 0x1dce38, Func Offset: 0x18
-	// Line 190, Address: 0x1dce3c, Func Offset: 0x1c
-	// Line 183, Address: 0x1dce40, Func Offset: 0x20
-	// Line 184, Address: 0x1dce48, Func Offset: 0x28
-	// Line 193, Address: 0x1dce4c, Func Offset: 0x2c
-	// Line 199, Address: 0x1dce50, Func Offset: 0x30
-	// Line 201, Address: 0x1dce54, Func Offset: 0x34
-	// Line 184, Address: 0x1dce58, Func Offset: 0x38
-	// Line 185, Address: 0x1dce60, Func Offset: 0x40
-	// Line 186, Address: 0x1dce70, Func Offset: 0x50
-	// Line 187, Address: 0x1dce7c, Func Offset: 0x5c
-	// Line 188, Address: 0x1dce88, Func Offset: 0x68
-	// Line 189, Address: 0x1dce8c, Func Offset: 0x6c
-	// Line 190, Address: 0x1dce90, Func Offset: 0x70
-	// Line 193, Address: 0x1dce94, Func Offset: 0x74
-	// Line 194, Address: 0x1dce98, Func Offset: 0x78
-	// Line 195, Address: 0x1dce9c, Func Offset: 0x7c
-	// Line 196, Address: 0x1dcea0, Func Offset: 0x80
-	// Line 199, Address: 0x1dcea4, Func Offset: 0x84
-	// Line 200, Address: 0x1dcea8, Func Offset: 0x88
-	// Line 201, Address: 0x1dceac, Func Offset: 0x8c
-	// Line 202, Address: 0x1dceb0, Func Offset: 0x90
-	// Line 203, Address: 0x1dceb4, Func Offset: 0x94
-	// Line 204, Address: 0x1dceb8, Func Offset: 0x98
-	// Line 207, Address: 0x1dcebc, Func Offset: 0x9c
-	// Line 210, Address: 0x1dcecc, Func Offset: 0xac
-	// Line 213, Address: 0x1dced4, Func Offset: 0xb4
-	// Line 214, Address: 0x1dcee0, Func Offset: 0xc0
-	// Line 217, Address: 0x1dceec, Func Offset: 0xcc
-	// Line 214, Address: 0x1dcef0, Func Offset: 0xd0
-	// Line 217, Address: 0x1dcef4, Func Offset: 0xd4
-	// Line 218, Address: 0x1dcf08, Func Offset: 0xe8
-	// Line 230, Address: 0x1dcf14, Func Offset: 0xf4
-	// Line 218, Address: 0x1dcf18, Func Offset: 0xf8
-	// Line 219, Address: 0x1dcf48, Func Offset: 0x128
-	// Line 220, Address: 0x1dcf6c, Func Offset: 0x14c
-	// Line 221, Address: 0x1dcf7c, Func Offset: 0x15c
-	// Line 222, Address: 0x1dcf8c, Func Offset: 0x16c
-	// Line 223, Address: 0x1dcf9c, Func Offset: 0x17c
-	// Line 224, Address: 0x1dcfac, Func Offset: 0x18c
-	// Line 225, Address: 0x1dcfbc, Func Offset: 0x19c
-	// Line 227, Address: 0x1dcfcc, Func Offset: 0x1ac
-	// Line 228, Address: 0x1dcfe8, Func Offset: 0x1c8
-	// Line 229, Address: 0x1dd004, Func Offset: 0x1e4
-	// Line 230, Address: 0x1dd024, Func Offset: 0x204
-	// Line 231, Address: 0x1dd03c, Func Offset: 0x21c
-	// Line 232, Address: 0x1dd040, Func Offset: 0x220
-	// Func End, Address: 0x1dd050, Func Offset: 0x230
-}*/
+
+    epw->flg |= 0x8018;
+    epw->flg &= ~0x6;
+
+    epw->flg2 |= 0x1;
+    epw->flg2 |= 0x10;
+
+    epw->mdflg |= 0x20;
+
+    epw->ar = 5.0f;
+    epw->ah = 1.0f;
+
+    epw->car = 3.0f;
+
+    epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
+
+    epw->hokan_rate  = 65536;
+    epw->hokan_count = 0;
+
+    epw->mtn_no  = 4;
+    epw->mtn_md  = 0;
+    epw->mtn_add = 0;
+
+    epw->frm_no = 0;
+
+    bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+
+    bhCalcModel(epw);
+
+    if (epw->exp0 == NULL)
+    {
+        epw->exp0 = bhEne_CallocWork(520, 8);
+
+        for (i = 0; i < epw->mlwP->obj_num; i++)
+        {
+            EXP0_ATR(i) = &sys->mwalp[sys->mwal_n];
+			
+            sys->mwal_n++;
+
+            EXP0_ATR(i)->flg = 0;
+
+            EXP0_ATR(i)->type = 3;
+
+            EXP0_ATR(i)->w = 2.0f;
+            EXP0_ATR(i)->h = 1.0f;
+            EXP0_ATR(i)->d = 0;
+
+            EXP0_ATR(i)->attr = 0;
+
+            EXP0_ATR(i)->px = epw->mlwP->owP->mtx[12];
+            EXP0_ATR(i)->py = epw->mlwP->owP->mtx[13];
+            EXP0_ATR(i)->pz = epw->mlwP->owP->mtx[14];
+        }
+    }
+}
 
 // 100% matching!
 void bhEne13B_Move(BH_PWORK* epw)

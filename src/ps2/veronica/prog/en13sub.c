@@ -1530,17 +1530,15 @@ void bhEne13B_Nage()
 {
 	// Line 509, Address: 0x1dd920, Func Offset: 0
 	// Func End, Address: 0x1dd928, Func Offset: 0x8
-}
+}*/
 
-// 
-// Start address: 0x1dd930
+// 100% matching!
 void bhEne13B_Damage()
 {
-	// Line 520, Address: 0x1dd930, Func Offset: 0
-	// Func End, Address: 0x1dd938, Func Offset: 0x8
+	
 }
 
-// 
+/*// 
 // Start address: 0x1dd940
 void bhEne13B_Die(BH_PWORK* epw)
 {

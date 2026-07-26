@@ -4250,7 +4250,7 @@ void bhEff025(O_WRK* op)
 // Start address: 0x22e030
 void bhEff026(O_WRK* op)
 {
-	//_anon56 pnt;
+	POINT pnt;
 	unsigned int argb;
 	// Line 4377, Address: 0x22e030, Func Offset: 0
 	// Line 4379, Address: 0x22e03c, Func Offset: 0xc
@@ -5016,38 +5016,44 @@ void bhEff108(O_WRK* op)
 	scePrintf("bhEff108 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x230720
+// 100% matching!
 void bhEff109(O_WRK* op)
 {
-	//_anon56 pos;
-	// Line 5101, Address: 0x230720, Func Offset: 0
-	// Line 5103, Address: 0x230728, Func Offset: 0x8
-	// Line 5104, Address: 0x230730, Func Offset: 0x10
-	// Line 5103, Address: 0x230734, Func Offset: 0x14
-	// Line 5104, Address: 0x23073c, Func Offset: 0x1c
-	// Line 5105, Address: 0x230750, Func Offset: 0x30
-	// Line 5106, Address: 0x23075c, Func Offset: 0x3c
-	// Line 5107, Address: 0x23076c, Func Offset: 0x4c
-	// Line 5108, Address: 0x230778, Func Offset: 0x58
-	// Line 5111, Address: 0x23077c, Func Offset: 0x5c
-	// Line 5108, Address: 0x230788, Func Offset: 0x68
-	// Line 5109, Address: 0x23078c, Func Offset: 0x6c
-	// Line 5110, Address: 0x230794, Func Offset: 0x74
-	// Line 5111, Address: 0x230798, Func Offset: 0x78
-	// Line 5113, Address: 0x2307a4, Func Offset: 0x84
-	// Line 5114, Address: 0x2307ac, Func Offset: 0x8c
-	// Line 5115, Address: 0x2307b8, Func Offset: 0x98
-	// Line 5116, Address: 0x2307cc, Func Offset: 0xac
-	// Line 5117, Address: 0x2307d0, Func Offset: 0xb0
-	// Line 5120, Address: 0x2307d4, Func Offset: 0xb4
-	// Line 5117, Address: 0x2307dc, Func Offset: 0xbc
-	// Line 5118, Address: 0x2307e0, Func Offset: 0xc0
-	// Line 5119, Address: 0x2307e8, Func Offset: 0xc8
-	// Line 5120, Address: 0x2307f0, Func Offset: 0xd0
-	// Line 5124, Address: 0x2307fc, Func Offset: 0xdc
-	// Func End, Address: 0x230808, Func Offset: 0xe8
-	scePrintf("bhEff109 - UNIMPLEMENTED!\n");
+    POINT pos;
+    
+    op->flg |= 0x1000000;
+    
+    if (!(sys->gm_flg & 0x1)) 
+    {
+        if (op->type == 0) 
+        {
+            op->ct0 = (op->ct0 + 1) & 0xF;
+            
+            if (op->ct0 == 0) 
+            {
+                pos.px = op->px;
+                pos.py = op->py;
+                pos.pz = op->pz;
+                
+                bhSetEffect(108, &pos, NULL, 13);
+            }
+        } 
+        else 
+        {
+            op->ct0++;
+            
+            if (op->ct0 > op->lkono) 
+            {
+                op->ct0 = 0;
+                
+                pos.px = op->px;
+                pos.py = op->py;
+                pos.pz = op->pz;
+                
+                bhSetEffect(108, &pos, NULL, op->type);
+            }
+        }
+    }
 }
 
 // 

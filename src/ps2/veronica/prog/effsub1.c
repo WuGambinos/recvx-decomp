@@ -5973,54 +5973,89 @@ void bhEff116(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x232f80
+// 100% matching!
 void bhEff117(O_WRK* op)
 {
-	UV_WORK* uvp;
-	UV_WORK uvinfo_p1[4];
-	UV_WORK uvinfo_p0[4];
-	// Line 5890, Address: 0x232f80, Func Offset: 0
-	// Line 5913, Address: 0x232f90, Func Offset: 0x10
-	// Line 5915, Address: 0x232fb0, Func Offset: 0x30
-	// Line 5916, Address: 0x232fb8, Func Offset: 0x38
-	// Line 5917, Address: 0x232fc0, Func Offset: 0x40
-	// Line 5921, Address: 0x232fc4, Func Offset: 0x44
-	// Line 5916, Address: 0x232fc8, Func Offset: 0x48
-	// Line 5917, Address: 0x232fd0, Func Offset: 0x50
-	// Line 5918, Address: 0x232fd4, Func Offset: 0x54
-	// Line 5919, Address: 0x232fd8, Func Offset: 0x58
-	// Line 5920, Address: 0x232fdc, Func Offset: 0x5c
-	// Line 5921, Address: 0x232fe0, Func Offset: 0x60
-	// Line 5922, Address: 0x232fe4, Func Offset: 0x64
-	// Line 5923, Address: 0x232fec, Func Offset: 0x6c
-	// Line 5925, Address: 0x232ff0, Func Offset: 0x70
-	// Line 5926, Address: 0x233034, Func Offset: 0xb4
-	// Line 5927, Address: 0x233050, Func Offset: 0xd0
-	// Line 5928, Address: 0x23305c, Func Offset: 0xdc
-	// Line 5929, Address: 0x233060, Func Offset: 0xe0
-	// Line 5932, Address: 0x233068, Func Offset: 0xe8
-	// Line 5935, Address: 0x233070, Func Offset: 0xf0
-	// Line 5936, Address: 0x233078, Func Offset: 0xf8
-	// Line 5935, Address: 0x233080, Func Offset: 0x100
-	// Line 5936, Address: 0x233088, Func Offset: 0x108
-	// Line 5937, Address: 0x23309c, Func Offset: 0x11c
-	// Line 5938, Address: 0x2330a0, Func Offset: 0x120
-	// Line 5940, Address: 0x2330b0, Func Offset: 0x130
-	// Line 5949, Address: 0x2330b4, Func Offset: 0x134
-	// Line 5940, Address: 0x2330b8, Func Offset: 0x138
-	// Line 5941, Address: 0x2330bc, Func Offset: 0x13c
-	// Line 5942, Address: 0x2330c4, Func Offset: 0x144
-	// Line 5943, Address: 0x2330d4, Func Offset: 0x154
-	// Line 5944, Address: 0x2330dc, Func Offset: 0x15c
-	// Line 5945, Address: 0x2330e4, Func Offset: 0x164
-	// Line 5946, Address: 0x2330f4, Func Offset: 0x174
-	// Line 5947, Address: 0x233104, Func Offset: 0x184
-	// Line 5948, Address: 0x233114, Func Offset: 0x194
-	// Line 5949, Address: 0x233120, Func Offset: 0x1a0
-	// Line 5950, Address: 0x233154, Func Offset: 0x1d4
-	// Func End, Address: 0x233164, Func Offset: 0x1e4
-	scePrintf("bhEff117 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    static UV_WORK uvinfo_p0[4] =
+    {
+        { 0.0f,    0.0f, 0.1875f, 0.1875f },
+        { 0.1875f, 0.0f, 0.1875f, 0.1875f },
+        { 0.375f,  0.0f, 0.1875f, 0.1875f },
+        { -1.0f,   0.0f, 0.0f,    0.0f    }
+    };
+    static UV_WORK uvinfo_p1[4] = 
+    {
+        { 0.5625f, 0.0f,    0.1875f, 0.1875f },
+        { 0.75f,   0.0f,    0.1875f, 0.1875f },
+        { 0.0f,    0.1875f, 0.1875f, 0.1875f },
+        { -1.0f,   0.0f,    0.0f,    0.0f    }
+    };
+    
+    switch (op->mode0)
+    {                            
+    case 0:
+        op->tex_id = 38;
+        
+        op->flg |= 0x4100000;
+        
+        op->tv[0].col = -1;
+        op->tv[1].col = -1;
+        op->tv[2].col = -1;
+        op->tv[3].col = -1;
+        
+        op->bl_src = 8;
+        op->bl_dst = 6;
+        
+        op->ani_ct = 0;
+        
+        op->ct0 = 0;
+        op->ct1 = (int)(4.0f * (-rand() / -2.1474836E9f)) + 1;
+        
+        if (op->type == 0) 
+        {
+            uvp = uvinfo_p0;
+            
+            op->exp0 = (unsigned char*)uvp;
+        } 
+        else 
+        {
+            uvp = uvinfo_p1;
+            
+            op->exp0 = (unsigned char*)uvp;
+        }
+        
+        op->mode0 = 1;
+        break;
+    case 2:
+        op->flg = 0;
+        return;
+    }
+    
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+    
+    if (uvp->u == -1.0f) 
+    {
+        op->ct0 = 0;
+        
+        uvp = (UV_WORK*)op->exp0 + op->ct0;
+    }
+    
+    op->tv[0].u = uvp->u;
+    op->tv[0].v = uvp->v;
+    
+    op->tv[1].u = uvp->u + uvp->xs;
+    op->tv[1].v = uvp->v;
+    
+    op->tv[2].u = uvp->u;
+    op->tv[2].v = uvp->v + uvp->ys;
+    
+    op->tv[3].u = uvp->u + uvp->xs;
+    op->tv[3].v = uvp->v + uvp->ys;
+    
+    op->ct0++;
+    
+    sys->ef_trs[sys->ef_trsn++] = op;
 }
 
 // 

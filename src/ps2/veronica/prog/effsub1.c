@@ -4810,49 +4810,78 @@ void bhEff106(O_WRK* op)
 	scePrintf("bhEff106 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x22fd10
+// 100% matching!
 void bhDraw107(O_WRK* op)
 {
-	int i;
-	UV_WORK* uvp;
-	ER_WORK* erp;
-	NJS_TEXTURE_VTX tv[4];
-	UV_WORK uvinfo[6];
-	// Line 4886, Address: 0x22fd10, Func Offset: 0
-	// Line 4904, Address: 0x22fd20, Func Offset: 0x10
-	// Line 4905, Address: 0x22fd28, Func Offset: 0x18
-	// Line 4906, Address: 0x22fd40, Func Offset: 0x30
-	// Line 4907, Address: 0x22fd58, Func Offset: 0x48
-	// Line 4908, Address: 0x22fd64, Func Offset: 0x54
-	// Line 4909, Address: 0x22fd70, Func Offset: 0x60
-	// Line 4910, Address: 0x22fd78, Func Offset: 0x68
-	// Line 4911, Address: 0x22fd7c, Func Offset: 0x6c
-	// Line 4912, Address: 0x22fd80, Func Offset: 0x70
-	// Line 4913, Address: 0x22fd90, Func Offset: 0x80
-	// Line 4922, Address: 0x22fd9c, Func Offset: 0x8c
-	// Line 4913, Address: 0x22fda4, Func Offset: 0x94
-	// Line 4914, Address: 0x22fdac, Func Offset: 0x9c
-	// Line 4915, Address: 0x22fdb8, Func Offset: 0xa8
-	// Line 4916, Address: 0x22fdc4, Func Offset: 0xb4
-	// Line 4917, Address: 0x22fdd8, Func Offset: 0xc8
-	// Line 4918, Address: 0x22fde4, Func Offset: 0xd4
-	// Line 4919, Address: 0x22fdf0, Func Offset: 0xe0
-	// Line 4920, Address: 0x22fe04, Func Offset: 0xf4
-	// Line 4921, Address: 0x22fe18, Func Offset: 0x108
-	// Line 4922, Address: 0x22fe2c, Func Offset: 0x11c
-	// Line 4923, Address: 0x22fe48, Func Offset: 0x138
-	// Line 4924, Address: 0x22fe64, Func Offset: 0x154
-	// Line 4925, Address: 0x22fe74, Func Offset: 0x164
-	// Line 4926, Address: 0x22fe7c, Func Offset: 0x16c
-	// Line 4927, Address: 0x22fe84, Func Offset: 0x174
-	// Line 4930, Address: 0x22fe98, Func Offset: 0x188
-	// Line 4929, Address: 0x22fe9c, Func Offset: 0x18c
-	// Line 4930, Address: 0x22fea0, Func Offset: 0x190
-	// Line 4931, Address: 0x22fea8, Func Offset: 0x198
-	// Line 4932, Address: 0x22feb0, Func Offset: 0x1a0
-	// Func End, Address: 0x22fec4, Func Offset: 0x1b4
-	scePrintf("bhDraw107 - UNIMPLEMENTED!\n");
+    ER_WORK* erp;
+    UV_WORK* uvp;
+    int i;
+    static UV_WORK uvinfo[6] = 
+    {
+        { 0.0f,      0.0f, 0.109375f, 0.09375f },
+        { 0.109375f, 0.0f, 0.109375f, 0.09375f },
+        { 0.21875f,  0.0f, 0.109375f, 0.09375f },
+        { 0.328125f, 0.0f, 0.109375f, 0.09375f },
+        { 0.4375f,   0.0f, 0.109375f, 0.09375f },
+        { -1.0f,     0.0f, 0.0f,      0.0f     }
+    };
+    static NJS_TEXTURE_VTX tv[4] = 
+    {
+        { -0.7f, -1.4f, 0.0f, 0.0f, 0.0f, 0x80808080 },
+        {  0.7f, -1.4f, 0.0f, 0.0f, 0.0f, 0x80808080 },
+        { -0.7f,  0.0f, 0.0f, 0.0f, 0.0f, 0x80808080 },
+        {  0.7f,  0.0f, 0.0f, 0.0f, 0.0f, 0x80808080 }
+    };
+    
+    njPushMatrixEx();
+    
+    njSetTexture(&sys->ef_tlist);
+    njSetTextureNum(sys->ef_tn[32]);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 10);
+    
+    njTextureFilterMode(0);
+    
+    erp = (ER_WORK*)&op->exp0[4];
+    
+    i = 8;
+    
+    while (i-- != 0)
+    {
+        uvp = &uvinfo[erp->ay];
+        
+        tv[0].u = uvp->u;
+        tv[0].v = uvp->v;
+        
+        tv[1].u = uvp->u + uvp->xs;
+        tv[1].v = uvp->v;
+        
+        tv[2].u = uvp->u;
+        tv[2].v = uvp->v + uvp->ys;
+        
+        tv[3].u = uvp->u + uvp->xs;
+        tv[3].v = uvp->v + uvp->ys;
+        
+        if ((sys->sp_flg & 0x8))
+        {
+            erp->ay++;
+        }
+        
+        if ((erp->ay < 5) && (erp->ax != 0)) 
+        {
+            njSetMatrix(NULL, cam.mtx);
+            
+            njTranslateEx((NJS_VECTOR*)&erp->px);
+            njUnitRotPortion(NULL);
+            
+            njDrawTexture3DEx(tv, 4, 1);
+        }
+        
+        erp++;
+    } 
+    
+    njPopMatrixEx();
 }
 
 // 
@@ -5282,7 +5311,7 @@ void bhEff111(O_WRK* op)
 {
 	float wcos;
 	float wsin;
-	//_anon3* tvp;
+	NJS_TEXTUREH_VTX* tvp;
 	// Line 5335, Address: 0x2311d0, Func Offset: 0
 	// Line 5338, Address: 0x2311e4, Func Offset: 0x14
 	// Line 5339, Address: 0x2311fc, Func Offset: 0x2c
@@ -5581,7 +5610,7 @@ void bhDraw114(O_WRK* op)
 	float it;
 	NJS_VECTOR vc1;
 	//NJS_VECTOR vc1;
-	//_anon3* tvp;
+	NJS_TEXTUREH_VTX* tvp;
 	// Line 5601, Address: 0x231fe0, Func Offset: 0
 	// Line 5606, Address: 0x231ff4, Func Offset: 0x14
 	// Line 5608, Address: 0x231ffc, Func Offset: 0x1c
@@ -5620,7 +5649,7 @@ void bhEff114(O_WRK* op)
 	float v;
 	float u;
 	int pt;
-	//_anon3* tvp;
+	NJS_TEXTUREH_VTX* tvp;
 	NJS_VECTOR vc1;
 	// Line 5643, Address: 0x232190, Func Offset: 0
 	// Line 5649, Address: 0x2321a0, Func Offset: 0x10
@@ -5939,6 +5968,7 @@ void bhEff116(O_WRK* op)
         sys->ef.pz = op->pz;
         
         bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+		break;
     }
 }
 

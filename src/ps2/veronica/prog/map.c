@@ -2113,47 +2113,53 @@ static void MapTagEntry(NJS_MATRIX* basP, int rom_no, NJS_POINT3* posP)
     } 
 }
 
-// 
-// Start address: 0x2b5ef0
+// 100% matching!
 static tag_wrk_typ* MapTagConnect(int rom_no)
 {
-	int dir;
-	float d;
-	tag_wrk_typ* twP;
-	float dst[4];
-	int i;
-	tag_wrk_typ* basP;
-	tag_wrk_typ* rtnP;
-	int num;
-	// Line 2959, Address: 0x2b5ef0, Func Offset: 0
-	// Line 2962, Address: 0x2b5f14, Func Offset: 0x24
-	// Line 2964, Address: 0x2b5f20, Func Offset: 0x30
-	// Line 2962, Address: 0x2b5f24, Func Offset: 0x34
-	// Line 2964, Address: 0x2b5f28, Func Offset: 0x38
-	// Line 2968, Address: 0x2b5f30, Func Offset: 0x40
-	// Line 2971, Address: 0x2b5f38, Func Offset: 0x48
-	// Line 2968, Address: 0x2b5f40, Func Offset: 0x50
-	// Line 2973, Address: 0x2b5f44, Func Offset: 0x54
-	// Line 2971, Address: 0x2b5f48, Func Offset: 0x58
-	// Line 2972, Address: 0x2b5f58, Func Offset: 0x68
-	// Line 2973, Address: 0x2b5f68, Func Offset: 0x78
-	// Line 2974, Address: 0x2b5f78, Func Offset: 0x88
-	// Line 2978, Address: 0x2b5f80, Func Offset: 0x90
-	// Line 2979, Address: 0x2b5f88, Func Offset: 0x98
-	// Line 2978, Address: 0x2b5f90, Func Offset: 0xa0
-	// Line 2979, Address: 0x2b5f94, Func Offset: 0xa4
-	// Line 2980, Address: 0x2b5f98, Func Offset: 0xa8
-	// Line 2982, Address: 0x2b5f9c, Func Offset: 0xac
-	// Line 2983, Address: 0x2b5fc4, Func Offset: 0xd4
-	// Line 2984, Address: 0x2b5fe4, Func Offset: 0xf4
-	// Line 2985, Address: 0x2b5fe8, Func Offset: 0xf8
-	// Line 2988, Address: 0x2b5ff0, Func Offset: 0x100
-	// Line 2990, Address: 0x2b6000, Func Offset: 0x110
-	// Line 2991, Address: 0x2b6010, Func Offset: 0x120
-	// Line 2993, Address: 0x2b6020, Func Offset: 0x130
-	// Line 2994, Address: 0x2b6024, Func Offset: 0x134
-	// Func End, Address: 0x2b604c, Func Offset: 0x15c
-	scePrintf("MapTagConnect - UNIMPLEMENTED!\n");
+    int dir;          
+    float d;           
+	float dst[4];      
+    int i;             
+	tag_wrk_typ* rtnP, *basP, *twP; 
+	int num;           
+    
+    num = mwP->tag_num;
+    
+    basP = mwP->tag_wrkP;
+    rtnP = NULL;
+    
+    for (i = num; i > 0; i--, basP++) 
+    {
+        twP = mwP->tag_wrkP;
+        
+        dst[0] = dst[1] = dst[2] = dst[3] = 999999.0f;
+        
+        basP->tagPP[0] = basP->tagPP[1] = basP->tagPP[2] = basP->tagPP[3] = NULL;
+        
+        for (num = mwP->tag_num; num > 0; num--, twP++)
+        {
+            if (basP != twP) 
+            {
+                d = ((twP->pos.x - basP->pos.x) * (twP->pos.x - basP->pos.x)) + ((twP->pos.z - basP->pos.z) * (twP->pos.z - basP->pos.z));
+                
+                dir = (((int)(10430.381f * atan2f((twP->pos.z - basP->pos.z), (twP->pos.x - basP->pos.x))) + 8192) / 16384) & 3;
+                
+                if (d < dst[dir]) 
+                {
+                    dst[dir] = d;
+                    
+                    basP->tagPP[dir] = twP;
+                }
+            }
+        }
+        
+        if (basP->rom_no == rom_no) 
+        {
+            rtnP = basP;
+        }
+    } 
+    
+    return rtnP;
 }
 
 // 99.40% matching

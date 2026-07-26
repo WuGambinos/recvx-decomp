@@ -24,7 +24,7 @@ static map_wrk MapWrk;
 
 static map_wrk* mwP = &MapWrk;
 
-const NJS_ARGB MapPal[32] = 
+const static NJS_ARGB MapPal[32] = 
 {
     { 1.0f, 0.7f, 0.7f, 0.7f }, { 1.0f, 0.1f, 0.2f, 0.4f }, { 1.0f, 0.4f, 0.1f, 0.2f }, { 0.5f, 1.0f, 0.5f, 0.0f },
     { 1.0f, 0.6f, 0.1f, 0.5f }, { 0.3f, 0.2f, 0.2f, 0.8f }, { 1.0f, 1.0f, 1.0f, 0.0f }, { 1.0f, 0.0f, 0.4f, 0.8f },
@@ -35,17 +35,17 @@ const NJS_ARGB MapPal[32] =
     { 1.0f, 0.5f, 0.1f, 0.1f }, { 1.0f, 0.5f, 0.3f, 0.3f }, { 1.0f, 1.0f, 1.0f, 1.0f }, { 1.0f, 1.0f, 1.0f, 1.0f },
     { 1.0f, 0.8f, 0.8f, 0.0f }, { 1.0f, 0.8f, 0.0f, 0.8f }, { 1.0f, 0.0f, 0.8f, 0.8f }, { 1.0f, 0.8f, 0.8f, 0.0f }
 };
-const NJS_COLOR MapCol[3] = 
+const static NJS_COLOR MapCol[3] = 
 {
     { 0xFF000800 }, { 0xFF003000 }, { 0xC0A0A0A0 }
 };
-const ID_WORK ItmDat[22] = 
+const static ID_WORK ItmDat[22] = 
 {
     { 59, 96 },  { 86, 96 },  { 84, 97 },  { 56, 98 },  { 51, 99 },  { 67, 100 }, { 68, 101 }, { 33, 102 },  { 73, 103 }, { 62, 104 }, 
 	{ 93, 105 }, { 76, 106 }, { 75, 107 }, { 89, 108 }, { 90, 109 }, { 81, 110 }, { 92, 111 }, { 105, 112 }, { 66, 113 }, { 44, 114 },
     { 46, 115 }, { 108, 116 }
 };
-const unsigned short CncDatA[81] = 
+const static unsigned short CncDatA[81] = 
 {
     65284, 1, 65285, 256, 416, 65325, 40960, 40961, 41121, 65347, 41376, 41232, 41233, 41234, 65287, 4113, 65288, 4368, 4370, 4513, 4400, 
 	4401, 4402, 65289, 4625, 65294, 12337, 65295, 12592, 12594, 12560, 12561, 12562, 12706, 65296, 12849, 65345, 41520, 41521, 41522, 
@@ -53,7 +53,7 @@ const unsigned short CncDatA[81] =
     16417, 16418, 16419, 16464, 65298, 16704, 65299, 20544, 20545, 20576, 20577, 20578, 65300, 24673, 65301, 24928, 24930, 24912, 65302, 
 	25185, 65535
 };
-const unsigned short CncDatB[49] = 
+const static unsigned short CncDatB[49] = 
 {
     65303, 28785, 65304, 29040, 29042, 65294, 29297, 29299, 65295, 29554, 29556, 29568, 29569, 65296, 29811, 65297, 32897, 32880, 32881, 
 	32882, 32883, 32884, 32912, 32913, 32914, 32915, 32916, 32917, 65298, 33152, 65305, 37009, 65306, 37264, 37266, 65307, 37521, 37523, 
@@ -1989,89 +1989,87 @@ static int FtskMapZoom(FTS_WORK* ftsP)
     return bol;
 }
 
-// 
-// Start address: 0x2b5560
+// 100% matching!
 static int FsubGaugeDrawZ(FG_WORK* fgP)
 {
-	float size;
-	float tmp;
-	float dsp;
-	float pos;
-	int cnt;
-	NJS_POINT2 pnt[2];
-	NJS_COLOR col[2];
-	float scl;
-	NJS_POINT2COL p2c;
-	// Line 2712, Address: 0x2b5560, Func Offset: 0
-	// Line 2719, Address: 0x2b558c, Func Offset: 0x2c
-	// Line 2728, Address: 0x2b559c, Func Offset: 0x3c
-	// Line 2736, Address: 0x2b55a0, Func Offset: 0x40
-	// Line 2719, Address: 0x2b55a4, Func Offset: 0x44
-	// Line 2729, Address: 0x2b55b0, Func Offset: 0x50
-	// Line 2736, Address: 0x2b55b4, Func Offset: 0x54
-	// Line 2730, Address: 0x2b55b8, Func Offset: 0x58
-	// Line 2719, Address: 0x2b55bc, Func Offset: 0x5c
-	// Line 2727, Address: 0x2b55c4, Func Offset: 0x64
-	// Line 2719, Address: 0x2b55c8, Func Offset: 0x68
-	// Line 2727, Address: 0x2b55cc, Func Offset: 0x6c
-	// Line 2728, Address: 0x2b55d0, Func Offset: 0x70
-	// Line 2729, Address: 0x2b55d8, Func Offset: 0x78
-	// Line 2730, Address: 0x2b55e0, Func Offset: 0x80
-	// Line 2738, Address: 0x2b55e8, Func Offset: 0x88
-	// Line 2719, Address: 0x2b55ec, Func Offset: 0x8c
-	// Line 2736, Address: 0x2b55f0, Func Offset: 0x90
-	// Line 2719, Address: 0x2b55f4, Func Offset: 0x94
-	// Line 2738, Address: 0x2b55f8, Func Offset: 0x98
-	// Line 2736, Address: 0x2b5600, Func Offset: 0xa0
-	// Line 2740, Address: 0x2b5608, Func Offset: 0xa8
-	// Line 2741, Address: 0x2b5624, Func Offset: 0xc4
-	// Line 2740, Address: 0x2b5628, Func Offset: 0xc8
-	// Line 2741, Address: 0x2b5630, Func Offset: 0xd0
-	// Line 2742, Address: 0x2b5644, Func Offset: 0xe4
-	// Line 2743, Address: 0x2b5668, Func Offset: 0x108
-	// Line 2742, Address: 0x2b5674, Func Offset: 0x114
-	// Line 2743, Address: 0x2b5678, Func Offset: 0x118
-	// Line 2744, Address: 0x2b5688, Func Offset: 0x128
-	// Line 2746, Address: 0x2b5698, Func Offset: 0x138
-	// Line 2744, Address: 0x2b569c, Func Offset: 0x13c
-	// Line 2746, Address: 0x2b56a0, Func Offset: 0x140
-	// Line 2744, Address: 0x2b56a8, Func Offset: 0x148
-	// Line 2745, Address: 0x2b56ac, Func Offset: 0x14c
-	// Line 2746, Address: 0x2b56b4, Func Offset: 0x154
-	// Line 2747, Address: 0x2b56c4, Func Offset: 0x164
-	// Line 2748, Address: 0x2b56c8, Func Offset: 0x168
-	// Line 2747, Address: 0x2b56d4, Func Offset: 0x174
-	// Line 2748, Address: 0x2b56d8, Func Offset: 0x178
-	// Line 2749, Address: 0x2b56ec, Func Offset: 0x18c
-	// Line 2748, Address: 0x2b56f0, Func Offset: 0x190
-	// Line 2749, Address: 0x2b56f4, Func Offset: 0x194
-	// Line 2748, Address: 0x2b5700, Func Offset: 0x1a0
-	// Line 2749, Address: 0x2b5704, Func Offset: 0x1a4
-	// Line 2752, Address: 0x2b5710, Func Offset: 0x1b0
-	// Line 2754, Address: 0x2b5744, Func Offset: 0x1e4
-	// Line 2755, Address: 0x2b5764, Func Offset: 0x204
-	// Line 2756, Address: 0x2b576c, Func Offset: 0x20c
-	// Line 2757, Address: 0x2b5770, Func Offset: 0x210
-	// Line 2758, Address: 0x2b5778, Func Offset: 0x218
-	// Line 2759, Address: 0x2b5790, Func Offset: 0x230
-	// Line 2764, Address: 0x2b57b8, Func Offset: 0x258
-	// Line 2767, Address: 0x2b57d4, Func Offset: 0x274
-	// Line 2768, Address: 0x2b5800, Func Offset: 0x2a0
-	// Line 2769, Address: 0x2b5830, Func Offset: 0x2d0
-	// Line 2772, Address: 0x2b5838, Func Offset: 0x2d8
-	// Line 2775, Address: 0x2b584c, Func Offset: 0x2ec
-	// Line 2772, Address: 0x2b5850, Func Offset: 0x2f0
-	// Line 2775, Address: 0x2b5854, Func Offset: 0x2f4
-	// Line 2772, Address: 0x2b585c, Func Offset: 0x2fc
-	// Line 2773, Address: 0x2b5864, Func Offset: 0x304
-	// Line 2774, Address: 0x2b586c, Func Offset: 0x30c
-	// Line 2775, Address: 0x2b5878, Func Offset: 0x318
-	// Line 2776, Address: 0x2b5888, Func Offset: 0x328
-	// Line 2783, Address: 0x2b58b8, Func Offset: 0x358
-	// Line 2782, Address: 0x2b58e0, Func Offset: 0x380
-	// Line 2783, Address: 0x2b58e4, Func Offset: 0x384
-	// Func End, Address: 0x2b58ec, Func Offset: 0x38c
-	scePrintf("FsubGaugeDrawZ - UNIMPLEMENTED!\n");
+    float scl;        
+    NJS_COLOR col[2]; 
+    NJS_POINT2 pnt[2]; 
+    int cnt;         
+    float pos, dsp;         
+    float tmp;       
+    float size;     
+    float dist; // not from DWARF
+    float yy;   // not from DWARF
+	static NJS_POINT2COL p2c;
+
+    dist = (_nj_screen_.dist * (5.0f / mwP->vew_mtxP[0][14])) / 5.0f;
+    
+    p2c.tex = NULL;
+    p2c.p   = pnt;
+    p2c.col = col;
+    p2c.num = 1;
+    
+    yy = fgP->gge_pos.y - (100.0f * dist);
+    
+    col[0].color = col[1].color = mwP->MapCol[2].color;
+    
+    pnt[0].y = pnt[1].y = 0.5f + floorf(yy);
+    
+    pnt[0].x = floorf(fgP->gge_pos.x - 1.0f);
+    pnt[1].x = 0.5f + floorf(fgP->gge_pos.x - 8.0f);
+    
+    njDrawLine2D(&p2c, p2c.num, fgP->gge_pos.z, 0);
+    
+    pnt[1].y = 0.5f + floorf(yy + (100.0f * dist));
+    pnt[1].x = pnt[0].x;
+    
+    njDrawLine2D(&p2c, p2c.num, fgP->gge_pos.z, 0);
+    
+    pnt[0].y = pnt[1].y;
+    pnt[0].x = 0.5f + floorf(fgP->gge_pos.x - 8.0f);
+    
+    njDrawLine2D(&p2c, p2c.num, fgP->gge_pos.z, 0);
+    
+    tmp = 1000.0f + ((mwP->vew_pos.z - 50.0f) / 5.0f);
+    
+    if (!njFraction(tmp)) 
+    {
+        cnt = tmp;
+        
+        pos = 0; 
+    } 
+    else 
+    {
+        cnt = ceilf(tmp);
+        
+        pos = 5.0f * (1.0f - njFraction(tmp));
+    }
+    
+    for ( ; pos <= 100.0f; pos += 5.0f, cnt++)
+    {
+        if ((cnt % 10) == 0)
+        {
+            size = 9.0f;
+        }
+        else if ((cnt % 2) == 0) 
+        {
+            size = 5.0f;
+        } 
+        else 
+        {
+            size = 3.0f;
+        }
+        
+        pnt[0].y = pnt[1].y = 0.5f + floorf(yy + (pos * dist));
+        
+        pnt[0].x = fgP->gge_pos.x;
+        pnt[1].x = fgP->gge_pos.x + size;
+        
+        njDrawLine2D(&p2c, p2c.num, fgP->gge_pos.z, 0);
+    }
+    
+    return 1;
 }
 
 // 100% matching!
@@ -2320,8 +2318,8 @@ static tag_wrk_typ* MapTagCenter()
 // 100% matching!
 static void MapDrawLine2(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal) 
 {
-    static NJS_POINT2 pnt[2];
     static NJS_COLOR col[2];
+    static NJS_POINT2 pnt[2];
     static NJS_POINT2COL p2c = { pnt, col, NULL, 1 };
 
     pnt[0].x = srcP->x;
@@ -2338,8 +2336,8 @@ static void MapDrawLine2(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal)
 // 100% matching!
 static void MapDrawLine(NJS_POINT2* srcP, NJS_POINT2* dstP, float pri, int pal)
 { 
-    static NJS_POINT2 pnt[2];
     static NJS_COLOR col[2];
+    static NJS_POINT2 pnt[2];
     static NJS_POINT2COL p2c = { pnt, col, NULL, 1 };
 
     pnt[0].x = 0.5f + floorf(srcP->x);

@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 60.559086,
+    "fuzzy_match_percent": 61.23647,
     "total_code": "1904472",
-    "matched_code": "922040",
-    "matched_code_percent": 48.414467,
+    "matched_code": "933780",
+    "matched_code_percent": 49.03091,
     "total_data": "28428164",
-    "matched_data": "28229044",
-    "matched_data_percent": 99.29957,
+    "matched_data": "28232708",
+    "matched_data_percent": 99.312454,
     "total_functions": 4529,
-    "matched_functions": 3123,
-    "matched_functions_percent": 68.95562,
+    "matched_functions": 3145,
+    "matched_functions_percent": 69.441376,
     "total_units": 200
   },
   "units": [
@@ -15523,14 +15523,14 @@
     {
       "name": "ps2/veronica/prog/effsub1",
       "measures": {
-        "fuzzy_match_percent": 33.913666,
+        "fuzzy_match_percent": 40.441757,
         "total_code": "85296",
-        "matched_code": "10548",
-        "matched_code_percent": 12.366347,
+        "matched_code": "15856",
+        "matched_code_percent": 18.589384,
         "total_data": "12648",
         "total_functions": 74,
-        "matched_functions": 15,
-        "matched_functions_percent": 20.27027,
+        "matched_functions": 29,
+        "matched_functions_percent": 39.18919,
         "total_units": 1
       },
       "sections": [
@@ -15541,7 +15541,7 @@
         {
           "name": ".data",
           "size": "12216",
-          "fuzzy_match_percent": 16.363363,
+          "fuzzy_match_percent": 39.011208,
           "metadata": {}
         },
         {
@@ -15557,7 +15557,7 @@
         {
           "name": ".text",
           "size": "85840",
-          "fuzzy_match_percent": 33.913666,
+          "fuzzy_match_percent": 40.441757,
           "metadata": {}
         },
         {
@@ -15639,7 +15639,7 @@
         {
           "name": "bhEff005",
           "size": "472",
-          "fuzzy_match_percent": 1.9067796,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "17104"
         },
@@ -15660,7 +15660,7 @@
         {
           "name": "bhEff008",
           "size": "500",
-          "fuzzy_match_percent": 1.8,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "19392"
         },
@@ -15835,28 +15835,28 @@
         {
           "name": "bhEff029",
           "size": "56",
-          "fuzzy_match_percent": 2.142857,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "43904"
         },
         {
           "name": "bhEff100",
           "size": "492",
-          "fuzzy_match_percent": 1.8292683,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "43968"
         },
         {
           "name": "bhEff101",
           "size": "316",
-          "fuzzy_match_percent": 2.8481014,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "44464"
         },
         {
           "name": "bhEff102",
           "size": "388",
-          "fuzzy_match_percent": 2.371134,
+          "fuzzy_match_percent": 99.896904,
           "metadata": {},
           "address": "44784"
         },
@@ -15891,7 +15891,7 @@
         {
           "name": "bhDraw107",
           "size": "436",
-          "fuzzy_match_percent": 2.0642202,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "48544"
         },
@@ -15912,7 +15912,7 @@
         {
           "name": "bhEff109",
           "size": "232",
-          "fuzzy_match_percent": 3.8793104,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "51120"
         },
@@ -15933,7 +15933,7 @@
         {
           "name": "bhEff112",
           "size": "292",
-          "fuzzy_match_percent": 3.0821917,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "55872"
         },
@@ -15968,14 +15968,14 @@
         {
           "name": "bhEff116",
           "size": "392",
-          "fuzzy_match_percent": 2.2959185,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "61056"
         },
         {
           "name": "bhEff117",
           "size": "484",
-          "fuzzy_match_percent": 1.8595041,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "61456"
         },
@@ -15996,21 +15996,21 @@
         {
           "name": "bhEff120",
           "size": "476",
-          "fuzzy_match_percent": 1.8907562,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "63920"
         },
         {
           "name": "bhEff121",
           "size": "400",
-          "fuzzy_match_percent": 2.25,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "64400"
         },
         {
           "name": "bhEff122",
           "size": "284",
-          "fuzzy_match_percent": 3.169014,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "64800"
         },
@@ -16073,7 +16073,7 @@
         {
           "name": "bhEff131",
           "size": "476",
-          "fuzzy_match_percent": 1.8907562,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "83248"
         },
@@ -25374,23 +25374,23 @@
     {
       "name": "ps2/veronica/prog/map",
       "measures": {
-        "fuzzy_match_percent": 65.47758,
+        "fuzzy_match_percent": 99.304855,
         "total_code": "21676",
-        "matched_code": "10968",
-        "matched_code_percent": 50.599743,
+        "matched_code": "17400",
+        "matched_code_percent": 80.27312,
         "total_data": "3824",
-        "matched_data": "160",
-        "matched_data_percent": 4.1841006,
+        "matched_data": "3824",
+        "matched_data_percent": 100.0,
         "total_functions": 61,
-        "matched_functions": 46,
-        "matched_functions_percent": 75.409836,
+        "matched_functions": 54,
+        "matched_functions_percent": 88.52459,
         "total_units": 1
       },
       "sections": [
         {
           "name": ".bss",
           "size": "1680",
-          "fuzzy_match_percent": 96.13527,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -25410,13 +25410,13 @@
         {
           "name": ".rodata",
           "size": "1984",
-          "fuzzy_match_percent": 92.63158,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
           "name": ".text",
           "size": "22048",
-          "fuzzy_match_percent": 65.47758,
+          "fuzzy_match_percent": 99.304855,
           "metadata": {}
         },
         {
@@ -25624,14 +25624,14 @@
         {
           "name": "FsprArrowDraw",
           "size": "828",
-          "fuzzy_match_percent": 1.1111112,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "10976"
         },
         {
           "name": "FsprArrowDraw2",
           "size": "500",
-          "fuzzy_match_percent": 1.8,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "11808"
         },
@@ -25680,21 +25680,21 @@
         {
           "name": "FtskMapZoom",
           "size": "832",
-          "fuzzy_match_percent": 1.1057693,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "13104"
         },
         {
           "name": "FsubGaugeDrawZ",
           "size": "908",
-          "fuzzy_match_percent": 0.9911894,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "13936"
         },
         {
           "name": "FsubGaugeDrawX",
           "size": "932",
-          "fuzzy_match_percent": 0.9656652,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "14848"
         },
@@ -25722,14 +25722,14 @@
         {
           "name": "MapTagConnect",
           "size": "348",
-          "fuzzy_match_percent": 2.586207,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "16384"
         },
         {
           "name": "MapTagCenter",
           "size": "200",
-          "fuzzy_match_percent": 4.5,
+          "fuzzy_match_percent": 99.4,
           "metadata": {},
           "address": "16736"
         },
@@ -25771,14 +25771,14 @@
         {
           "name": "FsubZoomCursor",
           "size": "844",
-          "fuzzy_match_percent": 1.0900474,
+          "fuzzy_match_percent": 93.90995,
           "metadata": {},
           "address": "17456"
         },
         {
           "name": "FsubZoomInfomation",
           "size": "600",
-          "fuzzy_match_percent": 1.5333333,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "18304"
         },
@@ -25792,7 +25792,7 @@
         {
           "name": "FsubZoomScreen",
           "size": "1484",
-          "fuzzy_match_percent": 0.61994606,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "19072"
         },
@@ -41151,16 +41151,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 58.738934,
+        "fuzzy_match_percent": 59.447582,
         "total_code": "1820460",
-        "matched_code": "838028",
-        "matched_code_percent": 46.03386,
+        "matched_code": "849768",
+        "matched_code_percent": 46.678753,
         "total_data": "28336764",
-        "matched_data": "28162756",
-        "matched_data_percent": 99.385925,
+        "matched_data": "28166420",
+        "matched_data_percent": 99.39886,
         "total_functions": 3834,
-        "matched_functions": 2428,
-        "matched_functions_percent": 63.328117,
+        "matched_functions": 2450,
+        "matched_functions_percent": 63.90193,
         "total_units": 152
       }
     },

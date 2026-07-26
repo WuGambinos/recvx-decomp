@@ -13,27 +13,6 @@
 #include "../../../ps2/veronica/prog/weapon.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-/*_anon7* sys;
-_anon49 cam;
-void(*bhDrawWeaponEffect)(O_WRK*);
-BH_PWORK* plp;
-BH_PWORK ene[0];
-_anon22 WpnTab[0];
-_anon12* rom;
-void(*bhDraw021)(O_WRK*);
-void(*bhDraw022)(O_WRK*);
-void(*bhDraw024)(O_WRK*);
-void(*bhDraw025)(O_WRK*);
-void(*bhDraw027)(O_WRK*);
-void(*bhEff106)(O_WRK*);
-void(*bhDraw107)(O_WRK*);
-float BHD_ASPECT_X;
-float BHD_ASPECT_Y;
-_anon37 tbuf[0];
-float cmat[16];
-void(*bhDraw114)(O_WRK*);
-O_WRK eff[0];*/
-
 // 100% matching!
 void bhEffDmy(O_WRK* op)
 {
@@ -3744,7 +3723,7 @@ void bhDraw022(O_WRK* op)
 	//_anon41 scl;
 	//_anon36* exp;
 	UV_WORK* uvp;
-	//_anon5 tv[4];
+	NJS_TEXTURE_VTX tv[4];
 	UV_WORK uvinfo[15];
 	// Line 3765, Address: 0x22c7e0, Func Offset: 0
 	// Line 3793, Address: 0x22c7f4, Func Offset: 0x14
@@ -3989,12 +3968,12 @@ void bhDraw024(O_WRK* op)
 	//_anon41 scl;
 	//_anon36* exp;
 	UV_WORK* uvp;
-	//_anon5* tv;
+	NJS_TEXTURE_VTX* tv;
 	int ef24ct[2];
 	UV_WORK uvinfo1[11];
-	//_anon5 tv1[4];
+	NJS_TEXTURE_VTX tv1[4];
 	UV_WORK uvinfo0[8];
-	//_anon5 tv0[4];
+	NJS_TEXTURE_VTX tv0[4];
 	// Line 4030, Address: 0x22d430, Func Offset: 0
 	// Line 4077, Address: 0x22d448, Func Offset: 0x18
 	// Line 4079, Address: 0x22d450, Func Offset: 0x20
@@ -4168,7 +4147,7 @@ void bhDraw025(O_WRK* op)
 	//_anon41 scl;
 	//_anon2* exp;
 	UV_WORK* uvp;
-	//_anon5 tv[4];
+	NJS_TEXTURE_VTX tv[4];
 	UV_WORK uvinfo[11];
 	// Line 4231, Address: 0x22db40, Func Offset: 0
 	// Line 4279, Address: 0x22db50, Func Offset: 0x10
@@ -4362,7 +4341,7 @@ void bhDraw027(O_WRK* op)
 	//_anon41 scl;
 	//_anon2* exp;
 	UV_WORK* uvp;
-	//_anon5 tv[4];
+	NJS_TEXTURE_VTX tv[4];
 	UV_WORK uvinfo[11];
 	// Line 4437, Address: 0x22e440, Func Offset: 0
 	// Line 4461, Address: 0x22e450, Func Offset: 0x10
@@ -4592,25 +4571,26 @@ void bhEff101(O_WRK* op)
     bhSetEffectTb(&sys->ef, NULL, NULL, 0);
 }
 
-// 
-// Start address: 0x22ee60
-void bhEff102(O_WRK* op)
+// 99.90% matching
+void bhEff102(O_WRK* op) 
 {
-	// Line 4671, Address: 0x22ee60, Func Offset: 0
-	// Line 4672, Address: 0x22ee70, Func Offset: 0x10
-	// Line 4673, Address: 0x22ee78, Func Offset: 0x18
-	// Line 4672, Address: 0x22ee7c, Func Offset: 0x1c
-	// Line 4673, Address: 0x22ee84, Func Offset: 0x24
-	// Line 4674, Address: 0x22eea0, Func Offset: 0x40
-	// Line 4675, Address: 0x22eec0, Func Offset: 0x60
-	// Line 4676, Address: 0x22eecc, Func Offset: 0x6c
-	// Line 4677, Address: 0x22ef38, Func Offset: 0xd8
-	// Line 4678, Address: 0x22ef40, Func Offset: 0xe0
-	// Line 4680, Address: 0x22ef8c, Func Offset: 0x12c
-	// Line 4681, Address: 0x22efb8, Func Offset: 0x158
-	// Line 4682, Address: 0x22efd0, Func Offset: 0x170
-	// Func End, Address: 0x22efe4, Func Offset: 0x184
-	scePrintf("bhEff102 - UNIMPLEMENTED!\n");
+    op->flg |= 0x1000000;
+    
+    sys->windrb = sys->windr;
+    sys->windsb = sys->winds;
+    
+    if (op->lkono != 0)
+    {
+        sys->windr += (int)(182.04445f * ((op->sz * (-rand() / -2.1474836E9f)) - (0.5f * op->sz))) & 0xFFFF;
+    } 
+    else 
+    {
+        sys->windr = op->ay + ((int)(182.04445f * (20.0f * njSin(op->ct0))) & 0xFFFF);
+    }
+    
+    sys->winds = op->sx + (op->sy * njSin(op->ct0));
+    
+    op->ct0 = (unsigned short)(op->ct0 + (op->type * 256));
 }
 
 // 
@@ -4837,7 +4817,7 @@ void bhDraw107(O_WRK* op)
 	int i;
 	UV_WORK* uvp;
 	ER_WORK* erp;
-	//_anon5 tv[4];
+	NJS_TEXTURE_VTX tv[4];
 	UV_WORK uvinfo[6];
 	// Line 4886, Address: 0x22fd10, Func Offset: 0
 	// Line 4904, Address: 0x22fd20, Func Offset: 0x10

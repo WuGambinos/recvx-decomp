@@ -2102,74 +2102,140 @@ void bhEff007(O_WRK* op)
 	scePrintf("bhEff007 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x228b30
-void bhEff008(O_WRK* op)
+// 100% matching!
+void bhEff008(O_WRK* op) 
 {
-	UV_WORK* uvp;
-	UV_WORK uvinfo_f1[9];
-	UV_WORK uvinfo_f0[11];
-	UV_WORK uvinfo_fst[11];
-	// Line 1953, Address: 0x228b30, Func Offset: 0
-	// Line 1955, Address: 0x228b44, Func Offset: 0x14
-	// Line 1956, Address: 0x228b4c, Func Offset: 0x1c
-	// Line 1973, Address: 0x228b54, Func Offset: 0x24
-	// Line 1957, Address: 0x228b58, Func Offset: 0x28
-	// Line 1958, Address: 0x228b5c, Func Offset: 0x2c
-	// Line 1960, Address: 0x228b60, Func Offset: 0x30
-	// Line 1956, Address: 0x228b64, Func Offset: 0x34
-	// Line 1957, Address: 0x228b6c, Func Offset: 0x3c
-	// Line 1958, Address: 0x228b70, Func Offset: 0x40
-	// Line 1959, Address: 0x228b74, Func Offset: 0x44
-	// Line 1960, Address: 0x228b78, Func Offset: 0x48
-	// Line 1961, Address: 0x228b7c, Func Offset: 0x4c
-	// Line 1962, Address: 0x228b80, Func Offset: 0x50
-	// Line 1963, Address: 0x228b84, Func Offset: 0x54
-	// Line 1964, Address: 0x228b88, Func Offset: 0x58
-	// Line 1965, Address: 0x228b8c, Func Offset: 0x5c
-	// Line 1966, Address: 0x228b90, Func Offset: 0x60
-	// Line 1967, Address: 0x228b94, Func Offset: 0x64
-	// Line 1968, Address: 0x228b98, Func Offset: 0x68
-	// Line 1973, Address: 0x228b9c, Func Offset: 0x6c
-	// Line 1974, Address: 0x228ba4, Func Offset: 0x74
-	// Line 1975, Address: 0x228ba8, Func Offset: 0x78
-	// Line 1976, Address: 0x228bac, Func Offset: 0x7c
-	// Line 1979, Address: 0x228bb0, Func Offset: 0x80
-	// Line 1977, Address: 0x228bb4, Func Offset: 0x84
-	// Line 1979, Address: 0x228bb8, Func Offset: 0x88
-	// Line 1980, Address: 0x228bbc, Func Offset: 0x8c
-	// Line 1981, Address: 0x228bc0, Func Offset: 0x90
-	// Line 1982, Address: 0x228bc4, Func Offset: 0x94
-	// Line 1984, Address: 0x228be8, Func Offset: 0xb8
-	// Line 1985, Address: 0x228bf0, Func Offset: 0xc0
-	// Line 1987, Address: 0x228bf8, Func Offset: 0xc8
-	// Line 1988, Address: 0x228c00, Func Offset: 0xd0
-	// Line 1990, Address: 0x228c08, Func Offset: 0xd8
-	// Line 1993, Address: 0x228c14, Func Offset: 0xe4
-	// Line 1996, Address: 0x228c1c, Func Offset: 0xec
-	// Line 1997, Address: 0x228c24, Func Offset: 0xf4
-	// Line 1996, Address: 0x228c2c, Func Offset: 0xfc
-	// Line 1997, Address: 0x228c34, Func Offset: 0x104
-	// Line 1998, Address: 0x228c48, Func Offset: 0x118
-	// Line 1999, Address: 0x228c58, Func Offset: 0x128
-	// Line 2000, Address: 0x228c64, Func Offset: 0x134
-	// Line 2002, Address: 0x228c68, Func Offset: 0x138
-	// Line 2003, Address: 0x228c6c, Func Offset: 0x13c
-	// Line 2005, Address: 0x228c7c, Func Offset: 0x14c
-	// Line 2014, Address: 0x228c80, Func Offset: 0x150
-	// Line 2005, Address: 0x228c84, Func Offset: 0x154
-	// Line 2006, Address: 0x228c88, Func Offset: 0x158
-	// Line 2007, Address: 0x228c90, Func Offset: 0x160
-	// Line 2008, Address: 0x228ca0, Func Offset: 0x170
-	// Line 2009, Address: 0x228ca8, Func Offset: 0x178
-	// Line 2010, Address: 0x228cb0, Func Offset: 0x180
-	// Line 2011, Address: 0x228cc0, Func Offset: 0x190
-	// Line 2012, Address: 0x228cd0, Func Offset: 0x1a0
-	// Line 2013, Address: 0x228ce0, Func Offset: 0x1b0
-	// Line 2014, Address: 0x228cec, Func Offset: 0x1bc
-	// Line 2015, Address: 0x228d1c, Func Offset: 0x1ec
-	// Func End, Address: 0x228d24, Func Offset: 0x1f4
-	scePrintf("bhEff008 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    static UV_WORK uvinfo_f0[11] = 
+    {
+        { 0.0f,    0.0f,    0.1875f, 0.1875f },
+        { 0.1875f, 0.0f,    0.1875f, 0.1875f },
+        { 0.375f,  0.0f,    0.1875f, 0.1875f },
+        { 0.5625f, 0.0f,    0.1875f, 0.1875f },
+        { 0.75f,   0.0f,    0.1875f, 0.1875f },
+        { 0.0f,    0.1875f, 0.1875f, 0.1875f },
+        { 0.1875f, 0.1875f, 0.1875f, 0.1875f },
+        { 0.375f,  0.1875f, 0.1875f, 0.1875f },
+        { 0.5625f, 0.1875f, 0.1875f, 0.1875f },
+        { 0.75f,   0.1875f, 0.1875f, 0.1875f },
+        { -1.0f,   0.0f,    0.0f,    0.0f    }
+    };
+    static UV_WORK uvinfo_fst[11] = 
+    {
+        { 0.0f,    0.375f,  0.1875f, 0.1875f },
+        { 0.1875f, 0.375f,  0.1875f, 0.1875f },
+        { 0.375f,  0.375f,  0.1875f, 0.1875f },
+        { 0.5625f, 0.375f,  0.1875f, 0.1875f },
+        { 0.75f,   0.375f,  0.1875f, 0.1875f },
+        { 0.0f,    0.5625f, 0.1875f, 0.1875f },
+        { 0.1875f, 0.5625f, 0.1875f, 0.1875f },
+        { 0.375f,  0.5625f, 0.1875f, 0.1875f },
+        { 0.5625f, 0.5625f, 0.1875f, 0.1875f },
+        { 0.75f,   0.5625f, 0.1875f, 0.1875f },
+        { -1.0f,   0.0f,    0.0f,    0.0f    }
+    };
+    static UV_WORK uvinfo_f1[9] = 
+    {
+        { 0.0f,   0.875f, 0.125f, 0.125f },
+        { 0.125f, 0.875f, 0.125f, 0.125f },
+        { 0.25f,  0.875f, 0.125f, 0.125f },
+        { 0.375f, 0.875f, 0.125f, 0.125f },
+        { 0.5f,   0.875f, 0.125f, 0.125f },
+        { 0.625f, 0.875f, 0.125f, 0.125f },
+        { 0.75f,  0.875f, 0.125f, 0.125f },
+        { 0.875f, 0.875f, 0.125f, 0.125f },
+        { -1.0f,  0.0f,   0.0f,   0.0f   }
+    };
+    
+    switch (op->mode0) 
+    {
+    case 0:
+        op->tex_id = 8;
+        
+        op->flg |= 0x4100000;
+        
+        op->tv[0].x = -1.0f;
+        op->tv[0].y = -2.0f;
+        op->tv[0].z = 0;
+        
+        op->tv[1].x = 1.0f;
+        op->tv[1].y = -2.0f;
+        op->tv[1].z = 0;
+        
+        op->tv[2].x = -1.0f;
+        op->tv[2].y = 0;
+        op->tv[2].z = 0;
+        
+        op->tv[3].x = 1.0f;
+        op->tv[3].y = 0;
+        op->tv[3].z = 0;
+        
+        op->tv[0].col = 0xFFE0E0E0;
+        op->tv[1].col = 0xFFE0E0E0;
+        op->tv[2].col = 0xFFE0E0E0;
+        op->tv[3].col = 0xFFE0E0E0;
+        
+        op->bl_src = 8;
+        op->bl_dst = 6;
+        
+        op->ani_ct = 0;
+        
+        op->ct0 = 0;
+        
+        switch (op->type) 
+        {                          
+        case 1:
+            uvp = uvinfo_f1;
+            
+            op->exp0 = (unsigned char*)uvp;
+            break;
+        case 2:
+            uvp = uvinfo_fst;
+            
+            op->exp0 = (unsigned char*)uvp;
+            break;
+        default:
+            uvp = uvinfo_f0;
+            
+            op->exp0 = (unsigned char*)uvp;
+            break;
+        }
+        
+        op->mode0 = 1;
+        break;
+    }
+    
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+    
+    if (uvp->u == -1.0f) 
+    {
+        if (op->type == 2) 
+        {
+            op->exp0 = (unsigned char*)uvinfo_f1;
+            
+            op->type = 0;
+        }
+        
+        op->ct0 = 0;
+        
+        uvp = (UV_WORK*)op->exp0 + op->ct0;
+    }
+    
+    op->tv[0].u = uvp->u;
+    op->tv[0].v = uvp->v;
+    
+    op->tv[1].u = uvp->u + uvp->xs;
+    op->tv[1].v = uvp->v;
+    
+    op->tv[2].u = uvp->u;
+    op->tv[2].v = uvp->v + uvp->ys;
+    
+    op->tv[3].u = uvp->u + uvp->xs;
+    op->tv[3].v = uvp->v + uvp->ys;
+    
+    op->ct0++;
+    
+    sys->ef_trs[sys->ef_trsn++] = op;
 }
 
 // 100% matching!
@@ -4444,7 +4510,7 @@ void bhEff029(O_WRK* op)
 
     if (op->ct0 == 0)
 	{
-        ((int*)op->lkwkp)[1] |= 0x40;
+        ((int*)op->lkwkp)[1] |= 0x40; // TODO: find the actual struct getting parsed to here
 
     	op->flg = 0;
     }

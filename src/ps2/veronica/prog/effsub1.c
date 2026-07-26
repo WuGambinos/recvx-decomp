@@ -2708,16 +2708,16 @@ void bhEff012(O_WRK* op)
 // Start address: 0x229d50
 void bhEff013(O_WRK* op)
 {
-	//_anon41 vc1;
-	//_anon41 vc0;
-	//_anon41 vec;
+	NJS_VECTOR vc1;
+	//NJS_VECTOR vc1;
+	//NJS_VECTOR vec;
 	int id;
 	float hh;
 	int aa;
 	BH_PWORK* ep;
 	//_anon44 gat;
 	float len;
-	//_anon41 ps;
+	NJS_POINT3 ps;
 	//_anon50 lp;
 	// Line 2586, Address: 0x229d50, Func Offset: 0
 	// Line 2600, Address: 0x229d78, Func Offset: 0x28
@@ -3340,7 +3340,7 @@ void bhEff017(O_WRK* op)
 // Start address: 0x22b980
 void bhEff018(O_WRK* op)
 {
-	//_anon41 pos;
+	NJS_POINT3 pos;
 	UV_WORK* uvp;
 	UV_WORK uvinfo_fs[9];
 	UV_WORK uvinfo_fl[11];
@@ -3720,7 +3720,7 @@ void bhEff021(O_WRK* op)
 void bhDraw022(O_WRK* op)
 {
 	int i;
-	//_anon41 scl;
+	NJS_POINT3 scl;
 	//_anon36* exp;
 	UV_WORK* uvp;
 	NJS_TEXTURE_VTX tv[4];
@@ -3790,8 +3790,8 @@ void bhDraw022(O_WRK* op)
 void bhEff022(O_WRK* op)
 {
 	int i;
-	//_anon41 ps;
-	//_anon41 vc;
+	NJS_POINT3 ps;
+	NJS_VECTOR vc;
 	// Line 3854, Address: 0x22ca60, Func Offset: 0
 	// Line 3855, Address: 0x22ca70, Func Offset: 0x10
 	// Line 3856, Address: 0x22ca80, Func Offset: 0x20
@@ -3856,8 +3856,8 @@ void bhEff023(O_WRK* op)
 {
 	float sch;
 	float scl;
-	//_anon41 vc1;
-	//_anon41 vc0;
+	NJS_VECTOR vc1;
+	//NJS_VECTOR vc1;
 	UV_WORK* uvp;
 	UV_WORK uvinfo_t0[16];
 	// Line 3913, Address: 0x22cd60, Func Offset: 0
@@ -3965,7 +3965,7 @@ void bhEff023(O_WRK* op)
 void bhDraw024(O_WRK* op)
 {
 	int i;
-	//_anon41 scl;
+	NJS_POINT3 scl;
 	//_anon36* exp;
 	UV_WORK* uvp;
 	NJS_TEXTURE_VTX* tv;
@@ -4065,7 +4065,7 @@ void bhDraw024(O_WRK* op)
 void bhEff024(O_WRK* op)
 {
 	float py;
-	//_anon41 vec;
+	NJS_VECTOR vec;
 	//_anon1* hp;
 	// Line 4157, Address: 0x22d770, Func Offset: 0
 	// Line 4161, Address: 0x22d788, Func Offset: 0x18
@@ -4144,7 +4144,7 @@ void bhEff024(O_WRK* op)
 void bhDraw025(O_WRK* op)
 {
 	int i;
-	//_anon41 scl;
+	NJS_POINT3 scl;
 	//_anon2* exp;
 	UV_WORK* uvp;
 	NJS_TEXTURE_VTX tv[4];
@@ -4338,7 +4338,7 @@ void bhEff026(O_WRK* op)
 void bhDraw027(O_WRK* op)
 {
 	int i;
-	//_anon41 scl;
+	NJS_POINT3 scl;
 	//_anon2* exp;
 	UV_WORK* uvp;
 	NJS_TEXTURE_VTX tv[4];
@@ -4414,7 +4414,7 @@ void bhEff027(O_WRK* op)
 {
 	int i;
 	//_anon2* exp;
-	//_anon41 ps;
+	NJS_POINT3 ps;
 	// Line 4516, Address: 0x22e6b0, Func Offset: 0
 	// Line 4520, Address: 0x22e6c4, Func Offset: 0x14
 	// Line 4521, Address: 0x22e6d4, Func Offset: 0x24
@@ -4765,7 +4765,7 @@ void bhEff106(O_WRK* op)
 	ER_WORK* erp;
 	//_anon48 p3c;
 	//_anon27 col[2];
-	//_anon41 pos[2];
+	NJS_POINT3 pos[2];
 	// Line 4835, Address: 0x22fa90, Func Offset: 0
 	// Line 4847, Address: 0x22faa0, Func Offset: 0x10
 	// Line 4848, Address: 0x22faa8, Func Offset: 0x18
@@ -5448,29 +5448,30 @@ void bhEff111(O_WRK* op)
 	scePrintf("bhEff111 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2319b0
+// 100% matching!
 void bhEff112(O_WRK* op)
 {
-	//_anon41 vec;
-	// Line 5504, Address: 0x2319b0, Func Offset: 0
-	// Line 5505, Address: 0x2319b4, Func Offset: 0x4
-	// Line 5504, Address: 0x2319b8, Func Offset: 0x8
-	// Line 5505, Address: 0x2319c0, Func Offset: 0x10
-	// Line 5506, Address: 0x2319d8, Func Offset: 0x28
-	// Line 5515, Address: 0x2319e8, Func Offset: 0x38
-	// Line 5518, Address: 0x231a10, Func Offset: 0x60
-	// Line 5519, Address: 0x231a20, Func Offset: 0x70
-	// Line 5520, Address: 0x231a38, Func Offset: 0x88
-	// Line 5521, Address: 0x231a50, Func Offset: 0xa0
-	// Line 5522, Address: 0x231a60, Func Offset: 0xb0
-	// Line 5523, Address: 0x231a74, Func Offset: 0xc4
-	// Line 5524, Address: 0x231a94, Func Offset: 0xe4
-	// Line 5525, Address: 0x231aa4, Func Offset: 0xf4
-	// Line 5526, Address: 0x231aac, Func Offset: 0xfc
-	// Line 5528, Address: 0x231ac4, Func Offset: 0x114
-	// Func End, Address: 0x231ad4, Func Offset: 0x124
-	scePrintf("bhEff112 - UNIMPLEMENTED!\n");
+    NJS_VECTOR vec = { 0, 0, -1.0f };
+
+    op->flg |= 0x1000000;
+    
+    if ((!(op->mdflg & 0x1)) && (sys->stg_no == 2))
+    {
+        sys->mr_pl.px = op->px;
+        sys->mr_pl.py = op->py;
+        sys->mr_pl.pz = op->pz;
+        
+        njSetMatrix(NULL, cmat);
+        
+        njRotateXYZ(NULL, op->ax, op->ay, op->az);
+        njCalcVector(NULL, &vec, (NJS_VECTOR*)&sys->mr_pl.vx);
+        
+        sys->st_flg |= 0x100;
+    }
+    else 
+    {
+        sys->st_flg &= ~0x100;
+    }
 }
 
 // 
@@ -5485,8 +5486,8 @@ void bhEff113(O_WRK* op)
 	int ct;
 	int j;
 	int i;
-	//_anon41 vc1;
-	//_anon41 vc0;
+	NJS_VECTOR vc1;
+	//NJS_VECTOR vc1;
 	// Line 5535, Address: 0x231ae0, Func Offset: 0
 	// Line 5539, Address: 0x231b10, Func Offset: 0x30
 	// Line 5544, Address: 0x231b3c, Func Offset: 0x5c
@@ -5578,8 +5579,8 @@ void bhDraw114(O_WRK* op)
 {
 	int pt;
 	float it;
-	//_anon41 vc1;
-	//_anon41 vc0;
+	NJS_VECTOR vc1;
+	//NJS_VECTOR vc1;
 	//_anon3* tvp;
 	// Line 5601, Address: 0x231fe0, Func Offset: 0
 	// Line 5606, Address: 0x231ff4, Func Offset: 0x14
@@ -5620,7 +5621,7 @@ void bhEff114(O_WRK* op)
 	float u;
 	int pt;
 	//_anon3* tvp;
-	//_anon41 vc0;
+	NJS_VECTOR vc1;
 	// Line 5643, Address: 0x232190, Func Offset: 0
 	// Line 5649, Address: 0x2321a0, Func Offset: 0x10
 	// Line 5651, Address: 0x2321c0, Func Offset: 0x30
@@ -5994,7 +5995,7 @@ void bhEff118(O_WRK* op)
 	short* wp;
 	float ang;
 	int i;
-	//_anon41 pos;
+	NJS_POINT3 pos;
 	O_WRK* opp;
 	// Line 5957, Address: 0x233170, Func Offset: 0
 	// Line 5963, Address: 0x233188, Func Offset: 0x18
@@ -6542,7 +6543,7 @@ void bhEff125(O_WRK* op)
 void bhEff126(O_WRK* op)
 {
 	int alpha;
-	//_anon41 pos;
+	NJS_POINT3 pos;
 	UV_WORK* uvp;
 	UV_WORK uvinfo_p3[16];
 	UV_WORK uvinfo_p2[20];

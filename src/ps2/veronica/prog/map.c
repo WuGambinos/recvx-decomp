@@ -1511,82 +1511,139 @@ static int FsprSilhouetteDraw(FS_WORK* fsP)
     return bol; 
 }
 
-// 
-// Start address: 0x2b49d0
-static int FsprArrowDraw(FS_WORK* fsP)
+// 100% matching!
+static int FsprArrowDraw(FS_WORK* fsP) 
 {
-	int flr_top;
-	cnc_wrk_typ* srcP;
-	cnc_wrk_typ* dstP;
-	mp_no cn_d;
-	mp_no cn_s;
-	int* prmP;
-	int p_prs;
-	map_nxt* mnP;
-	NJS_POINT3 bak;
-	int count;
-	FSC_WORK* fscP;
-	FSD_WORK* fsdP;
-	// Line 2161, Address: 0x2b49d0, Func Offset: 0
-	// Line 2167, Address: 0x2b49ec, Func Offset: 0x1c
-	// Line 2170, Address: 0x2b49f0, Func Offset: 0x20
-	// Line 2172, Address: 0x2b4a04, Func Offset: 0x34
-	// Line 2170, Address: 0x2b4a08, Func Offset: 0x38
-	// Line 2172, Address: 0x2b4a14, Func Offset: 0x44
-	// Line 2162, Address: 0x2b4a18, Func Offset: 0x48
-	// Line 2172, Address: 0x2b4a1c, Func Offset: 0x4c
-	// Line 2173, Address: 0x2b4a4c, Func Offset: 0x7c
-	// Line 2174, Address: 0x2b4a78, Func Offset: 0xa8
-	// Line 2175, Address: 0x2b4aa4, Func Offset: 0xd4
-	// Line 2176, Address: 0x2b4ad0, Func Offset: 0x100
-	// Line 2179, Address: 0x2b4af4, Func Offset: 0x124
-	// Line 2180, Address: 0x2b4b04, Func Offset: 0x134
-	// Line 2181, Address: 0x2b4b10, Func Offset: 0x140
-	// Line 2183, Address: 0x2b4b18, Func Offset: 0x148
-	// Line 2185, Address: 0x2b4b28, Func Offset: 0x158
-	// Line 2183, Address: 0x2b4b2c, Func Offset: 0x15c
-	// Line 2185, Address: 0x2b4b38, Func Offset: 0x168
-	// Line 2186, Address: 0x2b4b3c, Func Offset: 0x16c
-	// Line 2190, Address: 0x2b4b58, Func Offset: 0x188
-	// Line 2192, Address: 0x2b4b70, Func Offset: 0x1a0
-	// Line 2196, Address: 0x2b4b74, Func Offset: 0x1a4
-	// Line 2193, Address: 0x2b4b78, Func Offset: 0x1a8
-	// Line 2196, Address: 0x2b4b7c, Func Offset: 0x1ac
-	// Line 2197, Address: 0x2b4bb0, Func Offset: 0x1e0
-	// Line 2198, Address: 0x2b4bc4, Func Offset: 0x1f4
-	// Line 2199, Address: 0x2b4bd8, Func Offset: 0x208
-	// Line 2200, Address: 0x2b4bec, Func Offset: 0x21c
-	// Line 2203, Address: 0x2b4bfc, Func Offset: 0x22c
-	// Line 2204, Address: 0x2b4c04, Func Offset: 0x234
-	// Line 2214, Address: 0x2b4c10, Func Offset: 0x240
-	// Line 2216, Address: 0x2b4c30, Func Offset: 0x260
-	// Line 2217, Address: 0x2b4c44, Func Offset: 0x274
-	// Line 2216, Address: 0x2b4c48, Func Offset: 0x278
-	// Line 2217, Address: 0x2b4c4c, Func Offset: 0x27c
-	// Line 2218, Address: 0x2b4c54, Func Offset: 0x284
-	// Line 2219, Address: 0x2b4c5c, Func Offset: 0x28c
-	// Line 2217, Address: 0x2b4c60, Func Offset: 0x290
-	// Line 2221, Address: 0x2b4c64, Func Offset: 0x294
-	// Line 2218, Address: 0x2b4c6c, Func Offset: 0x29c
-	// Line 2219, Address: 0x2b4c70, Func Offset: 0x2a0
-	// Line 2218, Address: 0x2b4c78, Func Offset: 0x2a8
-	// Line 2221, Address: 0x2b4c80, Func Offset: 0x2b0
-	// Line 2222, Address: 0x2b4c94, Func Offset: 0x2c4
-	// Line 2223, Address: 0x2b4c9c, Func Offset: 0x2cc
-	// Line 2224, Address: 0x2b4cac, Func Offset: 0x2dc
-	// Line 2229, Address: 0x2b4cb8, Func Offset: 0x2e8
-	// Line 2231, Address: 0x2b4cc4, Func Offset: 0x2f4
-	// Line 2230, Address: 0x2b4cc8, Func Offset: 0x2f8
-	// Line 2229, Address: 0x2b4ccc, Func Offset: 0x2fc
-	// Line 2230, Address: 0x2b4cd0, Func Offset: 0x300
-	// Line 2231, Address: 0x2b4cd8, Func Offset: 0x308
-	// Line 2230, Address: 0x2b4cdc, Func Offset: 0x30c
-	// Line 2231, Address: 0x2b4ce0, Func Offset: 0x310
-	// Line 2236, Address: 0x2b4ce8, Func Offset: 0x318
-	// Line 2235, Address: 0x2b4d00, Func Offset: 0x330
-	// Line 2236, Address: 0x2b4d04, Func Offset: 0x334
-	// Func End, Address: 0x2b4d0c, Func Offset: 0x33c
-	scePrintf("FsprArrowDraw - UNIMPLEMENTED!\n");
+    FSD_WORK* fsdP;   
+    FSC_WORK* fscP;   
+    int count;       
+    NJS_POINT3 bak;    
+    map_nxt* mnP;      
+    int p_prs;        
+    int* prmP;        
+    mp_no cn_s, cn_d;        
+    cnc_wrk_typ* dstP, *srcP; 
+    int flr_top;       
+
+    count = fsP->spr_cnt.count;
+    
+    bak = fsP->spr_dsp.spr_pos;
+    
+    fsdP = &fsP->spr_dsp; 
+    fscP = &fsP->spr_cnt; 
+    
+    switch (fsP->spr_cnt.spr_mde) 
+    {                              
+    case 0:                                         
+        fsdP->spr_pos.y -= 1.9f * njSin(count);
+        break;
+    case 1:                                         
+        fsdP->spr_pos.y += 1.9f * njSin(count);
+        break;
+    case 2:                                         
+        fsdP->spr_pos.x -= 1.9f * njSin(count);
+        break;
+    case 3:                                         
+        fsdP->spr_pos.x += 1.9f * njSin(count);
+        break;
+    }
+    
+    fsdP->spr_pos.x = floorf(fsdP->spr_pos.x);
+    fsdP->spr_pos.y = floorf(fsdP->spr_pos.y);
+    
+    FsprSpriteDraw(fsP);
+    
+    fsdP->spr_pos = bak;
+    
+    fscP->count = count + 910;
+    
+    if (fscP->count >= 32768) 
+    {
+        fscP->count -= 32768;
+    }
+    
+    if (mwP->map_mode == MP_MOD_WAIT_NORMAL) 
+    {
+        mnP = &mwP->map_nxt;
+        
+        p_prs = mwP->pad_ps;
+        
+        prmP = NULL;
+        
+        switch (fscP->spr_mde)
+        {                       
+        case 0:                                     
+            if ((p_prs & 0x1)) 
+            {
+                prmP = (int*)mnP;
+            }
+            
+            break;
+        case 1:                                     
+            if ((p_prs & 0x2)) 
+            {
+                prmP = &mnP->map_down;
+            }
+            
+            break;
+        case 2:                                     
+            if ((p_prs & 0x4))
+            {
+                prmP = &mnP->map_left;
+            }
+            
+            break;
+        case 3:                                     
+            if ((p_prs & 0x8)) 
+            {
+                prmP = &mnP->map_right;
+            }
+            
+            break;
+        }
+        
+        if (prmP != NULL) 
+        {
+            CallSystemSe(0, 2);
+            
+            if (prmP[0] != 10) 
+            {
+                flr_top = 0;
+            } 
+            else 
+            {
+                flr_top = prmP[1];
+            }
+            
+            dstP = MapCncGet(mwP->stg_no, mwP->flr_no);
+            srcP = MapCncGet(prmP[0], flr_top);
+            
+            cn_d = mwP->stg_no * 16;
+            cn_d = cn_d | mwP->flr_no;
+            
+            cn_s = prmP[0] * 16;
+            cn_s = cn_s | flr_top;
+            
+            if ((fscP->spr_mde == 2) || (fscP->spr_mde == 3)) 
+            {
+                while (srcP != NULL) 
+                {
+                    MapCnc(cn_d, cn_s, dstP->status);
+                    
+                    srcP = srcP->flr_nextP;
+                    
+                    cn_s++;
+                } 
+            }
+            
+            mwP->stg_no = prmP[0];
+            mwP->flr_no = prmP[1];
+            
+            mwP->map_mode = MP_MOD_MAP_READ;
+        }
+    }
+    
+    return 1;
 }
 
 // 100% matching!

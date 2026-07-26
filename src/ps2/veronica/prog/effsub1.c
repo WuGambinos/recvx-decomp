@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/effsub1.h"
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
+#include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/player.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
@@ -8066,58 +8067,83 @@ void bhEff130(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x2384a0
-void bhEff131(O_WRK* op)
+// 100% matching!
+void bhEff131(O_WRK* op) 
 {
-	UV_WORK* uvp;
-	UV_WORK uvinfo_p0[14];
-	// Line 7749, Address: 0x2384a0, Func Offset: 0
-	// Line 7751, Address: 0x2384b4, Func Offset: 0x14
-	// Line 7753, Address: 0x2384bc, Func Offset: 0x1c
-	// Line 7752, Address: 0x2384c0, Func Offset: 0x20
-	// Line 7753, Address: 0x2384c4, Func Offset: 0x24
-	// Line 7751, Address: 0x2384c8, Func Offset: 0x28
-	// Line 7752, Address: 0x2384d0, Func Offset: 0x30
-	// Line 7753, Address: 0x2384d4, Func Offset: 0x34
-	// Line 7754, Address: 0x2384d8, Func Offset: 0x38
-	// Line 7755, Address: 0x2384dc, Func Offset: 0x3c
-	// Line 7756, Address: 0x2384e0, Func Offset: 0x40
-	// Line 7757, Address: 0x2384e4, Func Offset: 0x44
-	// Line 7758, Address: 0x2384ec, Func Offset: 0x4c
-	// Line 7759, Address: 0x2384f4, Func Offset: 0x54
-	// Line 7760, Address: 0x238500, Func Offset: 0x60
-	// Line 7763, Address: 0x238508, Func Offset: 0x68
-	// Line 7766, Address: 0x238510, Func Offset: 0x70
-	// Line 7770, Address: 0x23851c, Func Offset: 0x7c
-	// Line 7763, Address: 0x238520, Func Offset: 0x80
-	// Line 7764, Address: 0x238528, Func Offset: 0x88
-	// Line 7770, Address: 0x238530, Func Offset: 0x90
-	// Line 7764, Address: 0x238538, Func Offset: 0x98
-	// Line 7765, Address: 0x238540, Func Offset: 0xa0
-	// Line 7766, Address: 0x238550, Func Offset: 0xb0
-	// Line 7767, Address: 0x23855c, Func Offset: 0xbc
-	// Line 7768, Address: 0x238568, Func Offset: 0xc8
-	// Line 7769, Address: 0x238574, Func Offset: 0xd4
-	// Line 7770, Address: 0x238584, Func Offset: 0xe4
-	// Line 7772, Address: 0x238598, Func Offset: 0xf8
-	// Line 7774, Address: 0x2385a0, Func Offset: 0x100
-	// Line 7785, Address: 0x2385b0, Func Offset: 0x110
-	// Line 7774, Address: 0x2385b4, Func Offset: 0x114
-	// Line 7775, Address: 0x2385c0, Func Offset: 0x120
-	// Line 7776, Address: 0x2385d4, Func Offset: 0x134
-	// Line 7777, Address: 0x2385dc, Func Offset: 0x13c
-	// Line 7778, Address: 0x2385e4, Func Offset: 0x144
-	// Line 7779, Address: 0x2385f4, Func Offset: 0x154
-	// Line 7780, Address: 0x2385fc, Func Offset: 0x15c
-	// Line 7781, Address: 0x238604, Func Offset: 0x164
-	// Line 7782, Address: 0x238614, Func Offset: 0x174
-	// Line 7783, Address: 0x238624, Func Offset: 0x184
-	// Line 7784, Address: 0x238634, Func Offset: 0x194
-	// Line 7785, Address: 0x238640, Func Offset: 0x1a0
-	// Line 7786, Address: 0x238674, Func Offset: 0x1d4
-	// Func End, Address: 0x23867c, Func Offset: 0x1dc
-	scePrintf("bhEff131 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+	static UV_WORK uvinfo_p0[14] = 
+    {
+        { 0.0625f,  0.0f,     0.0625f,  0.0625f  },
+        { 0.0625f,  0.0625f,  0.0625f,  0.0625f  },
+        { 0.25f,    0.0f,     0.125f,   0.125f   },
+        { 0.5f,     0.0f,     0.125f,   0.125f   },
+        { 0.75f,    0.0f,     0.125f,   0.125f   },
+        { 0.0f,     0.125f,   0.1875f,  0.1875f  },
+        { 0.375f,   0.125f,   0.1875f,  0.1875f  },
+        { 0.1875f,  0.3125f,  0.1875f,  0.1875f  },
+        { 0.0f,     0.5f,     0.1875f,  0.1875f  },
+        { 0.375f,   0.5f,     0.1875f,  0.1875f  },
+        { 0.5625f,  0.125f,   0.21875f, 0.21875f },
+        { 0.78125f, 0.125f,   0.21875f, 0.21875f },
+        { 0.5625f,  0.34375f, 0.21875f, 0.21875f },
+        { -1.0f,    0.0f,     0.0f,     0.0f     }
+    };
+
+    switch (op->mode0) 
+    {
+    case 0:
+        op->flg |= 0x4100000;
+        
+        op->tex_id = 2;
+        
+        op->tv[0].col = 0x8010C040;
+        op->tv[1].col = 0x8010C040;
+        op->tv[2].col = 0x8010C040;
+        op->tv[3].col = 0x8010C040;
+        
+        op->bl_src = 8;
+        op->bl_dst = 10;
+        
+        op->exp0 = (unsigned char*)uvinfo_p0;
+        
+        op->mode0 = 1;
+        break;
+    }
+    
+    op->px += op->lox;
+    op->py += op->loy;
+    op->pz += op->loz;
+    
+    op->lox *= 0.9f;
+    op->loy *= 0.9f;
+    op->loz *= 0.9f;
+    
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+    
+    if (uvp->u == -1.0f)
+    {
+        op->flg = 0;
+        return;
+    }
+    
+    op->sx = 4.0f * (op->sxb * uvp->xs);
+    op->sy = 4.0f * (op->syb * uvp->ys);
+    
+    op->tv[0].u = uvp->u;
+    op->tv[0].v = uvp->v;
+    
+    op->tv[1].u = uvp->u + uvp->xs;
+    op->tv[1].v = uvp->v;
+    
+    op->tv[2].u = uvp->u;
+    op->tv[2].v = uvp->v + uvp->ys;
+    
+    op->tv[3].u = uvp->u + uvp->xs;
+    op->tv[3].v = uvp->v + uvp->ys;
+    
+    op->ct0++;
+    
+    sys->ef_trs[sys->ef_trsn++] = op;
 }
 
 // 

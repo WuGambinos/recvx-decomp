@@ -2156,53 +2156,53 @@ static tag_wrk_typ* MapTagConnect(int rom_no)
 	scePrintf("MapTagConnect - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2b6050
+// 99.40% matching
 static tag_wrk_typ* MapTagCenter()
 {
-	float d;
-	tag_wrk_typ* rtnP;
-	tag_wrk_typ* twP;
-	float dst;
-	int num;
-	//tag_wrk_typ* twP;
-	float f_num;
-	//int num;
-	// Line 3013, Address: 0x2b6050, Func Offset: 0
-	// Line 3007, Address: 0x2b605c, Func Offset: 0xc
-	// Line 3013, Address: 0x2b6060, Func Offset: 0x10
-	// Line 3007, Address: 0x2b6064, Func Offset: 0x14
-	// Line 3013, Address: 0x2b6068, Func Offset: 0x18
-	// Line 3017, Address: 0x2b606c, Func Offset: 0x1c
-	// Line 3013, Address: 0x2b6070, Func Offset: 0x20
-	// Line 3017, Address: 0x2b6074, Func Offset: 0x24
-	// Line 3013, Address: 0x2b6078, Func Offset: 0x28
-	// Line 3019, Address: 0x2b607c, Func Offset: 0x2c
-	// Line 3013, Address: 0x2b6080, Func Offset: 0x30
-	// Line 3019, Address: 0x2b608c, Func Offset: 0x3c
-	// Line 3020, Address: 0x2b6094, Func Offset: 0x44
-	// Line 3022, Address: 0x2b6098, Func Offset: 0x48
-	// Line 3023, Address: 0x2b609c, Func Offset: 0x4c
-	// Line 3020, Address: 0x2b60a0, Func Offset: 0x50
-	// Line 3023, Address: 0x2b60a4, Func Offset: 0x54
-	// Line 3024, Address: 0x2b60b0, Func Offset: 0x60
-	// Line 3032, Address: 0x2b60b4, Func Offset: 0x64
-	// Line 3026, Address: 0x2b60bc, Func Offset: 0x6c
-	// Line 3032, Address: 0x2b60c0, Func Offset: 0x70
-	// Line 3036, Address: 0x2b60c4, Func Offset: 0x74
-	// Line 3040, Address: 0x2b60cc, Func Offset: 0x7c
-	// Line 3042, Address: 0x2b60d0, Func Offset: 0x80
-	// Line 3040, Address: 0x2b60d4, Func Offset: 0x84
-	// Line 3042, Address: 0x2b60d8, Func Offset: 0x88
-	// Line 3043, Address: 0x2b60dc, Func Offset: 0x8c
-	// Line 3045, Address: 0x2b60e4, Func Offset: 0x94
-	// Line 3046, Address: 0x2b60f4, Func Offset: 0xa4
-	// Line 3047, Address: 0x2b60f8, Func Offset: 0xa8
-	// Line 3048, Address: 0x2b60fc, Func Offset: 0xac
-	// Line 3049, Address: 0x2b6100, Func Offset: 0xb0
-	// Line 3053, Address: 0x2b6110, Func Offset: 0xc0
-	// Func End, Address: 0x2b6118, Func Offset: 0xc8
-	scePrintf("MapTagCenter - UNIMPLEMENTED!\n");
+    int num;            
+    float f_num;       
+    tag_wrk_typ* twP;   
+    float dst;          
+    int i; // not from DWARF
+    tag_wrk_typ* rtnP;  
+    float d;            
+    float dz, dx; // not from DWARF
+
+    dx = dz = 0;
+
+    num = mwP->tag_num;
+    twP = mwP->tag_wrkP;
+    
+    f_num = 1.0f / num;
+
+    rtnP = twP;
+    
+    for (i = num; i > 0; i--, rtnP++)
+    {
+        dx += rtnP->pos.x;
+        dz += rtnP->pos.z;
+    }
+    
+    dx *= f_num;
+    dz *= f_num;
+
+    dst = 999999.0f;
+    
+    rtnP = NULL;
+    
+    for ( ; num > 0; num--, twP++)
+    {
+        d = ((twP->pos.x - dx) * (twP->pos.x - dx)) + ((twP->pos.z - dz) * (twP->pos.z - dz));
+        
+        if (d < dst)
+        {
+            dst = d;
+            
+            rtnP = twP;
+        }
+    }
+    
+    return rtnP;
 }
 
 // 100% matching!

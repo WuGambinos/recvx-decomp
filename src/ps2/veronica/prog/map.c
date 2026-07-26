@@ -2303,14 +2303,14 @@ static int FsubZoomCursor(FZ_WORK* fzP)
         { 320.0f,  64.0f },
         { 320.0f, 417.0f }
     };
-    static const  NJS_POINT2 dst_pos2[4] =
+    static const NJS_POINT2 dst_pos2[4] =
     {
         {  56.0f, 417.0f },
         { 585.0f, 417.0f },
-        {  64.0f, 585.0f },
-        {  64.0f, 417.0f }
+        { 585.0f,  64.0f },
+        { 585.0f, 417.0f }
     };
-    NJS_COLOR col, col2; // not from DWARF
+    NJS_COLOR col1, col2; // not from DWARF
 
     switch (fzP->mode) 
     {                           
@@ -2359,8 +2359,8 @@ static int FsubZoomCursor(FZ_WORK* fzP)
         break;
     }
     
-    col = MapCnvArgb2Color(&mwP->MapPal[19]);
-    MapDrawLine(&fzP->pos_a0, &fzP->pos_a1, -7.0f, col.color);
+    col1 = MapCnvArgb2Color(&mwP->MapPal[19]);
+    MapDrawLine(&fzP->pos_a0, &fzP->pos_a1, -7.0f, col1.color);
     
     col2 = MapCnvArgb2Color(&mwP->MapPal[19]);
     MapDrawLine(&fzP->pos_b0, &fzP->pos_b1, -7.0f, col2.color);
@@ -2380,79 +2380,79 @@ static int FsubZoomCursor(FZ_WORK* fzP)
     return 1;
 }
 
-// 
-// Start address: 0x2b6670
-static int FsubZoomInfomation(FI_WORK* fiP)
+// 100% matching!
+static int FsubZoomInfomation(FI_WORK* fiP) 
 {
-	NJS_POINT3 pos;
-	NJS_POINT3 set_pos;
-	// Line 3250, Address: 0x2b6670, Func Offset: 0
-	// Line 3257, Address: 0x2b6680, Func Offset: 0x10
-	// Line 3260, Address: 0x2b66a0, Func Offset: 0x30
-	// Line 3265, Address: 0x2b66b4, Func Offset: 0x44
-	// Line 3260, Address: 0x2b66b8, Func Offset: 0x48
-	// Line 3265, Address: 0x2b66bc, Func Offset: 0x4c
-	// Line 3260, Address: 0x2b66c0, Func Offset: 0x50
-	// Line 3266, Address: 0x2b66c4, Func Offset: 0x54
-	// Line 3260, Address: 0x2b66c8, Func Offset: 0x58
-	// Line 3266, Address: 0x2b66cc, Func Offset: 0x5c
-	// Line 3265, Address: 0x2b66d0, Func Offset: 0x60
-	// Line 3266, Address: 0x2b66d4, Func Offset: 0x64
-	// Line 3268, Address: 0x2b66d8, Func Offset: 0x68
-	// Line 3269, Address: 0x2b66dc, Func Offset: 0x6c
-	// Line 3273, Address: 0x2b66e8, Func Offset: 0x78
-	// Line 3277, Address: 0x2b66f4, Func Offset: 0x84
-	// Line 3279, Address: 0x2b6708, Func Offset: 0x98
-	// Line 3280, Address: 0x2b6714, Func Offset: 0xa4
-	// Line 3281, Address: 0x2b6718, Func Offset: 0xa8
-	// Line 3279, Address: 0x2b671c, Func Offset: 0xac
-	// Line 3283, Address: 0x2b6720, Func Offset: 0xb0
-	// Line 3279, Address: 0x2b6728, Func Offset: 0xb8
-	// Line 3280, Address: 0x2b672c, Func Offset: 0xbc
-	// Line 3281, Address: 0x2b6730, Func Offset: 0xc0
-	// Line 3280, Address: 0x2b6738, Func Offset: 0xc8
-	// Line 3281, Address: 0x2b6740, Func Offset: 0xd0
-	// Line 3283, Address: 0x2b6744, Func Offset: 0xd4
-	// Line 3281, Address: 0x2b6748, Func Offset: 0xd8
-	// Line 3283, Address: 0x2b674c, Func Offset: 0xdc
-	// Line 3284, Address: 0x2b6768, Func Offset: 0xf8
-	// Line 3285, Address: 0x2b6774, Func Offset: 0x104
-	// Line 3284, Address: 0x2b677c, Func Offset: 0x10c
-	// Line 3285, Address: 0x2b6780, Func Offset: 0x110
-	// Line 3286, Address: 0x2b678c, Func Offset: 0x11c
-	// Line 3289, Address: 0x2b6798, Func Offset: 0x128
-	// Line 3286, Address: 0x2b67a0, Func Offset: 0x130
-	// Line 3288, Address: 0x2b67a8, Func Offset: 0x138
-	// Line 3289, Address: 0x2b67ac, Func Offset: 0x13c
-	// Line 3288, Address: 0x2b67b0, Func Offset: 0x140
-	// Line 3289, Address: 0x2b67b4, Func Offset: 0x144
-	// Line 3290, Address: 0x2b67d0, Func Offset: 0x160
-	// Line 3291, Address: 0x2b67dc, Func Offset: 0x16c
-	// Line 3290, Address: 0x2b67e4, Func Offset: 0x174
-	// Line 3291, Address: 0x2b67e8, Func Offset: 0x178
-	// Line 3292, Address: 0x2b67f4, Func Offset: 0x184
-	// Line 3295, Address: 0x2b6800, Func Offset: 0x190
-	// Line 3292, Address: 0x2b6808, Func Offset: 0x198
-	// Line 3294, Address: 0x2b6810, Func Offset: 0x1a0
-	// Line 3295, Address: 0x2b6814, Func Offset: 0x1a4
-	// Line 3294, Address: 0x2b6818, Func Offset: 0x1a8
-	// Line 3295, Address: 0x2b681c, Func Offset: 0x1ac
-	// Line 3296, Address: 0x2b6838, Func Offset: 0x1c8
-	// Line 3299, Address: 0x2b6844, Func Offset: 0x1d4
-	// Line 3296, Address: 0x2b684c, Func Offset: 0x1dc
-	// Line 3299, Address: 0x2b6850, Func Offset: 0x1e0
-	// Line 3300, Address: 0x2b685c, Func Offset: 0x1ec
-	// Line 3302, Address: 0x2b6868, Func Offset: 0x1f8
-	// Line 3300, Address: 0x2b6870, Func Offset: 0x200
-	// Line 3302, Address: 0x2b6874, Func Offset: 0x204
-	// Line 3304, Address: 0x2b6880, Func Offset: 0x210
-	// Line 3306, Address: 0x2b6890, Func Offset: 0x220
-	// Line 3307, Address: 0x2b68a8, Func Offset: 0x238
-	// Line 3313, Address: 0x2b68b0, Func Offset: 0x240
-	// Line 3312, Address: 0x2b68bc, Func Offset: 0x24c
-	// Line 3313, Address: 0x2b68c0, Func Offset: 0x250
-	// Func End, Address: 0x2b68c8, Func Offset: 0x258
-	scePrintf("FsubZoomInfomation - UNIMPLEMENTED!\n");
+    NJS_POINT3 pos;
+	static const NJS_POINT3 set_pos = 
+    {
+        441.0f, 353.0f, -8.0f
+    };
+    NJS_COLOR col1, col2, col3; // not from DWARF
+    
+    switch (fiP->mode) 
+    {                              
+    case 0:
+        fiP->pos0 = set_pos;
+        
+        fiP->pos1.x = 585.0f;
+        fiP->pos1.y = 417.0f;
+        
+        fiP->time = 0;
+        
+        fiP->mode++;
+    case 1:
+        if (fiP->time <= 0) 
+        {
+            MapDrawFill((NJS_POINT2*)&fiP->pos0, &fiP->pos1, fiP->pos0.z, 0x80000000);
+            
+            pos.x = 16.0f + fiP->pos0.x;
+            pos.y = 16.0f + fiP->pos0.y;
+            pos.z = 1.0f  + fiP->pos0.z;
+            
+            col1 = MapCnvArgb2Color(&mwP->MapPal[28]);
+            MapDrawSprite(&pos, col1.color, MP_SPR_DIAMOND);
+            
+            pos.x += 16.0f;
+            
+            MapDrawSprite(&pos, -1, MP_SPR_ITEM);
+            
+            pos.y += 16.0f;
+            pos.x -= 16.0f;
+            
+            col2 = MapCnvArgb2Color(&mwP->MapPal[13]);
+            MapDrawSprite(&pos, col2.color, MP_SPR_DIAMOND);
+            
+            pos.x += 16.0f;
+            
+            MapDrawSprite(&pos, -1, MP_SPR_SAVEPOINT);
+            
+            pos.y += 16.0f;
+            pos.x -= 16.0f;
+                
+            col3 = MapCnvArgb2Color(&mwP->MapPal[14]);
+            MapDrawSprite(&pos, col3.color, MP_SPR_DIAMOND);
+            
+            pos.x += 16.0f;
+            MapDrawSprite(&pos, -1, MP_SPR_ITEM);
+            
+            pos.x += 48.0f;
+            MapDrawSprite(&pos, -1, MP_SPR_BOX);
+        } 
+        else 
+        {
+            fiP->time--;
+        }
+        
+        if (mwP->map_mode != MP_MOD_WAIT_ZOOM) 
+        {
+            MapFuncFree((func_wrk_typ*)fiP);
+        }
+        
+        break;
+    }
+    
+    return 1;
 }
 
 // 100% matching!

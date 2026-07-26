@@ -2468,162 +2468,140 @@ static NJS_COLOR MapCnvArgb2Color(NJS_ARGB* argbP)
     return col;
 }
 
-// 
-// Start address: 0x2b6970
-static int FsubZoomScreen(FS_WRK* fsP)
+// 100% matching!
+static int FsubZoomScreen(FS_WRK* fsP) 
 {
-	int tmp;
-	int ang;
-	NJS_POINT2 pnt[4];
-	NJS_POINT2 ScrOut[2];
-	NJS_POINT2 ScrIn[2];
-	// Line 3343, Address: 0x2b6970, Func Offset: 0
-	// Line 3353, Address: 0x2b6984, Func Offset: 0x14
-	// Line 3356, Address: 0x2b69a4, Func Offset: 0x34
-	// Line 3358, Address: 0x2b69b4, Func Offset: 0x44
-	// Line 3357, Address: 0x2b69b8, Func Offset: 0x48
-	// Line 3356, Address: 0x2b69c0, Func Offset: 0x50
-	// Line 3357, Address: 0x2b69c8, Func Offset: 0x58
-	// Line 3359, Address: 0x2b69d0, Func Offset: 0x60
-	// Line 3357, Address: 0x2b69d4, Func Offset: 0x64
-	// Line 3358, Address: 0x2b69dc, Func Offset: 0x6c
-	// Line 3359, Address: 0x2b69e0, Func Offset: 0x70
-	// Line 3360, Address: 0x2b69e4, Func Offset: 0x74
-	// Line 3364, Address: 0x2b69f0, Func Offset: 0x80
-	// Line 3365, Address: 0x2b6a00, Func Offset: 0x90
-	// Line 3364, Address: 0x2b6a04, Func Offset: 0x94
-	// Line 3365, Address: 0x2b6a18, Func Offset: 0xa8
-	// Line 3364, Address: 0x2b6a20, Func Offset: 0xb0
-	// Line 3365, Address: 0x2b6a28, Func Offset: 0xb8
-	// Line 3366, Address: 0x2b6a30, Func Offset: 0xc0
-	// Line 3365, Address: 0x2b6a40, Func Offset: 0xd0
-	// Line 3367, Address: 0x2b6a50, Func Offset: 0xe0
-	// Line 3365, Address: 0x2b6a60, Func Offset: 0xf0
-	// Line 3368, Address: 0x2b6a64, Func Offset: 0xf4
-	// Line 3365, Address: 0x2b6a6c, Func Offset: 0xfc
-	// Line 3366, Address: 0x2b6a70, Func Offset: 0x100
-	// Line 3368, Address: 0x2b6a78, Func Offset: 0x108
-	// Line 3366, Address: 0x2b6a7c, Func Offset: 0x10c
-	// Line 3368, Address: 0x2b6a80, Func Offset: 0x110
-	// Line 3366, Address: 0x2b6a88, Func Offset: 0x118
-	// Line 3367, Address: 0x2b6a98, Func Offset: 0x128
-	// Line 3368, Address: 0x2b6ab0, Func Offset: 0x140
-	// Line 3369, Address: 0x2b6ab8, Func Offset: 0x148
-	// Line 3373, Address: 0x2b6ad8, Func Offset: 0x168
-	// Line 3376, Address: 0x2b6adc, Func Offset: 0x16c
-	// Line 3377, Address: 0x2b6af0, Func Offset: 0x180
-	// Line 3376, Address: 0x2b6af4, Func Offset: 0x184
-	// Line 3377, Address: 0x2b6b04, Func Offset: 0x194
-	// Line 3378, Address: 0x2b6b2c, Func Offset: 0x1bc
-	// Line 3379, Address: 0x2b6b34, Func Offset: 0x1c4
-	// Line 3380, Address: 0x2b6b48, Func Offset: 0x1d8
-	// Line 3379, Address: 0x2b6b4c, Func Offset: 0x1dc
-	// Line 3380, Address: 0x2b6b5c, Func Offset: 0x1ec
-	// Line 3381, Address: 0x2b6b68, Func Offset: 0x1f8
-	// Line 3380, Address: 0x2b6b70, Func Offset: 0x200
-	// Line 3381, Address: 0x2b6b74, Func Offset: 0x204
-	// Line 3380, Address: 0x2b6b7c, Func Offset: 0x20c
-	// Line 3381, Address: 0x2b6b80, Func Offset: 0x210
-	// Line 3380, Address: 0x2b6b8c, Func Offset: 0x21c
-	// Line 3381, Address: 0x2b6b94, Func Offset: 0x224
-	// Line 3380, Address: 0x2b6b98, Func Offset: 0x228
-	// Line 3381, Address: 0x2b6ba0, Func Offset: 0x230
-	// Line 3383, Address: 0x2b6ba8, Func Offset: 0x238
-	// Line 3384, Address: 0x2b6bb8, Func Offset: 0x248
-	// Line 3385, Address: 0x2b6be8, Func Offset: 0x278
-	// Line 3387, Address: 0x2b6c00, Func Offset: 0x290
-	// Line 3391, Address: 0x2b6c18, Func Offset: 0x2a8
-	// Line 3393, Address: 0x2b6c2c, Func Offset: 0x2bc
-	// Line 3396, Address: 0x2b6c4c, Func Offset: 0x2dc
-	// Line 3399, Address: 0x2b6c54, Func Offset: 0x2e4
-	// Line 3395, Address: 0x2b6c5c, Func Offset: 0x2ec
-	// Line 3399, Address: 0x2b6c64, Func Offset: 0x2f4
-	// Line 3397, Address: 0x2b6c68, Func Offset: 0x2f8
-	// Line 3399, Address: 0x2b6c70, Func Offset: 0x300
-	// Line 3395, Address: 0x2b6c74, Func Offset: 0x304
-	// Line 3399, Address: 0x2b6c78, Func Offset: 0x308
-	// Line 3398, Address: 0x2b6c7c, Func Offset: 0x30c
-	// Line 3395, Address: 0x2b6c84, Func Offset: 0x314
-	// Line 3396, Address: 0x2b6c94, Func Offset: 0x324
-	// Line 3397, Address: 0x2b6ca4, Func Offset: 0x334
-	// Line 3398, Address: 0x2b6cb4, Func Offset: 0x344
-	// Line 3399, Address: 0x2b6cc0, Func Offset: 0x350
-	// Line 3404, Address: 0x2b6cc8, Func Offset: 0x358
-	// Line 3401, Address: 0x2b6cd0, Func Offset: 0x360
-	// Line 3405, Address: 0x2b6cd4, Func Offset: 0x364
-	// Line 3401, Address: 0x2b6ce4, Func Offset: 0x374
-	// Line 3402, Address: 0x2b6cf4, Func Offset: 0x384
-	// Line 3405, Address: 0x2b6cfc, Func Offset: 0x38c
-	// Line 3402, Address: 0x2b6d00, Func Offset: 0x390
-	// Line 3403, Address: 0x2b6d0c, Func Offset: 0x39c
-	// Line 3404, Address: 0x2b6d20, Func Offset: 0x3b0
-	// Line 3405, Address: 0x2b6d2c, Func Offset: 0x3bc
-	// Line 3406, Address: 0x2b6d34, Func Offset: 0x3c4
-	// Line 3408, Address: 0x2b6d58, Func Offset: 0x3e8
-	// Line 3412, Address: 0x2b6d60, Func Offset: 0x3f0
-	// Line 3411, Address: 0x2b6d74, Func Offset: 0x404
-	// Line 3408, Address: 0x2b6d7c, Func Offset: 0x40c
-	// Line 3409, Address: 0x2b6d8c, Func Offset: 0x41c
-	// Line 3410, Address: 0x2b6da0, Func Offset: 0x430
-	// Line 3411, Address: 0x2b6db4, Func Offset: 0x444
-	// Line 3412, Address: 0x2b6dc0, Func Offset: 0x450
-	// Line 3414, Address: 0x2b6dc8, Func Offset: 0x458
-	// Line 3413, Address: 0x2b6dd0, Func Offset: 0x460
-	// Line 3414, Address: 0x2b6dd4, Func Offset: 0x464
-	// Line 3413, Address: 0x2b6de4, Func Offset: 0x474
-	// Line 3414, Address: 0x2b6de8, Func Offset: 0x478
-	// Line 3413, Address: 0x2b6dec, Func Offset: 0x47c
-	// Line 3414, Address: 0x2b6df0, Func Offset: 0x480
-	// Line 3417, Address: 0x2b6df8, Func Offset: 0x488
-	// Line 3420, Address: 0x2b6e00, Func Offset: 0x490
-	// Line 3419, Address: 0x2b6e08, Func Offset: 0x498
-	// Line 3420, Address: 0x2b6e0c, Func Offset: 0x49c
-	// Line 3417, Address: 0x2b6e14, Func Offset: 0x4a4
-	// Line 3418, Address: 0x2b6e1c, Func Offset: 0x4ac
-	// Line 3420, Address: 0x2b6e24, Func Offset: 0x4b4
-	// Line 3418, Address: 0x2b6e30, Func Offset: 0x4c0
-	// Line 3419, Address: 0x2b6e34, Func Offset: 0x4c4
-	// Line 3420, Address: 0x2b6e40, Func Offset: 0x4d0
-	// Line 3422, Address: 0x2b6e4c, Func Offset: 0x4dc
-	// Line 3423, Address: 0x2b6e50, Func Offset: 0x4e0
-	// Line 3422, Address: 0x2b6e54, Func Offset: 0x4e4
-	// Line 3423, Address: 0x2b6e58, Func Offset: 0x4e8
-	// Line 3421, Address: 0x2b6e5c, Func Offset: 0x4ec
-	// Line 3423, Address: 0x2b6e60, Func Offset: 0x4f0
-	// Line 3421, Address: 0x2b6e6c, Func Offset: 0x4fc
-	// Line 3423, Address: 0x2b6e70, Func Offset: 0x500
-	// Line 3421, Address: 0x2b6e74, Func Offset: 0x504
-	// Line 3422, Address: 0x2b6e78, Func Offset: 0x508
-	// Line 3423, Address: 0x2b6e7c, Func Offset: 0x50c
-	// Line 3422, Address: 0x2b6e80, Func Offset: 0x510
-	// Line 3423, Address: 0x2b6e84, Func Offset: 0x514
-	// Line 3425, Address: 0x2b6e8c, Func Offset: 0x51c
-	// Line 3426, Address: 0x2b6ea0, Func Offset: 0x530
-	// Line 3428, Address: 0x2b6ea8, Func Offset: 0x538
-	// Line 3426, Address: 0x2b6eb8, Func Offset: 0x548
-	// Line 3428, Address: 0x2b6ec0, Func Offset: 0x550
-	// Line 3427, Address: 0x2b6ec8, Func Offset: 0x558
-	// Line 3428, Address: 0x2b6ecc, Func Offset: 0x55c
-	// Line 3427, Address: 0x2b6ed0, Func Offset: 0x560
-	// Line 3428, Address: 0x2b6ed4, Func Offset: 0x564
-	// Line 3430, Address: 0x2b6ee0, Func Offset: 0x570
-	// Line 3431, Address: 0x2b6ee4, Func Offset: 0x574
-	// Line 3430, Address: 0x2b6ee8, Func Offset: 0x578
-	// Line 3431, Address: 0x2b6eec, Func Offset: 0x57c
-	// Line 3429, Address: 0x2b6ef0, Func Offset: 0x580
-	// Line 3431, Address: 0x2b6ef4, Func Offset: 0x584
-	// Line 3429, Address: 0x2b6f00, Func Offset: 0x590
-	// Line 3431, Address: 0x2b6f04, Func Offset: 0x594
-	// Line 3429, Address: 0x2b6f08, Func Offset: 0x598
-	// Line 3430, Address: 0x2b6f0c, Func Offset: 0x59c
-	// Line 3431, Address: 0x2b6f10, Func Offset: 0x5a0
-	// Line 3430, Address: 0x2b6f14, Func Offset: 0x5a4
-	// Line 3431, Address: 0x2b6f18, Func Offset: 0x5a8
-	// Line 3437, Address: 0x2b6f20, Func Offset: 0x5b0
-	// Line 3436, Address: 0x2b6f30, Func Offset: 0x5c0
-	// Line 3437, Address: 0x2b6f34, Func Offset: 0x5c4
-	// Func End, Address: 0x2b6f3c, Func Offset: 0x5cc
-	scePrintf("FsubZoomScreen - UNIMPLEMENTED!\n");
+    int ang; 
+    int tmp; 
+    static const NJS_POINT2 ScrOut[2] = 
+    {
+        { 0.0f,   0.0f   },
+        { 640.0f, 480.0f }
+    };
+    static const NJS_POINT2 ScrIn[2] = 
+    {
+        {  56.0f,  64.0f },
+        { 585.0f, 417.0f }
+    };
+	static NJS_POINT2 pnt[4];
+
+    switch (fsP->mode) 
+    {                             
+    case 0:
+        fsP->pos0 = ScrIn[0];
+        fsP->pos1 = ScrIn[1];
+        
+        fsP->rad = 32.0f;
+        
+        fsP->ang = 8192;
+        
+        fsP->mode++;
+    case 1:
+        pnt[0] = ScrOut[0];
+        pnt[1] = ScrOut[0];
+        
+        pnt[1].x = fsP->pos1.x - fsP->rad;
+        
+        pnt[2] = pnt[1];
+        
+        pnt[2].y = fsP->pos0.y;
+        
+        pnt[3] = pnt[0];
+
+        pnt[3].y = fsP->pos0.y;
+        
+        MapDrawPolyFill(pnt, -8.0f, 0x80000000);
+        MapDrawLine2(&fsP->pos0, &pnt[2], -7.0f, -0xFFA000);
+        
+        ang = 16384;
+        
+        do 
+        {
+            pnt[0].x = pnt[3].x = fsP->pos1.x + (fsP->rad * njCos(ang));
+            pnt[0].y = pnt[3].y = fsP->pos0.y + (fsP->rad * njSin(ang));
+            
+            tmp = ang + fsP->ang;
+            
+            pnt[1].x = pnt[2].x = fsP->pos1.x + (fsP->rad * njCos(tmp));
+            pnt[1].y = pnt[2].y = fsP->pos0.y + (fsP->rad * njSin(tmp));
+            
+            MapDrawLine2(pnt, &pnt[1], -7.0f, -0xFFA000);
+            
+            if (ang >= 32768) 
+            {
+                if ((unsigned short)ang < 32768) 
+                {
+                    pnt[2].y = pnt[3].y = ScrOut[1].y;
+                } 
+                else 
+                {
+                    pnt[0].y = pnt[1].y = ScrOut[0].y;
+                }
+                
+                MapDrawPolyFill(pnt, -8.0f, 0x80000000);
+            }
+            
+            ang = tmp;
+        } while (tmp < 81920);
+        
+        MapDrawLine2(&pnt[1], &fsP->pos1, -7.0f, -0xFFA000);
+        
+        pnt[3].x = pnt[0].x = fsP->pos1.x + fsP->rad;
+        pnt[0].y = pnt[1].y = ScrOut[0].y;
+        
+        pnt[1].x = pnt[2].x = ScrOut[1].x;
+        pnt[2].y = pnt[3].y = ScrOut[1].y;
+        
+        MapDrawPolyFill(&pnt[0], -8.0f, 0x80000000);
+        
+        pnt[3].x = pnt[0].x = fsP->pos0.x;
+        pnt[0].y = pnt[1].y = fsP->pos1.y;
+        
+        pnt[1].x = pnt[2].x = fsP->pos1.x;
+        pnt[2].y = pnt[3].y = ScrOut[1].y;
+        
+        MapDrawPolyFill(&pnt[0], -8.0f, 0x80000000);
+        MapDrawLine2(&pnt[1], &pnt[0], -7.0f, -0xFFA000);
+        
+        pnt[3].x = pnt[0].x = ScrOut[0].x;
+        pnt[0].y = pnt[1].y = fsP->pos0.y;
+        
+        pnt[1].x = pnt[2].x = fsP->pos0.x;
+        pnt[2].y = pnt[3].y = ScrOut[1].y;
+        
+        MapDrawPolyFill(&pnt[0], -8.0f, 0x80000000);
+        
+        pnt[2].y = fsP->pos1.y;
+        
+        MapDrawLine2(&pnt[1], &pnt[2], -7.0f, -0xFFA000);
+        
+        pnt[0].x = ScrOut[0].x;
+        pnt[1].x = fsP->pos0.x;
+        
+        pnt[0].y = pnt[1].y = 240.0f;
+        
+        MapDrawLine(&pnt[0], &pnt[1], -7.0f, -0xFFA000);
+        
+        pnt[0].x = fsP->pos1.x;
+        pnt[1].x = ScrOut[1].x;
+        
+        MapDrawLine(&pnt[0], &pnt[1], -7.0f, -0xFFA000);
+        
+        pnt[0].x = pnt[1].x = 320.0f;
+        
+        pnt[0].y = ScrOut[0].y;
+        pnt[1].y = fsP->pos0.y;
+        
+        MapDrawLine(&pnt[0], &pnt[1], -7.0f, -0xFFA000);
+        
+        pnt[0].y = fsP->pos1.y;
+        pnt[1].y = ScrOut[1].y;
+        
+        MapDrawLine(&pnt[0], &pnt[1], -7.0f, -0xFFA000);
+        break;
+    }
+    
+    return 1;
 }
 
 // 100% matching!

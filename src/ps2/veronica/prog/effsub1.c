@@ -6226,48 +6226,67 @@ void bhEff119(O_WRK* op)
 	scePrintf("bhEff119 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x233920
+// 100% matching!
 void bhEff120(O_WRK* op)
 {
-	short az;
-	BH_PWORK* ep;
-	// Line 6125, Address: 0x233920, Func Offset: 0
-	// Line 6128, Address: 0x233930, Func Offset: 0x10
-	// Line 6129, Address: 0x23393c, Func Offset: 0x1c
-	// Line 6128, Address: 0x233940, Func Offset: 0x20
-	// Line 6129, Address: 0x233948, Func Offset: 0x28
-	// Line 6131, Address: 0x233964, Func Offset: 0x44
-	// Line 6132, Address: 0x23397c, Func Offset: 0x5c
-	// Line 6133, Address: 0x233980, Func Offset: 0x60
-	// Line 6134, Address: 0x233984, Func Offset: 0x64
-	// Line 6135, Address: 0x23398c, Func Offset: 0x6c
-	// Line 6136, Address: 0x2339a4, Func Offset: 0x84
-	// Line 6138, Address: 0x2339bc, Func Offset: 0x9c
-	// Line 6137, Address: 0x2339c0, Func Offset: 0xa0
-	// Line 6140, Address: 0x2339c4, Func Offset: 0xa4
-	// Line 6143, Address: 0x2339cc, Func Offset: 0xac
-	// Line 6144, Address: 0x2339e4, Func Offset: 0xc4
-	// Line 6145, Address: 0x233a08, Func Offset: 0xe8
-	// Line 6147, Address: 0x233a2c, Func Offset: 0x10c
-	// Line 6149, Address: 0x233a34, Func Offset: 0x114
-	// Line 6150, Address: 0x233a38, Func Offset: 0x118
-	// Line 6149, Address: 0x233a3c, Func Offset: 0x11c
-	// Line 6151, Address: 0x233a44, Func Offset: 0x124
-	// Line 6150, Address: 0x233a48, Func Offset: 0x128
-	// Line 6151, Address: 0x233a4c, Func Offset: 0x12c
-	// Line 6150, Address: 0x233a50, Func Offset: 0x130
-	// Line 6152, Address: 0x233a58, Func Offset: 0x138
-	// Line 6153, Address: 0x233a64, Func Offset: 0x144
-	// Line 6154, Address: 0x233a7c, Func Offset: 0x15c
-	// Line 6155, Address: 0x233a94, Func Offset: 0x174
-	// Line 6156, Address: 0x233aa4, Func Offset: 0x184
-	// Line 6157, Address: 0x233ab0, Func Offset: 0x190
-	// Line 6158, Address: 0x233ab8, Func Offset: 0x198
-	// Line 6159, Address: 0x233ad0, Func Offset: 0x1b0
-	// Line 6163, Address: 0x233ae8, Func Offset: 0x1c8
-	// Func End, Address: 0x233afc, Func Offset: 0x1dc
-	scePrintf("bhEff120 - UNIMPLEMENTED!\n");
+    BH_PWORK* ep;
+    short az;
+	
+    op->flg |= 0x1000000;
+    
+    switch (op->mode0)
+    {                             
+    case 0:
+        if (!(sys->gm_flg & 0x1)) 
+        {
+            op->ct0 = 0;
+            
+            ep = (BH_PWORK*)op->lkwkp;
+            
+            op->ct1 = 1024;
+            
+            npSetOffsetUV(ep->mlwP->objP[4].model, 0, op->ct1);
+            npSetOffsetUV(ep->mlwP->objP[2].model, 0, op->ct1);
+            
+            op->ct3 = 0;
+            
+            op->mode0 = 1;
+        }
+        
+        break;
+    case 1:
+        ep = (BH_PWORK*)op->lkwkp;
+        
+        if ((sys->gm_flg & 0x1)) 
+        {
+            npSetOffsetUV(ep->mlwP->objP[4].model, 0, -op->ct1);
+            npSetOffsetUV(ep->mlwP->objP[2].model, 0, -op->ct1);
+            
+            op->mode0 = 0;
+            break;
+        }
+        
+        az = ep->mlwP->objP[11].ang[2] - op->azp;
+        
+        op->azp = ep->mlwP->objP[11].ang[2];
+        
+        op->ct0 = -(az / 32);
+        
+        npSetOffsetUV(ep->mlwP->objP[4].model, 0, op->ct0);
+        npSetOffsetUV(ep->mlwP->objP[2].model, 0, op->ct0);
+        
+        op->ct1 += op->ct0;
+        
+        if (op->ct1 <= 0) 
+        {
+            op->ct1 += 1024;
+            
+            npSetOffsetUV(ep->mlwP->objP[4].model, 0, 1024);
+            npSetOffsetUV(ep->mlwP->objP[2].model, 0, 1024);
+        }
+
+        break;
+    }
 }
 
 // 100% matching!

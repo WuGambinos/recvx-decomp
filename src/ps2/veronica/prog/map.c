@@ -2142,7 +2142,7 @@ static tag_wrk_typ* MapTagConnect(int rom_no)
             {
                 d = ((twP->pos.x - basP->pos.x) * (twP->pos.x - basP->pos.x)) + ((twP->pos.z - basP->pos.z) * (twP->pos.z - basP->pos.z));
                 
-                dir = (((int)(10430.381f * atan2f((twP->pos.z - basP->pos.z), (twP->pos.x - basP->pos.x))) + 8192) / 16384) & 3;
+                dir = (((int)(10430.381f * atan2f(twP->pos.z - basP->pos.z, twP->pos.x - basP->pos.x)) + 8192) / 16384) & 3;
                 
                 if (d < dst[dir]) 
                 {
@@ -2286,71 +2286,98 @@ static void MapDrawMessage(int rom, float x, float y) // parameters not present 
 
 }
 
-// 
-// Start address: 0x2b6320
+// 91.09% matching
 static int FsubZoomCursor(FZ_WORK* fzP)
 {
-	NJS_POINT2 dst_pos2[4];
-	NJS_POINT2 dst_pos1[4];
-	NJS_POINT2 dst_pos0[4];
-	// Line 3165, Address: 0x2b6320, Func Offset: 0
-	// Line 3182, Address: 0x2b6330, Func Offset: 0x10
-	// Line 3186, Address: 0x2b635c, Func Offset: 0x3c
-	// Line 3185, Address: 0x2b6364, Func Offset: 0x44
-	// Line 3186, Address: 0x2b6368, Func Offset: 0x48
-	// Line 3187, Address: 0x2b6370, Func Offset: 0x50
-	// Line 3186, Address: 0x2b6378, Func Offset: 0x58
-	// Line 3187, Address: 0x2b6380, Func Offset: 0x60
-	// Line 3188, Address: 0x2b6388, Func Offset: 0x68
-	// Line 3189, Address: 0x2b6390, Func Offset: 0x70
-	// Line 3187, Address: 0x2b6394, Func Offset: 0x74
-	// Line 3188, Address: 0x2b639c, Func Offset: 0x7c
-	// Line 3189, Address: 0x2b63a4, Func Offset: 0x84
-	// Line 3190, Address: 0x2b63a8, Func Offset: 0x88
-	// Line 3188, Address: 0x2b63b0, Func Offset: 0x90
-	// Line 3189, Address: 0x2b63b8, Func Offset: 0x98
-	// Line 3190, Address: 0x2b63c8, Func Offset: 0xa8
-	// Line 3191, Address: 0x2b63cc, Func Offset: 0xac
-	// Line 3195, Address: 0x2b63d8, Func Offset: 0xb8
-	// Line 3197, Address: 0x2b63e4, Func Offset: 0xc4
-	// Line 3198, Address: 0x2b640c, Func Offset: 0xec
-	// Line 3200, Address: 0x2b641c, Func Offset: 0xfc
-	// Line 3201, Address: 0x2b6434, Func Offset: 0x114
-	// Line 3202, Address: 0x2b6440, Func Offset: 0x120
-	// Line 3203, Address: 0x2b6448, Func Offset: 0x128
-	// Line 3205, Address: 0x2b644c, Func Offset: 0x12c
-	// Line 3208, Address: 0x2b6454, Func Offset: 0x134
-	// Line 3209, Address: 0x2b6460, Func Offset: 0x140
-	// Line 3210, Address: 0x2b6468, Func Offset: 0x148
-	// Line 3216, Address: 0x2b6478, Func Offset: 0x158
-	// Line 3217, Address: 0x2b64a8, Func Offset: 0x188
-	// Line 3228, Address: 0x2b64d8, Func Offset: 0x1b8
-	// Line 3229, Address: 0x2b64fc, Func Offset: 0x1dc
-	// Line 3228, Address: 0x2b6508, Func Offset: 0x1e8
-	// Line 3229, Address: 0x2b6510, Func Offset: 0x1f0
-	// Line 3230, Address: 0x2b652c, Func Offset: 0x20c
-	// Line 3229, Address: 0x2b6538, Func Offset: 0x218
-	// Line 3230, Address: 0x2b6540, Func Offset: 0x220
-	// Line 3231, Address: 0x2b655c, Func Offset: 0x23c
-	// Line 3230, Address: 0x2b6568, Func Offset: 0x248
-	// Line 3231, Address: 0x2b6570, Func Offset: 0x250
-	// Line 3232, Address: 0x2b658c, Func Offset: 0x26c
-	// Line 3231, Address: 0x2b6598, Func Offset: 0x278
-	// Line 3232, Address: 0x2b65a0, Func Offset: 0x280
-	// Line 3233, Address: 0x2b65bc, Func Offset: 0x29c
-	// Line 3232, Address: 0x2b65c8, Func Offset: 0x2a8
-	// Line 3233, Address: 0x2b65d0, Func Offset: 0x2b0
-	// Line 3234, Address: 0x2b65ec, Func Offset: 0x2cc
-	// Line 3233, Address: 0x2b65f8, Func Offset: 0x2d8
-	// Line 3234, Address: 0x2b6600, Func Offset: 0x2e0
-	// Line 3235, Address: 0x2b661c, Func Offset: 0x2fc
-	// Line 3234, Address: 0x2b6628, Func Offset: 0x308
-	// Line 3235, Address: 0x2b6630, Func Offset: 0x310
-	// Line 3239, Address: 0x2b664c, Func Offset: 0x32c
-	// Line 3235, Address: 0x2b6650, Func Offset: 0x330
-	// Line 3240, Address: 0x2b6658, Func Offset: 0x338
-	// Func End, Address: 0x2b666c, Func Offset: 0x34c
-	scePrintf("FsubZoomCursor - UNIMPLEMENTED!\n");
+    static const NJS_POINT2 dst_pos0[4] = 
+    {
+        {  56.0f,  64.0f },
+        { 585.0f,  64.0f },
+        {  56.0f,  64.0f },
+        {  56.0f, 417.0f }
+    };
+    static const NJS_POINT2 dst_pos1[4] = 
+    {
+        {  56.0f, 240.0f },
+        { 585.0f, 240.0f },
+        { 320.0f,  64.0f },
+        { 320.0f, 417.0f }
+    };
+    static const  NJS_POINT2 dst_pos2[4] =
+    {
+        {  56.0f, 417.0f },
+        { 585.0f, 417.0f },
+        {  64.0f, 585.0f },
+        {  64.0f, 417.0f }
+    };
+    NJS_COLOR col, col2; // not from DWARF
+
+    switch (fzP->mode) 
+    {                           
+    case 0:
+        fzP->time = 0;
+        
+        fzP->pos_a0 = dst_pos0[0];
+        fzP->pos_a1 = dst_pos0[1];
+        
+        fzP->pos_b0 = dst_pos0[2];
+        fzP->pos_b1 = dst_pos0[3];
+        
+        fzP->dstP = dst_pos1;
+        
+        fzP->mode++;
+    case 1:
+        if (fzP->time <= 0) 
+        {
+            MapDrawMessage(mwP->fcs_tagP->rom_no, 48.0f, 425.0f);
+        } 
+        else
+        {
+            fzP->time--;
+        }
+        
+        if (mwP->map_mode != MP_MOD_WAIT_ZOOM) 
+        {
+            fzP->dstP = dst_pos2;
+            
+            fzP->time = 5;
+            
+            fzP->mode = 2;
+        }
+        
+        break;
+    case 2:
+        if (fzP->time < 0) 
+        {
+            MapFuncFree((func_wrk_typ*)fzP);
+        } 
+        else 
+        {
+            fzP->time--;
+        }
+        
+        break;
+    }
+    
+    col = MapCnvArgb2Color(&mwP->MapPal[19]);
+    MapDrawLine(&fzP->pos_a0, &fzP->pos_a1, -7.0f, col.color);
+    
+    col2 = MapCnvArgb2Color(&mwP->MapPal[19]);
+    MapDrawLine(&fzP->pos_b0, &fzP->pos_b1, -7.0f, col2.color);
+    
+    fzP->pos_a0.x += ceilf(0.5f * (fzP->dstP->x - fzP->pos_a0.x));
+    fzP->pos_a0.y += ceilf(0.5f * (fzP->dstP->y - fzP->pos_a0.y));
+    
+    fzP->pos_a1.x += ceilf(0.5f * (fzP->dstP[1].x - fzP->pos_a1.x));
+    fzP->pos_a1.y += ceilf(0.5f * (fzP->dstP[1].y - fzP->pos_a1.y));
+    
+    fzP->pos_b0.x += ceilf(0.5f * (fzP->dstP[2].x - fzP->pos_b0.x));
+    fzP->pos_b0.y += ceilf(0.5f * (fzP->dstP[2].y - fzP->pos_b0.y));
+    
+    fzP->pos_b1.x += ceilf(0.5f * (fzP->dstP[3].x - fzP->pos_b1.x));
+    fzP->pos_b1.y += ceilf(0.5f * (fzP->dstP[3].y - fzP->pos_b1.y));
+    
+    return 1;
 }
 
 // 

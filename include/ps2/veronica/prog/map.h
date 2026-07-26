@@ -334,13 +334,13 @@ typedef struct FS_WRK
 typedef struct FZ_WORK 
 {
     // total size: 0x2C
-    int mode;          // offset 0x0, size 0x4
-    int time;          // offset 0x4, size 0x4
-    NJS_POINT2* dstP;  // offset 0x8, size 0x4
-    NJS_POINT2 pos_a0; // offset 0xC, size 0x8
-    NJS_POINT2 pos_a1; // offset 0x14, size 0x8
-    NJS_POINT2 pos_b0; // offset 0x1C, size 0x8
-    NJS_POINT2 pos_b1; // offset 0x24, size 0x8
+    int mode;               // offset 0x0, size 0x4
+    int time;               // offset 0x4, size 0x4
+    const NJS_POINT2* dstP; // offset 0x8, size 0x4
+    NJS_POINT2 pos_a0;      // offset 0xC, size 0x8
+    NJS_POINT2 pos_a1;      // offset 0x14, size 0x8
+    NJS_POINT2 pos_b0;      // offset 0x1C, size 0x8
+    NJS_POINT2 pos_b1;      // offset 0x24, size 0x8
 } FZ_WORK;
 
 typedef struct FI_WORK 

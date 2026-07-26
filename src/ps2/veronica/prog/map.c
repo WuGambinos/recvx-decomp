@@ -2074,88 +2074,86 @@ static int FsubGaugeDrawZ(FG_WORK* fgP)
 	scePrintf("FsubGaugeDrawZ - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2b58f0
+// 100% matching!
 static int FsubGaugeDrawX(FG_WORK* fgP)
 {
-	float size;
-	float tmp;
-	float dsp;
-	float pos;
-	int cnt;
-	NJS_POINT2 pnt[2];
-	NJS_COLOR col[2];
-	float scl;
-	NJS_POINT2COL p2c;
-	// Line 2793, Address: 0x2b58f0, Func Offset: 0
-	// Line 2800, Address: 0x2b591c, Func Offset: 0x2c
-	// Line 2810, Address: 0x2b592c, Func Offset: 0x3c
-	// Line 2801, Address: 0x2b5930, Func Offset: 0x40
-	// Line 2800, Address: 0x2b5934, Func Offset: 0x44
-	// Line 2801, Address: 0x2b5940, Func Offset: 0x50
-	// Line 2811, Address: 0x2b5948, Func Offset: 0x58
-	// Line 2800, Address: 0x2b594c, Func Offset: 0x5c
-	// Line 2812, Address: 0x2b5950, Func Offset: 0x60
-	// Line 2809, Address: 0x2b5954, Func Offset: 0x64
-	// Line 2800, Address: 0x2b595c, Func Offset: 0x6c
-	// Line 2809, Address: 0x2b5960, Func Offset: 0x70
-	// Line 2810, Address: 0x2b5964, Func Offset: 0x74
-	// Line 2811, Address: 0x2b596c, Func Offset: 0x7c
-	// Line 2812, Address: 0x2b5974, Func Offset: 0x84
-	// Line 2818, Address: 0x2b597c, Func Offset: 0x8c
-	// Line 2820, Address: 0x2b5980, Func Offset: 0x90
-	// Line 2800, Address: 0x2b598c, Func Offset: 0x9c
-	// Line 2821, Address: 0x2b5994, Func Offset: 0xa4
-	// Line 2800, Address: 0x2b5998, Func Offset: 0xa8
-	// Line 2821, Address: 0x2b59a0, Func Offset: 0xb0
-	// Line 2822, Address: 0x2b59b8, Func Offset: 0xc8
-	// Line 2821, Address: 0x2b59bc, Func Offset: 0xcc
-	// Line 2822, Address: 0x2b59c4, Func Offset: 0xd4
-	// Line 2823, Address: 0x2b59dc, Func Offset: 0xec
-	// Line 2824, Address: 0x2b5a00, Func Offset: 0x110
-	// Line 2823, Address: 0x2b5a0c, Func Offset: 0x11c
-	// Line 2824, Address: 0x2b5a10, Func Offset: 0x120
-	// Line 2825, Address: 0x2b5a20, Func Offset: 0x130
-	// Line 2827, Address: 0x2b5a40, Func Offset: 0x150
-	// Line 2825, Address: 0x2b5a44, Func Offset: 0x154
-	// Line 2827, Address: 0x2b5a48, Func Offset: 0x158
-	// Line 2825, Address: 0x2b5a50, Func Offset: 0x160
-	// Line 2826, Address: 0x2b5a54, Func Offset: 0x164
-	// Line 2827, Address: 0x2b5a5c, Func Offset: 0x16c
-	// Line 2828, Address: 0x2b5a6c, Func Offset: 0x17c
-	// Line 2829, Address: 0x2b5a70, Func Offset: 0x180
-	// Line 2828, Address: 0x2b5a7c, Func Offset: 0x18c
-	// Line 2829, Address: 0x2b5a80, Func Offset: 0x190
-	// Line 2830, Address: 0x2b5a94, Func Offset: 0x1a4
-	// Line 2829, Address: 0x2b5a98, Func Offset: 0x1a8
-	// Line 2830, Address: 0x2b5a9c, Func Offset: 0x1ac
-	// Line 2829, Address: 0x2b5aa4, Func Offset: 0x1b4
-	// Line 2830, Address: 0x2b5aa8, Func Offset: 0x1b8
-	// Line 2833, Address: 0x2b5ab8, Func Offset: 0x1c8
-	// Line 2835, Address: 0x2b5aec, Func Offset: 0x1fc
-	// Line 2836, Address: 0x2b5b0c, Func Offset: 0x21c
-	// Line 2837, Address: 0x2b5b14, Func Offset: 0x224
-	// Line 2838, Address: 0x2b5b18, Func Offset: 0x228
-	// Line 2839, Address: 0x2b5b20, Func Offset: 0x230
-	// Line 2840, Address: 0x2b5b38, Func Offset: 0x248
-	// Line 2844, Address: 0x2b5b60, Func Offset: 0x270
-	// Line 2847, Address: 0x2b5b7c, Func Offset: 0x28c
-	// Line 2848, Address: 0x2b5ba8, Func Offset: 0x2b8
-	// Line 2849, Address: 0x2b5bd8, Func Offset: 0x2e8
-	// Line 2852, Address: 0x2b5be0, Func Offset: 0x2f0
-	// Line 2855, Address: 0x2b5bf4, Func Offset: 0x304
-	// Line 2852, Address: 0x2b5bf8, Func Offset: 0x308
-	// Line 2855, Address: 0x2b5bfc, Func Offset: 0x30c
-	// Line 2852, Address: 0x2b5c04, Func Offset: 0x314
-	// Line 2853, Address: 0x2b5c0c, Func Offset: 0x31c
-	// Line 2854, Address: 0x2b5c18, Func Offset: 0x328
-	// Line 2855, Address: 0x2b5c20, Func Offset: 0x330
-	// Line 2856, Address: 0x2b5c30, Func Offset: 0x340
-	// Line 2863, Address: 0x2b5c60, Func Offset: 0x370
-	// Line 2862, Address: 0x2b5c88, Func Offset: 0x398
-	// Line 2863, Address: 0x2b5c8c, Func Offset: 0x39c
-	// Func End, Address: 0x2b5c94, Func Offset: 0x3a4
-	scePrintf("FsubGaugeDrawX - UNIMPLEMENTED!\n");
+    float scl;         
+    NJS_COLOR col[2];  
+    NJS_POINT2 pnt[2]; 
+    int cnt;           
+    float pos, dsp;         
+    float tmp;        
+    float size;        
+    float dist; // not from DWARF
+	static NJS_POINT2COL p2c;
+
+    dist = 1.174f * ((_nj_screen_.dist * (5.0f / mwP->vew_mtxP[0][14])) / 5.0f);
+    
+    p2c.tex = NULL;
+    p2c.p   = pnt;
+    p2c.col = col;
+    p2c.num = 1;
+    
+    dsp = fgP->gge_pos.x;
+    
+    col[0].color = col[1].color = mwP->MapCol[2].color;
+    
+    pnt[0].x = pnt[1].x = floorf(dsp) - 0.5f;
+    
+    pnt[0].y = floorf(1.0f + fgP->gge_pos.y);
+    pnt[1].y = floorf(8.0f + fgP->gge_pos.y) - 0.5f;
+    
+    njDrawLine2D(&p2c, p2c.num, fgP->gge_pos.z, 0);
+    
+    pnt[1].x = 0.5f + floorf(dsp + (100.0f * dist));
+    pnt[1].y = pnt[0].y;
+    
+    njDrawLine2D(&p2c, p2c.num, fgP->gge_pos.z, 0);
+    
+    pnt[0].x = pnt[1].x;
+    pnt[1].y = floorf(8.0f + fgP->gge_pos.y) - 0.5f;
+    
+    njDrawLine2D(&p2c, p2c.num, fgP->gge_pos.z, 0);
+    
+    tmp = 1000.0f + ((mwP->vew_pos.x - 50.0f) / 5.0f);
+    
+    if (!njFraction(tmp))
+    {
+        cnt = tmp;
+        
+        pos = 0; 
+    } 
+    else
+    {
+        cnt = ceilf(tmp);
+        
+        pos = 5.0f * (1.0f - njFraction(tmp));
+    }
+    
+    for ( ; pos <= 100.0f; pos += 5.0f, cnt++) 
+    {
+        if ((cnt % 10) == 0)
+        {
+            size = 9.0f;
+        }
+        else if ((cnt % 2) == 0) 
+        {
+            size = 5.0f;
+        } 
+        else 
+        {
+            size = 3.0f;
+        }
+        
+        pnt[0].x = pnt[1].x = 0.5f + floorf(dsp + (pos * dist));
+        
+        pnt[0].y = fgP->gge_pos.y - size;
+        pnt[1].y = fgP->gge_pos.y;
+        
+        njDrawLine2D(&p2c, p2c.num, fgP->gge_pos.z, 0);
+    } 
+    
+    return 1;
 }
 
 // 86.86% matching

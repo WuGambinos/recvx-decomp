@@ -4521,7 +4521,7 @@ void bhEff029(O_WRK* op)
 void bhEff100(O_WRK* op)
 {
 	int i;
-	//_anon9* erp;
+	ER_WORK* erp;
 	// Line 4609, Address: 0x22eb30, Func Offset: 0
 	// Line 4612, Address: 0x22eb44, Func Offset: 0x14
 	// Line 4613, Address: 0x22eb54, Func Offset: 0x24
@@ -4551,33 +4551,33 @@ void bhEff100(O_WRK* op)
 	scePrintf("bhEff100 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x22ed20
+// 100% matching!
 void bhEff101(O_WRK* op)
 {
-	// Line 4644, Address: 0x22ed20, Func Offset: 0
-	// Line 4648, Address: 0x22ed28, Func Offset: 0x8
-	// Line 4649, Address: 0x22ed38, Func Offset: 0x18
-	// Line 4651, Address: 0x22ed48, Func Offset: 0x28
-	// Line 4653, Address: 0x22ed50, Func Offset: 0x30
-	// Line 4654, Address: 0x22ed5c, Func Offset: 0x3c
-	// Line 4663, Address: 0x22ed60, Func Offset: 0x40
-	// Line 4653, Address: 0x22ed64, Func Offset: 0x44
-	// Line 4654, Address: 0x22ed70, Func Offset: 0x50
-	// Line 4663, Address: 0x22ed78, Func Offset: 0x58
-	// Line 4654, Address: 0x22ed80, Func Offset: 0x60
-	// Line 4655, Address: 0x22ed8c, Func Offset: 0x6c
-	// Line 4656, Address: 0x22eda0, Func Offset: 0x80
-	// Line 4657, Address: 0x22edb4, Func Offset: 0x94
-	// Line 4658, Address: 0x22edc8, Func Offset: 0xa8
-	// Line 4659, Address: 0x22eddc, Func Offset: 0xbc
-	// Line 4660, Address: 0x22edf4, Func Offset: 0xd4
-	// Line 4661, Address: 0x22ee0c, Func Offset: 0xec
-	// Line 4662, Address: 0x22ee24, Func Offset: 0x104
-	// Line 4663, Address: 0x22ee38, Func Offset: 0x118
-	// Line 4664, Address: 0x22ee50, Func Offset: 0x130
-	// Func End, Address: 0x22ee5c, Func Offset: 0x13c
-	scePrintf("bhEff101 - UNIMPLEMENTED!\n");
+    op->flg |= 0x1000000;
+    
+    if ((op->stflg & 0x1000000)) 
+    {
+        op->flg = 0;
+        return;
+    }
+    
+    sys->ef.id = 107;
+    
+    sys->ef.flg  = 1;
+    sys->ef.type = 0;
+    
+    sys->ef.px = 0;
+    sys->ef.py = 0;
+    sys->ef.pz = 0;
+    
+    sys->ef.sx = op->sx;
+    sys->ef.sy = op->sy;
+    sys->ef.sz = op->sz;
+    
+    sys->ef.ay = 0;
+    
+    bhSetEffectTb(&sys->ef, NULL, NULL, 0);
 }
 
 // 
@@ -4770,7 +4770,7 @@ void bhEff106(O_WRK* op)
 {
 	int ang[3];
 	int i;
-	//_anon9* erp;
+	ER_WORK* erp;
 	//_anon48 p3c;
 	//_anon27 col[2];
 	//_anon41 pos[2];
@@ -4824,7 +4824,7 @@ void bhDraw107(O_WRK* op)
 {
 	int i;
 	UV_WORK* uvp;
-	//_anon9* erp;
+	ER_WORK* erp;
 	//_anon5 tv[4];
 	UV_WORK uvinfo[6];
 	// Line 4886, Address: 0x22fd10, Func Offset: 0
@@ -4869,7 +4869,7 @@ void bhEff107(O_WRK* op)
 {
 	int i;
 	//_anon1* hp;
-	//_anon9* erp;
+	ER_WORK* erp;
 	// Line 4939, Address: 0x22fed0, Func Offset: 0
 	// Line 4943, Address: 0x22fee4, Func Offset: 0x14
 	// Line 4944, Address: 0x22fef0, Func Offset: 0x20

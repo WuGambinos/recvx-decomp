@@ -747,15 +747,15 @@ void bhEff001(O_WRK* op)
 // Start address: 0x2259d0
 void bhEff002(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_v0[14];
-	//_anon8 uvinfo_v2[25];
-	//_anon8 uvinfo_vz[6];
-	//_anon8 uvinfo_v9[7];
-	//_anon8 uvinfo_v8[5];
-	//_anon8 uvinfo_v4[8];
-	//_anon8 uvinfo_v3[14];
-	//_anon8 uvinfo_v1[7];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_v0[14];
+	UV_WORK uvinfo_v2[25];
+	UV_WORK uvinfo_vz[6];
+	UV_WORK uvinfo_v9[7];
+	UV_WORK uvinfo_v8[5];
+	UV_WORK uvinfo_v4[8];
+	UV_WORK uvinfo_v3[14];
+	UV_WORK uvinfo_v1[7];
 	// Line 584, Address: 0x2259d0, Func Offset: 0
 	// Line 701, Address: 0x2259dc, Func Offset: 0xc
 	// Line 703, Address: 0x2259fc, Func Offset: 0x2c
@@ -1836,64 +1836,127 @@ void bhEff004()
 
 }
 
-// 
-// Start address: 0x228240
+// 100% matching!
 void bhEff005(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_l[13];
-	//_anon8 uvinfo_m[12];
-	//_anon8 uvinfo_s[14];
-	// Line 1690, Address: 0x228240, Func Offset: 0
-	// Line 1692, Address: 0x228254, Func Offset: 0x14
-	// Line 1693, Address: 0x22825c, Func Offset: 0x1c
-	// Line 1694, Address: 0x228264, Func Offset: 0x24
-	// Line 1698, Address: 0x228268, Func Offset: 0x28
-	// Line 1693, Address: 0x22826c, Func Offset: 0x2c
-	// Line 1694, Address: 0x228274, Func Offset: 0x34
-	// Line 1695, Address: 0x228278, Func Offset: 0x38
-	// Line 1696, Address: 0x22827c, Func Offset: 0x3c
-	// Line 1697, Address: 0x228280, Func Offset: 0x40
-	// Line 1698, Address: 0x228284, Func Offset: 0x44
-	// Line 1699, Address: 0x228288, Func Offset: 0x48
-	// Line 1700, Address: 0x228290, Func Offset: 0x50
-	// Line 1701, Address: 0x228294, Func Offset: 0x54
-	// Line 1702, Address: 0x228298, Func Offset: 0x58
-	// Line 1701, Address: 0x22829c, Func Offset: 0x5c
-	// Line 1702, Address: 0x2282a0, Func Offset: 0x60
-	// Line 1705, Address: 0x2282a4, Func Offset: 0x64
-	// Line 1707, Address: 0x2282d0, Func Offset: 0x90
-	// Line 1708, Address: 0x2282e0, Func Offset: 0xa0
-	// Line 1710, Address: 0x2282e8, Func Offset: 0xa8
-	// Line 1711, Address: 0x2282f8, Func Offset: 0xb8
-	// Line 1713, Address: 0x228300, Func Offset: 0xc0
-	// Line 1716, Address: 0x228314, Func Offset: 0xd4
-	// Line 1718, Address: 0x228334, Func Offset: 0xf4
-	// Line 1720, Address: 0x22833c, Func Offset: 0xfc
-	// Line 1731, Address: 0x22834c, Func Offset: 0x10c
-	// Line 1720, Address: 0x228350, Func Offset: 0x110
-	// Line 1721, Address: 0x22835c, Func Offset: 0x11c
-	// Line 1722, Address: 0x228370, Func Offset: 0x130
-	// Line 1723, Address: 0x228378, Func Offset: 0x138
-	// Line 1724, Address: 0x228380, Func Offset: 0x140
-	// Line 1725, Address: 0x228390, Func Offset: 0x150
-	// Line 1726, Address: 0x228398, Func Offset: 0x158
-	// Line 1727, Address: 0x2283a0, Func Offset: 0x160
-	// Line 1728, Address: 0x2283b0, Func Offset: 0x170
-	// Line 1729, Address: 0x2283c0, Func Offset: 0x180
-	// Line 1730, Address: 0x2283d0, Func Offset: 0x190
-	// Line 1731, Address: 0x2283dc, Func Offset: 0x19c
-	// Line 1732, Address: 0x228410, Func Offset: 0x1d0
-	// Func End, Address: 0x228418, Func Offset: 0x1d8
-	scePrintf("bhEff005 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp; 
+	static UV_WORK uvinfo_l[13] = 
+    {
+        { 0.3125f,   0.5f,     0.0625f,  0.0625f  },
+        { 0.375f,    0.4375f,  0.125f,   0.125f   },
+        { 0.5f,      0.4375f,  0.15625f, 0.15625f },
+        { 0.65625f,  0.4375f,  0.15625f, 0.15625f },
+        { 0.8125f,   0.4375f,  0.15625f, 0.15625f },
+        { 0.0f,      0.5625f,  0.1875f,  0.1875f  },
+        { 0.1875f,   0.5625f,  0.1875f,  0.1875f  },
+        { 0.375f,    0.59375f, 0.1875f,  0.1875f  },
+        { 0.5625f,   0.59375f, 0.1875f,  0.1875f  },
+        { 0.0f,      0.78125f, 0.21875f, 0.21875f },
+        { 0.21875f,  0.78125f, 0.21875f, 0.21875f },
+        { 0.4375f,   0.78125f, 0.21875f, 0.21875f },
+        { -1.0f,     0.0f,     0.0f,     0.0f     }
+    };
+    static UV_WORK uvinfo_m[12] = 
+    {
+        { 0.0f,      0.25f,    0.0625f,  0.0625f  },
+        { 0.0f,      0.15625f, 0.09375f, 0.09375f },
+        { 0.09375f,  0.15625f, 0.125f,   0.125f   },
+        { 0.21875f,  0.15625f, 0.15625f, 0.15625f },
+        { 0.375f,    0.15625f, 0.15625f, 0.15625f },
+        { 0.0f,      0.0f,     0.15625f, 0.15625f },
+        { 0.15625f,  0.0f,     0.15625f, 0.15625f },
+        { 0.3125f,   0.0f,     0.15625f, 0.15625f },
+        { 0.46875f,  0.0f,     0.15625f, 0.15625f },
+        { 0.625f,    0.0f,     0.15625f, 0.15625f },
+        { 0.78125f,  0.125f,   0.15625f, 0.15625f },
+        { -1.0f,     0.0f,     0.0f,     0.0f     },
+    };
+    static UV_WORK uvinfo_s[14] = 
+    {
+        { 0.0f,      0.3125f,  0.0625f,  0.0625f  },
+        { 0.0f,      0.5f,     0.0625f,  0.0625f  },
+        { 0.0f,      0.375f,   0.0625f,  0.0625f  },
+        { 0.0f,      0.4375f,  0.0625f,  0.0625f  },
+        { 0.0625f,   0.3125f,  0.125f,   0.125f   },
+        { 0.1875f,   0.3125f,  0.125f,   0.125f   },
+        { 0.3125f,   0.3125f,  0.125f,   0.125f   },
+        { 0.4375f,   0.3125f,  0.125f,   0.125f   },
+        { 0.5625f,   0.3125f,  0.125f,   0.125f   },
+        { 0.6875f,   0.3125f,  0.125f,   0.125f   },
+        { 0.8125f,   0.3125f,  0.125f,   0.125f   },
+        { 0.0625f,   0.4375f,  0.125f,   0.125f   },
+        { 0.1875f,   0.4375f,  0.125f,   0.125f   },
+        { -1.0f,     0.0f,     0.0f,     0.0f     },
+    };
+    
+    switch (op->mode0) 
+    {
+    case 0:
+        op->tex_id = 5;
+        
+        op->flg |= 0x4100000;
+        
+        op->tv[0].col = -1;
+        op->tv[1].col = -1;
+        op->tv[2].col = -1;
+        op->tv[3].col = -1;
+        
+        op->bl_src = 8;
+        op->bl_dst = 6;
+        
+        op->ct0 = 0;
+        
+        op->ani_ct = op->mdlver;
+        
+        op->mode0 = 1;
+        break;
+    }
+    
+    switch (op->type) 
+    {                            
+    case 0:
+        uvp = &uvinfo_s[op->ct0];
+        break;
+    case 1:
+        uvp = &uvinfo_m[op->ct0];
+        break;
+    case 2:
+        uvp = &uvinfo_l[op->ct0];
+        break;
+    }
+    
+    if (uvp->u == -1.0f) 
+    {
+        op->flg = 0;
+        return;
+    }
+    
+    op->sx = 8.0f * (op->sxb * uvp->xs);
+    op->sy = 8.0f * (op->syb * uvp->ys);
+    
+    op->tv[0].u = uvp->u;
+    op->tv[0].v = uvp->v;
+    
+    op->tv[1].u = uvp->u + uvp->xs;
+    op->tv[1].v = uvp->v;
+    
+    op->tv[2].u = uvp->u;
+    op->tv[2].v = uvp->v + uvp->ys;
+    
+    op->tv[3].u = uvp->u + uvp->xs;
+    op->tv[3].v = uvp->v + uvp->ys;
+    
+    op->ct0++;
+    
+    sys->ef_trs[sys->ef_trsn++] = op;
 }
 
 // 
 // Start address: 0x228420
 void bhEff006(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo[8];
+	UV_WORK* uvp;
+	UV_WORK uvinfo[8];
 	// Line 1751, Address: 0x228420, Func Offset: 0
 	// Line 1753, Address: 0x228440, Func Offset: 0x20
 	// Line 1754, Address: 0x22844c, Func Offset: 0x2c
@@ -2043,10 +2106,10 @@ void bhEff007(O_WRK* op)
 // Start address: 0x228b30
 void bhEff008(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_f1[9];
-	//_anon8 uvinfo_f0[11];
-	//_anon8 uvinfo_fst[11];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_f1[9];
+	UV_WORK uvinfo_f0[11];
+	UV_WORK uvinfo_fst[11];
 	// Line 1953, Address: 0x228b30, Func Offset: 0
 	// Line 1955, Address: 0x228b44, Func Offset: 0x14
 	// Line 1956, Address: 0x228b4c, Func Offset: 0x1c
@@ -2254,8 +2317,8 @@ void bhEff009(O_WRK* op)
 // Start address: 0x228fc0
 void bhEff010(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_f0[5];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_f0[5];
 	// Line 2130, Address: 0x228fc0, Func Offset: 0
 	// Line 2133, Address: 0x228fd4, Func Offset: 0x14
 	// Line 2134, Address: 0x228fdc, Func Offset: 0x1c
@@ -2325,16 +2388,16 @@ void bhEff010(O_WRK* op)
 // Start address: 0x2291d0
 void bhEff011(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_smk[9];
-	//_anon8 uvinfo_c4[11];
-	//_anon8 uvinfo_c3[6];
-	//_anon8 uvinfo_c2[11];
-	//_anon8 uvinfo_c1[11];
-	//_anon8 uvinfo_c0[10];
-	//_anon8 uvinfo_t0[18];
-	//_anon8 uvinfo_oil[13];
-	//_anon8 uvinfo_tb[17];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_smk[9];
+	UV_WORK uvinfo_c4[11];
+	UV_WORK uvinfo_c3[6];
+	UV_WORK uvinfo_c2[11];
+	UV_WORK uvinfo_c1[11];
+	UV_WORK uvinfo_c0[10];
+	UV_WORK uvinfo_t0[18];
+	UV_WORK uvinfo_oil[13];
+	UV_WORK uvinfo_tb[17];
 	// Line 2193, Address: 0x2291d0, Func Offset: 0
 	// Line 2329, Address: 0x2291dc, Func Offset: 0xc
 	// Line 2331, Address: 0x2291f0, Func Offset: 0x20
@@ -2931,11 +2994,11 @@ void bhEff013(O_WRK* op)
 // Start address: 0x22ad20
 void bhEff014(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_f3[1];
-	//_anon8 uvinfo_f2[6];
-	//_anon8 uvinfo_f1[4];
-	//_anon8 uvinfo_f0[8];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_f3[1];
+	UV_WORK uvinfo_f2[6];
+	UV_WORK uvinfo_f1[4];
+	UV_WORK uvinfo_f0[8];
 	// Line 2905, Address: 0x22ad20, Func Offset: 0
 	// Line 2907, Address: 0x22ad34, Func Offset: 0x14
 	// Line 2908, Address: 0x22ad38, Func Offset: 0x18
@@ -3020,12 +3083,12 @@ void bhEff014(O_WRK* op)
 void bhEff015(O_WRK* op)
 {
 	float xn;
-	//_anon8* uvp;
-	//_anon8 uvinfo_oilh[5];
-	//_anon8 uvinfo_oil[9];
-	//_anon8 uvinfo_t1[5];
-	//_anon8 uvinfo_t0[11];
-	//_anon8 uvinfo_t2[12];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_oilh[5];
+	UV_WORK uvinfo_oil[9];
+	UV_WORK uvinfo_t1[5];
+	UV_WORK uvinfo_t0[11];
+	UV_WORK uvinfo_t2[12];
 	// Line 2997, Address: 0x22b050, Func Offset: 0
 	// Line 3065, Address: 0x22b060, Func Offset: 0x10
 	// Line 3067, Address: 0x22b074, Func Offset: 0x24
@@ -3233,12 +3296,12 @@ void bhEff017(O_WRK* op)
 void bhEff018(O_WRK* op)
 {
 	//_anon41 pos;
-	//_anon8* uvp;
-	//_anon8 uvinfo_fs[9];
-	//_anon8 uvinfo_fl[11];
-	//_anon8 uvinfo_fed[4];
-	//_anon8 uvinfo_fl2s[4];
-	//_anon8 uvinfo_fst[8];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_fs[9];
+	UV_WORK uvinfo_fl[11];
+	UV_WORK uvinfo_fed[4];
+	UV_WORK uvinfo_fl2s[4];
+	UV_WORK uvinfo_fst[8];
 	// Line 3255, Address: 0x22b980, Func Offset: 0
 	// Line 3303, Address: 0x22b990, Func Offset: 0x10
 	// Line 3305, Address: 0x22b9a4, Func Offset: 0x24
@@ -3398,10 +3461,10 @@ void bhEff018(O_WRK* op)
 void bhEff019(O_WRK* op)
 {
 	//_anon13* lp;
-	//_anon8* uvp;
-	//_anon8 uvinfo_t1[15];
-	//_anon8 uvinfo_t2[8];
-	//_anon8 uvinfo_t0[15];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_t1[15];
+	UV_WORK uvinfo_t2[8];
+	UV_WORK uvinfo_t0[15];
 	// Line 3556, Address: 0x22c120, Func Offset: 0
 	// Line 3558, Address: 0x22c134, Func Offset: 0x14
 	// Line 3559, Address: 0x22c140, Func Offset: 0x20
@@ -3614,9 +3677,9 @@ void bhDraw022(O_WRK* op)
 	int i;
 	//_anon41 scl;
 	//_anon36* exp;
-	//_anon8* uvp;
+	UV_WORK* uvp;
 	//_anon5 tv[4];
-	//_anon8 uvinfo[15];
+	UV_WORK uvinfo[15];
 	// Line 3765, Address: 0x22c7e0, Func Offset: 0
 	// Line 3793, Address: 0x22c7f4, Func Offset: 0x14
 	// Line 3795, Address: 0x22c7fc, Func Offset: 0x1c
@@ -3750,8 +3813,8 @@ void bhEff023(O_WRK* op)
 	float scl;
 	//_anon41 vc1;
 	//_anon41 vc0;
-	//_anon8* uvp;
-	//_anon8 uvinfo_t0[16];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_t0[16];
 	// Line 3913, Address: 0x22cd60, Func Offset: 0
 	// Line 3933, Address: 0x22cd74, Func Offset: 0x14
 	// Line 3936, Address: 0x22cd88, Func Offset: 0x28
@@ -3859,12 +3922,12 @@ void bhDraw024(O_WRK* op)
 	int i;
 	//_anon41 scl;
 	//_anon36* exp;
-	//_anon8* uvp;
+	UV_WORK* uvp;
 	//_anon5* tv;
 	int ef24ct[2];
-	//_anon8 uvinfo1[11];
+	UV_WORK uvinfo1[11];
 	//_anon5 tv1[4];
-	//_anon8 uvinfo0[8];
+	UV_WORK uvinfo0[8];
 	//_anon5 tv0[4];
 	// Line 4030, Address: 0x22d430, Func Offset: 0
 	// Line 4077, Address: 0x22d448, Func Offset: 0x18
@@ -4038,9 +4101,9 @@ void bhDraw025(O_WRK* op)
 	int i;
 	//_anon41 scl;
 	//_anon2* exp;
-	//_anon8* uvp;
+	UV_WORK* uvp;
 	//_anon5 tv[4];
-	//_anon8 uvinfo[11];
+	UV_WORK uvinfo[11];
 	// Line 4231, Address: 0x22db40, Func Offset: 0
 	// Line 4279, Address: 0x22db50, Func Offset: 0x10
 	// Line 4280, Address: 0x22db58, Func Offset: 0x18
@@ -4232,9 +4295,9 @@ void bhDraw027(O_WRK* op)
 	int i;
 	//_anon41 scl;
 	//_anon2* exp;
-	//_anon8* uvp;
+	UV_WORK* uvp;
 	//_anon5 tv[4];
-	//_anon8 uvinfo[11];
+	UV_WORK uvinfo[11];
 	// Line 4437, Address: 0x22e440, Func Offset: 0
 	// Line 4461, Address: 0x22e450, Func Offset: 0x10
 	// Line 4462, Address: 0x22e458, Func Offset: 0x18
@@ -4694,10 +4757,10 @@ void bhEff106(O_WRK* op)
 void bhDraw107(O_WRK* op)
 {
 	int i;
-	//_anon8* uvp;
+	UV_WORK* uvp;
 	//_anon9* erp;
 	//_anon5 tv[4];
-	//_anon8 uvinfo[6];
+	UV_WORK uvinfo[6];
 	// Line 4886, Address: 0x22fd10, Func Offset: 0
 	// Line 4904, Address: 0x22fd20, Func Offset: 0x10
 	// Line 4905, Address: 0x22fd28, Func Offset: 0x18
@@ -5814,9 +5877,9 @@ void bhEff116(O_WRK* op)
 // Start address: 0x232f80
 void bhEff117(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_p1[4];
-	//_anon8 uvinfo_p0[4];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_p1[4];
+	UV_WORK uvinfo_p0[4];
 	// Line 5890, Address: 0x232f80, Func Offset: 0
 	// Line 5913, Address: 0x232f90, Func Offset: 0x10
 	// Line 5915, Address: 0x232fb0, Func Offset: 0x30
@@ -5946,8 +6009,8 @@ void bhEff118(O_WRK* op)
 // Start address: 0x233560
 void bhEff119(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_p0[16];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_p0[16];
 	// Line 6028, Address: 0x233560, Func Offset: 0
 	// Line 6048, Address: 0x233570, Func Offset: 0x10
 	// Line 6050, Address: 0x233584, Func Offset: 0x24
@@ -6076,8 +6139,8 @@ void bhEff120(O_WRK* op)
 // Start address: 0x233b00
 void bhEff121(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_p0[9];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_p0[9];
 	// Line 6183, Address: 0x233b00, Func Offset: 0
 	// Line 6185, Address: 0x233b14, Func Offset: 0x14
 	// Line 6186, Address: 0x233b1c, Func Offset: 0x1c
@@ -6137,8 +6200,8 @@ void bhEff121(O_WRK* op)
 // Start address: 0x233c90
 void bhEff122(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_p0[3];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_p0[3];
 	// Line 6240, Address: 0x233c90, Func Offset: 0
 	// Line 6242, Address: 0x233ca4, Func Offset: 0x14
 	// Line 6243, Address: 0x233cac, Func Offset: 0x1c
@@ -6174,8 +6237,8 @@ void bhEff122(O_WRK* op)
 // Start address: 0x233db0
 void bhEff123(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_p0[4];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_p0[4];
 	// Line 6273, Address: 0x233db0, Func Offset: 0
 	// Line 6281, Address: 0x233dbc, Func Offset: 0xc
 	// Line 6283, Address: 0x233ddc, Func Offset: 0x2c
@@ -6416,11 +6479,11 @@ void bhEff126(O_WRK* op)
 {
 	int alpha;
 	//_anon41 pos;
-	//_anon8* uvp;
-	//_anon8 uvinfo_p3[16];
-	//_anon8 uvinfo_p2[20];
-	//_anon8 uvinfo_p1[19];
-	//_anon8 uvinfo_p0[19];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_p3[16];
+	UV_WORK uvinfo_p2[20];
+	UV_WORK uvinfo_p1[19];
+	UV_WORK uvinfo_p0[19];
 	// Line 6491, Address: 0x234520, Func Offset: 0
 	// Line 6577, Address: 0x23452c, Func Offset: 0xc
 	// Line 6579, Address: 0x234540, Func Offset: 0x20
@@ -7872,8 +7935,8 @@ void bhEff130(O_WRK* op)
 // Start address: 0x2384a0
 void bhEff131(O_WRK* op)
 {
-	//_anon8* uvp;
-	//_anon8 uvinfo_p0[14];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_p0[14];
 	// Line 7749, Address: 0x2384a0, Func Offset: 0
 	// Line 7751, Address: 0x2384b4, Func Offset: 0x14
 	// Line 7753, Address: 0x2384bc, Func Offset: 0x1c
@@ -7927,12 +7990,12 @@ void bhEff131(O_WRK* op)
 void bhEff132(O_WRK* op)
 {
 	int i;
-	//_anon8* uvp;
+	UV_WORK* uvp;
 	short apat_p3[9];
-	//_anon8 uvinfo_p3[9];
-	//_anon8 uvinfo_p2[12];
-	//_anon8 uvinfo_p1[9];
-	//_anon8 uvinfo_p0[8];
+	UV_WORK uvinfo_p3[9];
+	UV_WORK uvinfo_p2[12];
+	UV_WORK uvinfo_p1[9];
+	UV_WORK uvinfo_p0[8];
 	// Line 7793, Address: 0x238680, Func Offset: 0
 	// Line 7867, Address: 0x23868c, Func Offset: 0xc
 	// Line 7869, Address: 0x2386a0, Func Offset: 0x20

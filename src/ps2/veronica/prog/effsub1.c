@@ -4516,39 +4516,51 @@ void bhEff029(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x22eb30
-void bhEff100(O_WRK* op)
+// 100% matching!
+void bhEff100(O_WRK* op) 
 {
-	int i;
-	ER_WORK* erp;
-	// Line 4609, Address: 0x22eb30, Func Offset: 0
-	// Line 4612, Address: 0x22eb44, Func Offset: 0x14
-	// Line 4613, Address: 0x22eb54, Func Offset: 0x24
-	// Line 4615, Address: 0x22eb64, Func Offset: 0x34
-	// Line 4617, Address: 0x22eb6c, Func Offset: 0x3c
-	// Line 4618, Address: 0x22eb78, Func Offset: 0x48
-	// Line 4620, Address: 0x22eb88, Func Offset: 0x58
-	// Line 4622, Address: 0x22eb90, Func Offset: 0x60
-	// Line 4624, Address: 0x22eb9c, Func Offset: 0x6c
-	// Line 4623, Address: 0x22eba0, Func Offset: 0x70
-	// Line 4625, Address: 0x22eba4, Func Offset: 0x74
-	// Line 4626, Address: 0x22ebb4, Func Offset: 0x84
-	// Line 4627, Address: 0x22ec10, Func Offset: 0xe0
-	// Line 4628, Address: 0x22ec44, Func Offset: 0x114
-	// Line 4632, Address: 0x22ec80, Func Offset: 0x150
-	// Line 4628, Address: 0x22ec84, Func Offset: 0x154
-	// Line 4632, Address: 0x22ec88, Func Offset: 0x158
-	// Line 4628, Address: 0x22ec8c, Func Offset: 0x15c
-	// Line 4629, Address: 0x22ecac, Func Offset: 0x17c
-	// Line 4630, Address: 0x22ecb0, Func Offset: 0x180
-	// Line 4632, Address: 0x22ecb4, Func Offset: 0x184
-	// Line 4633, Address: 0x22ecc0, Func Offset: 0x190
-	// Line 4634, Address: 0x22ecc4, Func Offset: 0x194
-	// Line 4635, Address: 0x22eccc, Func Offset: 0x19c
-	// Line 4637, Address: 0x22ed04, Func Offset: 0x1d4
-	// Func End, Address: 0x22ed1c, Func Offset: 0x1ec
-	scePrintf("bhEff100 - UNIMPLEMENTED!\n");
+    ER_WORK* erp;
+    int i;
+    
+    op->flg |= 0x1000000;
+    
+    if ((op->stflg & 0x1000000)) 
+    {
+        op->flg = 0;
+        return;
+    }
+    
+    if (op->mode0 == 0) 
+    {
+        if ((op->exp0 = (unsigned char*)bhSetExtraEffectWork()) == NULL) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        op->func = (void*)bhEff106;
+        
+        erp = (ER_WORK*)&op->exp0[4]; 
+        
+        i = 77;
+        
+        while (i--) 
+        {
+            erp->px = (cam.wpx + (30.0f * cam.vx)) + ((80.0f * (-rand() / -2.1474836E9f)) - 40.0f);
+            erp->py = 80.0f * (-rand() / -2.1474836E9f);
+            erp->pz = (cam.wpz + (30.0f * cam.vz)) + ((80.0f * (-rand() / -2.1474836E9f)) - 40.0f);
+            
+            erp->ax = 0;
+            erp->ay = 0;
+            
+            erp++;
+        } 
+        
+        op->mode0 = 1;
+        return;
+    }
+    
+    sys->ef_fnc[sys->ef_fncn++] = op;
 }
 
 // 100% matching!

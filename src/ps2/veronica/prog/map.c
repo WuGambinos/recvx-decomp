@@ -1589,45 +1589,73 @@ static int FsprArrowDraw(FS_WORK* fsP)
 	scePrintf("FsprArrowDraw - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2b4d10
+// 100% matching!
 static int FsprArrowDraw2(FS_WORK* fsP)
 {
-	NJS_POINT3 bak;
-	int tab;
-	int count;
-	tag_wrk_typ* twP;
-	FSC_WORK* fscP;
-	FSD_WORK* fsdP;
-	// Line 2246, Address: 0x2b4d10, Func Offset: 0
-	// Line 2249, Address: 0x2b4d30, Func Offset: 0x20
-	// Line 2252, Address: 0x2b4d3c, Func Offset: 0x2c
-	// Line 2256, Address: 0x2b4d40, Func Offset: 0x30
-	// Line 2249, Address: 0x2b4d4c, Func Offset: 0x3c
-	// Line 2256, Address: 0x2b4d50, Func Offset: 0x40
-	// Line 2247, Address: 0x2b4d54, Func Offset: 0x44
-	// Line 2256, Address: 0x2b4d58, Func Offset: 0x48
-	// Line 2257, Address: 0x2b4d64, Func Offset: 0x54
-	// Line 2258, Address: 0x2b4d9c, Func Offset: 0x8c
-	// Line 2259, Address: 0x2b4dcc, Func Offset: 0xbc
-	// Line 2260, Address: 0x2b4dfc, Func Offset: 0xec
-	// Line 2261, Address: 0x2b4e2c, Func Offset: 0x11c
-	// Line 2263, Address: 0x2b4e54, Func Offset: 0x144
-	// Line 2264, Address: 0x2b4e64, Func Offset: 0x154
-	// Line 2266, Address: 0x2b4e6c, Func Offset: 0x15c
-	// Line 2264, Address: 0x2b4e74, Func Offset: 0x164
-	// Line 2266, Address: 0x2b4e78, Func Offset: 0x168
-	// Line 2268, Address: 0x2b4e94, Func Offset: 0x184
-	// Line 2269, Address: 0x2b4e9c, Func Offset: 0x18c
-	// Line 2271, Address: 0x2b4eac, Func Offset: 0x19c
-	// Line 2269, Address: 0x2b4eb0, Func Offset: 0x1a0
-	// Line 2271, Address: 0x2b4ebc, Func Offset: 0x1ac
-	// Line 2272, Address: 0x2b4ec0, Func Offset: 0x1b0
-	// Line 2276, Address: 0x2b4edc, Func Offset: 0x1cc
-	// Line 2275, Address: 0x2b4ef8, Func Offset: 0x1e8
-	// Line 2276, Address: 0x2b4efc, Func Offset: 0x1ec
-	// Func End, Address: 0x2b4f04, Func Offset: 0x1f4
-	scePrintf("FsprArrowDraw2 - UNIMPLEMENTED!\n");
+    FSD_WORK* fsdP;   
+    FSC_WORK* fscP;   
+    tag_wrk_typ* twP; 
+    int count;        
+    int tab;         
+    NJS_POINT3 bak;   
+
+    fsdP = &fsP->spr_dsp;
+    fscP = &fsP->spr_cnt; 
+    
+    twP = mwP->fcs_tagP;
+    
+    count = fsP->spr_cnt.count;
+    
+    bak = fsdP->spr_pos; 
+    
+    switch (fsP->spr_cnt.spr_mde) 
+    {                             
+    case 0:
+        fsdP->spr_pos.y -= 1.9f * njSin(count);
+        
+        tab = 3;
+        break;
+    case 1:
+        fsdP->spr_pos.y += 1.9f * njSin(count);
+        
+        tab = 1;
+        break;
+    case 2:
+        fsdP->spr_pos.x -= 1.9f * njSin(count);
+        
+        tab = 2;
+        break;
+    case 3:
+        fsdP->spr_pos.x += 1.9f * njSin(count);
+        
+        tab = 0;
+        break;
+    }
+    
+    fsdP->spr_pos.x = floorf(fsdP->spr_pos.x);
+    fsdP->spr_pos.y = floorf(fsdP->spr_pos.y);
+    
+    if (twP->tagPP[tab] != NULL) 
+    {
+        fsP->mode = 0;
+    } 
+    else 
+    {
+        fsP->mode = -1;
+    }
+    
+    FsprSpriteDraw(fsP);
+    
+    fsdP->spr_pos = bak; 
+    
+    fscP->count = count + 910;
+    
+    if (fscP->count >= 32768) 
+    {
+        fscP->count -= 32768;
+    }
+    
+    return 1;
 }
 
 // 100% matching!

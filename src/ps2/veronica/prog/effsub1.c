@@ -5905,37 +5905,41 @@ void bhEff115(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x232df0
-void bhEff116(O_WRK* op)
+// 100% matching!
+void bhEff116(O_WRK* op) 
 {
-	// Line 5862, Address: 0x232df0, Func Offset: 0
-	// Line 5864, Address: 0x232df8, Func Offset: 0x8
-	// Line 5865, Address: 0x232e08, Func Offset: 0x18
-	// Line 5866, Address: 0x232e18, Func Offset: 0x28
-	// Line 5867, Address: 0x232e24, Func Offset: 0x34
-	// Line 5869, Address: 0x232e38, Func Offset: 0x48
-	// Line 5870, Address: 0x232e40, Func Offset: 0x50
-	// Line 5869, Address: 0x232e44, Func Offset: 0x54
-	// Line 5870, Address: 0x232e48, Func Offset: 0x58
-	// Line 5872, Address: 0x232e4c, Func Offset: 0x5c
-	// Line 5869, Address: 0x232e50, Func Offset: 0x60
-	// Line 5870, Address: 0x232e5c, Func Offset: 0x6c
-	// Line 5880, Address: 0x232e64, Func Offset: 0x74
-	// Line 5870, Address: 0x232e70, Func Offset: 0x80
-	// Line 5871, Address: 0x232e7c, Func Offset: 0x8c
-	// Line 5872, Address: 0x232e98, Func Offset: 0xa8
-	// Line 5873, Address: 0x232eac, Func Offset: 0xbc
-	// Line 5874, Address: 0x232ec4, Func Offset: 0xd4
-	// Line 5875, Address: 0x232edc, Func Offset: 0xec
-	// Line 5876, Address: 0x232ef4, Func Offset: 0x104
-	// Line 5877, Address: 0x232f0c, Func Offset: 0x11c
-	// Line 5878, Address: 0x232f24, Func Offset: 0x134
-	// Line 5879, Address: 0x232f3c, Func Offset: 0x14c
-	// Line 5880, Address: 0x232f54, Func Offset: 0x164
-	// Line 5883, Address: 0x232f6c, Func Offset: 0x17c
-	// Func End, Address: 0x232f78, Func Offset: 0x188
-	scePrintf("bhEff116 - UNIMPLEMENTED!\n");
+    op->flg |= 0x1000000;
+    
+    op->ct3 = (op->ct3 + 1) & 0x3;
+    
+    if (op->ct3 != 0) 
+    {
+        return;
+    }
+    
+    switch (op->type) 
+    {
+    case 0:
+        sys->ef.id = 15;
+        
+        sys->ef.flg = 0x4100001;
+        
+        sys->ef.mdlver = op->ct3 & 0x7;
+        
+        sys->ef.type = 5;
+        
+        sys->ef.sx = op->sx;
+        sys->ef.sy = op->sy;
+        sys->ef.sz = op->sz;
+        
+        sys->ef.ay = op->ay;
+        
+        sys->ef.px = op->px;
+        sys->ef.py = op->py;
+        sys->ef.pz = op->pz;
+        
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    }
 }
 
 // 

@@ -1864,106 +1864,129 @@ static int FtskMapNormal(FTS_WORK* ftsP)
     return bol;
 }
 
-// 
-// Start address: 0x2b5220
+// 100% matching!
 static int FtskMapZoom(FTS_WORK* ftsP)
 {
-	int tag;
-	tag_wrk_typ* twP;
-	unsigned int p_prs;
-	FG_WORK* fgP;
-	//tag_wrk_typ* twP;
-	int bol;
-	// Line 2483, Address: 0x2b5220, Func Offset: 0
-	// Line 2486, Address: 0x2b5230, Func Offset: 0x10
-	// Line 2484, Address: 0x2b5234, Func Offset: 0x14
-	// Line 2486, Address: 0x2b5238, Func Offset: 0x18
-	// Line 2489, Address: 0x2b5250, Func Offset: 0x30
-	// Line 2493, Address: 0x2b525c, Func Offset: 0x3c
-	// Line 2498, Address: 0x2b5264, Func Offset: 0x44
-	// Line 2496, Address: 0x2b526c, Func Offset: 0x4c
-	// Line 2505, Address: 0x2b5270, Func Offset: 0x50
-	// Line 2493, Address: 0x2b5274, Func Offset: 0x54
-	// Line 2494, Address: 0x2b5278, Func Offset: 0x58
-	// Line 2505, Address: 0x2b527c, Func Offset: 0x5c
-	// Line 2497, Address: 0x2b5280, Func Offset: 0x60
-	// Line 2493, Address: 0x2b5284, Func Offset: 0x64
-	// Line 2494, Address: 0x2b5288, Func Offset: 0x68
-	// Line 2505, Address: 0x2b528c, Func Offset: 0x6c
-	// Line 2494, Address: 0x2b5290, Func Offset: 0x70
-	// Line 2495, Address: 0x2b5294, Func Offset: 0x74
-	// Line 2494, Address: 0x2b5298, Func Offset: 0x78
-	// Line 2495, Address: 0x2b52a0, Func Offset: 0x80
-	// Line 2496, Address: 0x2b52a8, Func Offset: 0x88
-	// Line 2495, Address: 0x2b52ac, Func Offset: 0x8c
-	// Line 2496, Address: 0x2b52b0, Func Offset: 0x90
-	// Line 2497, Address: 0x2b52b8, Func Offset: 0x98
-	// Line 2498, Address: 0x2b52c4, Func Offset: 0xa4
-	// Line 2500, Address: 0x2b52d0, Func Offset: 0xb0
-	// Line 2498, Address: 0x2b52d4, Func Offset: 0xb4
-	// Line 2500, Address: 0x2b52dc, Func Offset: 0xbc
-	// Line 2501, Address: 0x2b52e4, Func Offset: 0xc4
-	// Line 2500, Address: 0x2b52e8, Func Offset: 0xc8
-	// Line 2501, Address: 0x2b52ec, Func Offset: 0xcc
-	// Line 2502, Address: 0x2b52f4, Func Offset: 0xd4
-	// Line 2501, Address: 0x2b52f8, Func Offset: 0xd8
-	// Line 2502, Address: 0x2b52fc, Func Offset: 0xdc
-	// Line 2505, Address: 0x2b5304, Func Offset: 0xe4
-	// Line 2506, Address: 0x2b530c, Func Offset: 0xec
-	// Line 2507, Address: 0x2b531c, Func Offset: 0xfc
-	// Line 2508, Address: 0x2b5328, Func Offset: 0x108
-	// Line 2509, Address: 0x2b5334, Func Offset: 0x114
-	// Line 2510, Address: 0x2b5340, Func Offset: 0x120
-	// Line 2511, Address: 0x2b534c, Func Offset: 0x12c
-	// Line 2518, Address: 0x2b5358, Func Offset: 0x138
-	// Line 2519, Address: 0x2b5368, Func Offset: 0x148
-	// Line 2520, Address: 0x2b5370, Func Offset: 0x150
-	// Line 2521, Address: 0x2b5378, Func Offset: 0x158
-	// Line 2524, Address: 0x2b5380, Func Offset: 0x160
-	// Line 2525, Address: 0x2b5384, Func Offset: 0x164
-	// Line 2529, Address: 0x2b538c, Func Offset: 0x16c
-	// Line 2531, Address: 0x2b5394, Func Offset: 0x174
-	// Line 2533, Address: 0x2b53a4, Func Offset: 0x184
-	// Line 2534, Address: 0x2b53ac, Func Offset: 0x18c
-	// Line 2535, Address: 0x2b53b4, Func Offset: 0x194
-	// Line 2536, Address: 0x2b53c0, Func Offset: 0x1a0
-	// Line 2537, Address: 0x2b53c8, Func Offset: 0x1a8
-	// Line 2536, Address: 0x2b53cc, Func Offset: 0x1ac
-	// Line 2538, Address: 0x2b53d0, Func Offset: 0x1b0
-	// Line 2541, Address: 0x2b53d8, Func Offset: 0x1b8
-	// Line 2544, Address: 0x2b53e0, Func Offset: 0x1c0
-	// Line 2545, Address: 0x2b53f4, Func Offset: 0x1d4
-	// Line 2546, Address: 0x2b5408, Func Offset: 0x1e8
-	// Line 2547, Address: 0x2b541c, Func Offset: 0x1fc
-	// Line 2549, Address: 0x2b542c, Func Offset: 0x20c
-	// Line 2550, Address: 0x2b5438, Func Offset: 0x218
-	// Line 2551, Address: 0x2b544c, Func Offset: 0x22c
-	// Line 2553, Address: 0x2b5450, Func Offset: 0x230
-	// Line 2558, Address: 0x2b545c, Func Offset: 0x23c
-	// Line 2554, Address: 0x2b5464, Func Offset: 0x244
-	// Line 2553, Address: 0x2b5468, Func Offset: 0x248
-	// Line 2554, Address: 0x2b546c, Func Offset: 0x24c
-	// Line 2555, Address: 0x2b5474, Func Offset: 0x254
-	// Line 2554, Address: 0x2b5478, Func Offset: 0x258
-	// Line 2555, Address: 0x2b547c, Func Offset: 0x25c
-	// Line 2556, Address: 0x2b5484, Func Offset: 0x264
-	// Line 2555, Address: 0x2b5488, Func Offset: 0x268
-	// Line 2556, Address: 0x2b548c, Func Offset: 0x26c
-	// Line 2558, Address: 0x2b5494, Func Offset: 0x274
-	// Line 2565, Address: 0x2b549c, Func Offset: 0x27c
-	// Line 2567, Address: 0x2b54b0, Func Offset: 0x290
-	// Line 2565, Address: 0x2b54b4, Func Offset: 0x294
-	// Line 2566, Address: 0x2b54bc, Func Offset: 0x29c
-	// Line 2565, Address: 0x2b54c0, Func Offset: 0x2a0
-	// Line 2566, Address: 0x2b54cc, Func Offset: 0x2ac
-	// Line 2567, Address: 0x2b54d8, Func Offset: 0x2b8
-	// Line 2566, Address: 0x2b54dc, Func Offset: 0x2bc
-	// Line 2567, Address: 0x2b54e8, Func Offset: 0x2c8
-	// Line 2568, Address: 0x2b5514, Func Offset: 0x2f4
-	// Line 2592, Address: 0x2b5548, Func Offset: 0x328
-	// Line 2593, Address: 0x2b554c, Func Offset: 0x32c
-	// Func End, Address: 0x2b5560, Func Offset: 0x340
-	scePrintf("FtskMapZoom - UNIMPLEMENTED!\n");
+    int bol;           
+    tag_wrk_typ* twP;  
+    FG_WORK* fgP;       
+    unsigned int p_prs; 
+    
+    bol = TRUE;
+    
+    switch (ftsP->param3)
+    {                           
+    case 0:
+        CallSystemSe(0, 5);
+        
+        twP = mwP->cur_tagP;
+        
+        mwP->fcs_tagP = twP;
+        
+        mwP->status |= 0x200;
+        
+        mwP->bnk_tag_rom     = twP->rom_no;
+        mwP->bnk_tag_pal     = 3;
+        mwP->bnk_tag_pal_wal = 9;
+        
+        mwP->dst_zom = 0.5f * mwP->vew_zom_bak;
+        
+        mwP->dst_pos.x = twP->pos.x;
+        mwP->dst_pos.y = twP->pos.y;
+        mwP->dst_pos.z = twP->pos.z;
+        
+        MapFuncAlloc((void*)FsubZoomCursor,     0);
+        MapFuncAlloc((void*)FsubZoomInfomation, 0);
+        
+        MapEntrySprite(MP_SET_LR_ZOOM,      0);
+        MapEntrySprite(MP_SET_ARROW2_UP,    0);
+        MapEntrySprite(MP_SET_ARROW2_DOWN,  1);
+        MapEntrySprite(MP_SET_ARROW2_LEFT,  2);
+        MapEntrySprite(MP_SET_ARROW2_RIGHT, 3);
+        
+        fgP = (FG_WORK*)MapFuncAlloc((void*)FsubGaugeDraw, 0);
+        
+        fgP->gge_pos.x = 57.0f;
+        fgP->gge_pos.y = 416.0f;
+        fgP->gge_pos.z = -6.0f;
+        
+        ftsP->param3 = 1; 
+        break;
+    case 1:
+        p_prs = mwP->pad_ps;
+        
+        if (mwP->map_mode == MP_MOD_MAP_READ) 
+        {
+            MapFuncFree((func_wrk_typ*)&ftsP[-1]);
+        } 
+        else if ((p_prs & 0x100)) 
+        {
+            bol = FALSE;
+            
+            mwP->status &= ~0x200;
+        } 
+        else 
+        {
+            tag_wrk_typ* twP; 
+            int tag;         
+
+            twP = mwP->fcs_tagP;
+            
+            tag = -1;
+            
+            if ((p_prs & 0x8)) 
+            {
+                tag = 0;
+            } 
+            else if ((p_prs & 0x2)) 
+            {
+                tag = 1;
+            } 
+            else if ((p_prs & 0x4)) 
+            {
+                tag = 2;
+            } 
+            else if ((p_prs & 0x1)) 
+            {
+                tag = 3;
+            }
+            
+            if (tag != -1) 
+            {
+                twP = twP->tagPP[tag];
+                
+                if (twP != NULL) 
+                {
+                    mwP->fcs_tagP = twP;
+                    
+                    mwP->bnk_tag_rom = twP->rom_no;
+                    
+                    mwP->dst_pos.x = twP->pos.x;
+                    mwP->dst_pos.y = twP->pos.y;
+                    mwP->dst_pos.z = twP->pos.z;
+                    
+                    CallSystemSe(0, 2);
+                }
+            }
+            
+            mwP->dst_zom += 0.05f * mwP->pad_al;
+            mwP->dst_zom -= 0.05f * mwP->pad_ar;
+         
+            if (mwP->dst_zom < mwP->vew_min.y) 
+            {
+                mwP->dst_zom = mwP->vew_min.y;
+            }
+            
+            if (mwP->dst_zom > mwP->vew_max.y)
+            {
+                mwP->dst_zom = mwP->vew_max.y;
+            }
+        }
+        
+        break;
+    }
+    
+    return bol;
 }
 
 // 

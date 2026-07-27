@@ -1749,65 +1749,111 @@ void bhDrawWeaponEffect(O_WRK* op)
     njColorBlendingMode(1, 6);
 }
 
-// 
-// Start address: 0x227f30
+// 98.78% matching (matches on NGC)
 void bhEff003(O_WRK* op)
 {
+    float* wkp;   
 	int i;
-	float* wkp;
-	// Line 1513, Address: 0x227f30, Func Offset: 0
-	// Line 1516, Address: 0x227f44, Func Offset: 0x14
-	// Line 1518, Address: 0x227f70, Func Offset: 0x40
-	// Line 1519, Address: 0x227f78, Func Offset: 0x48
-	// Line 1520, Address: 0x227f84, Func Offset: 0x54
-	// Line 1525, Address: 0x227fb0, Func Offset: 0x80
-	// Line 1526, Address: 0x227fb8, Func Offset: 0x88
-	// Line 1527, Address: 0x227fbc, Func Offset: 0x8c
-	// Line 1525, Address: 0x227fc0, Func Offset: 0x90
-	// Line 1526, Address: 0x227fc4, Func Offset: 0x94
-	// Line 1528, Address: 0x227fc8, Func Offset: 0x98
-	// Line 1530, Address: 0x227fd0, Func Offset: 0xa0
-	// Line 1531, Address: 0x227fd8, Func Offset: 0xa8
-	// Line 1532, Address: 0x227fdc, Func Offset: 0xac
-	// Line 1530, Address: 0x227fe0, Func Offset: 0xb0
-	// Line 1531, Address: 0x227fe4, Func Offset: 0xb4
-	// Line 1533, Address: 0x227fe8, Func Offset: 0xb8
-	// Line 1535, Address: 0x227fec, Func Offset: 0xbc
-	// Line 1536, Address: 0x227ff8, Func Offset: 0xc8
-	// Line 1537, Address: 0x228034, Func Offset: 0x104
-	// Line 1538, Address: 0x228094, Func Offset: 0x164
-	// Line 1537, Address: 0x228098, Func Offset: 0x168
-	// Line 1538, Address: 0x22809c, Func Offset: 0x16c
-	// Line 1537, Address: 0x2280a0, Func Offset: 0x170
-	// Line 1538, Address: 0x2280a8, Func Offset: 0x178
-	// Line 1539, Address: 0x2280c4, Func Offset: 0x194
-	// Line 1540, Address: 0x2280d0, Func Offset: 0x1a0
-	// Line 1541, Address: 0x2280dc, Func Offset: 0x1ac
-	// Line 1543, Address: 0x2280e4, Func Offset: 0x1b4
-	// Line 1544, Address: 0x2280ec, Func Offset: 0x1bc
-	// Line 1545, Address: 0x2280f0, Func Offset: 0x1c0
-	// Line 1543, Address: 0x2280f4, Func Offset: 0x1c4
-	// Line 1544, Address: 0x2280f8, Func Offset: 0x1c8
-	// Line 1545, Address: 0x2280fc, Func Offset: 0x1cc
-	// Line 1548, Address: 0x228100, Func Offset: 0x1d0
-	// Line 1549, Address: 0x228104, Func Offset: 0x1d4
-	// Line 1550, Address: 0x228108, Func Offset: 0x1d8
-	// Line 1549, Address: 0x22810c, Func Offset: 0x1dc
-	// Line 1550, Address: 0x228110, Func Offset: 0x1e0
-	// Line 1552, Address: 0x228114, Func Offset: 0x1e4
-	// Line 1554, Address: 0x228158, Func Offset: 0x228
-	// Line 1556, Address: 0x228170, Func Offset: 0x240
-	// Line 1557, Address: 0x228174, Func Offset: 0x244
-	// Line 1563, Address: 0x22817c, Func Offset: 0x24c
-	// Line 1564, Address: 0x22819c, Func Offset: 0x26c
-	// Line 1620, Address: 0x2281a4, Func Offset: 0x274
-	// Line 1621, Address: 0x2281dc, Func Offset: 0x2ac
-	// Line 1622, Address: 0x2281e8, Func Offset: 0x2b8
-	// Line 1623, Address: 0x228200, Func Offset: 0x2d0
-	// Line 1625, Address: 0x228208, Func Offset: 0x2d8
-	// Line 1628, Address: 0x22820c, Func Offset: 0x2dc
-	// Func End, Address: 0x228224, Func Offset: 0x2f4
-	scePrintf("bhEff003 - UNIMPLEMENTED!\n");
+
+    switch (op->mode0)
+    {
+    case 0:
+        op->tex_id = 3;
+        
+        op->func = (void*)bhDrawWeaponEffect;
+        
+        switch (op->type)
+        {
+        case 0:
+        case 1:
+        case 2:
+        case 4:
+            op->tvp->col = -1;
+            
+            op->bl_src = 8;
+            op->bl_dst = 10;
+            break;
+        case 3:
+            op->tvp->col = -1;
+            
+            op->bl_src = 8;
+            op->bl_dst = 6;
+            
+            wkp = (float*)op->pv;
+
+            i = 8;
+            
+            while (i-- != 0)
+            {
+                *wkp++ = (int)(182.04445f * (45.0f * i)) & 0xFFFF;
+                *wkp++ = -((int)(182.04445f * (70.0f + (15.0f * (-rand() / -2.1474836E9f)))) & 0xFFFF);
+                
+                if ((i % 3) == 0) 
+                {
+                    op->jno[i] = 1;
+                }
+                else 
+                {
+                    op->jno[i] = 0;
+                }
+            }
+            
+            break;
+        case 5:
+            op->tvp->col = -0x5FA0;
+            
+            op->bl_src = 9;
+            op->bl_dst = 10;
+            break;
+        }
+        
+        op->ani_ct = 0;
+        
+        op->ct0 = op->ct1 = 0;
+        
+        op->mode0 = 1;
+    case 1:
+        switch (op->type)
+        {
+        case 0:
+            if ((op->mdlver != 0) && (op->ct1 == 0))
+            {
+                op->ct1++;
+                return;
+            }
+
+            break;
+        case 1:
+        case 2:
+        case 4:
+            if (op->ct0 != 1) 
+            {
+                op->spd = 0.8f;
+            }
+            else
+            {
+                op->spd = 1.0f;
+            }
+            
+            break;
+        case 3:
+            break;
+        }
+
+        sys->ef_fnc[sys->ef_fncn++] = op;
+        
+        op->ct0++;
+        
+        if (op->ct0 >= op->flr_no) 
+        {
+            op->mode0 = 2;
+        }
+        
+        break;
+    case 2:
+        op->flg = 0;
+        break;
+    }
 }
 
 // 100% matching!

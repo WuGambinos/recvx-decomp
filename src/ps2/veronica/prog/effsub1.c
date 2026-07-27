@@ -4260,7 +4260,7 @@ void bhEff024(O_WRK* op)
 {
 	float py;
 	NJS_VECTOR vec;
-	//_anon1* hp;
+	ATR_WORK* hp;
 	// Line 4157, Address: 0x22d770, Func Offset: 0
 	// Line 4161, Address: 0x22d788, Func Offset: 0x18
 	// Line 4162, Address: 0x22d798, Func Offset: 0x28
@@ -5212,41 +5212,66 @@ void bhDraw107(O_WRK* op)
     njPopMatrixEx();
 }
 
-// 
-// Start address: 0x22fed0
-void bhEff107(O_WRK* op)
+// 100% matching!
+void bhEff107(O_WRK* op) 
 {
-	int i;
-	//_anon1* hp;
-	ER_WORK* erp;
-	// Line 4939, Address: 0x22fed0, Func Offset: 0
-	// Line 4943, Address: 0x22fee4, Func Offset: 0x14
-	// Line 4944, Address: 0x22fef0, Func Offset: 0x20
-	// Line 4946, Address: 0x22ff00, Func Offset: 0x30
-	// Line 4948, Address: 0x22ff08, Func Offset: 0x38
-	// Line 4950, Address: 0x22ff14, Func Offset: 0x44
-	// Line 4949, Address: 0x22ff18, Func Offset: 0x48
-	// Line 4951, Address: 0x22ff1c, Func Offset: 0x4c
-	// Line 4952, Address: 0x22ff2c, Func Offset: 0x5c
-	// Line 4953, Address: 0x22ff88, Func Offset: 0xb8
-	// Line 4954, Address: 0x22ffe8, Func Offset: 0x118
-	// Line 4955, Address: 0x22fff8, Func Offset: 0x128
-	// Line 4956, Address: 0x230024, Func Offset: 0x154
-	// Line 4957, Address: 0x230030, Func Offset: 0x160
-	// Line 4958, Address: 0x23003c, Func Offset: 0x16c
-	// Line 4960, Address: 0x230040, Func Offset: 0x170
-	// Line 4959, Address: 0x230044, Func Offset: 0x174
-	// Line 4960, Address: 0x230048, Func Offset: 0x178
-	// Line 4961, Address: 0x230050, Func Offset: 0x180
-	// Line 4963, Address: 0x230058, Func Offset: 0x188
-	// Line 4964, Address: 0x230060, Func Offset: 0x190
-	// Line 4965, Address: 0x23006c, Func Offset: 0x19c
-	// Line 4966, Address: 0x23007c, Func Offset: 0x1ac
-	// Line 4968, Address: 0x230084, Func Offset: 0x1b4
-	// Line 4970, Address: 0x23008c, Func Offset: 0x1bc
-	// Line 4972, Address: 0x2300c4, Func Offset: 0x1f4
-	// Func End, Address: 0x2300dc, Func Offset: 0x20c
-	scePrintf("bhEff107 - UNIMPLEMENTED!\n");
+    ER_WORK* erp;
+    ATR_WORK* hp;
+    int i;
+    
+    if (op->mode0 == 0) 
+    {
+        if ((op->exp0 = (unsigned char*)bhSetExtraEffectWork()) == NULL) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        op->func = (void*)bhDraw107;
+        
+        erp = (ER_WORK*)&op->exp0[4];
+
+        i = 8;
+        
+        while (i-- != 0) 
+        {
+            erp->px = (cam.wpx + (40.0f * cam.vx)) + ((80.0f * (-rand() / -2.1474836E9f)) - 40.0f);
+            erp->pz = (cam.wpz + (40.0f * cam.vz)) + ((80.0f * (-rand() / -2.1474836E9f)) - 40.0f);
+            
+            hp = bhCheckFloorEffect(0, erp->px, erp->pz);
+            
+            if ((hp != NULL) && ((hp->type == 3) && (hp->prm0 == 0))) 
+            {
+                erp->ax = 0;
+            }
+            else 
+            {
+                erp->ax = 1;
+            }
+            
+            erp->py = 0.1f;
+            erp->ay = 0;
+            
+            erp++;
+        } 
+        
+        op->mode0 = 1;
+        op->ct0   = 0;
+        return;
+    }
+    
+    op->ct0++;
+    
+    if (op->ct0 > 4) 
+    {
+        *(int*)op->exp0 = 0;
+        
+        op->flg = 0;
+    }
+    else 
+    {
+        sys->ef_fnc[sys->ef_fncn++] = op;
+    }
 }
 
 // 

@@ -3864,69 +3864,87 @@ void bhDraw022(O_WRK* op)
 	scePrintf("bhDraw022 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x22ca60
+// 99.95% matching
 void bhEff022(O_WRK* op)
 {
-	int i;
-	NJS_POINT3 ps;
-	NJS_VECTOR vc;
-	// Line 3854, Address: 0x22ca60, Func Offset: 0
-	// Line 3855, Address: 0x22ca70, Func Offset: 0x10
-	// Line 3856, Address: 0x22ca80, Func Offset: 0x20
-	// Line 3857, Address: 0x22ca8c, Func Offset: 0x2c
-	// Line 3859, Address: 0x22ca9c, Func Offset: 0x3c
-	// Line 3861, Address: 0x22caa4, Func Offset: 0x44
-	// Line 3862, Address: 0x22cab0, Func Offset: 0x50
-	// Line 3863, Address: 0x22cab4, Func Offset: 0x54
-	// Line 3864, Address: 0x22cabc, Func Offset: 0x5c
-	// Line 3868, Address: 0x22cac4, Func Offset: 0x64
-	// Line 3864, Address: 0x22cad4, Func Offset: 0x74
-	// Line 3865, Address: 0x22cadc, Func Offset: 0x7c
-	// Line 3866, Address: 0x22caec, Func Offset: 0x8c
-	// Line 3867, Address: 0x22cafc, Func Offset: 0x9c
-	// Line 3868, Address: 0x22cb0c, Func Offset: 0xac
-	// Line 3869, Address: 0x22cb18, Func Offset: 0xb8
-	// Line 3872, Address: 0x22cb24, Func Offset: 0xc4
-	// Line 3873, Address: 0x22cb34, Func Offset: 0xd4
-	// Line 3874, Address: 0x22cb38, Func Offset: 0xd8
-	// Line 3875, Address: 0x22cb3c, Func Offset: 0xdc
-	// Line 3877, Address: 0x22cb44, Func Offset: 0xe4
-	// Line 3880, Address: 0x22cb50, Func Offset: 0xf0
-	// Line 3881, Address: 0x22cb58, Func Offset: 0xf8
-	// Line 3880, Address: 0x22cb60, Func Offset: 0x100
-	// Line 3882, Address: 0x22cb64, Func Offset: 0x104
-	// Line 3880, Address: 0x22cb68, Func Offset: 0x108
-	// Line 3881, Address: 0x22cb74, Func Offset: 0x114
-	// Line 3887, Address: 0x22cb7c, Func Offset: 0x11c
-	// Line 3891, Address: 0x22cb80, Func Offset: 0x120
-	// Line 3893, Address: 0x22cb84, Func Offset: 0x124
-	// Line 3881, Address: 0x22cb88, Func Offset: 0x128
-	// Line 3882, Address: 0x22cb94, Func Offset: 0x134
-	// Line 3883, Address: 0x22cba8, Func Offset: 0x148
-	// Line 3884, Address: 0x22cbbc, Func Offset: 0x15c
-	// Line 3885, Address: 0x22cbd4, Func Offset: 0x174
-	// Line 3886, Address: 0x22cbec, Func Offset: 0x18c
-	// Line 3887, Address: 0x22cc04, Func Offset: 0x1a4
-	// Line 3888, Address: 0x22cc18, Func Offset: 0x1b8
-	// Line 3889, Address: 0x22cc2c, Func Offset: 0x1cc
-	// Line 3890, Address: 0x22cc40, Func Offset: 0x1e0
-	// Line 3891, Address: 0x22cc44, Func Offset: 0x1e4
-	// Line 3893, Address: 0x22cc48, Func Offset: 0x1e8
-	// Line 3894, Address: 0x22cc50, Func Offset: 0x1f0
-	// Line 3895, Address: 0x22cc5c, Func Offset: 0x1fc
-	// Line 3896, Address: 0x22cc68, Func Offset: 0x208
-	// Line 3897, Address: 0x22cc6c, Func Offset: 0x20c
-	// Line 3898, Address: 0x22cc74, Func Offset: 0x214
-	// Line 3899, Address: 0x22ccc4, Func Offset: 0x264
-	// Line 3900, Address: 0x22ccd4, Func Offset: 0x274
-	// Line 3901, Address: 0x22ccf8, Func Offset: 0x298
-	// Line 3902, Address: 0x22cd00, Func Offset: 0x2a0
-	// Line 3903, Address: 0x22cd0c, Func Offset: 0x2ac
-	// Line 3904, Address: 0x22cd10, Func Offset: 0x2b0
-	// Line 3906, Address: 0x22cd48, Func Offset: 0x2e8
-	// Func End, Address: 0x22cd5c, Func Offset: 0x2fc
-	scePrintf("bhEff022 - UNIMPLEMENTED!\n");
+    NJS_VECTOR vc;
+    NJS_POINT3 ps;
+    int i;
+    
+    op->flg |= 0x1000000;
+    
+    if (op->mode0 == 0) 
+    {
+        if ((op->exp0 = (unsigned char*)bhSetExtraEffectWork()) == NULL) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        op->func = (void*)bhDraw022;
+        
+        op->mode0 = 1;
+        return;
+    }
+    
+    op->px += op->lox;
+    op->py += op->loy;
+    op->pz += op->loz;
+    
+    op->loy += op->yn;
+    
+    op->yn -= 0.01f;
+    
+    op->ct0++;
+    
+    if (op->ct0 > 30)
+    {
+        op->flg = 0;
+        
+        *(int*)op->exp0 = 0;
+        return;
+    }
+    
+    if (op->ct0 < 16) 
+    {
+        sys->ef.id = 132;
+        
+        sys->ef.flg  = 0x4100001;
+        sys->ef.type = 1;
+        
+        sys->ef.mdlver = 0;
+        
+        sys->ef.px = op->px;
+        sys->ef.py = op->py;
+        sys->ef.pz = op->pz;
+        
+        sys->ef.sx = 1.0f;
+        sys->ef.sy = 1.0f;
+        sys->ef.sz = 0.0f;
+        
+        vc.x = 0;
+        vc.y = vc.z = 0.5f;
+        
+        njUnitMatrix(NULL);
+        
+        njRotateY(NULL, op->ay);
+        njRotateX(NULL, op->ax);
+        
+        for (i = 0; i <= 0; i++) // non-sensical loop - dev mistake 
+        {
+            njPushMatrixEx();
+            
+            njRotateZ(NULL, (int)(182.04445f * (360.0f * (-rand() / -2.1474836E9f))) & 0xFFFF);
+            
+            njCalcPoint(NULL, &vc, &ps);
+            
+            bhSetEffectTb(&sys->ef, &ps, NULL, 0);
+            
+            njPopMatrixEx();
+        }
+    }
+    
+    sys->ef_fnc[sys->ef_fncn++] = op;
 }
 
 // 

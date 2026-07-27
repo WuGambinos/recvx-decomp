@@ -1,8 +1,27 @@
 #include "../../../ps2/veronica/prog/en06sub.h"
 
-/*void(*bhEne06s_Mode0)(BH_PWORK*)[3];
-void(*bhEne06s_MoveMode2)(BH_PWORK*)[2];
-_anon8 CollisionOffset[3][4];
+typedef void (*Mode0_proc)(BH_PWORK*);
+typedef void (*MoveMode2_proc)(BH_PWORK*);
+
+Mode0_proc bhEne06s_Mode0[3] =
+{
+    bhEne06s_Init,
+    bhEne06s_Move,
+    bhEne06s_Dummy
+};
+MoveMode2_proc bhEne06s_MoveMode2[2] =
+{
+    bhEne06s_MV00,
+    bhEne06s_MV01
+};
+
+static NJS_POINT3 CollisionOffset[4][3] =
+{
+    { {  0.0f,  0.0f,  0.0f }, {  5.0f, -0.5f, -2.5f }, {  3.5f, -0.5f,  1.5f } },
+    { {  0.0f,  0.0f,  0.0f }, { -5.0f, -0.5f, -2.5f }, { -3.5f, -0.5f,  1.5f } },
+    { {  0.0f,  0.0f,  0.0f }, {  3.0f, -0.5f,  2.0f }, {  0.5f, -0.3f,  5.0f } },
+    { {  0.0f,  0.0f,  0.0f }, { -3.0f, -0.5f,  2.0f }, { -0.5f, -0.3f,  5.0f } }
+};
 
 // 
 // Start address: 0x1bf2b0
@@ -44,12 +63,10 @@ void bhEne06s_Init(BH_PWORK* epw)
 	// Func End, Address: 0x1bf3b8, Func Offset: 0x78
 }
 
-// 
-// Start address: 0x1bf3c0
+// 100% matching!
 void bhEne06s_Move(BH_PWORK* epw)
 {
-	// Line 161, Address: 0x1bf3c0, Func Offset: 0
-	// Func End, Address: 0x1bf3e0, Func Offset: 0x20
+    bhEne06s_MoveMode2[epw->mode2](epw);
 }
 
 // 
@@ -58,9 +75,9 @@ void bhEne06s_MV00(BH_PWORK* epw)
 {
 	int ang;
 	float out;
-	_anon8 ov;
-	_anon8 vd;
-	_anon8 v;
+	//_anon8 ov;
+	//_anon8 vd;
+	//_anon8 v;
 	// Line 172, Address: 0x1bf3e0, Func Offset: 0
 	// Line 173, Address: 0x1bf3f8, Func Offset: 0x18
 	// Line 175, Address: 0x1bf424, Func Offset: 0x44
@@ -123,9 +140,9 @@ void bhEne06s_MV01(BH_PWORK* epw)
 {
 	int ang;
 	float out;
-	_anon8 ov;
-	_anon8 vd;
-	_anon8 avec;
+	//_anon8 ov;
+	//_anon8 vd;
+	//_anon8 avec;
 	// Line 248, Address: 0x1bf740, Func Offset: 0
 	// Line 251, Address: 0x1bf754, Func Offset: 0x14
 	// Line 253, Address: 0x1bf784, Func Offset: 0x44
@@ -198,7 +215,7 @@ void bhEne06s_MV01(BH_PWORK* epw)
 	// Line 344, Address: 0x1bfba8, Func Offset: 0x468
 	// Line 346, Address: 0x1bfbb4, Func Offset: 0x474
 	// Func End, Address: 0x1bfbcc, Func Offset: 0x48c
-}*/
+}
 
 // 100% matching!
 void bhEne06s_Dummy()
@@ -206,11 +223,11 @@ void bhEne06s_Dummy()
 
 }
 
-/*// 
+// 
 // Start address: 0x1bfbe0
 void bhEne06s_FloorCollision(BH_PWORK* epw)
 {
-	_anon9* hp;
+	//_anon9* hp;
 	// Line 368, Address: 0x1bfbe0, Func Offset: 0
 	// Line 371, Address: 0x1bfbec, Func Offset: 0xc
 	// Line 373, Address: 0x1bfc00, Func Offset: 0x20
@@ -235,9 +252,9 @@ void bhEne06s_FloorCollision(BH_PWORK* epw)
 // Start address: 0x1bfcd0
 void bhEne06s_WallCheck(BH_PWORK* epw)
 {
-	_anon9* hp;
+	//_anon9* hp;
 	int i;
-	_anon8 vec;
+	//_anon8 vec;
 	// Line 404, Address: 0x1bfcd0, Func Offset: 0
 	// Line 409, Address: 0x1bfce4, Func Offset: 0x14
 	// Line 411, Address: 0x1bfcf8, Func Offset: 0x28
@@ -267,5 +284,4 @@ void bhEne06s_WallCheck(BH_PWORK* epw)
 	// Line 448, Address: 0x1bfe40, Func Offset: 0x170
 	// Line 449, Address: 0x1bfe64, Func Offset: 0x194
 	// Func End, Address: 0x1bfe7c, Func Offset: 0x1ac
-}*/
-
+}

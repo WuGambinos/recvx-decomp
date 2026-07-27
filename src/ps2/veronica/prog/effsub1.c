@@ -4577,79 +4577,105 @@ void bhEff026(O_WRK* op)
 	scePrintf("bhEff026 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x22e440
+// 100% matching
 void bhDraw027(O_WRK* op)
 {
-	int i;
-	NJS_POINT3 scl;
-	EXP_EFF025_WORK* exp;
-	UV_WORK* uvp;
-	NJS_TEXTURE_VTX tv[4];
-	UV_WORK uvinfo[11];
-	// Line 4437, Address: 0x22e440, Func Offset: 0
-	// Line 4461, Address: 0x22e450, Func Offset: 0x10
-	// Line 4462, Address: 0x22e458, Func Offset: 0x18
-	// Line 4463, Address: 0x22e470, Func Offset: 0x30
-	// Line 4464, Address: 0x22e488, Func Offset: 0x48
-	// Line 4465, Address: 0x22e490, Func Offset: 0x50
-	// Line 4466, Address: 0x22e498, Func Offset: 0x58
-	// Line 4468, Address: 0x22e4a4, Func Offset: 0x64
-	// Line 4471, Address: 0x22e4b0, Func Offset: 0x70
-	// Line 4472, Address: 0x22e4b4, Func Offset: 0x74
-	// Line 4471, Address: 0x22e4b8, Func Offset: 0x78
-	// Line 4473, Address: 0x22e4bc, Func Offset: 0x7c
-	// Line 4474, Address: 0x22e4c8, Func Offset: 0x88
-	// Line 4475, Address: 0x22e4cc, Func Offset: 0x8c
-	// Line 4474, Address: 0x22e4d0, Func Offset: 0x90
-	// Line 4486, Address: 0x22e4d4, Func Offset: 0x94
-	// Line 4474, Address: 0x22e4dc, Func Offset: 0x9c
-	// Line 4475, Address: 0x22e4e4, Func Offset: 0xa4
-	// Line 4474, Address: 0x22e4ec, Func Offset: 0xac
-	// Line 4475, Address: 0x22e4f0, Func Offset: 0xb0
-	// Line 4478, Address: 0x22e4f4, Func Offset: 0xb4
-	// Line 4486, Address: 0x22e4fc, Func Offset: 0xbc
-	// Line 4478, Address: 0x22e500, Func Offset: 0xc0
-	// Line 4479, Address: 0x22e504, Func Offset: 0xc4
-	// Line 4480, Address: 0x22e510, Func Offset: 0xd0
-	// Line 4481, Address: 0x22e524, Func Offset: 0xe4
-	// Line 4482, Address: 0x22e530, Func Offset: 0xf0
-	// Line 4483, Address: 0x22e53c, Func Offset: 0xfc
-	// Line 4484, Address: 0x22e550, Func Offset: 0x110
-	// Line 4485, Address: 0x22e564, Func Offset: 0x124
-	// Line 4486, Address: 0x22e574, Func Offset: 0x134
-	// Line 4487, Address: 0x22e57c, Func Offset: 0x13c
-	// Line 4488, Address: 0x22e584, Func Offset: 0x144
-	// Line 4489, Address: 0x22e58c, Func Offset: 0x14c
-	// Line 4490, Address: 0x22e594, Func Offset: 0x154
-	// Line 4491, Address: 0x22e5a8, Func Offset: 0x168
-	// Line 4492, Address: 0x22e5c0, Func Offset: 0x180
-	// Line 4499, Address: 0x22e5d0, Func Offset: 0x190
-	// Line 4492, Address: 0x22e5d4, Func Offset: 0x194
-	// Line 4499, Address: 0x22e5d8, Func Offset: 0x198
-	// Line 4492, Address: 0x22e5dc, Func Offset: 0x19c
-	// Line 4493, Address: 0x22e5e0, Func Offset: 0x1a0
-	// Line 4499, Address: 0x22e5e8, Func Offset: 0x1a8
-	// Line 4493, Address: 0x22e5f0, Func Offset: 0x1b0
-	// Line 4494, Address: 0x22e5f8, Func Offset: 0x1b8
-	// Line 4495, Address: 0x22e608, Func Offset: 0x1c8
-	// Line 4496, Address: 0x22e618, Func Offset: 0x1d8
-	// Line 4497, Address: 0x22e624, Func Offset: 0x1e4
-	// Line 4498, Address: 0x22e630, Func Offset: 0x1f0
-	// Line 4499, Address: 0x22e638, Func Offset: 0x1f8
-	// Line 4498, Address: 0x22e63c, Func Offset: 0x1fc
-	// Line 4499, Address: 0x22e640, Func Offset: 0x200
-	// Line 4500, Address: 0x22e644, Func Offset: 0x204
-	// Line 4501, Address: 0x22e650, Func Offset: 0x210
-	// Line 4502, Address: 0x22e660, Func Offset: 0x220
-	// Line 4505, Address: 0x22e664, Func Offset: 0x224
-	// Line 4506, Address: 0x22e668, Func Offset: 0x228
-	// Line 4508, Address: 0x22e678, Func Offset: 0x238
-	// Line 4510, Address: 0x22e684, Func Offset: 0x244
-	// Line 4512, Address: 0x22e690, Func Offset: 0x250
-	// Line 4513, Address: 0x22e698, Func Offset: 0x258
-	// Func End, Address: 0x22e6ac, Func Offset: 0x26c
-	scePrintf("bhDraw027 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    EXP_EFF025_WORK* exp;
+    NJS_POINT3 scl;
+    int i;
+	static UV_WORK uvinfo[11] = 
+    {
+        { 0.0f,    0.0f,     0.1875f, 0.25f    },
+        { 0.1875f, 0.0f,     0.1875f, 0.25f    },
+        { 0.375f,  0.0f,     0.1875f, 0.25f    },
+        { 0.5625f, 0.0f,     0.1875f, 0.25f    },
+        { 0.75f,   0.0f,     0.1875f, 0.25f    },
+        { 0.0f,    0.25f,    0.1875f, 0.21875f },
+        { 0.1875f, 0.25f,    0.1875f, 0.21875f },
+        { 0.375f,  0.25f,    0.1875f, 0.21875f },
+        { 0.5625f, 0.25f,    0.1875f, 0.21875f },
+        { 0.0f,    0.46875f, 0.1875f, 0.21875f },
+        { -1.0f,   0.0f,     0.0f,    0.0f     }
+    };
+    static NJS_TEXTURE_VTX tv[4] = 
+    {
+        { -1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0xFFFFFFE0 },
+        {  1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0xFFFFFFE0 },
+        { -1.0f,  1.0f, 0.0f, 0.0f, 0.0f, 0xFFFFFFE0 },
+        {  1.0f,  1.0f, 0.0f, 0.0f, 0.0f, 0xFFFFFFE0 }
+    };
+
+    njPushMatrixEx();
+    
+    njSetTexture(&sys->ef_tlist);
+    njSetTextureNum(sys->ef_tn[18]);
+    
+    njControl3D(0);
+    
+    njTextureFilterMode(0);
+    
+    njColorBlendingMode(0,  8);
+    njColorBlendingMode(1, 10);
+    
+    exp = (EXP_EFF025_WORK*)&op->exp0[4];
+    
+    for (i = 0; i < 16; i++, exp++) 
+    {
+        if (exp->flg != 0) 
+        {
+            uvp = &uvinfo[exp->ct];
+            
+            scl.x = scl.y = scl.z = exp->scl;
+            
+            tv[0].u = uvp->u;
+            tv[0].v = uvp->v;
+            
+            tv[1].u = uvp->u + uvp->xs;
+            tv[1].v = uvp->v;
+            
+            tv[2].u = uvp->u;
+            tv[2].v = uvp->v + uvp->ys;
+            
+            tv[3].u = uvp->u + uvp->xs;
+            tv[3].v = uvp->v + uvp->ys;
+            
+            njSetMatrix(NULL, cam.mtx);
+            
+            njTranslateEx((NJS_VECTOR*)&exp->px);
+            njUnitRotPortion(NULL);
+            njScaleEx((NJS_VECTOR*)&scl);
+            
+            njDrawTexture3DEx(tv, 4, 1);
+            
+            if ((sys->sp_flg & 0x8)) 
+            {
+                exp->scl *= 0.8f;
+                
+                exp->px += exp->xn;
+                exp->py += exp->yn;
+                exp->pz += exp->zn;
+                
+                exp->xn *= 0.8f;
+                exp->zn *= 0.8f;
+                exp->yn *= 0.8f;
+
+                exp->yn -= 0.1f;
+                
+                exp->ct++;
+                
+                if (exp->ct > 9) 
+                {
+                    exp->ct = 0;
+                }
+            }
+        }
+    } 
+        
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    njPopMatrixEx();
 }
 
 // 

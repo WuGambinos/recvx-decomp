@@ -5,6 +5,7 @@
 #include "../../../ps2/veronica/prog/player.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
+#include "../../../ps2/veronica/prog/ps2_NaGraphics3D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
@@ -5067,58 +5068,74 @@ void bhEff105(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x22fa90
-void bhEff106(O_WRK* op)
+// 100% matching!
+void bhEff106(O_WRK* op) 
 {
-	int ang[3];
-	int i;
-	ER_WORK* erp;
-	//_anon48 p3c;
-	//_anon27 col[2];
-	NJS_POINT3 pos[2];
-	// Line 4835, Address: 0x22fa90, Func Offset: 0
-	// Line 4847, Address: 0x22faa0, Func Offset: 0x10
-	// Line 4848, Address: 0x22faa8, Func Offset: 0x18
-	// Line 4849, Address: 0x22fab4, Func Offset: 0x24
-	// Line 4850, Address: 0x22fac0, Func Offset: 0x30
-	// Line 4851, Address: 0x22facc, Func Offset: 0x3c
-	// Line 4853, Address: 0x22fad8, Func Offset: 0x48
-	// Line 4852, Address: 0x22fadc, Func Offset: 0x4c
-	// Line 4853, Address: 0x22fae0, Func Offset: 0x50
-	// Line 4855, Address: 0x22fae4, Func Offset: 0x54
-	// Line 4854, Address: 0x22fae8, Func Offset: 0x58
-	// Line 4856, Address: 0x22faec, Func Offset: 0x5c
-	// Line 4857, Address: 0x22fafc, Func Offset: 0x6c
-	// Line 4858, Address: 0x22fb14, Func Offset: 0x84
-	// Line 4859, Address: 0x22fb44, Func Offset: 0xb4
-	// Line 4860, Address: 0x22fb70, Func Offset: 0xe0
-	// Line 4861, Address: 0x22fb80, Func Offset: 0xf0
-	// Line 4860, Address: 0x22fb84, Func Offset: 0xf4
-	// Line 4861, Address: 0x22fb88, Func Offset: 0xf8
-	// Line 4862, Address: 0x22fb8c, Func Offset: 0xfc
-	// Line 4860, Address: 0x22fb90, Func Offset: 0x100
-	// Line 4861, Address: 0x22fba8, Func Offset: 0x118
-	// Line 4862, Address: 0x22fbb0, Func Offset: 0x120
-	// Line 4863, Address: 0x22fbc0, Func Offset: 0x130
-	// Line 4864, Address: 0x22fbd4, Func Offset: 0x144
-	// Line 4866, Address: 0x22fc34, Func Offset: 0x1a4
-	// Line 4868, Address: 0x22fc94, Func Offset: 0x204
-	// Line 4869, Address: 0x22fc98, Func Offset: 0x208
-	// Line 4870, Address: 0x22fca8, Func Offset: 0x218
-	// Line 4871, Address: 0x22fcb0, Func Offset: 0x220
-	// Line 4874, Address: 0x22fcb4, Func Offset: 0x224
-	// Line 4871, Address: 0x22fcbc, Func Offset: 0x22c
-	// Line 4872, Address: 0x22fcc0, Func Offset: 0x230
-	// Line 4874, Address: 0x22fcc8, Func Offset: 0x238
-	// Line 4875, Address: 0x22fcd0, Func Offset: 0x240
-	// Line 4877, Address: 0x22fce0, Func Offset: 0x250
-	// Line 4876, Address: 0x22fce4, Func Offset: 0x254
-	// Line 4877, Address: 0x22fce8, Func Offset: 0x258
-	// Line 4878, Address: 0x22fcf0, Func Offset: 0x260
-	// Line 4879, Address: 0x22fcf8, Func Offset: 0x268
-	// Func End, Address: 0x22fd0c, Func Offset: 0x27c
-	scePrintf("bhEff106 - UNIMPLEMENTED!\n");
+    NJS_POINT3COL p3c;
+    ER_WORK* erp;
+    int i;
+    int ang[3];
+    static NJS_POINT3 pos[2] = 
+    {
+        { 0.0f,  7.0f, 0.0f },
+        { 0.0f, -7.0f, 0.0f }
+    };
+    static NJS_COLOR col[2] = 
+    {
+        0x10101010,
+        0x40303030
+    };
+    
+    njPushMatrixEx();
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 10);
+    
+    p3c.p   = pos;
+    p3c.col = col;
+    p3c.tex = NULL;
+    p3c.num = 1;
+    
+    erp = (ER_WORK*)&op->exp0[4];
+    
+    i = 77;
+    
+    while (i-- != 0) 
+    {
+        if ((sys->sp_flg & 0x8)) 
+        {
+            erp->ax = 182.04445f * (25.0f * sys->winds);
+            
+            erp->px -= sys->winds * njSin(erp->ay);
+            erp->pz -= sys->winds * njCos(erp->ay);
+            erp->py -= 5.0f;
+            
+            if (erp->py < 0) 
+            {
+                erp->ay = sys->windr;
+                
+                erp->px = (cam.wpx + (30.0f * cam.vx)) + ((80.0f * (-rand() / -2.1474836E9f)) - 40.0f);
+                erp->py = 80.0f;
+                erp->pz = (cam.wpz + (30.0f * cam.vz)) + ((80.0f * (-rand() / -2.1474836E9f)) - 40.0f);
+            }
+        }
+        
+        njSetMatrix(NULL, cam.mtx);
+        
+        njTranslateEx((NJS_VECTOR*)&erp->px);
+        
+        ang[0] = erp->ax;
+        ang[1] = erp->ay;
+        ang[2] = 0;
+        
+        njRotateEx(ang, 0);
+        
+        njDrawLine3D(&p3c, 1, 0x40);
+        
+        erp++; 
+    } 
+    
+    njPopMatrixEx();
 }
 
 // 100% matching!

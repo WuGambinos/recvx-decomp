@@ -266,40 +266,56 @@ void bhEne06s_FloorCollision(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1bfcd0
+// 100% matching!
 void bhEne06s_WallCheck(BH_PWORK* epw)
 {
-	//_anon9* hp;
+	NJS_POINT3 vec;
 	int i;
-	//_anon8 vec;
-	// Line 404, Address: 0x1bfcd0, Func Offset: 0
-	// Line 409, Address: 0x1bfce4, Func Offset: 0x14
-	// Line 411, Address: 0x1bfcf8, Func Offset: 0x28
-	// Line 412, Address: 0x1bfd00, Func Offset: 0x30
-	// Line 413, Address: 0x1bfd2c, Func Offset: 0x5c
-	// Line 414, Address: 0x1bfd38, Func Offset: 0x68
-	// Line 415, Address: 0x1bfd4c, Func Offset: 0x7c
-	// Line 416, Address: 0x1bfd54, Func Offset: 0x84
-	// Line 417, Address: 0x1bfd60, Func Offset: 0x90
-	// Line 418, Address: 0x1bfd6c, Func Offset: 0x9c
-	// Line 419, Address: 0x1bfd88, Func Offset: 0xb8
-	// Line 422, Address: 0x1bfd94, Func Offset: 0xc4
-	// Line 423, Address: 0x1bfd9c, Func Offset: 0xcc
-	// Line 424, Address: 0x1bfda0, Func Offset: 0xd0
-	// Line 426, Address: 0x1bfdbc, Func Offset: 0xec
-	// Line 428, Address: 0x1bfdc0, Func Offset: 0xf0
-	// Line 430, Address: 0x1bfddc, Func Offset: 0x10c
-	// Line 431, Address: 0x1bfde0, Func Offset: 0x110
-	// Line 434, Address: 0x1bfde8, Func Offset: 0x118
-	// Line 439, Address: 0x1bfdf4, Func Offset: 0x124
-	// Line 440, Address: 0x1bfe00, Func Offset: 0x130
-	// Line 443, Address: 0x1bfe10, Func Offset: 0x140
-	// Line 448, Address: 0x1bfe18, Func Offset: 0x148
-	// Line 443, Address: 0x1bfe24, Func Offset: 0x154
-	// Line 444, Address: 0x1bfe28, Func Offset: 0x158
-	// Line 445, Address: 0x1bfe34, Func Offset: 0x164
-	// Line 448, Address: 0x1bfe40, Func Offset: 0x170
-	// Line 449, Address: 0x1bfe64, Func Offset: 0x194
-	// Func End, Address: 0x1bfe7c, Func Offset: 0x1ac
+    ATR_WORK* hp;
+    
+    if ((EXP0_US(0) & 0x1))
+    {
+        for (i = 0; i < 3; i++)
+        {
+            njCalcVector(epw->mtx, &CollisionOffset[epw->lkono][i], &vec);
+            njAddVector((NJS_VECTOR*)&epw->px, &vec);
+
+            hp = bhCollisionCheckLine((NJS_POINT3*)(&epw->exp0[(i * 12)] + 28), (NJS_POINT3*)&epw->px);
+
+            if (hp != NULL)
+            {
+                bhGetHitCollisionNormal((NJS_POINT3*)&epw->exp0[16]);
+
+                njUnitVector((NJS_VECTOR*)&epw->exp0[16]);
+
+                if (EXP0_F(20) > 0)
+                {
+                    EXP0_US(0) &= ~0x1;
+
+                    EXP0_I(64) = i;
+                }
+
+                if (EXP0_F(20) < 0)
+                {
+                    EXP0_F(8) = 0;
+                }
+
+                if (EXP0_F(20) == 0)
+                {
+                    EXP0_F(4)  = 0;
+                    EXP0_F(12) = 0;
+                }
+            }
+
+            bhEne03_Collision(epw);
+
+            njSubVector((NJS_VECTOR*)&epw->px, &vec);
+        }
+
+        epw->mtx[0][12] = epw->px;
+        epw->mtx[0][13] = epw->py;
+        epw->mtx[0][14] = epw->pz;
+
+        njCalcPoints(epw->mtx, CollisionOffset[epw->lkono], (NJS_POINT3*)&epw->exp0[28], 3);
+    }
 }

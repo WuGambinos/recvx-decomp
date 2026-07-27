@@ -4354,46 +4354,63 @@ void bhDraw025(O_WRK* op)
 	scePrintf("bhDraw025 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x22dda0
-void bhEff025(O_WRK* op)
+// 100% matching!
+void bhEff025(O_WRK* op) 
 {
-	int i;
-	//_anon2* exp;
-	// Line 4335, Address: 0x22dda0, Func Offset: 0
-	// Line 4338, Address: 0x22ddb4, Func Offset: 0x14
-	// Line 4339, Address: 0x22ddc4, Func Offset: 0x24
-	// Line 4340, Address: 0x22ddd0, Func Offset: 0x30
-	// Line 4342, Address: 0x22dde0, Func Offset: 0x40
-	// Line 4344, Address: 0x22dde8, Func Offset: 0x48
-	// Line 4345, Address: 0x22ddec, Func Offset: 0x4c
-	// Line 4344, Address: 0x22ddf0, Func Offset: 0x50
-	// Line 4346, Address: 0x22ddf4, Func Offset: 0x54
-	// Line 4347, Address: 0x22ddfc, Func Offset: 0x5c
-	// Line 4348, Address: 0x22de00, Func Offset: 0x60
-	// Line 4349, Address: 0x22de04, Func Offset: 0x64
-	// Line 4350, Address: 0x22de48, Func Offset: 0xa8
-	// Line 4351, Address: 0x22de8c, Func Offset: 0xec
-	// Line 4352, Address: 0x22ded0, Func Offset: 0x130
-	// Line 4354, Address: 0x22df04, Func Offset: 0x164
-	// Line 4355, Address: 0x22df38, Func Offset: 0x198
-	// Line 4356, Address: 0x22df54, Func Offset: 0x1b4
-	// Line 4355, Address: 0x22df58, Func Offset: 0x1b8
-	// Line 4356, Address: 0x22df70, Func Offset: 0x1d0
-	// Line 4357, Address: 0x22df78, Func Offset: 0x1d8
-	// Line 4358, Address: 0x22df88, Func Offset: 0x1e8
-	// Line 4359, Address: 0x22df94, Func Offset: 0x1f4
-	// Line 4360, Address: 0x22df98, Func Offset: 0x1f8
-	// Line 4361, Address: 0x22dfa0, Func Offset: 0x200
-	// Line 4362, Address: 0x22dfac, Func Offset: 0x20c
-	// Line 4363, Address: 0x22dfbc, Func Offset: 0x21c
-	// Line 4364, Address: 0x22dfc8, Func Offset: 0x228
-	// Line 4365, Address: 0x22dfcc, Func Offset: 0x22c
-	// Line 4366, Address: 0x22dfd0, Func Offset: 0x230
-	// Line 4368, Address: 0x22dfd8, Func Offset: 0x238
-	// Line 4370, Address: 0x22e010, Func Offset: 0x270
-	// Func End, Address: 0x22e028, Func Offset: 0x288
-	scePrintf("bhEff025 - UNIMPLEMENTED!\n");
+    EXP_EFF025_WORK* exp;
+    int i;
+    
+    op->flg |= 0x1000000;
+    
+    if (op->mode0 == 0) 
+    {
+        if ((op->exp0 = (unsigned char*)bhSetExtraEffectWork()) == NULL) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        exp = (EXP_EFF025_WORK*)&op->exp0[4];
+        
+        for (i = 0; i < 8; i++, exp++)
+        {
+            exp->flg = 1;
+            
+            exp->ct = 0;
+            
+            exp->scl = 1.0f;
+            
+            exp->px = op->px + ((2.0f * (-rand() / -2.1474836E9f)) - 1.0f);
+            exp->py = op->py + ((2.0f * (-rand() / -2.1474836E9f)) - 1.0f);
+            exp->pz = op->pz + ((2.0f * (-rand() / -2.1474836E9f)) - 1.0f);
+            
+            exp->xn = (-rand() / -2.1474836E9f) - 0.5f;
+            exp->yn = (-rand() / -2.1474836E9f) - 0.5f;
+            exp->zn = (-rand() / -2.1474836E9f) - 0.5f;
+            
+            njUnitVector((NJS_VECTOR*)&exp->xn);
+        } 
+        
+        op->func = (void*)bhDraw025;
+        
+        op->mode0 = 1;
+        return;
+    }
+    
+    op->ct0++;
+    
+    if (op->ct0 >= 6) 
+    {
+        if (op->ct0 > 14) 
+        {
+            op->flg = 0;
+            
+            *(int*)op->exp0 = 0;
+            return;
+        }
+        
+        sys->ef_fnc[sys->ef_fncn++] = op;
+    }
 }
 
 // 

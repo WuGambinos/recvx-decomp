@@ -13,6 +13,20 @@ typedef struct ER_WORK
     short ay; // offset 0xE, size 0x2
 } ER_WORK;
 
+typedef struct EXP_EFF025_WORK 
+{
+    // total size: 0x20
+    unsigned short flg; // offset 0x0, size 0x2
+    short ct;           // offset 0x2, size 0x2
+    float scl;          // offset 0x4, size 0x4
+    float px;           // offset 0x8, size 0x4
+    float py;           // offset 0xC, size 0x4
+    float pz;           // offset 0x10, size 0x4
+    float xn;           // offset 0x14, size 0x4
+    float yn;           // offset 0x18, size 0x4
+    float zn;           // offset 0x1C, size 0x4
+} EXP_EFF025_WORK;
+
 void bhEffDmy(O_WRK* op);
 void bhEffFil(O_WRK* op);
 void bhEffBG(O_WRK* op);

@@ -4942,45 +4942,49 @@ void bhEff103(O_WRK* op)
 	scePrintf("bhEff103 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x22f500
+// 99.89% matching
 void bhEff104(O_WRK* op)
 {
-	int j;
-	int i;
-	// Line 4748, Address: 0x22f500, Func Offset: 0
-	// Line 4750, Address: 0x22f514, Func Offset: 0x14
-	// Line 4751, Address: 0x22f528, Func Offset: 0x28
-	// Line 4752, Address: 0x22f52c, Func Offset: 0x2c
-	// Line 4753, Address: 0x22f538, Func Offset: 0x38
-	// Line 4754, Address: 0x22f540, Func Offset: 0x40
-	// Line 4753, Address: 0x22f548, Func Offset: 0x48
-	// Line 4756, Address: 0x22f54c, Func Offset: 0x4c
-	// Line 4753, Address: 0x22f550, Func Offset: 0x50
-	// Line 4754, Address: 0x22f55c, Func Offset: 0x5c
-	// Line 4755, Address: 0x22f570, Func Offset: 0x70
-	// Line 4756, Address: 0x22f584, Func Offset: 0x84
-	// Line 4757, Address: 0x22f5ac, Func Offset: 0xac
-	// Line 4758, Address: 0x22f5c0, Func Offset: 0xc0
-	// Line 4759, Address: 0x22f614, Func Offset: 0x114
-	// Line 4760, Address: 0x22f668, Func Offset: 0x168
-	// Line 4761, Address: 0x22f690, Func Offset: 0x190
-	// Line 4760, Address: 0x22f694, Func Offset: 0x194
-	// Line 4761, Address: 0x22f6ac, Func Offset: 0x1ac
-	// Line 4760, Address: 0x22f6b0, Func Offset: 0x1b0
-	// Line 4761, Address: 0x22f6c8, Func Offset: 0x1c8
-	// Line 4762, Address: 0x22f6dc, Func Offset: 0x1dc
-	// Line 4763, Address: 0x22f6f0, Func Offset: 0x1f0
-	// Line 4764, Address: 0x22f700, Func Offset: 0x200
-	// Line 4765, Address: 0x22f764, Func Offset: 0x264
-	// Line 4764, Address: 0x22f770, Func Offset: 0x270
-	// Line 4765, Address: 0x22f780, Func Offset: 0x280
-	// Line 4766, Address: 0x22f798, Func Offset: 0x298
-	// Line 4767, Address: 0x22f7a8, Func Offset: 0x2a8
-	// Line 4768, Address: 0x22f7b4, Func Offset: 0x2b4
-	// Line 4769, Address: 0x22f7cc, Func Offset: 0x2cc
-	// Func End, Address: 0x22f7e4, Func Offset: 0x2e4
-	scePrintf("bhEff104 - UNIMPLEMENTED!\n");
+    int i, j;
+    
+    op->flg |= 0x1000000;
+    
+    for (i = 0, j = op->type; i < j; i++) 
+    {
+        sys->ef.id = 12;
+        
+        sys->ef.flg = 0x100001;
+        
+        sys->ef.mdlver = 0;
+        
+        if (op->flr_no == -1) 
+        {
+            sys->ef.type = 1;
+        }
+        else 
+        {
+            sys->ef.type = 0;
+        }
+        
+        sys->ef.px = op->px + ((2.0f * (-rand() / -2.1474836E9f)) - 1.0f);
+        sys->ef.py = op->py + ((2.0f * (-rand() / -2.1474836E9f)) - 1.0f);
+        sys->ef.pz = op->pz + ((2.0f * (-rand() / -2.1474836E9f)) - 1.0f);
+        
+        sys->ef.sx = 0.1f;
+        sys->ef.sy = 0.1f;
+        sys->ef.sz = 0.1f;
+        
+        sys->ef.ay = op->ay + ((int)(182.04445f * ((90.0f * (-rand() / -2.1474836E9f)) - 45.0f)) & 0xFFFF);
+        
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    } 
+    
+    op->ct0++;
+    
+    if (op->ct0 > op->mdlver) 
+    {
+        op->flg = 0;
+    }
 }
 
 // 

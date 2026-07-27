@@ -1,6 +1,8 @@
 #include "../../../ps2/veronica/prog/en06sub.h"
 #include "../../../ps2/veronica/prog/en03.h"
 #include "../../../ps2/veronica/prog/eneset.h"
+#include "../../../ps2/veronica/prog/hitchkl.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 
 typedef void (*Mode0_proc)(BH_PWORK*);
 typedef void (*MoveMode2_proc)(BH_PWORK*);
@@ -226,29 +228,42 @@ void bhEne06s_Dummy()
 
 }
 
-// 
-// Start address: 0x1bfbe0
+// 100% matching!
 void bhEne06s_FloorCollision(BH_PWORK* epw)
 {
-	//_anon9* hp;
-	// Line 368, Address: 0x1bfbe0, Func Offset: 0
-	// Line 371, Address: 0x1bfbec, Func Offset: 0xc
-	// Line 373, Address: 0x1bfc00, Func Offset: 0x20
-	// Line 374, Address: 0x1bfc0c, Func Offset: 0x2c
-	// Line 375, Address: 0x1bfc14, Func Offset: 0x34
-	// Line 376, Address: 0x1bfc20, Func Offset: 0x40
-	// Line 377, Address: 0x1bfc2c, Func Offset: 0x4c
-	// Line 378, Address: 0x1bfc48, Func Offset: 0x68
-	// Line 380, Address: 0x1bfc54, Func Offset: 0x74
-	// Line 382, Address: 0x1bfc70, Func Offset: 0x90
-	// Line 384, Address: 0x1bfc74, Func Offset: 0x94
-	// Line 386, Address: 0x1bfc90, Func Offset: 0xb0
-	// Line 387, Address: 0x1bfc94, Func Offset: 0xb4
-	// Line 391, Address: 0x1bfc9c, Func Offset: 0xbc
-	// Line 392, Address: 0x1bfca8, Func Offset: 0xc8
-	// Line 393, Address: 0x1bfcb4, Func Offset: 0xd4
-	// Line 394, Address: 0x1bfcc0, Func Offset: 0xe0
-	// Func End, Address: 0x1bfcd0, Func Offset: 0xf0
+    ATR_WORK* hp;
+
+    if ((EXP0_US(0) & 0x1))
+    {
+        hp = bhCollisionCheckLine((NJS_POINT3*)&epw->pxb, (NJS_POINT3*)&epw->px);
+
+        if (hp != NULL)
+        {
+            bhGetHitCollisionNormal((NJS_POINT3*)&epw->exp0[16]);
+            
+			njUnitVector((NJS_VECTOR*)&epw->exp0[16]);
+
+            if (EXP0_F(20) > 0)
+            {
+                EXP0_US(0) &= ~0x1;
+            }
+
+            if (EXP0_F(20) < 0)
+            {
+                EXP0_F(8) = 0;
+            }
+
+            if (EXP0_F(20) == 0)
+            {
+                EXP0_F(4)  = 0;
+                EXP0_F(12) = 0;
+            }
+        }
+
+        epw->mtx[0][12] = epw->px;
+        epw->mtx[0][13] = epw->py;
+        epw->mtx[0][14] = epw->pz;
+    }
 }
 
 // 

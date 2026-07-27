@@ -4987,47 +4987,84 @@ void bhEff104(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x22f7f0
-void bhEff105(O_WRK* op)
+// 100% matching!
+void bhEff105(O_WRK* op) 
 {
-	// Line 4777, Address: 0x22f7f0, Func Offset: 0
-	// Line 4778, Address: 0x22f7fc, Func Offset: 0xc
-	// Line 4779, Address: 0x22f804, Func Offset: 0x14
-	// Line 4778, Address: 0x22f808, Func Offset: 0x18
-	// Line 4779, Address: 0x22f810, Func Offset: 0x20
-	// Line 4782, Address: 0x22f838, Func Offset: 0x48
-	// Line 4784, Address: 0x22f844, Func Offset: 0x54
-	// Line 4785, Address: 0x22f850, Func Offset: 0x60
-	// Line 4787, Address: 0x22f858, Func Offset: 0x68
-	// Line 4786, Address: 0x22f85c, Func Offset: 0x6c
-	// Line 4789, Address: 0x22f860, Func Offset: 0x70
-	// Line 4791, Address: 0x22f868, Func Offset: 0x78
-	// Line 4792, Address: 0x22f874, Func Offset: 0x84
-	// Line 4797, Address: 0x22f8e0, Func Offset: 0xf0
-	// Line 4798, Address: 0x22f8e4, Func Offset: 0xf4
-	// Line 4797, Address: 0x22f8e8, Func Offset: 0xf8
-	// Line 4799, Address: 0x22f8ec, Func Offset: 0xfc
-	// Line 4802, Address: 0x22f8f8, Func Offset: 0x108
-	// Line 4803, Address: 0x22f900, Func Offset: 0x110
-	// Line 4804, Address: 0x22f904, Func Offset: 0x114
-	// Line 4805, Address: 0x22f908, Func Offset: 0x118
-	// Line 4806, Address: 0x22f90c, Func Offset: 0x11c
-	// Line 4809, Address: 0x22f920, Func Offset: 0x130
-	// Line 4811, Address: 0x22f928, Func Offset: 0x138
-	// Line 4812, Address: 0x22f934, Func Offset: 0x144
-	// Line 4814, Address: 0x22f99c, Func Offset: 0x1ac
-	// Line 4815, Address: 0x22f9e0, Func Offset: 0x1f0
-	// Line 4817, Address: 0x22f9ec, Func Offset: 0x1fc
-	// Line 4818, Address: 0x22fa08, Func Offset: 0x218
-	// Line 4819, Address: 0x22fa18, Func Offset: 0x228
-	// Line 4823, Address: 0x22fa1c, Func Offset: 0x22c
-	// Line 4824, Address: 0x22fa28, Func Offset: 0x238
-	// Line 4825, Address: 0x22fa34, Func Offset: 0x244
-	// Line 4826, Address: 0x22fa44, Func Offset: 0x254
-	// Line 4828, Address: 0x22fa78, Func Offset: 0x288
-	// Func End, Address: 0x22fa88, Func Offset: 0x298
-	scePrintf("bhEff105 - UNIMPLEMENTED!\n");
+    op->flg |= 0x1000000;
+    
+    switch (op->mode0) 
+    {                             
+    case 0:
+        if (op->mode1 != 0) 
+        {
+            op->mode1 = 0;
+            
+            CallBackGroundSe(1, 770);
+            
+            op->ct0 = 16384;
+            
+            op->mode2 = 0;
+            op->mode0 = 1;
+        }
+        
+        break;
+    case 1:
+        if (op->ct0 > 0) 
+        {
+            if (((op->ct0 < 14336) && (op->ct0 > 10240)) && (op->mode2 == 0) && ((-rand() / -2.1474836E9f) > 0.7f))
+            {
+                op->mode2 = 1;
+                
+                op->ct0 = 16384;
+                
+                CallBackGroundSe(1, 770);
+            }
+        } 
+        else
+        {
+            op->ct0 = 0;
+            op->ct1 = 0;
+            op->ct2 = 0;
+            
+            sys->thunder = 0;
+            
+            op->mode0 = 2;
+        }
+        
+        break;
+    case 2:
+        op->ct1++;
+        
+        if (((op->ct1 < 120) && (op->ct2 < 3)) && ((-rand() / -2.1474836E9f) > 0.97f)) 
+        {
+            op->ct0 = (int)(1024.0f * (-rand() / -2.1474836E9f)) + 2048;
+            op->ct2++;
+        }
+        
+        if (op->ct1 == 30) 
+        {
+            CallBackGroundSe(1, 771);
+        }
+        
+        if (op->ct1 > 180) 
+        {
+            op->mode0 = 0;
+        }
+        
+        break;
+    }
+    
+    if (op->mode0 != 0) 
+    {
+        op->ct0 -= 1536;
+        
+        if (op->ct0 < 0) 
+        {
+            op->ct0 = 0;
+        }
+        
+        sys->thunder = fabsf(255.0f * njSin(op->ct0));
+    }
 }
 
 // 

@@ -17,26 +17,29 @@ MoveMode2_proc bhEne06s_MoveMode2[2] =
 
 static NJS_POINT3 CollisionOffset[4][3] =
 {
-    { {  0.0f,  0.0f,  0.0f }, {  5.0f, -0.5f, -2.5f }, {  3.5f, -0.5f,  1.5f } },
-    { {  0.0f,  0.0f,  0.0f }, { -5.0f, -0.5f, -2.5f }, { -3.5f, -0.5f,  1.5f } },
-    { {  0.0f,  0.0f,  0.0f }, {  3.0f, -0.5f,  2.0f }, {  0.5f, -0.3f,  5.0f } },
-    { {  0.0f,  0.0f,  0.0f }, { -3.0f, -0.5f,  2.0f }, { -0.5f, -0.3f,  5.0f } }
+    { { 0.0f, 0.0f, 0.0f }, {  5.0f, -0.5f, -2.5f }, {  3.5f, -0.5f, 1.5f } },
+    { { 0.0f, 0.0f, 0.0f }, { -5.0f, -0.5f, -2.5f }, { -3.5f, -0.5f, 1.5f } },
+    { { 0.0f, 0.0f, 0.0f }, {  3.0f, -0.5f,  2.0f }, {  0.5f, -0.3f, 5.0f } },
+    { { 0.0f, 0.0f, 0.0f }, { -3.0f, -0.5f,  2.0f }, { -0.5f, -0.3f, 5.0f } }
 };
 
-// 
-// Start address: 0x1bf2b0
+// 100% matching!
 void bhEne06s(BH_PWORK* epw)
 {
-	// Line 108, Address: 0x1bf2b0, Func Offset: 0
-	// Line 110, Address: 0x1bf2c0, Func Offset: 0x10
-	// Line 113, Address: 0x1bf2e0, Func Offset: 0x30
-	// Line 114, Address: 0x1bf2f0, Func Offset: 0x40
-	// Line 115, Address: 0x1bf300, Func Offset: 0x50
-	// Line 116, Address: 0x1bf308, Func Offset: 0x58
-	// Line 117, Address: 0x1bf310, Func Offset: 0x60
-	// Line 118, Address: 0x1bf31c, Func Offset: 0x6c
-	// Line 121, Address: 0x1bf324, Func Offset: 0x74
-	// Func End, Address: 0x1bf334, Func Offset: 0x84
+    bhEne06s_Mode0[epw->mode0](epw);
+
+    if ((epw->flg & 0x10))
+    {
+        if (epw->lkono < 4)
+        {
+            bhEne06s_WallCheck(epw);
+        }
+        else
+        {
+            bhEne06s_FloorCollision(epw);
+            bhEne03_Collision(epw);
+        }
+    }
 }
 
 // 

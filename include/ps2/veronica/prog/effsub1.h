@@ -27,6 +27,16 @@ typedef struct EXP_EFF025_WORK
     float zn;           // offset 0x1C, size 0x4
 } EXP_EFF025_WORK;
 
+typedef struct EXP_DRAW022_WORK
+{
+    // total size: 0x10
+    unsigned short flg; // offset 0x0, size 0x2
+    short ct;           // offset 0x2, size 0x2
+    float px;           // offset 0x4, size 0x4
+    float py;           // offset 0x8, size 0x4
+    float pz;           // offset 0xC, size 0x4
+} EXP_DRAW022_WORK;
+
 void bhEffDmy(O_WRK* op);
 void bhEffFil(O_WRK* op);
 void bhEffBG(O_WRK* op);

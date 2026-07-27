@@ -1,4 +1,6 @@
 #include "../../../ps2/veronica/prog/en06sub.h"
+#include "../../../ps2/veronica/prog/en03.h"
+#include "../../../ps2/veronica/prog/eneset.h"
 
 typedef void (*Mode0_proc)(BH_PWORK*);
 typedef void (*MoveMode2_proc)(BH_PWORK*);
@@ -42,28 +44,26 @@ void bhEne06s(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1bf340
+// 100% matching!
 void bhEne06s_Init(BH_PWORK* epw)
 {
-	// Line 131, Address: 0x1bf340, Func Offset: 0
-	// Line 133, Address: 0x1bf34c, Func Offset: 0xc
-	// Line 135, Address: 0x1bf354, Func Offset: 0x14
-	// Line 134, Address: 0x1bf358, Func Offset: 0x18
-	// Line 135, Address: 0x1bf35c, Func Offset: 0x1c
-	// Line 133, Address: 0x1bf360, Func Offset: 0x20
-	// Line 134, Address: 0x1bf368, Func Offset: 0x28
-	// Line 135, Address: 0x1bf36c, Func Offset: 0x2c
-	// Line 136, Address: 0x1bf370, Func Offset: 0x30
-	// Line 137, Address: 0x1bf374, Func Offset: 0x34
-	// Line 140, Address: 0x1bf378, Func Offset: 0x38
-	// Line 141, Address: 0x1bf380, Func Offset: 0x40
-	// Line 142, Address: 0x1bf384, Func Offset: 0x44
-	// Line 143, Address: 0x1bf388, Func Offset: 0x48
-	// Line 146, Address: 0x1bf38c, Func Offset: 0x4c
-	// Line 147, Address: 0x1bf398, Func Offset: 0x58
-	// Line 149, Address: 0x1bf3a8, Func Offset: 0x68
-	// Func End, Address: 0x1bf3b8, Func Offset: 0x78
+    epw->flg &= ~0x10;
+
+    epw->ar = 0.5f;
+    epw->ah = 0.3f;
+
+    epw->car = 0.5f;
+    epw->cah = 0.3f;
+
+    epw->mode0 = 2;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
+
+    if (epw->exp0 == NULL)
+    {
+        epw->exp0 = bhEne_CallocWork(68, 8);
+    }
 }
 
 // 100% matching!

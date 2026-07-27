@@ -4345,83 +4345,107 @@ void bhDraw024(O_WRK* op)
 	scePrintf("bhDraw024 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x22d770
-void bhEff024(O_WRK* op)
+// 99.94% matching
+void bhEff024(O_WRK* op) 
 {
-	float py;
-	NJS_VECTOR vec;
-	ATR_WORK* hp;
-	// Line 4157, Address: 0x22d770, Func Offset: 0
-	// Line 4161, Address: 0x22d788, Func Offset: 0x18
-	// Line 4162, Address: 0x22d798, Func Offset: 0x28
-	// Line 4163, Address: 0x22d7a4, Func Offset: 0x34
-	// Line 4165, Address: 0x22d7b4, Func Offset: 0x44
-	// Line 4167, Address: 0x22d7bc, Func Offset: 0x4c
-	// Line 4168, Address: 0x22d7c8, Func Offset: 0x58
-	// Line 4169, Address: 0x22d7cc, Func Offset: 0x5c
-	// Line 4170, Address: 0x22d7d4, Func Offset: 0x64
-	// Line 4174, Address: 0x22d7dc, Func Offset: 0x6c
-	// Line 4176, Address: 0x22d7e8, Func Offset: 0x78
-	// Line 4170, Address: 0x22d7f0, Func Offset: 0x80
-	// Line 4171, Address: 0x22d7f8, Func Offset: 0x88
-	// Line 4172, Address: 0x22d808, Func Offset: 0x98
-	// Line 4173, Address: 0x22d818, Func Offset: 0xa8
-	// Line 4174, Address: 0x22d828, Func Offset: 0xb8
-	// Line 4175, Address: 0x22d834, Func Offset: 0xc4
-	// Line 4176, Address: 0x22d840, Func Offset: 0xd0
-	// Line 4177, Address: 0x22d854, Func Offset: 0xe4
-	// Line 4179, Address: 0x22d878, Func Offset: 0x108
-	// Line 4178, Address: 0x22d884, Func Offset: 0x114
-	// Line 4179, Address: 0x22d888, Func Offset: 0x118
-	// Line 4180, Address: 0x22d898, Func Offset: 0x128
-	// Line 4181, Address: 0x22d8c8, Func Offset: 0x158
-	// Line 4182, Address: 0x22d8cc, Func Offset: 0x15c
-	// Line 4183, Address: 0x22d8d4, Func Offset: 0x164
-	// Line 4184, Address: 0x22d8d8, Func Offset: 0x168
-	// Line 4185, Address: 0x22d8dc, Func Offset: 0x16c
-	// Line 4186, Address: 0x22d8e0, Func Offset: 0x170
-	// Line 4183, Address: 0x22d8e4, Func Offset: 0x174
-	// Line 4184, Address: 0x22d8e8, Func Offset: 0x178
-	// Line 4185, Address: 0x22d8ec, Func Offset: 0x17c
-	// Line 4186, Address: 0x22d8f0, Func Offset: 0x180
-	// Line 4187, Address: 0x22d900, Func Offset: 0x190
-	// Line 4188, Address: 0x22d908, Func Offset: 0x198
-	// Line 4189, Address: 0x22d90c, Func Offset: 0x19c
-	// Line 4190, Address: 0x22d918, Func Offset: 0x1a8
-	// Line 4191, Address: 0x22d92c, Func Offset: 0x1bc
-	// Line 4192, Address: 0x22d93c, Func Offset: 0x1cc
-	// Line 4193, Address: 0x22d944, Func Offset: 0x1d4
-	// Line 4195, Address: 0x22d94c, Func Offset: 0x1dc
-	// Line 4196, Address: 0x22d968, Func Offset: 0x1f8
-	// Line 4200, Address: 0x22d974, Func Offset: 0x204
-	// Line 4201, Address: 0x22d984, Func Offset: 0x214
-	// Line 4202, Address: 0x22d988, Func Offset: 0x218
-	// Line 4203, Address: 0x22d98c, Func Offset: 0x21c
-	// Line 4206, Address: 0x22d994, Func Offset: 0x224
-	// Line 4207, Address: 0x22d9a0, Func Offset: 0x230
-	// Line 4208, Address: 0x22d9ac, Func Offset: 0x23c
-	// Line 4215, Address: 0x22d9b0, Func Offset: 0x240
-	// Line 4207, Address: 0x22d9b4, Func Offset: 0x244
-	// Line 4208, Address: 0x22d9c0, Func Offset: 0x250
-	// Line 4220, Address: 0x22d9c8, Func Offset: 0x258
-	// Line 4208, Address: 0x22d9d4, Func Offset: 0x264
-	// Line 4209, Address: 0x22d9e0, Func Offset: 0x270
-	// Line 4210, Address: 0x22d9f4, Func Offset: 0x284
-	// Line 4211, Address: 0x22da08, Func Offset: 0x298
-	// Line 4212, Address: 0x22da1c, Func Offset: 0x2ac
-	// Line 4213, Address: 0x22da34, Func Offset: 0x2c4
-	// Line 4214, Address: 0x22da4c, Func Offset: 0x2dc
-	// Line 4215, Address: 0x22da64, Func Offset: 0x2f4
-	// Line 4216, Address: 0x22da78, Func Offset: 0x308
-	// Line 4217, Address: 0x22da8c, Func Offset: 0x31c
-	// Line 4218, Address: 0x22daa0, Func Offset: 0x330
-	// Line 4219, Address: 0x22dab4, Func Offset: 0x344
-	// Line 4220, Address: 0x22dac8, Func Offset: 0x358
-	// Line 4222, Address: 0x22dae0, Func Offset: 0x370
-	// Line 4224, Address: 0x22db18, Func Offset: 0x3a8
-	// Func End, Address: 0x22db34, Func Offset: 0x3c4
-	scePrintf("bhEff024 - UNIMPLEMENTED!\n");
+    ATR_WORK* hp;
+    NJS_VECTOR vec;
+    float py;
+    
+    op->flg |= 0x1000000;
+    
+    if (op->mode0 == 0) 
+    {
+        if ((op->exp0 = (unsigned char*)bhSetExtraEffectWork()) == NULL) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        op->func = (void*)bhDraw024;
+        
+        op->mode0 = 1;
+        return;
+    }
+    
+    op->px += op->lox;
+    op->py += op->loy;
+    op->pz += op->loz;
+    
+    op->loy += op->yn;
+    
+    op->yn -= 0.01f;
+    
+    op->ct0++;
+    
+    if ((!(sys->cb_flg & 0x40000000)) && ((hp = bhCheckWallType((NJS_POINT3*)&op->px, 0x400, 0.1f, 0.1f)) != NULL)) 
+    {
+        py = op->py;
+        
+        bhSetWallRefAngle(hp, (NJS_POINT3*)&op->px, 0.1f, 0.1f, &op->ayp);
+        
+        if ((op->py != py) && ((op->yn < 0)))
+        {
+            op->yn = -op->yn;
+        } 
+        else 
+        {
+            vec.x = op->lox;
+            vec.y = 0;
+            
+            vec.z = op->loz;
+            vec.z = -njScalor(&vec);
+
+            vec.x = vec.y = 0;
+            
+            op->ay = op->ayp;
+            
+            njUnitMatrix(NULL);
+            
+            njRotateXYZ(NULL, 0, op->ay, 0);
+            njCalcVector(NULL, &vec, &vec);
+            
+            op->lox = vec.x;
+            op->loz = vec.z;
+        }
+        
+        op->lox *= 0.9f;
+        op->loz *= 0.9f;
+    }
+    
+    if (op->ct0 > 47)
+    {
+        op->flg = 0;
+        
+        *(int*)op->exp0 = 0;
+        return;
+    }
+    
+    if (op->ct0 < 16) 
+    {
+        sys->ef.id = 25;
+        
+        sys->ef.flg  = 1;
+        sys->ef.type = 0;
+        
+        sys->ef.mdlver = 0;
+        
+        sys->ef.flr_no = 0;
+        
+        sys->ef.px = op->px;
+        sys->ef.py = op->py;
+        sys->ef.pz = op->pz;
+        
+        sys->ef.sx = 1.0f;
+        sys->ef.sy = 1.0f;
+        sys->ef.sz = 0;
+        
+        sys->ef.ax = sys->ef.ay = 0;
+        
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    }
+    
+    sys->ef_fnc[sys->ef_fncn++] = op;
 }
 
 // 100% matching

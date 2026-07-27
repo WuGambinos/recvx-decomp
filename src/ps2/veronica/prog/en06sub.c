@@ -2,6 +2,8 @@
 #include "../../../ps2/veronica/prog/en03.h"
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/hitchkl.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 
 typedef void (*Mode0_proc)(BH_PWORK*);
@@ -118,7 +120,6 @@ void bhEne06s_MV00(BH_PWORK* epw)
 		epw->mtx[0][12] = epw->px;
 		epw->mtx[0][13] = epw->py;
 		epw->mtx[0][14] = epw->pz;
-
 		break;
 	case 2:
 		if (epw->ct3 != 0)
@@ -139,7 +140,6 @@ void bhEne06s_MV00(BH_PWORK* epw)
 			out = njOuterProduct(&vd, &v, &ov);
 
 			njUnitVector(&ov);
-
 			njUnitMatrix(NULL);
 
 			ang = njArcSin(out);
@@ -166,87 +166,117 @@ void bhEne06s_MV00(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1bf740
+// 100% matching!
 void bhEne06s_MV01(BH_PWORK* epw)
 {
-	int ang;
+    NJS_POINT3 avec, vd, ov;
 	float out;
-	//_anon8 ov;
-	//_anon8 vd;
-	//_anon8 avec;
-	// Line 248, Address: 0x1bf740, Func Offset: 0
-	// Line 251, Address: 0x1bf754, Func Offset: 0x14
-	// Line 253, Address: 0x1bf784, Func Offset: 0x44
-	// Line 254, Address: 0x1bf794, Func Offset: 0x54
-	// Line 255, Address: 0x1bf7a4, Func Offset: 0x64
-	// Line 258, Address: 0x1bf7b0, Func Offset: 0x70
-	// Line 259, Address: 0x1bf7e8, Func Offset: 0xa8
-	// Line 260, Address: 0x1bf824, Func Offset: 0xe4
-	// Line 266, Address: 0x1bf840, Func Offset: 0x100
-	// Line 260, Address: 0x1bf844, Func Offset: 0x104
-	// Line 266, Address: 0x1bf848, Func Offset: 0x108
-	// Line 260, Address: 0x1bf84c, Func Offset: 0x10c
-	// Line 266, Address: 0x1bf85c, Func Offset: 0x11c
-	// Line 260, Address: 0x1bf860, Func Offset: 0x120
-	// Line 262, Address: 0x1bf868, Func Offset: 0x128
-	// Line 263, Address: 0x1bf878, Func Offset: 0x138
-	// Line 266, Address: 0x1bf884, Func Offset: 0x144
-	// Line 268, Address: 0x1bf8a8, Func Offset: 0x168
-	// Line 270, Address: 0x1bf8b4, Func Offset: 0x174
-	// Line 272, Address: 0x1bf8c8, Func Offset: 0x188
-	// Line 271, Address: 0x1bf8cc, Func Offset: 0x18c
-	// Line 274, Address: 0x1bf8d0, Func Offset: 0x190
-	// Line 272, Address: 0x1bf8d4, Func Offset: 0x194
-	// Line 274, Address: 0x1bf8d8, Func Offset: 0x198
-	// Line 275, Address: 0x1bf8e0, Func Offset: 0x1a0
-	// Line 276, Address: 0x1bf8f0, Func Offset: 0x1b0
-	// Line 277, Address: 0x1bf90c, Func Offset: 0x1cc
-	// Line 280, Address: 0x1bf920, Func Offset: 0x1e0
-	// Line 281, Address: 0x1bf92c, Func Offset: 0x1ec
-	// Line 282, Address: 0x1bf938, Func Offset: 0x1f8
-	// Line 284, Address: 0x1bf944, Func Offset: 0x204
-	// Line 286, Address: 0x1bf968, Func Offset: 0x228
-	// Line 287, Address: 0x1bf97c, Func Offset: 0x23c
-	// Line 288, Address: 0x1bf990, Func Offset: 0x250
-	// Line 289, Address: 0x1bf9a0, Func Offset: 0x260
-	// Line 290, Address: 0x1bf9a8, Func Offset: 0x268
-	// Line 291, Address: 0x1bf9ac, Func Offset: 0x26c
-	// Line 290, Address: 0x1bf9b0, Func Offset: 0x270
-	// Line 291, Address: 0x1bf9b8, Func Offset: 0x278
-	// Line 294, Address: 0x1bf9bc, Func Offset: 0x27c
-	// Line 295, Address: 0x1bf9c8, Func Offset: 0x288
-	// Line 296, Address: 0x1bf9d4, Func Offset: 0x294
-	// Line 297, Address: 0x1bf9dc, Func Offset: 0x29c
-	// Line 301, Address: 0x1bf9e4, Func Offset: 0x2a4
-	// Line 306, Address: 0x1bf9f0, Func Offset: 0x2b0
-	// Line 307, Address: 0x1bfa14, Func Offset: 0x2d4
-	// Line 308, Address: 0x1bfa24, Func Offset: 0x2e4
-	// Line 309, Address: 0x1bfa40, Func Offset: 0x300
-	// Line 310, Address: 0x1bfa58, Func Offset: 0x318
-	// Line 311, Address: 0x1bfa64, Func Offset: 0x324
-	// Line 313, Address: 0x1bfa70, Func Offset: 0x330
-	// Line 314, Address: 0x1bfa7c, Func Offset: 0x33c
-	// Line 315, Address: 0x1bfa90, Func Offset: 0x350
-	// Line 318, Address: 0x1bfa9c, Func Offset: 0x35c
-	// Line 319, Address: 0x1bfac4, Func Offset: 0x384
-	// Line 320, Address: 0x1bfae4, Func Offset: 0x3a4
-	// Line 321, Address: 0x1bfaec, Func Offset: 0x3ac
-	// Line 322, Address: 0x1bfb0c, Func Offset: 0x3cc
-	// Line 323, Address: 0x1bfb18, Func Offset: 0x3d8
-	// Line 324, Address: 0x1bfb20, Func Offset: 0x3e0
-	// Line 331, Address: 0x1bfb48, Func Offset: 0x408
-	// Line 332, Address: 0x1bfb54, Func Offset: 0x414
-	// Line 333, Address: 0x1bfb60, Func Offset: 0x420
-	// Line 335, Address: 0x1bfb6c, Func Offset: 0x42c
-	// Line 336, Address: 0x1bfb74, Func Offset: 0x434
-	// Line 338, Address: 0x1bfb7c, Func Offset: 0x43c
-	// Line 339, Address: 0x1bfb80, Func Offset: 0x440
-	// Line 342, Address: 0x1bfb90, Func Offset: 0x450
-	// Line 343, Address: 0x1bfb9c, Func Offset: 0x45c
-	// Line 344, Address: 0x1bfba8, Func Offset: 0x468
-	// Line 346, Address: 0x1bfbb4, Func Offset: 0x474
-	// Func End, Address: 0x1bfbcc, Func Offset: 0x48c
+	int ang;
+
+    switch (epw->mode3)
+    {
+	case 0:
+		epw->px = epw->pxb = epw->mtx[0][12];
+		epw->py = epw->pyb = epw->mtx[0][13];
+		epw->pz = epw->pzb = epw->mtx[0][14];
+
+		EXP0_F(4)  = (-rand() / -2.1474836E9f) - 0.5f;
+		EXP0_F(8)  = (-rand() / -2.1474836E9f) - 0.2f;
+		EXP0_F(12) = (-rand() / -2.1474836E9f) - 0.5f;
+
+		EXP0_US(0) |= 0x1;
+
+		epw->flg |= 0x10;
+
+		njCalcPoints(epw->mtx, CollisionOffset[epw->lkono], (NJS_POINT3*)&epw->exp0[28], 3);
+
+		epw->mode3++;
+	case 1:
+		if ((EXP0_US(0) & 0x1))
+		{
+			avec.x = 0;
+			avec.y = 0;
+			avec.z = -0.1f;
+
+			njCalcVector(epw->mtx, &avec, &avec);
+
+			if (avec.y > 0)
+			{
+				avec.y *= -1.0f;
+			}
+
+			njRotateX(epw->mtx, 910);
+			njRotateZ(epw->mtx, 364);
+			njRotateY(epw->mtx, 546);
+
+			EXP0_F(8) += avec.y - 0.01f;
+
+			epw->px += EXP0_F(4);
+			epw->py += EXP0_F(8);
+			epw->pz += EXP0_F(12);
+		}
+		else
+		{
+			epw->mode3++;
+
+			epw->ct3 = 10;
+		}
+
+		epw->mtx[0][12] = epw->px;
+		epw->mtx[0][13] = epw->py;
+		epw->mtx[0][14] = epw->pz;
+		break;
+	case 2:
+		if (epw->ct3 > 0)
+		{
+			njGetPlaneNormal(CollisionOffset[epw->lkono], &vd);
+
+			njCalcVector(epw->mtx, &vd, &vd);
+
+			if (vd.y < 0)
+			{
+				vd.x *= -1.0f;
+				vd.y *= -1.0f;
+				vd.z *= -1.0f;
+			}
+
+			njUnitVector(&vd);
+
+			out = njOuterProduct(&vd, (NJS_VECTOR*)&epw->exp0[16], &ov);
+
+			njUnitVector(&ov);
+
+			njSubVector((NJS_VECTOR*)&epw->mtx[0][12], (NJS_VECTOR*)(&epw->exp0[EXP0_I(64) * 12] + 28));
+
+			ang = njArcSin(out);
+
+			njUnitMatrix(NULL);
+
+			njRotate(NULL, &ov, ang / epw->ct3);
+			njMultiMatrix(NULL, epw->mtx);
+
+			njGetMatrix(epw->mtx);
+
+			njAddVector((NJS_VECTOR*)&epw->mtx[0][12], (NJS_VECTOR*)(&epw->exp0[EXP0_I(64) * 12] + 28));
+
+			epw->px = epw->mtx[0][12];
+			epw->py = epw->mtx[0][13];
+			epw->pz = epw->mtx[0][14];
+
+			epw->ct3--;
+		}
+		else
+		{
+			epw->mode0 = 2;
+
+			epw->flg &= ~0x10;
+		}
+
+		epw->mtx[0][12] = epw->px;
+		epw->mtx[0][13] = epw->py;
+		epw->mtx[0][14] = epw->pz;
+		break;
+    }
 }
 
 #pragma divbyzerocheck off

@@ -3763,128 +3763,225 @@ void bhEff018(O_WRK* op)
 	scePrintf("bhEff018 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x22c120
-void bhEff019(O_WRK* op)
+// 100% matching!
+void bhEff019(O_WRK* op) 
 {
-	//_anon13* lp;
-	UV_WORK* uvp;
-	UV_WORK uvinfo_t1[15];
-	UV_WORK uvinfo_t2[8];
-	UV_WORK uvinfo_t0[15];
-	// Line 3556, Address: 0x22c120, Func Offset: 0
-	// Line 3558, Address: 0x22c134, Func Offset: 0x14
-	// Line 3559, Address: 0x22c140, Func Offset: 0x20
-	// Line 3560, Address: 0x22c148, Func Offset: 0x28
-	// Line 3561, Address: 0x22c150, Func Offset: 0x30
-	// Line 3562, Address: 0x22c154, Func Offset: 0x34
-	// Line 3563, Address: 0x22c158, Func Offset: 0x38
-	// Line 3564, Address: 0x22c15c, Func Offset: 0x3c
-	// Line 3565, Address: 0x22c160, Func Offset: 0x40
-	// Line 3567, Address: 0x22c198, Func Offset: 0x78
-	// Line 3568, Address: 0x22c19c, Func Offset: 0x7c
-	// Line 3567, Address: 0x22c1a0, Func Offset: 0x80
-	// Line 3568, Address: 0x22c1a4, Func Offset: 0x84
-	// Line 3569, Address: 0x22c1a8, Func Offset: 0x88
-	// Line 3570, Address: 0x22c1b4, Func Offset: 0x94
-	// Line 3573, Address: 0x22c1bc, Func Offset: 0x9c
-	// Line 3574, Address: 0x22c1c8, Func Offset: 0xa8
-	// Line 3576, Address: 0x22c1d8, Func Offset: 0xb8
-	// Line 3575, Address: 0x22c1dc, Func Offset: 0xbc
-	// Line 3576, Address: 0x22c1e0, Func Offset: 0xc0
-	// Line 3577, Address: 0x22c1e4, Func Offset: 0xc4
-	// Line 3578, Address: 0x22c1e8, Func Offset: 0xc8
-	// Line 3579, Address: 0x22c1ec, Func Offset: 0xcc
-	// Line 3580, Address: 0x22c1f0, Func Offset: 0xd0
-	// Line 3582, Address: 0x22c1f4, Func Offset: 0xd4
-	// Line 3581, Address: 0x22c1f8, Func Offset: 0xd8
-	// Line 3582, Address: 0x22c1fc, Func Offset: 0xdc
-	// Line 3583, Address: 0x22c200, Func Offset: 0xe0
-	// Line 3584, Address: 0x22c208, Func Offset: 0xe8
-	// Line 3585, Address: 0x22c210, Func Offset: 0xf0
-	// Line 3586, Address: 0x22c214, Func Offset: 0xf4
-	// Line 3587, Address: 0x22c21c, Func Offset: 0xfc
-	// Line 3588, Address: 0x22c224, Func Offset: 0x104
-	// Line 3589, Address: 0x22c22c, Func Offset: 0x10c
-	// Line 3590, Address: 0x22c234, Func Offset: 0x114
-	// Line 3591, Address: 0x22c23c, Func Offset: 0x11c
-	// Line 3592, Address: 0x22c240, Func Offset: 0x120
-	// Line 3593, Address: 0x22c244, Func Offset: 0x124
-	// Line 3594, Address: 0x22c248, Func Offset: 0x128
-	// Line 3598, Address: 0x22c24c, Func Offset: 0x12c
-	// Line 3600, Address: 0x22c254, Func Offset: 0x134
-	// Line 3601, Address: 0x22c260, Func Offset: 0x140
-	// Line 3602, Address: 0x22c264, Func Offset: 0x144
-	// Line 3603, Address: 0x22c268, Func Offset: 0x148
-	// Line 3604, Address: 0x22c26c, Func Offset: 0x14c
-	// Line 3606, Address: 0x22c274, Func Offset: 0x154
-	// Line 3605, Address: 0x22c27c, Func Offset: 0x15c
-	// Line 3606, Address: 0x22c280, Func Offset: 0x160
-	// Line 3607, Address: 0x22c284, Func Offset: 0x164
-	// Line 3608, Address: 0x22c290, Func Offset: 0x170
-	// Line 3609, Address: 0x22c294, Func Offset: 0x174
-	// Line 3611, Address: 0x22c29c, Func Offset: 0x17c
-	// Line 3612, Address: 0x22c2a8, Func Offset: 0x188
-	// Line 3613, Address: 0x22c2ac, Func Offset: 0x18c
-	// Line 3614, Address: 0x22c2b0, Func Offset: 0x190
-	// Line 3615, Address: 0x22c2b4, Func Offset: 0x194
-	// Line 3616, Address: 0x22c2bc, Func Offset: 0x19c
-	// Line 3617, Address: 0x22c2c4, Func Offset: 0x1a4
-	// Line 3618, Address: 0x22c2cc, Func Offset: 0x1ac
-	// Line 3620, Address: 0x22c2d4, Func Offset: 0x1b4
-	// Line 3621, Address: 0x22c2e0, Func Offset: 0x1c0
-	// Line 3622, Address: 0x22c2e4, Func Offset: 0x1c4
-	// Line 3623, Address: 0x22c2e8, Func Offset: 0x1c8
-	// Line 3624, Address: 0x22c2ec, Func Offset: 0x1cc
-	// Line 3626, Address: 0x22c2f4, Func Offset: 0x1d4
-	// Line 3625, Address: 0x22c2fc, Func Offset: 0x1dc
-	// Line 3626, Address: 0x22c300, Func Offset: 0x1e0
-	// Line 3630, Address: 0x22c304, Func Offset: 0x1e4
-	// Line 3629, Address: 0x22c308, Func Offset: 0x1e8
-	// Line 3630, Address: 0x22c30c, Func Offset: 0x1ec
-	// Line 3633, Address: 0x22c310, Func Offset: 0x1f0
-	// Line 3635, Address: 0x22c33c, Func Offset: 0x21c
-	// Line 3636, Address: 0x22c344, Func Offset: 0x224
-	// Line 3635, Address: 0x22c354, Func Offset: 0x234
-	// Line 3636, Address: 0x22c35c, Func Offset: 0x23c
-	// Line 3637, Address: 0x22c364, Func Offset: 0x244
-	// Line 3639, Address: 0x22c36c, Func Offset: 0x24c
-	// Line 3640, Address: 0x22c378, Func Offset: 0x258
-	// Line 3641, Address: 0x22c390, Func Offset: 0x270
-	// Line 3646, Address: 0x22c398, Func Offset: 0x278
-	// Line 3641, Address: 0x22c3a0, Func Offset: 0x280
-	// Line 3646, Address: 0x22c3a4, Func Offset: 0x284
-	// Line 3641, Address: 0x22c3a8, Func Offset: 0x288
-	// Line 3642, Address: 0x22c3b4, Func Offset: 0x294
-	// Line 3643, Address: 0x22c3c4, Func Offset: 0x2a4
-	// Line 3644, Address: 0x22c3d4, Func Offset: 0x2b4
-	// Line 3645, Address: 0x22c3e4, Func Offset: 0x2c4
-	// Line 3646, Address: 0x22c3f4, Func Offset: 0x2d4
-	// Line 3647, Address: 0x22c3fc, Func Offset: 0x2dc
-	// Line 3649, Address: 0x22c404, Func Offset: 0x2e4
-	// Line 3650, Address: 0x22c41c, Func Offset: 0x2fc
-	// Line 3653, Address: 0x22c428, Func Offset: 0x308
-	// Line 3654, Address: 0x22c430, Func Offset: 0x310
-	// Line 3653, Address: 0x22c438, Func Offset: 0x318
-	// Line 3654, Address: 0x22c440, Func Offset: 0x320
-	// Line 3656, Address: 0x22c454, Func Offset: 0x334
-	// Line 3658, Address: 0x22c45c, Func Offset: 0x33c
-	// Line 3669, Address: 0x22c46c, Func Offset: 0x34c
-	// Line 3658, Address: 0x22c470, Func Offset: 0x350
-	// Line 3659, Address: 0x22c47c, Func Offset: 0x35c
-	// Line 3660, Address: 0x22c490, Func Offset: 0x370
-	// Line 3661, Address: 0x22c498, Func Offset: 0x378
-	// Line 3662, Address: 0x22c4a0, Func Offset: 0x380
-	// Line 3663, Address: 0x22c4b0, Func Offset: 0x390
-	// Line 3664, Address: 0x22c4b8, Func Offset: 0x398
-	// Line 3665, Address: 0x22c4c0, Func Offset: 0x3a0
-	// Line 3666, Address: 0x22c4d0, Func Offset: 0x3b0
-	// Line 3667, Address: 0x22c4e0, Func Offset: 0x3c0
-	// Line 3668, Address: 0x22c4f0, Func Offset: 0x3d0
-	// Line 3669, Address: 0x22c4fc, Func Offset: 0x3dc
-	// Line 3670, Address: 0x22c530, Func Offset: 0x410
-	// Func End, Address: 0x22c538, Func Offset: 0x418
-	scePrintf("bhEff019 - UNIMPLEMENTED!\n");
+    UV_WORK* uvp;
+    LGT_WORK* lp;
+	static UV_WORK uvinfo_t0[15] = 
+    {
+        { 0.015625f, 0.0f,      0.15625f, 0.125f    },
+        { 0.015625f, 0.125f,    0.15625f, 0.15625f  },
+        { 0.015625f, 0.3125f,   0.15625f, 0.15625f  },
+        { 0.0f,      0.484375f, 0.1875f,  0.15625f  },
+        { 0.625f,    0.484375f, 0.1875f,  0.15625f  },
+        { 0.375f,    0.0f,      0.21875f, 0.1875f   },
+        { 0.375f,    0.1875f,   0.21875f, 0.1875f   },
+        { 0.375f,    0.40625f,  0.21875f, 0.1875f   },
+        { 0.625f,    0.265625f, 0.21875f, 0.1875f   },
+        { 0.640625f, 0.015625f, 0.1875f,  0.1875f   },
+        { 0.1875f,   0.0f,      0.1875f,  0.1875f   },
+        { 0.1875f,   0.1875f,   0.1875f,  0.15625f  },
+        { 0.1875f,   0.34375f,  0.1875f,  0.1875f   },
+        { 0.1875f,   0.5f,      0.1875f,  0.140625f },
+        { -1.0f,     0.0f,      0.0f,     0.0f      }
+    };
+    static UV_WORK uvinfo_t1[15] = 
+    {
+        { 0.015625f, 0.0f,      0.15625f, 0.125f   },
+        { 0.015625f, 0.125f,    0.15625f, 0.15625f },
+        { 0.015625f, 0.3125f,   0.15625f, 0.15625f },
+        { 0.0f,      0.484375f, 0.1875f,  0.15625f },
+        { 0.625f,    0.484375f, 0.1875f,  0.15625f },
+        { 0.375f,    0.0f,      0.21875f, 0.1875f  },
+        { 0.375f,    0.1875f,   0.21875f, 0.1875f  },
+        { 0.375f,    0.40625f,  0.21875f, 0.1875f  },
+        { 0.625f,    0.265625f, 0.21875f, 0.1875f  },
+        { 0.0f,      0.640625f, 0.21875f, 0.21875f },
+        { 0.21875f,  0.640625f, 0.21875f, 0.21875f },
+        { 0.4375f,   0.640625f, 0.1875f,  0.15625f },
+        { 0.625f,    0.65625f,  0.1875f,  0.15625f },
+        { 0.8125f,   0.65625f,  0.1875f,  0.15625f },
+        { -1.0f,     0.0f,      0.0f,     0.0f     }
+    };
+    static UV_WORK uvinfo_t2[8] = 
+    {
+        { 0.3125f,  0.875f, 0.09375f, 0.09375f },
+        { 0.40625f, 0.875f, 0.09375f, 0.09375f },
+        { 0.5f,     0.875f, 0.09375f, 0.09375f },
+        { 0.59375f, 0.875f, 0.09375f, 0.09375f },
+        { 0.6875f,  0.875f, 0.09375f, 0.09375f },
+        { 0.78125f, 0.875f, 0.09375f, 0.09375f },
+        { 0.875f,   0.875f, 0.09375f, 0.09375f },
+        { -1.0f,    0.0f,   0.0f,     0.0f     }
+    };
+
+    switch (op->mode0) 
+    {
+    case 0:
+        op->flg = 0x4100001;
+        
+        op->tex_id = 19;
+        
+        op->tv[0].col = -1;
+        op->tv[1].col = -1;
+        op->tv[2].col = -1;
+        op->tv[3].col = -1;
+        
+        op->ani_ct = 0;
+        
+        switch (op->type) 
+        {                          
+        case 0:                                     
+            op->bl_src = 8;
+            op->bl_dst = 10;
+            
+            op->exp0 = (unsigned char*)uvinfo_t0;
+            
+            op->yn = 1.0f;
+            
+            lp = rom->lgtp;
+            
+            if (!(lp->flg & 0x2)) 
+            {
+                lp->flg = 3; 
+                
+                lp->type = 101;
+                
+                lp->aspd = 8;
+                
+                lp->lkflg = 0;
+                lp->lkno  = 0;
+                lp->lkono = 0;
+                
+                lp->mode = 0;
+                
+                lp->lsrc = 4;
+                
+                lp->r = 3.0f;
+                lp->g = 2.0f;
+                lp->b = 1.0f;
+                
+                lp->nr = 20.0f;
+                lp->fr = 60.0f;
+                
+                lp->px = op->px;
+                lp->py = op->py;
+                lp->pz = op->pz;
+                
+                lp->lx = 0;
+                lp->ly = 0;
+                lp->lz = 0;
+                
+                lp->ct0 = 0;
+                
+                lp->light = NULL;
+            }
+            
+            break;
+        case 1:                                     
+            op->tv[0].col = 0x30FFFFFF;
+            op->tv[1].col = 0x30FFFFFF;
+            op->tv[2].col = 0x30FFFFFF;
+            op->tv[3].col = 0x30FFFFFF;
+            
+            op->bl_src = 11;
+            op->bl_dst = 3;
+            
+            op->exp0 = (unsigned char*)uvinfo_t1;
+            
+            op->yn = 1.4f;
+            
+            op->ct1 = 48;
+            break;
+        case 2:                                     
+            op->tv[0].col = 0x40FFFFFF;
+            op->tv[1].col = 0x40FFFFFF;
+            op->tv[2].col = 0x40FFFFFF;
+            op->tv[3].col = 0x40FFFFFF;
+            
+            op->bl_src = 8;
+            op->bl_dst = 6;
+            
+            uvp = uvinfo_t2;
+            
+            op->exp0 = (unsigned char*)uvp;
+            break;
+        case 3:                                     
+            op->tv[0].col = 0x60FFFFFF;
+            op->tv[1].col = 0x60FFFFFF;
+            op->tv[2].col = 0x60FFFFFF;
+            op->tv[3].col = 0x60FFFFFF;
+            
+            op->bl_src = 11;
+            
+            uvp = uvinfo_t1;
+            
+            op->bl_dst = 3;
+            
+            op->exp0 = (unsigned char*)uvp;
+            break;
+        }
+        
+        op->ct0   = 0;
+        op->mode0 = 1;
+        break;
+    }
+    
+    switch (op->type)
+    {                            
+    case 0:                                         
+        op->py += op->yn;
+        op->yn *= 0.9f;
+        break;
+    case 1:                                         
+        op->ct1 += 24;
+        
+        if (op->ct1 > 0xFF) 
+        {
+            op->ct1 = 0xFF;
+        }
+        
+        op->tv[0].col = (op->ct1 << 24) | 0xFFFFFF;
+        op->tv[1].col = (op->ct1 << 24) | 0xFFFFFF;
+        op->tv[2].col = (op->ct1 << 24) | 0xFFFFFF;
+        op->tv[3].col = (op->ct1 << 24) | 0xFFFFFF;
+        
+        op->py += op->yn;
+        op->yn *= 0.9f;
+        break;
+    case 2:                                         
+        op->sxb += 0.5f;
+        op->syb += 0.5f;
+        break;
+    }
+    
+    uvp = (UV_WORK*)op->exp0 + op->ct0;
+    
+    if (uvp->u == -1.0f)
+    {
+        op->flg = 0;
+        return;
+    }
+    
+    op->sx = 8.0f * (op->sxb * uvp->xs);
+    op->sy = 8.0f * (op->syb * uvp->ys);
+    
+    op->tv[0].u = uvp->u;
+    op->tv[0].v = uvp->v;
+    
+    op->tv[1].u = uvp->u + uvp->xs;
+    op->tv[1].v = uvp->v;
+    
+    op->tv[2].u = uvp->u;
+    op->tv[2].v = uvp->v + uvp->ys;
+    
+    op->tv[3].u = uvp->u + uvp->xs;
+    op->tv[3].v = uvp->v + uvp->ys;
+    
+    op->ct0++;
+    
+    sys->ef_trs[sys->ef_trsn++] = op;
 }
 
 // 100% matching!

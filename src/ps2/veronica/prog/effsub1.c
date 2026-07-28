@@ -5191,83 +5191,89 @@ void bhEff102(O_WRK* op)
     op->ct0 = (unsigned short)(op->ct0 + (op->type * 256));
 }
 
-// 
-// Start address: 0x22eff0
+// 100% matching!
 void bhEff103(O_WRK* op)
 {
-	// Line 4689, Address: 0x22eff0, Func Offset: 0
-	// Line 4690, Address: 0x22effc, Func Offset: 0xc
-	// Line 4691, Address: 0x22f008, Func Offset: 0x18
-	// Line 4690, Address: 0x22f00c, Func Offset: 0x1c
-	// Line 4691, Address: 0x22f014, Func Offset: 0x24
-	// Line 4693, Address: 0x22f03c, Func Offset: 0x4c
-	// Line 4694, Address: 0x22f084, Func Offset: 0x94
-	// Line 4695, Address: 0x22f08c, Func Offset: 0x9c
-	// Line 4694, Address: 0x22f090, Func Offset: 0xa0
-	// Line 4695, Address: 0x22f094, Func Offset: 0xa4
-	// Line 4696, Address: 0x22f098, Func Offset: 0xa8
-	// Line 4694, Address: 0x22f09c, Func Offset: 0xac
-	// Line 4695, Address: 0x22f0a8, Func Offset: 0xb8
-	// Line 4696, Address: 0x22f0bc, Func Offset: 0xcc
-	// Line 4697, Address: 0x22f0cc, Func Offset: 0xdc
-	// Line 4698, Address: 0x22f120, Func Offset: 0x130
-	// Line 4699, Address: 0x22f174, Func Offset: 0x184
-	// Line 4704, Address: 0x22f19c, Func Offset: 0x1ac
-	// Line 4699, Address: 0x22f1a0, Func Offset: 0x1b0
-	// Line 4704, Address: 0x22f1b8, Func Offset: 0x1c8
-	// Line 4699, Address: 0x22f1c0, Func Offset: 0x1d0
-	// Line 4700, Address: 0x22f1d8, Func Offset: 0x1e8
-	// Line 4701, Address: 0x22f1f0, Func Offset: 0x200
-	// Line 4702, Address: 0x22f208, Func Offset: 0x218
-	// Line 4703, Address: 0x22f220, Func Offset: 0x230
-	// Line 4704, Address: 0x22f234, Func Offset: 0x244
-	// Line 4706, Address: 0x22f24c, Func Offset: 0x25c
-	// Line 4708, Address: 0x22f254, Func Offset: 0x264
-	// Line 4709, Address: 0x22f264, Func Offset: 0x274
-	// Line 4710, Address: 0x22f270, Func Offset: 0x280
-	// Line 4711, Address: 0x22f278, Func Offset: 0x288
-	// Line 4710, Address: 0x22f27c, Func Offset: 0x28c
-	// Line 4711, Address: 0x22f280, Func Offset: 0x290
-	// Line 4710, Address: 0x22f284, Func Offset: 0x294
-	// Line 4711, Address: 0x22f290, Func Offset: 0x2a0
-	// Line 4712, Address: 0x22f2a4, Func Offset: 0x2b4
-	// Line 4713, Address: 0x22f2b8, Func Offset: 0x2c8
-	// Line 4714, Address: 0x22f2d0, Func Offset: 0x2e0
-	// Line 4715, Address: 0x22f2e8, Func Offset: 0x2f8
-	// Line 4716, Address: 0x22f300, Func Offset: 0x310
-	// Line 4717, Address: 0x22f318, Func Offset: 0x328
-	// Line 4718, Address: 0x22f330, Func Offset: 0x340
-	// Line 4719, Address: 0x22f348, Func Offset: 0x358
-	// Line 4721, Address: 0x22f36c, Func Offset: 0x37c
-	// Line 4719, Address: 0x22f378, Func Offset: 0x388
-	// Line 4720, Address: 0x22f388, Func Offset: 0x398
-	// Line 4721, Address: 0x22f38c, Func Offset: 0x39c
-	// Line 4720, Address: 0x22f390, Func Offset: 0x3a0
-	// Line 4721, Address: 0x22f398, Func Offset: 0x3a8
-	// Line 4723, Address: 0x22f3ac, Func Offset: 0x3bc
-	// Line 4725, Address: 0x22f3b4, Func Offset: 0x3c4
-	// Line 4726, Address: 0x22f3c4, Func Offset: 0x3d4
-	// Line 4727, Address: 0x22f3d0, Func Offset: 0x3e0
-	// Line 4728, Address: 0x22f3d8, Func Offset: 0x3e8
-	// Line 4727, Address: 0x22f3dc, Func Offset: 0x3ec
-	// Line 4728, Address: 0x22f3e0, Func Offset: 0x3f0
-	// Line 4729, Address: 0x22f3e4, Func Offset: 0x3f4
-	// Line 4727, Address: 0x22f3e8, Func Offset: 0x3f8
-	// Line 4728, Address: 0x22f3f4, Func Offset: 0x404
-	// Line 4737, Address: 0x22f3fc, Func Offset: 0x40c
-	// Line 4728, Address: 0x22f408, Func Offset: 0x418
-	// Line 4729, Address: 0x22f414, Func Offset: 0x424
-	// Line 4730, Address: 0x22f428, Func Offset: 0x438
-	// Line 4731, Address: 0x22f440, Func Offset: 0x450
-	// Line 4732, Address: 0x22f458, Func Offset: 0x468
-	// Line 4733, Address: 0x22f470, Func Offset: 0x480
-	// Line 4734, Address: 0x22f488, Func Offset: 0x498
-	// Line 4735, Address: 0x22f4a0, Func Offset: 0x4b0
-	// Line 4736, Address: 0x22f4b8, Func Offset: 0x4c8
-	// Line 4737, Address: 0x22f4cc, Func Offset: 0x4dc
-	// Line 4741, Address: 0x22f4e4, Func Offset: 0x4f4
-	// Func End, Address: 0x22f4f4, Func Offset: 0x504
-	scePrintf("bhEff103 - UNIMPLEMENTED!\n");
+    op->flg |= 0x1000000;
+    
+    switch (op->type) 
+    {                            
+    case 0:
+        if ((-rand() / -2.1474836E9f) < 0.3f) 
+        {
+            sys->ef.id = 10;
+            
+            sys->ef.flg = 0x100001;
+            
+            sys->ef.type = 1;
+
+            sys->ef.px = op->px + ((3.0f * (-rand() / -2.1474836E9f)) - 1.5f);
+            sys->ef.py = op->py + ((3.0f * (-rand() / -2.1474836E9f)) - 1.5f);
+            sys->ef.pz = op->pz + ((3.0f * (-rand() / -2.1474836E9f)) - 1.5f);
+            
+            sys->ef.sx = op->sx;
+            sys->ef.sy = op->sy;
+            sys->ef.sz = op->sz;
+            
+            sys->ef.ay = 0;
+            
+            bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        }
+        
+        break;
+    case 1:
+        op->ct0 = (op->ct0 + 1) & 3;
+        
+        if (op->ct0 == 0) 
+        {
+            sys->ef.id = 119;
+            
+            sys->ef.flg = 0x4100001;
+            
+            sys->ef.type = 0;
+            
+            sys->ef.px = op->px;
+            sys->ef.py = op->py;
+            sys->ef.pz = op->pz;
+            
+            sys->ef.sx = op->sx;
+            sys->ef.sy = op->sy;
+            sys->ef.sz = op->sz;
+            
+            sys->ef.ay = op->ay + (int)(2048.0f * njSin(op->ct1));
+            
+            op->ct1 += 2048;
+            
+            bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        }
+        
+        break;
+    case 2:
+        op->ct0 = (op->ct0 + 1) & 1;
+        
+        if (op->ct0 == 0) 
+        {
+            sys->ef.id = 119;
+            
+            sys->ef.flg = 0x4100001;
+            
+            sys->ef.type = 1;
+            
+            sys->ef.px = op->px;
+            sys->ef.py = op->py;
+            sys->ef.pz = op->pz;
+            
+            sys->ef.sx = op->sx;
+            sys->ef.sy = op->sy;
+            sys->ef.sz = op->sz;
+            
+            sys->ef.ay = 0;
+            
+            bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        }
+        
+        break;
+    }
 }
 
 // 99.89% matching

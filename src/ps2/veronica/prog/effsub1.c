@@ -4512,7 +4512,7 @@ void bhEff024(O_WRK* op)
     sys->ef_fnc[sys->ef_fncn++] = op;
 }
 
-// 100% matching
+// 100% matching!
 void bhDraw025(O_WRK* op) 
 {
     UV_WORK* uvp;
@@ -4754,7 +4754,7 @@ void bhEff026(O_WRK* op)
     sys->ef_trs2d[sys->ef_trs2dn++] = op;
 }
 
-// 100% matching
+// 100% matching!
 void bhDraw027(O_WRK* op)
 {
     UV_WORK* uvp;
@@ -4855,72 +4855,89 @@ void bhDraw027(O_WRK* op)
     njPopMatrixEx();
 }
 
-// 
-// Start address: 0x22e6b0
-void bhEff027(O_WRK* op)
+// 100% matching!
+void bhEff027(O_WRK* op) 
 {
-	int i;
-	EXP_EFF025_WORK* exp;
-	NJS_POINT3 ps;
-	// Line 4516, Address: 0x22e6b0, Func Offset: 0
-	// Line 4520, Address: 0x22e6c4, Func Offset: 0x14
-	// Line 4521, Address: 0x22e6d4, Func Offset: 0x24
-	// Line 4522, Address: 0x22e6e0, Func Offset: 0x30
-	// Line 4524, Address: 0x22e6f0, Func Offset: 0x40
-	// Line 4526, Address: 0x22e6f8, Func Offset: 0x48
-	// Line 4529, Address: 0x22e71c, Func Offset: 0x6c
-	// Line 4530, Address: 0x22e720, Func Offset: 0x70
-	// Line 4529, Address: 0x22e724, Func Offset: 0x74
-	// Line 4531, Address: 0x22e728, Func Offset: 0x78
-	// Line 4532, Address: 0x22e730, Func Offset: 0x80
-	// Line 4533, Address: 0x22e734, Func Offset: 0x84
-	// Line 4534, Address: 0x22e738, Func Offset: 0x88
-	// Line 4535, Address: 0x22e770, Func Offset: 0xc0
-	// Line 4536, Address: 0x22e7a8, Func Offset: 0xf8
-	// Line 4537, Address: 0x22e7c4, Func Offset: 0x114
-	// Line 4536, Address: 0x22e7cc, Func Offset: 0x11c
-	// Line 4537, Address: 0x22e7ec, Func Offset: 0x13c
-	// Line 4538, Address: 0x22e800, Func Offset: 0x150
-	// Line 4539, Address: 0x22e834, Func Offset: 0x184
-	// Line 4540, Address: 0x22e868, Func Offset: 0x1b8
-	// Line 4541, Address: 0x22e884, Func Offset: 0x1d4
-	// Line 4540, Address: 0x22e890, Func Offset: 0x1e0
-	// Line 4541, Address: 0x22e8a8, Func Offset: 0x1f8
-	// Line 4546, Address: 0x22e8b0, Func Offset: 0x200
-	// Line 4547, Address: 0x22e8c0, Func Offset: 0x210
-	// Line 4548, Address: 0x22e8cc, Func Offset: 0x21c
-	// Line 4550, Address: 0x22e8d4, Func Offset: 0x224
-	// Line 4551, Address: 0x22e8e0, Func Offset: 0x230
-	// Line 4552, Address: 0x22e8f0, Func Offset: 0x240
-	// Line 4553, Address: 0x22e8f8, Func Offset: 0x248
-	// Line 4557, Address: 0x22e900, Func Offset: 0x250
-	// Line 4552, Address: 0x22e908, Func Offset: 0x258
-	// Line 4553, Address: 0x22e918, Func Offset: 0x268
-	// Line 4559, Address: 0x22e920, Func Offset: 0x270
-	// Line 4554, Address: 0x22e928, Func Offset: 0x278
-	// Line 4561, Address: 0x22e92c, Func Offset: 0x27c
-	// Line 4553, Address: 0x22e930, Func Offset: 0x280
-	// Line 4554, Address: 0x22e93c, Func Offset: 0x28c
-	// Line 4561, Address: 0x22e944, Func Offset: 0x294
-	// Line 4555, Address: 0x22e948, Func Offset: 0x298
-	// Line 4556, Address: 0x22e94c, Func Offset: 0x29c
-	// Line 4554, Address: 0x22e950, Func Offset: 0x2a0
-	// Line 4555, Address: 0x22e95c, Func Offset: 0x2ac
-	// Line 4556, Address: 0x22e970, Func Offset: 0x2c0
-	// Line 4557, Address: 0x22e984, Func Offset: 0x2d4
-	// Line 4558, Address: 0x22e9a4, Func Offset: 0x2f4
-	// Line 4559, Address: 0x22e9c4, Func Offset: 0x314
-	// Line 4560, Address: 0x22e9ec, Func Offset: 0x33c
-	// Line 4561, Address: 0x22ea14, Func Offset: 0x364
-	// Line 4564, Address: 0x22ea40, Func Offset: 0x390
-	// Line 4566, Address: 0x22ea64, Func Offset: 0x3b4
-	// Line 4567, Address: 0x22ea74, Func Offset: 0x3c4
-	// Line 4568, Address: 0x22ea78, Func Offset: 0x3c8
-	// Line 4569, Address: 0x22ea7c, Func Offset: 0x3cc
-	// Line 4571, Address: 0x22ea84, Func Offset: 0x3d4
-	// Line 4572, Address: 0x22eabc, Func Offset: 0x40c
-	// Func End, Address: 0x22ead4, Func Offset: 0x424
-	scePrintf("bhEff027 - UNIMPLEMENTED!\n");
+    NJS_POINT3 ps;
+    EXP_EFF025_WORK* exp;
+    int i;
+    
+    op->flg |= 0x1000000;
+    
+    if (op->mode0 == 0) 
+    {
+        if ((op->exp0 = (unsigned char*)bhSetExtraEffectWork()) == NULL) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        njCalcPoint(&plp->mlwP->owP[9].mtx, (NJS_POINT3*)&WpnTab[20].wp_fps2, (NJS_POINT3*)&op->px);
+        
+        exp = (EXP_EFF025_WORK*)&op->exp0[4];
+        
+        for (i = 0; i < 16; i++, exp++)
+        {
+            exp->flg = 1;
+            
+            exp->ct = 0;
+            
+            exp->scl = 1.0f;
+            
+            exp->px = op->px + ((-rand() / -2.1474836E9f) - 0.5f);
+            exp->py = op->py + ((-rand() / -2.1474836E9f) - 0.5f);
+            exp->pz = op->pz + ((-rand() / -2.1474836E9f) - 0.5f);
+            
+            njSetMatrix(NULL, &plp->mlwP->owP[9].mtx);
+            
+            ps.x = -(1.0f + (-rand() / -2.1474836E9f));
+            ps.y = (-rand() / -2.1474836E9f) - 0.5f;
+            ps.z = (-rand() / -2.1474836E9f) - 0.5f;
+            
+            njCalcVector(NULL, &ps, (NJS_VECTOR*)&exp->xn);
+        } 
+        
+        op->func = (void*)bhDraw027;
+        
+        op->mode0 = 1;
+    }
+    
+    op->ct0++;
+    
+    if (op->ct0 > 6) 
+    {
+        sys->ef.id = 2;
+        
+        sys->ef.flg = 0x4100001;
+
+        sys->ef.type = 9;
+        
+        sys->ef.flr_no = 3;
+        
+        sys->ef.mdlver = 1;
+        
+        sys->ef.sx = 0.5f  * op->ct0;
+        sys->ef.sy = 0.5f  * op->ct0;
+        sys->ef.sz = 0.25f * (op->ct0 - 6);
+        
+        sys->ef.ax = 0;
+        sys->ef.ay = 0;
+        
+        njCalcPoint(&plp->mlwP->owP[9].mtx, (NJS_POINT3*)&WpnTab[20].wp_fps2, (NJS_POINT3*)&sys->ef.px);
+        
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    }
+    
+    if (op->ct0 > 8)
+    {
+        op->flg = 0;
+        
+        *(int*)op->exp0 = 0;
+    }
+    else 
+    {
+        sys->ef_fnc[sys->ef_fncn++] = op;
+    }
 }
 
 // 100% matching!

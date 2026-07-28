@@ -2100,87 +2100,124 @@ void bhEff006(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x2286b0
-void bhEff007(O_WRK* op)
+// 100% matching!
+void bhEff007(O_WRK* op) 
 {
-	// Line 1829, Address: 0x2286b0, Func Offset: 0
-	// Line 1838, Address: 0x2286c0, Func Offset: 0x10
-	// Line 1840, Address: 0x2286ec, Func Offset: 0x3c
-	// Line 1841, Address: 0x2286f4, Func Offset: 0x44
-	// Line 1843, Address: 0x2286f8, Func Offset: 0x48
-	// Line 1846, Address: 0x228728, Func Offset: 0x78
-	// Line 1847, Address: 0x22873c, Func Offset: 0x8c
-	// Line 1846, Address: 0x228740, Func Offset: 0x90
-	// Line 1848, Address: 0x228744, Func Offset: 0x94
-	// Line 1846, Address: 0x22874c, Func Offset: 0x9c
-	// Line 1847, Address: 0x228750, Func Offset: 0xa0
-	// Line 1848, Address: 0x22875c, Func Offset: 0xac
-	// Line 1849, Address: 0x228760, Func Offset: 0xb0
-	// Line 1850, Address: 0x228764, Func Offset: 0xb4
-	// Line 1852, Address: 0x228770, Func Offset: 0xc0
-	// Line 1854, Address: 0x228798, Func Offset: 0xe8
-	// Line 1856, Address: 0x2287a0, Func Offset: 0xf0
-	// Line 1857, Address: 0x2287cc, Func Offset: 0x11c
-	// Line 1858, Address: 0x2287dc, Func Offset: 0x12c
-	// Line 1859, Address: 0x2287e0, Func Offset: 0x130
-	// Line 1858, Address: 0x2287e8, Func Offset: 0x138
-	// Line 1861, Address: 0x2287ec, Func Offset: 0x13c
-	// Line 1858, Address: 0x2287f4, Func Offset: 0x144
-	// Line 1859, Address: 0x2287fc, Func Offset: 0x14c
-	// Line 1865, Address: 0x228800, Func Offset: 0x150
-	// Line 1869, Address: 0x228808, Func Offset: 0x158
-	// Line 1862, Address: 0x22880c, Func Offset: 0x15c
-	// Line 1859, Address: 0x228810, Func Offset: 0x160
-	// Line 1866, Address: 0x228814, Func Offset: 0x164
-	// Line 1872, Address: 0x228818, Func Offset: 0x168
-	// Line 1859, Address: 0x228824, Func Offset: 0x174
-	// Line 1869, Address: 0x228828, Func Offset: 0x178
-	// Line 1861, Address: 0x22882c, Func Offset: 0x17c
-	// Line 1862, Address: 0x22883c, Func Offset: 0x18c
-	// Line 1863, Address: 0x228850, Func Offset: 0x1a0
-	// Line 1864, Address: 0x228864, Func Offset: 0x1b4
-	// Line 1865, Address: 0x228878, Func Offset: 0x1c8
-	// Line 1866, Address: 0x22888c, Func Offset: 0x1dc
-	// Line 1867, Address: 0x2288a0, Func Offset: 0x1f0
-	// Line 1868, Address: 0x2288b4, Func Offset: 0x204
-	// Line 1869, Address: 0x2288cc, Func Offset: 0x21c
-	// Line 1870, Address: 0x2288e8, Func Offset: 0x238
-	// Line 1871, Address: 0x228900, Func Offset: 0x250
-	// Line 1872, Address: 0x228914, Func Offset: 0x264
-	// Line 1875, Address: 0x22892c, Func Offset: 0x27c
-	// Line 1876, Address: 0x228934, Func Offset: 0x284
-	// Line 1875, Address: 0x228938, Func Offset: 0x288
-	// Line 1876, Address: 0x228940, Func Offset: 0x290
-	// Line 1877, Address: 0x228950, Func Offset: 0x2a0
-	// Line 1878, Address: 0x228988, Func Offset: 0x2d8
-	// Line 1879, Address: 0x228990, Func Offset: 0x2e0
-	// Line 1881, Address: 0x2289c8, Func Offset: 0x318
-	// Line 1882, Address: 0x2289e0, Func Offset: 0x330
-	// Line 1884, Address: 0x2289f4, Func Offset: 0x344
-	// Line 1885, Address: 0x2289fc, Func Offset: 0x34c
-	// Line 1886, Address: 0x228a0c, Func Offset: 0x35c
-	// Line 1885, Address: 0x228a10, Func Offset: 0x360
-	// Line 1886, Address: 0x228a18, Func Offset: 0x368
-	// Line 1888, Address: 0x228a28, Func Offset: 0x378
-	// Line 1889, Address: 0x228a30, Func Offset: 0x380
-	// Line 1890, Address: 0x228a34, Func Offset: 0x384
-	// Line 1889, Address: 0x228a40, Func Offset: 0x390
-	// Line 1890, Address: 0x228a44, Func Offset: 0x394
-	// Line 1892, Address: 0x228a4c, Func Offset: 0x39c
-	// Line 1894, Address: 0x228a54, Func Offset: 0x3a4
-	// Line 1895, Address: 0x228a5c, Func Offset: 0x3ac
-	// Line 1894, Address: 0x228a68, Func Offset: 0x3b8
-	// Line 1895, Address: 0x228a70, Func Offset: 0x3c0
-	// Line 1896, Address: 0x228a9c, Func Offset: 0x3ec
-	// Line 1897, Address: 0x228ab4, Func Offset: 0x404
-	// Line 1898, Address: 0x228acc, Func Offset: 0x41c
-	// Line 1899, Address: 0x228ad0, Func Offset: 0x420
-	// Line 1902, Address: 0x228ad8, Func Offset: 0x428
-	// Line 1906, Address: 0x228ae0, Func Offset: 0x430
-	// Line 1907, Address: 0x228b18, Func Offset: 0x468
-	// Func End, Address: 0x228b28, Func Offset: 0x478
-	scePrintf("bhEff007 - UNIMPLEMENTED!\n");
+    switch (op->mode0) 
+    {                            
+    case 0:
+        op->tex_id = 7;
+        
+        op->ani_ct = 0;
+        
+        njCalcPoint(&((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono].mtx, (NJS_POINT3*)&op->lox, (NJS_POINT3*)&op->px);
+        
+        op->gpy = 0.6f + bhGetGroundPosition((NJS_POINT3*)&op->px);
+        
+        op->flg &= ~0x80;
+        
+        op->yn = -0.3f;
+        
+        op->ct0 = 0;
+        
+        if (op->mdlver != 0) 
+        {
+            sys->obwp->mlwP->objP[2].evalflags |= 0x8;
+        }
+        
+        op->mode0 = 1;
+    case 1:
+        if ((((sys->st_flg & 0x40)) && (!(op->stflg & 0x100000))) && (bhCheckWater((NJS_POINT3*)&op->px) != NULL)) 
+        {
+            op->stflg |= 0x100000;
+            
+            op->yn *= 0.25f;
+            
+            sys->ef.id = 15;
+            
+            sys->ef.flg = 1;
+            
+            sys->ef.mdlver = 0;
+            
+            sys->ef.type = 1;
+            
+            sys->ef.sx = 0.8f;
+            sys->ef.sy = 1.5f;
+            sys->ef.sz = 0.8f;
+            
+            sys->ef.px = op->px;
+            sys->ef.py = 1.0f + op->py;
+            sys->ef.pz = op->pz; 
+            
+            sys->ef.ay = 0;
+            
+            bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        }
+        
+        op->py += op->yn;
+        
+        if ((op->stflg & 0x100000)) 
+        {
+            if (op->yn > -0.3f) 
+            {
+                op->yn -= 0.01f;
+            }
+        } 
+        else
+        {
+            if (op->yn > -1.0f)
+            {
+                op->yn -= 0.05f;
+            }
+        }
+        
+        if (op->py < op->gpy) 
+        {
+            if ((op->stflg & 0x100000)) 
+            {
+                op->yn = 0;
+            }
+            else 
+            {
+                op->yn = 0.3f * -op->yn;
+                
+                CallPlayerWeaponSeEx((NJS_POINT3*)&op->px, 259, 0);
+            }
+            
+            op->mode0 = 2;
+            
+            op->py = op->gpy;
+            
+            op->gpy -= 0.5f;
+        }
+        
+        break;
+    case 2:
+        op->py += op->yn;
+        
+        if (op->yn > -1.0f) 
+        {
+            op->yn -= 0.05f;
+        }
+        
+        if (op->ax < 16384)
+        {
+            op->ax += 1024;
+        }
+        
+        if (op->py < op->gpy) 
+        {
+            op->yn = 0;
+            op->py = op->gpy;
+            
+            op->flg = 0;
+            return;
+        }
+        
+        break;
+    }
+    
+    sys->ef_pol[sys->ef_poln++] = op;
 }
 
 // 100% matching!

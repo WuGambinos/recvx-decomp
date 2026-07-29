@@ -1,4 +1,4 @@
-# Resident Evil - Code: Veronica X Decompile
+# recvx-decomp
 
 [![Build Status]][actions] [![Code Progress]][progress] [![Data Progress]][progress] 
 

@@ -82,9 +82,7 @@ If successful, you will now see an ISO called "RECVX_NEW" in the iso folder that
 
 ## Resources
 
-AshfordFamily's fan art provided by [fishiiarts_](https://www.instagram.com/fishiiarts_/).
-
-Associated decomp projects:
+Related decomp projects:
 - [Resident Evil - Code: Veronica X (Nintendo GameCube)](https://github.com/fmil95/recvx-gc-decomp)
 - [Resident Evil - Code: Veronica (Dreamcast)](https://github.com/fmil95/recv-dc-decomp)
 - [Dino Stalker](https://github.com/fmil95/dinostalkRE)
@@ -93,6 +91,8 @@ Associated decomp projects:
 - [Legacy of Kain: Soul Reaver](https://github.com/fmil95/soul-re)
 - [Silent Hill](https://github.com/Vatuu/silent-hill-decomp)
 
+AshfordFamily's org avatar fan art was designed by [fishiiarts_](https://www.instagram.com/fishiiarts_/).
+
 ## Disclaimer
 
-This repository and the code therein, is made public on this site by AshfordFamily for preservational and educational purposes. I do not claim to hold any affiliation to the Resident Evil franchise, Capcom Co., Ltd or any other related party, nor mean to infringe upon the copyright of Resident Evil: Code: Veronica X.
+recvx-decomp is licensed under **CC0 1.0 Universal**, which allows for commercial use of the project's code. However, for commercializing ports of the game to modern platforms we still very much recommend contacting Capcom first for a proper publishing deal. 

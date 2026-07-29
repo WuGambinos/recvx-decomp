@@ -13,6 +13,9 @@
 
 ## About
 
+> [!IMPORTANT]
+Issues and pull-requests that are clearly **AI-generated** will be automatically **turned down**. Click [here](https://github.com/AshfordFamily/recvx-decomp/pull/40#issuecomment-4861213243) to read up on our stance in regards to the use of LLMs for contributions.
+
 The purpose of this project is to reverse-engineer ***Resident Evil - Code: Veronica X*** in order to rebuild its codebase and allow for multiple different uses of it. More specifically, the PlayStation 2 version of the game released in North America (identifiable by its serial number, **SLUS-20184**) is being decompiled due to the presence of DWARF format debugging data in the PS2 executable, as well as the relative ease of reconstructing MIPS assembly back to the C language as opposed to other, more complex types of architectures. 
 
 While function matching with [objdiff](https://github.com/encounter/objdiff) is the preferred method of decompilation, the project does not compile an ELF binary that's identical bit for bit to the one found on the game disk. RE: CVX was developed with the MetroWerks CodeWarrior IDE, and MWCC does not feature an equivalent to GCC's INCLUDE_ASM functionality which renders the process of building a matching binary less flexible. Instead, the current build system produces an executable which only contains the code that has been decompiled so far, and the resulting ELF can be run on a repackaged DVD image of the game that is bootable on the PCSX2 emulator (and technically should also work on an actual PS2 console).
@@ -84,9 +87,10 @@ AshfordFamily's fan art provided by [fishiiarts_](https://www.instagram.com/fish
 Associated decomp projects:
 - [Resident Evil - Code: Veronica X (Nintendo GameCube)](https://github.com/fmil95/recvx-gc-decomp)
 - [Resident Evil - Code: Veronica (Dreamcast)](https://github.com/fmil95/recv-dc-decomp)
-- [Legacy of Kain: Soul Reaver](https://github.com/fmil95/soul-re)
+- [Dino Stalker](https://github.com/fmil95/dinostalkRE)
 - [Fahrenheit](https://github.com/fmil95/santamonica)
 - [Fatal Frame](https://github.com/Mikompilation/Himuro)
+- [Legacy of Kain: Soul Reaver](https://github.com/fmil95/soul-re)
 - [Silent Hill](https://github.com/Vatuu/silent-hill-decomp)
 
 ## Disclaimer

@@ -3825,22 +3825,21 @@ void DrawEff5SnowRect(O_WRK* op)
 	scePrintf("DrawEff5SnowRect - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x25d1b0
+// 100% matching!
 void SetEff5SnowRectAreaCenter(EFF5SNOWRECT* pSnow, float fPointX, float fPointY, float fPointZ)
 {
-	// Line 6046, Address: 0x25d1b0, Func Offset: 0
-	// Line 6047, Address: 0x25d1b4, Func Offset: 0x4
-	// Line 6048, Address: 0x25d1b8, Func Offset: 0x8
-	// Line 6051, Address: 0x25d1bc, Func Offset: 0xc
-	// Line 6052, Address: 0x25d1d8, Func Offset: 0x28
-	// Line 6053, Address: 0x25d1e8, Func Offset: 0x38
-	// Line 6054, Address: 0x25d1f8, Func Offset: 0x48
-	// Line 6055, Address: 0x25d208, Func Offset: 0x58
-	// Line 6056, Address: 0x25d218, Func Offset: 0x68
-	// Line 6057, Address: 0x25d228, Func Offset: 0x78
-	// Func End, Address: 0x25d230, Func Offset: 0x80
-	scePrintf("SetEff5SnowRectAreaCenter - UNIMPLEMENTED!\n");
+	pSnow->AreaCenter.x = fPointX;
+    pSnow->AreaCenter.y = fPointY;
+    pSnow->AreaCenter.z = fPointZ;
+
+    pSnow->fAreaMinX = fPointX - (pSnow->fAreaSizeX / 2.0f);
+    pSnow->fAreaMaxX = fPointX + (pSnow->fAreaSizeX / 2.0f);
+
+    pSnow->fAreaMinY = fPointY - (pSnow->fAreaSizeY / 2.0f);
+    pSnow->fAreaMaxY = fPointY + (pSnow->fAreaSizeY / 2.0f);
+	
+    pSnow->fAreaMinZ = fPointZ - (pSnow->fAreaSizeZ / 2.0f);
+    pSnow->fAreaMaxZ = fPointZ + (pSnow->fAreaSizeZ / 2.0f);
 }
 
 // 100% matching!
@@ -3971,7 +3970,7 @@ void SetEff5SnowRectParticleSize(EFF5SNOWRECT* pSnow, float fWidth, float fHeigh
 }
 
 // 100% matching!
-NJS_VECTOR* GetEff5SnowRectCurrentWindVector(void* unused, NJS_VECTOR* pVector)
+NJS_VECTOR* GetEff5SnowRectCurrentWindVector(void* unused, NJS_VECTOR* pVector) // first parameter not present on DWARF
 {
     pVector->x = (sys->winds * -njSin(sys->windr)) / 10.0f;
     pVector->y = 0;

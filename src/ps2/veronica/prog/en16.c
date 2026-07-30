@@ -32,7 +32,6 @@ void(*bhEne16_MoveMode2[3])(BH_PWORK*) =
     bhEne16_MV02
 };
 
-
 // 100% matching!
 void bhEne16(BH_PWORK* epw)
 {
@@ -119,7 +118,6 @@ void bhEne16_BR00(BH_PWORK* epw)
         epw->mode2 = 0;
         return;
     }
-
 }
 
 // 100% matching!
@@ -153,22 +151,21 @@ void bhEne16_MV01(BH_PWORK* epw)
 // 99.92% matching
 void bhEne16_MV02(BH_PWORK* epw)
 {
-    O_WORK* owp; // r2
-	int ax; // r2
-	int ay; // r16
-	float mov; // r29+0xC0
-	float spd; // r20
-	float spd_now; // r29+0xC0
-	NJS_VECTOR v; // r29+0xA0
-	NJS_POINT3 pos; // r29+0xB0
-	ATR_WORK* hp; // r16   
-    GA_WORK gap; // r29+0x50
-
+    O_WORK* owp; 
+	int ax; 
+	int ay; 
+	float mov; 
+	float spd; 
+	float spd_now; 
+	NJS_VECTOR v; 
+	NJS_POINT3 pos; 
+	ATR_WORK* hp; 
+    GA_WORK gap; 
     // not present in DWARF
     float dx, dy, dz;
     
-
-    switch (epw->mode3) {
+    switch (epw->mode3) 
+    {
     case 0:       
         if ((BH_PWORK*)EXP0_I(0x0) != NULL)
         {
@@ -196,7 +193,6 @@ void bhEne16_MV02(BH_PWORK* epw)
     case 2:
         if (njScalor((NJS_VECTOR*)&epw->aox) < 0.5f)
         {
-
             if (((BH_PWORK*)EXP0_I(0x0) != NULL) && (((BH_PWORK*)EXP0_I(0x0))->ct0 > 0))
             {
                 epw->ct0 = 30;
@@ -261,7 +257,7 @@ void bhEne16_MV02(BH_PWORK* epw)
                     pos.x = (*(BH_PWORK**)epw->exp0)->lox;
                     pos.y = (*(BH_PWORK**)epw->exp0)->loy;
                     pos.z = (*(BH_PWORK**)epw->exp0)->loz;
-                    bhSetEffGunSpark(&pos, &v, 0xFFF8F8A0U, 0x4CE04010U, WpnTab[13].hiteff - 4);
+                    bhSetEffGunSpark(&pos, &v, 0xFFF8F8A0, 0x4CE04010, WpnTab[13].hiteff - 4);
                     gap.wpn_no = 0xD;
                     gap.ay = bhArcTan2(v.x, v.z);
                     bhSetGunSplash(&gap, &pos, hp->prm0);
@@ -308,7 +304,8 @@ void bhEne16_MV02(BH_PWORK* epw)
         {
             epw->flg |= 0x80000;
             epw->mode3 = 2;
-        } else
+        } 
+        else
         {
 
             if ((BH_PWORK*)EXP0_I(0x0) != NULL)
@@ -338,7 +335,8 @@ void bhEne16_MV02(BH_PWORK* epw)
         dx = owp[3].mtx[12] - epw->xn;
         dz = owp[3].mtx[14] - epw->zn;
         
-        if (njSqrt(dx * dx + dz * dz) < 30.0f) {
+        if (njSqrt(dx * dx + dz * dz) < 30.0f) 
+        {
             if (plp->hp < 30)
             {
                 spd = 0.6f;
@@ -392,7 +390,7 @@ int bhEne16_GetEffNum(BH_PWORK* epw)
 // 100% matching!
 NJS_POINT3* bhEne16_GetEffPos(BH_PWORK* epw)
 {
-    return &EXP0_P3(0);
+    return &EXP0_P(0);
 }
 
 // 100% matching!
@@ -402,14 +400,13 @@ void bhEne16_AddEffPos(BH_PWORK* epw, NJS_POINT3* pos)
     
     for (i = EXP0_I(0x64); i > 0; i--)
     {
-        EXP0_P3(i) = *(&EXP0_P3(i) - 1);
+        EXP0_P(i) = *(&EXP0_P(i) - 1);
     }
 
-    EXP0_P3(0) = *pos;
+    EXP0_P(0) = *pos;
 
     if (EXP0_I(0x64) < 7)
     {
         EXP0_I(0x64)++;
     }
-    
 }

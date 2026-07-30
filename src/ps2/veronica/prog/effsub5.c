@@ -2,6 +2,7 @@
 #include "../../../ps2/veronica/prog/effsub6.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
@@ -3887,7 +3888,7 @@ void MovEff5SnowRectParticleMax(EFF5SNOWRECT* pSnow, int lSnowMax, int lTimeMax)
     {
         pSnow->lSnowExistPrev = pSnow->lSnowExistCrnt;
         pSnow->lSnowExistNext = lSnowMax;
-		
+
         pSnow->lSnowTimerCnt = 0;
         pSnow->lSnowTimerMax = lTimeMax;
     }
@@ -3969,19 +3970,12 @@ void SetEff5SnowRectParticleSize(EFF5SNOWRECT* pSnow, float fWidth, float fHeigh
     pSnow->SnowModel[0].z = pSnow->SnowModel[1].z = pSnow->SnowModel[2].z = pSnow->SnowModel[3].z = 0;
 }
 
-// 
-// Start address: 0x25d4e0
-NJS_VECTOR* GetEff5SnowRectCurrentWindVector(NJS_VECTOR* pVector)
+// 100% matching!
+NJS_VECTOR* GetEff5SnowRectCurrentWindVector(void* unused, NJS_VECTOR* pVector)
 {
-	// Line 6334, Address: 0x25d4e0, Func Offset: 0
-	// Line 6335, Address: 0x25d4ec, Func Offset: 0xc
-	// Line 6337, Address: 0x25d52c, Func Offset: 0x4c
-	// Line 6335, Address: 0x25d530, Func Offset: 0x50
-	// Line 6336, Address: 0x25d538, Func Offset: 0x58
-	// Line 6337, Address: 0x25d53c, Func Offset: 0x5c
-	// Line 6339, Address: 0x25d564, Func Offset: 0x84
-	// Line 6337, Address: 0x25d568, Func Offset: 0x88
-	// Line 6340, Address: 0x25d580, Func Offset: 0xa0
-	// Func End, Address: 0x25d590, Func Offset: 0xb0
-	scePrintf("GetEff5SnowRectCurrentWindVector - UNIMPLEMENTED!\n");
+    pVector->x = (sys->winds * -njSin(sys->windr)) / 10.0f;
+    pVector->y = 0;
+    pVector->z = (sys->winds * -njCos(sys->windr)) / 10.0f;
+
+    return pVector;
 }

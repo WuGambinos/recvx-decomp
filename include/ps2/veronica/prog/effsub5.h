@@ -142,6 +142,6 @@ void ArrangeEff5SnowRectParticle(EFF5SNOWRECT* pSnow);
 void SetEff5SnowRectParticleTexture(EFF5SNOWRECT* pSnow, NJS_TEXLIST* pTexList, unsigned int ulTexNum, float fU0, float fV0, float fU1, float fV1, float fU2, float fV2, float fU3, float fV3);
 void SetEff5SnowRectParticleColor(EFF5SNOWRECT* pSnow, unsigned int ulColor0, unsigned int ulColor1, unsigned int ulColor2, unsigned int ulColor3);
 void SetEff5SnowRectParticleSize(EFF5SNOWRECT* pSnow, float fWidth, float fHeight);
-NJS_VECTOR* GetEff5SnowRectCurrentWindVector(NJS_VECTOR* pVector);
+NJS_VECTOR* GetEff5SnowRectCurrentWindVector(void* unused, NJS_VECTOR* pVector);
 
 #endif

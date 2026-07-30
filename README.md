@@ -9,7 +9,7 @@
 [Data Progress]: https://decomp.dev/AshfordFamily/recvx-decomp.svg?mode=shield&label=Functions&measure=matched_functions
 [progress]: https://decomp.dev/AshfordFamily/recvx-decomp
 
-<img src="https://i.imgur.com/3Fl2QNQ.png"/> 
+<img src="https://i.imgur.com/FreVpxO.png"/> 
 
 ## About
 

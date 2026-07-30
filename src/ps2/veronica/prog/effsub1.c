@@ -4088,15 +4088,17 @@ void bhEff016(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x22b920
+// 100% matching!
 void bhEff017(O_WRK* op)
 {
-	// Line 3244, Address: 0x22b920, Func Offset: 0
-	// Line 3246, Address: 0x22b938, Func Offset: 0x18
-	// Line 3248, Address: 0x22b970, Func Offset: 0x50
-	// Func End, Address: 0x22b978, Func Offset: 0x58
-	scePrintf("bhEff017 - UNIMPLEMENTED!\n");
+    ATR_WORK* hp; // not from DWARF
+    
+    if ((((O_WRK*)op->lkwkp)->stflg & 0x1000000))
+    {
+        hp = &sys->mwalp[((O_WRK*)op->lkwkp)->ct0];
+        
+        hp->flg &= ~0x1;  
+    }
 }
 
 // 100% matching!

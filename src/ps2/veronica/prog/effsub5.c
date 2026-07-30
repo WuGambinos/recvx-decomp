@@ -2,6 +2,7 @@
 #include "../../../ps2/veronica/prog/effsub6.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 
@@ -3112,29 +3113,32 @@ void bhEff243(O_WRK* op)
 	scePrintf("bhEff243 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x25ade0
+// 100% matching!
 void bhDrawEff243(O_WRK* op)
 {
-	// Line 4845, Address: 0x25ade0, Func Offset: 0
-	// Line 4847, Address: 0x25adec, Func Offset: 0xc
-	// Line 4848, Address: 0x25ae08, Func Offset: 0x28
-	// Line 4849, Address: 0x25ae34, Func Offset: 0x54
-	// Line 4853, Address: 0x25ae3c, Func Offset: 0x5c
-	// Line 4854, Address: 0x25ae48, Func Offset: 0x68
-	// Line 4858, Address: 0x25ae54, Func Offset: 0x74
-	// Line 4860, Address: 0x25ae5c, Func Offset: 0x7c
-	// Line 4861, Address: 0x25ae64, Func Offset: 0x84
-	// Line 4862, Address: 0x25ae70, Func Offset: 0x90
-	// Line 4863, Address: 0x25ae7c, Func Offset: 0x9c
-	// Line 4864, Address: 0x25ae88, Func Offset: 0xa8
-	// Line 4865, Address: 0x25ae90, Func Offset: 0xb0
-	// Line 4867, Address: 0x25aea0, Func Offset: 0xc0
-	// Line 4871, Address: 0x25aea8, Func Offset: 0xc8
-	// Line 4872, Address: 0x25aeb4, Func Offset: 0xd4
-	// Line 4873, Address: 0x25aec0, Func Offset: 0xe0
-	// Func End, Address: 0x25aed0, Func Offset: 0xf0
-	scePrintf("bhDrawEff243 - UNIMPLEMENTED!\n");
+    njSetTexture(&sys->ef_tlist);
+    njSetTextureNum(sys->ef_tn[op->tex_id] + op->ani_ct);
+    
+    njTextureFilterMode(1);
+    
+    njColorBlendingMode(0, op->bl_src);
+    njColorBlendingMode(1, op->bl_dst);
+    
+    njPushMatrixEx();
+    njTranslateEx((NJS_VECTOR*)&op->px);
+    
+    njRotateY(NULL, op->ay);
+    njRotateX(NULL, op->ax);
+    njRotateZ(NULL, op->az);
+    
+    njScaleEx((NJS_VECTOR*)&op->sx);
+    
+    njDrawTexture3DEx(op->tvp, 4, 1);
+    
+    njPopMatrixEx();
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
 }
 
 // 

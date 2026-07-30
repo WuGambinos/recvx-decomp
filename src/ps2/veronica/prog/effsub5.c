@@ -3934,17 +3934,17 @@ void SetEff5SnowRectParticleTexture(EFF5SNOWRECT* pSnow, NJS_TEXLIST* pTexList, 
 	scePrintf("SetEff5SnowRectParticleTexture - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x25d460
+// 100% matching!
 void SetEff5SnowRectParticleColor(EFF5SNOWRECT* pSnow, unsigned int ulColor0, unsigned int ulColor1, unsigned int ulColor2, unsigned int ulColor3)
 {
 	NJS_TEXTURE_VTX* pTex;
-	// Line 6282, Address: 0x25d460, Func Offset: 0
-	// Line 6283, Address: 0x25d464, Func Offset: 0x4
-	// Line 6284, Address: 0x25d468, Func Offset: 0x8
-	// Line 6286, Address: 0x25d46c, Func Offset: 0xc
-	// Func End, Address: 0x25d474, Func Offset: 0x14
-	scePrintf("SetEff5SnowRectParticleColor - UNIMPLEMENTED!\n");
+
+	pTex = (NJS_TEXTURE_VTX*)&pSnow->SnowModel;
+
+	pTex[0].col = ulColor0;
+	pTex[1].col = ulColor1;
+	pTex[2].col = ulColor2;
+	pTex[3].col = ulColor3;
 }
 
 // 

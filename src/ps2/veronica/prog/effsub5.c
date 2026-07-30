@@ -3915,23 +3915,28 @@ void ArrangeEff5SnowRectParticle(EFF5SNOWRECT* pSnow)
 	scePrintf("ArrangeEff5SnowRectParticle - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x25d430
+// 100% matching!
 void SetEff5SnowRectParticleTexture(EFF5SNOWRECT* pSnow, NJS_TEXLIST* pTexList, unsigned int ulTexNum, float fU0, float fV0, float fU1, float fV1, float fU2, float fV2, float fU3, float fV3)
 {
 	NJS_TEXTURE_VTX* pTex;
-	// Line 6241, Address: 0x25d430, Func Offset: 0
-	// Line 6242, Address: 0x25d434, Func Offset: 0x4
-	// Line 6245, Address: 0x25d438, Func Offset: 0x8
-	// Line 6246, Address: 0x25d43c, Func Offset: 0xc
-	// Line 6247, Address: 0x25d440, Func Offset: 0x10
-	// Line 6248, Address: 0x25d444, Func Offset: 0x14
-	// Line 6249, Address: 0x25d448, Func Offset: 0x18
-	// Line 6250, Address: 0x25d44c, Func Offset: 0x1c
-	// Line 6251, Address: 0x25d450, Func Offset: 0x20
-	// Line 6253, Address: 0x25d454, Func Offset: 0x24
-	// Func End, Address: 0x25d45c, Func Offset: 0x2c
-	scePrintf("SetEff5SnowRectParticleTexture - UNIMPLEMENTED!\n");
+
+	pSnow->pSnowTexList = pTexList;
+	
+	pSnow->ulSnowTexNum = ulTexNum;
+
+	pTex = (NJS_TEXTURE_VTX*)&pSnow->SnowModel;
+
+	pTex[0].u = fU0;
+	pTex[0].v = fV0;
+
+	pTex[1].u = fU1;
+	pTex[1].v = fV1;
+
+	pTex[2].u = fU2;
+	pTex[2].v = fV2;
+
+	pTex[3].u = fU3;
+	pTex[3].v = fV3;
 }
 
 // 100% matching!

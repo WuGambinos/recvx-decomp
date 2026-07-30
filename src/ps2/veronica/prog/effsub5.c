@@ -3856,7 +3856,7 @@ void SetEff5SnowRectAreaCenterAndSize(EFF5SNOWRECT* pSnow, float fCenterX, float
     pSnow->fAreaMinX = fCenterX - (fSizeX / 2.0f);
     pSnow->fAreaMaxX = fCenterX + (fSizeX / 2.0f);
     pSnow->fAreaMinY = fCenterY - (fSizeY / 2.0f);
-	
+
     pSnow->fAreaMaxY = fCenterY + (fSizeY / 2.0f);
     pSnow->fAreaMinZ = fCenterZ - (fSizeZ / 2.0f);
     pSnow->fAreaMaxZ = fCenterZ + (fSizeZ / 2.0f);
@@ -3875,20 +3875,22 @@ void SetEff5SnowRectParticleMax(EFF5SNOWRECT* pSnow, int lSnowMax)
     pSnow->lSnowTimerCnt = pSnow->lSnowTimerMax = 0;
 }
 
-// 
-// Start address: 0x25d2d0
+// 100% matching!
 void MovEff5SnowRectParticleMax(EFF5SNOWRECT* pSnow, int lSnowMax, int lTimeMax)
 {
-	// Line 6156, Address: 0x25d2d0, Func Offset: 0
-	// Line 6158, Address: 0x25d2e8, Func Offset: 0x18
-	// Line 6162, Address: 0x25d2f0, Func Offset: 0x20
-	// Line 6164, Address: 0x25d2fc, Func Offset: 0x2c
-	// Line 6165, Address: 0x25d304, Func Offset: 0x34
-	// Line 6166, Address: 0x25d308, Func Offset: 0x38
-	// Line 6167, Address: 0x25d30c, Func Offset: 0x3c
-	// Line 6168, Address: 0x25d310, Func Offset: 0x40
-	// Func End, Address: 0x25d318, Func Offset: 0x48
-	scePrintf("MovEff5SnowRectParticleMax - UNIMPLEMENTED!\n");
+    if ((lSnowMax < 0) || (pSnow->lSnowTotalMax < lSnowMax))
+    {
+        lSnowMax = pSnow->lSnowTotalMax;
+    }
+
+    if (lSnowMax != pSnow->lSnowExistNext)
+    {
+        pSnow->lSnowExistPrev = pSnow->lSnowExistCrnt;
+        pSnow->lSnowExistNext = lSnowMax;
+		
+        pSnow->lSnowTimerCnt = 0;
+        pSnow->lSnowTimerMax = lTimeMax;
+    }
 }
 
 // 

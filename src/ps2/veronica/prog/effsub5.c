@@ -3867,17 +3867,17 @@ void SetEff5SnowRectAreaCenterAndSize(EFF5SNOWRECT* pSnow, float fCenterX, float
 	scePrintf("SetEff5SnowRectAreaCenterAndSize - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x25d290
+// 100% matching!
 void SetEff5SnowRectParticleMax(EFF5SNOWRECT* pSnow, int lSnowMax)
 {
-	// Line 6124, Address: 0x25d290, Func Offset: 0
-	// Line 6126, Address: 0x25d2a8, Func Offset: 0x18
-	// Line 6129, Address: 0x25d2b0, Func Offset: 0x20
-	// Line 6132, Address: 0x25d2bc, Func Offset: 0x2c
-	// Line 6134, Address: 0x25d2c0, Func Offset: 0x30
-	// Func End, Address: 0x25d2c8, Func Offset: 0x38
-	scePrintf("SetEff5SnowRectParticleMax - UNIMPLEMENTED!\n");
+    if ((lSnowMax < 0) || (pSnow->lSnowTotalMax < lSnowMax))
+    {
+        lSnowMax = pSnow->lSnowTotalMax;
+    }
+
+    pSnow->lSnowExistPrev = pSnow->lSnowExistCrnt = pSnow->lSnowExistNext = lSnowMax;
+
+    pSnow->lSnowTimerCnt = pSnow->lSnowTimerMax = 0;
 }
 
 // 

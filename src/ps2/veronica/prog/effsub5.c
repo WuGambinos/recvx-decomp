@@ -3037,7 +3037,16 @@ void bhEff243(O_WRK* op)
 	int lType;
 	EFF5UV* pInfo;
 	EFF5UV* pEff243UvInfoTop[2];
-	unsigned int ulColor[7];
+	static const unsigned int ulColor[7] = 
+	{
+		0xFF0000FF,
+		0xFF00FF00,
+		0xFF00FFFF,
+		0xFFFF0000,
+		0xFFFF00FF,
+		0xFFFFFF00,
+		0xFFFFFFFF
+	};
 	// Line 4711, Address: 0x25aa10, Func Offset: 0
 	// Line 4730, Address: 0x25aa20, Func Offset: 0x10
 	// Line 4731, Address: 0x25aa40, Func Offset: 0x30
@@ -3837,7 +3846,7 @@ void SetEff5SnowRectAreaCenter(EFF5SNOWRECT* pSnow, float fPointX, float fPointY
 
     pSnow->fAreaMinY = fPointY - (pSnow->fAreaSizeY / 2.0f);
     pSnow->fAreaMaxY = fPointY + (pSnow->fAreaSizeY / 2.0f);
-	
+
     pSnow->fAreaMinZ = fPointZ - (pSnow->fAreaSizeZ / 2.0f);
     pSnow->fAreaMaxZ = fPointZ + (pSnow->fAreaSizeZ / 2.0f);
 }
@@ -3893,27 +3902,27 @@ void MovEff5SnowRectParticleMax(EFF5SNOWRECT* pSnow, int lSnowMax, int lTimeMax)
     }
 }
 
-// 
-// Start address: 0x25d320
+// 100% matching!
 void ArrangeEff5SnowRectParticle(EFF5SNOWRECT* pSnow)
 {
-	NJS_POINT3* pPoint;
-	int lCnt;
-	int lGrpCnt;
+	// modified order of local variables in regards to DWARF
 	EFF5SNOWGRP* pSnowGrp;
-	// Line 6184, Address: 0x25d320, Func Offset: 0
-	// Line 6191, Address: 0x25d33c, Func Offset: 0x1c
-	// Line 6194, Address: 0x25d34c, Func Offset: 0x2c
-	// Line 6196, Address: 0x25d358, Func Offset: 0x38
-	// Line 6197, Address: 0x25d388, Func Offset: 0x68
-	// Line 6198, Address: 0x25d3b8, Func Offset: 0x98
-	// Line 6200, Address: 0x25d3d4, Func Offset: 0xb4
-	// Line 6198, Address: 0x25d3d8, Func Offset: 0xb8
-	// Line 6200, Address: 0x25d3f0, Func Offset: 0xd0
-	// Line 6203, Address: 0x25d3f8, Func Offset: 0xd8
-	// Line 6204, Address: 0x25d408, Func Offset: 0xe8
-	// Func End, Address: 0x25d428, Func Offset: 0x108
-	scePrintf("ArrangeEff5SnowRectParticle - UNIMPLEMENTED!\n");
+	NJS_POINT3* pPoint;
+	int lGrpCnt, lCnt;
+
+    pSnowGrp = pSnow->SnowGrp;
+	
+	for (lGrpCnt = pSnow->lSnowGrpMax; lGrpCnt != 0; lGrpCnt--, pSnowGrp++)
+	{
+		pPoint = pSnowGrp->pPointTop;
+		
+		for (lCnt = pSnowGrp->lPointMax; lCnt != 0; lCnt--, pPoint++)
+		{
+			pPoint->x = pSnow->fAreaMinX + (pSnow->fAreaSizeX * (-rand() / -2.1474836E9f));
+			pPoint->y = pSnow->fAreaMinY + (pSnow->fAreaSizeY * (-rand() / -2.1474836E9f));
+			pPoint->z = pSnow->fAreaMinZ + (pSnow->fAreaSizeZ * (-rand() / -2.1474836E9f));
+		} 
+	} 
 }
 
 // 100% matching!

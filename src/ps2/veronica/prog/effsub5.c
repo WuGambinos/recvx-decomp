@@ -3671,23 +3671,27 @@ EFF5SNOWRECT* CreateEff5SnowRect(int lSnowMax)
 	scePrintf("CreateEff5SnowRect - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x25cb60
+// 100% matching!
 void DeleteEff5SnowRect(EFF5SNOWRECT* pSnow)
 {
-	int lGrpCnt;
 	EFF5SNOWGRP* pSnowGrp;
-	// Line 5730, Address: 0x25cb60, Func Offset: 0
-	// Line 5733, Address: 0x25cb6c, Func Offset: 0xc
-	// Line 5736, Address: 0x25cb70, Func Offset: 0x10
-	// Line 5735, Address: 0x25cb74, Func Offset: 0x14
-	// Line 5733, Address: 0x25cb78, Func Offset: 0x18
-	// Line 5736, Address: 0x25cb7c, Func Offset: 0x1c
-	// Line 5739, Address: 0x25cb88, Func Offset: 0x28
-	// Line 5742, Address: 0x25cb94, Func Offset: 0x34
-	// Line 5747, Address: 0x25cb98, Func Offset: 0x38
-	// Func End, Address: 0x25cba0, Func Offset: 0x40
-	scePrintf("DeleteEff5SnowRect - UNIMPLEMENTED!\n");
+	int lGrpCnt;
+
+    pSnowGrp = pSnow->SnowGrp;
+	
+    for (lGrpCnt = pSnow->lSnowGrpMax; lGrpCnt != 0; lGrpCnt--) 
+	{
+		pSnowGrp->pPointTop[-1].z = 0;
+		
+		pSnowGrp++;
+    }
+
+    if (pSnow->pSnowVector != NULL) 
+	{
+        pSnow->pSnowVector[-1].z = 0;
+    }
+
+    pSnow->flg = 0;
 }
 
 // 

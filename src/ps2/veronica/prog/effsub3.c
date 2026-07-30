@@ -1,10 +1,9 @@
 #include "../../../ps2/veronica/prog/effsub3.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
 
 static unsigned int owk_scn_noG;
 /*_anon9 Tex5uv[9];
-_anon11* sys;
-_anon70 cam;
 _anon2 PtclDat00[2];
 _anon2 PtclDat01[2];
 _anon2 PtclDat02[2];
@@ -26,14 +25,7 @@ _anon2 PtclDat17[1];
 _anon2 PtclDat18[1];
 _anon34 PtclTbl[19];
 void(*FuncTbl)(O_WRK*)[4];
-_anon7 Eff302Prm[20];
-float lcmat[16][0];
-void(*bhEff307Drw)(OR_WORK*);
-_anon15* rom;
-void(*bhEff308Drw)(OR_WORK*);
-void(*bhEff309Drw)(OR_WORK*);
-void(*bhEff30bDrw)(OR_WORK*);
-void(*bhEff30cDrw)(OR_WORK*);*/
+_anon7 Eff302Prm[20];*/
 
 // 100% matching!
 static O_WRK* AllocOwork()
@@ -1063,8 +1055,8 @@ void bhEff_PtclLineDraw(O_WRK* oP)
 void bhEff303(O_WRK* oP)
 {
 	//_anon40* prmP;
-	//_anon21* dspP;
-	//_anon20* anmP;
+	DSP_WORK* dspP;
+	ANM_WORK* anmP;
 	//_anon40 PrmTbl[8];
 	// Line 1557, Address: 0x249100, Func Offset: 0
 	// Line 1581, Address: 0x249118, Func Offset: 0x18
@@ -1955,7 +1947,7 @@ int ryLinerColor(int src_col, int dst_col, float rate)
 
 // 
 // Start address: 0x24b440
-OR_WORK* rySetEffBlood(float mtxP[16], NJS_POINT3* posP, NJS_POINT3* dirP, int typ_no)
+OR_WORK* rySetEffBlood(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, int typ_no)
 {
 	//_anon56* r09P;
 	int mode;
@@ -1988,15 +1980,15 @@ void bhEff309(OR_WORK* orP)
 {
 	float acl;
 	NJS_POINT3* dirP;
-	//_rap_tex_typ* rtP;
+	rap_tex_typ* rtP;
 	int i;
 	float sp;
 	//NJS_POINT3* dirP;
 	NJS_POINT3 pos;
-	//_rap_tex_typ* rtP;
+	//rap_tex_typ* rtP;
 	char* timP;
 	//int i;
-	//_rap_tex_typ* rtP;
+	//rap_tex_typ* rtP;
 	//int i;
 	//_anon50* pmbP;
 	//_anon56* r09P;
@@ -2096,9 +2088,9 @@ void bhEff309Drw(OR_WORK* orP)
 	scePrintf("bhEff309Drw - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x24b9b0
-void ryRapTexDrw(_anon5* texP, int tex_id, _rap_tex_typ* rtP)
+void ryRapTexDrw(NJS_TEXLIST* texP, int tex_id, rap_tex_typ* rtP)
 {
 	NJS_POINT3 scl;
 	// Line 2881, Address: 0x24b9b0, Func Offset: 0
@@ -2126,11 +2118,11 @@ void ryRapTexDrw(_anon5* texP, int tex_id, _rap_tex_typ* rtP)
 
 // 
 // Start address: 0x24ba70
-int ryRapTexAnm(_anon20* anmP, _anon21* dspP, int bol)
+int ryRapTexAnm(ANM_WORK* anmP, DSP_WORK* dspP, int bol)
 {
 	unsigned int col;
 	float* tvP;
-	_anon9* uvP;
+	//_anon9* uvP;
 	int anm_no;
 	// Line 2921, Address: 0x24ba70, Func Offset: 0
 	// Line 2923, Address: 0x24ba74, Func Offset: 0x4
@@ -2159,7 +2151,7 @@ int ryRapTexAnm(_anon20* anmP, _anon21* dspP, int bol)
 
 // 
 // Start address: 0x24bb40
-void ryRapDspSet(NJS_POINT3* posP, _anon21* dspP, float scl)
+void ryRapDspSet(NJS_POINT3* posP, DSP_WORK* dspP, float scl)
 {
 	float* vbP;
 	// Line 2967, Address: 0x24bb40, Func Offset: 0
@@ -2184,7 +2176,7 @@ void ryRapDspSet(NJS_POINT3* posP, _anon21* dspP, float scl)
 
 // 
 // Start address: 0x24bba0
-void ryRapAnmColSet(_anon20* anmP, int src_col, int dst_col, int col_cnt)
+void ryRapAnmColSet(ANM_WORK* anmP, int src_col, int dst_col, int col_cnt)
 {
 	unsigned int* subP;
 	unsigned int* addP;
@@ -2208,7 +2200,7 @@ void ryRapAnmColSet(_anon20* anmP, int src_col, int dst_col, int col_cnt)
 	// Line 3022, Address: 0x24bce8, Func Offset: 0x148
 	// Func End, Address: 0x24bcf0, Func Offset: 0x150
 	scePrintf("ryRapAnmColSet - UNIMPLEMENTED!\n");
-}*/
+}
 
 // 
 // Start address: 0x24bcf0
@@ -2264,7 +2256,7 @@ void bhEff349(OR_WORK* orP)
 
 // 
 // Start address: 0x24bf40
-OR_WORK* rySetEffBlood2(float mtxP[16], NJS_POINT3* posP, NJS_POINT3* dirP, int typ_no)
+OR_WORK* rySetEffBlood2(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, int typ_no)
 {
 	//_anon19* r0bP;
 	int mode;

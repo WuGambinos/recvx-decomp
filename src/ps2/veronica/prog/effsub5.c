@@ -3678,7 +3678,7 @@ void DeleteEff5SnowRect(EFF5SNOWRECT* pSnow)
 	int lGrpCnt;
 
     pSnowGrp = pSnow->SnowGrp;
-	
+
     for (lGrpCnt = pSnow->lSnowGrpMax; lGrpCnt != 0; lGrpCnt--) 
 	{
 		pSnowGrp->pPointTop[-1].z = 0;
@@ -3928,7 +3928,7 @@ void SetEff5SnowRectParticleTexture(EFF5SNOWRECT* pSnow, NJS_TEXLIST* pTexList, 
 	
 	pSnow->ulSnowTexNum = ulTexNum;
 
-	pTex = (NJS_TEXTURE_VTX*)&pSnow->SnowModel;
+	pTex = pSnow->SnowModel;
 
 	pTex[0].u = fU0;
 	pTex[0].v = fV0;
@@ -3948,7 +3948,7 @@ void SetEff5SnowRectParticleColor(EFF5SNOWRECT* pSnow, unsigned int ulColor0, un
 {
 	NJS_TEXTURE_VTX* pTex;
 
-	pTex = (NJS_TEXTURE_VTX*)&pSnow->SnowModel;
+	pTex = pSnow->SnowModel;
 
 	pTex[0].col = ulColor0;
 	pTex[1].col = ulColor1;
@@ -3956,23 +3956,20 @@ void SetEff5SnowRectParticleColor(EFF5SNOWRECT* pSnow, unsigned int ulColor0, un
 	pTex[3].col = ulColor3;
 }
 
-// 
-// Start address: 0x25d480
+// 100% matching!
 void SetEff5SnowRectParticleSize(EFF5SNOWRECT* pSnow, float fWidth, float fHeight)
 {
 	NJS_TEXTURE_VTX* pSnowModel;
-	// Line 6311, Address: 0x25d480, Func Offset: 0
-	// Line 6312, Address: 0x25d498, Func Offset: 0x18
-	// Line 6313, Address: 0x25d4a0, Func Offset: 0x20
-	// Line 6312, Address: 0x25d4a4, Func Offset: 0x24
-	// Line 6313, Address: 0x25d4a8, Func Offset: 0x28
-	// Line 6314, Address: 0x25d4ac, Func Offset: 0x2c
-	// Line 6313, Address: 0x25d4b0, Func Offset: 0x30
-	// Line 6314, Address: 0x25d4b8, Func Offset: 0x38
-	// Line 6315, Address: 0x25d4c0, Func Offset: 0x40
-	// Line 6316, Address: 0x25d4cc, Func Offset: 0x4c
-	// Func End, Address: 0x25d4d4, Func Offset: 0x54
-	scePrintf("SetEff5SnowRectParticleSize - UNIMPLEMENTED!\n");
+
+	pSnowModel = pSnow->SnowModel;
+
+    pSnow->SnowModel[0].x = pSnow->SnowModel[2].x = -fWidth / 2.0f;
+    pSnow->SnowModel[1].x = pSnow->SnowModel[3].x = fWidth  / 2.0f;
+
+    pSnow->SnowModel[0].y = pSnow->SnowModel[1].y = -fHeight / 2.0f;
+    pSnow->SnowModel[2].y = pSnow->SnowModel[3].y = fHeight  / 2.0f;
+
+    pSnow->SnowModel[0].z = pSnow->SnowModel[1].z = pSnow->SnowModel[2].z = pSnow->SnowModel[3].z = 0;
 }
 
 // 

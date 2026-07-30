@@ -12,7 +12,11 @@
 void bhEff200(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff200UvInfo[8];
+	static EFF5UV Eff200UvInfo[8] = 
+	{
+		{   0,   0 }, {  32,   0 }, {  64,   0 }, {  96,   0 },
+		{ 128,   0 }, { 160,   0 }, { 192,   0 }, { 224,   0 }
+	};
 	// Line 189, Address: 0x251b40, Func Offset: 0
 	// Line 197, Address: 0x251b4c, Func Offset: 0xc
 	// Line 198, Address: 0x251b6c, Func Offset: 0x2c
@@ -62,7 +66,13 @@ void bhEff200(O_WRK* op)
 void bhEff201(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff201UvInfo[16];
+	static EFF5UV Eff201UvInfo[16] = 
+	{
+		{   0,   0 }, {  64,   0 }, { 128,   0 }, { 192,   0 },
+		{   0,  64 }, {  64,  64 }, { 128,  64 }, { 192,  64 },
+		{   0, 128 }, {  64, 128 }, { 128, 128 }, { 192, 128 },
+		{   0, 192 }, {  64, 192 }, { 128, 192 }, { 192, 192 }
+	};
 	// Line 262, Address: 0x251d70, Func Offset: 0
 	// Line 273, Address: 0x251d7c, Func Offset: 0xc
 	// Line 274, Address: 0x251d9c, Func Offset: 0x2c
@@ -109,7 +119,10 @@ void bhEff201(O_WRK* op)
 // Start address: 0x251fa0
 void bhEff202(O_WRK* op)
 {
-	unsigned short usType[4];
+	unsigned short usType[4] = 
+	{ 
+		1, 2, 1, 2 
+	};
 	int lNumber;
 	NJS_POINT3 Offset;
 	EF_WORK* pEffect;
@@ -195,7 +208,10 @@ void bhEff203(O_WRK* op)
 	O_WRK* opp;
 	NJS_POINT3 Vector;
 	EFF5UV* pInfo;
-	EFF5UV Eff203UvInfo[4];
+	static EFF5UV Eff203UvInfo[4] = 
+	{
+		{   0,   0 }, { 128,   0 }, {   0, 128 }, { 128, 128 }
+	};
 	// Line 467, Address: 0x2525b0, Func Offset: 0
 	// Line 478, Address: 0x2525c8, Func Offset: 0x18
 	// Line 481, Address: 0x2525cc, Func Offset: 0x1c
@@ -340,8 +356,17 @@ void bhEff204(O_WRK* op)
 void bhEff205(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff205UvInfo2[2];
-	EFF5UV Eff205UvInfo1[14];
+	static EFF5UV Eff205UvInfo1[14] = 
+	{
+		{   0,   0 }, {  80,   0 }, { 160,   0 }, {   0,  32 }, 
+		{  80,  32 }, { 160,  32 }, {   0,  64 }, {  80,  64 }, 
+		{ 160,  64 }, {   0,  96 }, {  80,  96 }, { 160,  96 },
+		{   0, 128 }, {  80, 128 }
+	};
+	static EFF5UV Eff205UvInfo2[2] = 
+	{
+		{ 160, 128 }, {   0, 160 }
+	};
 	// Line 712, Address: 0x252d50, Func Offset: 0
 	// Line 729, Address: 0x252d60, Func Offset: 0x10
 	// Line 730, Address: 0x252d80, Func Offset: 0x30
@@ -441,7 +466,15 @@ void bhEff206(O_WRK* op)
 void bhEff207(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff207UvInfo[24];
+	static EFF5UV Eff207UvInfo[24] = 
+	{
+		{   0,   0 }, {  48,   0 }, {  96,   0 }, { 144,   0 }, 
+		{ 192,   0 }, {   0,  48 }, {  48,  48 }, {  96,  48 }, 
+		{ 144,  48 }, { 192,  48 }, {   0,  96 }, {  48,  96 }, 
+		{  96,  96 }, { 144,  96 }, { 192,  96 }, {   0, 144 }, 
+		{  48, 144 }, {  96, 144 }, { 144, 144 }, { 192, 144 },
+		{   0, 192 }, {  48, 192 }, {  96, 192 }, { 144, 192 }
+	};
 	// Line 879, Address: 0x253100, Func Offset: 0
 	// Line 891, Address: 0x253110, Func Offset: 0x10
 	// Line 894, Address: 0x253130, Func Offset: 0x30
@@ -564,7 +597,30 @@ void bhEff208(O_WRK* op)
 void bhEff209(O_WRK* op)
 {
 	EFF5UVWH* pInfo;
-	EFF5UVWH Eff209UvInfo[21];
+	static EFF5UVWH Eff209UvInfo[21] = 
+	{
+		{   0,   0,  16,  16 },
+		{  16,   0,  16,  16 },
+		{  32,   0,  24,  24 },
+		{   0,  16,  32,  32 },
+		{   0,  48,  32,  32 },
+		{   0,  80,  32,  32 },
+		{   0, 112,  32,  32 },
+		{  32,  24,  40,  40 },
+		{  32,  64,  40,  40 },
+		{  72,   0,  48,  48 },
+		{ 120,   0,  48,  48 },
+		{  72,  48,  56,  56 },
+		{ 128,  48,  56,  56 },
+		{ 192,   0,  64,  64 },
+		{ 192,  64,  64,  64 },
+		{ 192, 128,  64,  64 },
+		{ 192, 192,  64,  64 },
+		{  48, 112,  72,  72 },
+		{ 120, 112,  72,  72 },
+		{  48, 184,  72,  72 },
+		{ 120, 184,  72,  72 }
+	};
 	// Line 1084, Address: 0x2537e0, Func Offset: 0
 	// Line 1116, Address: 0x2537f0, Func Offset: 0x10
 	// Line 1119, Address: 0x253810, Func Offset: 0x30
@@ -627,7 +683,14 @@ void bhEff209(O_WRK* op)
 void bhEff210(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff210UvInfo[20];
+	static EFF5UV Eff210UvInfo[20] = 
+	{
+		{ 0,     0 }, { 64,    0 }, { 128,   0 }, { 192,   0 },
+		{ 0,    48 }, { 64,   48 }, { 128,  48 }, { 192,  48 },
+		{ 0,    96 }, { 64,   96 }, { 128,  96 }, { 192,  96 },
+		{ 0,   144 }, { 64,  144 }, { 128, 144 }, { 192, 144 },
+		{ 0,   192 }, { 64,  192 }, { 128, 144 }, { 192, 192 }
+	};
 	// Line 1209, Address: 0x253a90, Func Offset: 0
 	// Line 1221, Address: 0x253a9c, Func Offset: 0xc
 	// Line 1222, Address: 0x253abc, Func Offset: 0x2c
@@ -675,7 +738,12 @@ void bhEff210(O_WRK* op)
 void bhEff211(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff211UvInfo[10];
+	static EFF5UV Eff211UvInfo[10] = 
+	{
+		{   0,   0 }, {  64,   0 }, { 128,   0 }, { 192,   0 },
+		{   0,  48 }, {  64,  48 }, { 128,  48 }, { 192,  48 },
+		{   0,  96 }, {  64,  96 }
+	};
 	// Line 1290, Address: 0x253cd0, Func Offset: 0
 	// Line 1300, Address: 0x253cdc, Func Offset: 0xc
 	// Line 1301, Address: 0x253cfc, Func Offset: 0x2c
@@ -723,7 +791,13 @@ void bhEff211(O_WRK* op)
 void bhEff212(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff212UvInfo[16];
+	static EFF5UV Eff212UvInfo[16] = 
+	{
+		{   0,   0 }, {  64,   0 }, { 128,   0 }, { 192,   0 },
+		{   0,  48 }, {  64,  48 }, { 128,  48 }, { 192,  48 },
+		{   0,  96 }, {  64,  96 }, { 128,  96 }, { 192,  96 },
+		{   0, 144 }, {  64, 144 }, { 128, 144 }, { 192, 144 }
+	};
 	// Line 1368, Address: 0x253f10, Func Offset: 0
 	// Line 1379, Address: 0x253f1c, Func Offset: 0xc
 	// Line 1380, Address: 0x253f3c, Func Offset: 0x2c
@@ -770,7 +844,12 @@ void bhEff212(O_WRK* op)
 void bhEff213(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff213UvInfo[3][3];
+	static EFF5UV Eff213UvInfo[3][3] = 
+	{
+		{ { 0,   0 }, { 80,   0 }, { 160,   0 } },
+		{ { 0,  60 }, { 80,  60 }, { 160,  60 } },
+		{ { 0, 120 }, { 80, 120 }, { 160, 120 } }
+	};
 	// Line 1448, Address: 0x254140, Func Offset: 0
 	// Line 1458, Address: 0x25414c, Func Offset: 0xc
 	// Line 1459, Address: 0x25416c, Func Offset: 0x2c
@@ -905,7 +984,61 @@ void bhEff215(O_WRK* op)
 void bhEff216(O_WRK* op)
 {
 	EFF5UVWH* uvp;
-	EFF5UVWH* uvtble[6];
+	static EFF5UVWH uvinfo0[15] = 
+	{
+		{ 9,    24,   7,   6 },
+		{ 9,    24,   7,   6 },
+		{ 81,   32,  15,  14 },
+		{ 1,     0,  23,  22 },
+		{ 25,    0,  23,  22 },
+		{ 49,    0,  23,  22 },
+		{ 73,    0,  23,  22 },
+		{ 1,    24,  23,  22 },
+		{ 25,   24,  23,  22 },
+		{ 49,   24,  31,  30 },
+		{ 97,    0,  31,  30 },
+		{ 129,   0,  39,  38 },
+		{ 169,   0,  39,  38 },
+		{ 209,   0,  39,  38 },
+		{ -1,    0,   0,   0 }
+	};
+	static EFF5UVWH uvinfo1[15] = 
+	{
+		{ 1,    96,   7,   6 },
+		{ 9,    96,   7,   6 },
+		{ 1,   104,  15,  14 },
+		{ 17,   96,  23,  22 },
+		{ 41,   96,  23,  22 },
+		{ 65,   96,  23,  22 },
+		{ 89,   96,  31,  30 },
+		{ 121,  96,  31,  30 },
+		{ 1,    56,  39,  38 },
+		{ 41,   56,  39,  38 },
+		{ 81,   56,  39,  38 },
+		{ 121,  56,  39,  38 },
+		{ 161,  56,  39,  38 },
+		{ 201,  56,  39,  38 },
+		{ -1,    0,   0,   0 }
+	};
+	static EFF5UVWH uvinfo2[11] = 
+	{
+		{   0, 145,  48,  47 },
+		{  48, 145,  48,  47 },
+		{  96, 145,  48,  47 },
+		{ 144, 145,  48,  47 },
+		{ 192, 145,  48,  47 },
+		{   0, 193,  48,  47 },
+		{  48, 193,  48,  47 },
+		{  96, 193,  48,  47 },
+		{ 144, 193,  48,  47 },
+		{ 192, 193,  48,  47 },
+		{  -1,   0,   0,   0 }
+	};
+	static EFF5UVWH* uvtble[6] = 
+	{
+		uvinfo0, uvinfo1, uvinfo2,
+		uvinfo0, uvinfo1, uvinfo2
+	};
 	// Line 1626, Address: 0x2545d0, Func Offset: 0
 	// Line 1692, Address: 0x2545dc, Func Offset: 0xc
 	// Line 1695, Address: 0x2545fc, Func Offset: 0x2c
@@ -970,7 +1103,10 @@ void bhEff216(O_WRK* op)
 void bhEff217(O_WRK* op)
 {
 	float fAngleDev;
-	unsigned int col[3];
+	unsigned int col[3] = 
+	{
+		0xFF332417, 0xFF322320, 0xFF211816
+	};
 	int i;
 	NJS_POINT3* v;
 	NJS_POINT3* p;
@@ -1048,7 +1184,253 @@ void bhEff218(O_WRK* op)
 {
 	int lType;
 	EFF5UV* pInfo;
-	EFF5UVTBL Eff218[17];
+	static EFF5UV Fire13[10] = 
+	{
+		{ 0,     0 },
+		{ 40,    0 },
+		{ 80,    0 },
+		{ 120,   0 },
+		{ 160,   0 },
+		{ 200,   0 },
+		{ 0,    40 },
+		{ 40,   40 },
+		{ 80,   40 },
+		{ 120,  40 }
+	};
+	static EFF5UV Fire16[12] = 
+	{
+		{ 0,    80 },
+		{ 40,   80 },
+		{ 80,   80 },
+		{ 120,  80 },
+		{ 160,  80 },
+		{ 200,  80 },
+		{ 0,   120 },
+		{ 40,  120 },
+		{ 80,  120 },
+		{ 120, 120 },
+		{ 160, 120 },
+		{ 200, 120 }
+	};
+	static EFF5UV Fire14[12] = 
+	{
+		{ 0,   160 },
+		{ 40,  160 },
+		{ 80,  160 },
+		{ 120, 160 },
+		{ 160, 160 },
+		{ 200, 160 },
+		{ 0,   200 },
+		{ 40,  200 },
+		{ 80,  200 },
+		{ 120, 200 },
+		{ 160, 200 },
+		{ 200, 200 }
+	};
+	static EFF5UV Fire02[8] = 
+	{
+		{ 0,     0 },
+		{ 56,    0 },
+		{ 112,   0 },
+		{ 168,   0 },
+		{ 0,    56 },
+		{ 56,   56 },
+		{ 112,  56 },
+		{ 168,  56 }
+	};
+	static EFF5UV Fire04[10] = 
+	{
+		{ 0,   112 },
+		{ 24,  112 },
+		{ 48,  112 },
+		{ 72,  112 },
+		{ 96,  112 },
+		{ 120, 112 },
+		{ 144, 112 },
+		{ 168, 112 },
+		{ 192, 112 },
+		{ 216, 112 }
+	};
+	static EFF5UV Fire07[10] = 
+	{
+		{ 0,   136 },
+		{ 48,  136 },
+		{ 96,  136 },
+		{ 144, 136 },
+		{ 192, 136 },
+		{ 0,   184 },
+		{ 48,  184 },
+		{ 96,  184 },
+		{ 144, 184 },
+		{ 192, 184 }
+	};
+	static EFF5UV Fire03[8] = 
+	{
+		{ 0,     0 },
+		{ 56,    0 },
+		{ 112,   0 },
+		{ 168,   0 },
+		{ 0,    56 },
+		{ 56,   56 },
+		{ 112,  56 },
+		{ 168,  56 }
+	};
+	static EFF5UV Fire06[10] = 
+	{
+		{ 0,   112 },
+		{ 48,  112 },
+		{ 96,  112 },
+		{ 144, 112 },
+		{ 192, 112 },
+		{ 0,   168 },
+		{ 48,  168 },
+		{ 96,  168 },
+		{ 144, 168 },
+		{ 192, 168 }
+	};
+	static EFF5UV Fire08[10] = 
+	{
+		{ 0,     0 },
+		{ 48,    0 },
+		{ 96,    0 },
+		{ 144,   0 },
+		{ 192,   0 },
+		{ 0,    48 },
+		{ 48,   48 },
+		{ 96,   48 },
+		{ 144,  48 },
+		{ 192,  48 }
+	};
+	static EFF5UV Fire05[10] = 
+	{
+		{ 0,    96 },
+		{ 48,   96 },
+		{ 96,   96 },
+		{ 144,  96 },
+		{ 192,  96 },
+		{ 0,   144 },
+		{ 48,  144 },
+		{ 96,  144 },
+		{ 144, 144 },
+		{ 192, 144 }
+	};
+	static EFF5UV Fire09[10] = 
+	{
+		{ 0,     0 },
+		{ 56,    0 },
+		{ 112,   0 },
+		{ 168,   0 },
+		{ 0,    56 },
+		{ 56,   56 },
+		{ 112,  56 },
+		{ 168,  56 },
+		{ 0,   112 },
+		{ 56,  112 }
+	};
+	static EFF5UV Fire01[10] = 
+	{
+		{ 0,     0 },
+		{ 40,    0 },
+		{ 80,    0 },
+		{ 120,   0 },
+		{ 160,   0 },
+		{ 200,   0 },
+		{ 0,    40 },
+		{ 40,   40 },
+		{ 80,   40 },
+		{ 120,  40 }
+	};
+	static EFF5UV Fire10[10] = 
+	{
+		{ 0,     0 },
+		{ 48,    0 },
+		{ 96,    0 },
+		{ 144,   0 },
+		{ 192,   0 },
+		{ 0,    48 },
+		{ 48,   48 },
+		{ 96,   48 },
+		{ 144,  48 },
+		{ 192,  48 }
+	};
+	static EFF5UV Fire11[12] = 
+	{
+		{ 0,     0 },
+		{ 56,    0 },
+		{ 112,   0 },
+		{ 168,   0 },
+		{ 0,    56 },
+		{ 56,   56 },
+		{ 112,  56 },
+		{ 168,  56 },
+		{ 0,   112 },
+		{ 56,  112 },
+		{ 112, 112 },
+		{ 168, 112 }
+	};
+	static EFF5UV Fire12[14] = 
+	{
+		{ 0,     0 },
+		{ 32,    0 },
+		{ 64,    0 },
+		{ 96,    0 },
+		{ 128,   0 },
+		{ 160,   0 },
+		{ 192,   0 },
+		{ 0,    32 },
+		{ 32,   32 },
+		{ 64,   32 },
+		{ 96,   32 },
+		{ 128,  32 },
+		{ 160,  32 },
+		{ 192,  32 }
+	};
+	static EFF5UV Fire00[8] = 
+	{
+		{ 0,    64 },
+		{ 56,   64 },
+		{ 112,  64 },
+		{ 168,  64 },
+		{ 0,   120 },
+		{ 56,  120 },
+		{ 112, 120 },
+		{ 168, 120 }
+	};
+	static EFF5UV Fire15[12] = 
+	{
+		{ 0,     0 },
+		{ 40,    0 },
+		{ 80,    0 },
+		{ 120,   0 },
+		{ 160,   0 },
+		{ 200,   0 },
+		{ 0,    40 },
+		{ 40,   40 },
+		{ 80,   40 },
+		{ 120,  40 },
+		{ 160,  40 },
+		{ 200,  40 }
+	};
+	static EFF5UVTBL Eff218[17] = 
+	{
+		{ Fire13, 10, 70,  0,  0, 40, 40 },
+		{ Fire16, 12, 70,  0,  0, 40, 40 },
+		{ Fire14, 12, 70,  0,  0, 40, 40 },
+		{ Fire02,  8, 71,  0,  0, 56, 56 },
+		{ Fire04, 10, 71,  0,  0, 24, 24 },
+		{ Fire07, 10, 71,  0,  0, 48, 48 },
+		{ Fire03,  8, 72,  0,  0, 56, 56 },
+		{ Fire06, 10, 72,  0,  0, 48, 56 },
+		{ Fire08, 10, 73,  0,  0, 48, 48 },
+		{ Fire05, 10, 73,  0,  0, 48, 48 },
+		{ Fire09, 10, 74,  0,  0, 56, 56 },
+		{ Fire01, 10, 75,  0,  0, 40, 40 },
+		{ Fire10, 10, 76,  0,  0, 48, 48 },
+		{ Fire11, 12, 77,  0,  0, 56, 56 },
+		{ Fire12, 14, 78,  0,  0, 32, 32 },
+		{ Fire00,  8, 78,  0,  0, 56, 56 },
+		{ Fire15, 12, 79,  0,  0, 40, 40 }
+	};
 	// Line 1898, Address: 0x254e40, Func Offset: 0
 	// Line 2047, Address: 0x254e50, Func Offset: 0x10
 	// Line 2048, Address: 0x254e70, Func Offset: 0x30
@@ -1517,7 +1899,25 @@ void bhEff222(O_WRK* op)
 void bhEff223(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff223UvInfo[18][2];
+	static EFF5UV Eff223UvInfo[2][18] = 
+	{
+		{ 
+			{   0,   0 }, {  40,   0 }, {  80,   0 },
+	    	{ 120,   0 }, { 160,   0 }, { 200,   0 },
+	    	{   0,  40 }, {  40,  40 }, {  80,  40 },
+	    	{ 120,  40 }, { 160,  40 }, { 200,  40 },
+	    	{   0,  80 }, {  40,  80 }, {  80,  80 },
+	    	{ 120,  80 }, { 160,  80 }, { 200,  80 } 
+		},
+		{ 
+			{   0, 120 }, {  40, 120 }, {  80, 120 },
+			{ 120, 120 }, { 160, 120 }, { 200, 120 },
+			{   0, 160 }, {  40, 160 }, {  80, 160 },
+			{ 120, 160 }, { 160, 160 }, { 200, 160 },
+			{   0, 200 }, {  40, 200 }, {  80, 200 },
+			{ 120, 200 }, { 160, 200 }, { 200, 200 } 
+		}
+	};
 	// Line 2585, Address: 0x2564a0, Func Offset: 0
 	// Line 2603, Address: 0x2564b0, Func Offset: 0x10
 	// Line 2606, Address: 0x2564d0, Func Offset: 0x30
@@ -1635,8 +2035,69 @@ void bhEff224(O_WRK* op)
 void bhEff225(O_WRK* op)
 {
 	EFF5UVWHUC* pInfo;
-	EFF5UVWHUC* pEff225UvInfoTop[4];
-	int lEff225UvInfoMax[4];
+	static EFF5UVWHUC Eff225UvInfo1[11] = 
+	{
+		{   0,  64,  16,  16 },
+		{   0,  40,  24,  24 },
+		{  24,  40,  32,  32 },
+		{  56,  40,  40,  40 },
+		{  96,  40,  40,  40 },
+		{   0,   0,  40,  40 },
+		{  40,   0,  40,  40 },
+		{  80,   0,  40,  40 },
+		{ 120,   0,  40,  40 },
+		{ 160,   0,  40,  40 },
+		{ 200,   0,  40,  40 }
+	};
+	static EFF5UVWHUC Eff225UvInfo2[9] = 
+	{
+		{  16,  80,  32,  32 },
+		{  48,  80,  32,  32 },
+		{  80,  80,  32,  32 },
+		{ 112,  80,  32,  32 },
+		{ 144,  80,  32,  32 },
+		{ 176,  80,  32,  32 },
+		{ 208,  80,  32,  32 },
+		{  16, 112,  32,  32 },
+		{  48, 112,  32,  32 }
+	};
+	static EFF5UVWHUC Eff225UvInfo3[13] = 
+	{
+		{  84, 116,   8,   8 },
+		{  96, 116,  20,  24 },
+		{ 116, 116,  20,  24 },
+		{ 136, 116,  24,  24 },
+		{ 160, 116,  24,  24 },
+		{ 184, 116,  24,  24 },
+		{ 208, 112,  32,  32 },
+		{   0, 144,  40,  40 },
+		{  40, 144,  40,  40 },
+		{  80, 144,  40,  40 },
+		{ 120, 144,  40,  40 },
+		{ 160, 144,  40,  40 },
+		{ 200, 144,  40,  40 }
+	};
+	static EFF5UVWHUC Eff225UvInfo4[10] = 
+	{
+		{  60, 184,  24,  24 },
+		{  84, 184,  24,  24 },
+		{ 108, 184,  32,  32 },
+		{ 140, 184,  32,  32 },
+		{   0, 216,  32,  32 },
+		{  32, 216,  40,  40 },
+		{  72, 216,  40,  40 },
+		{ 112, 216,  40,  40 },
+		{ 152, 216,  40,  40 },
+		{ 192, 216,  40,  40 }
+	};
+	static EFF5UVWHUC* pEff225UvInfoTop[4] = 
+	{
+		Eff225UvInfo1, Eff225UvInfo2, Eff225UvInfo3, Eff225UvInfo4
+	};
+	static int lEff225UvInfoMax[4] = 
+	{
+		11, 9, 13, 10
+	};
 	// Line 2785, Address: 0x256ba0, Func Offset: 0
 	// Line 2788, Address: 0x256bc0, Func Offset: 0x20
 	// Line 2789, Address: 0x256bc8, Func Offset: 0x28
@@ -1725,8 +2186,24 @@ void bhEff227(O_WRK* op)
 {
 	O_WRK* opp;
 	EFF5UV* pInfo;
-	EFF5UV Eff227UvInfo2[13];
-	EFF5UV Eff227UvInfo1[6][2];
+	static EFF5UV Eff227UvInfo1[2][6] = 
+	{
+		{ 
+		  {   0,   0 }, {  48,   0 }, {  96,   0 },
+		  { 144,   0 }, { 192,   0 }, {   0,  48 } 
+		},
+		{ 
+		  {  48,  48 }, {  96,  48 }, { 144,  48 },
+		  { 192,  48 }, {   0,  96 }, {  48,  96 } 
+		}
+	};
+	static EFF5UV Eff227UvInfo2[13] = 
+	{
+		{  96,  96 }, { 144,  96 }, { 192,  96 }, {   0, 144 }, 
+		{  48, 144 }, {  96, 144 }, { 144, 144 }, { 192, 144 }, 
+		{   0, 192 }, {  48, 192 }, {  96, 192 }, { 144, 192 },
+		{ 192, 192 }
+	};
 	// Line 2910, Address: 0x257030, Func Offset: 0
 	// Line 2928, Address: 0x257044, Func Offset: 0x14
 	// Line 2926, Address: 0x257048, Func Offset: 0x18
@@ -1916,8 +2393,29 @@ void bhDrawWeaponEffect2(O_WRK* op)
 	int ani;
 	int i;
 	UV_WORK* uvp;
-	UV_WORK uvinfo_t01[6][2];
-	short akpal[3][2];
+	static UV_WORK uvinfo_t01[2][6] = 
+	{
+		{
+			{ 0.625f,         0.0f,   0.0625f,  0.0625f  },
+			{ 0.796875f,   0.0625f,  0.09375f,  0.0625f  },
+			{ 0.96875f,     0.125f,  0.03125f,  0.09375f },
+			{ 0.21875f,    0.1875f,   0.0625f,  0.0625f  },
+			{ 0.0f,        0.1875f,  0.09375f,  0.0625f  },
+			{ 0.65625f,   0.34375f,   0.0625f,  0.125f   }
+		},
+		{
+			{ 0.546875f,      0.0f,   0.0625f,   0.0625f  },
+			{  0.90625f,   0.0625f,  0.09375f,   0.0625f  },
+			{ 0.921875f,    0.125f,  0.03125f,   0.09375f },
+			{ 0.296875f,   0.1875f,   0.0625f,   0.0625f  },
+			{ 0.109375f,   0.1875f,  0.09375f,   0.0625f  },
+			{  0.71875f,  0.34375f,   0.0625f,   0.125f   }
+		},
+	};
+	static short akpal[2][3] = 
+	{
+		{ 0, 0, 1 }, { 0, 1, 1 }
+	};
 	// Line 3207, Address: 0x257740, Func Offset: 0
 	// Line 3237, Address: 0x257778, Func Offset: 0x38
 	// Line 3239, Address: 0x257780, Func Offset: 0x40
@@ -2116,8 +2614,33 @@ void bhDrawWeaponEffect2(O_WRK* op)
 void bhEff230(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV* pEff230UvInfoTop[4];
-	unsigned int ulEff230UvInfoMax[4];
+	static EFF5UV Eff230UvInfo1[8] = 
+	{
+		{   0, 32 }, {  32, 32 }, {  64, 32 }, {  96, 32 },
+		{ 128, 32 }, { 160, 32 }, { 192, 32 }, { 224, 32 }
+	};
+	static EFF5UV Eff230UvInfo2[8] = 
+	{
+		{   0, 64 }, {  32, 64 }, {  64, 64 }, {  96, 64 },
+		{ 128, 64 }, { 160, 64 }, { 192, 64 }, { 224, 64 }
+	};
+	static EFF5UV Eff230UvInfo3[8] =
+	{
+		{   0, 96 }, {  32, 96 }, {  64, 96 }, {  96, 96 },
+		{ 128, 96 }, { 160, 96 }, { 192, 96 }, { 224, 96 }
+	};
+	static EFF5UV Eff230UvInfo4[3] = 
+	{
+		{  0,  0 }, { 32,  0 }, { 64,  0 }
+	};
+	static EFF5UV* pEff230UvInfoTop[4] = 
+	{
+		Eff230UvInfo1, Eff230UvInfo2, Eff230UvInfo3, Eff230UvInfo4
+	};
+	static unsigned int ulEff230UvInfoMax[4] = 
+	{
+		8, 8, 8, 3
+	};
 	// Line 3452, Address: 0x257f20, Func Offset: 0
 	// Line 3453, Address: 0x257f40, Func Offset: 0x20
 	// Line 3455, Address: 0x257f4c, Func Offset: 0x2c
@@ -2208,7 +2731,19 @@ void bhEff231(O_WRK* op)
 void bhEff232(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff232UvInfo[10][2];
+	static EFF5UV Eff232UvInfo[2][10] = 
+	{
+		{
+			{   0,   0 }, {  40,   0 }, {  80,   0 }, { 120,   0 },
+			{ 160,   0 }, { 200,   0 }, {   0,  40 }, {  40,  40 },
+			{  80,  40 }, { 120,  40 }
+		},
+		{
+			{   0,  80 }, {  40,  80 }, {  80,  80 }, { 120,  80 },
+			{ 160,  80 }, { 200,  80 }, {   0, 120 }, {  40, 120 },
+			{  80, 120 }, { 120, 120 }
+		}
+	};
 	// Line 3582, Address: 0x2582d0, Func Offset: 0
 	// Line 3585, Address: 0x2582f0, Func Offset: 0x20
 	// Line 3586, Address: 0x2582f8, Func Offset: 0x28
@@ -2247,9 +2782,18 @@ void bhEff232(O_WRK* op)
 void bhEff233(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff233UvInfo[4];
-	float fRight[3];
-	float fLeft[3];
+	static EFF5UV Eff233UvInfo[4] = 
+	{
+		{ 0,  0 }, { 0, 32 }, { 0, 64 }, { 0, 96 }
+	};
+	static float fLeft[3] = 
+	{
+		-1.0f, 0.0f, -2.0f
+	};
+	static float fRight[3] = 
+	{
+		1.0f, 2.0f, 0.0f
+	};
 	// Line 3639, Address: 0x258490, Func Offset: 0
 	// Line 3649, Address: 0x2584a0, Func Offset: 0x10
 	// Line 3650, Address: 0x2584c0, Func Offset: 0x30
@@ -2306,8 +2850,24 @@ void bhEff233(O_WRK* op)
 void bhEff234(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff234UvInfo2[13];
-	EFF5UV Eff234UvInfo1[6][2];
+	static EFF5UV Eff234UvInfo1[2][6] = 
+	{
+		{
+			{   0,   0 }, {  48,   0 }, {  96,   0 },
+			{ 144,   0 }, { 192,   0 }, {   0,  48 }
+		},
+		{
+			{  48,  48 }, {  96,  48 }, { 144,  48 },
+			{ 192,  48 }, {   0,  96 }, {  48,  96 }
+		}
+	};
+	static EFF5UV Eff234UvInfo2[13] = 
+	{
+		{  96,  96 }, { 144,  96 }, { 192,  96 }, {   0, 144 },
+		{  48, 144 }, {  96, 144 }, { 144, 144 }, { 192, 144 },
+		{   0, 192 }, {  48, 192 }, {  96, 192 }, { 144, 192 },
+		{ 192, 192 }
+	};
 	// Line 3728, Address: 0x258760, Func Offset: 0
 	// Line 3743, Address: 0x258774, Func Offset: 0x14
 	// Line 3744, Address: 0x258794, Func Offset: 0x34
@@ -2365,7 +2925,10 @@ void bhEff235(O_WRK* op)
 	int lColor;
 	int lMode;
 	int lType;
-	unsigned int ulColor[3];
+	static unsigned int ulColor[3] =
+	{
+		0xFFFFFFFF, 0xFFFF0000, 0xFF0000FF
+	};
 	// Line 3827, Address: 0x258a60, Func Offset: 0
 	// Line 3832, Address: 0x258a7c, Func Offset: 0x1c
 	// Line 3833, Address: 0x258a9c, Func Offset: 0x3c
@@ -2431,8 +2994,33 @@ void bhEff236(O_WRK* op)
 	BH_PWORK* pp;
 	int lType;
 	EFF5UV* pInfo;
-	EFF5UV* pEff236UvInfoTop[3];
-	int lEff236UvInfoMax[3];
+	static EFF5UV Eff236UvInfo1[8] = 
+	{
+		{   0,   0 }, {  32,   0 }, {  64,   0 }, {  96,   0 },
+		{ 128,   0 }, { 160,   0 }, { 192,   0 }, { 224,   0 }
+	};
+	static EFF5UV Eff236UvInfo2[12] = 
+	{
+		{   0,  48 }, {  32,  48 }, {  64,  48 }, {  96,  48 },
+		{ 128,  48 }, { 160,  48 }, { 192,  48 }, { 224,  48 },
+		{   0,  96 }, {  32,  96 }, {  64,  96 }, {  96,  96 }
+	};
+	static EFF5UV Eff236UvInfo3[20] = 
+	{
+		{ 128,  96 }, { 160,  96 }, { 192,  96 }, { 224,  96 },
+		{   0, 144 }, {  32, 144 }, {  64, 144 }, {  96, 144 },
+		{ 128, 144 }, { 160, 144 }, { 192, 144 }, { 224, 144 },
+		{   0, 192 }, {  32, 192 }, {  64, 192 }, {  96, 192 },
+		{ 128, 192 }, { 160, 192 }, { 192, 192 }, { 224, 192 }
+	};
+	static EFF5UV* pEff236UvInfoTop[3] = 
+	{
+		Eff236UvInfo1, Eff236UvInfo2, Eff236UvInfo3
+	};
+	static int lEff236UvInfoMax[3] = 
+	{
+		8, 12, 20
+	};
 	// Line 3917, Address: 0x258d60, Func Offset: 0
 	// Line 3941, Address: 0x258d88, Func Offset: 0x28
 	// Line 3942, Address: 0x258da8, Func Offset: 0x48
@@ -2550,7 +3138,13 @@ void bhDrawEff236(O_WRK* op)
 void bhEff237(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff237UvInfo[16];
+	static EFF5UV Eff237UvInfo[16] = 
+	{
+		{   0,   0 }, {  64,   0 }, { 128,   0 }, { 192,   0 },
+		{   0,  64 }, {  64,  64 }, { 128,  64 }, { 192,  64 },
+		{   0, 128 }, {  64, 128 }, { 128, 128 }, { 192, 128 },
+		{   0, 192 }, {  64, 192 }, { 128, 192 }, { 192, 192 }
+	};
 	// Line 4094, Address: 0x259290, Func Offset: 0
 	// Line 4105, Address: 0x25929c, Func Offset: 0xc
 	// Line 4106, Address: 0x2592bc, Func Offset: 0x2c
@@ -2693,8 +3287,20 @@ void bhEff239(O_WRK* op)
 {
 	int lAlpha;
 	EFF5UV* pInfo;
-	float fEff239Size[15];
-	EFF5UV Eff239UvInfo[15];
+	static EFF5UV Eff239UvInfo[15] = 
+	{
+		{   0,   0 }, {  16,   0 }, {   0,  16 }, {  16,  16 },
+		{  32,   0 }, {  64,   0 }, {  96,   0 }, { 128,   0 },
+		{ 160,   0 }, { 192,   0 }, { 224,   0 }, {   0,  32 },
+		{  48,  32 }, {  96,  32 }, {   0,  80 }
+	};
+	static float fEff239Size[15] = 
+	{
+		0.0625f, 0.0625f, 0.0625f, 0.0625f,
+		 0.125f,  0.125f,  0.125f,  0.125f,
+		 0.125f,  0.125f,  0.125f, 0.1875f, 
+		0.1875f, 0.1875f, 0.1875f
+	};
 	// Line 4304, Address: 0x259840, Func Offset: 0
 	// Line 4325, Address: 0x25984c, Func Offset: 0xc
 	// Line 4328, Address: 0x259860, Func Offset: 0x20
@@ -2899,8 +3505,38 @@ void bhEff242(O_WRK* op)
 	float fRadius;
 	float fScale;
 	EFF5UV* pInfo;
-	EFF5UV* pEff242UvInfoTop[2];
-	int lEff242UvInfoMax[2];
+	static EFF5UV Eff242UvInfo1[37] = 
+	{
+		{   0,   0 }, {   0,   8 }, {   0,  16 }, {   0,  24 },
+		{   8,   0 }, {   8,   8 }, {   8,  16 }, {   8,  24 },
+		{  24,   0 }, {  40,   0 }, {  56,   0 }, {  72,   0 },
+		{  88,   0 }, { 104,   0 }, { 120,   0 }, { 136,   0 },
+		{ 152,   0 }, {  24,  16 }, {  40,  16 }, {  56,  16 },
+		{  72,  16 }, {  88,  16 }, { 104,  16 }, { 120,  16 },
+		{ 136,  16 }, { 152,  16 }, { 168,   0 }, { 192,   0 },
+		{ 216,   0 }, { 168,  16 }, { 192,  16 }, { 216,  16 },
+		{   0,  32 }, {  24,  32 }, {  48,  32 }, {  72,  32 },
+		{  96,  32 }
+	};
+	static EFF5UV Eff242UvInfo2[31] = 
+	{
+		{ 168,  64 }, { 168,  72 }, { 168,  80 }, { 168,  88 },
+		{ 120,  32 }, { 120,  40 }, { 120,  48 }, { 120,  56 },
+		{ 136,  32 }, { 152,  32 }, { 168,  32 }, { 184,  32 },
+		{ 200,  32 }, { 216,  32 }, { 136,  48 }, { 152,  48 },
+		{ 168,  48 }, { 184,  48 }, { 200,  48 }, { 216,  48 },
+		{ 232,  32 }, {   0,  64 }, {  24,  64 }, { 232,  48 },
+		{   0,  80 }, {  24,  80 }, {  48,  64 }, {  72,  64 },
+		{  96,  64 }, { 120,  64 }, { 144,  64 }
+	};
+	static EFF5UV* pEff242UvInfoTop[2] = 
+	{
+		Eff242UvInfo1, Eff242UvInfo2
+	};
+	static int lEff242UvInfoMax[2] = 
+	{
+		37, 31
+	};
 	// Line 4520, Address: 0x25a150, Func Offset: 0
 	// Line 4548, Address: 0x25a174, Func Offset: 0x24
 	// Line 4551, Address: 0x25a194, Func Offset: 0x44
@@ -3032,20 +3668,27 @@ void bhEff242(O_WRK* op)
 // Start address: 0x25aa10
 void bhEff243(O_WRK* op)
 {
-	NJS_POINT3 VecZ;
-	NJS_POINT3 VecY;
-	int lType;
 	EFF5UV* pInfo;
-	EFF5UV* pEff243UvInfoTop[2];
+	int lType;
+	NJS_POINT3 VecY = { 0.0f, 1.0f, 0.0f };
+	NJS_POINT3 VecZ = { 0.0f, 0.0f, 1.0f };
+	static EFF5UV Eff243UvInfo1[4] = 
+	{
+		{   0,   0 }, {  64,   0 }, { 128,   0 }, { 192,   0 }
+	};
+	static EFF5UV Eff243UvInfo2[12] = 
+	{
+		{   0,  32 }, {  64,  32 }, { 128,  32 }, { 192,  32 },
+		{   0,  64 }, {  64,  64 }, { 128,  64 }, { 192,  64 },
+		{   0,  96 }, {  64,  96 }, { 128,  96 }, { 192,  96 }
+	};
+	static EFF5UV* pEff243UvInfoTop[2] = 
+	{
+		Eff243UvInfo1, Eff243UvInfo2
+	};
 	static const unsigned int ulColor[7] = 
 	{
-		0xFF0000FF,
-		0xFF00FF00,
-		0xFF00FFFF,
-		0xFFFF0000,
-		0xFFFF00FF,
-		0xFFFFFF00,
-		0xFFFFFFFF
+		0xFF0000FF, 0xFF00FF00, 0xFF00FFFF, 0xFFFF0000, 0xFFFF00FF, 0xFFFFFF00, 0xFFFFFFFF
 	};
 	// Line 4711, Address: 0x25aa10, Func Offset: 0
 	// Line 4730, Address: 0x25aa20, Func Offset: 0x10
@@ -3158,9 +3801,26 @@ void bhEff244(O_WRK* op)
 	int lColor;
 	int lType;
 	EFF5UV* pInfo;
-	float fEff244Size[2];
-	EFF5UV* pEff244UvInfoTop[2];
-	int lEff244UvInfoMax[2];
+	static EFF5UV Eff244UvInfo1[2] = 
+	{
+		{  0, 136 }, { 48, 136 }
+	};
+	static EFF5UV Eff244UvInfo2[3] = 
+	{
+		{  0, 196 }, { 32, 196 }, { 64, 196 }
+	};
+	static float fEff244Size[2] = 
+	{
+		0.1875f, 0.125f
+	};
+	static EFF5UV* pEff244UvInfoTop[2] = 
+	{
+		Eff244UvInfo1, Eff244UvInfo2
+	};
+	static int lEff244UvInfoMax[2] = 
+	{
+		2, 3
+	};
 	// Line 4885, Address: 0x25aed0, Func Offset: 0
 	// Line 4901, Address: 0x25aee4, Func Offset: 0x14
 	// Line 4902, Address: 0x25af04, Func Offset: 0x34
@@ -3261,9 +3921,24 @@ void bhEff245(O_WRK* op)
 void bhEff246(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff246UvInfo3[16];
-	EFF5UV Eff246UvInfo2[12];
-	EFF5UV Eff246UvInfo1[8];
+	static EFF5UV Eff246UvInfo1[8] = 
+	{
+		{   0,   0 }, {  56,   0 }, { 112,   0 }, { 168,   0 },
+		{   0,  56 }, {  56,  56 }, { 112,  56 }, { 168,  56 }
+	};
+	static EFF5UV Eff246UvInfo2[12] = 
+	{
+		{   0,  56 }, {  56,  56 }, { 112,  56 }, { 168,  56 },
+		{   0, 112 }, {  56, 112 }, { 112, 112 }, { 168, 112 },
+		{   0, 168 }, {  56, 168 }, { 112, 168 }, { 168, 168 }
+	};
+	static EFF5UV Eff246UvInfo3[16] = 
+	{
+		{   0,   0 }, {  56,   0 }, { 112,   0 }, { 168,   0 },
+		{   0,  56 }, {  56,  56 }, { 112,  56 }, { 168,  56 },
+		{   0, 112 }, {  56, 112 }, { 112, 112 }, { 168, 112 },
+		{   0, 168 }, {  56, 168 }, { 112, 168 }, { 168, 168 }
+	};
 	// Line 5041, Address: 0x25b350, Func Offset: 0
 	// Line 5063, Address: 0x25b364, Func Offset: 0x14
 	// Line 5066, Address: 0x25b384, Func Offset: 0x34
@@ -3454,7 +4129,13 @@ void bhEff248(O_WRK* op)
 	int lColor;
 	int lAlpha;
 	EFF5UV* pInfo;
-	EFF5UV Eff248UvInfo[16];
+	static EFF5UV Eff248UvInfo[16] = 
+	{
+		{   0,   0 }, {  56,   0 }, { 112,   0 }, { 168,   0 },
+		{   0,  56 }, {  56,  56 }, { 112,  56 }, { 168,  56 },
+		{   0, 112 }, {  56, 112 }, { 112, 112 }, { 168, 112 },
+		{   0, 168 }, {  56, 168 }, { 112, 168 }, { 168, 168 }
+	};
 	// Line 5318, Address: 0x25bee0, Func Offset: 0
 	// Line 5331, Address: 0x25bef8, Func Offset: 0x18
 	// Line 5333, Address: 0x25befc, Func Offset: 0x1c
@@ -3535,7 +4216,13 @@ void bhEff248(O_WRK* op)
 void bhEff249(O_WRK* op)
 {
 	EFF5UV* pInfo;
-	EFF5UV Eff249UvInfo[16];
+	static EFF5UV Eff249UvInfo[16] = 
+	{
+		{   0,   0 }, {  56,   0 }, { 112,   0 }, { 168,   0 },
+		{   0,  56 }, {  56,  56 }, { 112,  56 }, { 168,  56 },
+		{   0, 112 }, {  56, 112 }, { 112, 112 }, { 168, 112 },
+		{   0, 168 }, {  56, 168 }, { 112, 168 }, { 168, 168 }
+	};
 	// Line 5454, Address: 0x25c4d0, Func Offset: 0
 	// Line 5465, Address: 0x25c4dc, Func Offset: 0xc
 	// Line 5466, Address: 0x25c4fc, Func Offset: 0x2c

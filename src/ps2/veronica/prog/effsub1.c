@@ -7058,42 +7058,52 @@ void bhEff113(O_WRK* op)
 	scePrintf("bhEff113 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x231fe0
-void bhDraw114(O_WRK* op)
+// 100% matching!
+void bhDraw114(O_WRK* op) 
 {
-	int pt;
-	float it;
-	NJS_VECTOR vc1;
-	//NJS_VECTOR vc1;
-	NJS_TEXTUREH_VTX* tvp;
-	// Line 5601, Address: 0x231fe0, Func Offset: 0
-	// Line 5606, Address: 0x231ff4, Func Offset: 0x14
-	// Line 5608, Address: 0x231ffc, Func Offset: 0x1c
-	// Line 5609, Address: 0x232004, Func Offset: 0x24
-	// Line 5610, Address: 0x23200c, Func Offset: 0x2c
-	// Line 5611, Address: 0x232014, Func Offset: 0x34
-	// Line 5612, Address: 0x232028, Func Offset: 0x48
-	// Line 5613, Address: 0x232038, Func Offset: 0x58
-	// Line 5615, Address: 0x232050, Func Offset: 0x70
-	// Line 5617, Address: 0x232090, Func Offset: 0xb0
-	// Line 5618, Address: 0x232098, Func Offset: 0xb8
-	// Line 5619, Address: 0x2320b0, Func Offset: 0xd0
-	// Line 5620, Address: 0x2320d4, Func Offset: 0xf4
-	// Line 5621, Address: 0x2320e4, Func Offset: 0x104
-	// Line 5622, Address: 0x2320ec, Func Offset: 0x10c
-	// Line 5623, Address: 0x2320f8, Func Offset: 0x118
-	// Line 5624, Address: 0x232100, Func Offset: 0x120
-	// Line 5625, Address: 0x232104, Func Offset: 0x124
-	// Line 5630, Address: 0x23212c, Func Offset: 0x14c
-	// Line 5631, Address: 0x232138, Func Offset: 0x158
-	// Line 5633, Address: 0x232144, Func Offset: 0x164
-	// Line 5635, Address: 0x232154, Func Offset: 0x174
-	// Line 5637, Address: 0x232160, Func Offset: 0x180
-	// Line 5639, Address: 0x23216c, Func Offset: 0x18c
-	// Line 5640, Address: 0x232174, Func Offset: 0x194
-	// Func End, Address: 0x23218c, Func Offset: 0x1ac
-	scePrintf("bhDraw114 - UNIMPLEMENTED!\n");
+    NJS_TEXTUREH_VTX* tvp; 
+    NJS_VECTOR vc0, vc1;        
+    float it;              
+    int pt;               
+    
+    njPushMatrixEx();
+    
+    vc0.x = vc0.y = 0;
+    vc0.z = -1.0f;
+    
+    njUnitMatrix(NULL);
+    
+    njRotateXYZ(NULL, op->ax, op->ay, 0);
+    njCalcVector(NULL, &vc0, &vc1);
+    
+    it = fabsf(njInnerProduct((NJS_VECTOR*)&vc1, (NJS_VECTOR*)&cam.vx));
+    
+    pt = (int)(128.0f * njCos((int)(182.04445f * (360.0f * it)) & 0xFFFF)) + 32;
+    
+    njTextureFilterMode(1);
+    
+    njSetTexture(&sys->ef_tlist);
+    njSetTextureNum(sys->ef_tn[op->tex_id]);
+    
+    njSetMatrix(NULL, cam.mtx);
+    
+    njTranslateEx((NJS_VECTOR*)&op->px);
+    njRotateEx(&op->ax, 0);
+    njScaleEx((NJS_VECTOR*)&op->sx);
+    
+    tvp = (NJS_TEXTUREH_VTX*)op->tvp;
+    
+    tvp[0].ocol = tvp[1].ocol = tvp[2].ocol = tvp[3].ocol = (pt << 0) | ((pt << 8) | ((pt << 24) | (pt << 16)));
+    
+    njColorBlendingMode(0, op->bl_src);
+    njColorBlendingMode(1, op->bl_dst);
+    
+    njDrawTexture3DHEx(tvp, 4, 1);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    njPopMatrixEx();
 }
 
 // 

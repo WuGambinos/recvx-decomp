@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 63.14094,
+    "fuzzy_match_percent": 63.207226,
     "total_code": "1904472",
-    "matched_code": "958932",
-    "matched_code_percent": 50.351597,
+    "matched_code": "960176",
+    "matched_code_percent": 50.416912,
     "total_data": "28428164",
-    "matched_data": "28253132",
-    "matched_data_percent": 99.3843,
+    "matched_data": "28257900",
+    "matched_data_percent": 99.40108,
     "total_functions": 4529,
-    "matched_functions": 3174,
-    "matched_functions_percent": 70.081696,
+    "matched_functions": 3185,
+    "matched_functions_percent": 70.32458,
     "total_units": 200
   },
   "units": [
@@ -17229,14 +17229,16 @@
     {
       "name": "ps2/veronica/prog/effsub5",
       "measures": {
-        "fuzzy_match_percent": 1.3779094,
+        "fuzzy_match_percent": 4.04909,
         "total_code": "47260",
-        "matched_code": "172",
-        "matched_code_percent": 0.36394414,
+        "matched_code": "1416",
+        "matched_code_percent": 2.9961913,
         "total_data": "4560",
+        "matched_data": "4560",
+        "matched_data_percent": 100.0,
         "total_functions": 67,
-        "matched_functions": 1,
-        "matched_functions_percent": 1.4925373,
+        "matched_functions": 12,
+        "matched_functions_percent": 17.910448,
         "total_units": 1
       },
       "sections": [
@@ -17247,6 +17249,7 @@
         {
           "name": ".data",
           "size": "4528",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -17256,13 +17259,13 @@
         {
           "name": ".rodata",
           "size": "32",
-          "fuzzy_match_percent": 1.037464,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
           "name": ".text",
           "size": "47696",
-          "fuzzy_match_percent": 1.3779094,
+          "fuzzy_match_percent": 4.04909,
           "metadata": {}
         },
         {
@@ -17603,7 +17606,7 @@
         {
           "name": "bhDrawEff243",
           "size": "240",
-          "fuzzy_match_percent": 3.75,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "37536"
         },
@@ -17652,78 +17655,91 @@
         {
           "name": "CreateEff5SnowRect",
           "size": "604",
+          "fuzzy_match_percent": 1.5231788,
           "metadata": {},
           "address": "44480"
         },
         {
           "name": "DeleteEff5SnowRect",
           "size": "64",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "45088"
         },
         {
           "name": "ExecEff5SnowRect",
           "size": "848",
+          "fuzzy_match_percent": 1.0613208,
           "metadata": {},
           "address": "45152"
         },
         {
           "name": "DrawEff5SnowRect",
           "size": "692",
+          "fuzzy_match_percent": 1.3294798,
           "metadata": {},
           "address": "46000"
         },
         {
           "name": "SetEff5SnowRectAreaCenter",
           "size": "128",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "46704"
         },
         {
           "name": "SetEff5SnowRectAreaCenterAndSize",
           "size": "96",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "46832"
         },
         {
           "name": "SetEff5SnowRectParticleMax",
           "size": "56",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "46928"
         },
         {
           "name": "MovEff5SnowRectParticleMax",
           "size": "72",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "46992"
         },
         {
           "name": "ArrangeEff5SnowRectParticle",
           "size": "264",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "47072"
         },
         {
           "name": "SetEff5SnowRectParticleTexture",
           "size": "44",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "47344"
         },
         {
           "name": "SetEff5SnowRectParticleColor",
           "size": "20",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "47392"
         },
         {
           "name": "SetEff5SnowRectParticleSize",
           "size": "84",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "47424"
         },
         {
           "name": "GetEff5SnowRectCurrentWindVector",
           "size": "176",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "47520"
         }
@@ -33330,8 +33346,8 @@
         "matched_code": "4516",
         "matched_code_percent": 74.718735,
         "total_data": "240",
-        "matched_data": "32",
-        "matched_data_percent": 13.333334,
+        "matched_data": "240",
+        "matched_data_percent": 100.0,
         "total_functions": 10,
         "matched_functions": 9,
         "matched_functions_percent": 90.0,
@@ -33345,7 +33361,7 @@
         {
           "name": ".data",
           "size": "208",
-          "fuzzy_match_percent": 96.56863,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -41172,16 +41188,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 61.439938,
+        "fuzzy_match_percent": 61.509285,
         "total_code": "1820460",
-        "matched_code": "874920",
-        "matched_code_percent": 48.060383,
+        "matched_code": "876164",
+        "matched_code_percent": 48.128716,
         "total_data": "28336764",
-        "matched_data": "28186844",
-        "matched_data_percent": 99.47094,
+        "matched_data": "28191612",
+        "matched_data_percent": 99.48776,
         "total_functions": 3834,
-        "matched_functions": 2479,
-        "matched_functions_percent": 64.65832,
+        "matched_functions": 2490,
+        "matched_functions_percent": 64.94523,
         "total_units": 152
       }
     },

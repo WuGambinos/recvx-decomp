@@ -3842,29 +3842,24 @@ void SetEff5SnowRectAreaCenter(EFF5SNOWRECT* pSnow, float fPointX, float fPointY
 	scePrintf("SetEff5SnowRectAreaCenter - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x25d230
+// 100% matching!
 void SetEff5SnowRectAreaCenterAndSize(EFF5SNOWRECT* pSnow, float fCenterX, float fCenterY, float fCenterZ, float fSizeX, float fSizeY, float fSizeZ)
 {
-	// Line 6094, Address: 0x25d230, Func Offset: 0
-	// Line 6084, Address: 0x25d238, Func Offset: 0x8
-	// Line 6094, Address: 0x25d23c, Func Offset: 0xc
-	// Line 6085, Address: 0x25d240, Func Offset: 0x10
-	// Line 6086, Address: 0x25d244, Func Offset: 0x14
-	// Line 6089, Address: 0x25d248, Func Offset: 0x18
-	// Line 6090, Address: 0x25d24c, Func Offset: 0x1c
-	// Line 6091, Address: 0x25d250, Func Offset: 0x20
-	// Line 6096, Address: 0x25d254, Func Offset: 0x24
-	// Line 6098, Address: 0x25d258, Func Offset: 0x28
-	// Line 6094, Address: 0x25d25c, Func Offset: 0x2c
-	// Line 6095, Address: 0x25d264, Func Offset: 0x34
-	// Line 6096, Address: 0x25d26c, Func Offset: 0x3c
-	// Line 6097, Address: 0x25d274, Func Offset: 0x44
-	// Line 6098, Address: 0x25d27c, Func Offset: 0x4c
-	// Line 6099, Address: 0x25d284, Func Offset: 0x54
-	// Line 6100, Address: 0x25d288, Func Offset: 0x58
-	// Func End, Address: 0x25d290, Func Offset: 0x60
-	scePrintf("SetEff5SnowRectAreaCenterAndSize - UNIMPLEMENTED!\n");
+    pSnow->AreaCenter.x = fCenterX;
+    pSnow->AreaCenter.y = fCenterY;
+    pSnow->AreaCenter.z = fCenterZ;
+
+    pSnow->fAreaSizeX = fSizeX;
+    pSnow->fAreaSizeY = fSizeY;
+    pSnow->fAreaSizeZ = fSizeZ;
+
+    pSnow->fAreaMinX = fCenterX - (fSizeX / 2.0f);
+    pSnow->fAreaMaxX = fCenterX + (fSizeX / 2.0f);
+    pSnow->fAreaMinY = fCenterY - (fSizeY / 2.0f);
+	
+    pSnow->fAreaMaxY = fCenterY + (fSizeY / 2.0f);
+    pSnow->fAreaMinZ = fCenterZ - (fSizeZ / 2.0f);
+    pSnow->fAreaMaxZ = fCenterZ + (fSizeZ / 2.0f);
 }
 
 // 100% matching!

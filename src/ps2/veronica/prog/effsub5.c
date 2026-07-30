@@ -1,28 +1,16 @@
 #include "../../../ps2/veronica/prog/effsub5.h"
+#include "../../../ps2/veronica/prog/effsub6.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 
-/*_anon5* sys;
-O_WRK eff[0];
-void(*bhEff_E00_DrawParticlePly)(O_WRK*);
-_anon37 cam;
-void(*DrawEff5SnowRect)(O_WRK*);
-void(*bhDrawEff221)(O_WRK*);
-void(*bhDrawWeaponEffect2)(O_WRK*);
-void(*bhDrawEff236)(O_WRK*);
-BH_PWORK ene[0];
-_anon8* rom;
-BH_PWORK* plp;
-void(*bhDrawEff243)(O_WRK*);*/
-
 // 
 // Start address: 0x251b40
 void bhEff200(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff200UvInfo[8];
+	EFF5UV* pInfo;
+	EFF5UV Eff200UvInfo[8];
 	// Line 189, Address: 0x251b40, Func Offset: 0
 	// Line 197, Address: 0x251b4c, Func Offset: 0xc
 	// Line 198, Address: 0x251b6c, Func Offset: 0x2c
@@ -71,8 +59,8 @@ void bhEff200(O_WRK* op)
 // Start address: 0x251d70
 void bhEff201(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff201UvInfo[16];
+	EFF5UV* pInfo;
+	EFF5UV Eff201UvInfo[16];
 	// Line 262, Address: 0x251d70, Func Offset: 0
 	// Line 273, Address: 0x251d7c, Func Offset: 0xc
 	// Line 274, Address: 0x251d9c, Func Offset: 0x2c
@@ -121,8 +109,8 @@ void bhEff202(O_WRK* op)
 {
 	unsigned short usType[4];
 	int lNumber;
-	//_anon3 Offset;
-	//_anon10* pEffect;
+	NJS_POINT3 Offset;
+	EF_WORK* pEffect;
 	// Line 337, Address: 0x251fa0, Func Offset: 0
 	// Line 341, Address: 0x251fb0, Func Offset: 0x10
 	// Line 337, Address: 0x251fb4, Func Offset: 0x14
@@ -203,9 +191,9 @@ void bhEff202(O_WRK* op)
 void bhEff203(O_WRK* op)
 {
 	O_WRK* opp;
-	//_anon3 Vector;
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff203UvInfo[4];
+	NJS_POINT3 Vector;
+	EFF5UV* pInfo;
+	EFF5UV Eff203UvInfo[4];
 	// Line 467, Address: 0x2525b0, Func Offset: 0
 	// Line 478, Address: 0x2525c8, Func Offset: 0x18
 	// Line 481, Address: 0x2525cc, Func Offset: 0x1c
@@ -349,9 +337,9 @@ void bhEff204(O_WRK* op)
 // Start address: 0x252d50
 void bhEff205(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff205UvInfo2[2];
-	//tagEFF5UV Eff205UvInfo1[14];
+	EFF5UV* pInfo;
+	EFF5UV Eff205UvInfo2[2];
+	EFF5UV Eff205UvInfo1[14];
 	// Line 712, Address: 0x252d50, Func Offset: 0
 	// Line 729, Address: 0x252d60, Func Offset: 0x10
 	// Line 730, Address: 0x252d80, Func Offset: 0x30
@@ -406,7 +394,7 @@ void bhEff205(O_WRK* op)
 // Start address: 0x252fc0
 void bhEff206(O_WRK* op)
 {
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 817, Address: 0x252fc0, Func Offset: 0
 	// Line 821, Address: 0x252fcc, Func Offset: 0xc
 	// Line 822, Address: 0x252fec, Func Offset: 0x2c
@@ -450,8 +438,8 @@ void bhEff206(O_WRK* op)
 // Start address: 0x253100
 void bhEff207(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff207UvInfo[24];
+	EFF5UV* pInfo;
+	EFF5UV Eff207UvInfo[24];
 	// Line 879, Address: 0x253100, Func Offset: 0
 	// Line 891, Address: 0x253110, Func Offset: 0x10
 	// Line 894, Address: 0x253130, Func Offset: 0x30
@@ -529,7 +517,7 @@ void bhEff207(O_WRK* op)
 // Start address: 0x2536a0
 void bhEff208(O_WRK* op)
 {
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 1022, Address: 0x2536a0, Func Offset: 0
 	// Line 1026, Address: 0x2536ac, Func Offset: 0xc
 	// Line 1027, Address: 0x2536cc, Func Offset: 0x2c
@@ -573,8 +561,8 @@ void bhEff208(O_WRK* op)
 // Start address: 0x2537e0
 void bhEff209(O_WRK* op)
 {
-	//tagEFF5UVWH* pInfo;
-	//tagEFF5UVWH Eff209UvInfo[21];
+	EFF5UVWH* pInfo;
+	EFF5UVWH Eff209UvInfo[21];
 	// Line 1084, Address: 0x2537e0, Func Offset: 0
 	// Line 1116, Address: 0x2537f0, Func Offset: 0x10
 	// Line 1119, Address: 0x253810, Func Offset: 0x30
@@ -636,8 +624,8 @@ void bhEff209(O_WRK* op)
 // Start address: 0x253a90
 void bhEff210(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff210UvInfo[20];
+	EFF5UV* pInfo;
+	EFF5UV Eff210UvInfo[20];
 	// Line 1209, Address: 0x253a90, Func Offset: 0
 	// Line 1221, Address: 0x253a9c, Func Offset: 0xc
 	// Line 1222, Address: 0x253abc, Func Offset: 0x2c
@@ -684,8 +672,8 @@ void bhEff210(O_WRK* op)
 // Start address: 0x253cd0
 void bhEff211(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff211UvInfo[10];
+	EFF5UV* pInfo;
+	EFF5UV Eff211UvInfo[10];
 	// Line 1290, Address: 0x253cd0, Func Offset: 0
 	// Line 1300, Address: 0x253cdc, Func Offset: 0xc
 	// Line 1301, Address: 0x253cfc, Func Offset: 0x2c
@@ -732,8 +720,8 @@ void bhEff211(O_WRK* op)
 // Start address: 0x253f10
 void bhEff212(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff212UvInfo[16];
+	EFF5UV* pInfo;
+	EFF5UV Eff212UvInfo[16];
 	// Line 1368, Address: 0x253f10, Func Offset: 0
 	// Line 1379, Address: 0x253f1c, Func Offset: 0xc
 	// Line 1380, Address: 0x253f3c, Func Offset: 0x2c
@@ -779,8 +767,8 @@ void bhEff212(O_WRK* op)
 // Start address: 0x254140
 void bhEff213(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff213UvInfo[3][3];
+	EFF5UV* pInfo;
+	EFF5UV Eff213UvInfo[3][3];
 	// Line 1448, Address: 0x254140, Func Offset: 0
 	// Line 1458, Address: 0x25414c, Func Offset: 0xc
 	// Line 1459, Address: 0x25416c, Func Offset: 0x2c
@@ -829,7 +817,7 @@ void bhEff213(O_WRK* op)
 // Start address: 0x254390
 void bhEff214(O_WRK* op)
 {
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 1526, Address: 0x254390, Func Offset: 0
 	// Line 1530, Address: 0x25439c, Func Offset: 0xc
 	// Line 1531, Address: 0x2543bc, Func Offset: 0x2c
@@ -869,7 +857,7 @@ void bhEff214(O_WRK* op)
 // Start address: 0x254490
 void bhEff215(O_WRK* op)
 {
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 1566, Address: 0x254490, Func Offset: 0
 	// Line 1570, Address: 0x25449c, Func Offset: 0xc
 	// Line 1571, Address: 0x2544bc, Func Offset: 0x2c
@@ -914,8 +902,8 @@ void bhEff215(O_WRK* op)
 // Start address: 0x2545d0
 void bhEff216(O_WRK* op)
 {
-	//tagEFF5UVWH* uvp;
-	//tagEFF5UVWH* uvtble[6];
+	EFF5UVWH* uvp;
+	EFF5UVWH* uvtble[6];
 	// Line 1626, Address: 0x2545d0, Func Offset: 0
 	// Line 1692, Address: 0x2545dc, Func Offset: 0xc
 	// Line 1695, Address: 0x2545fc, Func Offset: 0x2c
@@ -982,9 +970,9 @@ void bhEff217(O_WRK* op)
 	float fAngleDev;
 	unsigned int col[3];
 	int i;
-	//_anon3* v;
-	//_anon3* p;
-	//_anon38* pp;
+	NJS_POINT3* v;
+	NJS_POINT3* p;
+	P_WRK* pp;
 	// Line 1778, Address: 0x254960, Func Offset: 0
 	// Line 1783, Address: 0x25497c, Func Offset: 0x1c
 	// Line 1778, Address: 0x254980, Func Offset: 0x20
@@ -1057,8 +1045,8 @@ void bhEff217(O_WRK* op)
 void bhEff218(O_WRK* op)
 {
 	int lType;
-	//tagEFF5UV* pInfo;
-	//tagEFF5UVTBL Eff218[17];
+	EFF5UV* pInfo;
+	EFF5UVTBL Eff218[17];
 	// Line 1898, Address: 0x254e40, Func Offset: 0
 	// Line 2047, Address: 0x254e50, Func Offset: 0x10
 	// Line 2048, Address: 0x254e70, Func Offset: 0x30
@@ -1125,7 +1113,7 @@ void bhEff218(O_WRK* op)
 // Start address: 0x255180
 void bhEff219(O_WRK* op)
 {
-	//tagEFF5SNOWRECT* pSnow;
+	EFF5SNOWRECT* pSnow;
 	// Line 2135, Address: 0x255180, Func Offset: 0
 	// Line 2139, Address: 0x255190, Func Offset: 0x10
 	// Line 2140, Address: 0x2551b0, Func Offset: 0x30
@@ -1176,8 +1164,8 @@ void bhEff220(O_WRK* op)
 	int ct;
 	int j;
 	int i;
-	//_anon3 vc1;
-	//_anon3 vc0;
+	NJS_POINT3 vc1;
+	NJS_POINT3 vc0;
 	// Line 2222, Address: 0x255580, Func Offset: 0
 	// Line 2229, Address: 0x2555ac, Func Offset: 0x2c
 	// Line 2230, Address: 0x2555cc, Func Offset: 0x4c
@@ -1258,8 +1246,8 @@ void bhEff221(O_WRK* op)
 	float v;
 	float u;
 	int pt;
-	//_anon9* tvp;
-	//_anon3 vc0;
+	NJS_TEXTUREH_VTX* tvp;
+	NJS_POINT3 vc0;
 	// Line 2286, Address: 0x255a40, Func Offset: 0
 	// Line 2292, Address: 0x255a50, Func Offset: 0x10
 	// Line 2296, Address: 0x255a70, Func Offset: 0x30
@@ -1431,9 +1419,9 @@ void bhDrawEff221(O_WRK* op)
 {
 	int pt;
 	float it;
-	//_anon3 vc1;
-	//_anon3 vc0;
-	//_anon9* tvp;
+	NJS_POINT3 vc1;
+	NJS_POINT3 vc0;
+	NJS_TEXTUREH_VTX* tvp;
 	// Line 2448, Address: 0x2560a0, Func Offset: 0
 	// Line 2456, Address: 0x2560b0, Func Offset: 0x10
 	// Line 2459, Address: 0x2560c0, Func Offset: 0x20
@@ -1476,7 +1464,7 @@ void bhDrawEff221(O_WRK* op)
 // Start address: 0x256290
 void bhEff222(O_WRK* op)
 {
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 2520, Address: 0x256290, Func Offset: 0
 	// Line 2524, Address: 0x2562a0, Func Offset: 0x10
 	// Line 2525, Address: 0x2562c0, Func Offset: 0x30
@@ -1526,8 +1514,8 @@ void bhEff222(O_WRK* op)
 // Start address: 0x2564a0
 void bhEff223(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff223UvInfo[18][2];
+	EFF5UV* pInfo;
+	EFF5UV Eff223UvInfo[18][2];
 	// Line 2585, Address: 0x2564a0, Func Offset: 0
 	// Line 2603, Address: 0x2564b0, Func Offset: 0x10
 	// Line 2606, Address: 0x2564d0, Func Offset: 0x30
@@ -1605,7 +1593,7 @@ void bhEff223(O_WRK* op)
 // Start address: 0x256a80
 void bhEff224(O_WRK* op)
 {
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 2715, Address: 0x256a80, Func Offset: 0
 	// Line 2719, Address: 0x256a8c, Func Offset: 0xc
 	// Line 2720, Address: 0x256aac, Func Offset: 0x2c
@@ -1644,8 +1632,8 @@ void bhEff224(O_WRK* op)
 // Start address: 0x256ba0
 void bhEff225(O_WRK* op)
 {
-	//tagEFF5UVWHUC* pInfo;
-	//tagEFF5UVWHUC* pEff225UvInfoTop[4];
+	EFF5UVWHUC* pInfo;
+	EFF5UVWHUC* pEff225UvInfoTop[4];
 	int lEff225UvInfoMax[4];
 	// Line 2785, Address: 0x256ba0, Func Offset: 0
 	// Line 2788, Address: 0x256bc0, Func Offset: 0x20
@@ -1689,7 +1677,7 @@ void bhEff226(O_WRK* op)
 {
 	int lNumber;
 	int lLoop;
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 2850, Address: 0x256e80, Func Offset: 0
 	// Line 2855, Address: 0x256e94, Func Offset: 0x14
 	// Line 2856, Address: 0x256eb4, Func Offset: 0x34
@@ -1734,9 +1722,9 @@ void bhEff226(O_WRK* op)
 void bhEff227(O_WRK* op)
 {
 	O_WRK* opp;
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff227UvInfo2[13];
-	//tagEFF5UV Eff227UvInfo1[6][2];
+	EFF5UV* pInfo;
+	EFF5UV Eff227UvInfo2[13];
+	EFF5UV Eff227UvInfo1[6][2];
 	// Line 2910, Address: 0x257030, Func Offset: 0
 	// Line 2928, Address: 0x257044, Func Offset: 0x14
 	// Line 2926, Address: 0x257048, Func Offset: 0x18
@@ -1806,7 +1794,7 @@ void bhEff227(O_WRK* op)
 void bhEff228(O_WRK* op)
 {
 	int lNumber;
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 3031, Address: 0x257340, Func Offset: 0
 	// Line 3036, Address: 0x257350, Func Offset: 0x10
 	// Line 3037, Address: 0x257370, Func Offset: 0x30
@@ -1921,12 +1909,12 @@ void bhEff229(O_WRK* op)
 void bhDrawWeaponEffect2(O_WRK* op)
 {
 	float off;
-	//_anon2 tvb[4];
-	//_anon2 tv[4];
+	NJS_TEXTURE_VTX tvb[4];
+	NJS_TEXTURE_VTX tv[4];
 	int ani;
 	int i;
-	//_anon39* uvp;
-	//_anon39 uvinfo_t01[6][2];
+	UV_WORK* uvp;
+	UV_WORK uvinfo_t01[6][2];
 	short akpal[3][2];
 	// Line 3207, Address: 0x257740, Func Offset: 0
 	// Line 3237, Address: 0x257778, Func Offset: 0x38
@@ -2125,8 +2113,8 @@ void bhDrawWeaponEffect2(O_WRK* op)
 // Start address: 0x257f20
 void bhEff230(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV* pEff230UvInfoTop[4];
+	EFF5UV* pInfo;
+	EFF5UV* pEff230UvInfoTop[4];
 	unsigned int ulEff230UvInfoMax[4];
 	// Line 3452, Address: 0x257f20, Func Offset: 0
 	// Line 3453, Address: 0x257f40, Func Offset: 0x20
@@ -2171,7 +2159,7 @@ void bhEff230(O_WRK* op)
 // Start address: 0x258160
 void bhEff231(O_WRK* op)
 {
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 3519, Address: 0x258160, Func Offset: 0
 	// Line 3523, Address: 0x25816c, Func Offset: 0xc
 	// Line 3524, Address: 0x25818c, Func Offset: 0x2c
@@ -2217,8 +2205,8 @@ void bhEff231(O_WRK* op)
 // Start address: 0x2582d0
 void bhEff232(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff232UvInfo[10][2];
+	EFF5UV* pInfo;
+	EFF5UV Eff232UvInfo[10][2];
 	// Line 3582, Address: 0x2582d0, Func Offset: 0
 	// Line 3585, Address: 0x2582f0, Func Offset: 0x20
 	// Line 3586, Address: 0x2582f8, Func Offset: 0x28
@@ -2256,8 +2244,8 @@ void bhEff232(O_WRK* op)
 // Start address: 0x258490
 void bhEff233(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff233UvInfo[4];
+	EFF5UV* pInfo;
+	EFF5UV Eff233UvInfo[4];
 	float fRight[3];
 	float fLeft[3];
 	// Line 3639, Address: 0x258490, Func Offset: 0
@@ -2315,9 +2303,9 @@ void bhEff233(O_WRK* op)
 // Start address: 0x258760
 void bhEff234(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff234UvInfo2[13];
-	//tagEFF5UV Eff234UvInfo1[6][2];
+	EFF5UV* pInfo;
+	EFF5UV Eff234UvInfo2[13];
+	EFF5UV Eff234UvInfo1[6][2];
 	// Line 3728, Address: 0x258760, Func Offset: 0
 	// Line 3743, Address: 0x258774, Func Offset: 0x14
 	// Line 3744, Address: 0x258794, Func Offset: 0x34
@@ -2437,11 +2425,11 @@ void bhEff235(O_WRK* op)
 // Start address: 0x258d60
 void bhEff236(O_WRK* op)
 {
-	//_anon3 Tmp;
+	NJS_POINT3 Tmp;
 	BH_PWORK* pp;
 	int lType;
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV* pEff236UvInfoTop[3];
+	EFF5UV* pInfo;
+	EFF5UV* pEff236UvInfoTop[3];
 	int lEff236UvInfoMax[3];
 	// Line 3917, Address: 0x258d60, Func Offset: 0
 	// Line 3941, Address: 0x258d88, Func Offset: 0x28
@@ -2559,8 +2547,8 @@ void bhDrawEff236(O_WRK* op)
 // Start address: 0x259290
 void bhEff237(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff237UvInfo[16];
+	EFF5UV* pInfo;
+	EFF5UV Eff237UvInfo[16];
 	// Line 4094, Address: 0x259290, Func Offset: 0
 	// Line 4105, Address: 0x25929c, Func Offset: 0xc
 	// Line 4106, Address: 0x2592bc, Func Offset: 0x2c
@@ -2632,7 +2620,7 @@ void bhEff238(O_WRK* op)
 {
 	O_WRK* opp;
 	int lNumber;
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 4201, Address: 0x259570, Func Offset: 0
 	// Line 4208, Address: 0x259580, Func Offset: 0x10
 	// Line 4209, Address: 0x2595a0, Func Offset: 0x30
@@ -2702,9 +2690,9 @@ void bhEff238(O_WRK* op)
 void bhEff239(O_WRK* op)
 {
 	int lAlpha;
-	//tagEFF5UV* pInfo;
+	EFF5UV* pInfo;
 	float fEff239Size[15];
-	//tagEFF5UV Eff239UvInfo[15];
+	EFF5UV Eff239UvInfo[15];
 	// Line 4304, Address: 0x259840, Func Offset: 0
 	// Line 4325, Address: 0x25984c, Func Offset: 0xc
 	// Line 4328, Address: 0x259860, Func Offset: 0x20
@@ -2781,8 +2769,8 @@ void bhEff240(O_WRK* op)
 	int ct;
 	int j;
 	int i;
-	//_anon3 vc1;
-	//_anon3 vc0;
+	NJS_POINT3 vc1;
+	NJS_POINT3 vc0;
 	// Line 4410, Address: 0x259b60, Func Offset: 0
 	// Line 4417, Address: 0x259b8c, Func Offset: 0x2c
 	// Line 4418, Address: 0x259bac, Func Offset: 0x4c
@@ -2859,7 +2847,7 @@ void bhEff240(O_WRK* op)
 void bhEff241(O_WRK* op)
 {
 	int lLoop;
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 4474, Address: 0x25a020, Func Offset: 0
 	// Line 4479, Address: 0x25a030, Func Offset: 0x10
 	// Line 4480, Address: 0x25a050, Func Offset: 0x30
@@ -2908,8 +2896,8 @@ void bhEff242(O_WRK* op)
 	float fChoak;
 	float fRadius;
 	float fScale;
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV* pEff242UvInfoTop[2];
+	EFF5UV* pInfo;
+	EFF5UV* pEff242UvInfoTop[2];
 	int lEff242UvInfoMax[2];
 	// Line 4520, Address: 0x25a150, Func Offset: 0
 	// Line 4548, Address: 0x25a174, Func Offset: 0x24
@@ -3042,11 +3030,11 @@ void bhEff242(O_WRK* op)
 // Start address: 0x25aa10
 void bhEff243(O_WRK* op)
 {
-	//_anon3 VecZ;
-	//_anon3 VecY;
+	NJS_POINT3 VecZ;
+	NJS_POINT3 VecY;
 	int lType;
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV* pEff243UvInfoTop[2];
+	EFF5UV* pInfo;
+	EFF5UV* pEff243UvInfoTop[2];
 	unsigned int ulColor[7];
 	// Line 4711, Address: 0x25aa10, Func Offset: 0
 	// Line 4730, Address: 0x25aa20, Func Offset: 0x10
@@ -3155,9 +3143,9 @@ void bhEff244(O_WRK* op)
 {
 	int lColor;
 	int lType;
-	//tagEFF5UV* pInfo;
+	EFF5UV* pInfo;
 	float fEff244Size[2];
-	//tagEFF5UV* pEff244UvInfoTop[2];
+	EFF5UV* pEff244UvInfoTop[2];
 	int lEff244UvInfoMax[2];
 	// Line 4885, Address: 0x25aed0, Func Offset: 0
 	// Line 4901, Address: 0x25aee4, Func Offset: 0x14
@@ -3210,7 +3198,7 @@ void bhEff245(O_WRK* op)
 {
 	int lNumber;
 	int lType;
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 4970, Address: 0x25b190, Func Offset: 0
 	// Line 4975, Address: 0x25b19c, Func Offset: 0xc
 	// Line 4976, Address: 0x25b1bc, Func Offset: 0x2c
@@ -3258,10 +3246,10 @@ void bhEff245(O_WRK* op)
 // Start address: 0x25b350
 void bhEff246(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff246UvInfo3[16];
-	//tagEFF5UV Eff246UvInfo2[12];
-	//tagEFF5UV Eff246UvInfo1[8];
+	EFF5UV* pInfo;
+	EFF5UV Eff246UvInfo3[16];
+	EFF5UV Eff246UvInfo2[12];
+	EFF5UV Eff246UvInfo1[8];
 	// Line 5041, Address: 0x25b350, Func Offset: 0
 	// Line 5063, Address: 0x25b364, Func Offset: 0x14
 	// Line 5066, Address: 0x25b384, Func Offset: 0x34
@@ -3409,7 +3397,7 @@ void bhEff246(O_WRK* op)
 void bhEff247(O_WRK* op)
 {
 	int lNumber;
-	//_anon10* pEffect;
+	EF_WORK* pEffect;
 	// Line 5275, Address: 0x25bdb0, Func Offset: 0
 	// Line 5280, Address: 0x25bdbc, Func Offset: 0xc
 	// Line 5281, Address: 0x25bddc, Func Offset: 0x2c
@@ -3451,8 +3439,8 @@ void bhEff248(O_WRK* op)
 	O_WRK* opp;
 	int lColor;
 	int lAlpha;
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff248UvInfo[16];
+	EFF5UV* pInfo;
+	EFF5UV Eff248UvInfo[16];
 	// Line 5318, Address: 0x25bee0, Func Offset: 0
 	// Line 5331, Address: 0x25bef8, Func Offset: 0x18
 	// Line 5333, Address: 0x25befc, Func Offset: 0x1c
@@ -3532,8 +3520,8 @@ void bhEff248(O_WRK* op)
 // Start address: 0x25c4d0
 void bhEff249(O_WRK* op)
 {
-	//tagEFF5UV* pInfo;
-	//tagEFF5UV Eff249UvInfo[16];
+	EFF5UV* pInfo;
+	EFF5UV Eff249UvInfo[16];
 	// Line 5454, Address: 0x25c4d0, Func Offset: 0
 	// Line 5465, Address: 0x25c4dc, Func Offset: 0xc
 	// Line 5466, Address: 0x25c4fc, Func Offset: 0x2c
@@ -3617,15 +3605,15 @@ void bhEff249(O_WRK* op)
 	scePrintf("bhEff249 - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x25c900
-tagEFF5SNOWRECT* CreateEff5SnowRect(int lSnowMax)
+EFF5SNOWRECT* CreateEff5SnowRect(int lSnowMax)
 {
 	int lCnt;
 	int lSnowRest;
-	_anon3* pVector;
-	tagEFF5SNOWGRP* pSnowGrp;
-	tagEFF5SNOWRECT* pSnow;
+	NJS_POINT3* pVector;
+	EFF5SNOWGRP* pSnowGrp;
+	EFF5SNOWRECT* pSnow;
 	// Line 5593, Address: 0x25c900, Func Offset: 0
 	// Line 5598, Address: 0x25c918, Func Offset: 0x18
 	// Line 5600, Address: 0x25c928, Func Offset: 0x28
@@ -3676,14 +3664,15 @@ tagEFF5SNOWRECT* CreateEff5SnowRect(int lSnowMax)
 	// Line 5705, Address: 0x25cb3c, Func Offset: 0x23c
 	// Line 5706, Address: 0x25cb40, Func Offset: 0x240
 	// Func End, Address: 0x25cb5c, Func Offset: 0x25c
+	scePrintf("CreateEff5SnowRect - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x25cb60
-void DeleteEff5SnowRect(tagEFF5SNOWRECT* pSnow)
+void DeleteEff5SnowRect(EFF5SNOWRECT* pSnow)
 {
 	int lGrpCnt;
-	tagEFF5SNOWGRP* pSnowGrp;
+	EFF5SNOWGRP* pSnowGrp;
 	// Line 5730, Address: 0x25cb60, Func Offset: 0
 	// Line 5733, Address: 0x25cb6c, Func Offset: 0xc
 	// Line 5736, Address: 0x25cb70, Func Offset: 0x10
@@ -3694,11 +3683,12 @@ void DeleteEff5SnowRect(tagEFF5SNOWRECT* pSnow)
 	// Line 5742, Address: 0x25cb94, Func Offset: 0x34
 	// Line 5747, Address: 0x25cb98, Func Offset: 0x38
 	// Func End, Address: 0x25cba0, Func Offset: 0x40
+	scePrintf("DeleteEff5SnowRect - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x25cba0
-void ExecEff5SnowRect(tagEFF5SNOWRECT* pSnow)
+void ExecEff5SnowRect(EFF5SNOWRECT* pSnow)
 {
 	float fSizeZ;
 	float fMaxZ;
@@ -3709,13 +3699,13 @@ void ExecEff5SnowRect(tagEFF5SNOWRECT* pSnow)
 	float fSizeX;
 	float fMaxX;
 	float fMinX;
-	_anon3 Vector;
-	_anon3* pVector;
-	_anon3* pPoint;
+	NJS_POINT3 Vector;
+	NJS_POINT3* pVector;
+	NJS_POINT3* pPoint;
 	int lDrawMax;
 	int lDrawCnt;
 	int lDrawRest;
-	tagEFF5SNOWGRP* pSnowGrp;
+	EFF5SNOWGRP* pSnowGrp;
 	// Line 5763, Address: 0x25cba0, Func Offset: 0
 	// Line 5774, Address: 0x25cbec, Func Offset: 0x4c
 	// Line 5778, Address: 0x25cbf8, Func Offset: 0x58
@@ -3756,22 +3746,23 @@ void ExecEff5SnowRect(tagEFF5SNOWRECT* pSnow)
 	// Line 5839, Address: 0x25ce90, Func Offset: 0x2f0
 	// Line 5869, Address: 0x25cea0, Func Offset: 0x300
 	// Func End, Address: 0x25cef0, Func Offset: 0x350
+	scePrintf("ExecEff5SnowRect - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x25cef0
 void DrawEff5SnowRect(O_WRK* op)
 {
-	_anon3 Vector;
+	NJS_POINT3 Vector;
 	int aAngleZ;
-	_anon2* pModel;
+	NJS_TEXTURE_VTX* pModel;
 	float Matrix[16];
-	_anon3* pPoint;
+	NJS_POINT3* pPoint;
 	int lDrawMax;
 	int lDrawCnt;
 	int lDrawRest;
-	tagEFF5SNOWGRP* pSnowGrp;
-	tagEFF5SNOWRECT* pSnow;
+	EFF5SNOWGRP* pSnowGrp;
+	EFF5SNOWRECT* pSnow;
 	// Line 5885, Address: 0x25cef0, Func Offset: 0
 	// Line 5901, Address: 0x25cf18, Func Offset: 0x28
 	// Line 5905, Address: 0x25cf20, Func Offset: 0x30
@@ -3822,11 +3813,12 @@ void DrawEff5SnowRect(O_WRK* op)
 	// Line 5984, Address: 0x25d170, Func Offset: 0x280
 	// Line 5987, Address: 0x25d178, Func Offset: 0x288
 	// Func End, Address: 0x25d1a4, Func Offset: 0x2b4
+	scePrintf("DrawEff5SnowRect - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x25d1b0
-void SetEff5SnowRectAreaCenter(tagEFF5SNOWRECT* pSnow, float fPointX, float fPointY, float fPointZ)
+void SetEff5SnowRectAreaCenter(EFF5SNOWRECT* pSnow, float fPointX, float fPointY, float fPointZ)
 {
 	// Line 6046, Address: 0x25d1b0, Func Offset: 0
 	// Line 6047, Address: 0x25d1b4, Func Offset: 0x4
@@ -3839,11 +3831,12 @@ void SetEff5SnowRectAreaCenter(tagEFF5SNOWRECT* pSnow, float fPointX, float fPoi
 	// Line 6056, Address: 0x25d218, Func Offset: 0x68
 	// Line 6057, Address: 0x25d228, Func Offset: 0x78
 	// Func End, Address: 0x25d230, Func Offset: 0x80
+	scePrintf("SetEff5SnowRectAreaCenter - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x25d230
-void SetEff5SnowRectAreaCenterAndSize(tagEFF5SNOWRECT* pSnow, float fCenterX, float fCenterY, float fCenterZ, float fSizeX, float fSizeY, float fSizeZ)
+void SetEff5SnowRectAreaCenterAndSize(EFF5SNOWRECT* pSnow, float fCenterX, float fCenterY, float fCenterZ, float fSizeX, float fSizeY, float fSizeZ)
 {
 	// Line 6094, Address: 0x25d230, Func Offset: 0
 	// Line 6084, Address: 0x25d238, Func Offset: 0x8
@@ -3863,11 +3856,12 @@ void SetEff5SnowRectAreaCenterAndSize(tagEFF5SNOWRECT* pSnow, float fCenterX, fl
 	// Line 6099, Address: 0x25d284, Func Offset: 0x54
 	// Line 6100, Address: 0x25d288, Func Offset: 0x58
 	// Func End, Address: 0x25d290, Func Offset: 0x60
+	scePrintf("SetEff5SnowRectAreaCenterAndSize - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x25d290
-void SetEff5SnowRectParticleMax(tagEFF5SNOWRECT* pSnow, int lSnowMax)
+void SetEff5SnowRectParticleMax(EFF5SNOWRECT* pSnow, int lSnowMax)
 {
 	// Line 6124, Address: 0x25d290, Func Offset: 0
 	// Line 6126, Address: 0x25d2a8, Func Offset: 0x18
@@ -3875,11 +3869,12 @@ void SetEff5SnowRectParticleMax(tagEFF5SNOWRECT* pSnow, int lSnowMax)
 	// Line 6132, Address: 0x25d2bc, Func Offset: 0x2c
 	// Line 6134, Address: 0x25d2c0, Func Offset: 0x30
 	// Func End, Address: 0x25d2c8, Func Offset: 0x38
+	scePrintf("SetEff5SnowRectParticleMax - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x25d2d0
-void MovEff5SnowRectParticleMax(tagEFF5SNOWRECT* pSnow, int lSnowMax, int lTimeMax)
+void MovEff5SnowRectParticleMax(EFF5SNOWRECT* pSnow, int lSnowMax, int lTimeMax)
 {
 	// Line 6156, Address: 0x25d2d0, Func Offset: 0
 	// Line 6158, Address: 0x25d2e8, Func Offset: 0x18
@@ -3890,16 +3885,17 @@ void MovEff5SnowRectParticleMax(tagEFF5SNOWRECT* pSnow, int lSnowMax, int lTimeM
 	// Line 6167, Address: 0x25d30c, Func Offset: 0x3c
 	// Line 6168, Address: 0x25d310, Func Offset: 0x40
 	// Func End, Address: 0x25d318, Func Offset: 0x48
+	scePrintf("MovEff5SnowRectParticleMax - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x25d320
-void ArrangeEff5SnowRectParticle(tagEFF5SNOWRECT* pSnow)
+void ArrangeEff5SnowRectParticle(EFF5SNOWRECT* pSnow)
 {
-	_anon3* pPoint;
+	NJS_POINT3* pPoint;
 	int lCnt;
 	int lGrpCnt;
-	tagEFF5SNOWGRP* pSnowGrp;
+	EFF5SNOWGRP* pSnowGrp;
 	// Line 6184, Address: 0x25d320, Func Offset: 0
 	// Line 6191, Address: 0x25d33c, Func Offset: 0x1c
 	// Line 6194, Address: 0x25d34c, Func Offset: 0x2c
@@ -3912,13 +3908,14 @@ void ArrangeEff5SnowRectParticle(tagEFF5SNOWRECT* pSnow)
 	// Line 6203, Address: 0x25d3f8, Func Offset: 0xd8
 	// Line 6204, Address: 0x25d408, Func Offset: 0xe8
 	// Func End, Address: 0x25d428, Func Offset: 0x108
+	scePrintf("ArrangeEff5SnowRectParticle - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x25d430
-void SetEff5SnowRectParticleTexture(tagEFF5SNOWRECT* pSnow, _anon1* pTexList, unsigned int ulTexNum, float fU0, float fV0, float fU1, float fV1, float fU2, float fV2, float fU3, float fV3)
+void SetEff5SnowRectParticleTexture(EFF5SNOWRECT* pSnow, NJS_TEXLIST* pTexList, unsigned int ulTexNum, float fU0, float fV0, float fU1, float fV1, float fU2, float fV2, float fU3, float fV3)
 {
-	_anon2* pTex;
+	NJS_TEXTURE_VTX* pTex;
 	// Line 6241, Address: 0x25d430, Func Offset: 0
 	// Line 6242, Address: 0x25d434, Func Offset: 0x4
 	// Line 6245, Address: 0x25d438, Func Offset: 0x8
@@ -3930,25 +3927,27 @@ void SetEff5SnowRectParticleTexture(tagEFF5SNOWRECT* pSnow, _anon1* pTexList, un
 	// Line 6251, Address: 0x25d450, Func Offset: 0x20
 	// Line 6253, Address: 0x25d454, Func Offset: 0x24
 	// Func End, Address: 0x25d45c, Func Offset: 0x2c
+	scePrintf("SetEff5SnowRectParticleTexture - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x25d460
-void SetEff5SnowRectParticleColor(tagEFF5SNOWRECT* pSnow, unsigned int ulColor0, unsigned int ulColor1, unsigned int ulColor2, unsigned int ulColor3)
+void SetEff5SnowRectParticleColor(EFF5SNOWRECT* pSnow, unsigned int ulColor0, unsigned int ulColor1, unsigned int ulColor2, unsigned int ulColor3)
 {
-	_anon2* pTex;
+	NJS_TEXTURE_VTX* pTex;
 	// Line 6282, Address: 0x25d460, Func Offset: 0
 	// Line 6283, Address: 0x25d464, Func Offset: 0x4
 	// Line 6284, Address: 0x25d468, Func Offset: 0x8
 	// Line 6286, Address: 0x25d46c, Func Offset: 0xc
 	// Func End, Address: 0x25d474, Func Offset: 0x14
+	scePrintf("SetEff5SnowRectParticleColor - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x25d480
-void SetEff5SnowRectParticleSize(tagEFF5SNOWRECT* pSnow, float fWidth, float fHeight)
+void SetEff5SnowRectParticleSize(EFF5SNOWRECT* pSnow, float fWidth, float fHeight)
 {
-	_anon2* pSnowModel;
+	NJS_TEXTURE_VTX* pSnowModel;
 	// Line 6311, Address: 0x25d480, Func Offset: 0
 	// Line 6312, Address: 0x25d498, Func Offset: 0x18
 	// Line 6313, Address: 0x25d4a0, Func Offset: 0x20
@@ -3960,11 +3959,12 @@ void SetEff5SnowRectParticleSize(tagEFF5SNOWRECT* pSnow, float fWidth, float fHe
 	// Line 6315, Address: 0x25d4c0, Func Offset: 0x40
 	// Line 6316, Address: 0x25d4cc, Func Offset: 0x4c
 	// Func End, Address: 0x25d4d4, Func Offset: 0x54
+	scePrintf("SetEff5SnowRectParticleSize - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x25d4e0
-_anon3* GetEff5SnowRectCurrentWindVector(_anon3* pVector)
+NJS_VECTOR* GetEff5SnowRectCurrentWindVector(NJS_VECTOR* pVector)
 {
 	// Line 6334, Address: 0x25d4e0, Func Offset: 0
 	// Line 6335, Address: 0x25d4ec, Func Offset: 0xc
@@ -3976,4 +3976,5 @@ _anon3* GetEff5SnowRectCurrentWindVector(_anon3* pVector)
 	// Line 6337, Address: 0x25d568, Func Offset: 0x88
 	// Line 6340, Address: 0x25d580, Func Offset: 0xa0
 	// Func End, Address: 0x25d590, Func Offset: 0xb0
-}*/
+	scePrintf("GetEff5SnowRectCurrentWindVector - UNIMPLEMENTED!\n");
+}

@@ -4306,66 +4306,107 @@ void bhEff249(O_WRK* op)
 	scePrintf("bhEff249 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x25c900
+// 94.57% matching (matches on NGC)
 EFF5SNOWRECT* CreateEff5SnowRect(int lSnowMax)
 {
-	int lCnt;
-	int lSnowRest;
-	NJS_POINT3* pVector;
-	EFF5SNOWGRP* pSnowGrp;
-	EFF5SNOWRECT* pSnow;
-	// Line 5593, Address: 0x25c900, Func Offset: 0
-	// Line 5598, Address: 0x25c918, Func Offset: 0x18
-	// Line 5600, Address: 0x25c928, Func Offset: 0x28
-	// Line 5605, Address: 0x25c930, Func Offset: 0x30
-	// Line 5610, Address: 0x25c934, Func Offset: 0x34
-	// Line 5613, Address: 0x25c940, Func Offset: 0x40
-	// Line 5616, Address: 0x25c950, Func Offset: 0x50
-	// Line 5617, Address: 0x25c958, Func Offset: 0x58
-	// Line 5618, Address: 0x25c960, Func Offset: 0x60
-	// Line 5619, Address: 0x25c964, Func Offset: 0x64
-	// Line 5620, Address: 0x25c968, Func Offset: 0x68
-	// Line 5633, Address: 0x25c96c, Func Offset: 0x6c
-	// Line 5636, Address: 0x25c97c, Func Offset: 0x7c
-	// Line 5640, Address: 0x25c98c, Func Offset: 0x8c
-	// Line 5642, Address: 0x25c990, Func Offset: 0x90
-	// Line 5646, Address: 0x25c994, Func Offset: 0x94
-	// Line 5648, Address: 0x25c998, Func Offset: 0x98
-	// Line 5647, Address: 0x25c99c, Func Offset: 0x9c
-	// Line 5648, Address: 0x25c9a0, Func Offset: 0xa0
-	// Line 5651, Address: 0x25c9a8, Func Offset: 0xa8
-	// Line 5654, Address: 0x25c9b4, Func Offset: 0xb4
-	// Line 5656, Address: 0x25c9c0, Func Offset: 0xc0
-	// Line 5657, Address: 0x25c9c8, Func Offset: 0xc8
-	// Line 5661, Address: 0x25c9d0, Func Offset: 0xd0
-	// Line 5664, Address: 0x25c9d8, Func Offset: 0xd8
-	// Line 5665, Address: 0x25c9f0, Func Offset: 0xf0
-	// Line 5669, Address: 0x25c9f8, Func Offset: 0xf8
-	// Line 5670, Address: 0x25c9fc, Func Offset: 0xfc
-	// Line 5668, Address: 0x25ca00, Func Offset: 0x100
-	// Line 5670, Address: 0x25ca04, Func Offset: 0x104
-	// Line 5669, Address: 0x25ca08, Func Offset: 0x108
-	// Line 5670, Address: 0x25ca0c, Func Offset: 0x10c
-	// Line 5674, Address: 0x25ca18, Func Offset: 0x118
-	// Line 5677, Address: 0x25ca24, Func Offset: 0x124
-	// Line 5679, Address: 0x25ca30, Func Offset: 0x130
-	// Line 5680, Address: 0x25ca38, Func Offset: 0x138
-	// Line 5684, Address: 0x25ca40, Func Offset: 0x140
-	// Line 5687, Address: 0x25ca48, Func Offset: 0x148
-	// Line 5688, Address: 0x25ca4c, Func Offset: 0x14c
-	// Line 5690, Address: 0x25ca50, Func Offset: 0x150
-	// Line 5691, Address: 0x25ca98, Func Offset: 0x198
-	// Line 5692, Address: 0x25cad0, Func Offset: 0x1d0
-	// Line 5694, Address: 0x25caf8, Func Offset: 0x1f8
-	// Line 5692, Address: 0x25cafc, Func Offset: 0x1fc
-	// Line 5694, Address: 0x25cb20, Func Offset: 0x220
-	// Line 5697, Address: 0x25cb28, Func Offset: 0x228
-	// Line 5700, Address: 0x25cb34, Func Offset: 0x234
-	// Line 5705, Address: 0x25cb3c, Func Offset: 0x23c
-	// Line 5706, Address: 0x25cb40, Func Offset: 0x240
-	// Func End, Address: 0x25cb5c, Func Offset: 0x25c
-	scePrintf("CreateEff5SnowRect - UNIMPLEMENTED!\n");
+    EFF5SNOWRECT* pSnow;
+    EFF5SNOWGRP* pSnowGrp;
+    NJS_POINT3* pVector;
+    int lSnowRest, lCnt;
+    
+    if ((pSnow = (EFF5SNOWRECT*)bhSetExtraEffectWork()) == NULL) 
+    {
+        return NULL;
+    }
+    
+    pSnow->ulFrame = 0;
+    
+    pSnow->AreaCenter.x = pSnow->AreaCenter.y = pSnow->AreaCenter.z = 0.0f;
+    
+    pSnow->fAreaSizeX = pSnow->fAreaSizeY = pSnow->fAreaSizeZ = 1.0f;
+    
+    pSnow->fAreaMinX = -0.5f;
+    pSnow->fAreaMaxX = 0.5f;
+    
+    pSnow->fAreaMinY = -0.5f;
+    pSnow->fAreaMaxY = 0.5f;
+    
+    pSnow->fAreaMinZ = -0.5f;
+    pSnow->fAreaMaxZ = 0.5f;
+    
+    if (lSnowMax <= 0)
+    {
+        return NULL;
+    }
+    
+    if (lSnowMax > 2000) 
+    {
+        lSnowMax = 2000;
+    }
+    
+    pSnow->lSnowTotalMax = lSnowMax;
+    
+    pSnow->pSnowVector = NULL;
+    
+    pSnowGrp = (EFF5SNOWGRP*)&pSnow->SnowGrp;
+    
+    pSnow->lSnowGrpMax = 0;
+    
+    for (lSnowRest = lSnowMax; lSnowRest > 0; lSnowRest -= 100) 
+    {
+        pSnowGrp->pPointTop = (NJS_POINT3*)bhSetExtraEffectWork();
+        
+        if (pSnowGrp->pPointTop == NULL) 
+        {
+            DeleteEff5SnowRect(pSnow);
+            
+            return NULL;
+        }
+        
+        pSnowGrp->pPointTop = (NJS_POINT3*)((int)pSnowGrp->pPointTop + 4);
+        
+        if (lSnowRest >= 100) 
+        {
+            pSnowGrp->lPointMax = 100;
+        }
+        else 
+        {
+            pSnowGrp->lPointMax = lSnowRest;
+        }
+        
+        pSnowGrp++;
+        pSnow->lSnowGrpMax++;
+    } 
+    
+    pSnow->pSnowVector = (NJS_POINT3*)bhSetExtraEffectWork();
+    
+    if (pSnow->pSnowVector == NULL) 
+    {
+        DeleteEff5SnowRect(pSnow);
+        
+        return NULL;
+    }
+    
+    pSnow->pSnowVector = (NJS_POINT3*)((int)pSnow->pSnowVector + 4);
+    
+    pVector = pSnow->pSnowVector; 
+    
+    for (lCnt = 100; lCnt != 0; lCnt--)
+    {
+        pVector->x = (0.1f  * (-rand() / -2.1474836E9f)) - 0.05f;
+        pVector->y = -(0.1f * (-rand() / -2.1474836E9f));
+        pVector->z = (0.1f  * (-rand() / -2.1474836E9f)) - 0.05f;
+        
+        pVector++;
+    } 
+    
+    pSnow->lSnowExistNext = lSnowMax;
+    pSnow->lSnowExistCrnt = lSnowMax;
+    pSnow->lSnowExistPrev = lSnowMax;
+    
+    pSnow->lSnowTimerCnt = pSnow->lSnowTimerMax = 0;
+    
+    return pSnow;
 }
 
 // 100% matching!

@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/effsub5.h"
 #include "../../../ps2/veronica/prog/effsub6.h"
+#include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
@@ -4432,68 +4433,104 @@ void DeleteEff5SnowRect(EFF5SNOWRECT* pSnow)
     pSnow->flg = 0;
 }
 
-// 
-// Start address: 0x25cba0
-void ExecEff5SnowRect(EFF5SNOWRECT* pSnow)
+#pragma divbyzerocheck on 
+
+// 100% matching!
+void ExecEff5SnowRect(EFF5SNOWRECT* pSnow) 
 {
-	float fSizeZ;
-	float fMaxZ;
-	float fMinZ;
-	float fSizeY;
-	float fMaxY;
-	float fMinY;
-	float fSizeX;
-	float fMaxX;
-	float fMinX;
-	NJS_POINT3 Vector;
-	NJS_POINT3* pVector;
-	NJS_POINT3* pPoint;
-	int lDrawMax;
-	int lDrawCnt;
-	int lDrawRest;
-	EFF5SNOWGRP* pSnowGrp;
-	// Line 5763, Address: 0x25cba0, Func Offset: 0
-	// Line 5774, Address: 0x25cbec, Func Offset: 0x4c
-	// Line 5778, Address: 0x25cbf8, Func Offset: 0x58
-	// Line 5780, Address: 0x25cc08, Func Offset: 0x68
-	// Line 5781, Address: 0x25cc14, Func Offset: 0x74
-	// Line 5783, Address: 0x25cc24, Func Offset: 0x84
-	// Line 5784, Address: 0x25cc28, Func Offset: 0x88
-	// Line 5787, Address: 0x25cc30, Func Offset: 0x90
-	// Line 5793, Address: 0x25cc58, Func Offset: 0xb8
-	// Line 5796, Address: 0x25cc64, Func Offset: 0xc4
-	// Line 5812, Address: 0x25cc84, Func Offset: 0xe4
-	// Line 5799, Address: 0x25cc88, Func Offset: 0xe8
-	// Line 5800, Address: 0x25cc8c, Func Offset: 0xec
-	// Line 5801, Address: 0x25cc90, Func Offset: 0xf0
-	// Line 5802, Address: 0x25cc94, Func Offset: 0xf4
-	// Line 5803, Address: 0x25cc98, Func Offset: 0xf8
-	// Line 5804, Address: 0x25cc9c, Func Offset: 0xfc
-	// Line 5805, Address: 0x25cca0, Func Offset: 0x100
-	// Line 5806, Address: 0x25cca4, Func Offset: 0x104
-	// Line 5807, Address: 0x25cca8, Func Offset: 0x108
-	// Line 5812, Address: 0x25ccac, Func Offset: 0x10c
-	// Line 5815, Address: 0x25ccb4, Func Offset: 0x114
-	// Line 5817, Address: 0x25ccc0, Func Offset: 0x120
-	// Line 5818, Address: 0x25ccc4, Func Offset: 0x124
-	// Line 5819, Address: 0x25ccc8, Func Offset: 0x128
-	// Line 5822, Address: 0x25ccd0, Func Offset: 0x130
-	// Line 5823, Address: 0x25cce8, Func Offset: 0x148
-	// Line 5824, Address: 0x25cd00, Func Offset: 0x160
-	// Line 5827, Address: 0x25cd18, Func Offset: 0x178
-	// Line 5828, Address: 0x25cd58, Func Offset: 0x1b8
-	// Line 5829, Address: 0x25cd90, Func Offset: 0x1f0
-	// Line 5830, Address: 0x25cdd0, Func Offset: 0x230
-	// Line 5831, Address: 0x25ce08, Func Offset: 0x268
-	// Line 5832, Address: 0x25ce48, Func Offset: 0x2a8
-	// Line 5836, Address: 0x25ce80, Func Offset: 0x2e0
-	// Line 5834, Address: 0x25ce84, Func Offset: 0x2e4
-	// Line 5836, Address: 0x25ce88, Func Offset: 0x2e8
-	// Line 5839, Address: 0x25ce90, Func Offset: 0x2f0
-	// Line 5869, Address: 0x25cea0, Func Offset: 0x300
-	// Func End, Address: 0x25cef0, Func Offset: 0x350
-	scePrintf("ExecEff5SnowRect - UNIMPLEMENTED!\n");
+    EFF5SNOWGRP* pSnowGrp;
+    int lDrawRest, lDrawCnt, lDrawMax;         
+    NJS_POINT3* pPoint;  
+    NJS_VECTOR* pVector;  
+    NJS_VECTOR Vector;    
+    float fMinX, fMaxX, fSizeX;           
+    float fMinY, fMaxY, fSizeY;          
+    float fMinZ, fMaxZ, fSizeZ;          
+   
+    pSnow->ulFrame++;
+    
+    if (pSnow->lSnowExistCrnt != pSnow->lSnowExistNext)
+    {
+        pSnow->lSnowTimerCnt++;
+        
+        if (pSnow->lSnowTimerCnt == pSnow->lSnowTimerMax) 
+        {
+            pSnow->lSnowExistCrnt = pSnow->lSnowExistNext;
+        } 
+        else 
+        {
+            pSnow->lSnowExistCrnt = pSnow->lSnowExistPrev + ((pSnow->lSnowTimerCnt * (pSnow->lSnowExistNext - pSnow->lSnowExistPrev)) / pSnow->lSnowTimerMax);
+        }
+    }
+    
+    GetEff5SnowRectCurrentWindVector(pSnow, &Vector);
+    
+    Vector.y -= 0.33f;
+    
+    fSizeX = pSnow->fAreaSizeX;
+    fSizeY = pSnow->fAreaSizeY;
+    fSizeZ = pSnow->fAreaSizeZ;
+    
+    fMinX = pSnow->fAreaMinX;
+    fMaxX = pSnow->fAreaMaxX;
+    
+    fMinY = pSnow->fAreaMinY;
+    fMaxY = pSnow->fAreaMaxY;
+    
+    fMinZ = pSnow->fAreaMinZ;
+    fMaxZ = pSnow->fAreaMaxZ;
+    
+    pSnowGrp = pSnow->SnowGrp;
+    
+    for (lDrawRest = pSnow->lSnowExistCrnt; lDrawRest != 0; lDrawRest -= lDrawMax) 
+    {
+        lDrawMax = (lDrawRest > pSnowGrp->lPointMax) ? pSnowGrp->lPointMax : lDrawRest;
+        
+        pVector = pSnow->pSnowVector;
+        pPoint  = pSnowGrp->pPointTop;
+                
+        for (lDrawCnt = lDrawMax; lDrawCnt != 0; lDrawCnt--) 
+        {
+            pPoint->x += Vector.x + pVector->x; 
+            pPoint->y += Vector.y + pVector->y;
+            pPoint->z += Vector.z + pVector->z;
+            
+            if (pPoint->x < fMinX) 
+            {
+                pPoint->x = fMaxX - (fSizeX * njFraction((fMinX - pPoint->x) / fSizeX));
+            }
+            else if (fMaxX < pPoint->x)
+            {
+                pPoint->x = fMinX + (fSizeX * njFraction((pPoint->x - fMaxX) / fSizeX));
+            }
+            
+            if (pPoint->y < fMinY) 
+            {
+                pPoint->y = fMaxY - (fSizeY * njFraction((fMinY - pPoint->y) / fSizeY));
+            }
+            else if (fMaxY < pPoint->y)
+            {
+                pPoint->y = fMinY + (fSizeY * njFraction((pPoint->y - fMaxY) / fSizeY));
+            }
+            
+            if (pPoint->z < fMinZ) 
+            {
+                pPoint->z = fMaxZ - (fSizeZ * njFraction((fMinZ - pPoint->z) / fSizeZ));
+            }
+            else if (fMaxZ < pPoint->z) 
+            {
+                pPoint->z = fMinZ + (fSizeZ * njFraction((pPoint->z - fMaxZ) / fSizeZ));
+            }
+            
+            pVector++;
+            pPoint++;
+        } 
+        
+        pSnowGrp++;
+    }
 }
+
+#pragma divbyzerocheck off
 
 // 
 // Start address: 0x25cef0

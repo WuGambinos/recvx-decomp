@@ -3,29 +3,51 @@
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 
 static unsigned int owk_scn_noG;
-/*_anon9 Tex5uv[9];
-_anon2 PtclDat00[2];
-_anon2 PtclDat01[2];
-_anon2 PtclDat02[2];
-_anon2 PtclDat03[1];
-_anon2 PtclDat04[2];
-_anon2 PtclDat05[2];
-_anon2 PtclDat06[2];
-_anon2 PtclDat07[2];
-_anon2 PtclDat08[1];
-_anon2 PtclDat09[2];
-_anon2 PtclDat10[1];
-_anon2 PtclDat11[1];
-_anon2 PtclDat12[2];
-_anon2 PtclDat13[2];
-_anon2 PtclDat14[1];
-_anon2 PtclDat15[2];
-_anon2 PtclDat16[2];
-_anon2 PtclDat17[1];
-_anon2 PtclDat18[1];
-_anon34 PtclTbl[19];
-void(*FuncTbl)(O_WRK*)[4];
-_anon7 Eff302Prm[20];*/
+
+static void (*FuncTbl[4])(O_WRK* oP) = 
+{
+	NULL,
+	bhEff_PtclSpriteDrawB,
+	bhEff_PtclLineDraw,
+	NULL
+};
+
+EFF302PRM_WORK Eff302Prm[20] = 
+{
+    { 1.0f, -0.08f,  20.0f, 0.5f, 0.5f,  0.025f, 16, {  0,  2,  4,  6,  8, 10 }, { 0.0f, -0.03266667, 0.0f } },
+    { 0.4f,   0.0f,  45.0f, 1.0f, 1.0f,  0.025f, 20, {  0,  1,  8,  9, 16, 17 }, { 0.0f, -0.06533334, 0.0f } },
+    { 1.2f, -0.08f,  10.0f, 0.5f, 0.5f,  0.025f, 16, {  0,  0,  0,  0,  0,  0 }, { 0.0f, -0.03266667, 0.0f } },
+    { 1.0f, -0.05f,  60.0f, 0.5f, 0.5f,  0.025f, 24, {  0,  0,  0,  0,  0,  0 }, { 0.0f, -0.03266667, 0.0f } },
+    { 0.4f,   0.0f,  45.0f, 1.0f, 1.0f,  0.025f, 20, { -1, -1,  0,  0,  1,  1 }, { 0.0f, -0.06533334, 0.0f } },
+    { 0.5f, -0.05f,  55.0f, 0.1f, 0.8f,   0.01f,  5, { -1, -1, -1, -1, -1,  0 }, { 0.0f, -0.03266667, 0.0f } },
+    { 0.6f, -0.05f,  50.0f, 0.1f, 0.8f,   0.02f,  7, { -1, -1, -1, -1, -1,  0 }, { 0.0f, -0.03266667, 0.0f } },
+    { 0.7f, -0.05f,  45.0f, 0.1f, 0.8f,   0.03f,  9, { -1, -1, -1, -1, -1,  0 }, { 0.0f, -0.03266667, 0.0f } },
+    { 1.0f, -0.01f,  20.0f, 0.1f, 0.8f,   0.03f, 12, { -1, -1, -1, -1,  0,  1 }, { 0.0f, -0.03266667, 0.0f } },
+    { 0.8f, -0.05f,  20.0f, 0.5f, 0.5f,  0.025f, 12, { -1, -1, -1, -1,  0,  0 }, { 0.0f, -0.03266667, 0.0f } },
+    { 0.3f,   0.0f, 360.0f, 1.0f, 1.0f,  0.025f, 16, {  0,  0,  0,  0,  0,  0 }, { 0.0f, -0.03266667, 0.0f } },
+    { 0.3f,   0.0f,  45.0f, 0.0f, 1.0f,  0.025f,  7, { -1, -1, -1, -1, -1,  0 }, { 0.0f, -0.03266667, 0.0f } },
+    { 0.2f,   0.0f, 360.0f, 1.0f, 1.0f,  0.025f, 12, {  0,  0,  0,  0,  0,  0 }, { 0.0f, -0.03266667, 0.0f } },
+    { 0.3f,   0.0f, 180.0f, 0.5f, 0.5f,  0.025f, 16, {  0,  2,  4,  6,  8, 10 }, { 0.0f, -0.03266667, 0.0f } },
+    { 1.0f, -0.08f, 360.0f, 1.0f, 1.0f,  0.035f,  9, {  0,  0,  2,  2,  5,  5 }, { 0.0f, -0.03266667, 0.0f } },
+    { 0.4f,   0.0f, 150.0f, 1.0f, 1.0f,   0.04f, 16, {  0,  0,  2,  2,  5,  5 }, { 0.0f, -0.03266667, 0.0f } },
+    { 0.4f, -0.02f,  60.0f, 1.0f, 1.0f,   0.04f, 10, { -1,  0,  0,  0,  1,  1 }, { 0.0f, -0.016333334,0.0f } },
+    { 0.5f, -0.04f,  45.0f, 1.0f, 1.0f,  0.045f, 10, {  0,  0,  1,  2,  3,  5 }, { 0.0f, -0.06533334, 0.0f } },
+    { 0.8f, -0.05f,  60.0f, 0.5f, 1.0f,   0.05f, 12, {  0,  0,  1,  1,  2,  3 }, { 0.0f, -0.098000005,0.0f } },
+    { 0.4f,   0.0f,  60.0f, 0.5f, 0.5f, 0.0055f, 40, { -1, -1,  0,  0,  1,  1 }, { 0.0f, -0.02f,      0.0f } }
+};
+
+static const UV_WORK Tex5uv[9] = 
+{
+    { 0.09375f, 0.15625f, 0.12500f, 0.12500f },   
+    { 0.46875f, 0.00000f, 0.15625f, 0.15625f },   
+    { 0.37500f, 0.15625f, 0.15625f, 0.15625f },   
+    { 0.00000f, 0.00000f, 0.15625f, 0.15625f },   
+    { 0.00000f, 0.15625f, 0.09375f, 0.09375f },   
+    { 0.21875f, 0.15625f, 0.15625f, 0.15625f },   
+    { 0.65625f, 0.84375f, 0.12500f, 0.15625f },   
+    { 0.81250f, 0.59375f, 0.18750f, 0.18750f },   
+    { 0.78125f, 0.78125f, 0.21875f, 0.21875f }   
+};
 
 // 100% matching!
 static O_WRK* AllocOwork()
@@ -194,24 +216,27 @@ void bhEff300(O_WRK* oP)
 	BH_PWORK* ewP;
 	NJS_POINT3 pos;
 	int pnt;
-	//_anon6* tvP;
+	NJS_TEXTURE_VTX* tvP;
 	NJS_POINT3 add;
 	float spd;
 	int srt_no;
 	int i;
-	//_anon6* tvP;
+	//NJS_TEXTURE_VTX* tvP;
 	NJS_POINT3* addP;
 	//float spd;
 	int tmp;
 	int ang;
 	//int i;
 	NJS_POINT3* spdP;
-	//_anon6* tvP;
+	//NJS_TEXTURE_VTX* tvP;
 	//int ang;
 	//float spd;
 	NJS_POINT3 center;
 	//_anon60* e17P;
-	int VtxTbl[16];
+	static const int VtxTbl[16] = 
+	{
+		0, 1, 3, 5, 7, 9, 11, 13, 15, 14, 12, 10, 8, 6, 4, 2
+	};
 	// Line 404, Address: 0x246be0, Func Offset: 0
 	// Line 409, Address: 0x246c0c, Func Offset: 0x2c
 	// Line 418, Address: 0x246c14, Func Offset: 0x34
@@ -321,7 +346,7 @@ void bhEff300(O_WRK* oP)
 // Start address: 0x247140
 void bhEff301(O_WRK* oP)
 {
-	//_anon9* uvP;
+	UV_WORK* uvP;
 	float siz_y;
 	float siz_x;
 	//float siz_y;
@@ -335,9 +360,21 @@ void bhEff301(O_WRK* oP)
 	//int ay;
 	int ax;
 	//_anon36* htP;
-	//_anon67* prmP;
-	unsigned char AnmTbl[2][4];
-	//_anon67 Eff301Prm[7];
+	Eff301PRM_WORK* prmP;
+	static const Eff301PRM_WORK Eff301Prm[7] = 
+	{
+		{ 0xFFC0C0C0, 30.0f,  90.0f },
+		{ 0xFFC0C0C0, 30.0f,  90.0f },
+		{ 0xFFC0C0C0, 30.0f,  60.0f },
+		{ 0xFFC0C0C0, 50.0f,  60.0f },
+		{ 0xFFC0C0C0, 50.0f,  30.0f },
+		{ 0xFFC0C0C0, 50.0f,  30.0f },
+		{ 0xFFC0C0C0, 50.0f, 270.0f }
+	};
+	static const unsigned char AnmTbl[4][2] = 
+	{
+		{ 3, 6 }, { 4, 7 }, { 5, 8 }, { 3, 6 }
+	};
 	// Line 556, Address: 0x247140, Func Offset: 0
 	// Line 585, Address: 0x247164, Func Offset: 0x24
 	// Line 587, Address: 0x247180, Func Offset: 0x40
@@ -602,6 +639,106 @@ void bhEff301(O_WRK* oP)
 	scePrintf("bhEff301 - UNIMPLEMENTED!\n");
 }
 
+static const PD_WORK PtclDat00[2] = 
+{ 
+	{ 0, 255, 1 }, { 0, 224, 1 } 
+};
+static const PD_WORK PtclDat01[2] = 
+{ 
+	{ 1, 255, 1 }, { 1, 224, 1 } 
+};
+static const PD_WORK PtclDat02[2] = 
+{ 
+	{ 2, 255, 1 }, { 3, 224, 1 } 
+};
+static const PD_WORK PtclDat03[1] = 
+{ 
+	{ 4, 255, 1 } 
+};
+static const PD_WORK PtclDat04[2] = 
+{ 
+	{ 5, 255, 2 }, { 11, 128, 1 } 
+};
+static const PD_WORK PtclDat05[2] = 
+{ 
+	{ 6, 255, 2 }, { 11, 128, 1 } 
+};
+static const PD_WORK PtclDat06[2] = 
+{ 
+	{ 7, 255, 2 }, { 11, 128, 1 } 
+};
+static const PD_WORK PtclDat07[2] = 
+{ 
+	{ 8, 255, 2 }, { 11, 128, 1 } 
+};
+static const PD_WORK PtclDat08[1] = 
+{ 
+	{ 9, 255, 1 } 
+};
+static const PD_WORK PtclDat09[2] = 
+{ 
+	{ 10, 255, 1 }, { 10, 224, 1 } 
+};
+static const PD_WORK PtclDat10[1] = 
+{ 
+	{ 12, 255, 1 } 
+};
+static const PD_WORK PtclDat11[1] = 
+{ 
+	{ 13, 255, 1 } 
+};
+static const PD_WORK PtclDat12[2] = 
+{ 
+	{ 14, 255, 1 }, { 14, 160, 1 } 
+};
+static const PD_WORK PtclDat13[2] = 
+{ 
+	{ 15, 255, 1 }, { 15, 160, 1 } 
+};
+static const PD_WORK PtclDat14[1] = 
+{ 
+	{ 16, 255, 1 } 
+};
+static const PD_WORK PtclDat15[2] = 
+{ 
+	{ 17, 255, 1 }, { 17, 160, 1 } 
+};
+static const PD_WORK PtclDat16[2] = 
+{ 
+	{ 18, 255, 1 }, { 18, 160, 1 } 
+};
+static const PD_WORK PtclDat17[1] = 
+{ 
+	{ 0, 255, 1 } 
+};
+static const PD_WORK PtclDat18[1] = 
+{ 
+	{ 19, 255, 1 } 
+};
+
+static const PT_WORK PtclTbl[19] = 
+{
+    { 2, PtclDat00 },
+    { 2, PtclDat01 },
+    { 2, PtclDat02 },
+    { 1, PtclDat03 },
+    { 2, PtclDat04 },
+    { 2, PtclDat05 },
+    { 2, PtclDat06 },
+    { 2, PtclDat07 },
+    { 1, PtclDat08 },
+    { 2, PtclDat09 },
+    { 1, PtclDat10 },
+    { 1, PtclDat11 },
+    { 2, PtclDat12 },
+    { 2, PtclDat13 },
+    { 1, PtclDat14 },
+    { 2, PtclDat15 },
+    { 2, PtclDat16 },
+    { 1, PtclDat17 },
+    { 1, PtclDat18 }
+};
+
 // 
 // Start address: 0x248090
 O_WRK* bhSetEffParticle(BH_PWORK* ewP, int lnk_no, NJS_POINT3* offP, NJS_POINT3* dirP, unsigned int color, int typ_no)
@@ -611,8 +748,8 @@ O_WRK* bhSetEffParticle(BH_PWORK* ewP, int lnk_no, NJS_POINT3* offP, NJS_POINT3*
 	//_anon18* e02aP;
 	int set_no;
 	O_WRK* oP;
-	//_anon2* pdP;
-	//_anon34* ptP;
+	PD_WORK* pdP;
+	PT_WORK* ptP;
 	// Line 967, Address: 0x248090, Func Offset: 0
 	// Line 968, Address: 0x2480ac, Func Offset: 0x1c
 	// Line 967, Address: 0x2480b0, Func Offset: 0x20
@@ -684,8 +821,8 @@ O_WRK* bhSetEffParticleMk2(BH_PWORK* ewP, int lnk_no, NJS_POINT3* offP, NJS_POIN
 	//_anon18* e02aP;
 	int set_no;
 	O_WRK* oP;
-	//_anon2* pdP;
-	//_anon34* ptP;
+	PD_WORK* pdP;
+	PT_WORK* ptP;
 	// Line 1054, Address: 0x248310, Func Offset: 0
 	// Line 1059, Address: 0x24832c, Func Offset: 0x1c
 	// Line 1054, Address: 0x248330, Func Offset: 0x20
@@ -943,7 +1080,7 @@ void bhEff302(O_WRK* oP)
 
 // 
 // Start address: 0x248db0
-void bhEff_PtclSpriteDrawB(O_WRK* oP)
+static void bhEff_PtclSpriteDrawB(O_WRK* oP)
 {
 	NJS_POINT3* bufP;
 	float scl;
@@ -979,7 +1116,7 @@ void bhEff_PtclSpriteDrawB(O_WRK* oP)
 
 // 
 // Start address: 0x248ef0
-void bhEff_PtclLineDraw(O_WRK* oP)
+static void bhEff_PtclLineDraw(O_WRK* oP)
 {
 	float* pntP;
 	float scl;
@@ -1054,10 +1191,20 @@ void bhEff_PtclLineDraw(O_WRK* oP)
 // Start address: 0x249100
 void bhEff303(O_WRK* oP)
 {
-	//_anon40* prmP;
+	PRM_WORK* prmP;
 	DSP_WORK* dspP;
 	ANM_WORK* anmP;
-	//_anon40 PrmTbl[8];
+	static const PRM_WORK PrmTbl[8] =
+	{
+		{ 3, 0xC0C0C0C0, 0.01f,  -1 },
+		{ 4, 0xC0C0C0C0, 0.02f,  -1 },
+		{ 5, 0xC0C0C0C0, 0.04f,  -1 },
+		{ 3, 0xC0C0C0C0, 0.08f,  -1 },
+		{ 3, 0xC0F0F0F0, 0.75f, 228 },
+		{ 4, 0xC0808080, 0.75f, 198 },
+		{ 5, 0xC0C0C0C0, 0.75f, 208 },
+		{ 3, 0xC0808080, 0.75f, 160 }
+	};
 	// Line 1557, Address: 0x249100, Func Offset: 0
 	// Line 1581, Address: 0x249118, Func Offset: 0x18
 	// Line 1571, Address: 0x249120, Func Offset: 0x20
@@ -1133,10 +1280,14 @@ void bhEff303(O_WRK* oP)
 
 // 
 // Start address: 0x249440
-int bhCheckCamWall2D(NJS_POINT3* srcP, NJS_POINT3* vctP, NJS_POINT3* rtnP, float rng_x, float rng_y)
+static int bhCheckCamWall2D(NJS_POINT3* srcP, NJS_POINT3* vctP, NJS_POINT3* rtnP, float rng_x, float rng_y)
 {
-	//_anon73 lne;
-	//_anon73 pln;
+	NJS_LINE lne;
+	static const NJS_PLANE pln = 
+	{
+		0.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f
+	};
 	// Line 1663, Address: 0x249440, Func Offset: 0
 	// Line 1671, Address: 0x24945c, Func Offset: 0x1c
 	// Line 1672, Address: 0x24947c, Func Offset: 0x3c
@@ -1299,8 +1450,8 @@ void bhEff304(O_WRK* oP)
 void bhEff305(O_WRK* oP)
 {
 	unsigned int col;
-	//_anon6* tvP;
-	//_anon9* uvP;
+	NJS_TEXTURE_VTX* tvP;
+	UV_WORK* uvP;
 	float sp;
 	int ay;
 	float spd;
@@ -1308,9 +1459,25 @@ void bhEff305(O_WRK* oP)
 	//int ay;
 	float dst;
 	NJS_POINT3 vct;
-	//_anon47* prmP;
-	//_anon9 Tex2uv[8];
-	//_anon47 Eff305Prm[4];
+	Eff305PRM_WORK* prmP;
+	static const Eff305PRM_WORK Eff305Prm[4] = 
+	{
+		{ 0x70F0C080, 0.1f, -0.01f, 16, 1.5f, 1.5f, 3.0f },
+		{ 0x70F0C080, 0.1f, -0.01f, 20, 1.5f, 2.0f, 3.0f },
+		{ 0x70F0C080, 0.1f, -0.01f, 24, 1.5f, 2.5f, 3.5f },
+		{ 0x70F0C080, 0.1f, -0.01f, 28, 1.5f, 3.0f, 3.5f }
+	};
+	static const UV_WORK Tex2uv[8] = 
+	{
+		{ 0.12500000f, 0.00000000f, 0.12109375f, 0.12109375f }, 
+		{ 0.25000000f, 0.00000000f, 0.12109375f, 0.12109375f }, 
+		{ 0.37500000f, 0.00000000f, 0.12109375f, 0.12109375f }, 
+		{ 0.50000000f, 0.00000000f, 0.12109375f, 0.12109375f }, 
+		{ 0.62500000f, 0.00000000f, 0.12109375f, 0.12109375f }, 
+		{ 0.75000000f, 0.00000000f, 0.12109375f, 0.12109375f }, 
+		{ 0.87500000f, 0.00000000f, 0.12109375f, 0.12109375f }, 
+		{ 0.87500000f, 0.00000000f, 0.12109375f, 0.12109375f } 
+	};
 	// Line 1872, Address: 0x249a40, Func Offset: 0
 	// Line 1892, Address: 0x249a5c, Func Offset: 0x1c
 	// Line 1895, Address: 0x249a7c, Func Offset: 0x3c
@@ -1404,16 +1571,60 @@ void bhEff305(O_WRK* oP)
 void bhEff306(O_WRK* oP)
 {
 	unsigned int col;
-	//_anon6* tvP;
-	//_anon9* uvP;
+	NJS_TEXTURE_VTX* tvP;
+	UV_WORK* uvP;
 	float dst;
 	NJS_POINT3 vct;
 	float rnd;
 	float dst_scl;
-	//_anon57* prmP;
-	int ColTbl[4];
-	//_anon9* TexTab[10];
-	//_anon57 Eff306Prm[8];
+	Eff306PRM_WORK* prmP;
+	static const int ColTbl[4] = 
+	{
+		0xFFF0F0F0, 0xFF808080, 0xFFD0D0D0, 0xFFC0C0C0
+	};
+	static const UV_WORK Tex8uv[10] = 
+	{
+		{    0.0f,    0.0f, 0.18359375f, 0.18359375f },
+		{ 0.1875f,    0.0f, 0.18359375f, 0.18359375f },
+		{  0.375f,    0.0f, 0.18359375f, 0.18359375f },
+		{ 0.5625f,    0.0f, 0.18359375f, 0.18359375f },
+		{   0.75f,    0.0f, 0.18359375f, 0.18359375f },
+		{    0.0f, 0.1875f, 0.18359375f, 0.18359375f },
+		{ 0.1875f, 0.1875f, 0.18359375f, 0.18359375f },
+		{  0.375f, 0.1875f, 0.18359375f, 0.18359375f },
+		{ 0.5625f, 0.1875f, 0.18359375f, 0.18359375f },
+		{   0.75f, 0.1875f, 0.18359375f, 0.18359375f }
+	};
+	static const UV_WORK Tex9uv[10] = 
+	{
+		{  0.0f,  0.0f, 0.24609375f, 0.24609375f },
+		{ 0.25f,  0.0f, 0.24609375f, 0.24609375f },
+		{  0.5f,  0.0f, 0.24609375f, 0.24609375f },
+		{ 0.75f,  0.0f, 0.24609375f, 0.24609375f },
+		{  0.0f, 0.25f, 0.24609375f, 0.24609375f },
+		{ 0.25f, 0.25f, 0.24609375f, 0.24609375f },
+		{  0.5f, 0.25f, 0.24609375f, 0.24609375f },
+		{ 0.75f, 0.25f, 0.24609375f, 0.24609375f },
+		{  0.0f,  0.5f, 0.24609375f, 0.24609375f },
+		{ 0.25f,  0.5f, 0.24609375f, 0.24609375f }
+	};
+	static UV_WORK* TexTab[10] = 
+	{
+		NULL, NULL, NULL, NULL, 
+		NULL, NULL, NULL, NULL, 
+		Tex8uv, Tex9uv
+	};
+	static const Eff306PRM_WORK Eff306Prm[8] = 
+	{
+		{ 8, 0,  4,  32, 3.0f, 0.2f, 1.5f },
+		{ 8, 0,  4,  48, 3.0f, 0.2f, 1.5f },
+		{ 8, 2,  8,  64, 3.0f, 0.3f, 2.0f },
+		{ 8, 2,  8,  80, 3.0f, 0.3f, 2.0f },
+		{ 8, 1, 16,  96, 3.0f, 0.5f, 2.5f },
+		{ 8, 1, 16, 112, 3.0f, 0.5f, 2.5f },
+		{ 8, 0,  4,  48, 3.0f, 0.2f, 1.0f },
+		{ 8, 0,  4,  32, 3.0f, 0.2f, 1.0f }
+	};
 	// Line 2014, Address: 0x249eb0, Func Offset: 0
 	// Line 2073, Address: 0x249ec4, Func Offset: 0x14
 	// Line 2076, Address: 0x249f08, Func Offset: 0x58
@@ -1673,7 +1884,13 @@ void bhSetEffGunSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, 
 {
 	//_anon16* pmbP;
 	OR_WORK* orP;
-	//_anon12 Eff308Prm[4];
+	static const Eff308PRM_WORK Eff308Prm[4] = 
+	{
+		{  8,                0.5f, 0.9800000190734863f, 1.0f,  5, 55.0f, 0.800000011920929f, 4, -0.03266666829586029f },
+		{ 10, 0.6000000238418579f, 0.9800000190734863f, 2.0f,  7, 50.0f, 0.800000011920929f, 4, -0.03266666829586029f },
+		{ 12,  0.699999988079071f, 0.9800000190734863f, 3.0f,  9, 45.0f, 0.800000011920929f, 4, -0.03266666829586029f },
+		{ 12,                1.0f, 0.9800000190734863f, 3.0f, 12, 20.0f, 0.800000011920929f, 4, -0.03266666829586029f }
+	};
 	// Line 2394, Address: 0x24aa40, Func Offset: 0
 	// Line 2406, Address: 0x24aa44, Func Offset: 0x4
 	// Line 2394, Address: 0x24aa4c, Func Offset: 0xc
@@ -1699,7 +1916,11 @@ void bhSetEffSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, uns
 	//_anon30* lP;
 	//_anon16* pmbP;
 	OR_WORK* orP;
-	//_anon12 Eff308Prm[2];
+	static const Eff308PRM_WORK Eff308Prm[2] = 
+	{
+		{ 16,  1.0f, 0.9800000190734863f, 4.0f, 16, 120.0f, 1.899999976158142f, 16, -0.09800000488758087f },
+		{ 16, 0.75f, 0.9800000190734863f, 4.0f, 16, 180.0f, 1.899999976158142f, 16, -0.09800000488758087f }
+	};
 	// Line 2421, Address: 0x24ab00, Func Offset: 0
 	// Line 2431, Address: 0x24ab04, Func Offset: 0x4
 	// Line 2421, Address: 0x24ab08, Func Offset: 0x8
@@ -1909,7 +2130,7 @@ void bhEff308Drw(OR_WORK* orP)
 
 // 
 // Start address: 0x24b370
-int ryLinerColor(int src_col, int dst_col, float rate)
+static int ryLinerColor(int src_col, int dst_col, float rate)
 {
 	int col;
 	int tmp;
@@ -1953,7 +2174,15 @@ OR_WORK* rySetEffBlood(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, int
 	int mode;
 	//_anon50* pmbP;
 	OR_WORK* orP;
-	//_anon71 Eff309Prm[6];
+	static const Eff309PRM_WORK Eff309Prm[6] = 
+	{
+		{  0.5f, 0.98f, 4.0f,   1.0f, { 0, 0, 2,  5, -1, -1, -1, -1 }, 55.0f, 0.8f, 0xFFFFFFFF, 0xC0FFFFFF, -0.032666668f, 0 },
+		{  0.5f, 0.98f, 2.0f,   1.1f, { 0, 0, 0,  1,  1,  2, -1, -1 }, 60.0f, 0.8f, 0xFFFFFFFF, 0xC0FFFFFF, -0.032666668f, 0 },
+		{ 0.75f, 0.75f, 1.5f, 1.125f, { 0, 1, 2,  5,  6,  7, -1, -1 }, 45.0f, 0.8f, 0xFFFFFFFF, 0xC0FFFFFF, -0.032666668f, 0 },
+		{  0.5f, 0.98f, 4.0f,   1.0f, { 0, 2, 5, -1, -1, -1, -1, -1 }, 55.0f, 0.8f, 0xFFFFFFFF, 0xC0FFFFFF, -0.032666668f, 2 },
+		{  0.5f, 0.98f, 2.0f,   1.1f, { 0, 0, 1,  1,  2, -1, -1, -1 }, 60.0f, 0.8f, 0xFFFFFFFF, 0xC0FFFFFF, -0.032666668f, 2 },
+		{ 0.75f, 0.75f, 1.5f, 1.125f, { 0, 1, 5,  6,  7, -1, -1, -1 }, 45.0f, 0.8f, 0xFFFFFFFF, 0xC0FFFFFF, -0.032666668f, 2 }
+	};
 	// Line 2665, Address: 0x24b440, Func Offset: 0
 	// Line 2697, Address: 0x24b454, Func Offset: 0x14
 	// Line 2665, Address: 0x24b458, Func Offset: 0x18
@@ -1992,7 +2221,21 @@ void bhEff309(OR_WORK* orP)
 	//int i;
 	//_anon50* pmbP;
 	//_anon56* r09P;
-	//_anon9 Tex5Buv[12];
+	static const UV_WORK Tex5Buv[12] = 
+	{
+		{ 0.1875f, 0.4375f, 0.12109375f, 0.12109375f },
+		{ 0.0625f, 0.4375f, 0.12109375f, 0.12109375f },
+		{ 0.8125f, 0.3125f, 0.12109375f, 0.12109375f },
+		{ 0.6875f, 0.3125f, 0.12109375f, 0.12109375f },
+		{ 0.5625f, 0.3125f, 0.12109375f, 0.12109375f },
+		{ 0.4375f, 0.3125f, 0.12109375f, 0.12109375f },
+		{ 0.3125f, 0.3125f, 0.12109375f, 0.12109375f },
+		{ 0.1875f, 0.3125f, 0.12109375f, 0.12109375f },
+		{ 0.4375f, 0.3125f, 0.12109375f, 0.12109375f },
+		{ 0.3125f, 0.3125f, 0.12109375f, 0.12109375f },
+		{ 0.1875f, 0.3125f, 0.12109375f, 0.12109375f },
+		{ 0.0625f, 0.3125f, 0.12109375f, 0.12109375f }
+	};
 	// Line 2724, Address: 0x24b550, Func Offset: 0
 	// Line 2748, Address: 0x24b57c, Func Offset: 0x2c
 	// Line 2744, Address: 0x24b580, Func Offset: 0x30
@@ -2090,7 +2333,7 @@ void bhEff309Drw(OR_WORK* orP)
 
 // 
 // Start address: 0x24b9b0
-void ryRapTexDrw(NJS_TEXLIST* texP, int tex_id, rap_tex_typ* rtP)
+static void ryRapTexDrw(NJS_TEXLIST* texP, int tex_id, rap_tex_typ* rtP)
 {
 	NJS_POINT3 scl;
 	// Line 2881, Address: 0x24b9b0, Func Offset: 0
@@ -2118,11 +2361,11 @@ void ryRapTexDrw(NJS_TEXLIST* texP, int tex_id, rap_tex_typ* rtP)
 
 // 
 // Start address: 0x24ba70
-int ryRapTexAnm(ANM_WORK* anmP, DSP_WORK* dspP, int bol)
+static int ryRapTexAnm(ANM_WORK* anmP, DSP_WORK* dspP, int bol)
 {
 	unsigned int col;
 	float* tvP;
-	//_anon9* uvP;
+	UV_WORK* uvP;
 	int anm_no;
 	// Line 2921, Address: 0x24ba70, Func Offset: 0
 	// Line 2923, Address: 0x24ba74, Func Offset: 0x4
@@ -2151,7 +2394,7 @@ int ryRapTexAnm(ANM_WORK* anmP, DSP_WORK* dspP, int bol)
 
 // 
 // Start address: 0x24bb40
-void ryRapDspSet(NJS_POINT3* posP, DSP_WORK* dspP, float scl)
+static void ryRapDspSet(NJS_POINT3* posP, DSP_WORK* dspP, float scl)
 {
 	float* vbP;
 	// Line 2967, Address: 0x24bb40, Func Offset: 0
@@ -2176,7 +2419,7 @@ void ryRapDspSet(NJS_POINT3* posP, DSP_WORK* dspP, float scl)
 
 // 
 // Start address: 0x24bba0
-void ryRapAnmColSet(ANM_WORK* anmP, int src_col, int dst_col, int col_cnt)
+static void ryRapAnmColSet(ANM_WORK* anmP, int src_col, int dst_col, int col_cnt)
 {
 	unsigned int* subP;
 	unsigned int* addP;
@@ -2262,7 +2505,15 @@ OR_WORK* rySetEffBlood2(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, in
 	int mode;
 	//_anon38* pmbP;
 	OR_WORK* orP;
-	//_anon41 Eff30bPrm[6];
+	EFF30bPRM_WORK Eff30bPrm[6] = 
+	{
+		{ 0.25f, 0.5f, 0.8f, 15.0f, 0.02f, 16, 0xF0802000, 0xF0400000, -0.03266667f,  56, 16, 0.96f },
+		{  0.4f, 1.0f, 0.9f, 25.0f, 0.05f, 16, 0xF0802000, 0xF0400000, -0.03266667f,  56, 16, 0.96f },
+		{  0.4f, 4.0f, 0.8f, 40.0f, 0.05f, 16, 0xF0802000, 0xF0400000, -0.03266667f, 448,  0, 0.98f },
+		{  1.0f, 2.0f, 0.8f, 20.0f,  0.1f,  8, 0xF0004030, 0xF0404020, -0.03266667f,  56, 16,  0.9f },
+		{  1.5f, 3.0f, 0.8f, 20.0f, 0.08f, 12, 0xF0004030, 0xF0404020, -0.03266667f,  56, 16, 0.98f },
+		{  2.0f, 4.0f, 0.8f, 30.0f, 0.06f, 16, 0xF0104030, 0xF0404020, -0.03266667f,  56, 16, 0.99f }
+	};
 	// Line 3121, Address: 0x24bf40, Func Offset: 0
 	// Line 3141, Address: 0x24bf60, Func Offset: 0x20
 	// Line 3121, Address: 0x24bf70, Func Offset: 0x30
@@ -2375,14 +2626,20 @@ void bhEff30b(OR_WORK* orP)
 
 // 
 // Start address: 0x24c600
-void bhEff30bDrw(OR_WORK* orP)
+static void bhEff30bDrw(OR_WORK* orP)
 {
 	float scl;
 	//_eff30b_vtx_buf_typ* vbP;
 	int num;
 	//_anon25* vtxP;
 	//_anon19* r0bP;
-	//_anon6 VtxBuf[4];
+	static NJS_TEXTURE_VTX VtxBuf[4] = 
+	{
+		{ -1.0f,  1.0f, 0.0f, 0.0f, 0.0f, 0x00000000 },
+		{ -1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0x00000000 },
+		{  1.0f,  1.0f, 0.0f, 1.0f, 0.0f, 0x00000000 },
+		{  1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 0x00000000 }
+	};
 	// Line 3316, Address: 0x24c600, Func Offset: 0
 	// Line 3317, Address: 0x24c618, Func Offset: 0x18
 	// Line 3324, Address: 0x24c61c, Func Offset: 0x1c
@@ -2432,7 +2689,7 @@ void bhEff30c(OR_WORK* orP)
 
 // 
 // Start address: 0x24c840
-void bhEff30cDrw(OR_WORK* orP)
+static void bhEff30cDrw(OR_WORK* orP)
 {
 	//_anon61* r0cP;
 	// Line 3431, Address: 0x24c840, Func Offset: 0

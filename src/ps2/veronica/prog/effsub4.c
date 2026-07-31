@@ -1,15 +1,6 @@
 #include "../../../ps2/veronica/prog/effsub4.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-/*void(*bhEff_PtclSpriteDraw)(O_WRK*);
-O_WRK eff[0];
-void(*bhEff_LineDraw)(O_WRK*);
-_anon7* sys;
-BH_PWORK* plp;
-_anon35 cam;
-void(*bhEff_3DSpriteDraw)(O_WRK*);
-void(*bhEff_ModelDraw)(O_WRK*);*/
-
 // 
 // Start address: 0x24c8a0
 void bhEff_SetPtcl(BH_PWORK* epw, NJS_POINT3* pos, int tex_id)
@@ -39,7 +30,10 @@ void bhEff_SetPtcl1(BH_PWORK* epw, NJS_POINT3* pos, int tex_id, int wcnt)
 	//_anon41 ps;
 	O_WRK* op;
 	//_anon6* effect;
-	float eff_tbl[2];
+	static float eff_tbl[2] = 
+	{
+		0.200000003f, 1.5f
+	};
 	// Line 140, Address: 0x24c930, Func Offset: 0
 	// Line 149, Address: 0x24c94c, Func Offset: 0x1c
 	// Line 155, Address: 0x24c960, Func Offset: 0x30
@@ -112,7 +106,10 @@ void bhEff_SetPtcl2(NJS_POINT3* pos, float mtx[16])
 	//_anon9* effect;
 	O_WRK* op;
 	//_anon41 ps;
-	float eff_tbl[2];
+	static float eff_tbl[2] = 
+	{
+		1.0f, 2.0f
+	};
 	// Line 232, Address: 0x24cb70, Func Offset: 0
 	// Line 241, Address: 0x24cb9c, Func Offset: 0x2c
 	// Line 247, Address: 0x24cba8, Func Offset: 0x38
@@ -183,7 +180,10 @@ void bhEff_SetPtcl2V(NJS_POINT3* pos, NJS_POINT3* dv, int wcnt)
 	//_anon9* effect;
 	O_WRK* op;
 	//_anon41 ps;
-	float eff_tbl[2];
+	static float eff_tbl[2] = 
+	{
+		1.0f, 2.0f
+	};
 	// Line 328, Address: 0x24cdb0, Func Offset: 0
 	// Line 337, Address: 0x24cddc, Func Offset: 0x2c
 	// Line 343, Address: 0x24cdec, Func Offset: 0x3c
@@ -238,7 +238,7 @@ void bhEff_SetPtcl2V(NJS_POINT3* pos, NJS_POINT3* dv, int wcnt)
 
 // 
 // Start address: 0x24cfd0
-void bhEff_SetBlood5(NJS_POINT3* pos, NJS_POINT3* vec, float size, int col)
+static void bhEff_SetBlood5(NJS_POINT3* pos, NJS_POINT3* vec, float size, int col)
 {
 	int tmp;
 	// Line 513, Address: 0x24cfd0, Func Offset: 0
@@ -280,8 +280,43 @@ void bhEff_Sub350(O_WRK* op)
 	float wk0;
 	NJS_POINT3 p2;
 	NJS_POINT3 p1;
-	//_anon31 uvinfo[11];
-	//_anon4* anim_tbl[2];
+	static UV_WORK uvinfo[11] = 
+	{
+		{   0.0f,  96.0f,  16.0f,  16.0f },
+		{   0.0f, 112.0f,  16.0f,  16.0f },
+		{   0.0f, 128.0f,  16.0f,  16.0f },
+		{   0.0f, 144.0f,  16.0f,  16.0f },
+		{  16.0f,  96.0f,  24.0f,  24.0f },
+		{  16.0f, 120.0f,  24.0f,  24.0f },
+		{  40.0f,  96.0f,  32.0f,  32.0f },
+		{  72.0f,  96.0f,  32.0f,  32.0f },
+		{ 104.0f,  96.0f,  32.0f,  32.0f },
+		{  40.0f, 128.0f,  32.0f,  32.0f },
+		{  72.0f, 128.0f,  32.0f,  32.0f }
+	};
+	static EFF_ANIM anim00_tbl[9] = 
+	{
+		{  0,  1 },
+		{  1,  1 },
+		{  2,  1 },
+		{  3,  1 },
+		{  4,  1 },
+		{  5,  1 },
+		{  6,  1 },
+		{  7,  1 },
+		{ -2,  6 }   
+	};
+	static EFF_ANIM anim01_tbl[4] = 
+	{
+		{  8,  1 },
+		{  9,  1 },
+		{ 10,  1 },
+		{ -1,  0 }   
+	};
+	static EFF_ANIM* anim_tbl[2] = 
+	{
+		anim00_tbl, anim01_tbl
+	};
 	// Line 559, Address: 0x24d1c0, Func Offset: 0
 	// Line 596, Address: 0x24d1e4, Func Offset: 0x24
 	// Line 599, Address: 0x24d21c, Func Offset: 0x5c
@@ -437,8 +472,30 @@ void bhEff_Sub350(O_WRK* op)
 // Start address: 0x24da30
 void bhEff_Sub351(O_WRK* op)
 {
-	//_anon31 uvinfo[14];
-	//_anon4 anim00_tbl[15];
+	static UV_WORK uvinfo[14] =
+	{
+		{  24.0f,  80.0f,  16.0f,  16.0f },
+		{   0.0f,  48.0f,  24.0f,  24.0f },
+		{   0.0f,  72.0f,  24.0f,  24.0f },
+		{  24.0f,  48.0f,  32.0f,  32.0f },
+		{  56.0f,  48.0f,  32.0f,  32.0f },
+		{  88.0f,  48.0f,  40.0f,  40.0f },
+		{ 128.0f,  48.0f,  40.0f,  40.0f },
+		{   0.0f,   0.0f,  48.0f,  48.0f },
+		{  48.0f,   0.0f,  48.0f,  48.0f },
+		{  96.0f,   0.0f,  48.0f,  48.0f },
+		{ 144.0f,   0.0f,  48.0f,  48.0f },
+		{ 192.0f,   0.0f,  48.0f,  48.0f },
+		{ 168.0f,  48.0f,  40.0f,  40.0f },
+		{ 208.0f,  48.0f,  40.0f,  40.0f }
+	};
+	static EFF_ANIM anim00_tbl[15] = 
+	{
+		{  0,  1 }, {  1,  1 }, {  2,  1 }, {  3,  1 },
+		{  4,  1 }, {  5,  1 }, {  6,  1 }, {  7,  1 },
+		{  8,  1 }, {  9,  1 }, { 10,  1 }, { 11,  1 },
+		{ 12,  1 }, { 13,  1 }, { -1,  0 }
+	};
 	// Line 797, Address: 0x24da30, Func Offset: 0
 	// Line 826, Address: 0x24da38, Func Offset: 0x8
 	// Line 829, Address: 0x24da64, Func Offset: 0x34
@@ -487,8 +544,29 @@ void bhEff_Sub352(O_WRK* op)
 	//_anon11* owk;
 	NJS_POINT3 p2;
 	NJS_POINT3 p1;
-	//_anon31 uvinfo[10];
-	//_anon4* anim_tbl[1];
+	static UV_WORK uvinfo[10] = 
+	{
+		{   0.0f,   0.0f,  48.0f,  48.0f },
+		{  48.0f,   0.0f,  48.0f,  48.0f },
+		{  96.0f,   0.0f,  48.0f,  48.0f },
+		{ 144.0f,   0.0f,  48.0f,  48.0f },
+		{ 192.0f,   0.0f,  48.0f,  48.0f },
+		{   0.0f,  48.0f,  48.0f,  48.0f },
+		{  48.0f,  48.0f,  48.0f,  48.0f },
+		{  96.0f,  48.0f,  48.0f,  48.0f },
+		{ 144.0f,  48.0f,  48.0f,  48.0f },
+		{ 192.0f,  48.0f,  48.0f,  48.0f }
+	};
+	static EFF_ANIM anim00_tbl[11] = 
+	{
+		{  0,  1 }, {  1,  1 }, {  2,  1 }, {  3,  1 },
+		{  4,  1 }, {  5,  1 }, {  6,  1 }, {  7,  1 },
+		{  8,  1 }, {  9,  1 }, { -2,  0 }    
+	};
+	static EFF_ANIM *anim_tbl[1] = 
+	{
+		anim00_tbl
+	};
 	// Line 898, Address: 0x24dbc0, Func Offset: 0
 	// Line 926, Address: 0x24dbe0, Func Offset: 0x20
 	// Line 929, Address: 0x24dbf8, Func Offset: 0x38
@@ -609,7 +687,10 @@ void bhEff_Sub352(O_WRK* op)
 // Start address: 0x24e050
 void bhEff_Sub353(O_WRK* op)
 {
-	//_anon31 uvinfo[1];
+	static UV_WORK uvinfo[1] = 
+	{
+		0.0f,   0.0f, 128.0f, 128.0f
+	};
 	// Line 1108, Address: 0x24e050, Func Offset: 0
 	// Line 1111, Address: 0x24e094, Func Offset: 0x44
 	// Line 1113, Address: 0x24e0a0, Func Offset: 0x50
@@ -696,9 +777,69 @@ void bhEff_Sub354(O_WRK* op)
 	NJS_POINT3 p1;
 	NJS_POINT3 ofs;
 	//_anon11* owk;
-	unsigned int argb_tbl[2];
-	//_anon31 uvinfo[29];
-	//_anon4* anim_tbl[4];
+	static UV_WORK uvinfo[29] = 
+	{
+		{   0.0f,   0.0f,  40.0f,  40.0f },
+		{  40.0f,   0.0f,  40.0f,  40.0f },
+		{  80.0f,   0.0f,  40.0f,  40.0f },
+		{ 120.0f,   0.0f,  40.0f,  40.0f },
+		{ 160.0f,   0.0f,  40.0f,  40.0f },
+		{ 200.0f,   0.0f,  40.0f,  40.0f },
+		{   0.0f,  40.0f,  40.0f,  40.0f },
+		{  40.0f,  40.0f,  40.0f,  40.0f },
+		{  80.0f,  40.0f,  40.0f,  40.0f },
+		{ 120.0f,  40.0f,  40.0f,  40.0f },
+		{ 160.0f,  40.0f,  40.0f,  40.0f },
+		{ 200.0f,  40.0f,  40.0f,  40.0f },
+		{   0.0f,  96.0f,  40.0f,  24.0f },
+		{  40.0f,  96.0f,  40.0f,  24.0f },
+		{  80.0f,  96.0f,  40.0f,  24.0f },
+		{ 120.0f,  96.0f,  40.0f,  24.0f },
+		{ 160.0f,  96.0f,  40.0f,  24.0f },
+		{ 200.0f,  96.0f,  40.0f,  24.0f },
+		{   0.0f, 128.0f,  40.0f,  40.0f },
+		{  40.0f, 128.0f,  40.0f,  40.0f },
+		{  80.0f, 128.0f,  40.0f,  40.0f },
+		{ 120.0f, 128.0f,  40.0f,  40.0f },
+		{ 160.0f, 128.0f,  40.0f,  40.0f },
+		{ 200.0f, 128.0f,  40.0f,  40.0f },
+		{   0.0f, 176.0f,  48.0f,  48.0f },
+		{  48.0f, 176.0f,  48.0f,  48.0f },
+		{  96.0f, 176.0f,  48.0f,  48.0f },
+		{ 144.0f, 176.0f,  48.0f,  48.0f },
+		{ 192.0f, 176.0f,  48.0f,  48.0f }
+	};
+	static EFF_ANIM anim00_tbl[17] = 
+	{
+		{  0,  1 }, {  1,  1 }, {  2,  1 }, {  3,  1 },
+		{  4,  1 }, {  5,  1 }, {  6,  1 }, {  7,  1 },
+		{  8,  1 }, {  9,  1 }, { 10,  1 }, { 11,  1 },
+		{ 11,  1 }, { 11,  1 }, { 11,  1 }, { 11,  1 },
+		{ -1,  0 }
+	};
+	static EFF_ANIM anim01_tbl[7] = 
+	{
+		{ 12,  1 }, { 13,  1 }, { 14,  1 }, { 15,  1 },
+		{ 16,  1 }, { 17,  1 }, { -1,  0 }
+	};
+	static EFF_ANIM anim02_tbl[7] = 
+	{
+		{ 18,  1 }, { 19,  1 }, { 20,  1 }, { 21,  1 },
+		{ 22,  1 }, { 23,  1 }, { -1,  0 }
+	};
+	static EFF_ANIM anim03_tbl[6] = 
+	{ 
+		{ 24,  1 }, { 25,  1 }, { 26,  1 }, { 27,  1 },
+		{ 28,  1 }, { -1,  0 }
+	};
+	static EFF_ANIM *anim_tbl[4] = 
+	{
+		anim00_tbl, anim01_tbl, anim02_tbl, anim03_tbl
+	};
+	unsigned int argb_tbl[2] = 
+	{
+		0xC0FFFFFF, 0x20FFFFFF
+	};
 	// Line 1226, Address: 0x24e410, Func Offset: 0
 	// Line 1295, Address: 0x24e428, Func Offset: 0x18
 	// Line 1226, Address: 0x24e42c, Func Offset: 0x1c
@@ -872,8 +1013,55 @@ void bhEff_Sub357()
 // Start address: 0x24eab0
 void bhEff_Sub360(O_WRK* op)
 {
-	//_anon4* anim_tbl[2];
-	//_anon31* blood_uvinfo[2];
+	static UV_WORK bl00_uvinfo[17] = 
+	{
+		{  0.0f,    0.0f,   8.0f,   8.0f },
+		{  0.0f,    8.0f,  16.0f,  16.0f },
+		{  0.0f,   24.0f,  16.0f,  16.0f },
+		{  16.0f,  24.0f,  24.0f,  24.0f },
+		{  16.0f,   0.0f,  24.0f,  24.0f },
+		{  40.0f,   0.0f,  32.0f,  32.0f },
+		{  72.0f,   0.0f,  32.0f,  32.0f },
+		{ 104.0f,   0.0f,  40.0f,  40.0f },
+		{ 144.0f,   0.0f,  40.0f,  40.0f },
+		{ 184.0f,   0.0f,  48.0f,  48.0f },
+		{   0.0f,  48.0f,  48.0f,  48.0f },
+		{  48.0f,  48.0f,  56.0f,  56.0f },
+		{ 104.0f,  48.0f,  56.0f,  56.0f },
+		{ 160.0f,  48.0f,  56.0f,  56.0f },
+		{   0.0f, 104.0f,  56.0f,  56.0f },
+		{  56.0f, 104.0f,  56.0f,  56.0f },
+		{ 112.0f, 104.0f,  56.0f,  56.0f }
+	};
+	static UV_WORK bl01_uvinfo[5] = 
+	{
+		{  40.0f,  32.0f,   8.0f,   8.0f },
+		{  40.0f,  40.0f,  16.0f,  16.0f },
+		{  48.0f,  32.0f,  16.0f,  16.0f },
+		{  64.0f,  32.0f,  16.0f,  16.0f },
+		{  80.0f,  32.0f,  16.0f,  16.0f }
+	};
+	static EFF_ANIM blanim00_tbl[19] = 
+	{
+		{  0,  1 }, {  1,  1 }, {  2,  1 }, {  3,  1 },
+		{  4,  1 }, {  5,  1 }, {  6,  1 }, {  7,  1 },
+		{  8,  1 }, {  9,  1 }, { 10,  1 }, { 11,  1 },
+		{ 12,  1 }, { 13,  1 }, { 14,  1 }, { 15,  1 },
+		{ 16,  1 }, { 17,  1 }, { -1,  0 }
+	};
+	static EFF_ANIM blanim01_tbl[7] = 
+	{
+		{  0,  1 }, {  1,  1 }, {  2,  1 }, {  3,  1 },
+		{  4,  1 }, {  5,  1 }, { -1,  0 }
+	};
+	UV_WORK* blood_uvinfo[2] = 
+	{
+		bl00_uvinfo, bl01_uvinfo
+	};
+	EFF_ANIM* anim_tbl[2] = 
+	{ 
+		blanim00_tbl, blanim01_tbl 
+	};
 	// Line 1598, Address: 0x24eab0, Func Offset: 0
 	// Line 1637, Address: 0x24eab4, Func Offset: 0x4
 	// Line 1598, Address: 0x24eabc, Func Offset: 0xc
@@ -916,8 +1104,49 @@ void bhEff_Sub360(O_WRK* op)
 // Start address: 0x24ebe0
 void bhEff_Sub361(O_WRK* op)
 {
-	//_anon4* anim_tbl[2];
-	//_anon31* blood_uvinfo[2];
+	static UV_WORK bl00_uvinfo[8] = 
+	{
+		{   0.0f,  88.0f,  48.0f,  48.0f },
+		{  48.0f,  88.0f,  48.0f,  48.0f },
+		{  96.0f,  88.0f,  48.0f,  48.0f },
+		{ 144.0f,  88.0f,  48.0f,  48.0f },
+		{ 192.0f,  88.0f,  48.0f,  48.0f },
+		{   0.0f, 136.0f,  48.0f,  48.0f },
+		{  48.0f, 136.0f,  48.0f,  48.0f },
+		{  96.0f, 136.0f,  48.0f,  48.0f }
+	};
+	static UV_WORK bl01_uvinfo[9] = 
+	{
+		{  24.0f,  32.0f,  16.0f,  16.0f },
+		{  24.0f,  48.0f,  16.0f,  16.0f },
+		{  40.0f,  48.0f,  24.0f,  24.0f },
+		{  40.0f,  72.0f,  32.0f,  32.0f },
+		{   0.0f, 104.0f,  40.0f,  40.0f },
+		{  40.0f, 104.0f,  40.0f,  40.0f },
+		{  80.0f, 104.0f,  40.0f,  40.0f },
+		{   0.0f, 144.0f,  40.0f,  40.0f },
+		{  40.0f, 144.0f,  40.0f,  40.0f }
+	};
+	static EFF_ANIM blanim00_tbl[9] = 
+	{
+		{  0,  1 }, {  1,  1 }, {  2,  1 }, {  3,  1 },
+		{  4,  1 }, {  5,  1 }, {  6,  1 }, {  7,  1 },
+		{ -1,  0 }  
+	};
+	static EFF_ANIM blanim01_tbl[11] = 
+	{
+		{  0,  1 }, {  1,  1 }, {  2,  1 }, {  3,  1 },
+		{  4,  1 }, {  5,  1 }, {  6,  1 }, {  7,  1 },
+		{  8,  1 }, {  9,  1 }, { -1,  0 }   
+	};
+	UV_WORK* blood_uvinfo[2] = 
+	{ 
+		bl00_uvinfo, bl01_uvinfo
+	};
+	EFF_ANIM* anim_tbl[2] = 
+	{ 
+		blanim00_tbl, blanim01_tbl 
+	};
 	// Line 1711, Address: 0x24ebe0, Func Offset: 0
 	// Line 1750, Address: 0x24ebe4, Func Offset: 0x4
 	// Line 1711, Address: 0x24ebec, Func Offset: 0xc
@@ -966,9 +1195,90 @@ void bhEff_Sub362(O_WRK* op)
 	NJS_POINT3 n;
 	NJS_POINT3 p2;
 	NJS_POINT3 p1;
-	float eff_sub362_tbl[3][1];
-	//_anon4* anim_tbl[5];
-	//_anon31 bl00_uvinfo[48];
+	static UV_WORK bl00_uvinfo[48] = 
+	{
+		{   0.0f,   0.0f,  32.0f,  32.0f },
+		{  32.0f,   0.0f,  32.0f,  32.0f },
+		{  64.0f,   0.0f,  32.0f,  32.0f },
+		{  96.0f,   0.0f,  32.0f,  32.0f },
+		{ 128.0f,   0.0f,  32.0f,  32.0f },
+		{ 160.0f,   0.0f,  32.0f,  32.0f },
+		{ 192.0f,   0.0f,  32.0f,  32.0f },
+		{ 224.0f,   0.0f,  32.0f,  32.0f },
+		{   0.0f,  96.0f,  48.0f,  48.0f },
+		{  96.0f,  96.0f,  48.0f,  48.0f },
+		{   0.0f,  32.0f,  32.0f,  32.0f },
+		{  32.0f,  32.0f,  32.0f,  32.0f },
+		{  64.0f,  32.0f,  32.0f,  32.0f },
+		{  96.0f,  32.0f,  32.0f,  32.0f },
+		{ 128.0f,  32.0f,  32.0f,  32.0f },
+		{ 160.0f,  32.0f,  32.0f,  32.0f },
+		{ 192.0f,  32.0f,  32.0f,  32.0f },
+		{ 224.0f,  32.0f,  32.0f,  32.0f },
+		{  48.0f,  96.0f,  48.0f,  48.0f },
+		{ 144.0f,  96.0f,  48.0f,  48.0f },
+		{   0.0f,  64.0f,  32.0f,  32.0f },
+		{  32.0f,  64.0f,  32.0f,  32.0f },
+		{  64.0f,  64.0f,  32.0f,  32.0f },
+		{  96.0f,  64.0f,  32.0f,  32.0f },
+		{ 128.0f,  64.0f,  32.0f,  32.0f },
+		{ 160.0f,  64.0f,  32.0f,  32.0f },
+		{ 192.0f,  64.0f,  32.0f,  32.0f },
+		{ 224.0f,  64.0f,  32.0f,  32.0f },
+		{   0.0f, 144.0f,  48.0f,  48.0f },
+		{  96.0f, 144.0f,  48.0f,  48.0f },
+		{   0.0f,  96.0f,  32.0f,  32.0f },
+		{  32.0f,  96.0f,  32.0f,  32.0f },
+		{  64.0f,  96.0f,  32.0f,  32.0f },
+		{  96.0f,  96.0f,  32.0f,  32.0f },
+		{ 128.0f,  96.0f,  32.0f,  32.0f },
+		{ 160.0f,  96.0f,  32.0f,  32.0f },
+		{ 192.0f,  96.0f,  32.0f,  32.0f },
+		{ 224.0f,  96.0f,  32.0f,  32.0f },
+		{  48.0f, 144.0f,  48.0f,  48.0f },
+		{ 144.0f, 144.0f,  48.0f,  48.0f },
+		{   0.0f, 224.0f,  32.0f,  32.0f },
+		{  32.0f, 224.0f,  32.0f,  32.0f },
+		{  64.0f, 224.0f,  32.0f,  32.0f },
+		{  96.0f, 224.0f,  32.0f,  32.0f },
+		{ 128.0f, 224.0f,  32.0f,  32.0f },
+		{ 160.0f, 224.0f,  32.0f,  32.0f },
+		{ 192.0f, 224.0f,  32.0f,  32.0f },
+		{ 224.0f, 224.0f,  32.0f,  32.0f }
+	};
+	static EFF_ANIM blanim00_tbl[6] = 
+	{
+		{ 20,  1 }, { 21,  1 }, { 22,  1 }, { 23,  1 },
+		{ 24,  1 }, { -2,  0 }   
+	};
+	static EFF_ANIM blanim01_tbl[6] =
+	{
+		{ 30,  1 }, { 31,  1 }, { 32,  1 }, { 33,  1 },
+		{ 34,  1 }, { -2,  0 }  
+	};
+	static EFF_ANIM blanim02_tbl[6] = 
+	{
+		{  0,  1 }, {  1,  1 }, {  2,  1 }, {  3,  1 },
+		{  4,  1 }, { -2,  0 }   
+	};
+	static EFF_ANIM blanim03_tbl[6] = 
+	{
+		{ 10,  1 }, { 11,  1 }, { 12,  1 }, { 13,  1 },
+		{ 14,  1 }, { -2,  0 }   
+	};
+	static EFF_ANIM blanim04_tbl[6] = 
+	{
+		{ 40,  1 }, { 41,  1 }, { 42,  1 }, { 43,  1 },
+		{ 44,  1 }, { -2,  0 }   
+	};
+	EFF_ANIM* anim_tbl[5] = 
+	{
+		blanim00_tbl, blanim01_tbl, blanim02_tbl, blanim03_tbl, blanim04_tbl
+	};
+	float eff_sub362_tbl[1][3] = 
+	{
+		{  2.0f, 0.05f, 0.97f }
+	};
 	// Line 1827, Address: 0x24ed30, Func Offset: 0
 	// Line 1927, Address: 0x24ed3c, Func Offset: 0xc
 	// Line 1827, Address: 0x24ed40, Func Offset: 0x10
@@ -1079,7 +1389,13 @@ void bhEff_Sub362(O_WRK* op)
 // Start address: 0x24f1f0
 void bhEff_Sub363(O_WRK* op)
 {
-	//_anon31 eff_uvinfo[12];
+	static UV_WORK eff_uvinfo[12] =
+	{
+		{   0.0f, 160.0f,  32.0f,  32.0f }, {  32.0f, 160.0f,  32.0f,  32.0f }, {  64.0f, 160.0f,  32.0f,  32.0f }, 
+		{  96.0f, 160.0f,  32.0f,  32.0f }, {   0.0f, 192.0f,  32.0f,  32.0f }, {  32.0f, 192.0f,  32.0f,  32.0f }, 
+		{  64.0f, 192.0f,  32.0f,  32.0f }, {  96.0f, 192.0f,  32.0f,  32.0f }, {   0.0f, 224.0f,  32.0f,  32.0f }, 
+		{  32.0f, 224.0f,  32.0f,  32.0f }, {  64.0f, 224.0f,  32.0f,  32.0f }, {  96.0f, 224.0f,  32.0f,  32.0f }
+	};
 	// Line 2106, Address: 0x24f1f0, Func Offset: 0
 	// Line 2129, Address: 0x24f1fc, Func Offset: 0xc
 	// Line 2132, Address: 0x24f228, Func Offset: 0x38
@@ -1360,7 +1676,10 @@ void bhEff_Sub367(O_WRK* op)
 // Start address: 0x24fc50
 void bhEff_Sub368(O_WRK* op)
 {
-	//_anon31 uvinfo[1];
+	static UV_WORK uvinfo[1] =
+	{
+		0.0f, 160.0f,  48.0f,  56.0f    
+	};
 	// Line 2624, Address: 0x24fc50, Func Offset: 0
 	// Line 2630, Address: 0x24fc58, Func Offset: 0x8
 	// Line 2633, Address: 0x24fc90, Func Offset: 0x40
@@ -1414,8 +1733,41 @@ void bhEff_Sub368(O_WRK* op)
 // Start address: 0x24fdd0
 void bhEff_Sub369(O_WRK* op)
 {
-	//_anon31 uvinfo[15];
-	//_anon4* anim_tbl[2];
+	static UV_WORK uvinfo[15] = 
+	{
+		{   0.0f,   0.0f,  16.0f,  16.0f },
+		{  16.0f,   0.0f,  24.0f,  24.0f },
+		{  40.0f,   0.0f,  24.0f,  24.0f },
+		{  64.0f,   0.0f,  32.0f,  32.0f },
+		{  96.0f,   0.0f,  48.0f,  48.0f },
+		{ 144.0f,   0.0f,  48.0f,  48.0f },
+		{ 192.0f,   0.0f,  64.0f,  64.0f },
+		{   0.0f,  64.0f,  64.0f,  64.0f },
+		{  64.0f,  64.0f,  64.0f,  64.0f },
+		{ 128.0f,  64.0f,  64.0f,  64.0f },
+		{ 192.0f,  64.0f,  64.0f,  64.0f },
+		{   0.0f, 128.0f,  64.0f,  64.0f },
+		{  64.0f, 128.0f,  64.0f,  64.0f },
+		{ 128.0f, 128.0f,  64.0f,  64.0f },
+		{ 192.0f, 128.0f,  64.0f,  64.0f }
+	};
+	static EFF_ANIM anim00_tbl[12] =
+	{
+		{  4,  1 }, {  5,  1 }, {  6,  1 }, {  7,  1 },
+		{  8,  1 }, {  9,  1 }, { 10,  1 }, { 11,  1 },
+		{ 12,  1 }, { 13,  1 }, { 14,  1 }, { -1,  0 }
+	};
+	static EFF_ANIM anim01_tbl[16] =
+	{
+		{  0,  1 }, {  1,  1 }, {  2, 1  }, {  3,  1 },
+		{  4,  1 }, {  5,  1 }, {  6, 1  }, {  7,  1 },
+		{  8,  1 }, {  9,  1 }, { 10, 1  }, { 11,  1 },
+		{ 12,  1 }, { 13,  1 }, { 14, 1  }, { -1,  0 }
+	};
+	static EFF_ANIM* anim_tbl[2] =
+	{
+		anim00_tbl, anim01_tbl
+	};
 	// Line 2713, Address: 0x24fdd0, Func Offset: 0
 	// Line 2782, Address: 0x24fddc, Func Offset: 0xc
 	// Line 2785, Address: 0x24fe08, Func Offset: 0x38
@@ -1461,9 +1813,25 @@ void bhEff_Sub370(O_WRK* op)
 	int eno;
 	NJS_POINT3 v2;
 	NJS_POINT3 v1;
-	//_anon23* eff_p;
-	unsigned int bl_col[4];
-	//_anon23 eff370_tbl[11];
+	EFF370_WORK* eff_p;
+	static EFF370_WORK eff370_tbl[11] = 
+	{
+		{   0.5f,  0.98f, -0.02f, 371,   0,   4,   0 },
+		{   0.3f,  0.98f, -0.02f, 371,   0,   4,   0 },
+		{   0.2f,  0.98f, -0.04f, 371,   0,   4,   0 },
+		{   0.7f,  0.98f, -0.04f, 371,   0,   4,   1 },
+		{  0.25f,  0.98f, -0.03f, 371,   0,   2,   0 },
+		{   0.5f,  0.98f, -0.03f, 371,   0,   3,   1 },
+		{   0.7f,  0.98f, -0.04f, 373,   1,   4,   1 },
+		{   0.5f,  0.98f, -0.03f, 373,   1,   3,   1 },
+		{   0.5f,  0.97f, -0.05f, 373,   3,   2,   0 },
+		{   0.0f,   0.0f,   0.0f,   0,   3,   3,   2 },
+		{   0.5f,  0.98f, -0.03f, 373,   0,   3,   2 }
+	};
+	unsigned int bl_col[4] = 
+	{
+		0xFF5F0000, 0xFF400000, 0xFF400000, 0xFF400000
+	};
 	// Line 2870, Address: 0x24ff60, Func Offset: 0
 	// Line 2889, Address: 0x24ff6c, Func Offset: 0xc
 	// Line 2870, Address: 0x24ff70, Func Offset: 0x10
@@ -1561,8 +1929,70 @@ void bhEff_Sub370(O_WRK* op)
 // Start address: 0x2504b0
 void bhEff_Sub371(O_WRK* op)
 {
-	//_anon31 uvinfo[32];
-	//_anon4* anim_tbl[4];
+	static UV_WORK uvinfo[32] = 
+	{
+		{  48.0f,  40.0f,   8.0f,   8.0f },
+		{  48.0f,  48.0f,   8.0f,   8.0f },
+		{  64.0f,  72.0f,  16.0f,  16.0f },
+		{   0.0f,  64.0f,  24.0f,  24.0f },
+		{   0.0f,  40.0f,  24.0f,  24.0f },
+		{  24.0f,  40.0f,  24.0f,  24.0f },
+		{  56.0f,  40.0f,  32.0f,  32.0f },
+		{  88.0f,  40.0f,  32.0f,  32.0f },
+		{   0.0f,   0.0f,  40.0f,  40.0f },
+		{  40.0f,   0.0f,  40.0f,  40.0f },
+		{  80.0f,   0.0f,  40.0f,  40.0f },
+		{ 120.0f,   0.0f,  40.0f,  40.0f },
+		{ 160.0f,   0.0f,  40.0f,  40.0f },
+		{ 200.0f,   0.0f,  40.0f,  40.0f },
+		{  48.0f,  56.0f,   8.0f,   8.0f },
+		{  48.0f,  64.0f,   8.0f,   8.0f },
+		{  48.0f,  72.0f,  16.0f,  16.0f },
+		{  24.0f,  64.0f,  24.0f,  24.0f },
+		{ 120.0f,  40.0f,  32.0f,  32.0f },
+		{ 152.0f,  40.0f,  32.0f,  32.0f },
+		{ 184.0f,  40.0f,  32.0f,  32.0f },
+		{ 216.0f,  40.0f,  32.0f,  32.0f },
+		{  88.0f,  72.0f,  16.0f,  16.0f },
+		{ 104.0f,  72.0f,  16.0f,  16.0f },
+		{ 120.0f,  72.0f,  16.0f,  16.0f },
+		{ 136.0f,  72.0f,  16.0f,  16.0f },
+		{ 152.0f,  72.0f,  16.0f,  16.0f },
+		{ 168.0f,  72.0f,  16.0f,  16.0f },
+		{ 184.0f,  72.0f,  16.0f,  16.0f },
+		{ 200.0f,  72.0f,  16.0f,  16.0f },
+		{ 216.0f,  72.0f,  16.0f,  16.0f },
+		{ 232.0f,  72.0f,  16.0f,  16.0f }
+	};
+	static EFF_ANIM anim00_tbl[15] =
+	{
+		{  0,  1 }, {  1,  1 }, {  2,  1 }, {  3,  1 },
+		{  4,  1 }, {  5,  1 }, {  6,  1 }, {  7,  1 },
+		{  8,  1 }, {  9,  1 }, { 10,  1 }, { 11,  1 },
+		{ 12,  1 }, { 13,  1 }, { -1,  0 }
+	};
+	static EFF_ANIM anim01_tbl[9] =
+	{
+		{ 14,  1 }, { 15,  1 }, { 16,  1 }, { 17,  1 },
+		{ 18,  1 }, { 19,  1 }, { 20,  1 }, { 21,  1 },
+		{ -1,  0 }
+	};
+	static EFF_ANIM anim02_tbl[11] =
+	{
+		{ 22,  1 }, { 23,  1 }, { 24,  1 }, { 25,  1 },
+		{ 26,  1 }, { 27,  1 }, { 28,  1 }, { 29,  1 },
+		{ 30,  1 }, { 31,  1 }, { -1,  0 }
+	};
+	static EFF_ANIM anim03_tbl[11] =
+	{
+		{  4,  1 }, {  5,  1 }, {  6,  1 }, {  7,  1 },
+		{  8,  1 }, {  9,  1 }, { 10,  1 }, { 11,  1 },
+		{ 12,  1 }, { 13,  1 }, { -1,  0}
+	};
+	static EFF_ANIM* anim_tbl[4] =
+	{
+		anim00_tbl, anim01_tbl, anim02_tbl, anim03_tbl
+	};
 	// Line 3057, Address: 0x2504b0, Func Offset: 0
 	// Line 3126, Address: 0x2504b8, Func Offset: 0x8
 	// Line 3129, Address: 0x2504e4, Func Offset: 0x34
@@ -1620,8 +2050,32 @@ void bhEff_Sub371(O_WRK* op)
 // Start address: 0x250720
 void bhEff_Sub372(O_WRK* op)
 {
-	//_anon31 uvinfo[13];
-	//_anon4* anim_tbl[1];
+	static UV_WORK uvinfo[13] = 
+	{ 
+		{   0.0f,  80.0f,  16.0f,  16.0f },
+		{   0.0f, 128.0f,  16.0f,  16.0f },
+		{   0.0f,  96.0f,  16.0f,  16.0f },
+		{   0.0f, 112.0f,  16.0f,  16.0f },
+		{  16.0f,  80.0f,  32.0f,  32.0f },
+		{  48.0f,  80.0f,  32.0f,  32.0f },
+		{  80.0f,  80.0f,  32.0f,  32.0f },
+		{ 112.0f,  80.0f,  32.0f,  32.0f },
+		{ 144.0f,  80.0f,  32.0f,  32.0f },
+		{ 176.0f,  80.0f,  32.0f,  32.0f },
+		{ 208.0f,  80.0f,  32.0f,  32.0f },
+		{  16.0f, 112.0f,  32.0f,  32.0f },
+		{  48.0f, 112.0f,  32.0f,  32.0f }
+	};
+	static EFF_ANIM anim00_tbl[9] =
+	{
+		{  4,  1 }, {  5,  1 }, {  6,  1 }, {  7,  1 },
+		{  8,  1 }, {  9,  1 }, { 10,  1 }, { 12,  1 },
+		{ -1,  0 }
+	};
+	static EFF_ANIM* anim_tbl[1] =
+	{
+		anim00_tbl
+	};
 	// Line 3220, Address: 0x250720, Func Offset: 0
 	// Line 3394, Address: 0x250728, Func Offset: 0x8
 	// Line 3397, Address: 0x250754, Func Offset: 0x34
@@ -1668,8 +2122,32 @@ void bhEff_Sub372(O_WRK* op)
 // Start address: 0x2508d0
 void bhEff_Sub373(O_WRK* op)
 {
-	//_anon31 uvinfo[13];
-	//_anon4* anim_tbl[1];
+	static UV_WORK uvinfo[13] = 
+	{
+		{   0.0f,  80.0f,  16.0f,  16.0f },
+		{   0.0f, 128.0f,  16.0f,  16.0f },
+		{   0.0f,  96.0f,  16.0f,  16.0f },
+		{   0.0f, 112.0f,  16.0f,  16.0f },
+		{  16.0f,  80.0f,  32.0f,  32.0f },
+		{  48.0f,  80.0f,  32.0f,  32.0f },
+		{  80.0f,  80.0f,  32.0f,  32.0f },
+		{ 112.0f,  80.0f,  32.0f,  32.0f },
+		{ 144.0f,  80.0f,  32.0f,  32.0f },
+		{ 176.0f,  80.0f,  32.0f,  32.0f },
+		{ 208.0f,  80.0f,  32.0f,  32.0f },
+		{  16.0f, 112.0f,  32.0f,  32.0f },
+		{  48.0f, 112.0f,  32.0f,  32.0f }
+	};
+	static EFF_ANIM anim00_tbl[11] =
+	{
+		{  2,  1 }, {  3,  1 }, {  4,  1}, {  5,  1},
+		{  6,  1 }, {  7,  1 }, {  8,  1}, {  9,  1},
+		{ 10,  1 }, { 12,  1 }, { -1,  0}
+	};
+	static EFF_ANIM* anim_tbl[1] =
+	{
+		anim00_tbl
+	};
 	// Line 3486, Address: 0x2508d0, Func Offset: 0
 	// Line 3516, Address: 0x2508d8, Func Offset: 0x8
 	// Line 3519, Address: 0x250904, Func Offset: 0x34
@@ -1724,11 +2202,156 @@ void bhEff_Sub398(O_WRK* op)
 {
 	int i;
 	NJS_POINT3 ps;
-	//_anon4* bani;
-	//_anon31* uvp;
-	float pos_tbl[2][11];
-	//_anon4* blanim_tbl[11];
-	//_anon31* blood_uvinfo[11];
+	EFF_ANIM* bani;
+	UV_WORK* uvp;
+	static UV_WORK bl00_uvinfo[16] = 
+	{
+		{   0.0f,   0.0f,  24.0f,  24.0f },
+		{  24.0f,   0.0f,  32.0f,  32.0f },
+		{  56.0f,   0.0f,  40.0f,  40.0f },
+		{  56.0f,  40.0f,  40.0f,  40.0f },
+		{   8.0f,  32.0f,  48.0f,  48.0f },
+		{  96.0f,   0.0f,  48.0f,  48.0f },
+		{ 144.0f,   0.0f,  48.0f,  48.0f },
+		{ 192.0f,   0.0f,  48.0f,  48.0f },
+		{  96.0f,  48.0f,  48.0f,  48.0f },
+		{ 144.0f,  48.0f,  48.0f,  48.0f },
+		{ 192.0f,  48.0f,  48.0f,  48.0f },
+		{   0.0f,  96.0f,  48.0f,  64.0f },
+		{  48.0f,  96.0f,  48.0f,  64.0f },
+		{  96.0f,  96.0f,  48.0f,  64.0f },
+		{ 144.0f,  96.0f,  48.0f,  64.0f },
+		{ 192.0f,  96.0f,  48.0f,  64.0f }
+	};
+	static UV_WORK bl01_uvinfo[7] = 
+	{
+		{   0.0f, 160.0f,  32.0f,  24.0f },
+		{  32.0f, 160.0f,  32.0f,  24.0f },
+		{  64.0f, 160.0f,  32.0f,  24.0f },
+		{  96.0f, 160.0f,  32.0f,  24.0f },
+		{ 128.0f, 160.0f,  32.0f,  24.0f },
+		{ 160.0f, 160.0f,  32.0f,  24.0f },
+		{ 192.0f, 160.0f,  32.0f,  24.0f }
+	};
+	static UV_WORK bl02_uvinfo[7] = 
+	{
+		{  0.0f,  184.0f,  24.0f,  24.0f },
+		{  24.0f, 184.0f,  24.0f,  24.0f },
+		{  48.0f, 184.0f,  24.0f,  24.0f },
+		{  72.0f, 184.0f,  24.0f,  24.0f },
+		{  96.0f, 184.0f,  24.0f,  24.0f },
+		{ 120.0f, 184.0f,  24.0f,  24.0f },
+		{ 144.0f, 184.0f,  24.0f,  24.0f }
+	};
+	static UV_WORK bl03_uvinfo[6] = 
+	{
+		{   0.0f, 208.0f,  16.0f,  16.0f },
+		{  16.0f, 208.0f,  16.0f,  16.0f },
+		{  32.0f, 208.0f,  16.0f,  16.0f },
+		{  48.0f, 208.0f,  16.0f,  16.0f },
+		{  64.0f, 208.0f,  16.0f,  16.0f },
+		{  80.0f, 208.0f,  16.0f,  16.0f }
+	};
+	static UV_WORK bl04_uvinfo[6] = 
+	{
+		{ 224.0f, 160.0f,   8.0f,   8.0f },
+		{ 224.0f, 168.0f,   8.0f,   8.0f },
+		{ 224.0f, 176.0f,   8.0f,   8.0f },
+		{ 232.0f, 160.0f,   8.0f,   8.0f },
+		{ 232.0f, 168.0f,   8.0f,   8.0f },
+		{ 232.0f, 176.0f,   8.0f,   8.0f }
+	};
+	static UV_WORK bl05_uvinfo[6] = 
+	{
+		{ 240.0f,  0.0f,   16.0f,  24.0f },
+		{ 240.0f,  24.0f,  16.0f,  24.0f },
+		{ 240.0f,  48.0f,  16.0f,  24.0f },
+		{ 240.0f,  72.0f,  16.0f,  24.0f },
+		{ 240.0f,  96.0f,  16.0f,  24.0f },
+		{ 240.0f, 120.0f,  16.0f,  24.0f }
+	};
+	static UV_WORK bl06_uvinfo[6] = 
+	{
+		{   0.0f, 224.0f,  16.0f,  24.0f },
+		{  16.0f, 224.0f,  16.0f,  24.0f },
+		{  32.0f, 224.0f,  16.0f,  24.0f },
+		{  48.0f, 224.0f,  16.0f,  24.0f },
+		{  64.0f, 224.0f,  16.0f,  24.0f },
+		{  80.0f, 224.0f,  16.0f,  24.0f }
+	};
+	static UV_WORK bl07_uvinfo[5] = 
+	{
+		{  96.0f, 208.0f,   8.0f,  16.0f },
+		{ 104.0f, 208.0f,   8.0f,  16.0f },
+		{ 112.0f, 208.0f,   8.0f,  16.0f },
+		{ 120.0f, 208.0f,   8.0f,  16.0f },
+		{ 128.0f, 208.0f,   8.0f,  16.0f }
+	};
+	static UV_WORK bl08_uvinfo[5] = 
+	{
+		{  96.0f, 224.0f,   8.0f,  16.0f },
+		{ 104.0f, 224.0f,   8.0f,  16.0f },
+		{ 112.0f, 224.0f,   8.0f,  16.0f },
+		{ 120.0f, 224.0f,   8.0f,  16.0f },
+		{ 128.0f, 224.0f,   8.0f,  16.0f }
+	};
+	static UV_WORK bl09_uvinfo[5] = 
+	{
+		{ 168.0f, 184.0f,  16.0f,  24.0f },
+		{ 184.0f, 184.0f,  16.0f,  24.0f },
+		{ 200.0f, 184.0f,  16.0f,  24.0f },
+		{ 216.0f, 184.0f,  16.0f,  24.0f },
+		{ 232.0f, 184.0f,  16.0f,  24.0f }
+	};
+	static UV_WORK bl10_uvinfo[5] =
+	 {
+		{  96.0f, 240.0f,   8.0f,  16.0f },
+		{ 104.0f, 240.0f,   8.0f,  16.0f },
+		{ 112.0f, 240.0f,   8.0f,  16.0f },
+		{ 120.0f, 240.0f,   8.0f,  16.0f },
+		{ 128.0f, 240.0f,   8.0f,  16.0f }
+	};
+	static UV_WORK* blood_uvinfo[11] = 
+	{
+		bl00_uvinfo, bl01_uvinfo, bl02_uvinfo, bl03_uvinfo,
+		bl04_uvinfo, bl05_uvinfo, bl06_uvinfo, bl07_uvinfo,
+		bl08_uvinfo, bl09_uvinfo, bl10_uvinfo
+	};
+	static EFF_ANIM blanim00_tbl[13] = 
+	{
+		{   1, 1 }, {   3, 1 }, {   5, 1 }, {   7, 1 },
+		{   8, 2 }, {   9, 2 }, {  10, 2 }, {  11, 2 },
+		{  12, 2 }, {  13, 2 }, {  14, 2 }, {  15, 2 },
+		{  -1, 0 }
+	};
+	static EFF_ANIM blanim01_tbl[9] = 
+	{
+		{ 100, 3 }, {   0, 2 }, {   1, 2 }, {   2, 2 },
+		{   3, 2 }, {   4, 2 }, {   5, 2 }, {   6, 2 },
+		{  -1, 0 }
+	};
+	static EFF_ANIM blanim03_tbl[8] = 
+	{
+		{ 100, 4 }, {   0, 2 }, {   1, 2 }, {   2, 2 },
+		{   3, 2 }, {   4, 2 }, {   5, 2 }, {  -1, 0 }
+	};
+	static EFF_ANIM blanim07_tbl[7] = 
+	{
+		{ 100, 8 }, {   0, 2 }, {   1, 2 }, {   2, 2 },
+		{   3, 2 }, {   4, 2 }, {  -1, 0 }
+	};
+	EFF_ANIM* blanim_tbl[11] = 
+	{  
+		blanim00_tbl, blanim01_tbl, blanim01_tbl, blanim03_tbl,
+		blanim03_tbl, blanim03_tbl, blanim03_tbl, blanim07_tbl,
+		blanim07_tbl, blanim07_tbl, blanim07_tbl
+	};
+	float pos_tbl[11][2] = 
+	{
+		{   0.0f,   0.0f }, { -68.0f, -48.0f }, {  64.0f, -72.0f }, { -40.0f, -92.0f },
+		{  40.0f,   8.0f }, { -48.0f,  12.0f }, {  60.0f, -12.0f }, {  16.0f,  36.0f },
+		{ -32.0f,  12.0f }, { -64.0f, -24.0f }, {  -8.0f, -88.0f }
+	};
 	// Line 3600, Address: 0x250b00, Func Offset: 0
 	// Line 3737, Address: 0x250b14, Func Offset: 0x14
 	// Line 3600, Address: 0x250b1c, Func Offset: 0x1c
@@ -1884,7 +2507,7 @@ static O_WRK* bhEff_AllocOwork()
 
 // 
 // Start address: 0x251150
-void bhEff_PtclSpriteDraw(O_WRK* op)
+static void bhEff_PtclSpriteDraw(O_WRK* op)
 {
 	int i;
 	char atr[192];
@@ -1917,7 +2540,7 @@ void bhEff_PtclSpriteDraw(O_WRK* op)
 
 // 
 // Start address: 0x251230
-void bhEff_LineDraw(O_WRK* op)
+static void bhEff_LineDraw(O_WRK* op)
 {
 	//_anon32 poly[3];
 	int i;
@@ -1970,7 +2593,7 @@ void bhEff_LineDraw(O_WRK* op)
 
 // 
 // Start address: 0x251380
-void bhEff_SetSprite(O_WRK* op, UV_WORK* uvp, int mode)
+static void bhEff_SetSprite(O_WRK* op, UV_WORK* uvp, int mode)
 {
 	// Line 4105, Address: 0x251380, Func Offset: 0
 	// Line 4107, Address: 0x251390, Func Offset: 0x10
@@ -2002,7 +2625,7 @@ void bhEff_SetSprite(O_WRK* op, UV_WORK* uvp, int mode)
 
 // 
 // Start address: 0x2514e0
-void bhEff_SetSpriteAnime(O_WRK* op, EFF_ANIM* eff_anim, UV_WORK* uvp, int mode)
+static void bhEff_SetSpriteAnime(O_WRK* op, EFF_ANIM* eff_anim, UV_WORK* uvp, int mode)
 {
 	EFF_ANIM* anim_p;
 	// Line 4158, Address: 0x2514e0, Func Offset: 0
@@ -2027,7 +2650,7 @@ void bhEff_SetSpriteAnime(O_WRK* op, EFF_ANIM* eff_anim, UV_WORK* uvp, int mode)
 
 // 
 // Start address: 0x2515a0
-void bhEff_3DSpriteDraw(O_WRK* op)
+static void bhEff_3DSpriteDraw(O_WRK* op)
 {
 	unsigned int tnm;
 	// Line 4209, Address: 0x2515a0, Func Offset: 0
@@ -2080,7 +2703,7 @@ void bhEff_3DSpriteDraw(O_WRK* op)
 
 // 
 // Start address: 0x251850
-void bhEff_ModelDraw(O_WRK* op)
+static void bhEff_ModelDraw(O_WRK* op)
 {
 	//_anon14* mlp;
 	//_anon20* tnp;

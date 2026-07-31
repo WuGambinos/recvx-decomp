@@ -10,6 +10,8 @@
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon.h"
 
+#pragma	optimization_level 4
+
 // ENEMY: Zombie 
 
 // I will leave this here for now
@@ -3804,15 +3806,13 @@ int bhEne01_CheckExpHead(BH_PWORK* epw)
             return 1;
         }
         break;
-        
     case 6:
         if (((epw->flr_no == plp->flr_no) && (epw->comb_flg & 0x10)) &&
-           (((plp->at_flg & 6) && ((epw->djnt_no == 1 || (epw->djnt_no - 8U < 4))))))
+           (((plp->at_flg & 6) && ((epw->djnt_no == 1) || (epw->djnt_no == 8) || (epw->djnt_no == 9) || (epw->djnt_no == 10) || (epw->djnt_no == 11)))))
         {
           return 1;
         }
         break;
-        
     case 19:
         if (((epw->djnt_no >= 8) && (17 >= epw->djnt_no)) || (epw->djnt_no == 1))
         {
@@ -5583,7 +5583,6 @@ void bhEne01_MV06(BH_PWORK* epw)
         epw->ct0 = (rand() % 15) + 15;
         epw->mode1 = 1;
         epw->mode3++;
-
     case 1:
         epw->ay += ikou3(epw, (NJS_POINT3*)&plp->px, 910);
         if (!(plp->flg & 4))
@@ -5903,7 +5902,6 @@ void bhEne01_MV10(BH_PWORK* epw)
         tmp = ((rand() % 10) * 20) + 15;
         epw->ct0 = (rand() % 128) + tmp;
         epw->mode3++;
-        
     case 1:
         epw->ct0 -= 1;
         if (((epw->ct0 <= 0) || (EXP0_I(0x40) & 0x400)) && (epw->type != 9) && !(EXP0_I(0x44) & 0x10))
@@ -5912,7 +5910,6 @@ void bhEne01_MV10(BH_PWORK* epw)
             epw->mode2 = 1;
             epw->mode3 = 0;
         }
-
     }
 }
 
@@ -5978,7 +5975,6 @@ void bhEne01_MV12(BH_PWORK* epw)
         epw->way = 512;
         epw->spd = 0.0f;
         epw->mode3++;
-
     case 1:
         if ((((EXP0_F(0x54) > en01_PersonalType[EXP0_I(0x4C)].ndist)) || !(EXP0_I(0x40) & 0x400)) && (epw->flg & 0x2000000))
         {
@@ -5991,7 +5987,7 @@ void bhEne01_MV12(BH_PWORK* epw)
 // 100% matching!
 void bhEne01_MV14(BH_PWORK* epw)
 {
-    BH_PWORK* cepw = (BH_PWORK*)epw->exp1;;
+    BH_PWORK* cepw = (BH_PWORK*)epw->exp1;
     
     switch (epw->mode3)
     {
@@ -6019,7 +6015,6 @@ void bhEne01_MV14(BH_PWORK* epw)
             }
         }
         epw->mode3++;
-
     case 1:
         break;
     }
@@ -6131,7 +6126,6 @@ void bhEne01_MV16(BH_PWORK* epw)
             CEPW_EXP0_I(0x40) |= 0x1000000;
         }
         epw->mode3++;
-
     case 1:
         if (epw->flg & 0x2000000)
         {
@@ -6144,7 +6138,6 @@ void bhEne01_MV16(BH_PWORK* epw)
             }
             epw->mode3++;
         }
-
     case 2:
         break;
     }
@@ -6160,7 +6153,7 @@ void bhEne01_NGType00(BH_PWORK* epw)
         } 
         else
         {
-            EXP0_I(0x40)  &= ~0x4000;
+            EXP0_I(0x40) &= ~0x4000;
         }
     }
     bhEne01_NageMode2W[epw->mode2](epw);
@@ -8372,7 +8365,7 @@ void bhEne01_DG14(BH_PWORK* epw)
 // 100% matching!
 void bhEne01_DG15(BH_PWORK* epw)
 {
-    BH_PWORK* cepw = (BH_PWORK*)epw->exp1;;
+    BH_PWORK* cepw = (BH_PWORK*)epw->exp1;
     
     switch (epw->mode3)
     {
@@ -8389,7 +8382,6 @@ void bhEne01_DG15(BH_PWORK* epw)
         epw->ct0 = (rand() % 20) + 20;
         epw->ct1 = 0;
         epw->mode3++;
-
     case 1:
         epw->ct1++;
         if (--epw->ct0 < 0)
@@ -9621,8 +9613,10 @@ int bhEne01_ChgTextID(BH_PWORK* epw, int tex_id)
 {
     if (epw->mdlver == 2 ||
         epw->mdlver == 3 ||
-        1U >= (epw->mdlver - 9) ||
-        1U >= (epw->mdlver - 32) ||
+        epw->mdlver == 9 ||
+        epw->mdlver == 10 ||
+        epw->mdlver == 32 ||
+        epw->mdlver == 33 ||
         epw->mdlver == 39 ||
         epw->mdlver == 43)
     {
@@ -9636,18 +9630,23 @@ int bhEne01_ChgTextID(BH_PWORK* epw, int tex_id)
         return tex_id + 1;
     }
 
-    if (1U >= (epw->mdlver - 7) ||
+    if (epw->mdlver == 7 ||
+        epw->mdlver == 8 ||
         epw->mdlver == 31 ||
-        1U >= (epw->mdlver - 37) ||
+        epw->mdlver == 37 ||
+        epw->mdlver == 38 ||
         epw->mdlver == 42)
     {
         return tex_id + 2;
     }
 
-    if (1U >= epw->mdlver ||
-        1U >= (epw->mdlver - 5) ||
+    if (epw->mdlver == 0 ||
+        epw->mdlver == 1 ||
+        epw->mdlver == 5 ||
+        epw->mdlver == 6 ||
         epw->mdlver == 22 ||
-        1U >= (epw->mdlver - 35))
+        epw->mdlver == 35 ||
+        epw->mdlver == 36)
     {
         return tex_id + 3;
     }

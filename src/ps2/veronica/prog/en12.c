@@ -1,6 +1,6 @@
 #include "../../../ps2/veronica/prog/en12.h"
 
-// ENEMY: Alexia Ashford (First Transformation) 
+// ENEMY: First Form Alexia 
 
 /*typedef struct npobj;
 typedef struct _anon0;

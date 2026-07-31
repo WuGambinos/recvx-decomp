@@ -1,5 +1,7 @@
 #include "../../../ps2/veronica/prog/en22.h"
 
+// ENEMY: Albinoid Adult
+
 /*typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;

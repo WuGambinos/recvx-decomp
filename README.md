@@ -35,7 +35,7 @@ For this part of the setup, you can use a dev container (or not):
 
 ### Dev Container route
 
-If you're using an IDE that supports [dev containers](https://containers.dev/) such as Visual Studio Code, you can simply open up the repo as a container (you'll need to have [Docker](https://www.docker.com/) or [Podman](https://podman.io/) installed on your machine to use this feature).
+If you're using an IDE that supports dev containers such as Visual Studio Code, you can simply open up the repo as a container (you'll need to have Docker or Podman installed on your machine to use this feature).
 
 ### Manual route
 

@@ -1,5 +1,7 @@
 #include "../../../ps2/veronica/prog/en17.h"
 
+// ENEMY: Monster Steve 
+
 /*typedef struct BH_PWORK;
 typedef struct _anon0;
 typedef struct _anon1;

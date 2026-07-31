@@ -10,6 +10,8 @@
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/eneset.h"
 
+// ENEMY: Baby Black Widow 
+
 static float DeadRate[19] = 
 {
     0.0f, 

@@ -2837,55 +2837,62 @@ void bhEff231(O_WRK* op)
     op->ct1--;
 }
 
-// 
-// Start address: 0x2582d0
-void bhEff232(O_WRK* op)
+// 100% matching!
+void bhEff232(O_WRK* op) 
 {
-	EFF5UV* pInfo;
-	static EFF5UV Eff232UvInfo[2][10] = 
-	{
-		{
-			{   0,   0 }, {  40,   0 }, {  80,   0 }, { 120,   0 },
-			{ 160,   0 }, { 200,   0 }, {   0,  40 }, {  40,  40 },
-			{  80,  40 }, { 120,  40 }
-		},
-		{
-			{   0,  80 }, {  40,  80 }, {  80,  80 }, { 120,  80 },
-			{ 160,  80 }, { 200,  80 }, {   0, 120 }, {  40, 120 },
-			{  80, 120 }, { 120, 120 }
-		}
-	};
-	// Line 3582, Address: 0x2582d0, Func Offset: 0
-	// Line 3585, Address: 0x2582f0, Func Offset: 0x20
-	// Line 3586, Address: 0x2582f8, Func Offset: 0x28
-	// Line 3588, Address: 0x2582fc, Func Offset: 0x2c
-	// Line 3585, Address: 0x258300, Func Offset: 0x30
-	// Line 3586, Address: 0x258308, Func Offset: 0x38
-	// Line 3587, Address: 0x25830c, Func Offset: 0x3c
-	// Line 3589, Address: 0x258310, Func Offset: 0x40
-	// Line 3592, Address: 0x258314, Func Offset: 0x44
-	// Line 3587, Address: 0x258318, Func Offset: 0x48
-	// Line 3588, Address: 0x258320, Func Offset: 0x50
-	// Line 3589, Address: 0x258324, Func Offset: 0x54
-	// Line 3592, Address: 0x258328, Func Offset: 0x58
-	// Line 3597, Address: 0x258338, Func Offset: 0x68
-	// Line 3600, Address: 0x25833c, Func Offset: 0x6c
-	// Line 3603, Address: 0x258344, Func Offset: 0x74
-	// Line 3606, Address: 0x258350, Func Offset: 0x80
-	// Line 3609, Address: 0x258360, Func Offset: 0x90
-	// Line 3616, Address: 0x258368, Func Offset: 0x98
-	// Line 3617, Address: 0x2583a4, Func Offset: 0xd4
-	// Line 3624, Address: 0x2583b0, Func Offset: 0xe0
-	// Line 3617, Address: 0x2583b4, Func Offset: 0xe4
-	// Line 3618, Address: 0x2583cc, Func Offset: 0xfc
-	// Line 3619, Address: 0x2583ec, Func Offset: 0x11c
-	// Line 3620, Address: 0x258408, Func Offset: 0x138
-	// Line 3624, Address: 0x258428, Func Offset: 0x158
-	// Line 3626, Address: 0x258444, Func Offset: 0x174
-	// Line 3627, Address: 0x258458, Func Offset: 0x188
-	// Line 3629, Address: 0x25847c, Func Offset: 0x1ac
-	// Func End, Address: 0x258484, Func Offset: 0x1b4
-	scePrintf("bhEff232 - UNIMPLEMENTED!\n");
+    EFF5UV* pInfo;
+    static EFF5UV Eff232UvInfo[2][10] = 
+    {
+        { {   0,   0 }, {  40,   0 }, {  80,   0 }, { 120,   0 },
+          { 160,   0 }, { 200,   0 }, {   0,  40 }, {  40,  40 },
+          {  80,  40 }, { 120,  40 } },
+        { {   0,  80 }, {  40,  80 }, {  80,  80 }, { 120,  80 },
+          { 160,  80 }, { 200,  80 }, {   0, 120 }, {  40, 120 },
+          {  80, 120 }, { 120, 120 } }
+    };
+
+    switch (op->mode0)
+    {                            
+    case 0:
+        op->flg |= 0x4180000;
+        
+        op->tex_id = 415;
+        
+        op->ani_ct = op->type / 2;
+        
+        op->bl_src = 8;
+        op->bl_dst = 6;
+        
+        op->tv[0].col = op->tv[1].col = op->tv[2].col = op->tv[3].col = -1;
+        
+        op->ct0   = 0;
+        op->mode0 = 1;
+        break;
+    case 1:
+        op->ct0++;
+        
+        if (op->ct0 >= 10) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        break;
+    }
+
+    pInfo = &Eff232UvInfo[op->type % 2][op->ct0];
+
+    op->tv[0].u = op->tv[2].u = pInfo->u        / 256.0f;
+    op->tv[1].u = op->tv[3].u = (pInfo->u + 39) / 256.0f;
+    op->tv[0].v = op->tv[1].v = pInfo->v        / 256.0f;
+    op->tv[2].v = op->tv[3].v = (pInfo->v + 39) / 256.0f;
+
+    if (sys->ef_trsn < 512)
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
 
 // 

@@ -1856,51 +1856,66 @@ void bhEff221(O_WRK* op)
 	scePrintf("bhEff221 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2560a0
-void bhDrawEff221(O_WRK* op)
+// 100% matching!
+void bhDrawEff221(O_WRK* op) 
 {
-	int pt;
-	float it;
-	NJS_POINT3 vc1;
-	NJS_POINT3 vc0;
-	NJS_TEXTUREH_VTX* tvp;
-	// Line 2448, Address: 0x2560a0, Func Offset: 0
-	// Line 2456, Address: 0x2560b0, Func Offset: 0x10
-	// Line 2459, Address: 0x2560c0, Func Offset: 0x20
-	// Line 2460, Address: 0x2560c8, Func Offset: 0x28
-	// Line 2461, Address: 0x2560d0, Func Offset: 0x30
-	// Line 2462, Address: 0x2560d8, Func Offset: 0x38
-	// Line 2463, Address: 0x2560ec, Func Offset: 0x4c
-	// Line 2464, Address: 0x2560fc, Func Offset: 0x5c
-	// Line 2465, Address: 0x256114, Func Offset: 0x74
-	// Line 2466, Address: 0x256150, Func Offset: 0xb0
-	// Line 2470, Address: 0x256158, Func Offset: 0xb8
-	// Line 2472, Address: 0x25615c, Func Offset: 0xbc
-	// Line 2473, Address: 0x256160, Func Offset: 0xc0
-	// Line 2474, Address: 0x25617c, Func Offset: 0xdc
-	// Line 2475, Address: 0x256180, Func Offset: 0xe0
-	// Line 2479, Address: 0x256184, Func Offset: 0xe4
-	// Line 2480, Address: 0x256190, Func Offset: 0xf0
-	// Line 2481, Address: 0x2561a8, Func Offset: 0x108
-	// Line 2484, Address: 0x2561cc, Func Offset: 0x12c
-	// Line 2486, Address: 0x2561dc, Func Offset: 0x13c
-	// Line 2487, Address: 0x2561ec, Func Offset: 0x14c
-	// Line 2488, Address: 0x2561f4, Func Offset: 0x154
-	// Line 2489, Address: 0x256200, Func Offset: 0x160
-	// Line 2490, Address: 0x256208, Func Offset: 0x168
-	// Line 2494, Address: 0x256210, Func Offset: 0x170
-	// Line 2495, Address: 0x256220, Func Offset: 0x180
-	// Line 2497, Address: 0x256228, Func Offset: 0x188
-	// Line 2498, Address: 0x256230, Func Offset: 0x190
-	// Line 2502, Address: 0x256238, Func Offset: 0x198
-	// Line 2503, Address: 0x256244, Func Offset: 0x1a4
-	// Line 2506, Address: 0x256250, Func Offset: 0x1b0
-	// Line 2509, Address: 0x256260, Func Offset: 0x1c0
-	// Line 2510, Address: 0x25626c, Func Offset: 0x1cc
-	// Line 2511, Address: 0x256278, Func Offset: 0x1d8
-	// Func End, Address: 0x25628c, Func Offset: 0x1ec
-	scePrintf("bhDrawEff221 - UNIMPLEMENTED!\n");
+    NJS_TEXTUREH_VTX* tvp;
+    NJS_POINT3 vc0, vc1;
+    float it;
+    int pt;
+
+    if ((op->flr_no & 0x4)) 
+    {
+        vc0.x = vc0.y = 0;
+        vc0.z = -1.0f;
+        
+        njUnitMatrix(NULL);
+        
+        njRotateXYZ(NULL, op->ax, op->ay, 0);
+        njCalcVector(NULL, &vc0, &vc1);
+        
+        it = fabsf(njInnerProduct((NJS_VECTOR*)&vc1, (NJS_VECTOR*)&cam.vx));
+        
+        pt = (int)(128.0f * njCos((int)(182.04445f * (360.0f * it)) & 0xFFFF)) + 127;
+    }
+    else
+    {
+        pt = 0;
+    }
+    
+    tvp = (NJS_TEXTUREH_VTX*)op->tvp;
+        
+    tvp[3].ocol = tvp[2].ocol = tvp[1].ocol = tvp[0].ocol = (pt << 0) | ((pt << 8) | ((pt << 24) | (pt << 16)));
+    
+    njTextureFilterMode(1);
+    
+    njSetTexture(&sys->ef_tlist);
+    njSetTextureNum(sys->ef_tn[op->tex_id]);
+    
+    if ((op->flr_no & 0x2)) 
+    {
+        njSetMatrix(NULL, cam.mtx);
+        
+        njTranslateEx((NJS_VECTOR*)&op->px);
+        njRotateEx(&op->ax, 0);
+        njScaleEx((NJS_VECTOR*)&op->sx);
+    }
+    else 
+    {
+        njSetMatrix(NULL, cam.mtx);
+        
+        njTranslateEx((NJS_VECTOR*)&op->px);
+        njUnitRotPortion(NULL);
+        njScaleEx((NJS_VECTOR*)&op->sx);
+    }
+    
+    njColorBlendingMode(0, op->bl_src);
+    njColorBlendingMode(1, op->bl_dst);
+    
+    njDrawTexture3DHEx(tvp, 4, 1);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
 }
 
 // 
@@ -2884,7 +2899,8 @@ void bhEff232(O_WRK* op)
 
     op->tv[0].u = op->tv[2].u = pInfo->u        / 256.0f;
     op->tv[1].u = op->tv[3].u = (pInfo->u + 39) / 256.0f;
-    op->tv[0].v = op->tv[1].v = pInfo->v        / 256.0f;
+    
+	op->tv[0].v = op->tv[1].v = pInfo->v        / 256.0f;
     op->tv[2].v = op->tv[3].v = (pInfo->v + 39) / 256.0f;
 
     if (sys->ef_trsn < 512)

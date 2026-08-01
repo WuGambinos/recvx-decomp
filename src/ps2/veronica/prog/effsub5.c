@@ -8,58 +8,73 @@
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 
-// 
-// Start address: 0x251b40
-void bhEff200(O_WRK* op)
+// 100% matching!
+void bhEff200(O_WRK* op) 
 {
-	EFF5UV* pInfo;
+    EFF5UV* pInfo;
 	static EFF5UV Eff200UvInfo[8] = 
 	{
 		{   0,   0 }, {  32,   0 }, {  64,   0 }, {  96,   0 },
 		{ 128,   0 }, { 160,   0 }, { 192,   0 }, { 224,   0 }
 	};
-	// Line 189, Address: 0x251b40, Func Offset: 0
-	// Line 197, Address: 0x251b4c, Func Offset: 0xc
-	// Line 198, Address: 0x251b6c, Func Offset: 0x2c
-	// Line 200, Address: 0x251b78, Func Offset: 0x38
-	// Line 201, Address: 0x251b84, Func Offset: 0x44
-	// Line 203, Address: 0x251b8c, Func Offset: 0x4c
-	// Line 206, Address: 0x251b98, Func Offset: 0x58
-	// Line 203, Address: 0x251b9c, Func Offset: 0x5c
-	// Line 206, Address: 0x251ba4, Func Offset: 0x64
-	// Line 209, Address: 0x251bc0, Func Offset: 0x80
-	// Line 210, Address: 0x251bc8, Func Offset: 0x88
-	// Line 212, Address: 0x251bcc, Func Offset: 0x8c
-	// Line 209, Address: 0x251bd0, Func Offset: 0x90
-	// Line 210, Address: 0x251bd8, Func Offset: 0x98
-	// Line 211, Address: 0x251bdc, Func Offset: 0x9c
-	// Line 212, Address: 0x251be0, Func Offset: 0xa0
-	// Line 213, Address: 0x251be4, Func Offset: 0xa4
-	// Line 216, Address: 0x251be8, Func Offset: 0xa8
-	// Line 219, Address: 0x251c24, Func Offset: 0xe4
-	// Line 216, Address: 0x251c28, Func Offset: 0xe8
-	// Line 219, Address: 0x251c2c, Func Offset: 0xec
-	// Line 224, Address: 0x251c40, Func Offset: 0x100
-	// Line 227, Address: 0x251c48, Func Offset: 0x108
-	// Line 230, Address: 0x251c54, Func Offset: 0x114
-	// Line 232, Address: 0x251c64, Func Offset: 0x124
-	// Line 239, Address: 0x251c68, Func Offset: 0x128
-	// Line 242, Address: 0x251c6c, Func Offset: 0x12c
-	// Line 243, Address: 0x251c74, Func Offset: 0x134
-	// Line 239, Address: 0x251c7c, Func Offset: 0x13c
-	// Line 242, Address: 0x251c80, Func Offset: 0x140
-	// Line 250, Address: 0x251c84, Func Offset: 0x144
-	// Line 242, Address: 0x251c88, Func Offset: 0x148
-	// Line 243, Address: 0x251c90, Func Offset: 0x150
-	// Line 244, Address: 0x251cac, Func Offset: 0x16c
-	// Line 245, Address: 0x251ccc, Func Offset: 0x18c
-	// Line 246, Address: 0x251ce8, Func Offset: 0x1a8
-	// Line 250, Address: 0x251d08, Func Offset: 0x1c8
-	// Line 252, Address: 0x251d24, Func Offset: 0x1e4
-	// Line 253, Address: 0x251d38, Func Offset: 0x1f8
-	// Line 255, Address: 0x251d5c, Func Offset: 0x21c
-	// Func End, Address: 0x251d6c, Func Offset: 0x22c
-	scePrintf("bhEff200 - UNIMPLEMENTED!\n");
+    
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type == 0) 
+    {
+        op->flg |= 0x1000000;
+        return;
+    }
+    
+    op->flg &= ~0x1000000;
+    
+    switch (op->mode0)
+    {                       
+    case 0:
+        op->flg |= 0x4180000;
+        
+        op->tex_id = 58;
+        
+        op->ani_ct = 0;
+        
+        op->bl_src = 8;
+        op->bl_dst = 3;
+        
+        op->ct0 = 8.0f * (-rand() / -2.1474836E9f);
+        
+        op->tv[0].col = op->tv[1].col = op->tv[2].col = op->tv[3].col = 0xC0FFFFFF;
+        
+        op->mode0 = 1;
+    case 1:
+        op->ct0++;
+        
+        if (op->ct0 >= 8) 
+        {
+            op->ct0 = 0;
+        }
+        
+        break;
+    }
+    
+    op->az = op->ax;
+    
+    pInfo = &Eff200UvInfo[op->ct0];
+    
+    op->tv[0].u = op->tv[2].u = pInfo->u        / 256.0f;
+    op->tv[1].u = op->tv[3].u = (pInfo->u + 31) / 256.0f;
+    
+    op->tv[0].v = op->tv[1].v = pInfo->v        / 256.0f;
+    op->tv[2].v = op->tv[3].v = (pInfo->v + 31) / 256.0f;
+    
+    if (sys->ef_trsn < 512) 
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
 
 // 

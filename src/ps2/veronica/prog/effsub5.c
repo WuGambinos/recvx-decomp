@@ -2370,32 +2370,50 @@ void bhEff228(O_WRK* op)
 	scePrintf("bhEff228 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x257630
+// 100% matching!
 void bhEff229(O_WRK* op)
 {
-	// Line 3177, Address: 0x257630, Func Offset: 0
-	// Line 3180, Address: 0x25765c, Func Offset: 0x2c
-	// Line 3181, Address: 0x257664, Func Offset: 0x34
-	// Line 3182, Address: 0x257670, Func Offset: 0x40
-	// Line 3183, Address: 0x257678, Func Offset: 0x48
-	// Line 3184, Address: 0x25767c, Func Offset: 0x4c
-	// Line 3182, Address: 0x257680, Func Offset: 0x50
-	// Line 3183, Address: 0x257684, Func Offset: 0x54
-	// Line 3184, Address: 0x257688, Func Offset: 0x58
-	// Line 3185, Address: 0x25768c, Func Offset: 0x5c
-	// Line 3186, Address: 0x257690, Func Offset: 0x60
-	// Line 3187, Address: 0x257698, Func Offset: 0x68
-	// Line 3190, Address: 0x25769c, Func Offset: 0x6c
-	// Line 3191, Address: 0x2576bc, Func Offset: 0x8c
-	// Line 3193, Address: 0x2576c4, Func Offset: 0x94
-	// Line 3194, Address: 0x2576fc, Func Offset: 0xcc
-	// Line 3195, Address: 0x257708, Func Offset: 0xd8
-	// Line 3196, Address: 0x257720, Func Offset: 0xf0
-	// Line 3199, Address: 0x257728, Func Offset: 0xf8
-	// Line 3202, Address: 0x25772c, Func Offset: 0xfc
-	// Func End, Address: 0x257734, Func Offset: 0x104
-	scePrintf("bhEff229 - UNIMPLEMENTED!\n");
+    switch (op->mode0) 
+    {                            
+    case 0:
+        op->tex_id = 3;
+        
+        op->func = (void*)bhDrawWeaponEffect2;
+        
+        op->tvp->col = -1;
+        
+        op->bl_src = 8;
+        op->bl_dst = 10;
+        
+        op->ani_ct = 0;
+        
+        op->ct0 = op->ct1 = 0;
+        
+        op->mode0 = 1;
+    case 1:
+        if (op->ct0 != 1) 
+        {
+            op->spd = 0.8f;
+        }
+        else 
+        {
+            op->spd = 1.0f;
+        }
+        
+        sys->ef_fnc[sys->ef_fncn++] = op;
+        
+        op->ct0++;
+        
+        if (op->ct0 >= op->flr_no) 
+        {
+            op->mode0 = 2;
+        }
+        
+        break;
+    case 2:
+        op->flg = 0;
+        break; 
+    }
 }
 
 // 

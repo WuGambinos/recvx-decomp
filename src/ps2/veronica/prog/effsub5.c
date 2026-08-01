@@ -910,11 +910,10 @@ void bhEff211(O_WRK* op)
 	scePrintf("bhEff211 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x253f10
-void bhEff212(O_WRK* op)
+// 99.60% matching (matches on NGC)
+void bhEff212(O_WRK* op) 
 {
-	EFF5UV* pInfo;
+    EFF5UV* pInfo;
 	static EFF5UV Eff212UvInfo[16] = 
 	{
 		{   0,   0 }, {  64,   0 }, { 128,   0 }, { 192,   0 },
@@ -922,45 +921,65 @@ void bhEff212(O_WRK* op)
 		{   0,  96 }, {  64,  96 }, { 128,  96 }, { 192,  96 },
 		{   0, 144 }, {  64, 144 }, { 128, 144 }, { 192, 144 }
 	};
-	// Line 1368, Address: 0x253f10, Func Offset: 0
-	// Line 1379, Address: 0x253f1c, Func Offset: 0xc
-	// Line 1380, Address: 0x253f3c, Func Offset: 0x2c
-	// Line 1382, Address: 0x253f48, Func Offset: 0x38
-	// Line 1383, Address: 0x253f54, Func Offset: 0x44
-	// Line 1385, Address: 0x253f5c, Func Offset: 0x4c
-	// Line 1388, Address: 0x253f68, Func Offset: 0x58
-	// Line 1385, Address: 0x253f6c, Func Offset: 0x5c
-	// Line 1388, Address: 0x253f74, Func Offset: 0x64
-	// Line 1391, Address: 0x253f90, Func Offset: 0x80
-	// Line 1392, Address: 0x253f98, Func Offset: 0x88
-	// Line 1393, Address: 0x253f9c, Func Offset: 0x8c
-	// Line 1391, Address: 0x253fa0, Func Offset: 0x90
-	// Line 1392, Address: 0x253fa8, Func Offset: 0x98
-	// Line 1393, Address: 0x253fac, Func Offset: 0x9c
-	// Line 1394, Address: 0x253fb0, Func Offset: 0xa0
-	// Line 1395, Address: 0x253fb8, Func Offset: 0xa8
-	// Line 1400, Address: 0x253fc0, Func Offset: 0xb0
-	// Line 1397, Address: 0x253fc4, Func Offset: 0xb4
-	// Line 1400, Address: 0x253fc8, Func Offset: 0xb8
-	// Line 1406, Address: 0x253fdc, Func Offset: 0xcc
-	// Line 1409, Address: 0x253fe4, Func Offset: 0xd4
-	// Line 1412, Address: 0x253ff0, Func Offset: 0xe0
-	// Line 1414, Address: 0x254000, Func Offset: 0xf0
-	// Line 1421, Address: 0x254004, Func Offset: 0xf4
-	// Line 1425, Address: 0x254040, Func Offset: 0x130
-	// Line 1426, Address: 0x25404c, Func Offset: 0x13c
-	// Line 1433, Address: 0x254054, Func Offset: 0x144
-	// Line 1425, Address: 0x254058, Func Offset: 0x148
-	// Line 1426, Address: 0x254060, Func Offset: 0x150
-	// Line 1427, Address: 0x25407c, Func Offset: 0x16c
-	// Line 1428, Address: 0x25409c, Func Offset: 0x18c
-	// Line 1429, Address: 0x2540b8, Func Offset: 0x1a8
-	// Line 1433, Address: 0x2540d8, Func Offset: 0x1c8
-	// Line 1435, Address: 0x2540f4, Func Offset: 0x1e4
-	// Line 1436, Address: 0x254108, Func Offset: 0x1f8
-	// Line 1438, Address: 0x25412c, Func Offset: 0x21c
-	// Func End, Address: 0x25413c, Func Offset: 0x22c
-	scePrintf("bhEff212 - UNIMPLEMENTED!\n");
+
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type == 0) 
+    {
+        op->flg |= 0x1000000;
+        return;
+    }
+    
+    op->flg &= ~0x1000000;
+    
+    switch (op->mode0)
+    {                       
+    case 0:
+        op->flg |= 0x4080000;
+        
+        op->tex_id = 65;
+        
+        op->ani_ct = 2;
+        
+        op->bl_src = 8;
+        op->bl_dst = 3;
+        
+        op->ct0 = 0;
+        
+        op->tv[0].col = op->tv[1].col = op->tv[2].col = op->tv[3].col = 0x80FFFFFF;
+        
+        op->mode0 = 1;
+        break;
+    case 1:
+        op->ct0++;
+        
+        if (op->ct0 >= 16) 
+        {
+            op->ct0 = 0;
+        }
+        
+        break;
+    }
+    
+    op->az = (short)((65536.0f * op->sz) / 360.0f);
+    
+    pInfo = &Eff212UvInfo[op->ct0];
+    
+    op->tv[0].u = op->tv[2].u = pInfo->u        / 256.0f;
+    op->tv[1].u = op->tv[3].u = (pInfo->u + 63) / 256.0f;
+    
+    op->tv[0].v = op->tv[1].v = pInfo->v        / 256.0f;
+    op->tv[2].v = op->tv[3].v = (pInfo->v + 47) / 256.0f;
+    
+    if (sys->ef_trsn < 512) 
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
 
 // 

@@ -4414,102 +4414,167 @@ int bhCheckBox2Box(ATR_WORK* hp, NJS_POINT3* pos, float aw, float ad, float ah)
     return 0;
 }
 
-// 
-// Start address: 0x265e10
-int bhCheckInnerP4(NJS_POINT2* pos, NJS_POINT2* p0, NJS_POINT2* p1, NJS_POINT2* p2, NJS_POINT2* p3)
+// 100% matching!
+int bhCheckInnerP4(NJS_POINT2* pos, NJS_POINT2* p0, NJS_POINT2* p1, NJS_POINT2* p2, NJS_POINT2* p3) 
 {
-	float y3;
-	float y2;
-	float y1;
-	float y0;
-	float x1;
-	float x0;
-	float nn;
-	float swp;
-	float max;
-	float min;
-	// Line 3509, Address: 0x265e10, Func Offset: 0
-	// Line 3510, Address: 0x265e48, Func Offset: 0x38
-	// Line 3512, Address: 0x265e50, Func Offset: 0x40
-	// Line 3513, Address: 0x265e54, Func Offset: 0x44
-	// Line 3511, Address: 0x265e58, Func Offset: 0x48
-	// Line 3510, Address: 0x265e64, Func Offset: 0x54
-	// Line 3512, Address: 0x265e68, Func Offset: 0x58
-	// Line 3513, Address: 0x265e6c, Func Offset: 0x5c
-	// Line 3514, Address: 0x265e70, Func Offset: 0x60
-	// Line 3516, Address: 0x265e74, Func Offset: 0x64
-	// Line 3517, Address: 0x265e84, Func Offset: 0x74
-	// Line 3518, Address: 0x265ea0, Func Offset: 0x90
-	// Line 3519, Address: 0x265ecc, Func Offset: 0xbc
-	// Line 3520, Address: 0x265ed4, Func Offset: 0xc4
-	// Line 3521, Address: 0x265ef0, Func Offset: 0xe0
-	// Line 3523, Address: 0x265f14, Func Offset: 0x104
-	// Line 3524, Address: 0x265f24, Func Offset: 0x114
-	// Line 3525, Address: 0x265f2c, Func Offset: 0x11c
-	// Line 3524, Address: 0x265f30, Func Offset: 0x120
-	// Line 3525, Address: 0x265f34, Func Offset: 0x124
-	// Line 3526, Address: 0x265f38, Func Offset: 0x128
-	// Line 3527, Address: 0x265f48, Func Offset: 0x138
-	// Line 3528, Address: 0x265f4c, Func Offset: 0x13c
-	// Line 3529, Address: 0x265f50, Func Offset: 0x140
-	// Line 3531, Address: 0x265f54, Func Offset: 0x144
-	// Line 3533, Address: 0x265f84, Func Offset: 0x174
-	// Line 3534, Address: 0x265f94, Func Offset: 0x184
-	// Line 3535, Address: 0x265fac, Func Offset: 0x19c
-	// Line 3537, Address: 0x265fd4, Func Offset: 0x1c4
-	// Line 3538, Address: 0x265fd8, Func Offset: 0x1c8
-	// Line 3537, Address: 0x265fdc, Func Offset: 0x1cc
-	// Line 3538, Address: 0x265fe0, Func Offset: 0x1d0
-	// Line 3537, Address: 0x265fe4, Func Offset: 0x1d4
-	// Line 3538, Address: 0x265fe8, Func Offset: 0x1d8
-	// Line 3539, Address: 0x265fec, Func Offset: 0x1dc
-	// Line 3540, Address: 0x265ffc, Func Offset: 0x1ec
-	// Line 3541, Address: 0x266000, Func Offset: 0x1f0
-	// Line 3542, Address: 0x266004, Func Offset: 0x1f4
-	// Line 3544, Address: 0x266008, Func Offset: 0x1f8
-	// Line 3546, Address: 0x266038, Func Offset: 0x228
-	// Line 3548, Address: 0x266060, Func Offset: 0x250
-	// Line 3549, Address: 0x266064, Func Offset: 0x254
-	// Line 3548, Address: 0x266068, Func Offset: 0x258
-	// Line 3549, Address: 0x26606c, Func Offset: 0x25c
-	// Line 3548, Address: 0x266070, Func Offset: 0x260
-	// Line 3549, Address: 0x266074, Func Offset: 0x264
-	// Line 3550, Address: 0x266078, Func Offset: 0x268
-	// Line 3551, Address: 0x266088, Func Offset: 0x278
-	// Line 3552, Address: 0x26608c, Func Offset: 0x27c
-	// Line 3553, Address: 0x266090, Func Offset: 0x280
-	// Line 3555, Address: 0x266094, Func Offset: 0x284
-	// Line 3558, Address: 0x2660c4, Func Offset: 0x2b4
-	// Line 3559, Address: 0x2660dc, Func Offset: 0x2cc
-	// Line 3561, Address: 0x266104, Func Offset: 0x2f4
-	// Line 3563, Address: 0x266138, Func Offset: 0x328
-	// Line 3564, Address: 0x26613c, Func Offset: 0x32c
-	// Line 3563, Address: 0x266140, Func Offset: 0x330
-	// Line 3564, Address: 0x266148, Func Offset: 0x338
-	// Line 3563, Address: 0x26614c, Func Offset: 0x33c
-	// Line 3564, Address: 0x266150, Func Offset: 0x340
-	// Line 3565, Address: 0x266154, Func Offset: 0x344
-	// Line 3566, Address: 0x266164, Func Offset: 0x354
-	// Line 3567, Address: 0x266168, Func Offset: 0x358
-	// Line 3568, Address: 0x26616c, Func Offset: 0x35c
-	// Line 3570, Address: 0x266170, Func Offset: 0x360
-	// Line 3572, Address: 0x2661a0, Func Offset: 0x390
-	// Line 3574, Address: 0x2661c8, Func Offset: 0x3b8
-	// Line 3576, Address: 0x2661fc, Func Offset: 0x3ec
-	// Line 3577, Address: 0x266200, Func Offset: 0x3f0
-	// Line 3576, Address: 0x266208, Func Offset: 0x3f8
-	// Line 3577, Address: 0x26620c, Func Offset: 0x3fc
-	// Line 3576, Address: 0x266210, Func Offset: 0x400
-	// Line 3577, Address: 0x266214, Func Offset: 0x404
-	// Line 3578, Address: 0x266218, Func Offset: 0x408
-	// Line 3579, Address: 0x266228, Func Offset: 0x418
-	// Line 3580, Address: 0x26622c, Func Offset: 0x41c
-	// Line 3581, Address: 0x266230, Func Offset: 0x420
-	// Line 3583, Address: 0x266234, Func Offset: 0x424
-	// Line 3587, Address: 0x266264, Func Offset: 0x454
-	// Line 3588, Address: 0x266268, Func Offset: 0x458
-	// Func End, Address: 0x266270, Func Offset: 0x460
-	scePrintf("bhCheckInnerP4 - UNIMPLEMENTED!\n");
+    float min, max; 
+    float swp; 
+    float nn;
+    float x0, x1;  
+    float y0, y1, y2, y3;  
+
+    if ((pos->y < p0->y) || (pos->y >= p3->y)) 
+    {
+        return 0;
+    }
+
+    nn = p1->x - p0->x;
+    
+    x0 = x1 = 0;
+    
+    y0 = p1->y - p0->y;
+    y1 = p2->y - p0->y;
+    y2 = p3->y - p1->y;
+    y3 = p3->y - p2->y;
+
+    if (nn > 0)
+    {
+        if (y1) 
+        {
+            x0 = (p2->x - p0->x) / y1;
+        }
+        
+        if (y0) 
+        {
+            x1 = nn / y0;
+        }
+    }
+    else
+    {
+        if (y0) 
+        {
+            x0 = nn / y0;
+        }
+        
+        if (y1) 
+        {
+            x1 = (p2->x - p0->x) / y1;
+        }
+    }
+
+    if (pos->y < p1->y) 
+    {
+        min = p0->x + (x0 * (pos->y - p0->y));
+        max = p0->x + (x1 * (pos->y - p0->y));
+        
+        if (min > max) 
+        {
+            swp = min;
+            
+            min = max;
+            
+            max = swp;
+        }
+        
+        if ((min > pos->x) || (max <= pos->x)) 
+        {
+            return 0;
+        }
+    }
+    else if (pos->y < p2->y) 
+    {
+        if (nn > 0) 
+        {
+            x1 = (y2) ? (p3->x - p1->x) / y2 : 0;
+            
+            min = p0->x + (x0 * (pos->y - p0->y));
+            max = p1->x + (x1 * (pos->y - p1->y));
+            
+            if (min > max) 
+            {
+                swp = min;
+                
+                min = max;
+                
+                max = swp;
+            }
+            
+            if ((min > pos->x) || (max <= pos->x)) 
+            {
+                return 0;
+            }
+        }
+        else 
+        {
+            x0 = (y2) ? (p3->x - p1->x) / y2 : 0;
+            
+            min = p1->x + (x0 * (pos->y - p1->y));
+            max = p0->x + (x1 * (pos->y - p0->y));
+            
+            if (min > max) 
+            {
+                swp = min;
+                
+                min = max;
+                
+                max = swp;
+            }
+            
+            if ((min > pos->x) || (max <= pos->x)) 
+            {
+                return 0;
+            }
+        }
+    }
+    else 
+    {
+        if (nn > 0) 
+        {
+            x0 = (y2) ? (p3->x - p1->x) / y2 : 0;
+            x1 = (y3) ? (p3->x - p2->x) / y3 : 0;
+            
+            min = p2->x + (x1 * (pos->y - p2->y));
+            max = p1->x + (x0 * (pos->y - p1->y));
+            
+            if (min > max)
+            {
+                swp = min;
+                
+                min = max;
+                
+                max = swp;
+            }
+            
+            if ((min > pos->x) || (max <= pos->x)) 
+            {
+                return 0;
+            }
+        }
+        else 
+        {
+            x0 = (y2) ? (p3->x - p1->x) / y2 : 0;
+            x1 = (y3) ? (p3->x - p2->x) / y3 : 0;
+            
+            min = p1->x + (x0 * (pos->y - p1->y));
+            max = p2->x + (x1 * (pos->y - p2->y));
+            
+            if (min > max) 
+            {
+                swp = min;
+                
+                min = max;
+                
+                max = swp;
+            }
+            
+            if ((min > pos->x) || (max <= pos->x)) 
+            {
+                return 0;
+            }
+        }
+    }
+    
+    return 1;
 }
 
 // 100% matching!

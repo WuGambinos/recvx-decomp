@@ -432,48 +432,65 @@ void bhEff205(O_WRK* op)
 	scePrintf("bhEff205 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x252fc0
-void bhEff206(O_WRK* op)
+// 100% matching!
+void bhEff206(O_WRK* op) 
 {
-	EF_WORK* pEffect;
-	// Line 817, Address: 0x252fc0, Func Offset: 0
-	// Line 821, Address: 0x252fcc, Func Offset: 0xc
-	// Line 822, Address: 0x252fec, Func Offset: 0x2c
-	// Line 824, Address: 0x252ff8, Func Offset: 0x38
-	// Line 825, Address: 0x253004, Func Offset: 0x44
-	// Line 827, Address: 0x25300c, Func Offset: 0x4c
-	// Line 830, Address: 0x253018, Func Offset: 0x58
-	// Line 827, Address: 0x25301c, Func Offset: 0x5c
-	// Line 830, Address: 0x253024, Func Offset: 0x64
-	// Line 833, Address: 0x253040, Func Offset: 0x80
-	// Line 835, Address: 0x253044, Func Offset: 0x84
-	// Line 838, Address: 0x25304c, Func Offset: 0x8c
-	// Line 839, Address: 0x253058, Func Offset: 0x98
-	// Line 842, Address: 0x253068, Func Offset: 0xa8
-	// Line 844, Address: 0x253070, Func Offset: 0xb0
-	// Line 863, Address: 0x253074, Func Offset: 0xb4
-	// Line 842, Address: 0x25307c, Func Offset: 0xbc
-	// Line 843, Address: 0x253088, Func Offset: 0xc8
-	// Line 844, Address: 0x25308c, Func Offset: 0xcc
-	// Line 845, Address: 0x253090, Func Offset: 0xd0
-	// Line 863, Address: 0x253094, Func Offset: 0xd4
-	// Line 845, Address: 0x253098, Func Offset: 0xd8
-	// Line 846, Address: 0x2530a0, Func Offset: 0xe0
-	// Line 847, Address: 0x2530a4, Func Offset: 0xe4
-	// Line 850, Address: 0x2530a8, Func Offset: 0xe8
-	// Line 851, Address: 0x2530b0, Func Offset: 0xf0
-	// Line 852, Address: 0x2530b8, Func Offset: 0xf8
-	// Line 855, Address: 0x2530c0, Func Offset: 0x100
-	// Line 856, Address: 0x2530c8, Func Offset: 0x108
-	// Line 857, Address: 0x2530d0, Func Offset: 0x110
-	// Line 860, Address: 0x2530d8, Func Offset: 0x118
-	// Line 861, Address: 0x2530e0, Func Offset: 0x120
-	// Line 863, Address: 0x2530e4, Func Offset: 0x124
-	// Line 865, Address: 0x2530ec, Func Offset: 0x12c
-	// Line 869, Address: 0x2530f0, Func Offset: 0x130
-	// Func End, Address: 0x253100, Func Offset: 0x140
-	scePrintf("bhEff206 - UNIMPLEMENTED!\n");
+    EF_WORK* pEffect;
+    
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type == 0) 
+    {
+        op->flg |= 0x1000000;
+        return;
+    }
+    
+    op->flg &= ~0x1000000;
+    
+    switch (op->mode0) 
+    {                          
+    case 0:
+        op->ct0   = 0;
+        op->mode0 = 1;
+        break;
+    case 1:
+        op->ct0++;
+        
+        if (op->ct0 >= 6) 
+        {
+            pEffect = &sys->ef;
+            
+            pEffect->flg = 1;
+            
+            pEffect->id = 207;
+            
+            pEffect->type = op->type - 1;
+            
+            pEffect->flr_no = 0;
+            
+            pEffect->mdlver = 0;
+            
+            pEffect->px = op->px;
+            pEffect->py = op->py;
+            pEffect->pz = op->pz;
+            
+            pEffect->sx = op->sx;
+            pEffect->sy = op->sy;
+            pEffect->sz = op->sz;
+            
+            pEffect->ay = op->ay;
+            pEffect->ax = op->ax;
+            
+            bhSetEffectTb(pEffect, NULL, NULL, 0xFF);
+            
+            op->ct0 = 0;
+        }
+        
+        break;
+    }
 }
 
 // 

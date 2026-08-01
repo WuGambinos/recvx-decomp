@@ -316,40 +316,54 @@ void bhEff203(O_WRK* op)
 	scePrintf("bhEff203 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x252bf0
+// 100% matching!
 void bhEff204(O_WRK* op)
 {
-	// Line 644, Address: 0x252bf0, Func Offset: 0
-	// Line 645, Address: 0x252c10, Func Offset: 0x20
-	// Line 647, Address: 0x252c1c, Func Offset: 0x2c
-	// Line 648, Address: 0x252c28, Func Offset: 0x38
-	// Line 650, Address: 0x252c30, Func Offset: 0x40
-	// Line 653, Address: 0x252c44, Func Offset: 0x54
-	// Line 657, Address: 0x252c58, Func Offset: 0x68
-	// Line 661, Address: 0x252c60, Func Offset: 0x70
-	// Line 662, Address: 0x252c64, Func Offset: 0x74
-	// Line 657, Address: 0x252c6c, Func Offset: 0x7c
-	// Line 661, Address: 0x252c74, Func Offset: 0x84
-	// Line 662, Address: 0x252c78, Func Offset: 0x88
-	// Line 665, Address: 0x252c80, Func Offset: 0x90
-	// Line 666, Address: 0x252c84, Func Offset: 0x94
-	// Line 662, Address: 0x252c88, Func Offset: 0x98
-	// Line 664, Address: 0x252c9c, Func Offset: 0xac
-	// Line 665, Address: 0x252ca0, Func Offset: 0xb0
-	// Line 666, Address: 0x252ca4, Func Offset: 0xb4
-	// Line 669, Address: 0x252ca8, Func Offset: 0xb8
-	// Line 684, Address: 0x252cbc, Func Offset: 0xcc
-	// Line 685, Address: 0x252cc4, Func Offset: 0xd4
-	// Line 686, Address: 0x252cd0, Func Offset: 0xe0
-	// Line 687, Address: 0x252cd8, Func Offset: 0xe8
-	// Line 691, Address: 0x252ce0, Func Offset: 0xf0
-	// Line 696, Address: 0x252ce8, Func Offset: 0xf8
-	// Line 698, Address: 0x252d08, Func Offset: 0x118
-	// Line 699, Address: 0x252d1c, Func Offset: 0x12c
-	// Line 701, Address: 0x252d40, Func Offset: 0x150
-	// Func End, Address: 0x252d48, Func Offset: 0x158
-	scePrintf("bhEff204 - UNIMPLEMENTED!\n");
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type == 0) 
+    {
+        op->flg |= 0x1000000;
+        return;
+    }
+    
+    op->flg &= ~0x1000000;
+    
+    switch (op->mode0) 
+    {
+    case 0:
+        op->flg |= 0x4080000;
+        
+        op->tex_id = 449;
+        
+        sys->ef_tn[op->tex_id] = 7;
+        
+        op->ani_ct = 0;
+        
+        op->bl_src = 8;
+        op->bl_dst = 3;
+        
+        op->tv[0].col = op->tv[1].col = op->tv[2].col = op->tv[3].col = 0xFF000000;
+        
+        op->tv[0].u = op->tv[2].u = 0;
+        op->tv[1].u = op->tv[3].u = 0.99609375f;
+            
+        op->tv[0].v = op->tv[1].v = 0;
+        op->tv[2].v = op->tv[3].v = 0.99609375f;
+        
+        op->mode0 = 1;
+        break;
+    }
+    
+    if (sys->ef_opqn < 512) 
+    {
+        sys->ef_opq[sys->ef_opqn] = op;
+        
+        sys->ef_opqn++;
+    }
 }
 
 // 

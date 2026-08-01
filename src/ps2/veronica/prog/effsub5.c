@@ -943,44 +943,50 @@ void bhEff213(O_WRK* op)
 	scePrintf("bhEff213 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x254390
-void bhEff214(O_WRK* op)
+// 100% matching!
+void bhEff214(O_WRK* op) 
 {
-	EF_WORK* pEffect;
-	// Line 1526, Address: 0x254390, Func Offset: 0
-	// Line 1530, Address: 0x25439c, Func Offset: 0xc
-	// Line 1531, Address: 0x2543bc, Func Offset: 0x2c
-	// Line 1533, Address: 0x2543c8, Func Offset: 0x38
-	// Line 1534, Address: 0x2543d4, Func Offset: 0x44
-	// Line 1536, Address: 0x2543dc, Func Offset: 0x4c
-	// Line 1540, Address: 0x2543e8, Func Offset: 0x58
-	// Line 1541, Address: 0x2543ec, Func Offset: 0x5c
-	// Line 1536, Address: 0x2543f0, Func Offset: 0x60
-	// Line 1540, Address: 0x2543f8, Func Offset: 0x68
-	// Line 1542, Address: 0x2543fc, Func Offset: 0x6c
-	// Line 1554, Address: 0x254400, Func Offset: 0x70
-	// Line 1540, Address: 0x254408, Func Offset: 0x78
-	// Line 1541, Address: 0x254414, Func Offset: 0x84
-	// Line 1542, Address: 0x254418, Func Offset: 0x88
-	// Line 1543, Address: 0x25441c, Func Offset: 0x8c
-	// Line 1544, Address: 0x254420, Func Offset: 0x90
-	// Line 1545, Address: 0x254424, Func Offset: 0x94
-	// Line 1546, Address: 0x254428, Func Offset: 0x98
-	// Line 1554, Address: 0x25442c, Func Offset: 0x9c
-	// Line 1546, Address: 0x254430, Func Offset: 0xa0
-	// Line 1547, Address: 0x254434, Func Offset: 0xa4
-	// Line 1548, Address: 0x25443c, Func Offset: 0xac
-	// Line 1549, Address: 0x254444, Func Offset: 0xb4
-	// Line 1550, Address: 0x25444c, Func Offset: 0xbc
-	// Line 1551, Address: 0x254454, Func Offset: 0xc4
-	// Line 1552, Address: 0x25445c, Func Offset: 0xcc
-	// Line 1553, Address: 0x254464, Func Offset: 0xd4
-	// Line 1554, Address: 0x254468, Func Offset: 0xd8
-	// Line 1556, Address: 0x254470, Func Offset: 0xe0
-	// Line 1557, Address: 0x25447c, Func Offset: 0xec
-	// Func End, Address: 0x25448c, Func Offset: 0xfc
-	scePrintf("bhEff214 - UNIMPLEMENTED!\n");
+    EF_WORK* pEffect;
+    
+    if ((op->type == 0) && (op->mode1 != 0)) 
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type == 0) 
+    {
+        op->flg |= 0x1000000;
+        return;
+    }
+    
+    op->flg &= ~0x1000000;
+    
+    pEffect = &sys->ef;
+    
+    pEffect->flg = 1;
+    
+    pEffect->id = 11;
+    
+    pEffect->type = 0;
+    
+    pEffect->flr_no = 0;
+    
+    pEffect->mdlver = 0;
+    
+    pEffect->px = op->px;
+    pEffect->py = op->py;
+    pEffect->pz = op->pz;
+    
+    pEffect->sx = op->sx;
+    pEffect->sy = op->sy;
+    pEffect->sz = op->sz;
+    
+    pEffect->ay = op->ay;
+    pEffect->ax = op->ax;
+    
+    bhSetEffectTb(pEffect, NULL, NULL, 0xFF);
+    
+    op->type = op->mode1 = 0;
 }
 
 // 100% matching!

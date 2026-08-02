@@ -3415,9 +3415,8 @@ void bhEff235(O_WRK* op)
     
     lType = op->type - 1;
     
-    lMode = lType % 2;
-    
-    lCnt   = (lType / 2) % 6;
+    lMode  = lType        % 2;
+    lCnt   = (lType / 2)  % 6;
     lColor = (lType / 12) % 3;
 
     switch (op->mode0) 

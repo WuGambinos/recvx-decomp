@@ -4964,71 +4964,109 @@ void ExecEff5SnowRect(EFF5SNOWRECT* pSnow)
 
 #pragma divbyzerocheck off
 
-// 
-// Start address: 0x25cef0
-void DrawEff5SnowRect(O_WRK* op)
+// 94.71% matching
+void DrawEff5SnowRect(O_WRK* op) 
 {
-	NJS_POINT3 Vector;
-	int aAngleZ;
-	NJS_TEXTURE_VTX* pModel;
-	float Matrix[16];
-	NJS_POINT3* pPoint;
-	int lDrawMax;
-	int lDrawCnt;
-	int lDrawRest;
-	EFF5SNOWGRP* pSnowGrp;
-	EFF5SNOWRECT* pSnow;
-	// Line 5885, Address: 0x25cef0, Func Offset: 0
-	// Line 5901, Address: 0x25cf18, Func Offset: 0x28
-	// Line 5905, Address: 0x25cf20, Func Offset: 0x30
-	// Line 5906, Address: 0x25cf28, Func Offset: 0x38
-	// Line 5907, Address: 0x25cf30, Func Offset: 0x40
-	// Line 5916, Address: 0x25cf38, Func Offset: 0x48
-	// Line 5908, Address: 0x25cf3c, Func Offset: 0x4c
-	// Line 5916, Address: 0x25cf40, Func Offset: 0x50
-	// Line 5917, Address: 0x25cf48, Func Offset: 0x58
-	// Line 5918, Address: 0x25cf5c, Func Offset: 0x6c
-	// Line 5917, Address: 0x25cf60, Func Offset: 0x70
-	// Line 5918, Address: 0x25cf64, Func Offset: 0x74
-	// Line 5919, Address: 0x25cf74, Func Offset: 0x84
-	// Line 5923, Address: 0x25cf94, Func Offset: 0xa4
-	// Line 5927, Address: 0x25cfc0, Func Offset: 0xd0
-	// Line 5929, Address: 0x25cfc8, Func Offset: 0xd8
-	// Line 5932, Address: 0x25cfd0, Func Offset: 0xe0
-	// Line 5933, Address: 0x25cfd4, Func Offset: 0xe4
-	// Line 5936, Address: 0x25cfe0, Func Offset: 0xf0
-	// Line 5938, Address: 0x25cfec, Func Offset: 0xfc
-	// Line 5939, Address: 0x25cff0, Func Offset: 0x100
-	// Line 5941, Address: 0x25cff8, Func Offset: 0x108
-	// Line 5942, Address: 0x25d004, Func Offset: 0x114
-	// Line 5943, Address: 0x25d00c, Func Offset: 0x11c
-	// Line 5944, Address: 0x25d014, Func Offset: 0x124
-	// Line 5945, Address: 0x25d020, Func Offset: 0x130
-	// Line 5947, Address: 0x25d030, Func Offset: 0x140
-	// Line 5950, Address: 0x25d040, Func Offset: 0x150
-	// Line 5952, Address: 0x25d050, Func Offset: 0x160
-	// Line 5953, Address: 0x25d058, Func Offset: 0x168
-	// Line 5956, Address: 0x25d060, Func Offset: 0x170
-	// Line 5958, Address: 0x25d084, Func Offset: 0x194
-	// Line 5960, Address: 0x25d08c, Func Offset: 0x19c
-	// Line 5963, Address: 0x25d094, Func Offset: 0x1a4
-	// Line 5964, Address: 0x25d098, Func Offset: 0x1a8
-	// Line 5966, Address: 0x25d0a4, Func Offset: 0x1b4
-	// Line 5967, Address: 0x25d0bc, Func Offset: 0x1cc
-	// Line 5969, Address: 0x25d0c0, Func Offset: 0x1d0
-	// Line 5970, Address: 0x25d0c4, Func Offset: 0x1d4
-	// Line 5972, Address: 0x25d0d0, Func Offset: 0x1e0
-	// Line 5973, Address: 0x25d0dc, Func Offset: 0x1ec
-	// Line 5974, Address: 0x25d0e4, Func Offset: 0x1f4
-	// Line 5975, Address: 0x25d0ec, Func Offset: 0x1fc
-	// Line 5976, Address: 0x25d0f8, Func Offset: 0x208
-	// Line 5977, Address: 0x25d144, Func Offset: 0x254
-	// Line 5979, Address: 0x25d154, Func Offset: 0x264
-	// Line 5982, Address: 0x25d160, Func Offset: 0x270
-	// Line 5984, Address: 0x25d170, Func Offset: 0x280
-	// Line 5987, Address: 0x25d178, Func Offset: 0x288
-	// Func End, Address: 0x25d1a4, Func Offset: 0x2b4
-	scePrintf("DrawEff5SnowRect - UNIMPLEMENTED!\n");
+    EFF5SNOWRECT* pSnow;    
+    EFF5SNOWGRP* pSnowGrp; 
+    int lDrawRest, lDrawCnt, lDrawMax;         
+    NJS_POINT3* pPoint;      
+    NJS_MATRIX Matrix; // should be a pointer?
+    NJS_TEXTURE_VTX* pModel; 
+    int aAngleZ;             
+    NJS_POINT3 Vector;      
+
+    pSnow = (EFF5SNOWRECT*)op->exp0;
+    
+    njSetTexture(pSnow->pSnowTexList);
+    njSetTextureNum(pSnow->ulSnowTexNum);
+    
+    njTextureFilterMode(0);
+    
+    pModel = pSnow->SnowModel;
+    
+    GetEff5SnowRectCurrentWindVector(pSnow, &Vector);
+    
+    Vector.y -= 0.38000003f;
+    
+    njCalcVector(NULL, &Vector, &Vector);
+    
+    aAngleZ = (int)(10430.381f * atan2f(Vector.y, Vector.x)) + 16384;
+    
+    switch (op->type) 
+    {                            
+    case 1:
+    case 3:
+        njPushMatrixEx();
+        
+        njGetMatrix(&Matrix);
+        
+        pSnowGrp = pSnow->SnowGrp;
+        
+        for (lDrawRest = pSnow->lSnowExistCrnt; lDrawRest != 0; lDrawRest -= lDrawMax) 
+        {
+            lDrawMax = MIN(pSnowGrp->lPointMax, lDrawRest);
+            
+            pPoint = pSnowGrp->pPointTop;
+            
+            for (lDrawCnt = lDrawMax; lDrawCnt != 0; lDrawCnt--)
+            {
+                njSetMatrix(NULL, &Matrix);
+                
+                njTranslateEx(pPoint);
+                njUnitRotPortion(NULL);
+                
+                njRotateZ(NULL, aAngleZ);
+                
+                njDrawTexture3DEx(pModel, 4, 1);
+                
+                pPoint++;
+            } 
+            
+            pSnowGrp++;
+        }
+        
+        njPopMatrixEx();
+        break;
+    case 2:
+        if (op->sz < 1.0f) 
+        {
+            op->sz = 1.0f;
+        }
+        
+        njPushMatrixEx();
+        
+        njGetMatrix(&Matrix);
+        
+        pSnowGrp = pSnow->SnowGrp;
+        
+        for (lDrawRest = pSnow->lSnowExistCrnt; lDrawRest != 0; lDrawRest -= lDrawMax)
+        {
+            lDrawMax = MIN(pSnowGrp->lPointMax, lDrawRest);
+            
+            pPoint = pSnowGrp->pPointTop;
+            
+            for (lDrawCnt = lDrawMax; lDrawCnt != 0; lDrawCnt--) 
+            {
+                njSetMatrix(NULL, &Matrix);
+                
+                njTranslateEx(pPoint);
+                njUnitRotPortion(NULL);
+                
+                njRotateZ(NULL, aAngleZ);
+                njRotateY(NULL, ((int)((pPoint->z + (pPoint->x + pPoint->y)) / op->sz) % 4) * 16384);
+                
+                njDrawTexture3DEx(pModel, 4, 1);
+                
+                pPoint++;
+            }
+            
+            pSnowGrp++;
+        }
+        
+        njPopMatrixEx();
+        break;
+    }
 }
 
 // 100% matching!

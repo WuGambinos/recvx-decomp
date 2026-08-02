@@ -3103,11 +3103,12 @@ void bhEff232(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x258490
+#pragma divbyzerocheck on 
+
+// 98.17% matching (matches on NGC)
 void bhEff233(O_WRK* op)
 {
-	EFF5UV* pInfo;
+    EFF5UV* pInfo;
 	static EFF5UV Eff233UvInfo[4] = 
 	{
 		{ 0,  0 }, { 0, 32 }, { 0, 64 }, { 0, 96 }
@@ -3120,56 +3121,82 @@ void bhEff233(O_WRK* op)
 	{
 		1.0f, 2.0f, 0.0f
 	};
-	// Line 3639, Address: 0x258490, Func Offset: 0
-	// Line 3649, Address: 0x2584a0, Func Offset: 0x10
-	// Line 3650, Address: 0x2584c0, Func Offset: 0x30
-	// Line 3652, Address: 0x2584cc, Func Offset: 0x3c
-	// Line 3653, Address: 0x2584d8, Func Offset: 0x48
-	// Line 3655, Address: 0x2584e0, Func Offset: 0x50
-	// Line 3658, Address: 0x2584ec, Func Offset: 0x5c
-	// Line 3655, Address: 0x2584f4, Func Offset: 0x64
-	// Line 3658, Address: 0x2584fc, Func Offset: 0x6c
-	// Line 3660, Address: 0x258514, Func Offset: 0x84
-	// Line 3663, Address: 0x258534, Func Offset: 0xa4
-	// Line 3664, Address: 0x25853c, Func Offset: 0xac
-	// Line 3666, Address: 0x258540, Func Offset: 0xb0
-	// Line 3663, Address: 0x258544, Func Offset: 0xb4
-	// Line 3664, Address: 0x25854c, Func Offset: 0xbc
-	// Line 3665, Address: 0x258550, Func Offset: 0xc0
-	// Line 3666, Address: 0x258554, Func Offset: 0xc4
-	// Line 3667, Address: 0x258558, Func Offset: 0xc8
-	// Line 3670, Address: 0x258560, Func Offset: 0xd0
-	// Line 3676, Address: 0x258574, Func Offset: 0xe4
-	// Line 3677, Address: 0x258588, Func Offset: 0xf8
-	// Line 3679, Address: 0x258590, Func Offset: 0x100
-	// Line 3676, Address: 0x258594, Func Offset: 0x104
-	// Line 3678, Address: 0x258598, Func Offset: 0x108
-	// Line 3676, Address: 0x25859c, Func Offset: 0x10c
-	// Line 3677, Address: 0x2585b0, Func Offset: 0x120
-	// Line 3678, Address: 0x2585d8, Func Offset: 0x148
-	// Line 3679, Address: 0x2585e0, Func Offset: 0x150
-	// Line 3680, Address: 0x2585e8, Func Offset: 0x158
-	// Line 3682, Address: 0x2585f8, Func Offset: 0x168
-	// Line 3685, Address: 0x2585fc, Func Offset: 0x16c
-	// Line 3688, Address: 0x258604, Func Offset: 0x174
-	// Line 3691, Address: 0x258610, Func Offset: 0x180
-	// Line 3693, Address: 0x25862c, Func Offset: 0x19c
-	// Line 3694, Address: 0x258638, Func Offset: 0x1a8
-	// Line 3700, Address: 0x258640, Func Offset: 0x1b0
-	// Line 3704, Address: 0x258648, Func Offset: 0x1b8
-	// Line 3705, Address: 0x258674, Func Offset: 0x1e4
-	// Line 3712, Address: 0x258680, Func Offset: 0x1f0
-	// Line 3705, Address: 0x258684, Func Offset: 0x1f4
-	// Line 3706, Address: 0x25869c, Func Offset: 0x20c
-	// Line 3707, Address: 0x2586bc, Func Offset: 0x22c
-	// Line 3708, Address: 0x2586d8, Func Offset: 0x248
-	// Line 3712, Address: 0x2586f8, Func Offset: 0x268
-	// Line 3714, Address: 0x258714, Func Offset: 0x284
-	// Line 3715, Address: 0x258728, Func Offset: 0x298
-	// Line 3717, Address: 0x25874c, Func Offset: 0x2bc
-	// Func End, Address: 0x258760, Func Offset: 0x2d0
-	scePrintf("bhEff233 - UNIMPLEMENTED!\n");
+    
+    if ((op->type == 0) && (op->mode1 != 0)) 
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type == 0) 
+    {
+        op->flg |= 0x1000000;
+        return;
+    }
+    
+    op->flg &= ~0x1000000;
+    
+    if (op->sz < 1.0f)
+    {
+        op->sz = 1.0f;
+    }
+    
+    switch (op->mode0) 
+    {                         
+    case 0:
+        op->flg |= 0x4180000;
+        
+        op->tex_id = 416;
+        
+        op->ani_ct = 0;
+        
+        op->bl_src = 8;
+        op->bl_dst = 6;
+        
+        op->tv[0].col = op->tv[1].col = op->tv[2].col = op->tv[3].col = -1;
+        
+        op->tv[0].x = op->tv[2].x = fLeft[op->lkono  % 3];
+        op->tv[1].x = op->tv[3].x = fRight[op->lkono % 3];
+        
+        op->tv[0].y = op->tv[1].y = -1.0f;
+        op->tv[2].y = op->tv[3].y = 1.0f;
+        
+        op->tv[0].z = op->tv[1].z = op->tv[2].z = op->tv[3].z = 0;
+        
+        op->ct0   = 0;
+        op->mode0 = 1;
+        break;
+    case 1:
+        op->ct0++;
+        
+        if (((int)op->sz * 4) <= op->ct0) 
+        {
+            op->mode1 = 0;
+            op->type = op->mode0 = 0;
+            return;
+        }
+        
+        break;
+    }
+        
+    op->az = op->ax;
+    
+    pInfo = &Eff233UvInfo[op->ct0 / (int)op->sz];
+    
+    op->tv[0].u = op->tv[2].u = pInfo->u         / 256.0f;
+    op->tv[1].u = op->tv[3].u = (pInfo->u + 223) / 256.0f;
+    
+    op->tv[0].v = op->tv[1].v = pInfo->v         / 256.0f;
+    op->tv[2].v = op->tv[3].v = (pInfo->v + 32)  / 256.0f;
+    
+    if (sys->ef_trsn < 512) 
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
+
+#pragma divbyzerocheck off
 
 // 
 // Start address: 0x258760

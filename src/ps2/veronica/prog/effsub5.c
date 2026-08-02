@@ -2284,11 +2284,10 @@ void bhEff224(O_WRK* op)
     op->type = op->mode1 = 0;
 }
 
-// 
-// Start address: 0x256ba0
+// 100% matching!
 void bhEff225(O_WRK* op)
 {
-	EFF5UVWHUC* pInfo;
+    EFF5UVWHUC* pInfo;
 	static EFF5UVWHUC Eff225UvInfo1[11] = 
 	{
 		{   0,  64,  16,  16 },
@@ -2352,40 +2351,56 @@ void bhEff225(O_WRK* op)
 	{
 		11, 9, 13, 10
 	};
-	// Line 2785, Address: 0x256ba0, Func Offset: 0
-	// Line 2788, Address: 0x256bc0, Func Offset: 0x20
-	// Line 2789, Address: 0x256bc8, Func Offset: 0x28
-	// Line 2791, Address: 0x256bcc, Func Offset: 0x2c
-	// Line 2788, Address: 0x256bd0, Func Offset: 0x30
-	// Line 2789, Address: 0x256bd8, Func Offset: 0x38
-	// Line 2790, Address: 0x256bdc, Func Offset: 0x3c
-	// Line 2791, Address: 0x256be0, Func Offset: 0x40
-	// Line 2792, Address: 0x256be4, Func Offset: 0x44
-	// Line 2795, Address: 0x256bec, Func Offset: 0x4c
-	// Line 2800, Address: 0x256c00, Func Offset: 0x60
-	// Line 2801, Address: 0x256c08, Func Offset: 0x68
-	// Line 2803, Address: 0x256c10, Func Offset: 0x70
-	// Line 2805, Address: 0x256c14, Func Offset: 0x74
-	// Line 2808, Address: 0x256c1c, Func Offset: 0x7c
-	// Line 2809, Address: 0x256c20, Func Offset: 0x80
-	// Line 2808, Address: 0x256c28, Func Offset: 0x88
-	// Line 2809, Address: 0x256c30, Func Offset: 0x90
-	// Line 2812, Address: 0x256c50, Func Offset: 0xb0
-	// Line 2818, Address: 0x256c58, Func Offset: 0xb8
-	// Line 2822, Address: 0x256c7c, Func Offset: 0xdc
-	// Line 2823, Address: 0x256cd8, Func Offset: 0x138
-	// Line 2827, Address: 0x256d34, Func Offset: 0x194
-	// Line 2828, Address: 0x256d80, Func Offset: 0x1e0
-	// Line 2829, Address: 0x256da8, Func Offset: 0x208
-	// Line 2834, Address: 0x256de4, Func Offset: 0x244
-	// Line 2829, Address: 0x256de8, Func Offset: 0x248
-	// Line 2830, Address: 0x256df4, Func Offset: 0x254
-	// Line 2834, Address: 0x256e1c, Func Offset: 0x27c
-	// Line 2836, Address: 0x256e38, Func Offset: 0x298
-	// Line 2837, Address: 0x256e4c, Func Offset: 0x2ac
-	// Line 2839, Address: 0x256e70, Func Offset: 0x2d0
-	// Func End, Address: 0x256e78, Func Offset: 0x2d8
-	scePrintf("bhEff225 - UNIMPLEMENTED!\n");
+
+    switch (op->mode0) 
+    {                             
+    case 0:
+        op->flg |= 0x4180000;
+        
+        op->tex_id = 428;
+        
+        op->ani_ct = 0;
+        
+        op->bl_src = 8;
+        op->bl_dst = 6;
+        
+        op->tv[0].col = op->tv[1].col = op->tv[2].col = op->tv[3].col = -1;
+        
+        op->sxb = op->sx;
+        op->syb = op->sy;
+        
+        op->ct0   = 0;
+        op->mode0 = 1;
+        break;
+    case 1:
+        op->ct0++;
+        
+        if (lEff225UvInfoMax[op->type] <= op->ct0) 
+        {
+            op->flg = 0;
+            return;
+        }
+        
+        break;
+    }
+
+    pInfo = &pEff225UvInfoTop[op->type][op->ct0];
+    
+    op->sx = 4.0f * (op->sxb * (pInfo->w / 256.0f));
+    op->sy = 4.0f * (op->syb * (pInfo->h / 256.0f));
+    
+    op->tv[0].u = op->tv[2].u = pInfo->u                    / 256.0f;
+    op->tv[1].u = op->tv[3].u = (pInfo->u + (pInfo->w - 1)) / 256.0f;
+    
+    op->tv[0].v = op->tv[1].v = pInfo->v                    / 256.0f;
+    op->tv[2].v = op->tv[3].v = (pInfo->v + (pInfo->h - 1)) / 256.0f;
+    
+    if (sys->ef_trsn < 512) 
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
 
 // 100% matching!

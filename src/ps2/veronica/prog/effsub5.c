@@ -3388,75 +3388,98 @@ void bhEff234(O_WRK* op)
     }
 }
 
-#pragma divbyzerocheck off
-
-// 
-// Start address: 0x258a60
-void bhEff235(O_WRK* op)
+// 98.93% matching (matches on NGC)
+void bhEff235(O_WRK* op) 
 {
-	int lColor;
-	int lMode;
-	int lType;
-	static unsigned int ulColor[3] =
-	{
-		0xFFFFFFFF, 0xFFFF0000, 0xFF0000FF
-	};
-	// Line 3827, Address: 0x258a60, Func Offset: 0
-	// Line 3832, Address: 0x258a7c, Func Offset: 0x1c
-	// Line 3833, Address: 0x258a9c, Func Offset: 0x3c
-	// Line 3835, Address: 0x258aa8, Func Offset: 0x48
-	// Line 3836, Address: 0x258ab4, Func Offset: 0x54
-	// Line 3838, Address: 0x258abc, Func Offset: 0x5c
-	// Line 3841, Address: 0x258ad0, Func Offset: 0x70
-	// Line 3842, Address: 0x258aec, Func Offset: 0x8c
-	// Line 3844, Address: 0x258af0, Func Offset: 0x90
-	// Line 3842, Address: 0x258af4, Func Offset: 0x94
-	// Line 3843, Address: 0x258afc, Func Offset: 0x9c
-	// Line 3844, Address: 0x258b00, Func Offset: 0xa0
-	// Line 3843, Address: 0x258b04, Func Offset: 0xa4
-	// Line 3842, Address: 0x258b08, Func Offset: 0xa8
-	// Line 3843, Address: 0x258b0c, Func Offset: 0xac
-	// Line 3844, Address: 0x258b3c, Func Offset: 0xdc
-	// Line 3847, Address: 0x258b54, Func Offset: 0xf4
-	// Line 3848, Address: 0x258b5c, Func Offset: 0xfc
-	// Line 3850, Address: 0x258b60, Func Offset: 0x100
-	// Line 3847, Address: 0x258b64, Func Offset: 0x104
-	// Line 3848, Address: 0x258b6c, Func Offset: 0x10c
-	// Line 3849, Address: 0x258b70, Func Offset: 0x110
-	// Line 3850, Address: 0x258b74, Func Offset: 0x114
-	// Line 3851, Address: 0x258b78, Func Offset: 0x118
-	// Line 3854, Address: 0x258b7c, Func Offset: 0x11c
-	// Line 3856, Address: 0x258b84, Func Offset: 0x124
-	// Line 3860, Address: 0x258b88, Func Offset: 0x128
-	// Line 3862, Address: 0x258b90, Func Offset: 0x130
-	// Line 3864, Address: 0x258bb4, Func Offset: 0x154
-	// Line 3866, Address: 0x258bdc, Func Offset: 0x17c
-	// Line 3867, Address: 0x258be8, Func Offset: 0x188
-	// Line 3869, Address: 0x258c00, Func Offset: 0x1a0
-	// Line 3877, Address: 0x258c04, Func Offset: 0x1a4
-	// Line 3884, Address: 0x258c24, Func Offset: 0x1c4
-	// Line 3886, Address: 0x258c30, Func Offset: 0x1d0
-	// Line 3887, Address: 0x258c3c, Func Offset: 0x1dc
-	// Line 3888, Address: 0x258c44, Func Offset: 0x1e4
-	// Line 3891, Address: 0x258c4c, Func Offset: 0x1ec
-	// Line 3892, Address: 0x258c7c, Func Offset: 0x21c
-	// Line 3895, Address: 0x258ca8, Func Offset: 0x248
-	// Line 3896, Address: 0x258cc0, Func Offset: 0x260
-	// Line 3900, Address: 0x258cc4, Func Offset: 0x264
-	// Line 3896, Address: 0x258cc8, Func Offset: 0x268
-	// Line 3895, Address: 0x258ccc, Func Offset: 0x26c
-	// Line 3896, Address: 0x258cd0, Func Offset: 0x270
-	// Line 3895, Address: 0x258cd4, Func Offset: 0x274
-	// Line 3896, Address: 0x258cdc, Func Offset: 0x27c
-	// Line 3895, Address: 0x258ce0, Func Offset: 0x280
-	// Line 3896, Address: 0x258ce4, Func Offset: 0x284
-	// Line 3900, Address: 0x258cec, Func Offset: 0x28c
-	// Line 3902, Address: 0x258d08, Func Offset: 0x2a8
-	// Line 3903, Address: 0x258d1c, Func Offset: 0x2bc
-	// Line 3905, Address: 0x258d40, Func Offset: 0x2e0
-	// Func End, Address: 0x258d60, Func Offset: 0x300
-	scePrintf("bhEff235 - UNIMPLEMENTED!\n");
+    int lType; 
+    int lCnt; // not from DWARF
+    int lMode;  
+    int lColor; 
+    static unsigned int ulColor[3] =
+    {
+        0xFFFFFFFF, 0xFFFF0000, 0xFF0000FF
+    };
+    
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type == 0) 
+    {
+        op->flg |= 0x1000000;
+        return;
+    }
+    
+    op->flg &= ~0x1000000;
+    
+    lType = op->type - 1;
+    
+    lMode = lType % 2;
+    
+    lCnt   = (lType / 2) % 6;
+    lColor = (lType / 12) % 3;
+
+    switch (op->mode0) 
+    {                          
+    case 0:
+        op->flg |= 0x4080000;
+        
+        op->tex_id = 418;
+        
+        op->ani_ct = 0;
+        
+        op->bl_src = 8;
+        op->bl_dst = 3;
+        
+        op->ct0 = op->ct1 = 0;
+        
+        op->mode0 = 1;
+    case 1:
+        if (lMode == 0) 
+        {
+            if (op->sz < 1.0f) 
+            {
+                op->sz = 1.0f;
+            }
+            
+            op->ct1 = (op->ct0 * 3) / (int)op->sz;
+            op->ct0++;
+            
+            if ((int)op->sz <= op->ct0) 
+            {
+                op->ct0 = 0;
+            }
+        }
+        
+        break;
+    }
+    
+    op->tv[0].col = op->tv[1].col = op->tv[2].col = op->tv[3].col = ulColor[lColor];
+    
+    if (lMode == 1) 
+    {
+        op->tv[0].u = op->tv[2].u = 0.703125f;
+        op->tv[1].u = op->tv[3].u = 0.93359375f;
+    } 
+    else 
+    {
+        op->tv[0].u = op->tv[2].u = (op->ct1  * 60)       / 256.0f;
+        op->tv[1].u = op->tv[3].u = ((op->ct1 * 60) + 59) / 256.0f;
+    }
+    
+    op->tv[2].v = op->tv[3].v = (lCnt  * 40)       / 256.0f;
+    op->tv[0].v = op->tv[1].v = ((lCnt * 40) + 39) / 256.0f;
+    
+    if (sys->ef_trsn < 512) 
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
+
+#pragma divbyzerocheck off
 
 // 
 // Start address: 0x258d60

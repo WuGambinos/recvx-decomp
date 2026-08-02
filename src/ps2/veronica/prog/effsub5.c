@@ -2536,91 +2536,117 @@ void bhEff227(O_WRK* op)
 	scePrintf("bhEff227 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x257340
-void bhEff228(O_WRK* op)
+// 100% matching!
+void bhEff228(O_WRK* op) 
 {
-	int lNumber;
-	EF_WORK* pEffect;
-	// Line 3031, Address: 0x257340, Func Offset: 0
-	// Line 3036, Address: 0x257350, Func Offset: 0x10
-	// Line 3037, Address: 0x257370, Func Offset: 0x30
-	// Line 3039, Address: 0x25737c, Func Offset: 0x3c
-	// Line 3040, Address: 0x257388, Func Offset: 0x48
-	// Line 3042, Address: 0x257390, Func Offset: 0x50
-	// Line 3045, Address: 0x25739c, Func Offset: 0x5c
-	// Line 3042, Address: 0x2573a0, Func Offset: 0x60
-	// Line 3045, Address: 0x2573a8, Func Offset: 0x68
-	// Line 3085, Address: 0x2573c4, Func Offset: 0x84
-	// Line 3086, Address: 0x2573c8, Func Offset: 0x88
-	// Line 3087, Address: 0x2573cc, Func Offset: 0x8c
-	// Line 3091, Address: 0x2573d0, Func Offset: 0x90
-	// Line 3092, Address: 0x2573dc, Func Offset: 0x9c
-	// Line 3094, Address: 0x2573f0, Func Offset: 0xb0
-	// Line 3097, Address: 0x2573f8, Func Offset: 0xb8
-	// Line 3098, Address: 0x2573fc, Func Offset: 0xbc
-	// Line 3100, Address: 0x257400, Func Offset: 0xc0
-	// Line 3094, Address: 0x257404, Func Offset: 0xc4
-	// Line 3097, Address: 0x257410, Func Offset: 0xd0
-	// Line 3098, Address: 0x257414, Func Offset: 0xd4
-	// Line 3099, Address: 0x257418, Func Offset: 0xd8
-	// Line 3100, Address: 0x25741c, Func Offset: 0xdc
-	// Line 3101, Address: 0x257420, Func Offset: 0xe0
-	// Line 3104, Address: 0x257424, Func Offset: 0xe4
-	// Line 3101, Address: 0x257438, Func Offset: 0xf8
-	// Line 3102, Address: 0x25743c, Func Offset: 0xfc
-	// Line 3109, Address: 0x257440, Func Offset: 0x100
-	// Line 3102, Address: 0x257444, Func Offset: 0x104
-	// Line 3103, Address: 0x257448, Func Offset: 0x108
-	// Line 3104, Address: 0x257450, Func Offset: 0x110
-	// Line 3105, Address: 0x257460, Func Offset: 0x120
-	// Line 3106, Address: 0x257470, Func Offset: 0x130
-	// Line 3107, Address: 0x257480, Func Offset: 0x140
-	// Line 3108, Address: 0x257488, Func Offset: 0x148
-	// Line 3109, Address: 0x257490, Func Offset: 0x150
-	// Line 3110, Address: 0x2574b4, Func Offset: 0x174
-	// Line 3111, Address: 0x2574b8, Func Offset: 0x178
-	// Line 3112, Address: 0x2574bc, Func Offset: 0x17c
-	// Line 3111, Address: 0x2574cc, Func Offset: 0x18c
-	// Line 3112, Address: 0x2574d0, Func Offset: 0x190
-	// Line 3113, Address: 0x2574d8, Func Offset: 0x198
-	// Line 3115, Address: 0x2574e4, Func Offset: 0x1a4
-	// Line 3120, Address: 0x25750c, Func Offset: 0x1cc
-	// Line 3121, Address: 0x257518, Func Offset: 0x1d8
-	// Line 3122, Address: 0x25751c, Func Offset: 0x1dc
-	// Line 3121, Address: 0x257520, Func Offset: 0x1e0
-	// Line 3122, Address: 0x257524, Func Offset: 0x1e4
-	// Line 3124, Address: 0x257528, Func Offset: 0x1e8
-	// Line 3123, Address: 0x25752c, Func Offset: 0x1ec
-	// Line 3124, Address: 0x257530, Func Offset: 0x1f0
-	// Line 3125, Address: 0x257534, Func Offset: 0x1f4
-	// Line 3126, Address: 0x257538, Func Offset: 0x1f8
-	// Line 3127, Address: 0x25753c, Func Offset: 0x1fc
-	// Line 3128, Address: 0x257540, Func Offset: 0x200
-	// Line 3130, Address: 0x257548, Func Offset: 0x208
-	// Line 3131, Address: 0x257550, Func Offset: 0x210
-	// Line 3132, Address: 0x25755c, Func Offset: 0x21c
-	// Line 3133, Address: 0x257568, Func Offset: 0x228
-	// Line 3135, Address: 0x257578, Func Offset: 0x238
-	// Line 3136, Address: 0x257580, Func Offset: 0x240
-	// Line 3139, Address: 0x257588, Func Offset: 0x248
-	// Line 3144, Address: 0x257590, Func Offset: 0x250
-	// Line 3139, Address: 0x257594, Func Offset: 0x254
-	// Line 3136, Address: 0x2575a0, Func Offset: 0x260
-	// Line 3144, Address: 0x2575a4, Func Offset: 0x264
-	// Line 3136, Address: 0x2575b0, Func Offset: 0x270
-	// Line 3137, Address: 0x2575b4, Func Offset: 0x274
-	// Line 3138, Address: 0x2575c4, Func Offset: 0x284
-	// Line 3139, Address: 0x2575d4, Func Offset: 0x294
-	// Line 3140, Address: 0x2575e4, Func Offset: 0x2a4
-	// Line 3141, Address: 0x2575f4, Func Offset: 0x2b4
-	// Line 3142, Address: 0x257604, Func Offset: 0x2c4
-	// Line 3143, Address: 0x25760c, Func Offset: 0x2cc
-	// Line 3144, Address: 0x257610, Func Offset: 0x2d0
-	// Line 3163, Address: 0x257618, Func Offset: 0x2d8
-	// Line 3167, Address: 0x25761c, Func Offset: 0x2dc
-	// Func End, Address: 0x257630, Func Offset: 0x2f0
-	scePrintf("bhEff228 - UNIMPLEMENTED!\n");
+    EF_WORK* pEffect;
+    int lNumber;
+    
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type == 0) 
+    {
+        op->flg |= 0x1000000;
+        return;
+    }
+    
+    op->flg &= ~0x1000000;
+    
+    switch (op->mode0) 
+    {                           
+    case 0:
+        op->ct0 = 0;
+        op->ct1 = 0;
+        
+        op->mode0 = 1;
+    case 1:
+        op->ct0++;
+        
+        if (op->lkono <= op->ct0) 
+        {
+            pEffect = &sys->ef;
+            
+            pEffect->flg = 1;
+            
+            pEffect->id   = 229;
+            pEffect->type = 0;
+            
+            pEffect->flr_no = 2;
+            
+            pEffect->px = op->px;
+            pEffect->py = op->py;
+            pEffect->pz = op->pz;
+            
+            pEffect->sx = 3.0f * (op->sx / 4.0f);
+            pEffect->sy = 3.0f * (op->sy / 4.0f);
+            pEffect->sz = 3.0f * (op->sz / 4.0f);
+            
+            pEffect->ay = op->ay;
+            pEffect->ax = op->ax;
+            
+            if ((op->ct1 % 3) == 0) 
+            {
+                pEffect->mdlver = 1;
+            } 
+            else 
+            {
+                pEffect->mdlver = 0;
+            }
+            
+            op->ct1++;
+            
+            lNumber = bhSetEffectTb(pEffect, NULL, NULL, 0);
+            
+            if (lNumber != -1) 
+            {
+                eff[lNumber].az = 8192;
+            }
+            
+            pEffect->flg = 0x4100001;
+            
+            pEffect->id   = 2;
+            pEffect->type = 6;
+            
+            pEffect->flr_no = 2;
+            
+            pEffect->mdlver = 1;
+            
+            pEffect->px = 0;
+            pEffect->py = 0;
+            pEffect->pz = 1.5f;
+            
+            njPushMatrixEx();
+            
+            njUnitMatrix(NULL);
+            
+            njRotateY(NULL, op->ay);
+            njRotateX(NULL, op->ax);
+            
+            njCalcPoint(NULL, (NJS_POINT3*)&pEffect->px, (NJS_POINT3*)&pEffect->px);
+            
+            njPopMatrixEx();
+            
+            pEffect->px += op->px;
+            pEffect->py += op->py;
+            pEffect->pz += op->pz;
+            
+            pEffect->sx = 2.5f * (op->sx / 4.0f);
+            pEffect->sy = 2.5f * (op->sx / 4.0f);
+            pEffect->sz = 2.5f * (op->sz / 4.0f);
+            
+            pEffect->ax = op->ax;
+            pEffect->ay = op->ay;
+            
+            bhSetEffectTb(pEffect, NULL, NULL, 0);
+            
+            op->ct0 = 0;
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!

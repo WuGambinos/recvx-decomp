@@ -1710,46 +1710,86 @@ void bhEff218(O_WRK* op)
 	scePrintf("bhEff218 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x255180
-void bhEff219(O_WRK* op)
+// 100% matching!
+void bhEff219(O_WRK* op) 
 {
-	EFF5SNOWRECT* pSnow;
-	// Line 2135, Address: 0x255180, Func Offset: 0
-	// Line 2139, Address: 0x255190, Func Offset: 0x10
-	// Line 2140, Address: 0x2551b0, Func Offset: 0x30
-	// Line 2144, Address: 0x2551bc, Func Offset: 0x3c
-	// Line 2148, Address: 0x2551c4, Func Offset: 0x44
-	// Line 2144, Address: 0x2551c8, Func Offset: 0x48
-	// Line 2148, Address: 0x2551d0, Func Offset: 0x50
-	// Line 2150, Address: 0x2551f0, Func Offset: 0x70
-	// Line 2154, Address: 0x255204, Func Offset: 0x84
-	// Line 2158, Address: 0x255218, Func Offset: 0x98
-	// Line 2161, Address: 0x255220, Func Offset: 0xa0
-	// Line 2162, Address: 0x255258, Func Offset: 0xd8
-	// Line 2163, Address: 0x2552c0, Func Offset: 0x140
-	// Line 2164, Address: 0x25530c, Func Offset: 0x18c
-	// Line 2165, Address: 0x255328, Func Offset: 0x1a8
-	// Line 2166, Address: 0x255330, Func Offset: 0x1b0
-	// Line 2169, Address: 0x255368, Func Offset: 0x1e8
-	// Line 2168, Address: 0x255370, Func Offset: 0x1f0
-	// Line 2169, Address: 0x255374, Func Offset: 0x1f4
-	// Line 2171, Address: 0x255378, Func Offset: 0x1f8
-	// Line 2177, Address: 0x255380, Func Offset: 0x200
-	// Line 2182, Address: 0x2553b0, Func Offset: 0x230
-	// Line 2185, Address: 0x255408, Func Offset: 0x288
-	// Line 2186, Address: 0x255454, Func Offset: 0x2d4
-	// Line 2190, Address: 0x25545c, Func Offset: 0x2dc
-	// Line 2193, Address: 0x25547c, Func Offset: 0x2fc
-	// Line 2199, Address: 0x2554b4, Func Offset: 0x334
-	// Line 2200, Address: 0x2554c4, Func Offset: 0x344
-	// Line 2204, Address: 0x255500, Func Offset: 0x380
-	// Line 2208, Address: 0x255508, Func Offset: 0x388
-	// Line 2210, Address: 0x255528, Func Offset: 0x3a8
-	// Line 2211, Address: 0x25553c, Func Offset: 0x3bc
-	// Line 2213, Address: 0x255560, Func Offset: 0x3e0
-	// Func End, Address: 0x255574, Func Offset: 0x3f4
-	scePrintf("bhEff219 - UNIMPLEMENTED!\n");
+    EFF5SNOWRECT* pSnow;
+    
+    if ((op->type == 0) && (op->mode1 != 0)) 
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type != 0)
+    {
+        op->flg |= 0x1000000;
+        
+        op->type = ((op->type - 1) % 3) + 1;
+        
+        switch (op->mode0) 
+        {
+        case 0:
+            if ((pSnow = CreateEff5SnowRect(850)) == NULL) 
+            {
+                op->flg = 0;
+                return;
+            }
+            
+            if (op->type == 3)
+            {
+                SetEff5SnowRectAreaCenterAndSize(pSnow, op->px, op->py, op->pz, op->sx, op->sx, op->sx);
+            } 
+            else
+            {
+                SetEff5SnowRectAreaCenterAndSize(pSnow, cam.wpx + (40.0f * cam.vx), cam.wpy + (40.0f * cam.vy), cam.wpz + (40.0f * cam.vz), 65.0f, 65.0f, 65.0f);
+            }
+            
+            SetEff5SnowRectParticleTexture(pSnow, &sys->ef_tlist, sys->ef_tn[409], 0, 0, 1.0f, 0, 0, 1.0f, 1.0f, 1.0f);
+            SetEff5SnowRectParticleColor(pSnow, 0xA0FFFFFF, 0xA0FFFFFF, 0xA0FFFFFF, 0xA0FFFFFF);
+            
+            ArrangeEff5SnowRectParticle(pSnow);
+            
+            SetEff5SnowRectParticleMax(pSnow, (op->ax * 850) / 32760);
+            
+            op->exp0 = (unsigned char*)pSnow;
+            
+            op->func = (void*)DrawEff5SnowRect;
+            
+            op->mode0 = 1;
+            break;
+        }
+        
+        pSnow = (EFF5SNOWRECT*)op->exp0;
+        
+        switch (op->type) 
+        {                      
+        case 1:
+        case 2:
+            SetEff5SnowRectAreaCenter(pSnow, cam.wpx + (40.0f * cam.vx), cam.wpy + (40.0f * cam.vy), cam.wpz + (40.0f * cam.vz));
+            SetEff5SnowRectParticleSize(pSnow, (0.3f * op->sx) / 4.0f, (0.3f * op->sy) / 4.0f);
+            break;
+        case 3:
+            SetEff5SnowRectAreaCenterAndSize(pSnow, op->px, op->py, op->pz, op->sx, op->sx, op->sx);
+            SetEff5SnowRectParticleSize(pSnow, (0.3f * op->sy) / 4.0f, (0.3f * op->sy) / 4.0f);
+            break;
+        }
+        
+        if (op->ax < 0) 
+        {
+            op->ax = 0;
+        }
+        
+        MovEff5SnowRectParticleMax(pSnow, (op->ax * 850) / 32760, 150);
+        
+        ExecEff5SnowRect(pSnow);
+        
+        if (sys->ef_fncn < 128) 
+        {
+            sys->ef_fnc[sys->ef_fncn] = op;
+            
+            sys->ef_fncn++;
+        }
+    }
 }
 
 // 

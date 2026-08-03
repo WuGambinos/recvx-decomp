@@ -6431,128 +6431,189 @@ void bhEff107(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x2300e0
-void bhEff108(O_WRK* op)
+// 100% matching!
+void bhEff108(O_WRK* op) 
 {
-	float* wty;
-	int ay;
-	int ax;
-	int r;
-	int e;
-	int y;
-	int x;
-	int oy;
-	int ox;
-	// Line 4979, Address: 0x2300e0, Func Offset: 0
-	// Line 4980, Address: 0x2300f4, Func Offset: 0x14
-	// Line 4982, Address: 0x23011c, Func Offset: 0x3c
-	// Line 4984, Address: 0x230124, Func Offset: 0x44
-	// Line 4985, Address: 0x23012c, Func Offset: 0x4c
-	// Line 4984, Address: 0x230130, Func Offset: 0x50
-	// Line 4985, Address: 0x230138, Func Offset: 0x58
-	// Line 4987, Address: 0x230154, Func Offset: 0x74
-	// Line 4989, Address: 0x23015c, Func Offset: 0x7c
-	// Line 4987, Address: 0x230168, Func Offset: 0x88
-	// Line 4991, Address: 0x23016c, Func Offset: 0x8c
-	// Line 4987, Address: 0x230170, Func Offset: 0x90
-	// Line 4991, Address: 0x230178, Func Offset: 0x98
-	// Line 4987, Address: 0x23017c, Func Offset: 0x9c
-	// Line 4990, Address: 0x230180, Func Offset: 0xa0
-	// Line 4987, Address: 0x230184, Func Offset: 0xa4
-	// Line 4988, Address: 0x230188, Func Offset: 0xa8
-	// Line 4987, Address: 0x23018c, Func Offset: 0xac
-	// Line 4988, Address: 0x230190, Func Offset: 0xb0
-	// Line 4989, Address: 0x2301ac, Func Offset: 0xcc
-	// Line 4990, Address: 0x2301bc, Func Offset: 0xdc
-	// Line 4991, Address: 0x2301c0, Func Offset: 0xe0
-	// Line 4992, Address: 0x2301cc, Func Offset: 0xec
-	// Line 4997, Address: 0x2301d0, Func Offset: 0xf0
-	// Line 4998, Address: 0x2301d8, Func Offset: 0xf8
-	// Line 4999, Address: 0x2301e4, Func Offset: 0x104
-	// Line 5002, Address: 0x2301f4, Func Offset: 0x114
-	// Line 5003, Address: 0x2301fc, Func Offset: 0x11c
-	// Line 5000, Address: 0x230200, Func Offset: 0x120
-	// Line 5003, Address: 0x230204, Func Offset: 0x124
-	// Line 5007, Address: 0x230210, Func Offset: 0x130
-	// Line 5005, Address: 0x230218, Func Offset: 0x138
-	// Line 5007, Address: 0x23021c, Func Offset: 0x13c
-	// Line 5009, Address: 0x230254, Func Offset: 0x174
-	// Line 5011, Address: 0x23025c, Func Offset: 0x17c
-	// Line 5009, Address: 0x230260, Func Offset: 0x180
-	// Line 5010, Address: 0x230264, Func Offset: 0x184
-	// Line 5011, Address: 0x230280, Func Offset: 0x1a0
-	// Line 5016, Address: 0x230298, Func Offset: 0x1b8
-	// Line 5018, Address: 0x2302d8, Func Offset: 0x1f8
-	// Line 5020, Address: 0x2302e0, Func Offset: 0x200
-	// Line 5018, Address: 0x2302e4, Func Offset: 0x204
-	// Line 5019, Address: 0x2302e8, Func Offset: 0x208
-	// Line 5020, Address: 0x230304, Func Offset: 0x224
-	// Line 5021, Address: 0x23031c, Func Offset: 0x23c
-	// Line 5025, Address: 0x230320, Func Offset: 0x240
-	// Line 5023, Address: 0x230328, Func Offset: 0x248
-	// Line 5025, Address: 0x23032c, Func Offset: 0x24c
-	// Line 5027, Address: 0x230364, Func Offset: 0x284
-	// Line 5029, Address: 0x23036c, Func Offset: 0x28c
-	// Line 5027, Address: 0x230370, Func Offset: 0x290
-	// Line 5028, Address: 0x230374, Func Offset: 0x294
-	// Line 5029, Address: 0x230390, Func Offset: 0x2b0
-	// Line 5034, Address: 0x2303a8, Func Offset: 0x2c8
-	// Line 5036, Address: 0x2303e8, Func Offset: 0x308
-	// Line 5038, Address: 0x2303f0, Func Offset: 0x310
-	// Line 5036, Address: 0x2303f4, Func Offset: 0x314
-	// Line 5037, Address: 0x2303f8, Func Offset: 0x318
-	// Line 5038, Address: 0x230414, Func Offset: 0x334
-	// Line 5039, Address: 0x23042c, Func Offset: 0x34c
-	// Line 5043, Address: 0x230430, Func Offset: 0x350
-	// Line 5041, Address: 0x230438, Func Offset: 0x358
-	// Line 5043, Address: 0x23043c, Func Offset: 0x35c
-	// Line 5045, Address: 0x230474, Func Offset: 0x394
-	// Line 5047, Address: 0x23047c, Func Offset: 0x39c
-	// Line 5045, Address: 0x230480, Func Offset: 0x3a0
-	// Line 5046, Address: 0x230484, Func Offset: 0x3a4
-	// Line 5047, Address: 0x2304a0, Func Offset: 0x3c0
-	// Line 5052, Address: 0x2304b8, Func Offset: 0x3d8
-	// Line 5054, Address: 0x2304f8, Func Offset: 0x418
-	// Line 5056, Address: 0x230500, Func Offset: 0x420
-	// Line 5054, Address: 0x230504, Func Offset: 0x424
-	// Line 5055, Address: 0x230508, Func Offset: 0x428
-	// Line 5056, Address: 0x230524, Func Offset: 0x444
-	// Line 5057, Address: 0x23053c, Func Offset: 0x45c
-	// Line 5061, Address: 0x230540, Func Offset: 0x460
-	// Line 5059, Address: 0x230548, Func Offset: 0x468
-	// Line 5061, Address: 0x23054c, Func Offset: 0x46c
-	// Line 5063, Address: 0x230584, Func Offset: 0x4a4
-	// Line 5065, Address: 0x23058c, Func Offset: 0x4ac
-	// Line 5063, Address: 0x230590, Func Offset: 0x4b0
-	// Line 5064, Address: 0x230594, Func Offset: 0x4b4
-	// Line 5065, Address: 0x2305b0, Func Offset: 0x4d0
-	// Line 5070, Address: 0x2305c8, Func Offset: 0x4e8
-	// Line 5072, Address: 0x230608, Func Offset: 0x528
-	// Line 5074, Address: 0x230610, Func Offset: 0x530
-	// Line 5072, Address: 0x230614, Func Offset: 0x534
-	// Line 5073, Address: 0x230618, Func Offset: 0x538
-	// Line 5074, Address: 0x230634, Func Offset: 0x554
-	// Line 5075, Address: 0x23064c, Func Offset: 0x56c
-	// Line 5077, Address: 0x230650, Func Offset: 0x570
-	// Line 5078, Address: 0x230658, Func Offset: 0x578
-	// Line 5079, Address: 0x23065c, Func Offset: 0x57c
-	// Line 5080, Address: 0x230664, Func Offset: 0x584
-	// Line 5081, Address: 0x230674, Func Offset: 0x594
-	// Line 5083, Address: 0x230678, Func Offset: 0x598
-	// Line 5084, Address: 0x23067c, Func Offset: 0x59c
-	// Line 5085, Address: 0x230688, Func Offset: 0x5a8
-	// Line 5086, Address: 0x230690, Func Offset: 0x5b0
-	// Line 5085, Address: 0x2306a0, Func Offset: 0x5c0
-	// Line 5086, Address: 0x2306a8, Func Offset: 0x5c8
-	// Line 5087, Address: 0x2306d4, Func Offset: 0x5f4
-	// Line 5088, Address: 0x2306e4, Func Offset: 0x604
-	// Line 5087, Address: 0x2306ec, Func Offset: 0x60c
-	// Line 5088, Address: 0x2306f0, Func Offset: 0x610
-	// Line 5089, Address: 0x230700, Func Offset: 0x620
-	// Line 5094, Address: 0x230704, Func Offset: 0x624
-	// Func End, Address: 0x23071c, Func Offset: 0x63c
-	scePrintf("bhEff108 - UNIMPLEMENTED!\n");
+    int ox, oy;    
+    int x, y;   
+    int e;      
+    int r;    
+    int ax, ay;   
+    float* wty; 
+
+    if ((!(sys->st_flg & 0x40)) || ((sys->gm_flg & 0x1))) 
+    {
+        op->flg = 0;
+        return;
+    }
+    
+    op->flg |= 0x1000000;
+
+    switch (op->mode0)
+    {
+    case 0:
+        op->px -= sys->wt_px;
+        op->pz -= sys->wt_pz;
+        
+        op->sy = 0.1f * op->lkono;
+        
+        op->car = 1.0f;
+        
+        op->spd = 0.5f * op->sy;
+        
+        op->mode0 = 1;
+    case 1:
+        ox = op->px;
+        oy = op->pz;
+        
+        r = op->car;
+        
+        x = 0;
+
+        e = 3 - (r * 2);
+
+        for (; x <= r; x++) 
+        {
+            ax = ox + x;
+            ay = oy + r;
+            
+            if (((unsigned short)ax < sys->wt_maxx) && ((unsigned short)ay < sys->wt_maxz)) 
+            {
+                wty = (float*)sys->wt_wvp;
+                wty += ay + (ax * sys->wt_zp);
+                
+                if (op->sy > *wty)
+                {
+                    *wty = op->sy;
+                }
+            }
+            
+            ax = ox + x;
+            ay = oy - r;
+            
+            if (((unsigned short)ax < sys->wt_maxx) && ((unsigned short)ay < sys->wt_maxz)) 
+            {
+                wty = (float*)sys->wt_wvp;
+                wty += ay + (ax * sys->wt_zp);
+                
+                if (op->sy > *wty)
+                {
+                    *wty = op->sy;
+                }
+            }
+            
+            ax = ox - x;
+            ay = oy + r;
+            
+            if (((unsigned short)ax < sys->wt_maxx) && ((unsigned short)ay < sys->wt_maxz)) 
+            {
+                wty = (float*)sys->wt_wvp;
+                wty += ay + (ax * sys->wt_zp);
+                
+                if (op->sy > *wty) 
+                {
+                    *wty = op->sy;
+                }
+            }
+            
+            ax = ox - x;
+            ay = oy - r;
+            
+            if (((unsigned short)ax < sys->wt_maxx) && ((unsigned short)ay < sys->wt_maxz)) 
+            {
+                wty = (float*)sys->wt_wvp;
+                wty += ay + (ax * sys->wt_zp);
+                
+                if (op->sy > *wty) 
+                {
+                    *wty = op->sy;
+                }
+            }
+            
+            ax = ox + r;
+            ay = oy + x;
+            
+            if (((unsigned short)ax < sys->wt_maxx) && ((unsigned short)ay < sys->wt_maxz)) 
+            {
+                wty = (float*)sys->wt_wvp;
+                wty += ay + (ax * sys->wt_zp);
+                
+                if (op->sy > *wty)
+                {
+                    *wty = op->sy;
+                }
+            }
+            
+            ax = ox + r;
+            ay = oy - x;
+            
+            if (((unsigned short)ax < sys->wt_maxx) && ((unsigned short)ay < sys->wt_maxz)) 
+            {
+                wty = (float*)sys->wt_wvp;
+                wty += ay + (ax * sys->wt_zp);
+                
+                if (op->sy > *wty)
+                {
+                    *wty = op->sy;
+                }
+            }
+            
+            ax = ox - r;
+            ay = oy + x;
+            
+            if (((unsigned short)ax < sys->wt_maxx) && ((unsigned short)ay < sys->wt_maxz)) 
+            {
+                wty = (float*)sys->wt_wvp;
+                wty += ay + (ax * sys->wt_zp);
+                
+                if (op->sy > *wty) 
+                {
+                    *wty = op->sy;
+                }
+            }
+            
+            ax = ox - r;
+            ay = oy - x;
+            
+            if (((unsigned short)ax < sys->wt_maxx) && ((unsigned short)ay < sys->wt_maxz)) 
+            {
+                wty = (float*)sys->wt_wvp;
+                wty += ay + (ax * sys->wt_zp);
+                
+                if (op->sy > *wty) 
+                {
+                    *wty = op->sy;
+                }
+            }
+
+            if (e < 0) 
+            {
+                e += x * 4;
+                e += 6;
+            } 
+            else 
+            {
+                e += (x - r) * 4;
+                e += 10;
+                
+                r--;
+            }
+        }
+        
+        op->car += op->spd;
+        
+        if (op->spd > 0.1f) 
+        {
+            op->spd -= 0.008f;
+        }
+
+        op->sy -= 0.01f;
+        
+        if (op->sy < 0)
+        {
+            op->flg = 0;
+        }
+    }
 }
 
 // 100% matching!

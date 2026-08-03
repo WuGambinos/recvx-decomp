@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/effsub5.h"
+#include "../../../ps2/veronica/prog/effsub2.h"
 #include "../../../ps2/veronica/prog/effsub6.h"
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/main.h"
@@ -1345,84 +1346,107 @@ void bhEff216(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x254960
+// 99.94% matching
 void bhEff217(O_WRK* op)
 {
-	float fAngleDev;
-	unsigned int col[3] = 
+    P_WRK* pp;            
+    NJS_POINT3* p;      
+    NJS_VECTOR* v;       
+    int i;               
+    unsigned int col[3] = 
 	{
 		0xFF332417, 0xFF322320, 0xFF211816
 	};
-	int i;
-	NJS_POINT3* v;
-	NJS_POINT3* p;
-	P_WRK* pp;
-	// Line 1778, Address: 0x254960, Func Offset: 0
-	// Line 1783, Address: 0x25497c, Func Offset: 0x1c
-	// Line 1778, Address: 0x254980, Func Offset: 0x20
-	// Line 1783, Address: 0x254984, Func Offset: 0x24
-	// Line 1778, Address: 0x254988, Func Offset: 0x28
-	// Line 1783, Address: 0x25498c, Func Offset: 0x2c
-	// Line 1792, Address: 0x2549a4, Func Offset: 0x44
-	// Line 1795, Address: 0x2549c4, Func Offset: 0x64
-	// Line 1796, Address: 0x2549d0, Func Offset: 0x70
-	// Line 1799, Address: 0x2549d8, Func Offset: 0x78
-	// Line 1803, Address: 0x2549e0, Func Offset: 0x80
-	// Line 1802, Address: 0x2549e4, Func Offset: 0x84
-	// Line 1804, Address: 0x2549e8, Func Offset: 0x88
-	// Line 1805, Address: 0x2549ec, Func Offset: 0x8c
-	// Line 1803, Address: 0x2549f0, Func Offset: 0x90
-	// Line 1806, Address: 0x2549f4, Func Offset: 0x94
-	// Line 1809, Address: 0x2549fc, Func Offset: 0x9c
-	// Line 1810, Address: 0x254a5c, Func Offset: 0xfc
-	// Line 1811, Address: 0x254abc, Func Offset: 0x15c
-	// Line 1814, Address: 0x254b20, Func Offset: 0x1c0
-	// Line 1815, Address: 0x254b24, Func Offset: 0x1c4
-	// Line 1817, Address: 0x254b2c, Func Offset: 0x1cc
-	// Line 1819, Address: 0x254b34, Func Offset: 0x1d4
-	// Line 1820, Address: 0x254b40, Func Offset: 0x1e0
-	// Line 1819, Address: 0x254b44, Func Offset: 0x1e4
-	// Line 1820, Address: 0x254b5c, Func Offset: 0x1fc
-	// Line 1821, Address: 0x254b64, Func Offset: 0x204
-	// Line 1822, Address: 0x254bd8, Func Offset: 0x278
-	// Line 1823, Address: 0x254c40, Func Offset: 0x2e0
-	// Line 1825, Address: 0x254c50, Func Offset: 0x2f0
-	// Line 1826, Address: 0x254c58, Func Offset: 0x2f8
-	// Line 1828, Address: 0x254c78, Func Offset: 0x318
-	// Line 1829, Address: 0x254c80, Func Offset: 0x320
-	// Line 1831, Address: 0x254c84, Func Offset: 0x324
-	// Line 1833, Address: 0x254c94, Func Offset: 0x334
-	// Line 1835, Address: 0x254cd4, Func Offset: 0x374
-	// Line 1838, Address: 0x254cdc, Func Offset: 0x37c
-	// Line 1835, Address: 0x254ce4, Func Offset: 0x384
-	// Line 1838, Address: 0x254cec, Func Offset: 0x38c
-	// Line 1839, Address: 0x254cf0, Func Offset: 0x390
-	// Line 1840, Address: 0x254cf8, Func Offset: 0x398
-	// Line 1842, Address: 0x254d00, Func Offset: 0x3a0
-	// Line 1845, Address: 0x254d04, Func Offset: 0x3a4
-	// Line 1843, Address: 0x254d20, Func Offset: 0x3c0
-	// Line 1845, Address: 0x254d24, Func Offset: 0x3c4
-	// Line 1847, Address: 0x254d2c, Func Offset: 0x3cc
-	// Line 1855, Address: 0x254d34, Func Offset: 0x3d4
-	// Line 1847, Address: 0x254d38, Func Offset: 0x3d8
-	// Line 1848, Address: 0x254d40, Func Offset: 0x3e0
-	// Line 1849, Address: 0x254d50, Func Offset: 0x3f0
-	// Line 1852, Address: 0x254d60, Func Offset: 0x400
-	// Line 1855, Address: 0x254d64, Func Offset: 0x404
-	// Line 1852, Address: 0x254d68, Func Offset: 0x408
-	// Line 1853, Address: 0x254d70, Func Offset: 0x410
-	// Line 1854, Address: 0x254d7c, Func Offset: 0x41c
-	// Line 1855, Address: 0x254d88, Func Offset: 0x428
-	// Line 1857, Address: 0x254da0, Func Offset: 0x440
-	// Line 1859, Address: 0x254db0, Func Offset: 0x450
-	// Line 1861, Address: 0x254db4, Func Offset: 0x454
-	// Line 1864, Address: 0x254dbc, Func Offset: 0x45c
-	// Line 1866, Address: 0x254ddc, Func Offset: 0x47c
-	// Line 1867, Address: 0x254df0, Func Offset: 0x490
-	// Line 1870, Address: 0x254e14, Func Offset: 0x4b4
-	// Func End, Address: 0x254e3c, Func Offset: 0x4dc
-	scePrintf("bhEff217 - UNIMPLEMENTED!\n");
+    float fAngleDev;      
+	
+    switch (op->mode0) 
+    {                          
+    case 0:
+        pp = (P_WRK*)bhSetExtraEffectWork();
+        
+        if (pp == NULL) 
+        {
+            op->flg = 0;
+            break;
+        }
+        
+        op->exp0 = (unsigned char*)pp;
+        
+        p = pp->pos;
+        v = pp->vec;
+        
+        pp->num = 16;
+        
+        for (i = 0; i < pp->num; i++, p++, v++) 
+        {
+            p->x = (op->px + (op->sx * (-rand() / -2.1474836E9f))) - (op->sx * (-rand() / -2.1474836E9f));
+            p->y = (op->py + (op->sx * (-rand() / -2.1474836E9f))) - (op->sx * (-rand() / -2.1474836E9f));
+            p->z = (op->pz + (op->sx * (-rand() / -2.1474836E9f))) - (op->sx * (-rand() / -2.1474836E9f));
+            
+            v->x = 0;
+            v->y = op->sz;
+            v->z = 0;
+            
+            njPushMatrixEx();
+            
+            fAngleDev = 65536.0f * (op->sy / 360.0f);
+            
+            njUnitMatrix(NULL);
+            
+            njRotateY(NULL, (op->ay + (((short)(fAngleDev * (-rand() / -2.1474836E9f))))) - (fAngleDev / 2.0f));
+            njRotateX(NULL, (op->ax + (((short)(fAngleDev * (-rand() / -2.1474836E9f))))) - (fAngleDev / 2.0f));
+            
+            njCalcPoint(NULL, v, v);
+            
+            njPopMatrixEx();
+        }
+        
+        pp->sx = 1.0f;
+        pp->sy = 1.0f;
+        
+        pp->col = col[op->type];
+        
+        op->ct0 = 10.0f + (10.0f * (-rand() / -2.1474836E9f));
+        
+        op->flg |= 0x20000000;
+        
+        op->func = (void*)bhEff_E00_DrawParticlePly;
+        
+        op->mode0++;
+        break;
+    case 1:
+        pp = (P_WRK*)op->exp0;
+        
+        p = pp->pos;
+        v = pp->vec;
+        
+        for (i = 0; i < pp->num; i++, p++, v++) 
+        {
+            p->x += v->x;
+            p->y += v->y;
+            p->z += v->z;
+            
+            v->y -= 0.4f;
+            v->x *= 0.8f;
+            v->z *= 0.8f;
+        }
+        
+        if (op->ct0-- == 0) 
+        {
+            op->flg = 0;
+            pp->flg = 0;
+            break;
+        }
+        
+        if (sys->ef_fncn < 128) 
+        {
+            sys->ef_fnc[sys->ef_fncn] = op;
+            
+            sys->ef_fncn++;
+        }
+        
+        break;
+    }
 }
 
 // 99.61% matching

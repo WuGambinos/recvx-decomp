@@ -1,0 +1,43 @@
+name: "Tamsoft Sound Driver (IOP) / CRI Middleware (ADX - IOP)"
+sha1: 1cee349c76b323dd2b384e1e247cc7cdd65b87b2
+options:
+  basename: TSNDDRV.IRX
+  target_path: config/TSNDDRV.IRX         
+  base_path: ..
+
+  asm_path: config/asm/iop/tsnddrv
+  src_path: src
+  asset_path: config/assets/iop/tsnddrv
+  build_path: build
+
+  extensions_path: tools/splat_ext
+  ld_script_path: config/TSNDDRV.IRX.ld
+  symbol_addrs_path: config/TSNDDRV.IRX.symbol_addrs.txt
+  reloc_addrs_path: config/TSNDDRV.IRX.reloc_addrs.txt
+  undefined_funcs_auto_path: config/TSNDDRV.IRX.undefined_funcs_auto.txt
+  undefined_syms_auto_path: config/TSNDDRV.IRX.undefined_syms_auto.txt
+
+  compiler: PSYQ     
+  platform: psx            
+
+  named_regs_for_c_funcs: False
+  make_full_disasm_for_code: False
+
+  section_order: [".text", ".rodata", ".data", ".sbss", ".bss"]
+segments:
+  - name: main
+    type: code
+    start: 0x0
+    vram: 0x0
+    bss_size: 0x7D290
+    subsegments:
+      - [0x0, bin, header]
+      - [0xB0, asm, tsnddrv]
+      - [0x18BE0, .rodata, rodata]
+      - [0x19720, .data, data]
+      - [0x19A50, .sdata, sdata]
+
+      - { type: sbss, vram: 0x00019AE0, name: sbss }
+      - { type: bss,  vram: 0x00019B40, name: bss }
+
+  - [0x19A90]

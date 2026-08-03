@@ -1,3 +1,6 @@
+
+# adapted from: https://github.com/parappadev/parappa2/blob/main/config/irx.wave2ps2.jul12.yaml
+
 name: "Tamsoft Sound Driver (IOP) / CRI Middleware (ADX - IOP)"
 sha1: 1cee349c76b323dd2b384e1e247cc7cdd65b87b2
 options:
@@ -5,9 +8,9 @@ options:
   target_path: config/TSNDDRV.IRX         
   base_path: ..
 
-  asm_path: config/asm/iop/tsnddrv
+  asm_path: config/asm
   src_path: src
-  asset_path: config/assets/iop/tsnddrv
+  asset_path: config/assets
   build_path: build
 
   extensions_path: tools/splat_ext
@@ -31,13 +34,37 @@ segments:
     vram: 0x0
     bss_size: 0x7D290
     subsegments:
-      - [0x0, bin, header]
-      - [0xB0, asm, tsnddrv]
-      - [0x18BE0, .rodata, rodata]
-      - [0x19720, .data, data]
-      - [0x19A50, .sdata, sdata]
+      - [0x000000, bin, header]
 
-      - { type: sbss, vram: 0x00019AE0, name: sbss }
-      - { type: bss,  vram: 0x00019B40, name: bss }
+      - [0x0000B0, c, tsnddrv]
+      - [0x000610, c, sdd_com]
+      - [0x000B10, c, putsts]
+      - [0x000C44, c, tq]
+      - [0x002180, c, atick]
+      - [0x008A50, c, cri/ps2/cri_sdk.622/source/adxt.622/adx_iop]
+      - [0x008AD0, c, cri/ps2/cri_sdk.622/source/dtx.095/dtx]
+      - [0x009850, c, cri/ps2/cri_sdk.622/source/ps2rna.098/iop_rna]
+      - [0x00A040, c, cri/ps2/cri_sdk.622/source/psm.073/pcm_stm]
+      - [0x00B790, c, cri/ps2/cri_sdk.622/source/psm.073/psm_crs]
+      - [0x00B8C0, c, cri/ps2/cri_sdk.622/source/psm.073/psm_errs]
+      - [0x00BA20, c, cri/ps2/cri_sdk.622/source/psm.073/psm_mix]
+      - [0x00F250, c, cri/ps2/cri_sdk.622/source/psm.073/psm_out]
+      - [0x010630, c, cri/ps2/cri_sdk.622/source/psm.073/psm_slt]
+      - [0x011350, c, cri/ps2/cri_sdk.622/source/psm.073/psm_tbf]
+      - [0x0115D0, c, cri/ps2/cri_sdk.622/source/ps2rna.098/rna_crs]
+      - [0x011700, c, cri/ps2/cri_sdk.622/source/sj.600/sj_crs]
+      - [0x011810, c, cri/ps2/cri_sdk.622/source/sj.600/sj_rbf]
+      - [0x012900, c, cri/ps2/cri_sdk.622/source/sj.600/sj_uni]
+      - [0x013A80, c, cri/ps2/cri_sdk.622/source/sj.600/sj_utl]
+      - [0x013B80, c, users/oshimi/adx/sjr.093/sjr_svr]
+      - [0x014350, c, cri/ps2/cri_sdk.622/source/sjx.100/sjx]
+      - [0x014B00, c, cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv]
+      - [0x017B60, c, cri/ps2/cri_sdk.622/source/rcv.068/rcv_err]
+      - [0x017CC0, c, cri/ps2/cri_sdk.622/source/sj.600/sj_mem]
+      - [0x0187B0, asm, ilb_stub] # C:\WINDOWS\TEMP\cca65657_ilb_stub.s
+
+      - [0x018BE0, .rodata, rodata]
+      - [0x019720, .data, data]
+      - [0x019A50, .sdata, sdata]
 
   - [0x19A90]

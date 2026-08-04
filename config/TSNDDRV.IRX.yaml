@@ -19,7 +19,7 @@ options:
   undefined_funcs_auto_path: config/TSNDDRV.IRX.undefined_funcs_auto.txt
   undefined_syms_auto_path: config/TSNDDRV.IRX.undefined_syms_auto.txt
 
-  # PSX is chosen here because IOP modules aren't fully integrated with splat yet, and they are still MIPS R3000
+  # PSX is chosen here because IOP modules aren't fully integrated with splat yet, and they still are MIPS R3000
   compiler: PSYQ     
   platform: psx            
 
@@ -41,11 +41,11 @@ segments:
     bss_size: 0x7D290
     subsegments:
       # Tamsoft
-      - [0x0000B0, c, tsnddrv]
-      - [0x000610, c, sdd_com]
-      - [0x000B10, c, putsts]
+      - [0x0000B0, c, sdd_com]
+      - [0x000610, c, putsts]
       - [0x000C44, c, tq]
       - [0x002180, c, atick]
+      - [0x002E48, c, tsnddrv]
       # CRI
       - [0x008A50, c, cri/ps2/cri_sdk.622/source/adxt.622/adx_iop]
       - [0x008AD0, c, cri/ps2/cri_sdk.622/source/dtx.095/dtx]

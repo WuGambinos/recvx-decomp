@@ -1,37 +1,35 @@
 #include "common.h"
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_00008AD0);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", dtx_rpc_func);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_00008D4C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", dtx_svr_proc);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_00008D78);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", dtx_create_rmt);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_00008E28);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", dtx_destroy_rmt);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_00008EAC);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", dtx_def_rcvcbf);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_00008EF0);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", dtx_def_sndcbf);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_00008FA8);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", DTX_Open);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_00009004);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", DTX_Close);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_00009058);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", DTX_Create);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_000091BC);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", DTX_Destroy);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_0000926C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", DTX_SetRcvCbf);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_000092A8);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", DTX_SetSndCbf);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_000092C0);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", DTX_ExecHndl);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_0000930C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", DTX_Init);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_00009358);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", DTX_Finish);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_00009530);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", DTX_SetUrpcCbf);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_000095E0);
-
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", func_000096CC);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/dtx.095/dtx", DTX_ExecServer);

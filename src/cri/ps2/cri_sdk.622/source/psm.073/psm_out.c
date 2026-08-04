@@ -1,47 +1,41 @@
 #include "common.h"
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000F250);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", psmout_foo);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000F27C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", PSMOUT_ExecHndl);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000F6A4);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", PSMOUT_ExecServer);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000F724);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", psmout_craete_sema);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000F754);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", psmout_destroy_sema);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000F8A4);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", psmout_proc);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000F93C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", psmout_create_thrd);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000F954);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", psmout_destroy_thrd);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000F988);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", PSMOUT_Init);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000F9EC);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", PSMOUT_Finish);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000FA2C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", psmout_alloc);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000FA38);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", psmout_free);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000FACC);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", PSMOUT_Create);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000FADC);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", PSMOUT_Destroy);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000FB80);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", PSMOUT_GetSj);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000FC78);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", psmout_int_func0);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0000FF8C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", psmout_int_func1);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_00010000);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", PSMOUT_Start);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_00010118);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", PSMOUT_Stop);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_00010410);
-
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_000104C0);
-
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_0001051C);
-
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", func_000105D8);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/psm.073/psm_out", PSMOUT_SetTransCb);

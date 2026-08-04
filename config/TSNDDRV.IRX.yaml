@@ -16,31 +16,37 @@ options:
   extensions_path: tools/splat_ext
   ld_script_path: config/TSNDDRV.IRX.ld
   symbol_addrs_path: config/TSNDDRV.IRX.symbol_addrs.txt
-  reloc_addrs_path: config/TSNDDRV.IRX.reloc_addrs.txt
   undefined_funcs_auto_path: config/TSNDDRV.IRX.undefined_funcs_auto.txt
   undefined_syms_auto_path: config/TSNDDRV.IRX.undefined_syms_auto.txt
 
+  # PSX is chosen here because IOP modules aren't fully integrated with splat yet, and they are still MIPS R3000
   compiler: PSYQ     
   platform: psx            
 
   named_regs_for_c_funcs: False
   make_full_disasm_for_code: False
 
+  gp_value: 0x00021A90
+
   section_order: [".text", ".rodata", ".data", ".sbss", ".bss"]
 segments:
+  - name: header
+    type: bin
+    start: 0x0
+
   - name: main
     type: code
-    start: 0x0
+    start: 0xB0
     vram: 0x0
     bss_size: 0x7D290
     subsegments:
-      - [0x000000, bin, header]
-
+      # Tamsoft
       - [0x0000B0, c, tsnddrv]
       - [0x000610, c, sdd_com]
       - [0x000B10, c, putsts]
       - [0x000C44, c, tq]
       - [0x002180, c, atick]
+      # CRI
       - [0x008A50, c, cri/ps2/cri_sdk.622/source/adxt.622/adx_iop]
       - [0x008AD0, c, cri/ps2/cri_sdk.622/source/dtx.095/dtx]
       - [0x009850, c, cri/ps2/cri_sdk.622/source/ps2rna.098/iop_rna]
@@ -62,7 +68,7 @@ segments:
       - [0x017B60, c, cri/ps2/cri_sdk.622/source/rcv.068/rcv_err]
       - [0x017CC0, c, cri/ps2/cri_sdk.622/source/sj.600/sj_mem]
       - [0x0187B0, asm, ilb_stub] # C:\WINDOWS\TEMP\cca65657_ilb_stub.s
-
+      # Data layout
       - [0x018BE0, .rodata, rodata]
       - [0x019720, .data, data]
       - [0x019A50, .sdata, sdata]

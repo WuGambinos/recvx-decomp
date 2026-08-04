@@ -1,27 +1,27 @@
 #include "common.h"
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_00013B80);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", sjrmt_rbf_create);
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_00013BF8);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", sjrmt_mem_create);
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_00013C60);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", sjrmt_uni_create);
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_00013CD8);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", sjrmt_destroy);
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_00013D34);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", sjrmt_get_uuid);
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_00013E24);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", sjrmt_reset);
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_00013E80);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", sjrmt_get_chunk);
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_00013F28);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", sjrmt_unget_chunk);
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_00013FC8);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", sjrmt_put_chunk);
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_00014068);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", sjrmt_get_num_data);
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_000140E4);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", sjrmt_is_get_chunk);
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_00014194);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", SJRMT_InitSvr);
 
-INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", func_000142F8);
+INCLUDE_ASM("config/asm/nonmatchings/users/oshimi/adx/sjr.093/sjr_svr", SJRMT_FinishSvr);

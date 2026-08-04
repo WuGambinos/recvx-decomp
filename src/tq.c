@@ -1,27 +1,23 @@
 #include "common.h"
 
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_00000C44);
+INCLUDE_ASM("config/asm/nonmatchings/tq", treq_TQ);
 
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_00000F80);
+INCLUDE_ASM("config/asm/nonmatchings/tq", treq_TQALL);
 
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_00000FA4);
+INCLUDE_ASM("config/asm/nonmatchings/tq", Tsnd_tqreq);
 
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_00001054);
+INCLUDE_ASM("config/asm/nonmatchings/tq", Tsnd_tqchg);
 
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_000013A0);
+INCLUDE_ASM("config/asm/nonmatchings/tq", Tsnd_tqcancel);
 
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_00001770);
+INCLUDE_ASM("config/asm/nonmatchings/tq", Tsnd_tqchk);
 
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_00001820);
+INCLUDE_ASM("config/asm/nonmatchings/tq", Tsnd_tq_portstop);
 
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_000018A0);
+INCLUDE_ASM("config/asm/nonmatchings/tq", Tsnd_sq_setmvol);
 
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_00001950);
+INCLUDE_ASM("config/asm/nonmatchings/tq", Tsnd_tq_setmvol);
 
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_00001A6C);
+INCLUDE_ASM("config/asm/nonmatchings/tq", Tsnd_tq_allstop);
 
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_00001BF8);
-
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_00001C80);
-
-INCLUDE_ASM("config/asm/nonmatchings/tq", func_00001D98);
+INCLUDE_ASM("config/asm/nonmatchings/tq", tsnd_tq_chgreq);

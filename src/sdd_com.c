@@ -1,7 +1,9 @@
 #include "common.h"
 
-INCLUDE_ASM("config/asm/nonmatchings/sdd_com", func_00000610);
+INCLUDE_ASM("config/asm/nonmatchings/sdd_com", get_port);
 
-INCLUDE_ASM("config/asm/nonmatchings/sdd_com", func_00000658);
+INCLUDE_ASM("config/asm/nonmatchings/sdd_com", tq_getport);
 
-INCLUDE_ASM("config/asm/nonmatchings/sdd_com", func_000007C8);
+INCLUDE_ASM("config/asm/nonmatchings/sdd_com", TsndPutState);
+
+INCLUDE_ASM("config/asm/nonmatchings/sdd_com", TsndPutFunc);

@@ -1,69 +1,65 @@
 #include "common.h"
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00014B00);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_Init);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00014B38);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_Finish);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00014C58);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_Create);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00014CF8);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_Destroy);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00014DC8);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_Start);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00014E78);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", rcv_check_param);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00014F40);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", rcv_conv_init);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00014FF0);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", rcv_calc_pitch);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00015354);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_Stop);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00015494);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_SetInSj);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_000154FC);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_SetOutSj);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_000155AC);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_SetInSfreq);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_000155CC);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_SetOutSfreq);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_0001567C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_SetCnvSmpl);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_0001569C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_SetCnvMaxSmpl);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_0001574C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_GetCnvMaxSmpl);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_0001576C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_SetCnvMinSmpl);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_0001581C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_GetCnvMinSmpl);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00015884);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_ExecServer);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00015934);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_ExecHndl);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00015994);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", rcv_convert_proc);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00015A44);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", rcv_copy);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00015BA0);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", rcv_twofold);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00015C20);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", rcv_threefold);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00015CD0);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", rcv_fourfold);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_000161F4);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", rcv_up_sampling);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_000167F8);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", rcv_down_sampling);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00016D4C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", rcv_decimation);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00017908);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_GetStat);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_0001797C);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_GetTotalIn);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_000179F0);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_GetTotalOut);
 
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00017AB0);
-
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00017B00);
-
-INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", func_00017B50);
+INCLUDE_ASM("config/asm/nonmatchings/cri/ps2/cri_sdk.622/source/rcv.068/cri_rcv", RCV_EntryErrFunc);

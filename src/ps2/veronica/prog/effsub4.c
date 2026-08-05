@@ -1,5 +1,9 @@
 #include "../../../ps2/veronica/prog/effsub4.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
 
 // 100% matching!
 void bhEff_SetPtcl(BH_PWORK* epw, NJS_POINT3* pos, int tex_id)
@@ -2516,37 +2520,43 @@ static O_WRK* bhEff_AllocOwork()
     return NULL;
 }
 
-// 
-// Start address: 0x251150
+// 100% matching!
 static void bhEff_PtclSpriteDraw(O_WRK* op)
 {
-	int i;
-	char atr[192];
-	float* size;
-	NJS_POINT3* vtx_p;
-	D_WORK* dtbl;
-	// Line 3952, Address: 0x251150, Func Offset: 0
-	// Line 3953, Address: 0x251168, Func Offset: 0x18
-	// Line 3961, Address: 0x251170, Func Offset: 0x20
-	// Line 3962, Address: 0x251178, Func Offset: 0x28
-	// Line 3963, Address: 0x251184, Func Offset: 0x34
-	// Line 3965, Address: 0x251190, Func Offset: 0x40
-	// Line 3966, Address: 0x251198, Func Offset: 0x48
-	// Line 3968, Address: 0x2511a8, Func Offset: 0x58
-	// Line 3972, Address: 0x2511b0, Func Offset: 0x60
-	// Line 3970, Address: 0x2511b8, Func Offset: 0x68
-	// Line 3971, Address: 0x2511bc, Func Offset: 0x6c
-	// Line 3972, Address: 0x2511c0, Func Offset: 0x70
-	// Line 3974, Address: 0x2511c8, Func Offset: 0x78
-	// Line 3976, Address: 0x2511d0, Func Offset: 0x80
-	// Line 3977, Address: 0x2511e4, Func Offset: 0x94
-	// Line 3978, Address: 0x2511e8, Func Offset: 0x98
-	// Line 3979, Address: 0x2511ec, Func Offset: 0x9c
-	// Line 3980, Address: 0x251200, Func Offset: 0xb0
-	// Line 3985, Address: 0x251208, Func Offset: 0xb8
-	// Line 3987, Address: 0x251210, Func Offset: 0xc0
-	// Func End, Address: 0x25122c, Func Offset: 0xdc
-	scePrintf("bhEff_PtclSpriteDraw - UNIMPLEMENTED!\n");
+    D_WORK* dtbl;      
+    NJS_POINT3* vtx_p; 
+    float* size;      
+    char atr[192];    
+    int i;             
+    
+    dtbl = (D_WORK*)op->exp0;
+    
+    njGetSystemAttr((NJS_SYS_ATTR*)&atr);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 10);
+    
+    njTextureFilterMode(0);
+    
+    njSetMatrix(NULL, cam.mtx);
+    njSetTexture(op->txp[0]);
+    
+    vtx_p = (NJS_POINT3*)dtbl->exp0;
+    size  = (float*)dtbl->exp1;
+    
+    njPtclSpriteStart(op->tex_id, op->tv->col, 1);
+    
+    for (i = 0; i < dtbl->num; i++) 
+    {
+        njPtclDrawSprite(vtx_p, 1, *size, *size);
+        
+        vtx_p++; 
+        size++;
+    }
+    
+    njPtclSpriteEnd();
+    
+    njSetSystemAttr((NJS_SYS_ATTR*)&atr);
 }
 
 // 

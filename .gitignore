@@ -23,6 +23,10 @@ config/include
 config/src
 config/SLUS_201.84
 config/SLUS_201.84.ld
+config/SLPM_650.22
+config/SLPM_650.22.ld
+config/SLPM_650.22.undefined_funcs_auto.txt
+config/SLPM_650.22.undefined_syms_auto.txt
 config/TSNDDRV.IRX
 config/TSNDDRV.IRX.ld
 config/TSNDDRV.IRX.undefined_funcs_auto.txt

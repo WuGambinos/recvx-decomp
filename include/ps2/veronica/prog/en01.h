@@ -105,7 +105,7 @@ void bhEne01_NeckBloodEffect(BH_PWORK* epw, int type);
 void bhEne01_NeckBloodEffect2(BH_PWORK* epw, int type);
 void bhEne01_ExpHeadEffect(BH_PWORK* epw);
 void bhEne01_ExpHeadEffect2(BH_PWORK* epw, int type);
-/*void bhEne01_NikuhenEffect(BH_PWORK* epw, _anon11* ps, int n);*/
+void bhEne01_NikuhenEffect(BH_PWORK* epw, NJS_POINT3* ps, int n);
 void bhEne01_ExpLegEffect(BH_PWORK* epw, int lnk_obj);
 void bhEne01_ExpWormEffect(BH_PWORK* epw);
 void bhEne01_PoisonEffect(BH_PWORK* epw, int num);
@@ -116,7 +116,7 @@ void bhEne01_GetWalkMotion(BH_PWORK* epw);
 int bhEne01_FastCheck(BH_PWORK* epw);
 int bhEne01_CmnFlgCheck(BH_PWORK* epw);
 int bhEne01_FastWalkCheck(BH_PWORK* epw);
-/*int bhEne01_ZulzulCheck(BH_PWORK* epw, int ang, float len, _anon11* get_pos, int* wang);*/
+int bhEne01_ZulzulCheck(BH_PWORK* epw, int ang, float len, NJS_POINT3* get_pos, int* wang);
 int bhEne01_GakeotiCheck(BH_PWORK* epw);
 int bhEne01_DansaCheck(BH_PWORK* epw, int ang, float ofs_z);
 int bhEne01_PoisonCheck(BH_PWORK* epw);

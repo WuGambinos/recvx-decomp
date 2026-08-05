@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/effsub4.h"
+#include "../../../ps2/veronica/prog/en01.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
@@ -977,34 +978,50 @@ void bhEff_Sub355(O_WRK* op)
 	scePrintf("bhEff_Sub355 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24e9a0
-void bhEff_Sub356(O_WRK* op)
+// 100% matching!
+void bhEff_Sub356(O_WRK* op) 
 {
-	// Line 1508, Address: 0x24e9a0, Func Offset: 0
-	// Line 1516, Address: 0x24e9ac, Func Offset: 0xc
-	// Line 1527, Address: 0x24e9d8, Func Offset: 0x38
-	// Line 1528, Address: 0x24e9e0, Func Offset: 0x40
-	// Line 1532, Address: 0x24e9e8, Func Offset: 0x48
-	// Line 1533, Address: 0x24e9f8, Func Offset: 0x58
-	// Line 1534, Address: 0x24ea00, Func Offset: 0x60
-	// Line 1545, Address: 0x24ea08, Func Offset: 0x68
-	// Line 1546, Address: 0x24ea0c, Func Offset: 0x6c
-	// Line 1550, Address: 0x24ea14, Func Offset: 0x74
-	// Line 1551, Address: 0x24ea20, Func Offset: 0x80
-	// Line 1552, Address: 0x24ea28, Func Offset: 0x88
-	// Line 1553, Address: 0x24ea30, Func Offset: 0x90
-	// Line 1556, Address: 0x24ea38, Func Offset: 0x98
-	// Line 1559, Address: 0x24ea48, Func Offset: 0xa8
-	// Line 1561, Address: 0x24ea54, Func Offset: 0xb4
-	// Line 1562, Address: 0x24ea5c, Func Offset: 0xbc
-	// Line 1564, Address: 0x24ea64, Func Offset: 0xc4
-	// Line 1567, Address: 0x24ea6c, Func Offset: 0xcc
-	// Line 1570, Address: 0x24ea7c, Func Offset: 0xdc
-	// Line 1573, Address: 0x24ea88, Func Offset: 0xe8
-	// Line 1577, Address: 0x24ea8c, Func Offset: 0xec
-	// Func End, Address: 0x24ea9c, Func Offset: 0xfc
-	scePrintf("bhEff_Sub356 - UNIMPLEMENTED!\n");
+    switch (op->mode0) 
+    {
+    case 0:
+        op->mode0++;
+        break;
+    case 1:
+        bhEne01_NikuhenEffect((BH_PWORK*)op->lkwkp, (NJS_POINT3*)&op->px, 4);
+        
+        op->mode0++;
+        break;
+    case 2:
+        op->mode0++;
+        break;
+    case 3:
+        bhEne01_NeckBloodEffect2((BH_PWORK*)op->lkwkp, 0);
+        
+        op->ct0 = 24;
+        
+        op->mode0++;
+        break;
+    case 4:
+        if (--op->ct0 < 0) 
+        {
+            bhEne01_NeckBloodEffect2((BH_PWORK*)op->lkwkp, 1);
+            
+            op->ct0 = 12;
+            
+            op->mode0++;
+        }
+        
+        break;
+    case 5:
+        if (--op->ct0 < 0) 
+        {
+            bhEne01_NeckBloodEffect2((BH_PWORK*)op->lkwkp, 2);
+            
+            op->flg = 0;
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!

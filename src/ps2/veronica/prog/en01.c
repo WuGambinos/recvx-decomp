@@ -9086,7 +9086,7 @@ void bhEne01_NeckBloodEffect(BH_PWORK* epw, int type)
 	// Line 11371, Address: 0x187998, Func Offset: 0x168
 	// Line 11403, Address: 0x1879a8, Func Offset: 0x178
 	// Func End, Address: 0x1879d0, Func Offset: 0x1a0
-}
+}*/
 
 // 
 // Start address: 0x1879d0
@@ -9094,8 +9094,8 @@ void bhEne01_NeckBloodEffect2(BH_PWORK* epw, int type)
 {
 	int i;
 	int ang1;
-	_anon11 v;
-	_anon11 ofs;
+	//_anon11 v;
+	//_anon11 ofs;
 	// Line 11421, Address: 0x1879d0, Func Offset: 0
 	// Line 11422, Address: 0x1879f0, Func Offset: 0x20
 	// Line 11421, Address: 0x1879f8, Func Offset: 0x28
@@ -9153,9 +9153,10 @@ void bhEne01_NeckBloodEffect2(BH_PWORK* epw, int type)
 	// Line 11479, Address: 0x187ca0, Func Offset: 0x2d0
 	// Line 11482, Address: 0x187cb0, Func Offset: 0x2e0
 	// Func End, Address: 0x187cd8, Func Offset: 0x308
+	scePrintf("bhEne01_NeckBloodEffect2 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x187ce0
 void bhEne01_ExpHeadEffect(BH_PWORK* epw)
 {
@@ -9218,15 +9219,15 @@ void bhEne01_ExpHeadEffect2(BH_PWORK* epw, int type)
 	// Line 11671, Address: 0x187f20, Func Offset: 0x140
 	// Line 11673, Address: 0x187f34, Func Offset: 0x154
 	// Func End, Address: 0x187f48, Func Offset: 0x168
-}
+}*/
 
 // 
 // Start address: 0x187f50
-void bhEne01_NikuhenEffect(BH_PWORK* epw, _anon11* ps, int n)
+void bhEne01_NikuhenEffect(BH_PWORK* epw, NJS_POINT3* ps, int n)
 {
 	int i;
 	int ang1;
-	_anon11 v;
+	//_anon11 v;
 	// Line 11775, Address: 0x187f50, Func Offset: 0
 	// Line 11780, Address: 0x187f70, Func Offset: 0x20
 	// Line 11782, Address: 0x187f90, Func Offset: 0x40
@@ -9240,9 +9241,10 @@ void bhEne01_NikuhenEffect(BH_PWORK* epw, _anon11* ps, int n)
 	// Line 11789, Address: 0x18800c, Func Offset: 0xbc
 	// Line 11790, Address: 0x188020, Func Offset: 0xd0
 	// Func End, Address: 0x188044, Func Offset: 0xf4
+	scePrintf("bhEne01_NikuhenEffect - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x188050
 void bhEne01_ExpLegEffect(BH_PWORK* epw, int lnk_obj)
 {

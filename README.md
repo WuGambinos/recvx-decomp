@@ -5,7 +5,7 @@
 [Build Status]: https://github.com/AshfordFamily/recvx-decomp/actions/workflows/progress.yml/badge.svg
 [actions]: https://github.com/AshfordFamily/recvx-decomp/actions/workflows/progres.yml
 
-[Code Progress]: https://decomp.dev/AshfordFamily/recvx-decomp.svg?mode=shield&label=Code&measure=matched_code_percent
+[Code Progress]: https://decomp.dev/AshfordFamily/recvx-decomp.svg?mode=shield&label=Code&measure=fuzzy_match_percent
 [Data Progress]: https://decomp.dev/AshfordFamily/recvx-decomp.svg?mode=shield&label=Functions&measure=matched_functions
 [progress]: https://decomp.dev/AshfordFamily/recvx-decomp
 

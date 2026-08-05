@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 67.43574,
+    "fuzzy_match_percent": 67.60958,
     "total_code": "1904472",
-    "matched_code": "1036324",
-    "matched_code_percent": 54.41529,
+    "matched_code": "1039644",
+    "matched_code_percent": 54.58962,
     "total_data": "28428164",
-    "matched_data": "28269268",
-    "matched_data_percent": 99.44106,
+    "matched_data": "28269380",
+    "matched_data_percent": 99.44146,
     "total_functions": 4529,
-    "matched_functions": 3301,
-    "matched_functions_percent": 72.88585,
+    "matched_functions": 3310,
+    "matched_functions_percent": 73.08457,
     "total_units": 200
   },
   "units": [
@@ -12902,14 +12902,16 @@
     {
       "name": "ps2/veronica/prog/en25",
       "measures": {
-        "fuzzy_match_percent": 1.2291169,
+        "fuzzy_match_percent": 100.0,
         "total_code": "3352",
-        "matched_code": "32",
-        "matched_code_percent": 0.954654,
+        "matched_code": "3352",
+        "matched_code_percent": 100.0,
         "total_data": "112",
+        "matched_data": "112",
+        "matched_data_percent": 100.0,
         "total_functions": 13,
-        "matched_functions": 4,
-        "matched_functions_percent": 30.769232,
+        "matched_functions": 13,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
@@ -12920,6 +12922,7 @@
         {
           "name": ".data",
           "size": "112",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -12929,7 +12932,7 @@
         {
           "name": ".text",
           "size": "3456",
-          "fuzzy_match_percent": 1.2291169,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -12941,13 +12944,14 @@
         {
           "name": "bhEne25",
           "size": "120",
-          "fuzzy_match_percent": 7.6666665,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         },
         {
           "name": "bhEne25_Init",
           "size": "552",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "128"
         },
@@ -12961,30 +12965,35 @@
         {
           "name": "bhEne25_Move",
           "size": "376",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "704"
         },
         {
           "name": "bhEne25_MV00",
           "size": "48",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1088"
         },
         {
           "name": "bhEne25_MV01",
           "size": "796",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1136"
         },
         {
           "name": "bhEne25_MV02",
           "size": "228",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1936"
         },
         {
           "name": "bhEne25_MV03",
           "size": "104",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "2176"
         },
@@ -13012,12 +13021,14 @@
         {
           "name": "bhEne25_SetEffect",
           "size": "820",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "2336"
         },
         {
           "name": "bhEne25_PlayerControl",
           "size": "276",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "3168"
         }
@@ -41272,16 +41283,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 65.93294,
+        "fuzzy_match_percent": 66.1148,
         "total_code": "1820460",
-        "matched_code": "952312",
-        "matched_code_percent": 52.31161,
+        "matched_code": "955632",
+        "matched_code_percent": 52.493984,
         "total_data": "28336764",
-        "matched_data": "28202980",
-        "matched_data_percent": 99.52788,
+        "matched_data": "28203092",
+        "matched_data_percent": 99.528275,
         "total_functions": 3834,
-        "matched_functions": 2606,
-        "matched_functions_percent": 67.97079,
+        "matched_functions": 2615,
+        "matched_functions_percent": 68.20553,
         "total_units": 152
       }
     },

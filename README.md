@@ -83,7 +83,7 @@ Related decomp projects:
 - [Fahrenheit](https://github.com/fmil95/santamonica)
 - [Fatal Frame](https://github.com/Mikompilation/Himuro)
 - [Legacy of Kain: Soul Reaver](https://github.com/fmil95/soul-re)
-- [Silent Hill](https://github.com/Vatuu/silent-hill-decomp)
+- [Silent Hill](https://github.com/shdecompilations/silent-hill-decomp)
 
 AshfordFamily's org avatar fan art was designed by [fishiiarts_](https://www.instagram.com/fishiiarts_/).
 

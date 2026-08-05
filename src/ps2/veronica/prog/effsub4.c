@@ -241,38 +241,44 @@ void bhEff_SetPtcl2V(NJS_POINT3* pos, NJS_POINT3* dv, int wcnt)
 	scePrintf("bhEff_SetPtcl2V - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24cfd0
-static void bhEff_SetBlood5(NJS_POINT3* pos, NJS_POINT3* vec, float size, int col)
+// 100% matching!
+static void bhEff_SetBlood5(NJS_POINT3* pos, NJS_VECTOR* vec, float size, int col)
 {
-	int tmp;
-	// Line 513, Address: 0x24cfd0, Func Offset: 0
-	// Line 517, Address: 0x24cfdc, Func Offset: 0xc
-	// Line 518, Address: 0x24cfec, Func Offset: 0x1c
-	// Line 517, Address: 0x24cff0, Func Offset: 0x20
-	// Line 518, Address: 0x24cffc, Func Offset: 0x2c
-	// Line 530, Address: 0x24d004, Func Offset: 0x34
-	// Line 518, Address: 0x24d00c, Func Offset: 0x3c
-	// Line 519, Address: 0x24d018, Func Offset: 0x48
-	// Line 520, Address: 0x24d02c, Func Offset: 0x5c
-	// Line 521, Address: 0x24d040, Func Offset: 0x70
-	// Line 522, Address: 0x24d054, Func Offset: 0x84
-	// Line 523, Address: 0x24d06c, Func Offset: 0x9c
-	// Line 524, Address: 0x24d084, Func Offset: 0xb4
-	// Line 525, Address: 0x24d09c, Func Offset: 0xcc
-	// Line 526, Address: 0x24d0b0, Func Offset: 0xe0
-	// Line 527, Address: 0x24d0c4, Func Offset: 0xf4
-	// Line 530, Address: 0x24d0d8, Func Offset: 0x108
-	// Line 532, Address: 0x24d100, Func Offset: 0x130
-	// Line 533, Address: 0x24d124, Func Offset: 0x154
-	// Line 534, Address: 0x24d13c, Func Offset: 0x16c
-	// Line 535, Address: 0x24d14c, Func Offset: 0x17c
-	// Line 536, Address: 0x24d164, Func Offset: 0x194
-	// Line 537, Address: 0x24d178, Func Offset: 0x1a8
-	// Line 538, Address: 0x24d190, Func Offset: 0x1c0
-	// Line 540, Address: 0x24d1a8, Func Offset: 0x1d8
-	// Func End, Address: 0x24d1b8, Func Offset: 0x1e8
-	scePrintf("bhEff_SetBlood5 - UNIMPLEMENTED!\n");
+    int tmp;
+
+    sys->ef.id = 372;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.sx = size;
+    sys->ef.sy = size;
+    sys->ef.sz = 0;
+    
+    sys->ef.px = pos->x;
+    sys->ef.py = pos->y;
+    sys->ef.pz = pos->z;
+    
+    sys->ef.ay = 0;
+    
+    sys->ef.type = 0;
+    
+    sys->ef.mdlver = col;
+    
+    tmp = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    
+    if (tmp != -1) 
+    {
+        eff[tmp].ct3 = 0;
+        
+        eff[tmp].xn = -vec->x;
+        eff[tmp].yn = 0;
+        eff[tmp].zn = -vec->z;
+        
+        eff[tmp].shp_ct = 0.5f;
+        
+        eff[tmp].aox = 0.98f;
+        eff[tmp].aoy = -0.03f;
+    }
 }
 
 // 

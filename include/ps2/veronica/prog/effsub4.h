@@ -15,6 +15,16 @@ typedef struct EFF370_WORK
     short lmode; // offset 0x12, size 0x2
 } EFF370_WORK;
 
+typedef struct D_WORK
+{
+    // total size: 0x14
+    unsigned int flg;    // offset 0x0, size 0x4
+    unsigned int num;    // offset 0x4, size 0x4
+    unsigned char* exp0; // offset 0x8, size 0x4
+    unsigned char* exp1; // offset 0xC, size 0x4
+    unsigned char* exp2; // offset 0x10, size 0x4
+} D_WORK;
+
 void bhEff_SetPtcl(BH_PWORK* epw, NJS_POINT3* pos, int tex_id);
 void bhEff_SetPtcl1(BH_PWORK* epw, NJS_POINT3* pos, int tex_id, int wcnt);
 void bhEff_SetPtcl2(NJS_POINT3* pos, NJS_MATRIX* mtx);

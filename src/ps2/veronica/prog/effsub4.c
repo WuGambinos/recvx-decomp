@@ -1,20 +1,20 @@
 #include "../../../ps2/veronica/prog/effsub4.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-// 
-// Start address: 0x24c8a0
+// 100% matching!
 void bhEff_SetPtcl(BH_PWORK* epw, NJS_POINT3* pos, int tex_id)
 {
-	int time;
-	int i;
-	// Line 111, Address: 0x24c8a0, Func Offset: 0
-	// Line 114, Address: 0x24c8c4, Func Offset: 0x24
-	// Line 115, Address: 0x24c8e4, Func Offset: 0x44
-	// Line 117, Address: 0x24c8e8, Func Offset: 0x48
-	// Line 118, Address: 0x24c8fc, Func Offset: 0x5c
-	// Line 119, Address: 0x24c90c, Func Offset: 0x6c
-	// Func End, Address: 0x24c92c, Func Offset: 0x8c
-	scePrintf("bhEff_SetPtcl - UNIMPLEMENTED!\n");
+    int i;
+    int time; 
+
+    time = (rand() % 4) * 4; 
+
+    for (i = 0; i < 3; i++) 
+    {
+        bhEff_SetPtcl1(epw, pos, tex_id, time);
+        
+        time += 4;
+    }
 }
 
 // 
@@ -2524,7 +2524,7 @@ static void bhEff_PtclSpriteDraw(O_WRK* op)
 	char atr[192];
 	float* size;
 	NJS_POINT3* vtx_p;
-	//_anon2* dtbl;
+	D_WORK* dtbl;
 	// Line 3952, Address: 0x251150, Func Offset: 0
 	// Line 3953, Address: 0x251168, Func Offset: 0x18
 	// Line 3961, Address: 0x251170, Func Offset: 0x20
@@ -2558,7 +2558,7 @@ static void bhEff_LineDraw(O_WRK* op)
 	char atr[192];
 	NJS_POINT3* vtx_p2;
 	NJS_POINT3* vtx_p;
-	//_anon2* dtbl;
+	D_WORK* dtbl;
 	// Line 4005, Address: 0x251230, Func Offset: 0
 	// Line 4006, Address: 0x25124c, Func Offset: 0x1c
 	// Line 4014, Address: 0x251254, Func Offset: 0x24

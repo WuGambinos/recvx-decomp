@@ -1003,6 +1003,7 @@ void bhDispTimeEx(NJS_POINT2* pos, unsigned int flg, int time, unsigned int argb
 }
 
 // 100% matching!
+// this function is not present on the Japanese version
 float bhGetFontSize(unsigned short code)
 {
     if (code >= 108) 
@@ -1014,6 +1015,7 @@ float bhGetFontSize(unsigned short code)
 }
 
 // 100% matching!
+// this function is not present on the Japanese version
 float bhMesLen(unsigned short* dp)
 {
     unsigned short cd; 
@@ -1070,6 +1072,7 @@ float bhMesLen(unsigned short* dp)
 }
 
 // 100% matching! 
+// this function is not present on the Japanese version
 void bhFontScaleSet(float ScaleX, float ScaleY, float ScaleCR) 
 {
     FontScaleX = ScaleX; 

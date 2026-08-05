@@ -132,6 +132,7 @@ const PDS_PERIPHERAL* pdGetPeripheral(Uint32 port)
 }
 
 // 100% matching! 
+// this function is not present on the Japanese version
 const PDS_PERIPHERALINFO* pdGetPeripheralInfo(Uint32 port)
 {
     pgp_info.type = 1;

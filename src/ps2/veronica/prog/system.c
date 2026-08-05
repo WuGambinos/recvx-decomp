@@ -2468,6 +2468,7 @@ void bhSetEventTimer(int mode)
 } 
 
 // 100% matching! 
+// this function is not present on the Japanese version
 void EasyDispMessage(float PosY, unsigned int MessageNo)
 { 
     unsigned char* dmp;

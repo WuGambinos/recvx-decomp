@@ -93,7 +93,7 @@ void bhEff_SetPtcl1(BH_PWORK* epw, NJS_POINT3* pos, int tex_id, int wcnt)
 
 // 
 // Start address: 0x24cb70
-void bhEff_SetPtcl2(NJS_POINT3* pos, float mtx[16])
+void bhEff_SetPtcl2(NJS_POINT3* pos, NJS_MATRIX* mtx)
 {
 	float spd;
 	int ang2;
@@ -1451,31 +1451,42 @@ void bhEff_Sub363(O_WRK* op)
 	scePrintf("bhEff_Sub363 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24f4e0
+// 100% matching!
 void bhEff_Sub364(O_WRK* op)
 {
-	// Line 2262, Address: 0x24f4e0, Func Offset: 0
-	// Line 2269, Address: 0x24f500, Func Offset: 0x20
-	// Line 2270, Address: 0x24f508, Func Offset: 0x28
-	// Line 2272, Address: 0x24f510, Func Offset: 0x30
-	// Line 2279, Address: 0x24f518, Func Offset: 0x38
-	// Line 2272, Address: 0x24f520, Func Offset: 0x40
-	// Line 2273, Address: 0x24f528, Func Offset: 0x48
-	// Line 2274, Address: 0x24f52c, Func Offset: 0x4c
-	// Line 2275, Address: 0x24f530, Func Offset: 0x50
-	// Line 2276, Address: 0x24f534, Func Offset: 0x54
-	// Line 2277, Address: 0x24f538, Func Offset: 0x58
-	// Line 2279, Address: 0x24f53c, Func Offset: 0x5c
-	// Line 2280, Address: 0x24f540, Func Offset: 0x60
-	// Line 2283, Address: 0x24f54c, Func Offset: 0x6c
-	// Line 2285, Address: 0x24f55c, Func Offset: 0x7c
-	// Line 2290, Address: 0x24f560, Func Offset: 0x80
-	// Line 2292, Address: 0x24f56c, Func Offset: 0x8c
-	// Line 2293, Address: 0x24f594, Func Offset: 0xb4
-	// Line 2298, Address: 0x24f5b8, Func Offset: 0xd8
-	// Func End, Address: 0x24f5c0, Func Offset: 0xe0
-	scePrintf("bhEff_Sub364 - UNIMPLEMENTED!\n");
+    switch (op->mode0) 
+    {                          
+    case 0:
+        op->bl_src = 8;
+        op->bl_dst = 10;
+        
+        op->flg |= 0x240000;
+        
+        op->ani_ct = 0;
+        
+        op->ct0 = 1;
+        op->ct1 = 0;
+        op->ct2 = 0;
+        op->ct3 = 0;
+        
+        op->func = (void*)bhEff_ModelDraw;
+        
+        op->mode0++;
+    case 1:
+        if (--op->ct0 < 0) 
+        {
+            op->flg = 0;
+        }
+        
+        break;
+    }
+    
+    if (op->flg != 0) 
+    {
+        sys->ef_fnc[sys->ef_fncn] = op;
+        
+        sys->ef_fncn++;
+    }
 }
 
 // 

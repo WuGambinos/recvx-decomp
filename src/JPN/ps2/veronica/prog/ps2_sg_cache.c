@@ -1,3 +1,7 @@
-#include "common.h"
+#include "../../../JPN/ps2/veronica/prog/ps2_sg_cache.h"
 
-INCLUDE_ASM("build/expected/asm/JPN/ps2/veronica/prog/ps2_sg_cache", syCacheOCWB);
+// 100% matching!
+Void syCacheOCWB(Void *address, Uint32 size) 
+{
+
+}

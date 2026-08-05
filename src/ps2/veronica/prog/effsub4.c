@@ -2635,36 +2635,39 @@ static void bhEff_LineDraw(O_WRK* op)
 	scePrintf("bhEff_LineDraw - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x251380
+// 100% matching!
 static void bhEff_SetSprite(O_WRK* op, UV_WORK* uvp, int mode)
 {
-	// Line 4105, Address: 0x251380, Func Offset: 0
-	// Line 4107, Address: 0x251390, Func Offset: 0x10
-	// Line 4105, Address: 0x251398, Func Offset: 0x18
-	// Line 4109, Address: 0x25139c, Func Offset: 0x1c
-	// Line 4105, Address: 0x2513a0, Func Offset: 0x20
-	// Line 4106, Address: 0x2513a8, Func Offset: 0x28
-	// Line 4109, Address: 0x2513b0, Func Offset: 0x30
-	// Line 4106, Address: 0x2513b4, Func Offset: 0x34
-	// Line 4107, Address: 0x2513c0, Func Offset: 0x40
-	// Line 4108, Address: 0x2513cc, Func Offset: 0x4c
-	// Line 4109, Address: 0x2513d8, Func Offset: 0x58
-	// Line 4110, Address: 0x2513f0, Func Offset: 0x70
-	// Line 4111, Address: 0x251408, Func Offset: 0x88
-	// Line 4112, Address: 0x251410, Func Offset: 0x90
-	// Line 4113, Address: 0x251418, Func Offset: 0x98
-	// Line 4114, Address: 0x251420, Func Offset: 0xa0
-	// Line 4117, Address: 0x251428, Func Offset: 0xa8
-	// Line 4119, Address: 0x251434, Func Offset: 0xb4
-	// Line 4121, Address: 0x25143c, Func Offset: 0xbc
-	// Line 4122, Address: 0x251464, Func Offset: 0xe4
-	// Line 4123, Address: 0x251484, Func Offset: 0x104
-	// Line 4126, Address: 0x25148c, Func Offset: 0x10c
-	// Line 4127, Address: 0x2514b4, Func Offset: 0x134
-	// Line 4130, Address: 0x2514d8, Func Offset: 0x158
-	// Func End, Address: 0x2514e0, Func Offset: 0x160
-	scePrintf("bhEff_SetSprite - UNIMPLEMENTED!\n");
+    op->sx = op->sxb * (uvp->xs / 100.0f);
+    op->sy = op->syb * (uvp->ys / 100.0f);
+    
+    op->tv[0].u = uvp->u / 255.0f;
+    op->tv[0].v = uvp->v / 255.0f;
+    
+    op->tv[3].u = ((uvp->u + uvp->xs) - 1.0f) / 255.0f;
+    op->tv[3].v = ((uvp->v + uvp->ys) - 1.0f) / 255.0f;
+    
+    op->tv[1].u = op->tv[3].u;
+    op->tv[1].v = op->tv[0].v;
+    
+    op->tv[2].u = op->tv[0].u;
+    op->tv[2].v = op->tv[3].v;
+    
+    if (op->flg != 0) 
+    {
+        if (mode == 0) 
+        {
+            sys->ef_trs[sys->ef_trsn] = op;
+            
+            sys->ef_trsn++;
+        }
+        else 
+        {
+            sys->ef_fnc[sys->ef_fncn] = op;
+            
+            sys->ef_fncn++;
+        }
+    }
 }
 
 // 99.79% matching (matches on NGC)

@@ -4641,13 +4641,13 @@ void bhDrawEff243(O_WRK* op)
     njColorBlendingMode(1, 6);
 }
 
-// 
-// Start address: 0x25aed0
-void bhEff244(O_WRK* op)
+#pragma divbyzerocheck on 
+
+// 99.13% matching (matches on NGC)
+void bhEff244(O_WRK* op) 
 {
-	int lColor;
-	int lType;
-	EFF5UV* pInfo;
+    EFF5UV* pInfo;
+    int lType, lColor;
 	static EFF5UV Eff244UvInfo1[2] = 
 	{
 		{  0, 136 }, { 48, 136 }
@@ -4668,50 +4668,74 @@ void bhEff244(O_WRK* op)
 	{
 		2, 3
 	};
-	// Line 4885, Address: 0x25aed0, Func Offset: 0
-	// Line 4901, Address: 0x25aee4, Func Offset: 0x14
-	// Line 4902, Address: 0x25af04, Func Offset: 0x34
-	// Line 4904, Address: 0x25af10, Func Offset: 0x40
-	// Line 4905, Address: 0x25af1c, Func Offset: 0x4c
-	// Line 4907, Address: 0x25af24, Func Offset: 0x54
-	// Line 4910, Address: 0x25af38, Func Offset: 0x68
-	// Line 4911, Address: 0x25af58, Func Offset: 0x88
-	// Line 4912, Address: 0x25af70, Func Offset: 0xa0
-	// Line 4915, Address: 0x25af90, Func Offset: 0xc0
-	// Line 4916, Address: 0x25af98, Func Offset: 0xc8
-	// Line 4917, Address: 0x25af9c, Func Offset: 0xcc
-	// Line 4915, Address: 0x25afa0, Func Offset: 0xd0
-	// Line 4916, Address: 0x25afa8, Func Offset: 0xd8
-	// Line 4917, Address: 0x25afac, Func Offset: 0xdc
-	// Line 4918, Address: 0x25afb0, Func Offset: 0xe0
-	// Line 4921, Address: 0x25afb8, Func Offset: 0xe8
-	// Line 4924, Address: 0x25afbc, Func Offset: 0xec
-	// Line 4921, Address: 0x25afc0, Func Offset: 0xf0
-	// Line 4924, Address: 0x25afc4, Func Offset: 0xf4
-	// Line 4929, Address: 0x25afd4, Func Offset: 0x104
-	// Line 4932, Address: 0x25afd8, Func Offset: 0x108
-	// Line 4936, Address: 0x25afdc, Func Offset: 0x10c
-	// Line 4937, Address: 0x25b000, Func Offset: 0x130
-	// Line 4938, Address: 0x25b00c, Func Offset: 0x13c
-	// Line 4940, Address: 0x25b024, Func Offset: 0x154
-	// Line 4942, Address: 0x25b028, Func Offset: 0x158
-	// Line 4948, Address: 0x25b060, Func Offset: 0x190
-	// Line 4956, Address: 0x25b078, Func Offset: 0x1a8
-	// Line 4948, Address: 0x25b07c, Func Offset: 0x1ac
-	// Line 4949, Address: 0x25b080, Func Offset: 0x1b0
-	// Line 4948, Address: 0x25b088, Func Offset: 0x1b8
-	// Line 4950, Address: 0x25b08c, Func Offset: 0x1bc
-	// Line 4949, Address: 0x25b098, Func Offset: 0x1c8
-	// Line 4950, Address: 0x25b0b4, Func Offset: 0x1e4
-	// Line 4951, Address: 0x25b0d8, Func Offset: 0x208
-	// Line 4952, Address: 0x25b0f4, Func Offset: 0x224
-	// Line 4956, Address: 0x25b118, Func Offset: 0x248
-	// Line 4958, Address: 0x25b134, Func Offset: 0x264
-	// Line 4959, Address: 0x25b148, Func Offset: 0x278
-	// Line 4961, Address: 0x25b16c, Func Offset: 0x29c
-	// Func End, Address: 0x25b184, Func Offset: 0x2b4
-	scePrintf("bhEff244 - UNIMPLEMENTED!\n");
+    
+    if ((op->type == 0) && (op->mode1 != 0))
+    {
+        op->type = op->mode1;
+    }
+    
+    if (op->type == 0) 
+    {
+        op->flg |= 0x1000000;
+        return;
+    }
+    
+    op->flg &= ~0x1000000;
+    
+    lType  = ((op->type - 1) / 4) % 2;
+    lColor = (op->type  - 1)      % 4;
+    
+    switch (op->mode0) 
+    {                    
+    case 0:
+        op->flg |= 0x4180000;
+        
+        op->tex_id = 424;
+        
+        op->bl_src = 8;
+        op->bl_dst = 3;
+        
+        op->ct0 = op->ct1 = 0;
+        
+        op->tv[0].col = op->tv[1].col = op->tv[2].col = op->tv[3].col = -1;
+        
+        op->mode0 = 1;
+    case 1:
+        op->ani_ct = lColor;
+        
+        if (op->sz < 1.0f) 
+        {
+            op->sz = 1.0f;
+        }
+        
+        op->ct0++;
+        
+        if ((int)op->sz <= op->ct0) 
+        {
+            op->ct0 = 0;
+        }
+        
+        op->ct1 = (op->ct0 * lEff244UvInfoMax[lType]) / (int)op->sz;
+        break;
+    }
+    
+    pInfo = &pEff244UvInfoTop[lType][op->ct1];
+    
+    op->tv[0].u = op->tv[2].u = pInfo->u  / 256.0f;
+    op->tv[1].u = op->tv[3].u = (pInfo->u / 256.0f) + fEff244Size[lType];
+    
+    op->tv[0].v = op->tv[1].v = pInfo->v  / 256.0f;
+    op->tv[2].v = op->tv[3].v = (pInfo->v / 256.0f) + fEff244Size[lType];
+    
+    if (sys->ef_trsn < 512) 
+    {
+        sys->ef_trs[sys->ef_trsn] = op;
+        
+        sys->ef_trsn++;
+    }
 }
+
+#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEff245(O_WRK* op) 

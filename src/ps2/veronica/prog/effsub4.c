@@ -2661,29 +2661,42 @@ static void bhEff_SetSprite(O_WRK* op, UV_WORK* uvp, int mode)
 	scePrintf("bhEff_SetSprite - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2514e0
+// 99.79% matching (matches on NGC)
 static void bhEff_SetSpriteAnime(O_WRK* op, EFF_ANIM* eff_anim, UV_WORK* uvp, int mode)
 {
-	EFF_ANIM* anim_p;
-	// Line 4158, Address: 0x2514e0, Func Offset: 0
-	// Line 4162, Address: 0x2514e8, Func Offset: 0x8
-	// Line 4165, Address: 0x2514ec, Func Offset: 0xc
-	// Line 4162, Address: 0x2514f0, Func Offset: 0x10
-	// Line 4165, Address: 0x2514f8, Func Offset: 0x18
-	// Line 4168, Address: 0x251504, Func Offset: 0x24
-	// Line 4172, Address: 0x25150c, Func Offset: 0x2c
-	// Line 4175, Address: 0x251518, Func Offset: 0x38
-	// Line 4176, Address: 0x251520, Func Offset: 0x40
-	// Line 4179, Address: 0x25152c, Func Offset: 0x4c
-	// Line 4180, Address: 0x251538, Func Offset: 0x58
-	// Line 4182, Address: 0x251548, Func Offset: 0x68
-	// Line 4183, Address: 0x25154c, Func Offset: 0x6c
-	// Line 4186, Address: 0x251574, Func Offset: 0x94
-	// Line 4188, Address: 0x251584, Func Offset: 0xa4
-	// Line 4190, Address: 0x251594, Func Offset: 0xb4
-	// Func End, Address: 0x2515a0, Func Offset: 0xc0
-	scePrintf("bhEff_SetSpriteAnime - UNIMPLEMENTED!\n");
+    EFF_ANIM* anim_p;
+    
+    anim_p = &eff_anim[op->ct1];
+    
+    if (anim_p->ptrn == -1)
+    {
+        op->flg = 0;
+        return;
+    }
+    
+    if (anim_p->ptrn == -2)
+    {
+        op->ct1 = anim_p->timer;
+        
+        anim_p = &eff_anim[op->ct1];
+    }
+    
+    op->ct0++;
+    
+    if (anim_p->timer == op->ct0) 
+    {
+        op->ct0 = 0;
+        
+        if (op->spd != 0) 
+        {
+            op->ct1++;
+        }
+    }
+    
+    if (anim_p->ptrn < 100)
+    {
+        bhEff_SetSprite(op, &uvp[anim_p->ptrn], mode);
+    }
 }
 
 // 

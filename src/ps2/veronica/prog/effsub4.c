@@ -1726,61 +1726,72 @@ void bhEff_Sub366(O_WRK* op)
 	scePrintf("bhEff_Sub366 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24fa60
-void bhEff_Sub367(O_WRK* op)
+// 100% matching!
+void bhEff_Sub367(O_WRK* op) 
 {
-	int i;
-	int* rot_spd;
-	int* rot;
-	float* r;
-	float* g;
-	NJS_POINT3* vtx_p;
-	//_anon17* effect;
-	// Line 2540, Address: 0x24fa60, Func Offset: 0
-	// Line 2551, Address: 0x24fa88, Func Offset: 0x28
-	// Line 2560, Address: 0x24fa90, Func Offset: 0x30
-	// Line 2553, Address: 0x24fa98, Func Offset: 0x38
-	// Line 2555, Address: 0x24fa9c, Func Offset: 0x3c
-	// Line 2556, Address: 0x24faa0, Func Offset: 0x40
-	// Line 2557, Address: 0x24faa4, Func Offset: 0x44
-	// Line 2560, Address: 0x24faa8, Func Offset: 0x48
-	// Line 2563, Address: 0x24fac0, Func Offset: 0x60
-	// Line 2564, Address: 0x24facc, Func Offset: 0x6c
-	// Line 2565, Address: 0x24fad4, Func Offset: 0x74
-	// Line 2567, Address: 0x24fad8, Func Offset: 0x78
-	// Line 2568, Address: 0x24fae0, Func Offset: 0x80
-	// Line 2569, Address: 0x24fae4, Func Offset: 0x84
-	// Line 2570, Address: 0x24fae8, Func Offset: 0x88
-	// Line 2571, Address: 0x24faec, Func Offset: 0x8c
-	// Line 2574, Address: 0x24faf8, Func Offset: 0x98
-	// Line 2576, Address: 0x24fafc, Func Offset: 0x9c
-	// Line 2574, Address: 0x24fb00, Func Offset: 0xa0
-	// Line 2575, Address: 0x24fb08, Func Offset: 0xa8
-	// Line 2576, Address: 0x24fb10, Func Offset: 0xb0
-	// Line 2578, Address: 0x24fb18, Func Offset: 0xb8
-	// Line 2580, Address: 0x24fb28, Func Offset: 0xc8
-	// Line 2581, Address: 0x24fb44, Func Offset: 0xe4
-	// Line 2585, Address: 0x24fb54, Func Offset: 0xf4
-	// Line 2586, Address: 0x24fb58, Func Offset: 0xf8
-	// Line 2581, Address: 0x24fb5c, Func Offset: 0xfc
-	// Line 2587, Address: 0x24fb60, Func Offset: 0x100
-	// Line 2589, Address: 0x24fb64, Func Offset: 0x104
-	// Line 2581, Address: 0x24fb68, Func Offset: 0x108
-	// Line 2582, Address: 0x24fb70, Func Offset: 0x110
-	// Line 2588, Address: 0x24fb80, Func Offset: 0x120
-	// Line 2582, Address: 0x24fb84, Func Offset: 0x124
-	// Line 2584, Address: 0x24fb90, Func Offset: 0x130
-	// Line 2589, Address: 0x24fb94, Func Offset: 0x134
-	// Line 2591, Address: 0x24fba8, Func Offset: 0x148
-	// Line 2593, Address: 0x24fbb8, Func Offset: 0x158
-	// Line 2594, Address: 0x24fbbc, Func Offset: 0x15c
-	// Line 2599, Address: 0x24fbc0, Func Offset: 0x160
-	// Line 2601, Address: 0x24fbcc, Func Offset: 0x16c
-	// Line 2602, Address: 0x24fbf4, Func Offset: 0x194
-	// Line 2604, Address: 0x24fc18, Func Offset: 0x1b8
-	// Func End, Address: 0x24fc44, Func Offset: 0x1e4
-	scePrintf("bhEff_Sub367 - UNIMPLEMENTED!\n");
+    EFFSUB367_WORK* effect; 
+    NJS_POINT3* vtx_p;     
+    float* g, *r;            
+    int* rot, *rot_spd;          
+    int i;               
+  
+    effect = (EFFSUB367_WORK*)op->exp0;
+    
+    vtx_p = effect->vtx_pos;
+    
+    g = effect->g;
+    r = effect->r;
+    
+    rot     = effect->rot;
+    rot_spd = effect->rot_spd;
+    
+    switch (op->mode0) 
+    {                           
+    case 0:
+        op->tv[0].col = 0x80FFFFFF;
+        
+        op->sx = 1.0f;
+        op->sy = 1.0f;
+        
+        op->ct0 = 3;
+        op->ct1 = 0;
+        op->ct2 = 0;
+        op->ct3 = 0;
+        
+        op->mode0++;
+    case 1:
+        op->ct0++;
+        op->ct1++;
+        
+        for (i = 0; i < effect->dtbl.num; i++)
+        {
+            *rot += *rot_spd;
+            
+            vtx_p->x = op->px - (*r   * njSin(*rot));
+            vtx_p->z = op->pz - (*r++ * njCos(*rot));
+            
+            vtx_p->y += *g++ * op->ct0;
+            
+            rot_spd++;
+            rot++;
+            vtx_p++;
+        }
+        
+        if (op->ct1 > 120) 
+        {
+            op->flg          = 0;
+            effect->dtbl.flg = 0;
+        }
+        
+        break;
+    }
+    
+    if (op->flg != 0) 
+    {
+        sys->ef_fnc[sys->ef_fncn] = op;
+        
+        sys->ef_fncn++;
+    }
 }
 
 // 100% matching!

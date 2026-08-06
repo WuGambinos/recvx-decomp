@@ -1075,11 +1075,10 @@ void bhEff_Sub357()
 
 }
 
-// 
-// Start address: 0x24eab0
-void bhEff_Sub360(O_WRK* op)
+// 100% matching!
+void bhEff_Sub360(O_WRK* op) 
 {
-	static UV_WORK bl00_uvinfo[17] = 
+    static UV_WORK bl00_uvinfo[17] = 
 	{
 		{  0.0f,    0.0f,   8.0f,   8.0f },
 		{  0.0f,    8.0f,  16.0f,  16.0f },
@@ -1128,42 +1127,46 @@ void bhEff_Sub360(O_WRK* op)
 	{ 
 		blanim00_tbl, blanim01_tbl 
 	};
-	// Line 1598, Address: 0x24eab0, Func Offset: 0
-	// Line 1637, Address: 0x24eab4, Func Offset: 0x4
-	// Line 1598, Address: 0x24eabc, Func Offset: 0xc
-	// Line 1637, Address: 0x24eac0, Func Offset: 0x10
-	// Line 1642, Address: 0x24eac8, Func Offset: 0x18
-	// Line 1637, Address: 0x24ead4, Func Offset: 0x24
-	// Line 1642, Address: 0x24ead8, Func Offset: 0x28
-	// Line 1651, Address: 0x24eae0, Func Offset: 0x30
-	// Line 1654, Address: 0x24eb0c, Func Offset: 0x5c
-	// Line 1655, Address: 0x24eb18, Func Offset: 0x68
-	// Line 1658, Address: 0x24eb1c, Func Offset: 0x6c
-	// Line 1660, Address: 0x24eb20, Func Offset: 0x70
-	// Line 1661, Address: 0x24eb24, Func Offset: 0x74
-	// Line 1655, Address: 0x24eb28, Func Offset: 0x78
-	// Line 1658, Address: 0x24eb34, Func Offset: 0x84
-	// Line 1660, Address: 0x24eb38, Func Offset: 0x88
-	// Line 1661, Address: 0x24eb3c, Func Offset: 0x8c
-	// Line 1666, Address: 0x24eb40, Func Offset: 0x90
-	// Line 1661, Address: 0x24eb44, Func Offset: 0x94
-	// Line 1662, Address: 0x24eb4c, Func Offset: 0x9c
-	// Line 1663, Address: 0x24eb58, Func Offset: 0xa8
-	// Line 1664, Address: 0x24eb5c, Func Offset: 0xac
-	// Line 1665, Address: 0x24eb60, Func Offset: 0xb0
-	// Line 1666, Address: 0x24eb64, Func Offset: 0xb4
-	// Line 1667, Address: 0x24eb68, Func Offset: 0xb8
-	// Line 1668, Address: 0x24eb6c, Func Offset: 0xbc
-	// Line 1669, Address: 0x24eb70, Func Offset: 0xc0
-	// Line 1672, Address: 0x24eb7c, Func Offset: 0xcc
-	// Line 1673, Address: 0x24eb88, Func Offset: 0xd8
-	// Line 1675, Address: 0x24eb94, Func Offset: 0xe4
-	// Line 1676, Address: 0x24eb9c, Func Offset: 0xec
-	// Line 1688, Address: 0x24eba8, Func Offset: 0xf8
-	// Line 1690, Address: 0x24ebb4, Func Offset: 0x104
-	// Line 1692, Address: 0x24ebd0, Func Offset: 0x120
-	// Func End, Address: 0x24ebdc, Func Offset: 0x12c
-	scePrintf("bhEff_Sub360 - UNIMPLEMENTED!\n");
+
+    switch (op->mode0) 
+    {                       
+    case 0:
+        op->tv[0].col = 0xC0C0C0C0;
+        op->tv[3].col = op->tv[2].col = op->tv[1].col = op->tv[0].col;
+        
+        op->bl_src = 8;
+        op->bl_dst = 3;
+        
+        op->flg   |= 0x4180000;
+        op->stflg |= 0x20;
+        
+        op->ct0 = 0;
+        op->ct1 = 0;
+        op->ct2 = 0;
+        
+        op->spd = 1.0f;
+        
+        op->mode1 = 0;
+        op->mode2 = 0;
+        op->mode0++;
+    case 1:
+        op->ct3--;
+        
+        if (op->ct3 < 0) 
+        {
+            op->mode2 = 1;
+            op->mode0++;  
+        }
+        
+        break;
+    case 2:
+        break;
+    }
+    
+    if (op->mode2 != 0) 
+    {
+       bhEff_SetSpriteAnime(op, anim_tbl[op->mode1], blood_uvinfo[op->mode1], 0);
+    }
 }
 
 // 100% matching!
@@ -1259,7 +1262,7 @@ void bhEff_Sub361(O_WRK* op)
     
     if (op->mode2 != 0) 
     {
-       bhEff_SetSpriteAnime(op, anim_tbl[op->mode1], blood_uvinfo[op->mode1], 0);
+    	bhEff_SetSpriteAnime(op, anim_tbl[op->mode1], blood_uvinfo[op->mode1], 0);
     }
 }
 

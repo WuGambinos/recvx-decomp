@@ -2836,57 +2836,95 @@ static void bhEff_SetSpriteAnime(O_WRK* op, EFF_ANIM* eff_anim, UV_WORK* uvp, in
     }
 }
 
-// 
-// Start address: 0x2515a0
+// 100% matching!
 static void bhEff_3DSpriteDraw(O_WRK* op)
 {
-	unsigned int tnm;
-	// Line 4209, Address: 0x2515a0, Func Offset: 0
-	// Line 4215, Address: 0x2515b0, Func Offset: 0x10
-	// Line 4218, Address: 0x2515b8, Func Offset: 0x18
-	// Line 4223, Address: 0x25160c, Func Offset: 0x6c
-	// Line 4224, Address: 0x251614, Func Offset: 0x74
-	// Line 4228, Address: 0x25161c, Func Offset: 0x7c
-	// Line 4230, Address: 0x25162c, Func Offset: 0x8c
-	// Line 4231, Address: 0x251634, Func Offset: 0x94
-	// Line 4234, Address: 0x25163c, Func Offset: 0x9c
-	// Line 4238, Address: 0x251648, Func Offset: 0xa8
-	// Line 4240, Address: 0x251658, Func Offset: 0xb8
-	// Line 4241, Address: 0x251670, Func Offset: 0xd0
-	// Line 4242, Address: 0x251698, Func Offset: 0xf8
-	// Line 4243, Address: 0x2516a0, Func Offset: 0x100
-	// Line 4246, Address: 0x2516a8, Func Offset: 0x108
-	// Line 4247, Address: 0x2516b0, Func Offset: 0x110
-	// Line 4248, Address: 0x2516bc, Func Offset: 0x11c
-	// Line 4252, Address: 0x2516c4, Func Offset: 0x124
-	// Line 4254, Address: 0x2516d8, Func Offset: 0x138
-	// Line 4258, Address: 0x2516e4, Func Offset: 0x144
-	// Line 4260, Address: 0x2516ec, Func Offset: 0x14c
-	// Line 4263, Address: 0x25170c, Func Offset: 0x16c
-	// Line 4264, Address: 0x251718, Func Offset: 0x178
-	// Line 4265, Address: 0x251720, Func Offset: 0x180
-	// Line 4266, Address: 0x25172c, Func Offset: 0x18c
-	// Line 4267, Address: 0x251734, Func Offset: 0x194
-	// Line 4273, Address: 0x25173c, Func Offset: 0x19c
-	// Line 4274, Address: 0x251768, Func Offset: 0x1c8
-	// Line 4275, Address: 0x25177c, Func Offset: 0x1dc
-	// Line 4278, Address: 0x251790, Func Offset: 0x1f0
-	// Line 4279, Address: 0x251798, Func Offset: 0x1f8
-	// Line 4281, Address: 0x2517a4, Func Offset: 0x204
-	// Line 4283, Address: 0x2517b8, Func Offset: 0x218
-	// Line 4284, Address: 0x2517c0, Func Offset: 0x220
-	// Line 4286, Address: 0x2517cc, Func Offset: 0x22c
-	// Line 4289, Address: 0x2517d8, Func Offset: 0x238
-	// Line 4290, Address: 0x2517e4, Func Offset: 0x244
-	// Line 4291, Address: 0x2517f0, Func Offset: 0x250
-	// Line 4294, Address: 0x2517f8, Func Offset: 0x258
-	// Line 4296, Address: 0x251808, Func Offset: 0x268
-	// Line 4299, Address: 0x251810, Func Offset: 0x270
-	// Line 4301, Address: 0x25181c, Func Offset: 0x27c
-	// Line 4304, Address: 0x251828, Func Offset: 0x288
-	// Line 4305, Address: 0x251830, Func Offset: 0x290
-	// Func End, Address: 0x251844, Func Offset: 0x2a4
-	scePrintf("bhEff_3DSpriteDraw - UNIMPLEMENTED!\n");
+    unsigned int tnm;
+    
+    njPushMatrixEx();
+    
+    if (((op->flg == 0) || ((op->flg & 0x1000000)) || ((op->stflg & 0x1000000))) || ((sys->gm_flg & 0x4000)) && ((op->mdflg & 0x40)))
+    {
+        njPopMatrixEx();
+        return;
+    }
+    
+    if ((op->flg & 0x20000000))
+    {
+        njTextureFilterMode(0);
+    } 
+    else
+    {
+        njTextureFilterMode(1);
+    }
+    
+    if (!(op->stflg & 0x20)) 
+    {
+        njSetTexture(&sys->ef_tlist);
+        
+        tnm = sys->ef_tn[op->tex_id] + op->ani_ct;
+        
+        njSetTextureNum(tnm);
+    } 
+    else 
+    {
+        njSetTexture(op->txp[0]);
+        
+        tnm = op->tex_id + op->ani_ct;
+        
+        njSetTextureNum(tnm);
+    }
+    
+    if ((op->flg & 0x10000000)) 
+    {
+        njSetPaletteBankNum(tnm, op->bank);
+    }
+    
+    njPushMatrixEx();
+    
+    if ((!(op->flg & 0x80)) || ((op->flg & 0x200000)))
+    {
+        njUnitMatrix(NULL);
+        
+        njTranslateEx((NJS_VECTOR*)&op->px);
+        njRotateEx(&op->ax, 0);
+        
+        njGetMatrix(op->mtx);
+    }
+    else 
+    {
+        njSetMatrix(op->mtx, &((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
+        
+        njTranslate(op->mtx, op->lox, op->loy, op->loz);
+        njRotateXYZ(op->mtx, op->ax, op->ay, op->az);
+    }
+    
+    njPopMatrixEx();
+    
+    njMultiMatrix(NULL, op->mtx);
+    
+    if ((op->flg & 0x100000)) 
+    {
+        njUnitRotPortion(NULL);
+        
+        njRotateZ(NULL, op->az);
+    }
+    
+    njScaleEx((NJS_VECTOR*)&op->sx);
+    
+    njColorBlendingMode(0, op->bl_src);
+    njColorBlendingMode(1, op->bl_dst);
+    
+    njFogDisable();
+    
+    njDrawTexture3DEx(op->tvp, op->pn, 1);
+    
+    njFogEnable();
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    njPopMatrixEx();
 }
 
 // 

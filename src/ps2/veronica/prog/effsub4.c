@@ -1570,57 +1570,76 @@ void bhEff_Sub364(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x24f5c0
-void bhEff_Sub365(O_WRK* op)
+// 100% matching!
+void bhEff_Sub365(O_WRK* op) 
 {
-	int i;
-	NJS_POINT3* avec;
-	NJS_POINT3* vpos;
-	//_anon6* effect;
-	// Line 2322, Address: 0x24f5c0, Func Offset: 0
-	// Line 2328, Address: 0x24f5c4, Func Offset: 0x4
-	// Line 2324, Address: 0x24f5cc, Func Offset: 0xc
-	// Line 2328, Address: 0x24f5d0, Func Offset: 0x10
-	// Line 2331, Address: 0x24f5f4, Func Offset: 0x34
-	// Line 2332, Address: 0x24f600, Func Offset: 0x40
-	// Line 2333, Address: 0x24f608, Func Offset: 0x48
-	// Line 2335, Address: 0x24f60c, Func Offset: 0x4c
-	// Line 2336, Address: 0x24f614, Func Offset: 0x54
-	// Line 2337, Address: 0x24f618, Func Offset: 0x58
-	// Line 2338, Address: 0x24f61c, Func Offset: 0x5c
-	// Line 2339, Address: 0x24f620, Func Offset: 0x60
-	// Line 2342, Address: 0x24f62c, Func Offset: 0x6c
-	// Line 2343, Address: 0x24f638, Func Offset: 0x78
-	// Line 2346, Address: 0x24f644, Func Offset: 0x84
-	// Line 2345, Address: 0x24f648, Func Offset: 0x88
-	// Line 2346, Address: 0x24f64c, Func Offset: 0x8c
-	// Line 2347, Address: 0x24f650, Func Offset: 0x90
-	// Line 2355, Address: 0x24f65c, Func Offset: 0x9c
-	// Line 2357, Address: 0x24f670, Func Offset: 0xb0
-	// Line 2362, Address: 0x24f678, Func Offset: 0xb8
-	// Line 2357, Address: 0x24f67c, Func Offset: 0xbc
-	// Line 2358, Address: 0x24f684, Func Offset: 0xc4
-	// Line 2359, Address: 0x24f6a4, Func Offset: 0xe4
-	// Line 2361, Address: 0x24f6ac, Func Offset: 0xec
-	// Line 2359, Address: 0x24f6b0, Func Offset: 0xf0
-	// Line 2360, Address: 0x24f6b8, Func Offset: 0xf8
-	// Line 2362, Address: 0x24f6bc, Func Offset: 0xfc
-	// Line 2364, Address: 0x24f6d0, Func Offset: 0x110
-	// Line 2365, Address: 0x24f6dc, Func Offset: 0x11c
-	// Line 2367, Address: 0x24f6ec, Func Offset: 0x12c
-	// Line 2368, Address: 0x24f6f4, Func Offset: 0x134
-	// Line 2367, Address: 0x24f6fc, Func Offset: 0x13c
-	// Line 2368, Address: 0x24f704, Func Offset: 0x144
-	// Line 2370, Address: 0x24f718, Func Offset: 0x158
-	// Line 2371, Address: 0x24f71c, Func Offset: 0x15c
-	// Line 2377, Address: 0x24f720, Func Offset: 0x160
-	// Line 2379, Address: 0x24f72c, Func Offset: 0x16c
-	// Line 2381, Address: 0x24f738, Func Offset: 0x178
-	// Line 2382, Address: 0x24f760, Func Offset: 0x1a0
-	// Line 2385, Address: 0x24f784, Func Offset: 0x1c4
-	// Func End, Address: 0x24f78c, Func Offset: 0x1cc
-	scePrintf("bhEff_Sub365 - UNIMPLEMENTED!\n");
+    EFFSUB365_WORK* effect; 
+    NJS_POINT3* vpos; 
+    NJS_VECTOR* avec; 
+    int i; 
+	
+    effect = (EFFSUB365_WORK*)op->exp0;
+    
+    vpos = effect->vtx_pos;
+    avec = effect->add_vec;
+    
+    switch (op->mode0) 
+    {                           
+    case 0:
+        op->tv->col = 0xFF404040;
+        
+        op->sx = 1.0f;
+        op->sy = 1.0f;
+        
+        op->ct0 = 3;
+        op->ct1 = 0;
+        op->ct2 = 0;
+        
+        op->mode2 = 0;
+        op->mode0++;
+    case 1:
+        op->ct3--;
+        
+        if (op->ct3 >= 0) 
+        {
+            break;
+        }
+        
+        op->ct0 = 0;
+        
+        op->mode2 = 1;
+        op->mode0++;
+    case 2:
+        for (i = 0; i < effect->dtbl.num; i++) 
+        {
+            vpos->x += avec->x;
+            vpos->y += avec->y + (-0.02f * op->ct0);
+            vpos->z += avec->z;
+
+            vpos++;
+            avec++;
+        }
+        
+        op->ct0++;
+        
+        if (op->ct0 > 8) 
+        {
+            op->tv->col += 0xF0000000;
+            
+            if ((op->tv->col & 0xFF000000) < 0x10000000) 
+            {
+                op->flg          = 0;
+                effect->dtbl.flg = 0;
+            }
+        }
+    }
+    
+    if ((op->mode2 != 0) && (op->flg != 0)) 
+    {
+        sys->ef_fnc[sys->ef_fncn] = op;
+        
+        sys->ef_fncn++;
+    }
 }
 
 // 

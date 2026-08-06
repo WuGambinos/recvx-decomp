@@ -25,6 +25,15 @@ typedef struct D_WORK
     unsigned char* exp2; // offset 0x10, size 0x4
 } D_WORK;
 
+typedef struct EFFSUB365_WORK 
+{
+    // total size: 0x474
+    D_WORK dtbl;            // offset 0x0, size 0x14
+    float size[40];         // offset 0x14, size 0xA0
+    NJS_POINT3 vtx_pos[40]; // offset 0xB4, size 0x1E0
+    NJS_VECTOR add_vec[40]; // offset 0x294, size 0x1E0
+} EFFSUB365_WORK;
+
 void bhEff_SetPtcl(BH_PWORK* epw, NJS_POINT3* pos, int tex_id);
 void bhEff_SetPtcl1(BH_PWORK* epw, NJS_POINT3* pos, int tex_id, int wcnt);
 void bhEff_SetPtcl2(NJS_POINT3* pos, NJS_MATRIX* mtx);

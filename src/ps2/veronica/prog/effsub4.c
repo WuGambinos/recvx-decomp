@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/effsub4.h"
 #include "../../../ps2/veronica/prog/en01.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
@@ -1835,11 +1836,10 @@ void bhEff_Sub368(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x24fdd0
-void bhEff_Sub369(O_WRK* op)
+// 100% matching!
+void bhEff_Sub369(O_WRK* op) 
 {
-	static UV_WORK uvinfo[15] = 
+    static UV_WORK uvinfo[15] = 
 	{
 		{   0.0f,   0.0f,  16.0f,  16.0f },
 		{  16.0f,   0.0f,  24.0f,  24.0f },
@@ -1874,42 +1874,54 @@ void bhEff_Sub369(O_WRK* op)
 	{
 		anim00_tbl, anim01_tbl
 	};
-	// Line 2713, Address: 0x24fdd0, Func Offset: 0
-	// Line 2782, Address: 0x24fddc, Func Offset: 0xc
-	// Line 2785, Address: 0x24fe08, Func Offset: 0x38
-	// Line 2786, Address: 0x24fe14, Func Offset: 0x44
-	// Line 2789, Address: 0x24fe18, Func Offset: 0x48
-	// Line 2790, Address: 0x24fe1c, Func Offset: 0x4c
-	// Line 2792, Address: 0x24fe20, Func Offset: 0x50
-	// Line 2786, Address: 0x24fe24, Func Offset: 0x54
-	// Line 2789, Address: 0x24fe30, Func Offset: 0x60
-	// Line 2790, Address: 0x24fe34, Func Offset: 0x64
-	// Line 2792, Address: 0x24fe38, Func Offset: 0x68
-	// Line 2798, Address: 0x24fe3c, Func Offset: 0x6c
-	// Line 2792, Address: 0x24fe40, Func Offset: 0x70
-	// Line 2793, Address: 0x24fe48, Func Offset: 0x78
-	// Line 2794, Address: 0x24fe54, Func Offset: 0x84
-	// Line 2795, Address: 0x24fe58, Func Offset: 0x88
-	// Line 2796, Address: 0x24fe5c, Func Offset: 0x8c
-	// Line 2797, Address: 0x24fe60, Func Offset: 0x90
-	// Line 2798, Address: 0x24fe64, Func Offset: 0x94
-	// Line 2800, Address: 0x24fe68, Func Offset: 0x98
-	// Line 2801, Address: 0x24fe70, Func Offset: 0xa0
-	// Line 2802, Address: 0x24fe74, Func Offset: 0xa4
-	// Line 2803, Address: 0x24fe7c, Func Offset: 0xac
-	// Line 2806, Address: 0x24fe84, Func Offset: 0xb4
-	// Line 2807, Address: 0x24fe90, Func Offset: 0xc0
-	// Line 2809, Address: 0x24fe9c, Func Offset: 0xcc
-	// Line 2810, Address: 0x24fea0, Func Offset: 0xd0
-	// Line 2818, Address: 0x24feac, Func Offset: 0xdc
-	// Line 2819, Address: 0x24febc, Func Offset: 0xec
-	// Line 2820, Address: 0x24fedc, Func Offset: 0x10c
-	// Line 2821, Address: 0x24fefc, Func Offset: 0x12c
-	// Line 2826, Address: 0x24ff0c, Func Offset: 0x13c
-	// Line 2828, Address: 0x24ff18, Func Offset: 0x148
-	// Line 2830, Address: 0x24ff44, Func Offset: 0x174
-	// Func End, Address: 0x24ff54, Func Offset: 0x184
-	scePrintf("bhEff_Sub369 - UNIMPLEMENTED!\n");
+    
+    switch (op->mode0)
+    {                              
+    case 0:
+        op->tv[0].col = 0x40808080;
+        op->tv[3].col = op->tv[2].col = op->tv[1].col = op->tv[0].col;
+        
+        op->bl_src = 8;
+        op->bl_dst = 10;
+        
+        op->flg   |= 0x4180000;
+        op->stflg |= 0x20;
+        
+        op->ani_ct = 0;
+        
+        op->ct0 = 0;
+        op->ct1 = 0;
+        op->ct2 = 0;
+        
+        op->spd = 1.0f;
+        
+        op->mode1 = op->type;
+        op->mode2 = 0;
+        op->mode0++;
+        break;
+    case 1:
+        op->ct3--;
+        
+        if (op->ct3 >= 0) 
+        {
+            break;
+        }
+        
+        op->mode2 = 1;
+        op->mode0++;
+    case 2:
+        op->xn *= op->zn;
+        
+        op->px += op->xn * -njSin(op->ay);
+        op->pz += op->xn * -njCos(op->ay);
+        op->py += op->yn;
+        break;
+    }
+    
+    if (op->mode2 != 0)
+    {
+        bhEff_SetSpriteAnime(op, anim_tbl[op->mode1], uvinfo, 0);
+    }
 }
 
 // 

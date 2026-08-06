@@ -1,6 +1,8 @@
 #include "../../../ps2/veronica/prog/effsub4.h"
 #include "../../../ps2/veronica/prog/en01.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw.h"
+#include "../../../ps2/veronica/prog/ps2_NaFog.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
@@ -2662,57 +2664,56 @@ static void bhEff_PtclSpriteDraw(O_WRK* op)
     njSetSystemAttr((NJS_SYS_ATTR*)&atr);
 }
 
-// 
-// Start address: 0x251230
-static void bhEff_LineDraw(O_WRK* op)
+// 100% matching!
+static void bhEff_LineDraw(O_WRK* op) 
 {
-	//_anon32 poly[3];
-	int i;
-	char atr[192];
-	NJS_POINT3* vtx_p2;
-	NJS_POINT3* vtx_p;
-	D_WORK* dtbl;
-	// Line 4005, Address: 0x251230, Func Offset: 0
-	// Line 4006, Address: 0x25124c, Func Offset: 0x1c
-	// Line 4014, Address: 0x251254, Func Offset: 0x24
-	// Line 4015, Address: 0x25125c, Func Offset: 0x2c
-	// Line 4016, Address: 0x251268, Func Offset: 0x38
-	// Line 4019, Address: 0x251274, Func Offset: 0x44
-	// Line 4021, Address: 0x25127c, Func Offset: 0x4c
-	// Line 4025, Address: 0x25128c, Func Offset: 0x5c
-	// Line 4026, Address: 0x251290, Func Offset: 0x60
-	// Line 4028, Address: 0x251294, Func Offset: 0x64
-	// Line 4032, Address: 0x251298, Func Offset: 0x68
-	// Line 4028, Address: 0x25129c, Func Offset: 0x6c
-	// Line 4029, Address: 0x2512a0, Func Offset: 0x70
-	// Line 4030, Address: 0x2512a8, Func Offset: 0x78
-	// Line 4032, Address: 0x2512ac, Func Offset: 0x7c
-	// Line 4034, Address: 0x2512b4, Func Offset: 0x84
-	// Line 4040, Address: 0x2512b8, Func Offset: 0x88
-	// Line 4043, Address: 0x2512c4, Func Offset: 0x94
-	// Line 4034, Address: 0x2512c8, Func Offset: 0x98
-	// Line 4035, Address: 0x2512cc, Func Offset: 0x9c
-	// Line 4041, Address: 0x2512d0, Func Offset: 0xa0
-	// Line 4043, Address: 0x2512dc, Func Offset: 0xac
-	// Line 4035, Address: 0x2512e0, Func Offset: 0xb0
-	// Line 4036, Address: 0x2512e4, Func Offset: 0xb4
-	// Line 4043, Address: 0x2512e8, Func Offset: 0xb8
-	// Line 4036, Address: 0x2512ec, Func Offset: 0xbc
-	// Line 4037, Address: 0x2512f0, Func Offset: 0xc0
-	// Line 4038, Address: 0x2512f8, Func Offset: 0xc8
-	// Line 4039, Address: 0x251300, Func Offset: 0xd0
-	// Line 4040, Address: 0x251308, Func Offset: 0xd8
-	// Line 4041, Address: 0x251314, Func Offset: 0xe4
-	// Line 4042, Address: 0x251320, Func Offset: 0xf0
-	// Line 4043, Address: 0x251328, Func Offset: 0xf8
-	// Line 4045, Address: 0x251330, Func Offset: 0x100
-	// Line 4046, Address: 0x251334, Func Offset: 0x104
-	// Line 4047, Address: 0x251338, Func Offset: 0x108
-	// Line 4083, Address: 0x251350, Func Offset: 0x120
-	// Line 4084, Address: 0x251358, Func Offset: 0x128
-	// Line 4085, Address: 0x251360, Func Offset: 0x130
-	// Func End, Address: 0x251380, Func Offset: 0x150
-	scePrintf("bhEff_LineDraw - UNIMPLEMENTED!\n");
+    D_WORK* dtbl;           
+    NJS_POINT3* vtx_p, *vtx_p2;       
+    char atr[192];          
+    int i;                 
+    NJS_POLYGON_VTX poly[3]; 
+
+    dtbl = (D_WORK*)op->exp0;
+    
+    njGetSystemAttr((NJS_SYS_ATTR*)&atr);
+    
+    njColorBlendingMode(0, op->bl_src);
+    njColorBlendingMode(1, op->bl_dst);
+    
+    njFogDisable();
+    
+    njSetMatrix(NULL, cam.mtx);
+    
+    vtx_p  = (NJS_POINT3*)dtbl->exp0;
+    vtx_p2 = (NJS_POINT3*)dtbl->exp1;
+    
+    poly[0].col = op->tv[0].col;
+    poly[1].col = op->tv[0].col;
+    poly[2].col = op->tv[1].col;
+    
+    for (i = 0; i < dtbl->num; i++) 
+    {
+        poly[0].x = vtx_p->x;
+        poly[0].y = vtx_p->y;
+        poly[0].z = vtx_p->z;
+        
+        poly[2].x = vtx_p2->x;
+        poly[2].y = vtx_p2->y;
+        poly[2].z = vtx_p2->z;
+        
+        poly[1].x = 0.2f + vtx_p->x;
+        poly[1].y = 0.3f + vtx_p->y;
+        poly[1].z = 0.2f + vtx_p->z;
+        
+        njDrawPolygon3DEx(poly, 3, 1);
+        
+        vtx_p++; 
+        vtx_p2++; 
+    }
+    
+    njFogEnable();
+    
+    njSetSystemAttr((NJS_SYS_ATTR*)&atr);
 }
 
 // 100% matching!

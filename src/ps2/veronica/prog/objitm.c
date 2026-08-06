@@ -140,6 +140,9 @@ void (*bhJumpObject2[13])() =
 };
 unsigned int ulDrawGeneralPurposeWater;
 
+extern void VU0_WAVE_INIT() __attribute__((section(".vutext")));
+extern void VU0_WAVE_CALC() __attribute__((section(".vutext")));
+
 // 100% matching! 
 void bhInitObjItm()
 {

@@ -2539,7 +2539,7 @@ CHUNK_HEAD* njCnkCsUvn(CHUNK_HEAD* pCnk)
                 {
                 label:
                 {
-                    float zbuff[4] = { -Ps2_zbuff_b, 0.0009775171f, -Ps2_zbuff_a, 65534.0f }; 
+                    float zbuff[4] = { -Ps2_zbuff_b, 0.003921569f, -Ps2_zbuff_a, 65534.0f }; 
                     
                     asm volatile
                     ("

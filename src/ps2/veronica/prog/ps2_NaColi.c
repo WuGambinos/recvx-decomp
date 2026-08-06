@@ -971,7 +971,7 @@ Int     njCollisionCheckBC(NJS_BOX *box, NJS_CAPSULE *capsule)
     return 0;
 }
 
-// 99.46% matching
+// 100% matching!
 int njCheckPlane4AndLine(NJS_POINT3* pP1, NJS_POINT3* pP2, NJS_POINT3* pP3, NJS_POINT3* pP4, NJS_POINT3* pPN, NJS_LINE* pLine)
 {
     float fVX1, fVY1, fVZ1;
@@ -992,43 +992,43 @@ int njCheckPlane4AndLine(NJS_POINT3* pP1, NJS_POINT3* pP2, NJS_POINT3* pP3, NJS_
     fVY3 = pLine->py;
     fVZ3 = pLine->pz;
 
-    fT2 = (fVX2 * fVX2) + (fVY2 * fVY2) + (fVZ2 * fVZ2);   
-    fT1 = njInvertSqrt(fT2);
+    fT3 = (fVX2 * fVX2) + (fVY2 * fVY2) + (fVZ2 * fVZ2);
+    fT1 = njInvertSqrt(fT3);
     
-    fVX2 *= fT1; 
-    fVY2 *= fT1; 
+    fVX2 *= fT1;
+    fVY2 *= fT1;
     fVZ2 *= fT1;
+
+    fT2 = (fVX1 * fVX2) + (fVY1 * fVY2) + (fVZ1 * fVZ2);
     
-    fT1 = (fVX1 * fVX2) + (fVY1 * fVY2) + (fVZ1 * fVZ2);
-    
-    if (fabsf(fT1) <= 0.025f) 
+    if (fabsf(fT2) <= 0.025f) 
     {
         return 0;
     }
+
+    fT2 = -((fVX1 * (fVX3 - pP1->x)) + (fVY1 * (fVY3 - pP1->y)) + (fVZ1 * (fVZ3 - pP1->z))) / fT2;
     
-    fT1 = -((fVX1 * (fVX3 - pP1->x)) + (fVY1 * (fVY3 - pP1->y)) + (fVZ1 * (fVZ3 - pP1->z))) / fT1;         
-    
-    fVX4 = fVX3 + (fVX2 * fT1);
-    fVY4 = fVY3 + (fVY2 * fT1);
-    fVZ4 = fVZ3 + (fVZ2 * fT1);
-    
+    fVX4 = fVX3 + (fVX2 * fT2);
+    fVY4 = fVY3 + (fVY2 * fT2);
+    fVZ4 = fVZ3 + (fVZ2 * fT2);
+
     fVX1 = fVX4 - fVX3;
     fVY1 = fVY4 - fVY3;
     fVZ1 = fVZ4 - fVZ3;
     
-    fT1 = (fVX1 * fVX1) + (fVY1 * fVY1) + (fVZ1 * fVZ1);  
+    fT2 = (fVX1 * fVX1) + (fVY1 * fVY1) + (fVZ1 * fVZ1);
     
-    if (fT2 < fT1) 
-    {                                
+    if (fT3 < fT2) 
+    {
         return 0;
     }
-    
+
     fVX1 -= pLine->vx;
     fVY1 -= pLine->vy;
     fVZ1 -= pLine->vz;
-    
-    if (fT2 < ((fVX1 * fVX1) + (fVY1 * fVY1) + (fVZ1 * fVZ1))) 
-    {               
+
+    if (fT3 < ((fVX1 * fVX1) + (fVY1 * fVY1) + (fVZ1 * fVZ1))) 
+    {
         return 0;
     }
           

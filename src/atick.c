@@ -1,7 +1,7 @@
-#include "common.h"
+// *****************************************************************************
+// FILE -- atick.c
+// *****************************************************************************
 
-INCLUDE_ASM("config/asm/nonmatchings/atick", TsndTQ_ATick);
-
-INCLUDE_ASM("config/asm/nonmatchings/atick", ATick);
-
-INCLUDE_ASM("config/asm/nonmatchings/atick", DelayATick);
+/* 000020d0 0000046c */ static TsndTQ_ATick() {}
+/* 0000253c 000007d0 */ static ATick() {}
+/* 00002d0c 0000008c */ DelayATick() {}

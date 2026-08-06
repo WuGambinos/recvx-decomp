@@ -479,11 +479,10 @@ void bhEff_Sub350(O_WRK* op)
 	scePrintf("bhEff_Sub350 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24da30
-void bhEff_Sub351(O_WRK* op)
+// 100% matching!
+void bhEff_Sub351(O_WRK* op) 
 {
-	static UV_WORK uvinfo[14] =
+    static UV_WORK uvinfo[14] =
 	{
 		{  24.0f,  80.0f,  16.0f,  16.0f },
 		{   0.0f,  48.0f,  24.0f,  24.0f },
@@ -506,46 +505,65 @@ void bhEff_Sub351(O_WRK* op)
 		{  4,  1 }, {  5,  1 }, {  6,  1 }, {  7,  1 },
 		{  8,  1 }, {  9,  1 }, { 10,  1 }, { 11,  1 },
 		{ 12,  1 }, { 13,  1 }, { -1,  0 }
-	};
-	// Line 797, Address: 0x24da30, Func Offset: 0
-	// Line 826, Address: 0x24da38, Func Offset: 0x8
-	// Line 829, Address: 0x24da64, Func Offset: 0x34
-	// Line 830, Address: 0x24da70, Func Offset: 0x40
-	// Line 833, Address: 0x24da74, Func Offset: 0x44
-	// Line 834, Address: 0x24da78, Func Offset: 0x48
-	// Line 836, Address: 0x24da7c, Func Offset: 0x4c
-	// Line 830, Address: 0x24da80, Func Offset: 0x50
-	// Line 833, Address: 0x24da8c, Func Offset: 0x5c
-	// Line 834, Address: 0x24da90, Func Offset: 0x60
-	// Line 836, Address: 0x24da94, Func Offset: 0x64
-	// Line 842, Address: 0x24da98, Func Offset: 0x68
-	// Line 836, Address: 0x24da9c, Func Offset: 0x6c
-	// Line 837, Address: 0x24daa4, Func Offset: 0x74
-	// Line 838, Address: 0x24dab0, Func Offset: 0x80
-	// Line 839, Address: 0x24dab4, Func Offset: 0x84
-	// Line 840, Address: 0x24dab8, Func Offset: 0x88
-	// Line 841, Address: 0x24dabc, Func Offset: 0x8c
-	// Line 842, Address: 0x24dac0, Func Offset: 0x90
-	// Line 844, Address: 0x24dac4, Func Offset: 0x94
-	// Line 845, Address: 0x24dac8, Func Offset: 0x98
-	// Line 846, Address: 0x24dad0, Func Offset: 0xa0
-	// Line 849, Address: 0x24dad8, Func Offset: 0xa8
-	// Line 850, Address: 0x24dae4, Func Offset: 0xb4
-	// Line 852, Address: 0x24daf0, Func Offset: 0xc0
-	// Line 853, Address: 0x24daf4, Func Offset: 0xc4
-	// Line 855, Address: 0x24daf8, Func Offset: 0xc8
-	// Line 856, Address: 0x24db14, Func Offset: 0xe4
-	// Line 864, Address: 0x24db20, Func Offset: 0xf0
-	// Line 865, Address: 0x24db30, Func Offset: 0x100
-	// Line 866, Address: 0x24db40, Func Offset: 0x110
-	// Line 868, Address: 0x24db50, Func Offset: 0x120
-	// Line 870, Address: 0x24db64, Func Offset: 0x134
-	// Line 871, Address: 0x24db74, Func Offset: 0x144
-	// Line 877, Address: 0x24db84, Func Offset: 0x154
-	// Line 879, Address: 0x24db90, Func Offset: 0x160
-	// Line 881, Address: 0x24dba8, Func Offset: 0x178
-	// Func End, Address: 0x24dbb4, Func Offset: 0x184
-	scePrintf("bhEff_Sub351 - UNIMPLEMENTED!\n");
+	}; 
+    
+    switch (op->mode0) 
+    {                           
+    case 0:
+        op->tv[0].col = 0x80808080;
+        op->tv[3].col = op->tv[2].col = op->tv[1].col = op->tv[0].col;
+        
+        op->bl_src = 8;
+        op->bl_dst = 10;
+        
+        op->flg   |= 0x4180000;
+        op->stflg |= 0x20;
+        
+        op->ani_ct = 0;
+        
+        op->ct0 = 0;
+        op->ct1 = 0;
+        op->ct2 = 0;
+        
+        op->spd = 1.0f;
+        
+        op->mode2 = 0;
+        op->mode0++;
+        break;
+    case 1:
+        op->ct3--;
+        
+        if (op->ct3 < 0)
+        {
+            op->ct3 = 0;
+            
+            op->mode2 = 1;
+            
+            if ((op->flg & 0x80)) 
+            {
+                op->flg &= ~0x80;
+            }
+            
+            op->mode0++;
+        case 2:
+            op->px += op->xn;
+            op->py += op->yn;
+            op->pz += op->zn;
+            
+            if (++op->ct3 > 8)
+            {
+                op->tv[0].col += 0xF0000000;
+                op->tv[3].col = op->tv[2].col = op->tv[1].col = op->tv[0].col;
+            }
+        }
+        
+        break;
+    }
+    
+    if (op->mode2 != 0) 
+    {
+        bhEff_SetSpriteAnime(op, anim00_tbl, uvinfo, 0);
+    }
 }
 
 // 

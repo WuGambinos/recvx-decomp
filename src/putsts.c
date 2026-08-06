@@ -1,9 +1,8 @@
-#include "common.h"
+// *****************************************************************************
+// FILE -- putsts.c
+// *****************************************************************************
 
-INCLUDE_ASM("config/asm/nonmatchings/putsts", get_port);
-
-INCLUDE_ASM("config/asm/nonmatchings/putsts", tq_getport);
-
-INCLUDE_ASM("config/asm/nonmatchings/putsts", TsndPutState);
-
-INCLUDE_ASM("config/asm/nonmatchings/putsts", TsndPutFunc);
+/* 00000560 000000f8 */ static get_port() {}
+/* 00000658 00000048 */ static tq_getport() {}
+/* 000006a0 00000078 */ static TsndPutState() {}
+/* 00000718 0000047c */ static TsndPutFunc() {}

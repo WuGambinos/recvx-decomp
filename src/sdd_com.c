@@ -1,5 +1,6 @@
-#include "common.h"
+// *****************************************************************************
+// FILE -- sdd_com.c
+// *****************************************************************************
 
-INCLUDE_ASM("config/asm/nonmatchings/sdd_com", sce_sdr_loop);
-
-INCLUDE_ASM("config/asm/nonmatchings/sdd_com", sdrFunc);
+/* 00000000 0000007c */ sce_sdr_loop() {}
+/* 0000007c 000004e4 */ static sdrFunc() {}

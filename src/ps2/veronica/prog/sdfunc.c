@@ -1446,9 +1446,9 @@ int GetPlayerActionSeSlotNo(int Type, int Id)
 // 100% matching!
 void CallPlayerFootStepSeEx(int FloorType, int Type, int Flag, int Id, NJS_POINT3* pPos)
 {
-    short WalkPitchTbl[4] = { 0, 1, 1, 0 };
-    short RunPitchTbl[4] = { 768, 512, 512, 768 };
-    char FootDef[5] = { 3, 2, 1, 0, 4 }; 
+    short WalkPitchTbl[4] = { 0, 256, 256, 0 };
+    short RunPitchTbl[4] = { 512, 768, 768, 512 };
+    char FootDef[5] = { 0, 1, 2, 3, 4 }; 
     float Distance; 
 
     Get3DSoundParameter(&CameraPos, pPos, &RequestInfo.Pan, &RequestInfo.Volume, &Distance, 0);

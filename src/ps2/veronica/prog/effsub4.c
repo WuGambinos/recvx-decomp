@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/effsub4.h"
 #include "../../../ps2/veronica/prog/en01.h"
+#include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaFog.h"
@@ -7,6 +8,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
 
 // 100% matching!
@@ -2896,7 +2898,7 @@ static void bhEff_3DSpriteDraw(O_WRK* op)
         njSetMatrix(op->mtx, &((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
         
         njTranslate(op->mtx, op->lox, op->loy, op->loz);
-        njRotateXYZ(op->mtx, op->ax, op->ay, op->az);
+        njRotateXYZ(op->mtx, op->ax,  op->ay,  op->az);
     }
     
     njPopMatrixEx();
@@ -2927,59 +2929,88 @@ static void bhEff_3DSpriteDraw(O_WRK* op)
     njPopMatrixEx();
 }
 
-// 
-// Start address: 0x251850
+// 100% matching!
 static void bhEff_ModelDraw(O_WRK* op)
 {
-	//_anon14* mlp;
-	//_anon20* tnp;
-	// Line 4487, Address: 0x251850, Func Offset: 0
-	// Line 4494, Address: 0x251854, Func Offset: 0x4
-	// Line 4487, Address: 0x25185c, Func Offset: 0xc
-	// Line 4494, Address: 0x25186c, Func Offset: 0x1c
-	// Line 4495, Address: 0x25187c, Func Offset: 0x2c
-	// Line 4496, Address: 0x251898, Func Offset: 0x48
-	// Line 4498, Address: 0x2518bc, Func Offset: 0x6c
-	// Line 4501, Address: 0x2518c4, Func Offset: 0x74
-	// Line 4505, Address: 0x251910, Func Offset: 0xc0
-	// Line 4506, Address: 0x251918, Func Offset: 0xc8
-	// Line 4510, Address: 0x251920, Func Offset: 0xd0
-	// Line 4511, Address: 0x251930, Func Offset: 0xe0
-	// Line 4513, Address: 0x251940, Func Offset: 0xf0
-	// Line 4519, Address: 0x25194c, Func Offset: 0xfc
-	// Line 4521, Address: 0x25195c, Func Offset: 0x10c
-	// Line 4522, Address: 0x251964, Func Offset: 0x114
-	// Line 4521, Address: 0x25196c, Func Offset: 0x11c
-	// Line 4522, Address: 0x251978, Func Offset: 0x128
-	// Line 4521, Address: 0x25197c, Func Offset: 0x12c
-	// Line 4522, Address: 0x251980, Func Offset: 0x130
-	// Line 4523, Address: 0x25198c, Func Offset: 0x13c
-	// Line 4522, Address: 0x251990, Func Offset: 0x140
-	// Line 4523, Address: 0x251998, Func Offset: 0x148
-	// Line 4524, Address: 0x2519ac, Func Offset: 0x15c
-	// Line 4525, Address: 0x2519b4, Func Offset: 0x164
-	// Line 4528, Address: 0x2519bc, Func Offset: 0x16c
-	// Line 4529, Address: 0x2519c4, Func Offset: 0x174
-	// Line 4532, Address: 0x2519cc, Func Offset: 0x17c
-	// Line 4533, Address: 0x2519d4, Func Offset: 0x184
-	// Line 4536, Address: 0x2519f4, Func Offset: 0x1a4
-	// Line 4537, Address: 0x251a00, Func Offset: 0x1b0
-	// Line 4538, Address: 0x251a08, Func Offset: 0x1b8
-	// Line 4539, Address: 0x251a14, Func Offset: 0x1c4
-	// Line 4540, Address: 0x251a1c, Func Offset: 0x1cc
-	// Line 4546, Address: 0x251a24, Func Offset: 0x1d4
-	// Line 4547, Address: 0x251a50, Func Offset: 0x200
-	// Line 4548, Address: 0x251a64, Func Offset: 0x214
-	// Line 4550, Address: 0x251a78, Func Offset: 0x228
-	// Line 4551, Address: 0x251a80, Func Offset: 0x230
-	// Line 4555, Address: 0x251a8c, Func Offset: 0x23c
-	// Line 4558, Address: 0x251a94, Func Offset: 0x244
-	// Line 4560, Address: 0x251aa0, Func Offset: 0x250
-	// Line 4563, Address: 0x251acc, Func Offset: 0x27c
-	// Line 4565, Address: 0x251af4, Func Offset: 0x2a4
-	// Line 4567, Address: 0x251b04, Func Offset: 0x2b4
-	// Line 4569, Address: 0x251b18, Func Offset: 0x2c8
-	// Line 4570, Address: 0x251b20, Func Offset: 0x2d0
-	// Func End, Address: 0x251b38, Func Offset: 0x2e8
-	scePrintf("bhEff_ModelDraw - UNIMPLEMENTED!\n");
+    NJS_TEXNAME* tnp;
+    ML_WORK* mlp;
+    
+    njCnkSetSimpleLightColor(1.0f, 1.0f, 1.0f);
+    njCnkSetSimpleLightIntensity(1.0f, 0.8f);
+    njCnkSetSimpleLight(0, 0.3f, 0.7f);
+    
+    njPushMatrixEx();
+    
+    op->flg = op->flg;
+    
+    if ((((op->flg & 0x1000000)) || ((op->stflg & 0x1000000))) || (((sys->gm_flg & 0x4000)) && ((op->mdflg & 0x40)))) 
+    {
+        njPopMatrixEx();
+        return;
+    }
+    
+    if ((op->flg & 0x20000000)) 
+    {
+        njTextureFilterMode(0);
+    }
+    else 
+    {
+        njTextureFilterMode(1);
+    }
+    
+    mlp = op->mlwP;
+    
+    if (!(op->stflg & 0x20)) 
+    {
+        tnp = sys->ef_tlist.textures;
+        
+        sys->ef_tlist.textures = &tnp[op->tex_id + op->ani_ct];
+        
+        njSetTexture(&sys->ef_tlist);
+        njSetTextureNum(0);
+    } 
+    else 
+    {
+        njSetTexture(op->txp[0]);
+        njSetTextureNum(0);
+    }
+    
+    njPushMatrixEx();
+    
+    if (((op->flg & 0x200000)) || (!(op->flg & 0x80))) 
+    {
+        njUnitMatrix(NULL);
+        
+        njTranslateEx((NJS_VECTOR*)&op->px);
+        njRotateEx(&op->ax, 0);
+        
+        njGetMatrix(op->mtx);
+    } 
+    else 
+    {
+        njSetMatrix(op->mtx, &((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono].mtx);
+        
+        njTranslate(op->mtx, op->lox, op->loy, op->loz);
+        njRotateXYZ(op->mtx, op->ax,  op->ay,  op->az);
+    }
+    
+    njPopMatrixEx();
+    
+    njMultiMatrix(NULL, op->mtx);
+    
+    njScaleEx((NJS_VECTOR*)&op->sx);
+    
+    if (op->flr_no != 0) 
+    {
+        npSetAllMatColor(&mlp->objP[op->mdlver], 1, op->tv->col);
+    }
+    
+    njCnkSimpleMultiDrawModel(mlp->objP[op->mdlver].model);
+    
+    if (!(op->stflg & 0x20)) 
+    {
+        sys->ef_tlist.textures = tnp;
+    }
+            
+    njPopMatrixEx();
 }

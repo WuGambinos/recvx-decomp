@@ -2392,29 +2392,40 @@ static int ryRapTexAnm(ANM_WORK* anmP, DSP_WRK* dspP, int bol)
 	scePrintf("ryRapTexAnm - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24bb40
+// 100% matching!
 static void ryRapDspSet(NJS_POINT3* posP, DSP_WRK* dspP, float scl)
 {
-	float* vbP;
-	// Line 2967, Address: 0x24bb40, Func Offset: 0
-	// Line 2968, Address: 0x24bb44, Func Offset: 0x4
-	// Line 2972, Address: 0x24bb50, Func Offset: 0x10
-	// Line 2968, Address: 0x24bb60, Func Offset: 0x20
-	// Line 2972, Address: 0x24bb6c, Func Offset: 0x2c
-	// Line 2973, Address: 0x24bb70, Func Offset: 0x30
-	// Line 2974, Address: 0x24bb74, Func Offset: 0x34
-	// Line 2977, Address: 0x24bb78, Func Offset: 0x38
-	// Line 2978, Address: 0x24bb7c, Func Offset: 0x3c
-	// Line 2979, Address: 0x24bb80, Func Offset: 0x40
-	// Line 2982, Address: 0x24bb84, Func Offset: 0x44
-	// Line 2983, Address: 0x24bb88, Func Offset: 0x48
-	// Line 2984, Address: 0x24bb8c, Func Offset: 0x4c
-	// Line 2987, Address: 0x24bb90, Func Offset: 0x50
-	// Line 2988, Address: 0x24bb94, Func Offset: 0x54
-	// Line 2991, Address: 0x24bb98, Func Offset: 0x58
-	// Func End, Address: 0x24bba0, Func Offset: 0x60
-	scePrintf("ryRapDspSet - UNIMPLEMENTED!\n");
+    float* vbP;
+    float tmp; // not from DWARF
+
+    tmp = 0.5f;
+    
+    dspP->vtx_scl = scl;
+    dspP->vtx_pos = *posP;
+
+    vbP = &dspP->VtxBuf->x;  
+    
+    *vbP++ = -tmp;
+    *vbP++ = tmp;
+    *vbP   = 0;
+
+    vbP += 4;  
+    
+    *vbP++ = -tmp;
+    *vbP++ = -tmp;
+    *vbP   = 0;
+
+    vbP += 4;
+    
+    *vbP++ = tmp;
+    *vbP++ = tmp;
+    *vbP   = 0;
+
+    vbP += 4;
+    
+    *vbP++ = tmp;
+    *vbP++ = -tmp;
+    *vbP   = 0;
 }
 
 // 

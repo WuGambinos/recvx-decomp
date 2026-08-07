@@ -45,13 +45,13 @@ typedef struct ANM_WORK
     int col_sub;      // offset 0x10, size 0x4
 } ANM_WORK;
 
-typedef struct DSP_WORK 
+typedef struct DSP_WRK 
 {
     // total size: 0x70
     float vtx_scl;             // offset 0x0, size 0x4
     NJS_POINT3 vtx_pos;        // offset 0x4, size 0xC
     NJS_TEXTURE_VTX VtxBuf[4]; // offset 0x10, size 0x60
-} DSP_WORK;
+} DSP_WRK;
 
 typedef struct _rap_dsp_typ 
 {
@@ -65,7 +65,7 @@ struct _rap_tex_typ
     // total size: 0x98
     rap_tex_typ* nextP;  // offset 0x0, size 0x4
     int mode;            // offset 0x4, size 0x4
-    DSP_WORK dsp_wrk;    // offset 0x8, size 0x70
+    DSP_WRK dsp_wrk;    // offset 0x8, size 0x70
     rap_dsp_typ mov_wrk; // offset 0x78, size 0xC
     ANM_WORK anm_wrk;    // offset 0x84, size 0x14
 };
@@ -216,8 +216,8 @@ OR_WORK* rySetEffBlood(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, int
 void bhEff309(OR_WORK* orP);
 void bhEff309Drw(OR_WORK* orP);
 static void ryRapTexDrw(NJS_TEXLIST* texP, int tex_id, rap_tex_typ* rtP);
-static int ryRapTexAnm(ANM_WORK* anmP, DSP_WORK* dspP, int bol);
-static void ryRapDspSet(NJS_POINT3* posP, DSP_WORK* dspP, float scl);
+static int ryRapTexAnm(ANM_WORK* anmP, DSP_WRK* dspP, int bol);
+static void ryRapDspSet(NJS_POINT3* posP, DSP_WRK* dspP, float scl);
 static void ryRapAnmColSet(ANM_WORK* anmP, int src_col, int dst_col, int col_cnt);
 void bhEff30a(OR_WORK* orP);
 void bhEff349(OR_WORK* orP);

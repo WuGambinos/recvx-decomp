@@ -37,9 +37,9 @@ void bhEff_SetPtcl1(BH_PWORK* epw, NJS_POINT3* pos, int tex_id, int wcnt)
 	NJS_POINT3* avec;
 	NJS_POINT3* vpos;
 	int eff_no;
-	//_anon41 ps;
+	//POINT ps;
 	O_WRK* op;
-	//_anon6* effect;
+	EFFSUB365_WORK* effect;
 	static float eff_tbl[2] = 
 	{
 		0.200000003f, 1.5f
@@ -113,9 +113,9 @@ void bhEff_SetPtcl2(NJS_POINT3* pos, NJS_MATRIX* mtx)
 	NJS_POINT3* vtx_p;
 	int i;
 	int eff_no;
-	//_anon9* effect;
+	EFFSUB366_WORK* effect;
 	O_WRK* op;
-	//_anon41 ps;
+	POINT ps;
 	static float eff_tbl[2] = 
 	{
 		1.0f, 2.0f
@@ -187,9 +187,9 @@ void bhEff_SetPtcl2V(NJS_POINT3* pos, NJS_POINT3* dv, int wcnt)
 	NJS_POINT3* vtx_p;
 	int i;
 	int eff_no;
-	//_anon9* effect;
+	EFFSUB366_WORK* effect;
 	O_WRK* op;
-	//_anon41 ps;
+	POINT ps;
 	static float eff_tbl[2] = 
 	{
 		1.0f, 2.0f
@@ -577,7 +577,7 @@ void bhEff_Sub351(O_WRK* op)
 // Start address: 0x24dbc0
 void bhEff_Sub352(O_WRK* op)
 {
-	//_anon11* owk;
+	O_WORK* owk;
 	NJS_POINT3 p2;
 	NJS_POINT3 p1;
 	static UV_WORK uvinfo[10] = 
@@ -812,7 +812,7 @@ void bhEff_Sub354(O_WRK* op)
 	NJS_POINT3 p2;
 	NJS_POINT3 p1;
 	NJS_POINT3 ofs;
-	//_anon11* owk;
+	O_WORK* owk;
 	static UV_WORK uvinfo[29] = 
 	{
 		{   0.0f,   0.0f,  40.0f,  40.0f },
@@ -1653,7 +1653,7 @@ void bhEff_Sub366(O_WRK* op)
 	NJS_POINT3* vec;
 	NJS_POINT3* vtx_p2;
 	NJS_POINT3* vtx_p;
-	//_anon9* effect;
+	EFFSUB366_WORK* effect;
 	// Line 2411, Address: 0x24f790, Func Offset: 0
 	// Line 2418, Address: 0x24f794, Func Offset: 0x4
 	// Line 2413, Address: 0x24f79c, Func Offset: 0xc

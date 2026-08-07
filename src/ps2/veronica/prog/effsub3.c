@@ -1192,7 +1192,7 @@ static void bhEff_PtclLineDraw(O_WRK* oP)
 void bhEff303(O_WRK* oP)
 {
 	PRM_WORK* prmP;
-	DSP_WORK* dspP;
+	DSP_WRK* dspP;
 	ANM_WORK* anmP;
 	static const PRM_WORK PrmTbl[8] =
 	{
@@ -2361,7 +2361,7 @@ static void ryRapTexDrw(NJS_TEXLIST* texP, int tex_id, rap_tex_typ* rtP)
 
 // 
 // Start address: 0x24ba70
-static int ryRapTexAnm(ANM_WORK* anmP, DSP_WORK* dspP, int bol)
+static int ryRapTexAnm(ANM_WORK* anmP, DSP_WRK* dspP, int bol)
 {
 	unsigned int col;
 	float* tvP;
@@ -2394,7 +2394,7 @@ static int ryRapTexAnm(ANM_WORK* anmP, DSP_WORK* dspP, int bol)
 
 // 
 // Start address: 0x24bb40
-static void ryRapDspSet(NJS_POINT3* posP, DSP_WORK* dspP, float scl)
+static void ryRapDspSet(NJS_POINT3* posP, DSP_WRK* dspP, float scl)
 {
 	float* vbP;
 	// Line 2967, Address: 0x24bb40, Func Offset: 0

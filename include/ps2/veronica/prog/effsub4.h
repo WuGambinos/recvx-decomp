@@ -34,6 +34,16 @@ typedef struct EFFSUB365_WORK
     NJS_VECTOR add_vec[40]; // offset 0x294, size 0x1E0
 } EFFSUB365_WORK;
 
+typedef struct EFFSUB366_WORK 
+{
+    // total size: 0x294
+    D_WORK dtbl;             // offset 0x0, size 0x14
+    float g[16];             // offset 0x14, size 0x40
+    NJS_VECTOR add_vec[16];  // offset 0x54, size 0xC0
+    NJS_POINT3 vtx_pos[16];  // offset 0x114, size 0xC0
+    NJS_POINT3 vtx_pos2[16]; // offset 0x1D4, size 0xC0
+} EFFSUB366_WORK;
+
 typedef struct EFFSUB367_WORK 
 {
     // total size: 0x414

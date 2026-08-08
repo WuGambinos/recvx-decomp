@@ -1321,7 +1321,7 @@ O_WRK* rySetShadow(BH_PWORK* ewP, int obj0, int obj1, int obj2, float off_a, flo
     {
         oP->flg = 0x8240001;
         
-        oP->id   = 0x130;
+        oP->id   = 304;
         oP->type = 0;
         
         oP->tex_id = -1;
@@ -2356,37 +2356,55 @@ static void ryRapTexDrw(NJS_TEXLIST* texP, int tex_id, rap_tex_typ* rtP)
 	scePrintf("ryRapTexDrw - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24ba70
+// 100% matching!
 static int ryRapTexAnm(ANM_WORK* anmP, DSP_WRK* dspP, int bol)
 {
-	unsigned int col;
-	float* tvP;
-	UV_WORK* uvP;
-	int anm_no;
-	// Line 2921, Address: 0x24ba70, Func Offset: 0
-	// Line 2923, Address: 0x24ba74, Func Offset: 0x4
-	// Line 2924, Address: 0x24ba7c, Func Offset: 0xc
-	// Line 2926, Address: 0x24ba84, Func Offset: 0x14
-	// Line 2924, Address: 0x24ba88, Func Offset: 0x18
-	// Line 2930, Address: 0x24ba8c, Func Offset: 0x1c
-	// Line 2931, Address: 0x24ba94, Func Offset: 0x24
-	// Line 2932, Address: 0x24ba9c, Func Offset: 0x2c
-	// Line 2935, Address: 0x24baa0, Func Offset: 0x30
-	// Line 2936, Address: 0x24baa8, Func Offset: 0x38
-	// Line 2937, Address: 0x24bab8, Func Offset: 0x48
-	// Line 2940, Address: 0x24babc, Func Offset: 0x4c
-	// Line 2941, Address: 0x24bacc, Func Offset: 0x5c
-	// Line 2942, Address: 0x24bad4, Func Offset: 0x64
-	// Line 2945, Address: 0x24bad8, Func Offset: 0x68
-	// Line 2946, Address: 0x24bae8, Func Offset: 0x78
-	// Line 2949, Address: 0x24baf8, Func Offset: 0x88
-	// Line 2950, Address: 0x24bb00, Func Offset: 0x90
-	// Line 2951, Address: 0x24bb0c, Func Offset: 0x9c
-	// Line 2952, Address: 0x24bb1c, Func Offset: 0xac
-	// Line 2957, Address: 0x24bb2c, Func Offset: 0xbc
-	// Func End, Address: 0x24bb34, Func Offset: 0xc4
-	scePrintf("ryRapTexAnm - UNIMPLEMENTED!\n");
+    int anm_no; 
+    UV_WORK* uvP; 
+    float* tvP;   
+    unsigned int col; 
+    
+    anm_no = anmP->anm_no;
+    
+    if (anm_no >= 0) 
+    {
+        col = anmP->color;
+        
+        uvP = &anmP->uv_tabP[anm_no];
+        tvP = &dspP->VtxBuf->u; 
+        
+        *tvP++     = uvP->u;
+        *tvP++     = uvP->v;
+        *(int*)tvP = col;
+
+        tvP += 4;
+        
+        *tvP++     = uvP->u;
+        *tvP++     = uvP->v + uvP->ys;
+        *(int*)tvP = col;
+
+        tvP += 4;
+        
+        *tvP++     = uvP->u + uvP->xs;
+        *tvP++     = uvP->v;
+        *(int*)tvP = col;
+
+        tvP += 4;
+        
+        *tvP++     = uvP->u + uvP->xs;
+        *tvP++     = uvP->v + uvP->ys;
+        *(int*)tvP = col;
+        
+        if (bol != FALSE) 
+        {
+            anmP->anm_no--;
+            
+            anmP->color += anmP->col_add;
+            anmP->color -= anmP->col_sub;
+        }
+    }
+    
+    return anm_no;
 }
 
 // 100% matching!

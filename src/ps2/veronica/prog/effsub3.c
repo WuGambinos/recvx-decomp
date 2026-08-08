@@ -132,86 +132,91 @@ void bhClrEff_RY()
     }
 }
 
-// 
-// Start address: 0x2469a0
+// 99.93% matching (matches on NGC)
 int bhSetBloodPoolLnk(BH_PWORK* ewP, NJS_POINT3* posP, int ay, BP_WORK* tabP, int pal_bnk)
 {
-	//_anon60* e17P;
-	int eff_no;
-	O_WRK* o1P;
-	O_WRK* o0P;
-	// Line 319, Address: 0x2469a0, Func Offset: 0
-	// Line 322, Address: 0x2469d4, Func Offset: 0x34
-	// Line 323, Address: 0x2469e4, Func Offset: 0x44
-	// Line 325, Address: 0x2469f4, Func Offset: 0x54
-	// Line 328, Address: 0x2469f8, Func Offset: 0x58
-	// Line 324, Address: 0x246a04, Func Offset: 0x64
-	// Line 329, Address: 0x246a08, Func Offset: 0x68
-	// Line 331, Address: 0x246a0c, Func Offset: 0x6c
-	// Line 330, Address: 0x246a10, Func Offset: 0x70
-	// Line 331, Address: 0x246a14, Func Offset: 0x74
-	// Line 332, Address: 0x246a18, Func Offset: 0x78
-	// Line 333, Address: 0x246a1c, Func Offset: 0x7c
-	// Line 334, Address: 0x246a20, Func Offset: 0x80
-	// Line 336, Address: 0x246a2c, Func Offset: 0x8c
-	// Line 338, Address: 0x246a38, Func Offset: 0x98
-	// Line 334, Address: 0x246a3c, Func Offset: 0x9c
-	// Line 336, Address: 0x246a48, Func Offset: 0xa8
-	// Line 338, Address: 0x246a4c, Func Offset: 0xac
-	// Line 336, Address: 0x246a50, Func Offset: 0xb0
-	// Line 338, Address: 0x246a54, Func Offset: 0xb4
-	// Line 339, Address: 0x246a5c, Func Offset: 0xbc
-	// Line 342, Address: 0x246a74, Func Offset: 0xd4
-	// Line 339, Address: 0x246a78, Func Offset: 0xd8
-	// Line 349, Address: 0x246a84, Func Offset: 0xe4
-	// Line 354, Address: 0x246a88, Func Offset: 0xe8
-	// Line 355, Address: 0x246a8c, Func Offset: 0xec
-	// Line 339, Address: 0x246a90, Func Offset: 0xf0
-	// Line 340, Address: 0x246a94, Func Offset: 0xf4
-	// Line 356, Address: 0x246a98, Func Offset: 0xf8
-	// Line 357, Address: 0x246a9c, Func Offset: 0xfc
-	// Line 339, Address: 0x246aa0, Func Offset: 0x100
-	// Line 358, Address: 0x246aa4, Func Offset: 0x104
-	// Line 382, Address: 0x246aa8, Func Offset: 0x108
-	// Line 339, Address: 0x246aac, Func Offset: 0x10c
-	// Line 340, Address: 0x246ab4, Func Offset: 0x114
-	// Line 344, Address: 0x246ac8, Func Offset: 0x128
-	// Line 340, Address: 0x246acc, Func Offset: 0x12c
-	// Line 341, Address: 0x246ad8, Func Offset: 0x138
-	// Line 342, Address: 0x246ae4, Func Offset: 0x144
-	// Line 343, Address: 0x246af0, Func Offset: 0x150
-	// Line 344, Address: 0x246afc, Func Offset: 0x15c
-	// Line 345, Address: 0x246b10, Func Offset: 0x170
-	// Line 346, Address: 0x246b14, Func Offset: 0x174
-	// Line 349, Address: 0x246b18, Func Offset: 0x178
-	// Line 354, Address: 0x246b1c, Func Offset: 0x17c
-	// Line 355, Address: 0x246b20, Func Offset: 0x180
-	// Line 356, Address: 0x246b24, Func Offset: 0x184
-	// Line 357, Address: 0x246b28, Func Offset: 0x188
-	// Line 358, Address: 0x246b2c, Func Offset: 0x18c
-	// Line 360, Address: 0x246b30, Func Offset: 0x190
-	// Line 361, Address: 0x246b34, Func Offset: 0x194
-	// Line 362, Address: 0x246b38, Func Offset: 0x198
-	// Line 365, Address: 0x246b3c, Func Offset: 0x19c
-	// Line 366, Address: 0x246b40, Func Offset: 0x1a0
-	// Line 367, Address: 0x246b48, Func Offset: 0x1a8
-	// Line 368, Address: 0x246b50, Func Offset: 0x1b0
-	// Line 370, Address: 0x246b58, Func Offset: 0x1b8
-	// Line 371, Address: 0x246b60, Func Offset: 0x1c0
-	// Line 372, Address: 0x246b68, Func Offset: 0x1c8
-	// Line 373, Address: 0x246b70, Func Offset: 0x1d0
-	// Line 374, Address: 0x246b78, Func Offset: 0x1d8
-	// Line 376, Address: 0x246b80, Func Offset: 0x1e0
-	// Line 377, Address: 0x246b88, Func Offset: 0x1e8
-	// Line 378, Address: 0x246b90, Func Offset: 0x1f0
-	// Line 379, Address: 0x246b98, Func Offset: 0x1f8
-	// Line 380, Address: 0x246ba0, Func Offset: 0x200
-	// Line 382, Address: 0x246ba4, Func Offset: 0x204
-	// Line 384, Address: 0x246bac, Func Offset: 0x20c
-	// Line 387, Address: 0x246bb0, Func Offset: 0x210
-	// Line 388, Address: 0x246bb4, Func Offset: 0x214
-	// Func End, Address: 0x246bdc, Func Offset: 0x23c
-	scePrintf("bhSetBloodPoolLnk - UNIMPLEMENTED!\n");
+    O_WRK* o0P, *o1P;    
+    int eff_no;     
+    E17_WORK* e17P; 
+    
+    if ((o0P = AllocOworkOne()) != NULL) 
+    {
+        if ((o1P = AllocOworkOne()) != NULL)
+        {
+            e17P = (E17_WORK*)o1P;
+            
+            o0P->flg = 0x200001;
+            
+            o0P->id   = 300;
+            o0P->type = 0;
+            
+            o0P->tex_id = 17;
+            
+            o0P->mdlver = 0;
+            
+            o0P->flr_no = 0;
+            
+            *(NJS_POINT3*)&o0P->px = *posP;
+            
+            o0P->py += 0.01f;
+            
+            njAddVector((NJS_VECTOR*)&o0P->px, &tabP->off_pos);
+            
+            o0P->py += 0.001f * sys->bl_ct;
+            
+            sys->bl_ct = (sys->bl_ct + 1) & 0x1FF;
+            
+            o0P->lox = o0P->loy = o0P->loz = 0;
+            o0P->sx  = o0P->sy  = o0P->sz  = 1.0f;
+            o0P->ax  = o0P->ay  = o0P->az  = 0;
+            
+            o0P->mlwP = &sys->efm[300];
+            
+            o0P->lkwkp = (unsigned char*)ewP;
+            o0P->lkono = 0;
+            
+            o0P->mtx = (NJS_MATRIX*)o0P->mtxbuf;
+            
+            o0P->pvp = o0P->pv;
+            o0P->tvp = e17P->tv_buf;
+            
+            o0P->pn = 16;
+            
+            o0P->bl_src = 8;
+            o0P->bl_dst = 6;
+            
+            o0P->ani_ct = pal_bnk;
+            
+            o0P->exp0 = (unsigned char*)e17P;
+            
+            o0P->mode0 = 0;
+            
+            e17P->eff_dir = ay;
+            
+            e17P->srd_dir = tabP->srd_dir;
+            e17P->srd_pos = tabP->srd_pos;
+            
+            e17P->bld_spd = tabP->bld_spd;
+            
+            e17P->srt_spd[0] = tabP->srt_spd[0];
+            e17P->srt_spd[1] = tabP->srt_spd[1];
+            e17P->srt_spd[2] = tabP->srt_spd[2];
+            e17P->srt_spd[3] = tabP->srt_spd[3];
+            e17P->srt_spd[4] = tabP->srt_spd[4];
+            
+            e17P->srt_vtx[0] = tabP->srt_dir[0];
+            e17P->srt_vtx[1] = tabP->srt_dir[1];
+            e17P->srt_vtx[2] = tabP->srt_dir[2];
+            e17P->srt_vtx[3] = tabP->srt_dir[3];
+            e17P->srt_vtx[4] = tabP->srt_dir[4];
+            
+            return 1;
+        }
+        
+        o0P->flg = 0;
+    }
+    
+    return 0;
 }
 
 // 
@@ -1293,7 +1298,7 @@ static int bhCheckCamWall2D(NJS_POINT3* srcP, NJS_POINT3* vctP, NJS_POINT3* rtnP
 		0.0f, 0.0f, 1.0f
 	};
     
-    njCalcPoint(cam.mtx, srcP, (NJS_POINT3*)&lne.px);
+    njCalcPoint(cam.mtx,  srcP, (NJS_POINT3*)&lne.px);
     njCalcVector(cam.mtx, vctP, (NJS_VECTOR*)&lne.vx);
     
     if ((njInnerProduct((NJS_VECTOR*)&pln.vx, (NJS_VECTOR*)&lne.vx) < 0.0f) && (!njDistanceL2PL(&lne, &pln, rtnP)))

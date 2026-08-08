@@ -187,6 +187,20 @@ typedef struct PRM_WORK
     int time;           // offset 0xC, size 0x4
 } PRM_WORK;
 
+typedef struct E17_WORK 
+{
+    // total size: 0x27C
+    unsigned int flg;           // offset 0x0, size 0x4
+    int eff_dir;                // offset 0x4, size 0x4
+    int srd_dir;                // offset 0x8, size 0x4
+    float srd_pos;              // offset 0xC, size 0x4
+    float bld_spd;              // offset 0x10, size 0x4
+    float srt_spd[5];           // offset 0x14, size 0x14
+    int srt_vtx[5];             // offset 0x28, size 0x14
+    NJS_TEXTURE_VTX tv_buf[16]; // offset 0x3C, size 0x180
+    NJS_POINT3 tv_spd[16];      // offset 0x1BC, size 0xC0
+} E17_WORK;
+
 static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();

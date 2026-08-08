@@ -1,6 +1,10 @@
 #include "../../../ps2/veronica/prog/effsub3.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaDraw.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 
 static unsigned int owk_scn_noG;
 
@@ -2328,32 +2332,35 @@ void bhEff309Drw(OR_WORK* orP)
 	scePrintf("bhEff309Drw - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24b9b0
+// 100% matching!
 static void ryRapTexDrw(NJS_TEXLIST* texP, int tex_id, rap_tex_typ* rtP)
 {
 	NJS_POINT3 scl;
-	// Line 2881, Address: 0x24b9b0, Func Offset: 0
-	// Line 2883, Address: 0x24b9c4, Func Offset: 0x14
-	// Line 2884, Address: 0x24b9cc, Func Offset: 0x1c
-	// Line 2886, Address: 0x24b9d4, Func Offset: 0x24
-	// Line 2888, Address: 0x24b9dc, Func Offset: 0x2c
-	// Line 2890, Address: 0x24b9e4, Func Offset: 0x34
-	// Line 2892, Address: 0x24b9ec, Func Offset: 0x3c
-	// Line 2893, Address: 0x24b9fc, Func Offset: 0x4c
-	// Line 2894, Address: 0x24ba08, Func Offset: 0x58
-	// Line 2897, Address: 0x24ba10, Func Offset: 0x60
-	// Line 2898, Address: 0x24ba14, Func Offset: 0x64
-	// Line 2897, Address: 0x24ba18, Func Offset: 0x68
-	// Line 2898, Address: 0x24ba20, Func Offset: 0x70
-	// Line 2900, Address: 0x24ba28, Func Offset: 0x78
-	// Line 2901, Address: 0x24ba34, Func Offset: 0x84
-	// Line 2902, Address: 0x24ba38, Func Offset: 0x88
-	// Line 2904, Address: 0x24ba40, Func Offset: 0x90
-	// Line 2906, Address: 0x24ba48, Func Offset: 0x98
-	// Line 2907, Address: 0x24ba50, Func Offset: 0xa0
-	// Func End, Address: 0x24ba64, Func Offset: 0xb4
-	scePrintf("ryRapTexDrw - UNIMPLEMENTED!\n");
+    
+    njSetTexture(texP);
+    njSetTextureNum(tex_id);
+    
+    njDrawTexture3DExStart(1);
+    
+    njPushMatrixEx();
+    
+    for (; rtP != NULL; rtP = rtP->nextP) 
+    {
+        njSetMatrix(NULL, cam.mtx);
+        
+        njTranslateV(NULL, &rtP->dsp_wrk.vtx_pos);
+        njUnitRotPortion(NULL);
+        
+        scl.x = scl.y = scl.z = rtP->dsp_wrk.vtx_scl;
+        
+        njScaleEx(&scl);
+        
+        njDrawTexture3DExSetData(rtP->dsp_wrk.VtxBuf, 4);
+    } 
+    
+    njPopMatrixEx();
+    
+    njDrawTexture3DExEnd();
 }
 
 // 100% matching!

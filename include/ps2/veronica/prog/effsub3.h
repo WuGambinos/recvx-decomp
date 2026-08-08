@@ -269,6 +269,42 @@ typedef struct R0B_WORK
     eff30b_vtx_buf_typ* vtx_bufP; // offset 0x64, size 0x4
 } R0B_WORK;
 
+typedef struct E02_WORK 
+{
+    // total size: 0x44C
+    unsigned int flg;       // offset 0x0, size 0x4
+    int stg_stt;            // offset 0x4, size 0x4
+    int stg_num;            // offset 0x8, size 0x4
+    int vtx_num;            // offset 0xC, size 0x4
+    float pos_rand;         // offset 0x10, size 0x4
+    float spd_rand;         // offset 0x14, size 0x4
+    float vtx_speed;        // offset 0x18, size 0x4
+    float vtx_accel;        // offset 0x1C, size 0x4
+    int stg_erase;          // offset 0x20, size 0x4
+    float scale;            // offset 0x24, size 0x4
+    unsigned int src_col;   // offset 0x28, size 0x4
+    unsigned int dst_col;   // offset 0x2C, size 0x4
+    int col_add;            // offset 0x30, size 0x4
+    int col_sub;            // offset 0x34, size 0x4
+    NJS_POINT3* vtx_bufP;   // offset 0x38, size 0x4
+    NJS_POINT3 vtx_gravity; // offset 0x3C, size 0xC
+    NJS_POINT3 pos_bak;     // offset 0x48, size 0xC
+    char atr_bak[192];      // offset 0x54, size 0xC0
+    int stg_col[6];         // offset 0x114, size 0x18
+    int stg_tim[6];         // offset 0x12C, size 0x18
+    NJS_POINT3* stg_buf[6]; // offset 0x144, size 0x18
+    NJS_POINT3 stg_grv[6];  // offset 0x15C, size 0x48
+    NJS_POINT3 vtx_dir[16]; // offset 0x1A4, size 0xC0
+    float* stg_spd[6];      // offset 0x264, size 0x18
+    float vtx_spd[96];      // offset 0x27C, size 0x180
+    NJS_POINT3COL lne_p3c;  // offset 0x3FC, size 0x10
+    NJS_POINT3 lne_pnt[2];  // offset 0x40C, size 0x18
+    NJS_COLOR lne_col[2];   // offset 0x424, size 0x8
+    float stg_scl[6];       // offset 0x42C, size 0x18
+    float scl_add_1st;      // offset 0x444, size 0x4
+    float scl_add_2nd;      // offset 0x448, size 0x4
+} E02_WORK;
+
 static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();

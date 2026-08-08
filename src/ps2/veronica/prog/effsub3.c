@@ -757,7 +757,7 @@ O_WRK* bhSetEffParticle(BH_PWORK* ewP, int lnk_no, NJS_POINT3* offP, NJS_POINT3*
 {
 	unsigned int tmp;
 	//_anon3* e02bP;
-	//_anon18* e02aP;
+	E02_WORK* e02aP;
 	int set_no;
 	O_WRK* oP;
 	PD_WORK* pdP;
@@ -830,7 +830,7 @@ O_WRK* bhSetEffParticleMk2(BH_PWORK* ewP, int lnk_no, NJS_POINT3* offP, NJS_POIN
 {
 	unsigned int tmp;
 	//_anon3* e02bP;
-	//_anon18* e02aP;
+	E02_WORK* e02aP;
 	int set_no;
 	O_WRK* oP;
 	PD_WORK* pdP;
@@ -917,7 +917,7 @@ void bhEff302(O_WRK* oP)
 	//NJS_POINT3* grvP;
 	int* timP;
 	int stg_no;
-	//_anon18* e02aP;
+	E02_WORK* e02aP;
 	int* subP;
 	int* addP;
 	int cnt;
@@ -934,7 +934,7 @@ void bhEff302(O_WRK* oP)
 	//int i;
 	//_anon7* prmP;
 	//_anon3* e02bP;
-	//_anon18* e02aP;
+	//E02_WORK* e02aP;
 	// Line 1201, Address: 0x248590, Func Offset: 0
 	// Line 1203, Address: 0x2485cc, Func Offset: 0x3c
 	// Line 1207, Address: 0x2485ec, Func Offset: 0x5c
@@ -1098,7 +1098,7 @@ static void bhEff_PtclSpriteDrawB(O_WRK* oP)
 	float scl;
 	int stg_num;
 	int stg_no;
-	//_anon18* e02aP;
+	E02_WORK* e02aP;
 	// Line 1422, Address: 0x248db0, Func Offset: 0
 	// Line 1423, Address: 0x248dd4, Func Offset: 0x24
 	// Line 1426, Address: 0x248ddc, Func Offset: 0x2c
@@ -1141,10 +1141,10 @@ static void bhEff_PtclLineDraw(O_WRK* oP)
 	int i;
 	int col;
 	int* colP;
-	//_anon62* p3cP;
+	NJS_POINT3COL* p3cP;
 	int stg_no;
 	int stg_num;
-	//_anon18* e02aP;
+	E02_WORK* e02aP;
 	// Line 1491, Address: 0x248ef0, Func Offset: 0
 	// Line 1492, Address: 0x248f20, Func Offset: 0x30
 	// Line 1494, Address: 0x248f24, Func Offset: 0x34
@@ -2111,7 +2111,7 @@ void bhEff308(OR_WORK* orP)
 void bhEff308Drw(OR_WORK* orP)
 {
 	int* timP;
-	//_anon62* p3cP;
+	NJS_POINT3COL* p3cP;
 	int i;
 	//_anon4* r08P;
 	// Line 2611, Address: 0x24b2a0, Func Offset: 0
@@ -2160,7 +2160,7 @@ static int ryLinerColor(int src_col, int dst_col, float rate)
     return col;
 }
 
-// 96.31% matching (matches on NGC)
+// 100% matching!
 OR_WORK* rySetEffBlood(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, int typ_no)
 {
     OR_WORK* orP; 
@@ -2188,8 +2188,10 @@ OR_WORK* rySetEffBlood(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, int
     {
         mode |= 0x2;
     }
+
+	typ_no &= 0x3FFFFFFF;
     
-    orP = bhSetRapEff(309, (void*)&Eff309Prm[typ_no & 0x3FFFFFFF], 12);
+    orP = bhSetRapEff(309, (void*)&Eff309Prm[typ_no], 12);
     
     if (orP != NULL)
     {
@@ -2571,7 +2573,7 @@ void bhEff349(OR_WORK* orP)
 	scePrintf("bhEff349 - UNIMPLEMENTED!\n");
 }
 
-// 96.97% matching (matches on NGC)
+// 100% matching!
 OR_WORK* rySetEffBlood2(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, int typ_no)
 {
     OR_WORK* orP;
@@ -2599,8 +2601,10 @@ OR_WORK* rySetEffBlood2(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, in
     {
         mode |= 0x2;
     }
+
+	typ_no &= 0x3FFFFFFF;
     
-    orP = bhSetRapEff(311, (void*)&Eff30bPrm[typ_no & 0x3FFFFFFF], 12);
+    orP = bhSetRapEff(311, (void*)&Eff30bPrm[typ_no], 12);
     
     if (orP != NULL)
     {

@@ -2450,33 +2450,68 @@ static void ryRapDspSet(NJS_POINT3* posP, DSP_WRK* dspP, float scl)
     *vbP   = 0;
 }
 
-// 
-// Start address: 0x24bba0
+#pragma divbyzerocheck on 
+
+// 100% matching!
 static void ryRapAnmColSet(ANM_WORK* anmP, int src_col, int dst_col, int col_cnt)
 {
-	unsigned int* subP;
-	unsigned int* addP;
-	int tmp;
-	// Line 3005, Address: 0x24bba0, Func Offset: 0
-	// Line 3000, Address: 0x24bbb0, Func Offset: 0x10
-	// Line 3003, Address: 0x24bbb4, Func Offset: 0x14
-	// Line 3005, Address: 0x24bbb8, Func Offset: 0x18
-	// Line 3006, Address: 0x24bbc8, Func Offset: 0x28
-	// Line 3007, Address: 0x24bbe0, Func Offset: 0x40
-	// Line 3009, Address: 0x24bbe8, Func Offset: 0x48
-	// Line 3010, Address: 0x24bc04, Func Offset: 0x64
-	// Line 3011, Address: 0x24bc24, Func Offset: 0x84
-	// Line 3013, Address: 0x24bc34, Func Offset: 0x94
-	// Line 3014, Address: 0x24bc54, Func Offset: 0xb4
-	// Line 3015, Address: 0x24bc78, Func Offset: 0xd8
-	// Line 3017, Address: 0x24bc8c, Func Offset: 0xec
-	// Line 3018, Address: 0x24bc94, Func Offset: 0xf4
-	// Line 3019, Address: 0x24bcb0, Func Offset: 0x110
-	// Line 3020, Address: 0x24bcd4, Func Offset: 0x134
-	// Line 3022, Address: 0x24bce8, Func Offset: 0x148
-	// Func End, Address: 0x24bcf0, Func Offset: 0x150
-	scePrintf("ryRapAnmColSet - UNIMPLEMENTED!\n");
+    int tmp;            
+    unsigned int* addP, *subP; 
+    
+    addP = (unsigned int*)&anmP->col_add; 
+    subP = (unsigned int*)&anmP->col_sub; 
+    
+    anmP->color = src_col;      
+    
+    tmp = ((dst_col & 0xFF)     - (src_col & 0xFF))     / col_cnt;
+    
+    if (tmp < 0)
+    {
+        *subP = ~tmp & 0xFF;
+    } 
+    else 
+    {
+        *addP = tmp  & 0xFF;
+    }
+    
+    tmp = ((dst_col & 0xFF00)   - (src_col & 0xFF00))   / col_cnt;
+    
+    if (tmp < 0) 
+    {
+        *subP |= ~tmp & 0xFF00;
+    }
+    else 
+    {
+        *addP |= tmp  & 0xFF00;
+    }
+    
+    tmp = ((dst_col & 0xFF0000) - (src_col & 0xFF0000)) / col_cnt;
+    
+    if (tmp < 0) 
+    {
+        *subP |= ~tmp & 0xFF0000;
+    }
+    else
+    {
+        *addP |= tmp  & 0xFF0000;
+    }
+    
+    src_col >>= 16;
+    dst_col >>= 16;
+    
+    tmp = ((dst_col & 0xFF00)   - (src_col & 0xFF00))   / col_cnt;
+    
+    if (tmp < 0) 
+    {
+        *subP |= (~tmp & 0xFF00) << 16;
+    } 
+    else 
+    {
+        *addP |= (tmp & 0xFF00)  << 16;
+    }
 }
+
+#pragma divbyzerocheck off
 
 // 
 // Start address: 0x24bcf0

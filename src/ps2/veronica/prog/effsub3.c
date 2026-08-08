@@ -1883,12 +1883,11 @@ void bhEff307Drw(OR_WORK* orP)
 	scePrintf("bhEff307Drw - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24aa40
+// 100% matching!
 void bhSetEffGunSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, unsigned int dst_col, int typ_no)
 {
-	//_anon16* pmbP;
-	OR_WORK* orP;
+    OR_WORK* orP;
+    PMB_WORK* pmbP;
 	static const Eff308PRM_WORK Eff308Prm[4] = 
 	{
 		{  8,                0.5f, 0.9800000190734863f, 1.0f,  5, 55.0f, 0.800000011920929f, 4, -0.03266666829586029f },
@@ -1896,22 +1895,21 @@ void bhSetEffGunSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, 
 		{ 12,  0.699999988079071f, 0.9800000190734863f, 3.0f,  9, 45.0f, 0.800000011920929f, 4, -0.03266666829586029f },
 		{ 12,                1.0f, 0.9800000190734863f, 3.0f, 12, 20.0f, 0.800000011920929f, 4, -0.03266666829586029f }
 	};
-	// Line 2394, Address: 0x24aa40, Func Offset: 0
-	// Line 2406, Address: 0x24aa44, Func Offset: 0x4
-	// Line 2394, Address: 0x24aa4c, Func Offset: 0xc
-	// Line 2406, Address: 0x24aa5c, Func Offset: 0x1c
-	// Line 2394, Address: 0x24aa6c, Func Offset: 0x2c
-	// Line 2406, Address: 0x24aa70, Func Offset: 0x30
-	// Line 2408, Address: 0x24aa94, Func Offset: 0x54
-	// Line 2413, Address: 0x24aaa0, Func Offset: 0x60
-	// Line 2408, Address: 0x24aaa8, Func Offset: 0x68
-	// Line 2409, Address: 0x24aab4, Func Offset: 0x74
-	// Line 2410, Address: 0x24aacc, Func Offset: 0x8c
-	// Line 2411, Address: 0x24aad0, Func Offset: 0x90
-	// Line 2413, Address: 0x24aad4, Func Offset: 0x94
-	// Line 2415, Address: 0x24aae0, Func Offset: 0xa0
-	// Func End, Address: 0x24aafc, Func Offset: 0xbc
-	scePrintf("bhSetEffGunSpark - UNIMPLEMENTED!\n");
+    
+    orP = bhSetRapEff(308, (void*)&Eff308Prm[typ_no], 9);
+    
+    if (orP != NULL) 
+    {
+        pmbP = (PMB_WORK*)((char*)orP + 180);
+        
+        pmbP->vtx_pos = *posP;
+        pmbP->vtx_dir = *dirP;
+        
+        pmbP->col_src = src_col;
+        pmbP->col_dst = dst_col;
+        
+        pmbP->gnd_hgh = posP->y - 100.0f;
+    }
 }
 
 // 
@@ -1919,7 +1917,7 @@ void bhSetEffGunSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, 
 void bhSetEffSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, unsigned int dst_col, int typ_no)
 {
 	//_anon30* lP;
-	//_anon16* pmbP;
+	PMB_WORK* pmbP;
 	OR_WORK* orP;
 	static const Eff308PRM_WORK Eff308Prm[2] = 
 	{
@@ -2002,7 +2000,7 @@ void bhEff308(OR_WORK* orP)
 	int ax;
 	//NJS_POINT3* dirP;
 	//int i;
-	//_anon16* pmbP;
+	PMB_WORK* pmbP;
 	//_anon4* r08P;
 	// Line 2468, Address: 0x24ac90, Func Offset: 0
 	// Line 2473, Address: 0x24acc0, Func Offset: 0x30

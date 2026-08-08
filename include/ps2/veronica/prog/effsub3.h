@@ -201,6 +201,16 @@ typedef struct E17_WORK
     NJS_POINT3 tv_spd[16];      // offset 0x1BC, size 0xC0
 } E17_WORK;
 
+typedef struct PMB_WORK
+{
+    // total size: 0x24
+    NJS_POINT3 vtx_pos;   // offset 0x0, size 0xC
+    NJS_POINT3 vtx_dir;   // offset 0xC, size 0xC
+    unsigned int col_src; // offset 0x18, size 0x4
+    unsigned int col_dst; // offset 0x1C, size 0x4
+    float gnd_hgh;        // offset 0x20, size 0x4
+} PMB_WORK;
+
 static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();

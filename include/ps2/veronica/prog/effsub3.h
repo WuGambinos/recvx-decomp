@@ -211,6 +211,28 @@ typedef struct PMB_WORK
     float gnd_hgh;        // offset 0x20, size 0x4
 } PMB_WORK;
 
+typedef struct PMB_WRK 
+{
+    // total size: 0x1C
+    NJS_MATRIX* vtx_mtxP; // offset 0x0, size 0x4
+    NJS_POINT3 vtx_pos;   // offset 0x4, size 0xC
+    NJS_POINT3 vtx_dir;   // offset 0x10, size 0xC
+} PMB_WRK;
+
+typedef struct R09_WORK 
+{
+    // total size: 0x3F4
+    Eff309PRM_WORK prm_a;  // offset 0x0, size 0x30
+    PMB_WRK prm_b;         // offset 0x30, size 0x1C
+    int mode;              // offset 0x4C, size 0x4
+    int type;              // offset 0x50, size 0x4
+    rap_tex_typ* busyP;    // offset 0x54, size 0x4
+    rap_tex_typ* freeP;    // offset 0x58, size 0x4
+    rap_tex_typ RapTex[6]; // offset 0x5C, size 0x390
+    NJS_TEXLIST* texP;     // offset 0x3EC, size 0x4
+    int tex_id;            // offset 0x3F0, size 0x4
+} R09_WORK;
+
 static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();

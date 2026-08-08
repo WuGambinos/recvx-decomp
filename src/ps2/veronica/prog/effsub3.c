@@ -2155,15 +2155,14 @@ static int ryLinerColor(int src_col, int dst_col, float rate)
     return col;
 }
 
-// 
-// Start address: 0x24b440
+// 96.31% matching (matches on NGC)
 OR_WORK* rySetEffBlood(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, int typ_no)
 {
-	//_anon56* r09P;
-	int mode;
-	//_anon50* pmbP;
-	OR_WORK* orP;
-	static const Eff309PRM_WORK Eff309Prm[6] = 
+    OR_WORK* orP; 
+    PMB_WRK* pmbP;
+    int mode;     
+    R09_WORK* r09P; 
+    static const Eff309PRM_WORK Eff309Prm[6] = 
 	{
 		{  0.5f, 0.98f, 4.0f,   1.0f, { 0, 0, 2,  5, -1, -1, -1, -1 }, 55.0f, 0.8f, 0xFFFFFFFF, 0xC0FFFFFF, -0.032666668f, 0 },
 		{  0.5f, 0.98f, 2.0f,   1.1f, { 0, 0, 0,  1,  1,  2, -1, -1 }, 60.0f, 0.8f, 0xFFFFFFFF, 0xC0FFFFFF, -0.032666668f, 0 },
@@ -2172,24 +2171,38 @@ OR_WORK* rySetEffBlood(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, int
 		{  0.5f, 0.98f, 2.0f,   1.1f, { 0, 0, 1,  1,  2, -1, -1, -1 }, 60.0f, 0.8f, 0xFFFFFFFF, 0xC0FFFFFF, -0.032666668f, 2 },
 		{ 0.75f, 0.75f, 1.5f, 1.125f, { 0, 1, 5,  6,  7, -1, -1, -1 }, 45.0f, 0.8f, 0xFFFFFFFF, 0xC0FFFFFF, -0.032666668f, 2 }
 	};
-	// Line 2665, Address: 0x24b440, Func Offset: 0
-	// Line 2697, Address: 0x24b454, Func Offset: 0x14
-	// Line 2665, Address: 0x24b458, Func Offset: 0x18
-	// Line 2697, Address: 0x24b45c, Func Offset: 0x1c
-	// Line 2698, Address: 0x24b478, Func Offset: 0x38
-	// Line 2699, Address: 0x24b48c, Func Offset: 0x4c
-	// Line 2702, Address: 0x24b494, Func Offset: 0x54
-	// Line 2704, Address: 0x24b4c0, Func Offset: 0x80
-	// Line 2705, Address: 0x24b4c4, Func Offset: 0x84
-	// Line 2711, Address: 0x24b4d0, Func Offset: 0x90
-	// Line 2705, Address: 0x24b4d4, Func Offset: 0x94
-	// Line 2706, Address: 0x24b4e0, Func Offset: 0xa0
-	// Line 2711, Address: 0x24b4f8, Func Offset: 0xb8
-	// Line 2712, Address: 0x24b50c, Func Offset: 0xcc
-	// Line 2713, Address: 0x24b524, Func Offset: 0xe4
-	// Line 2718, Address: 0x24b528, Func Offset: 0xe8
-	// Func End, Address: 0x24b544, Func Offset: 0x104
-	scePrintf("rySetEffBlood - UNIMPLEMENTED!\n");
+    
+    mode = 0;
+    
+    if ((typ_no & 0x80000000)) 
+    {
+        mode |= 0x1;
+    }
+    
+    if ((typ_no & 0x40000000)) 
+    {
+        mode |= 0x2;
+    }
+    
+    orP = bhSetRapEff(309, (void*)&Eff309Prm[typ_no & 0x3FFFFFFF], 12);
+    
+    if (orP != NULL)
+    {
+        pmbP = (PMB_WRK*)((char*)orP + 192);
+        
+        pmbP->vtx_mtxP = mtxP;
+        pmbP->vtx_pos  = *posP;
+        pmbP->vtx_dir  = *dirP;
+            
+        r09P = (R09_WORK*)((char*)orP + 144);
+        
+        r09P->texP   = &sys->ef_tlist;
+        r09P->tex_id = sys->ef_tn[5];
+        
+        r09P->type = mode;
+    }
+    
+    return orP;
 }
 
 // 

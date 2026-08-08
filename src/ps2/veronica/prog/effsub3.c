@@ -1309,50 +1309,47 @@ static int bhCheckCamWall2D(NJS_POINT3* srcP, NJS_POINT3* vctP, NJS_POINT3* rtnP
 	scePrintf("bhCheckCamWall2D - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x2495b0
+// 100% matching!
 O_WRK* rySetShadow(BH_PWORK* ewP, int obj0, int obj1, int obj2, float off_a, float off_b)
 {
-	//_anon53* owP;
 	O_WRK* oP;
-	// Line 1708, Address: 0x2495b0, Func Offset: 0
-	// Line 1712, Address: 0x2495e4, Func Offset: 0x34
-	// Line 1713, Address: 0x2495f4, Func Offset: 0x44
-	// Line 1714, Address: 0x249600, Func Offset: 0x50
-	// Line 1716, Address: 0x249608, Func Offset: 0x58
-	// Line 1715, Address: 0x24960c, Func Offset: 0x5c
-	// Line 1716, Address: 0x249610, Func Offset: 0x60
-	// Line 1717, Address: 0x249614, Func Offset: 0x64
-	// Line 1718, Address: 0x249618, Func Offset: 0x68
-	// Line 1719, Address: 0x249628, Func Offset: 0x78
-	// Line 1720, Address: 0x249634, Func Offset: 0x84
-	// Line 1722, Address: 0x249640, Func Offset: 0x90
-	// Line 1738, Address: 0x249648, Func Offset: 0x98
-	// Line 1727, Address: 0x24964c, Func Offset: 0x9c
-	// Line 1738, Address: 0x249650, Func Offset: 0xa0
-	// Line 1722, Address: 0x249654, Func Offset: 0xa4
-	// Line 1723, Address: 0x249664, Func Offset: 0xb4
-	// Line 1724, Address: 0x249668, Func Offset: 0xb8
-	// Line 1727, Address: 0x24966c, Func Offset: 0xbc
-	// Line 1733, Address: 0x249670, Func Offset: 0xc0
-	// Line 1734, Address: 0x249674, Func Offset: 0xc4
-	// Line 1737, Address: 0x249678, Func Offset: 0xc8
-	// Line 1738, Address: 0x24967c, Func Offset: 0xcc
-	// Line 1739, Address: 0x249680, Func Offset: 0xd0
-	// Line 1737, Address: 0x24968c, Func Offset: 0xdc
-	// Line 1740, Address: 0x249690, Func Offset: 0xe0
-	// Line 1738, Address: 0x24969c, Func Offset: 0xec
-	// Line 1739, Address: 0x2496a0, Func Offset: 0xf0
-	// Line 1738, Address: 0x2496a4, Func Offset: 0xf4
-	// Line 1740, Address: 0x2496a8, Func Offset: 0xf8
-	// Line 1739, Address: 0x2496ac, Func Offset: 0xfc
-	// Line 1738, Address: 0x2496b0, Func Offset: 0x100
-	// Line 1740, Address: 0x2496b4, Func Offset: 0x104
-	// Line 1739, Address: 0x2496b8, Func Offset: 0x108
-	// Line 1740, Address: 0x2496bc, Func Offset: 0x10c
-	// Line 1744, Address: 0x2496c0, Func Offset: 0x110
-	// Func End, Address: 0x2496e4, Func Offset: 0x134
-	scePrintf("rySetShadow - UNIMPLEMENTED!\n");
+    O_WORK* owP;
+            
+    oP = AllocOworkOne();
+    
+    if (oP != NULL) 
+    {
+        oP->flg = 0x8240001;
+        
+        oP->id   = 0x130;
+        oP->type = 0;
+        
+        oP->tex_id = -1;
+        
+        oP->mdlver = 0;
+        
+        oP->sx = oP->sy = oP->sz = 1.0f;
+        oP->ax = oP->ay = oP->az = 0;
+        oP->px = oP->py = oP->pz = 0;
+        
+        oP->mlwP = &sys->efm[1];
+        
+        oP->lkwkp = (unsigned char*)ewP;
+        oP->lkono = 0;
+        
+        oP->mtx = (NJS_MATRIX*)oP->mtxbuf;
+        
+        oP->xn = off_a;
+        oP->zn = off_b;
+        
+        owP = ewP->mlwP->owP;
+        
+        oP->ct0 = (int)&owP[obj0].mtx[12]; // this doesn't look too healthy
+        oP->ct1 = (int)&owP[obj1].mtx[12];
+        oP->ct2 = (int)&owP[obj2].mtx[12];
+    }
+    
+    return oP;
 }
 
 // 

@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/en30.h"
+#include "../../../ps2/veronica/prog/subpl.h"
 
 // ENEMY: Alexia's Baby 
 
@@ -1230,6 +1231,40 @@ BH_PWORK* plp;
 _anon10* sys;
 BH_PWORK ene[0];
 _anon0 eff[0];*/
+
+void(*bhEne30_Mode0[6])(BH_PWORK*) = {
+    bhEne30_Init,
+    bhEne30_Move, 
+    bhEne30_Nage,
+    bhEne30_Damage,
+    bhEne30_Die,
+    bhEne_Event,
+};
+
+void(*bhEne30_BrainType[2])(BH_PWORK*) = {
+    bhEne30_BR00,
+};
+
+void(*bhEne30_MoveMode2[8])(BH_PWORK*) = {
+    bhEne30_MV00,
+    bhEne30_MV01,
+    bhEne30_MV02,
+    bhEne30_MV03,
+    bhEne30_MV04,
+    bhEne30_MV05,
+    bhEne30_MV06,
+    bhEne30_MV07,
+};
+
+void(*bhEne30_DamageMode2[2])(BH_PWORK*) = {
+    bhEne30_DG00,
+    bhEne30_DG01,
+};
+
+void(*bhEne30_DeadMode2[2])(BH_PWORK*) = {
+    bhEne30_DD00,
+    bhEne30_DD01,
+};
 
 // 
 // Start address: 0x213630

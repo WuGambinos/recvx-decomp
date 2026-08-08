@@ -2,6 +2,7 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
@@ -1282,35 +1283,33 @@ void bhEff303(O_WRK* oP)
 	scePrintf("bhEff303 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x249440
+// 100% matching!
 static int bhCheckCamWall2D(NJS_POINT3* srcP, NJS_POINT3* vctP, NJS_POINT3* rtnP, float rng_x, float rng_y)
 {
-	NJS_LINE lne;
+    NJS_LINE lne;
 	static const NJS_PLANE pln = 
 	{
 		0.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, 1.0f
 	};
-	// Line 1663, Address: 0x249440, Func Offset: 0
-	// Line 1671, Address: 0x24945c, Func Offset: 0x1c
-	// Line 1672, Address: 0x24947c, Func Offset: 0x3c
-	// Line 1674, Address: 0x249494, Func Offset: 0x54
-	// Line 1675, Address: 0x2494bc, Func Offset: 0x7c
-	// Line 1676, Address: 0x2494e8, Func Offset: 0xa8
-	// Line 1677, Address: 0x249510, Func Offset: 0xd0
-	// Line 1678, Address: 0x249538, Func Offset: 0xf8
-	// Line 1679, Address: 0x249548, Func Offset: 0x108
-	// Line 1680, Address: 0x249554, Func Offset: 0x114
-	// Line 1679, Address: 0x249560, Func Offset: 0x120
-	// Line 1681, Address: 0x249564, Func Offset: 0x124
-	// Line 1679, Address: 0x249568, Func Offset: 0x128
-	// Line 1680, Address: 0x249574, Func Offset: 0x134
-	// Line 1681, Address: 0x249584, Func Offset: 0x144
-	// Line 1686, Address: 0x24958c, Func Offset: 0x14c
-	// Line 1687, Address: 0x249590, Func Offset: 0x150
-	// Func End, Address: 0x2495ac, Func Offset: 0x16c
-	scePrintf("bhCheckCamWall2D - UNIMPLEMENTED!\n");
+    
+    njCalcPoint(cam.mtx, srcP, (NJS_POINT3*)&lne.px);
+    njCalcVector(cam.mtx, vctP, (NJS_VECTOR*)&lne.vx);
+    
+    if ((njInnerProduct((NJS_VECTOR*)&pln.vx, (NJS_VECTOR*)&lne.vx) < 0.0f) && (!njDistanceL2PL(&lne, &pln, rtnP)))
+    {
+        if (((-rng_x < rtnP->x) && (rtnP->x < rng_x)) && ((-rng_y < rtnP->y) && (rtnP->y < rng_y)))
+        {
+            rtnP->z = njDistanceP2P((NJS_POINT3*)&lne.px, rtnP);
+            
+            rtnP->x = 320.0f + (320.0f * (rtnP->x / rng_x));
+            rtnP->y = 240.0f + (240.0f * (rtnP->y / rng_y));
+            
+            return 1;
+        }
+    }
+    
+    return 0;
 }
 
 // 100% matching!

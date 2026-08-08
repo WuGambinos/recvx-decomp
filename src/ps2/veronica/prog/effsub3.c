@@ -2129,42 +2129,28 @@ void bhEff308Drw(OR_WORK* orP)
 	scePrintf("bhEff308Drw - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24b370
+// 100% matching!
 static int ryLinerColor(int src_col, int dst_col, float rate)
 {
-	int col;
-	int tmp;
-	int rte;
-	// Line 2644, Address: 0x24b370, Func Offset: 0
-	// Line 2641, Address: 0x24b378, Func Offset: 0x8
-	// Line 2644, Address: 0x24b37c, Func Offset: 0xc
-	// Line 2641, Address: 0x24b380, Func Offset: 0x10
-	// Line 2644, Address: 0x24b390, Func Offset: 0x20
-	// Line 2646, Address: 0x24b398, Func Offset: 0x28
-	// Line 2648, Address: 0x24b3a8, Func Offset: 0x38
-	// Line 2651, Address: 0x24b3ac, Func Offset: 0x3c
-	// Line 2659, Address: 0x24b3b0, Func Offset: 0x40
-	// Line 2648, Address: 0x24b3b4, Func Offset: 0x44
-	// Line 2646, Address: 0x24b3c0, Func Offset: 0x50
-	// Line 2648, Address: 0x24b3c4, Func Offset: 0x54
-	// Line 2646, Address: 0x24b3c8, Func Offset: 0x58
-	// Line 2648, Address: 0x24b3cc, Func Offset: 0x5c
-	// Line 2647, Address: 0x24b3d0, Func Offset: 0x60
-	// Line 2649, Address: 0x24b3d4, Func Offset: 0x64
-	// Line 2651, Address: 0x24b3dc, Func Offset: 0x6c
-	// Line 2654, Address: 0x24b3ec, Func Offset: 0x7c
-	// Line 2656, Address: 0x24b3f0, Func Offset: 0x80
-	// Line 2659, Address: 0x24b3f4, Func Offset: 0x84
-	// Line 2651, Address: 0x24b3f8, Func Offset: 0x88
-	// Line 2653, Address: 0x24b408, Func Offset: 0x98
-	// Line 2656, Address: 0x24b40c, Func Offset: 0x9c
-	// Line 2659, Address: 0x24b424, Func Offset: 0xb4
-	// Line 2656, Address: 0x24b428, Func Offset: 0xb8
-	// Line 2658, Address: 0x24b434, Func Offset: 0xc4
-	// Line 2659, Address: 0x24b438, Func Offset: 0xc8
-	// Func End, Address: 0x24b440, Func Offset: 0xd0
-	scePrintf("ryLinerColor - UNIMPLEMENTED!\n");
+    int rte; 
+    int tmp; 
+    int col; 
+    
+    rte = 256.0f * rate;
+    
+    col = (src_col  + ((rte * ((dst_col & 0xFF)     - (src_col & 0xFF)))     >> 8)) & 0xFF;
+    col |= (src_col + ((rte * ((dst_col & 0xFF00)   - (src_col & 0xFF00)))   >> 8)) & 0xFF00;
+    col |= (src_col + ((rte * ((dst_col & 0xFF0000) - (src_col & 0xFF0000))) >> 8)) & 0xFF0000;
+    
+    dst_col >>= 8;
+    
+    tmp = dst_col & 0xFF0000;
+    
+    src_col >>= 8;
+    
+    col |= ((src_col + ((rte * (tmp - (src_col & 0xFF0000))) >> 8)) << 8) & 0xFF000000;
+    
+    return col;
 }
 
 // 

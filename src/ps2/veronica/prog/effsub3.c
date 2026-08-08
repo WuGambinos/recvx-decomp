@@ -6,6 +6,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/ps2_NaMem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 
 static unsigned int owk_scn_noG;
@@ -1715,20 +1716,24 @@ void bhEff306(O_WRK* oP)
 	scePrintf("bhEff306 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24a370
+// 100% matching!
 OR_WORK* bhSetRapEff(int eff_no, void* datP, int lng_siz)
 {
-	OR_WORK* orP;
-	// Line 2180, Address: 0x24a370, Func Offset: 0
-	// Line 2183, Address: 0x24a390, Func Offset: 0x20
-	// Line 2184, Address: 0x24a3a0, Func Offset: 0x30
-	// Line 2187, Address: 0x24a3a8, Func Offset: 0x38
-	// Line 2189, Address: 0x24a3b0, Func Offset: 0x40
-	// Line 2193, Address: 0x24a3c0, Func Offset: 0x50
-	// Line 2194, Address: 0x24a3c4, Func Offset: 0x54
-	// Func End, Address: 0x24a3e0, Func Offset: 0x70
-	scePrintf("bhSetRapEff - UNIMPLEMENTED!\n");
+    OR_WORK* orP;
+    
+    if ((orP = (OR_WORK*)AllocOworkOne()) != NULL) 
+    {
+        orP->flg = 1;
+        
+        orP->id = eff_no;
+        
+        if (datP != NULL) 
+        {
+            njMemCopy4(&orP->free4, datP, lng_siz);
+        }
+    }
+    
+    return orP;
 }
 
 // 

@@ -233,6 +233,42 @@ typedef struct R09_WORK
     int tex_id;            // offset 0x3F0, size 0x4
 } R09_WORK;
 
+typedef struct VTXBUF_WORK 
+{
+    // total size: 0x2C
+    short time;     // offset 0x0, size 0x2
+    short scl_time; // offset 0x2, size 0x2
+    float spd;      // offset 0x4, size 0x4
+    float grv;      // offset 0x8, size 0x4
+    int col;        // offset 0xC, size 0x4
+    float scl;      // offset 0x10, size 0x4
+    NJS_POINT3 dir; // offset 0x14, size 0xC
+    NJS_POINT3 pos; // offset 0x20, size 0xC
+} VTXBUF_WORK;
+
+typedef struct _eff30b_vtx_buf_typ eff30b_vtx_buf_typ;
+struct _eff30b_vtx_buf_typ 
+{
+    // total size: 0x4D8
+    unsigned int flg;          // offset 0x0, size 0x4
+    eff30b_vtx_buf_typ* nextP; // offset 0x4, size 0x4
+    VTXBUF_WORK VtxBuf[28];    // offset 0x8, size 0x4D0
+};
+
+typedef struct R0B_WORK 
+{
+    // total size: 0x68
+    EFF30bPRM_WORK prm_a;         // offset 0x0, size 0x30
+    PMB_WRK prm_b;                // offset 0x30, size 0x1C
+    int mode;                     // offset 0x4C, size 0x4
+    int type;                     // offset 0x50, size 0x4
+    int time;                     // offset 0x54, size 0x4
+    NJS_TEXLIST* texP;            // offset 0x58, size 0x4
+    int tex_id;                   // offset 0x5C, size 0x4
+    float eff_scale;              // offset 0x60, size 0x4
+    eff30b_vtx_buf_typ* vtx_bufP; // offset 0x64, size 0x4
+} R0B_WORK;
+
 static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();

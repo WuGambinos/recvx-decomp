@@ -2566,15 +2566,14 @@ void bhEff349(OR_WORK* orP)
 	scePrintf("bhEff349 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24bf40
+// 96.97% matching (matches on NGC)
 OR_WORK* rySetEffBlood2(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, int typ_no)
 {
-	//_anon19* r0bP;
-	int mode;
-	//_anon38* pmbP;
-	OR_WORK* orP;
-	EFF30bPRM_WORK Eff30bPrm[6] = 
+    OR_WORK* orP;
+    PMB_WRK* pmbP;
+    int mode;
+    R0B_WORK* r0bP;
+    EFF30bPRM_WORK Eff30bPrm[6] = 
 	{
 		{ 0.25f, 0.5f, 0.8f, 15.0f, 0.02f, 16, 0xF0802000, 0xF0400000, -0.03266667f,  56, 16, 0.96f },
 		{  0.4f, 1.0f, 0.9f, 25.0f, 0.05f, 16, 0xF0802000, 0xF0400000, -0.03266667f,  56, 16, 0.96f },
@@ -2583,25 +2582,38 @@ OR_WORK* rySetEffBlood2(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, in
 		{  1.5f, 3.0f, 0.8f, 20.0f, 0.08f, 12, 0xF0004030, 0xF0404020, -0.03266667f,  56, 16, 0.98f },
 		{  2.0f, 4.0f, 0.8f, 30.0f, 0.06f, 16, 0xF0104030, 0xF0404020, -0.03266667f,  56, 16, 0.99f }
 	};
-	// Line 3121, Address: 0x24bf40, Func Offset: 0
-	// Line 3141, Address: 0x24bf60, Func Offset: 0x20
-	// Line 3121, Address: 0x24bf70, Func Offset: 0x30
-	// Line 3141, Address: 0x24bf74, Func Offset: 0x34
-	// Line 3160, Address: 0x24bf94, Func Offset: 0x54
-	// Line 3161, Address: 0x24bfa8, Func Offset: 0x68
-	// Line 3162, Address: 0x24bfbc, Func Offset: 0x7c
-	// Line 3165, Address: 0x24bfc4, Func Offset: 0x84
-	// Line 3167, Address: 0x24bfec, Func Offset: 0xac
-	// Line 3168, Address: 0x24bff0, Func Offset: 0xb0
-	// Line 3174, Address: 0x24bffc, Func Offset: 0xbc
-	// Line 3168, Address: 0x24c000, Func Offset: 0xc0
-	// Line 3169, Address: 0x24c00c, Func Offset: 0xcc
-	// Line 3174, Address: 0x24c024, Func Offset: 0xe4
-	// Line 3175, Address: 0x24c038, Func Offset: 0xf8
-	// Line 3176, Address: 0x24c050, Func Offset: 0x110
-	// Line 3180, Address: 0x24c054, Func Offset: 0x114
-	// Func End, Address: 0x24c070, Func Offset: 0x130
-	scePrintf("rySetEffBlood2 - UNIMPLEMENTED!\n");
+    
+    mode = 0;
+    
+    if ((typ_no & 0x80000000)) 
+    {
+        mode |= 0x1;
+    }
+    
+    if ((typ_no & 0x40000000)) 
+    {
+        mode |= 0x2;
+    }
+    
+    orP = bhSetRapEff(311, (void*)&Eff30bPrm[typ_no & 0x3FFFFFFF], 12);
+    
+    if (orP != NULL)
+    {
+        pmbP = (PMB_WRK*)((char*)orP + 192);
+        
+        pmbP->vtx_mtxP = mtxP;
+        pmbP->vtx_pos  = *posP;
+        pmbP->vtx_dir  = *dirP;
+            
+        r0bP = (R0B_WORK*)((char*)orP + 144);
+        
+        r0bP->texP   = &sys->ef_tlist;
+        r0bP->tex_id = sys->ef_tn[4];
+        
+        r0bP->type = mode;
+    }
+    
+    return orP;
 }
 
 // 

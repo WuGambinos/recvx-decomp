@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/effsub3.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
@@ -1912,65 +1913,64 @@ void bhSetEffGunSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, 
     }
 }
 
-// 
-// Start address: 0x24ab00
+// 100% matching!
 void bhSetEffSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, unsigned int dst_col, int typ_no)
 {
-	//_anon30* lP;
-	PMB_WORK* pmbP;
-	OR_WORK* orP;
+    OR_WORK* orP;
+    PMB_WORK* pmbP;
+    LGT_WORK* lP;
 	static const Eff308PRM_WORK Eff308Prm[2] = 
 	{
 		{ 16,  1.0f, 0.9800000190734863f, 4.0f, 16, 120.0f, 1.899999976158142f, 16, -0.09800000488758087f },
 		{ 16, 0.75f, 0.9800000190734863f, 4.0f, 16, 180.0f, 1.899999976158142f, 16, -0.09800000488758087f }
 	};
-	// Line 2421, Address: 0x24ab00, Func Offset: 0
-	// Line 2431, Address: 0x24ab04, Func Offset: 0x4
-	// Line 2421, Address: 0x24ab08, Func Offset: 0x8
-	// Line 2431, Address: 0x24ab0c, Func Offset: 0xc
-	// Line 2421, Address: 0x24ab10, Func Offset: 0x10
-	// Line 2431, Address: 0x24ab20, Func Offset: 0x20
-	// Line 2421, Address: 0x24ab30, Func Offset: 0x30
-	// Line 2431, Address: 0x24ab34, Func Offset: 0x34
-	// Line 2433, Address: 0x24ab58, Func Offset: 0x58
-	// Line 2432, Address: 0x24ab64, Func Offset: 0x64
-	// Line 2437, Address: 0x24ab6c, Func Offset: 0x6c
-	// Line 2433, Address: 0x24ab70, Func Offset: 0x70
-	// Line 2434, Address: 0x24ab7c, Func Offset: 0x7c
-	// Line 2435, Address: 0x24ab94, Func Offset: 0x94
-	// Line 2437, Address: 0x24ab98, Func Offset: 0x98
-	// Line 2440, Address: 0x24aba4, Func Offset: 0xa4
-	// Line 2441, Address: 0x24abb4, Func Offset: 0xb4
-	// Line 2443, Address: 0x24abc4, Func Offset: 0xc4
-	// Line 2444, Address: 0x24abc8, Func Offset: 0xc8
-	// Line 2445, Address: 0x24abcc, Func Offset: 0xcc
-	// Line 2447, Address: 0x24abd8, Func Offset: 0xd8
-	// Line 2449, Address: 0x24abdc, Func Offset: 0xdc
-	// Line 2450, Address: 0x24abe0, Func Offset: 0xe0
-	// Line 2452, Address: 0x24abe4, Func Offset: 0xe4
-	// Line 2447, Address: 0x24abe8, Func Offset: 0xe8
-	// Line 2448, Address: 0x24abf0, Func Offset: 0xf0
-	// Line 2458, Address: 0x24abf4, Func Offset: 0xf4
-	// Line 2453, Address: 0x24abfc, Func Offset: 0xfc
-	// Line 2454, Address: 0x24ac00, Func Offset: 0x100
-	// Line 2457, Address: 0x24ac04, Func Offset: 0x104
-	// Line 2448, Address: 0x24ac08, Func Offset: 0x108
-	// Line 2449, Address: 0x24ac10, Func Offset: 0x110
-	// Line 2450, Address: 0x24ac14, Func Offset: 0x114
-	// Line 2451, Address: 0x24ac18, Func Offset: 0x118
-	// Line 2452, Address: 0x24ac1c, Func Offset: 0x11c
-	// Line 2453, Address: 0x24ac20, Func Offset: 0x120
-	// Line 2454, Address: 0x24ac24, Func Offset: 0x124
-	// Line 2455, Address: 0x24ac28, Func Offset: 0x128
-	// Line 2459, Address: 0x24ac34, Func Offset: 0x134
-	// Line 2455, Address: 0x24ac3c, Func Offset: 0x13c
-	// Line 2456, Address: 0x24ac48, Func Offset: 0x148
-	// Line 2457, Address: 0x24ac60, Func Offset: 0x160
-	// Line 2458, Address: 0x24ac64, Func Offset: 0x164
-	// Line 2459, Address: 0x24ac68, Func Offset: 0x168
-	// Line 2462, Address: 0x24ac6c, Func Offset: 0x16c
-	// Func End, Address: 0x24ac8c, Func Offset: 0x18c
-	scePrintf("bhSetEffSpark - UNIMPLEMENTED!\n");
+    
+    orP = bhSetRapEff(308, (void*)&Eff308Prm[typ_no], 9);
+    
+    if (orP != NULL) 
+    {
+        pmbP = (PMB_WORK*)((char*)orP + 144) + 1;
+
+        pmbP->vtx_pos = *posP;
+        pmbP->vtx_dir = *dirP;
+        
+        pmbP->col_src = src_col;
+        pmbP->col_dst = dst_col;
+        
+        pmbP->gnd_hgh = bhGetGroundPosition(posP);
+        
+        lP = &rom->lgtp[2];
+        
+        if (!(lP->flg & 0x1)) 
+        {
+            lP->ct0 = 0;
+            
+            lP->lkono = 0;
+            
+            lP->vx = lP->vy = lP->vz = 0;
+        }
+        
+        lP->lkono++;
+        
+        lP->flg |= 0x3;
+        
+        lP->type = 13;
+        
+        lP->aspd = 16;
+        
+        lP->lkflg = 0;
+        lP->lsrc  = 4;
+        
+        lP->nr = 15.0f;
+        lP->fr = 30.0f;
+        
+        *(NJS_POINT3*)&lP->vx = *dirP;
+        *(NJS_POINT3*)&lP->px = *posP;
+        
+        lP->r = 3.0f;
+        lP->g = 1.8f;
+        lP->b = 0.7f;
+    }
 }
 
 // 

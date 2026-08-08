@@ -134,7 +134,7 @@ void bhClrEff_RY()
     }
 }
 
-// 99.93% matching (matches on NGC)
+// 100% matching!
 int bhSetBloodPoolLnk(BH_PWORK* ewP, NJS_POINT3* posP, int ay, BP_WORK* tabP, int pal_bnk)
 {
     O_WRK* o0P, *o1P;    
@@ -146,10 +146,12 @@ int bhSetBloodPoolLnk(BH_PWORK* ewP, NJS_POINT3* posP, int ay, BP_WORK* tabP, in
         if ((o1P = AllocOworkOne()) != NULL)
         {
             e17P = (E17_WORK*)o1P;
+
+			eff_no = 300;
             
             o0P->flg = 0x200001;
             
-            o0P->id   = 300;
+            o0P->id   = eff_no;
             o0P->type = 0;
             
             o0P->tex_id = 17;

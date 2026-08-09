@@ -1645,69 +1645,55 @@ void bhEne30_MV02(BH_PWORK* epw)
 	// Line 735, Address: 0x2146ac, Func Offset: 0x51c
 	// Line 736, Address: 0x2146b0, Func Offset: 0x520
 	// Func End, Address: 0x2146d8, Func Offset: 0x548
+}*/
+
+// 100% matching!
+void bhEne30_MV03(BH_PWORK* epw) {
+    NJS_CNK_OBJECT* objA;
+    NJS_CNK_OBJECT* objB;
+    int i;
+
+    switch (epw->mode3) {
+    case 0:
+        epw->flg |= 0x80000;
+        epw->mtn_no = 2;
+        epw->frm_no = 0;
+        epw->hokan_count = 8;
+        epw->hokan_rate = 0xB333;
+        epw->mlwP = epw->mdl;
+        epw->obj_a = epw->mdl[0].objP;
+        epw->obj_b = epw->mdl[1].objP;
+        epw->mdflg |= 2;
+        epw->shp_ct = 1000.0f;
+        epw->mode3 += 1;
+
+    case 1:
+        epw->shp_ct -= 35.0f;
+        if (epw->shp_ct < 0.0f) {
+            epw->shp_ct = 0.0f;
+            epw->mlwP = epw->mdl;
+            epw->mdflg &= ~2;
+            epw->flg &= ~0x80000;
+            epw->flg2 &= ~1;
+            epw->mode1 = 1;
+            epw->mode2 = 1;
+            epw->mode3 = 0;
+        }
+
+        objA = &epw->obj_a[5];
+        objB = &epw->obj_b[5];
+        
+        for (i = 5; i <= 15; i++) {
+            objA->pos[1] = objB->pos[1] = (epw->shp_ct * (*(float*)(epw->exp0 + i * 0xC + 4))) / 1000.0f;
+            objA++;
+            objB++;
+        }
+        
+        break;
+    }
 }
 
-// 
-// Start address: 0x2146e0
-void bhEne30_MV03(BH_PWORK* epw)
-{
-	int i;
-	npobj* objB;
-	npobj* objA;
-	// Line 747, Address: 0x2146e0, Func Offset: 0
-	// Line 749, Address: 0x214700, Func Offset: 0x20
-	// Line 752, Address: 0x214708, Func Offset: 0x28
-	// Line 754, Address: 0x21470c, Func Offset: 0x2c
-	// Line 749, Address: 0x214710, Func Offset: 0x30
-	// Line 752, Address: 0x214718, Func Offset: 0x38
-	// Line 753, Address: 0x21471c, Func Offset: 0x3c
-	// Line 754, Address: 0x214720, Func Offset: 0x40
-	// Line 755, Address: 0x214724, Func Offset: 0x44
-	// Line 757, Address: 0x21472c, Func Offset: 0x4c
-	// Line 758, Address: 0x214734, Func Offset: 0x54
-	// Line 761, Address: 0x214738, Func Offset: 0x58
-	// Line 758, Address: 0x21473c, Func Offset: 0x5c
-	// Line 759, Address: 0x214740, Func Offset: 0x60
-	// Line 760, Address: 0x214748, Func Offset: 0x68
-	// Line 761, Address: 0x214754, Func Offset: 0x74
-	// Line 763, Address: 0x214758, Func Offset: 0x78
-	// Line 765, Address: 0x214764, Func Offset: 0x84
-	// Line 766, Address: 0x214770, Func Offset: 0x90
-	// Line 765, Address: 0x214778, Func Offset: 0x98
-	// Line 766, Address: 0x21477c, Func Offset: 0x9c
-	// Line 768, Address: 0x21478c, Func Offset: 0xac
-	// Line 767, Address: 0x214790, Func Offset: 0xb0
-	// Line 768, Address: 0x214794, Func Offset: 0xb4
-	// Line 769, Address: 0x214798, Func Offset: 0xb8
-	// Line 770, Address: 0x21479c, Func Offset: 0xbc
-	// Line 769, Address: 0x2147a0, Func Offset: 0xc0
-	// Line 770, Address: 0x2147a4, Func Offset: 0xc4
-	// Line 771, Address: 0x2147a8, Func Offset: 0xc8
-	// Line 769, Address: 0x2147ac, Func Offset: 0xcc
-	// Line 770, Address: 0x2147b4, Func Offset: 0xd4
-	// Line 774, Address: 0x2147b8, Func Offset: 0xd8
-	// Line 770, Address: 0x2147bc, Func Offset: 0xdc
-	// Line 771, Address: 0x2147c4, Func Offset: 0xe4
-	// Line 774, Address: 0x2147d0, Func Offset: 0xf0
-	// Line 775, Address: 0x2147d4, Func Offset: 0xf4
-	// Line 776, Address: 0x2147d8, Func Offset: 0xf8
-	// Line 784, Address: 0x2147dc, Func Offset: 0xfc
-	// Line 785, Address: 0x2147e0, Func Offset: 0x100
-	// Line 786, Address: 0x2147e4, Func Offset: 0x104
-	// Line 784, Address: 0x2147ec, Func Offset: 0x10c
-	// Line 785, Address: 0x2147f0, Func Offset: 0x110
-	// Line 787, Address: 0x2147f4, Func Offset: 0x114
-	// Line 788, Address: 0x214800, Func Offset: 0x120
-	// Line 787, Address: 0x214804, Func Offset: 0x124
-	// Line 788, Address: 0x214808, Func Offset: 0x128
-	// Line 787, Address: 0x21480c, Func Offset: 0x12c
-	// Line 788, Address: 0x214828, Func Offset: 0x148
-	// Line 790, Address: 0x214834, Func Offset: 0x154
-	// Line 791, Address: 0x214838, Func Offset: 0x158
-	// Func End, Address: 0x214840, Func Offset: 0x160
-}
-
-// 
+/*// 
 // Start address: 0x214840
 void bhEne30_MV04(BH_PWORK* epw)
 {

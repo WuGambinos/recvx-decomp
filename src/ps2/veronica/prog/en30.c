@@ -2,6 +2,7 @@
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
+#include "../../../ps2/veronica/prog/hitchkl.h"
 
 // ENEMY: Alexia's Baby 
 
@@ -2224,26 +2225,21 @@ void bhEne30_DamageInit(BH_PWORK* epw)
 	// Line 1413, Address: 0x215cf0, Func Offset: 0x160
 	// Line 1416, Address: 0x215cf4, Func Offset: 0x164
 	// Func End, Address: 0x215d04, Func Offset: 0x174
+}*/
+
+void bhEne30_CollisionLine(BH_PWORK* epw) {
+    NJS_POINT3 n;
+    
+    if ((bhCollisionCheckLine((NJS_POINT3*)&epw->pxb,  (NJS_POINT3*)&epw->px) != NULL) && (epw->flg & 0x200000)) {
+        bhGetHitCollisionNormal(&n);
+        njUnitVector(&n);
+        if (!(n.y < 0.99f)) {
+            epw->flg &= 0xFFDFFFFF;
+        }
+    }
 }
 
-// 
-// Start address: 0x215d10
-void bhEne30_CollisionLine(BH_PWORK* epw)
-{
-	_anon27* hp;
-	_anon3 n;
-	// Line 1426, Address: 0x215d10, Func Offset: 0
-	// Line 1430, Address: 0x215d20, Func Offset: 0x10
-	// Line 1431, Address: 0x215d2c, Func Offset: 0x1c
-	// Line 1432, Address: 0x215d48, Func Offset: 0x38
-	// Line 1433, Address: 0x215d50, Func Offset: 0x40
-	// Line 1434, Address: 0x215d58, Func Offset: 0x48
-	// Line 1435, Address: 0x215d7c, Func Offset: 0x6c
-	// Line 1458, Address: 0x215d90, Func Offset: 0x80
-	// Func End, Address: 0x215da0, Func Offset: 0x90
-}
-
-// 
+/*// 
 // Start address: 0x215da0
 void bhEne30_SetFluidEffect(_anon3* pos, _anon3* vec, int type, float size)
 {

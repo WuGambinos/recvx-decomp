@@ -2851,25 +2851,40 @@ static void bhEff30bDrw(OR_WORK* orP)
     njPopMatrixEx();
 }
 
-// 
-// Start address: 0x24c750
-void bhEff30c(OR_WORK* orP)
+// 100% matching!
+void bhEff30c(OR_WORK* orP) 
 {
-	R0_WK* r0cP;
-	// Line 3388, Address: 0x24c750, Func Offset: 0
-	// Line 3399, Address: 0x24c764, Func Offset: 0x14
-	// Line 3402, Address: 0x24c784, Func Offset: 0x34
-	// Line 3403, Address: 0x24c790, Func Offset: 0x40
-	// Line 3406, Address: 0x24c798, Func Offset: 0x48
-	// Line 3412, Address: 0x24c7a0, Func Offset: 0x50
-	// Line 3416, Address: 0x24c7ac, Func Offset: 0x5c
-	// Line 3417, Address: 0x24c7b8, Func Offset: 0x68
-	// Line 3418, Address: 0x24c7cc, Func Offset: 0x7c
-	// Line 3420, Address: 0x24c7e0, Func Offset: 0x90
-	// Line 3421, Address: 0x24c7f4, Func Offset: 0xa4
-	// Line 3425, Address: 0x24c82c, Func Offset: 0xdc
-	// Func End, Address: 0x24c840, Func Offset: 0xf0
-	scePrintf("bhEff30c - UNIMPLEMENTED!\n");
+    R0_WK* r0cP;
+    
+    r0cP = (R0_WK*)orP->free4; 
+
+    switch (r0cP->mode) 
+    {                              
+    case 0:
+        orP->func = (void*)bhEff30cDrw;
+        
+        r0cP->erase = -1;
+        
+        r0cP->mtxP = (NJS_MATRIX*)r0cP->mtx_buf;
+        
+        r0cP->mode++;
+    case 1:
+        njSetMatrix(r0cP->mtxP, r0cP->prm.mtxP);
+        
+        njTranslate(r0cP->mtxP, r0cP->prm.pos[0], r0cP->prm.pos[1], r0cP->prm.pos[2]);
+        njRotateXYZ(r0cP->mtxP, r0cP->prm.ang[0], r0cP->prm.ang[1], r0cP->prm.ang[2]);
+        
+        if (r0cP->erase == 0) 
+        {
+            *(int*)orP = 0; 
+        }
+        else 
+		{
+        	sys->ef_fnc[sys->ef_fncn++] = (O_WRK*)orP;
+		}
+		
+        break;
+    }
 }
 
 // 100% matching!

@@ -2136,56 +2136,68 @@ void bhEne30_CheckEnemies(BH_PWORK* epw) {
     }
 }
 
-
-/*// 
-// Start address: 0x215b90
-void bhEne30_DamageInit(BH_PWORK* epw)
-{
-	_anon3 ofp;
-	int dam;
+// 100% matching!
+void bhEne30_DamageInit(BH_PWORK* epw) {
 	int i;
-	// Line 1355, Address: 0x215b90, Func Offset: 0
-	// Line 1359, Address: 0x215ba0, Func Offset: 0x10
-	// Line 1360, Address: 0x215ba4, Func Offset: 0x14
-	// Line 1361, Address: 0x215bb0, Func Offset: 0x20
-	// Line 1362, Address: 0x215bbc, Func Offset: 0x2c
-	// Line 1363, Address: 0x215bc0, Func Offset: 0x30
-	// Line 1364, Address: 0x215bc4, Func Offset: 0x34
-	// Line 1363, Address: 0x215bc8, Func Offset: 0x38
-	// Line 1365, Address: 0x215bcc, Func Offset: 0x3c
-	// Line 1367, Address: 0x215be4, Func Offset: 0x54
-	// Line 1368, Address: 0x215bec, Func Offset: 0x5c
-	// Line 1371, Address: 0x215bf0, Func Offset: 0x60
-	// Line 1368, Address: 0x215bfc, Func Offset: 0x6c
-	// Line 1371, Address: 0x215c04, Func Offset: 0x74
-	// Line 1373, Address: 0x215c10, Func Offset: 0x80
-	// Line 1378, Address: 0x215c30, Func Offset: 0xa0
-	// Line 1379, Address: 0x215c34, Func Offset: 0xa4
-	// Line 1380, Address: 0x215c3c, Func Offset: 0xac
-	// Line 1381, Address: 0x215c40, Func Offset: 0xb0
-	// Line 1382, Address: 0x215c48, Func Offset: 0xb8
-	// Line 1383, Address: 0x215c4c, Func Offset: 0xbc
-	// Line 1382, Address: 0x215c58, Func Offset: 0xc8
-	// Line 1383, Address: 0x215c5c, Func Offset: 0xcc
-	// Line 1387, Address: 0x215c64, Func Offset: 0xd4
-	// Line 1388, Address: 0x215c6c, Func Offset: 0xdc
-	// Line 1392, Address: 0x215c70, Func Offset: 0xe0
-	// Line 1393, Address: 0x215c84, Func Offset: 0xf4
-	// Line 1395, Address: 0x215c94, Func Offset: 0x104
-	// Line 1397, Address: 0x215ca8, Func Offset: 0x118
-	// Line 1398, Address: 0x215cb0, Func Offset: 0x120
-	// Line 1400, Address: 0x215cb4, Func Offset: 0x124
-	// Line 1402, Address: 0x215cbc, Func Offset: 0x12c
-	// Line 1406, Address: 0x215ccc, Func Offset: 0x13c
-	// Line 1408, Address: 0x215cd4, Func Offset: 0x144
-	// Line 1409, Address: 0x215cdc, Func Offset: 0x14c
-	// Line 1411, Address: 0x215ce4, Func Offset: 0x154
-	// Line 1412, Address: 0x215cec, Func Offset: 0x15c
-	// Line 1413, Address: 0x215cf0, Func Offset: 0x160
-	// Line 1416, Address: 0x215cf4, Func Offset: 0x164
-	// Func End, Address: 0x215d04, Func Offset: 0x174
-}*/
+	int dam;
+    NJS_POINT3 ofp;
 
+    //  NOT IN DWARF
+    int flg;
+
+
+    dam = 0;
+    for(i = 0; i < epw->mlwP->obj_num; i++) {
+        if (epw->dam[i] != 0) {
+            dam += epw->dam[i];
+            epw->dam[i] = 0;
+        }
+    }
+    
+    if (dam != 0) {
+        epw->hp =  (epw->hp - dam);
+        bhEne_SetBloodEffectBurst(epw, 2, 1, NULL, 0);
+        
+        if ((epw->hp < 0) || (flg = epw->flg & 0x80000, (flg != 0))) {
+            ofp.x = 0.0f;
+            ofp.y = 1.0f;
+            ofp.z = 0.0f;
+            epw->dvz = 0;
+            epw->dvx = 0;
+            epw->dvy = -1.0f;
+            
+            bhEne_SetBloodstain(epw, 2, 5, &ofp);
+            epw->mode0 = 4;
+            epw->mode1 = 0;
+            epw->mode3 = 0;
+            
+            bhEne_SetMinceEffect(epw, 0x102, 3);
+            bhEne_SetMinceEffect(epw, 0x103, 2);
+            
+            if (epw->flg & 0x80000) {
+                epw->mode2 = 0;
+                return;
+            }
+            
+            epw->mode2 = 1;
+            return;
+        }
+        
+        if (!(epw->flg & 0x200000)) {
+            if (flg != 0) {
+                epw->mode2 = 0;
+            } else {
+                epw->mode2= 1;
+            }
+            
+            epw->mode0 = 3;
+            epw->mode1 = 0;
+            epw->mode3 = 0;
+        }
+    }
+}
+
+// 100% matching!
 void bhEne30_CollisionLine(BH_PWORK* epw) {
     NJS_POINT3 n;
     

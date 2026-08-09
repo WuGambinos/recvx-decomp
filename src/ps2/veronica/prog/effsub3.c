@@ -2695,18 +2695,18 @@ OR_WORK* rySetEffBlood2(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, in
 // Start address: 0x24c070
 void bhEff30b(OR_WORK* orP)
 {
-	//_eff30b_vtx_buf_typ* vbP;
+	eff30b_vtx_buf_typ* vbP;
 	NJS_POINT3* dirP;
 	float max;
 	float min;
 	float rng;
-	//_anon25* vtxP;
+	VTXBUF_WORK* vtxP;
 	int num;
-	//_eff30b_vtx_buf_typ* vbP;
+	//eff30b_vtx_buf_typ* vbP;
 	//int num;
-	//_eff30b_vtx_buf_typ* vbP;
+	//eff30b_vtx_buf_typ* vbP;
 	//_anon38* pmbP;
-	//_anon19* r0bP;
+	R0B_WORK* r0bP;
 	// Line 3191, Address: 0x24c070, Func Offset: 0
 	// Line 3196, Address: 0x24c0a8, Func Offset: 0x38
 	// Line 3192, Address: 0x24c0ac, Func Offset: 0x3c
@@ -2780,46 +2780,71 @@ void bhEff30b(OR_WORK* orP)
 	scePrintf("bhEff30b - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24c600
+// 100% matching!
 static void bhEff30bDrw(OR_WORK* orP)
 {
-	float scl;
-	//_eff30b_vtx_buf_typ* vbP;
-	int num;
-	//_anon25* vtxP;
-	//_anon19* r0bP;
-	static NJS_TEXTURE_VTX VtxBuf[4] = 
+    R0B_WORK* r0bP;          
+    VTXBUF_WORK* vtxP;      
+    int num;                
+    eff30b_vtx_buf_typ* vbP; 
+    float scl;             
+    static NJS_TEXTURE_VTX VtxBuf[4] = 
 	{
 		{ -1.0f,  1.0f, 0.0f, 0.0f, 0.0f, 0x00000000 },
 		{ -1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0x00000000 },
 		{  1.0f,  1.0f, 0.0f, 1.0f, 0.0f, 0x00000000 },
 		{  1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 0x00000000 }
 	};
-	// Line 3316, Address: 0x24c600, Func Offset: 0
-	// Line 3317, Address: 0x24c618, Func Offset: 0x18
-	// Line 3324, Address: 0x24c61c, Func Offset: 0x1c
-	// Line 3325, Address: 0x24c62c, Func Offset: 0x2c
-	// Line 3327, Address: 0x24c638, Func Offset: 0x38
-	// Line 3328, Address: 0x24c640, Func Offset: 0x40
-	// Line 3329, Address: 0x24c650, Func Offset: 0x50
-	// Line 3347, Address: 0x24c658, Func Offset: 0x58
-	// Line 3350, Address: 0x24c660, Func Offset: 0x60
-	// Line 3351, Address: 0x24c66c, Func Offset: 0x6c
-	// Line 3360, Address: 0x24c678, Func Offset: 0x78
-	// Line 3363, Address: 0x24c680, Func Offset: 0x80
-	// Line 3364, Address: 0x24c694, Func Offset: 0x94
-	// Line 3365, Address: 0x24c6a0, Func Offset: 0xa0
-	// Line 3366, Address: 0x24c6a8, Func Offset: 0xa8
-	// Line 3367, Address: 0x24c6bc, Func Offset: 0xbc
-	// Line 3369, Address: 0x24c6e0, Func Offset: 0xe0
-	// Line 3370, Address: 0x24c6f4, Func Offset: 0xf4
-	// Line 3371, Address: 0x24c708, Func Offset: 0x108
-	// Line 3372, Address: 0x24c714, Func Offset: 0x114
-	// Line 3374, Address: 0x24c720, Func Offset: 0x120
-	// Line 3382, Address: 0x24c728, Func Offset: 0x128
-	// Func End, Address: 0x24c748, Func Offset: 0x148
-	scePrintf("bhEff30bDrw - UNIMPLEMENTED!\n");
+    
+    r0bP = (R0B_WORK*)orP->free4;
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    njTextureFilterMode(0);
+    
+    njSetMatrix(NULL, cam.mtx);
+    njSetTexture(r0bP->texP);
+    
+    njPushMatrixEx();
+    
+    vbP = r0bP->vtx_bufP;
+    
+    if (vbP != NULL) 
+    {
+        num = 28;
+        
+        do 
+        {
+            vtxP = vbP->VtxBuf;
+            
+            do 
+            {
+                scl = vtxP->scl * r0bP->eff_scale;
+                
+                njSetMatrix(NULL, cam.mtx);
+                
+                njTranslateV(NULL, &vtxP->pos);
+                njUnitRotPortion(NULL);
+                
+                njScale(NULL, scl, scl, scl);
+                
+                VtxBuf[0].col = VtxBuf[1].col = VtxBuf[2].col = VtxBuf[3].col = vtxP->col;
+                
+                njSetTextureNum(r0bP->tex_id + (vtxP->time & 3));
+                
+                njDrawTexture3DEx(VtxBuf, 4, 1);
+                
+                num--;
+                vtxP++;
+            } while (num > 0);
+            
+            vbP = vbP->nextP;
+            num = 28;
+        } while (vbP != NULL);
+    }
+    
+    njPopMatrixEx();
 }
 
 // 

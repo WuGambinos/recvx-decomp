@@ -305,6 +305,26 @@ typedef struct E02_WORK
     float scl_add_2nd;      // offset 0x448, size 0x4
 } E02_WORK;
 
+typedef struct PRM_WRK 
+{
+    // total size: 0x24
+    NJS_MATRIX* mtxP;  // offset 0x0, size 0x4
+    NJS_TEXLIST* texP; // offset 0x4, size 0x4
+    NJS_MODEL* mdlP;   // offset 0x8, size 0x4
+    float pos[3];      // offset 0xC, size 0xC
+    int ang[3];        // offset 0x18, size 0xC
+} PRM_WRK;
+
+typedef struct R0_WK 
+{
+    // total size: 0x70
+    PRM_WRK prm;      // offset 0x0, size 0x24
+    int mode;         // offset 0x24, size 0x4
+    int erase;        // offset 0x28, size 0x4
+    NJS_MATRIX* mtxP; // offset 0x2C, size 0x4
+    char mtx_buf[64]; // offset 0x30, size 0x40
+} R0_WK; 
+
 static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();

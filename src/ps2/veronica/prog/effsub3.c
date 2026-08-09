@@ -8,6 +8,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 
 static unsigned int owk_scn_noG;
 
@@ -2762,7 +2763,7 @@ static void bhEff30bDrw(OR_WORK* orP)
 // Start address: 0x24c750
 void bhEff30c(OR_WORK* orP)
 {
-	//_anon61* r0cP;
+	R0_WK* r0cP;
 	// Line 3388, Address: 0x24c750, Func Offset: 0
 	// Line 3399, Address: 0x24c764, Func Offset: 0x14
 	// Line 3402, Address: 0x24c784, Func Offset: 0x34
@@ -2779,19 +2780,22 @@ void bhEff30c(OR_WORK* orP)
 	scePrintf("bhEff30c - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24c840
+// 100% matching!
 static void bhEff30cDrw(OR_WORK* orP)
 {
-	//_anon61* r0cP;
-	// Line 3431, Address: 0x24c840, Func Offset: 0
-	// Line 3432, Address: 0x24c84c, Func Offset: 0xc
-	// Line 3435, Address: 0x24c850, Func Offset: 0x10
-	// Line 3437, Address: 0x24c864, Func Offset: 0x24
-	// Line 3439, Address: 0x24c870, Func Offset: 0x30
-	// Line 3440, Address: 0x24c87c, Func Offset: 0x3c
-	// Line 3442, Address: 0x24c884, Func Offset: 0x44
-	// Line 3443, Address: 0x24c88c, Func Offset: 0x4c
-	// Func End, Address: 0x24c89c, Func Offset: 0x5c
-	scePrintf("bhEff30cDrw - UNIMPLEMENTED!\n");
+    R0_WK* r0cP;
+    
+    r0cP = (R0_WK*)((char*)orP + 144);
+
+    if (r0cP->prm.texP != NULL) 
+    {
+        njSetTexture(r0cP->prm.texP);
+    }
+    
+    njPushMatrix(cam.mtx);
+    njMultiMatrix(NULL, r0cP->mtxP);
+    
+    njCnkEasyMultiDrawModel((NJS_CNK_MODEL*)r0cP->prm.mdlP);
+    
+    njPopMatrixEx();
 }

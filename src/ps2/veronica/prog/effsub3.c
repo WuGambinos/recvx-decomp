@@ -11,6 +11,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
+#include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
 
 static unsigned int owk_scn_noG;
 
@@ -1095,40 +1096,50 @@ void bhEff302(O_WRK* oP)
 	scePrintf("bhEff302 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x248db0
+// 100% matching!
 static void bhEff_PtclSpriteDrawB(O_WRK* oP)
 {
-	NJS_POINT3* bufP;
-	float scl;
-	int stg_num;
-	int stg_no;
-	E02_WORK* e02aP;
-	// Line 1422, Address: 0x248db0, Func Offset: 0
-	// Line 1423, Address: 0x248dd4, Func Offset: 0x24
-	// Line 1426, Address: 0x248ddc, Func Offset: 0x2c
-	// Line 1427, Address: 0x248de4, Func Offset: 0x34
-	// Line 1428, Address: 0x248df0, Func Offset: 0x40
-	// Line 1431, Address: 0x248dfc, Func Offset: 0x4c
-	// Line 1432, Address: 0x248e04, Func Offset: 0x54
-	// Line 1433, Address: 0x248e14, Func Offset: 0x64
-	// Line 1463, Address: 0x248e1c, Func Offset: 0x6c
-	// Line 1467, Address: 0x248e30, Func Offset: 0x80
-	// Line 1464, Address: 0x248e3c, Func Offset: 0x8c
-	// Line 1465, Address: 0x248e40, Func Offset: 0x90
-	// Line 1467, Address: 0x248e44, Func Offset: 0x94
-	// Line 1468, Address: 0x248e54, Func Offset: 0xa4
-	// Line 1469, Address: 0x248e68, Func Offset: 0xb8
-	// Line 1470, Address: 0x248e7c, Func Offset: 0xcc
-	// Line 1471, Address: 0x248e90, Func Offset: 0xe0
-	// Line 1472, Address: 0x248ea4, Func Offset: 0xf4
-	// Line 1473, Address: 0x248eac, Func Offset: 0xfc
-	// Line 1472, Address: 0x248eb0, Func Offset: 0x100
-	// Line 1473, Address: 0x248eb4, Func Offset: 0x104
-	// Line 1479, Address: 0x248ec0, Func Offset: 0x110
-	// Line 1481, Address: 0x248ec8, Func Offset: 0x118
-	// Func End, Address: 0x248ef0, Func Offset: 0x140
-	scePrintf("bhEff_PtclSpriteDrawB - UNIMPLEMENTED!\n");
+    E02_WORK* e02aP;  
+    int stg_no, stg_num;       
+    float scl;        
+    NJS_POINT3* bufP; 
+
+    e02aP = (E02_WORK*)oP->exp0;
+    
+    njGetSystemAttr((NJS_SYS_ATTR*)&e02aP->atr_bak);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    njTextureFilterMode(0);
+    
+    njSetMatrix(NULL, cam.mtx);
+    njSetTexture(oP->txp[0]);
+    
+    if ((e02aP->stg_num != 0) && (e02aP->stg_num != 0)) 
+    {
+        // empty
+    } 
+    
+    stg_num = e02aP->stg_num;
+    stg_no  = e02aP->stg_stt;
+    
+    for (; stg_num > 0; stg_num--, stg_no++)
+    {
+        scl  = e02aP->stg_scl[stg_no];
+        bufP = e02aP->stg_buf[stg_no];
+        
+        njPtclSpriteStart(oP->tex_id + (e02aP->stg_tim[stg_no] & 3), e02aP->stg_col[stg_no], 1);
+        
+        njPtclDrawSprite(&bufP[0],  4, scl, scl);
+        njPtclDrawSprite(&bufP[4],  4, scl, scl);
+        njPtclDrawSprite(&bufP[8],  4, scl, scl);
+        njPtclDrawSprite(&bufP[12], 4, scl, scl);
+        
+        njPtclSpriteEnd();
+    } 
+    
+    njSetSystemAttr((NJS_SYS_ATTR*)&e02aP->atr_bak);
 }
 
 // 

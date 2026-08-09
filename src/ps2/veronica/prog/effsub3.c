@@ -7,6 +7,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
+#include "../../../ps2/veronica/prog/ps2_NaSystem.h"
 #include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 
@@ -2232,7 +2233,7 @@ void bhEff309(OR_WORK* orP)
 	//rap_tex_typ* rtP;
 	//int i;
 	//_anon50* pmbP;
-	//_anon56* r09P;
+	R09_WORK* r09P;
 	static const UV_WORK Tex5Buv[12] = 
 	{
 		{ 0.1875f, 0.4375f, 0.12109375f, 0.12109375f },
@@ -2327,20 +2328,19 @@ void bhEff309(OR_WORK* orP)
 	scePrintf("bhEff309 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24b950
-void bhEff309Drw(OR_WORK* orP)
+// 100% matching!
+void bhEff309Drw(OR_WORK* orP) 
 {
-	//_anon56* r09P;
-	// Line 2860, Address: 0x24b950, Func Offset: 0
-	// Line 2861, Address: 0x24b95c, Func Offset: 0xc
-	// Line 2866, Address: 0x24b960, Func Offset: 0x10
-	// Line 2867, Address: 0x24b968, Func Offset: 0x18
-	// Line 2868, Address: 0x24b974, Func Offset: 0x24
-	// Line 2869, Address: 0x24b980, Func Offset: 0x30
-	// Line 2875, Address: 0x24b998, Func Offset: 0x48
-	// Func End, Address: 0x24b9a8, Func Offset: 0x58
-	scePrintf("bhEff309Drw - UNIMPLEMENTED!\n");
+    R09_WORK* r09P;
+
+    r09P = (R09_WORK*)((char*)orP + 144);
+    
+    njTextureFilterMode(1);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 6);
+    
+    ryRapTexDrw(r09P->texP, r09P->tex_id + r09P->prm_a.pal_bank, r09P->busyP);
 }
 
 // 100% matching!

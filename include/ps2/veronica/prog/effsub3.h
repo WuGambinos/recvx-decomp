@@ -391,6 +391,30 @@ typedef struct R07_WORK
     float WndSpd[18];        // offset 0x3C4, size 0x48
 } R07_WORK;
 
+typedef struct PMA_WORK
+{
+    // total size: 0x20
+    int type;     // offset 0x0, size 0x4
+    int ang_fst;  // offset 0x4, size 0x4
+    int add_ax;   // offset 0x8, size 0x4
+    float x_rang; // offset 0xC, size 0x4
+    float x_rate; // offset 0x10, size 0x4
+    int add_ay;   // offset 0x14, size 0x4
+    float y_rang; // offset 0x18, size 0x4
+    float y_rate; // offset 0x1C, size 0x4
+} PMA_WORK;
+
+typedef struct R0A_WORK
+{
+    // total size: 0x44
+    PMA_WORK prm_a;     // offset 0x0, size 0x20
+    int mode;           // offset 0x20, size 0x4
+    int ang_x;          // offset 0x24, size 0x4
+    int ang_y;          // offset 0x28, size 0x4
+    NJS_POINT3 off_pos; // offset 0x2C, size 0xC
+    NJS_POINT3 dst_pos; // offset 0x38, size 0xC
+} R0A_WORK;
+
 static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();

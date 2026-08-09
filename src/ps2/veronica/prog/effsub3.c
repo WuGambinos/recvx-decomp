@@ -2044,7 +2044,7 @@ void bhSetEffSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, uns
     
     if (orP != NULL) 
     {
-        pmbP = (PMB_WORK*)((char*)orP + 144) + 1;
+        pmbP = (PMB_WORK*)orP->free4 + 1;
 
         pmbP->vtx_pos = *posP;
         pmbP->vtx_dir = *dirP;
@@ -2310,7 +2310,7 @@ OR_WORK* rySetEffBlood(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, int
         pmbP->vtx_pos  = *posP;
         pmbP->vtx_dir  = *dirP;
             
-        r09P = (R09_WORK*)((char*)orP + 144);
+        r09P = (R09_WORK*)orP->free4;
         
         r09P->texP   = &sys->ef_tlist;
         r09P->tex_id = sys->ef_tn[5];
@@ -2438,7 +2438,7 @@ void bhEff309Drw(OR_WORK* orP)
 {
     R09_WORK* r09P;
 
-    r09P = (R09_WORK*)((char*)orP + 144);
+    r09P = (R09_WORK*)orP->free4;
     
     njTextureFilterMode(1);
     
@@ -2629,41 +2629,66 @@ static void ryRapAnmColSet(ANM_WORK* anmP, int src_col, int dst_col, int col_cnt
 
 #pragma divbyzerocheck off
 
-// 
-// Start address: 0x24bcf0
+// 100% matching!
 void bhEff30a(OR_WORK* orP)
 {
-	//_anon8* r0aP;
-	// Line 3028, Address: 0x24bcf0, Func Offset: 0
-	// Line 3045, Address: 0x24bd04, Func Offset: 0x14
-	// Line 3051, Address: 0x24bd30, Func Offset: 0x40
-	// Line 3052, Address: 0x24bd44, Func Offset: 0x54
-	// Line 3056, Address: 0x24bd4c, Func Offset: 0x5c
-	// Line 3059, Address: 0x24bd6c, Func Offset: 0x7c
-	// Line 3061, Address: 0x24bd7c, Func Offset: 0x8c
-	// Line 3064, Address: 0x24bd9c, Func Offset: 0xac
-	// Line 3065, Address: 0x24bda8, Func Offset: 0xb8
-	// Line 3068, Address: 0x24bdb4, Func Offset: 0xc4
-	// Line 3069, Address: 0x24bdc8, Func Offset: 0xd8
-	// Line 3070, Address: 0x24bddc, Func Offset: 0xec
-	// Line 3072, Address: 0x24bde8, Func Offset: 0xf8
-	// Line 3070, Address: 0x24bdf4, Func Offset: 0x104
-	// Line 3072, Address: 0x24bdf8, Func Offset: 0x108
-	// Line 3070, Address: 0x24bdfc, Func Offset: 0x10c
-	// Line 3072, Address: 0x24be00, Func Offset: 0x110
-	// Line 3074, Address: 0x24be08, Func Offset: 0x118
-	// Line 3079, Address: 0x24be10, Func Offset: 0x120
-	// Line 3074, Address: 0x24be1c, Func Offset: 0x12c
-	// Line 3075, Address: 0x24be24, Func Offset: 0x134
-	// Line 3076, Address: 0x24be34, Func Offset: 0x144
-	// Line 3077, Address: 0x24be44, Func Offset: 0x154
-	// Line 3079, Address: 0x24be54, Func Offset: 0x164
-	// Line 3080, Address: 0x24be70, Func Offset: 0x180
-	// Line 3081, Address: 0x24be7c, Func Offset: 0x18c
-	// Line 3085, Address: 0x24be80, Func Offset: 0x190
-	// Line 3090, Address: 0x24be90, Func Offset: 0x1a0
-	// Func End, Address: 0x24bea4, Func Offset: 0x1b4
-	scePrintf("bhEff30a - UNIMPLEMENTED!\n");
+    R0A_WORK* r0aP; 
+
+    r0aP = (R0A_WORK*)orP->free4; 
+
+    switch (r0aP->prm_a.type) 
+    {                               
+    case 0:                                        
+        break;
+    case 1:                                        
+        cam.ofx = cam.ofy = cam.ofz = 0; 
+        break;
+    case 2:                                        
+        if ((sys->cb_flg & 0x4)) 
+        {
+            *(int*)orP = 0; 
+            break;
+        }
+        
+        if ((sys->sp_flg & 0x1))
+        {
+            switch (r0aP->mode)
+            {                      
+            case 0:                                 
+                r0aP->ang_x = r0aP->ang_y = r0aP->prm_a.ang_fst;
+                
+                r0aP->mode++;
+            case 1:                                 
+                njSetMatrix(lcmat, cam.mtx);
+                
+                r0aP->off_pos.y = r0aP->prm_a.y_rang * njSin(r0aP->ang_y);
+                r0aP->off_pos.x = r0aP->prm_a.x_rang * njCos(r0aP->ang_x);
+                
+                r0aP->off_pos.z = 0; 
+                
+                njCalcVector(lcmat, &r0aP->off_pos, &r0aP->off_pos);
+                
+                r0aP->ang_x += r0aP->prm_a.add_ax;
+                r0aP->ang_y += r0aP->prm_a.add_ay;
+                
+                r0aP->prm_a.x_rang *= r0aP->prm_a.x_rate;
+                r0aP->prm_a.y_rang *= r0aP->prm_a.y_rate;
+                
+                if ((r0aP->prm_a.x_rang + r0aP->prm_a.y_rang) < 0.01f) 
+                {
+                    r0aP->dst_pos.x = r0aP->dst_pos.y = r0aP->dst_pos.z = 0;
+                    
+                    *(int*)orP = 0; 
+                }
+                
+                break;
+            }
+            
+            njAddVector((NJS_VECTOR*)&cam.ofx, &r0aP->off_pos);
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!
@@ -2726,7 +2751,7 @@ OR_WORK* rySetEffBlood2(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, in
         pmbP->vtx_pos  = *posP;
         pmbP->vtx_dir  = *dirP;
             
-        r0bP = (R0B_WORK*)((char*)orP + 144);
+        r0bP = (R0B_WORK*)orP->free4;
         
         r0bP->texP   = &sys->ef_tlist;
         r0bP->tex_id = sys->ef_tn[4];
@@ -2934,7 +2959,7 @@ static void bhEff30cDrw(OR_WORK* orP)
 {
     R0_WK* r0cP;
     
-    r0cP = (R0_WK*)((char*)orP + 144);
+    r0cP = (R0_WK*)orP->free4;
 
     if (r0cP->prm.texP != NULL) 
     {

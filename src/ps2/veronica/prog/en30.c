@@ -1678,28 +1678,24 @@ void bhEne30_MV03(BH_PWORK* epw) {
     }
 }
 
-/*// 
-// Start address: 0x214840
-void bhEne30_MV04(BH_PWORK* epw)
-{
-	int mtn[3];
-	// Line 801, Address: 0x214840, Func Offset: 0
-	// Line 802, Address: 0x214844, Func Offset: 0x4
-	// Line 801, Address: 0x214848, Func Offset: 0x8
-	// Line 802, Address: 0x214850, Func Offset: 0x10
-	// Line 807, Address: 0x214868, Func Offset: 0x28
-	// Line 809, Address: 0x21487c, Func Offset: 0x3c
-	// Line 812, Address: 0x214888, Func Offset: 0x48
-	// Line 814, Address: 0x2148d0, Func Offset: 0x90
-	// Line 812, Address: 0x2148d4, Func Offset: 0x94
-	// Line 813, Address: 0x2148d8, Func Offset: 0x98
-	// Line 815, Address: 0x2148dc, Func Offset: 0x9c
-	// Line 814, Address: 0x2148e0, Func Offset: 0xa0
-	// Line 815, Address: 0x2148e4, Func Offset: 0xa4
-	// Line 816, Address: 0x2148e8, Func Offset: 0xa8
-	// Line 818, Address: 0x2148f4, Func Offset: 0xb4
-	// Func End, Address: 0x214904, Func Offset: 0xc4
-}*/
+// 100% matching!
+void bhEne30_MV04(BH_PWORK* epw) {
+    int mtn[3] = {2, 5, 6};
+    
+    switch (epw->mode3) {
+        case 0:
+            break;
+        default:
+            return;
+    } 
+    
+    epw->flg |= 0x80000;
+    epw->mtn_no = mtn[(((int)(3.0f * ((float) -rand() / -2.1474836e9f))))];
+    epw->frm_no = 0;
+    epw->hokan_count = 8;
+    epw->hokan_rate = 0xB333;
+    epw->mode3 += 1;
+}
 
 // 100% matching!
 void bhEne30_MV05(BH_PWORK* epw) {

@@ -2109,37 +2109,35 @@ void bhEne30_DD01(BH_PWORK* epw) {
     }
 }
 
-/*// 
-// Start address: 0x215a50
-void bhEne30_CheckEnemies(BH_PWORK* epw)
-{
-	BH_PWORK* ep;
-	float len;
-	float dz;
-	float dx;
-	int i;
-	// Line 1326, Address: 0x215a50, Func Offset: 0
-	// Line 1331, Address: 0x215a64, Func Offset: 0x14
-	// Line 1326, Address: 0x215a68, Func Offset: 0x18
-	// Line 1331, Address: 0x215a6c, Func Offset: 0x1c
-	// Line 1326, Address: 0x215a70, Func Offset: 0x20
-	// Line 1332, Address: 0x215a78, Func Offset: 0x28
-	// Line 1333, Address: 0x215a80, Func Offset: 0x30
-	// Line 1335, Address: 0x215abc, Func Offset: 0x6c
-	// Line 1336, Address: 0x215ac4, Func Offset: 0x74
-	// Line 1335, Address: 0x215acc, Func Offset: 0x7c
-	// Line 1336, Address: 0x215ad0, Func Offset: 0x80
-	// Line 1337, Address: 0x215ad4, Func Offset: 0x84
-	// Line 1338, Address: 0x215ae0, Func Offset: 0x90
-	// Line 1339, Address: 0x215af8, Func Offset: 0xa8
-	// Line 1340, Address: 0x215b14, Func Offset: 0xc4
-	// Line 1341, Address: 0x215b28, Func Offset: 0xd8
-	// Line 1344, Address: 0x215b48, Func Offset: 0xf8
-	// Line 1345, Address: 0x215b70, Func Offset: 0x120
-	// Func End, Address: 0x215b90, Func Offset: 0x140
+// 100% matching!
+void bhEne30_CheckEnemies(BH_PWORK* epw) {
+    int i;
+    float dx;
+    float dz;
+    float len;
+    BH_PWORK* ep;
+
+    ep = ene;
+    for (i = 0; i < sys->ewk_n; i++, ep++) {
+        if ((ep->flg & 1) && (ep->flg & 8) && (ep->id == 0x1E) && (ep->flg & 0x80000)) {
+            dx = epw->px - ep->px;
+            dz = epw->pz - ep->pz;
+            
+
+            len = njSqrt((dx * dx) + (dz * dz));
+
+            if (len != 0.0f) {
+                if (len < (epw->car + ep->car)) {
+                    epw->px = ep->px + (dx * (epw->car + ep->car)) / len;
+                    epw->pz = ep->pz + (dz * (epw->car + ep->car)) / len;
+                }
+            }
+        }
+    }
 }
 
-// 
+
+/*// 
 // Start address: 0x215b90
 void bhEne30_DamageInit(BH_PWORK* epw)
 {

@@ -2624,19 +2624,23 @@ void bhEff30a(OR_WORK* orP)
 	scePrintf("bhEff30a - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24beb0
-void bhEff349(OR_WORK* orP)
+// 100% matching!
+void bhEff349(OR_WORK* orP) 
 {
-	//_anon74* r49P;
-	// Line 3100, Address: 0x24beb0, Func Offset: 0
-	// Line 3110, Address: 0x24bec0, Func Offset: 0x10
-	// Line 3111, Address: 0x24bed8, Func Offset: 0x28
-	// Line 3112, Address: 0x24bee4, Func Offset: 0x34
-	// Line 3113, Address: 0x24bee8, Func Offset: 0x38
-	// Line 3115, Address: 0x24bf20, Func Offset: 0x70
-	// Func End, Address: 0x24bf34, Func Offset: 0x84
-	scePrintf("bhEff349 - UNIMPLEMENTED!\n");
+    R49_WORK* r49P;
+    
+    r49P = (R49_WORK*)orP->free4;
+
+    if (r49P->fnc_prcP != NULL) 
+    {
+        r49P->fnc_prcP(&r49P->free);
+    }
+    
+    if (r49P->fnc_drwP != NULL) 
+    {
+        orP->func                   = (void*)r49P->fnc_drwP;
+        sys->ef_fnc[sys->ef_fncn++] = (O_WRK*)orP;
+    }
 }
 
 // 100% matching!

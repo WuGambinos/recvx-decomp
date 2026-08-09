@@ -350,6 +350,14 @@ typedef struct E02_WRK
     NJS_POINT3 vtx_pos[96]; // offset 0x4, size 0x480
 } E02_WRK;
 
+typedef struct R49_WORK
+{
+    // total size: 0x1008
+    void (*fnc_prcP)(void*);    // offset 0x0, size 0x4
+    void (*fnc_drwP)(OR_WORK*); // offset 0x4, size 0x4
+    int free[1024];             // offset 0x8, size 0x1000
+} R49_WORK;
+
 static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();

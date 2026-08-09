@@ -5,6 +5,7 @@
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
+#include "../../../ps2/veronica/prog/ps2_NaGraphics3D.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
@@ -2110,34 +2111,33 @@ void bhEff308(OR_WORK* orP)
 	scePrintf("bhEff308 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24b2a0
-void bhEff308Drw(OR_WORK* orP)
+// 100% matching!
+void bhEff308Drw(OR_WORK* orP) 
 {
-	int* timP;
-	NJS_POINT3COL* p3cP;
-	int i;
-	//_anon4* r08P;
-	// Line 2611, Address: 0x24b2a0, Func Offset: 0
-	// Line 2616, Address: 0x24b2c0, Func Offset: 0x20
-	// Line 2612, Address: 0x24b2c8, Func Offset: 0x28
-	// Line 2616, Address: 0x24b2cc, Func Offset: 0x2c
-	// Line 2620, Address: 0x24b2d4, Func Offset: 0x34
-	// Line 2621, Address: 0x24b2d8, Func Offset: 0x38
-	// Line 2624, Address: 0x24b2dc, Func Offset: 0x3c
-	// Line 2625, Address: 0x24b2ec, Func Offset: 0x4c
-	// Line 2626, Address: 0x24b2f8, Func Offset: 0x58
-	// Line 2627, Address: 0x24b300, Func Offset: 0x60
-	// Line 2629, Address: 0x24b308, Func Offset: 0x68
-	// Line 2628, Address: 0x24b30c, Func Offset: 0x6c
-	// Line 2629, Address: 0x24b310, Func Offset: 0x70
-	// Line 2630, Address: 0x24b314, Func Offset: 0x74
-	// Line 2631, Address: 0x24b324, Func Offset: 0x84
-	// Line 2630, Address: 0x24b328, Func Offset: 0x88
-	// Line 2632, Address: 0x24b330, Func Offset: 0x90
-	// Line 2635, Address: 0x24b348, Func Offset: 0xa8
-	// Func End, Address: 0x24b36c, Func Offset: 0xcc
-	scePrintf("bhEff308Drw - UNIMPLEMENTED!\n");
+    R08_WORK* r08P;      
+    int i;               
+    NJS_POINT3COL* p3cP; 
+    int* timP;          
+   
+    r08P = (R08_WORK*)orP->free4;
+    
+    njSetMatrix(NULL, cam.mtx);
+    
+    p3cP = &r08P->lne_p3c;
+    timP = r08P->TimBuf;
+    
+    for (i = 0; i < r08P->prm_a.vtx_num; i++, timP++)
+    {
+        if (*timP != 0) 
+        {
+            p3cP->p   = r08P->VtxBuf[i];
+            p3cP->col = (NJS_COLOR*)r08P->VtxCol[i];
+            p3cP->tex = NULL;
+            p3cP->num = 1;
+            
+            njDrawLine3D(p3cP, p3cP->num, 0x40);
+        }
+    }
 }
 
 // 100% matching!

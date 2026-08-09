@@ -325,6 +325,24 @@ typedef struct R0_WK
     char mtx_buf[64]; // offset 0x30, size 0x40
 } R0_WK; 
 
+typedef struct R08_WORK 
+{
+    // total size: 0x3E8
+    Eff308PRM_WORK prm_a;       // offset 0x0, size 0x24
+    PMB_WORK prm_b;             // offset 0x24, size 0x24
+    int mode;                   // offset 0x48, size 0x4
+    int drw_num;                // offset 0x4C, size 0x4
+    int TimBuf[16];             // offset 0x50, size 0x40
+    int ColAdd[16];             // offset 0x90, size 0x40
+    int ColSub[16];             // offset 0xD0, size 0x40
+    NJS_POINT3 VtxDir[16];      // offset 0x110, size 0xC0
+    NJS_POINT3 VtxBuf[16][2];   // offset 0x1D0, size 0x180
+    unsigned int VtxCol[16][2]; // offset 0x350, size 0x80
+    NJS_POINT3COL lne_p3c;      // offset 0x3D0, size 0x10
+    float wnd_spd;              // offset 0x3E0, size 0x4
+    float wnd_acl;              // offset 0x3E4, size 0x4
+} R08_WORK;
+
 static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();

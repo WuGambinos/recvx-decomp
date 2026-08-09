@@ -5,7 +5,9 @@
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaDraw.h"
+#include "../../../ps2/veronica/prog/ps2_NaFog.h"
 #include "../../../ps2/veronica/prog/ps2_NaGraphics3D.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaMem.h"
 #include "../../../ps2/veronica/prog/ps2_NaSystem.h"
@@ -1894,67 +1896,107 @@ void bhEff307(OR_WORK* orP)
 	scePrintf("bhEff307 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24a7e0
-void bhEff307Drw(OR_WORK* orP)
+// 100% matching!
+void bhEff307Drw(OR_WORK* orP) 
 {
-	int col;
-	float tu_r;
-	float tu_l;
-	float frm;
-	int idx;
-	int tgr;
-	int vtx;
-	//_anon51* r07P;
-	// Line 2312, Address: 0x24a7e0, Func Offset: 0
-	// Line 2316, Address: 0x24a80c, Func Offset: 0x2c
-	// Line 2313, Address: 0x24a810, Func Offset: 0x30
-	// Line 2319, Address: 0x24a814, Func Offset: 0x34
-	// Line 2320, Address: 0x24a81c, Func Offset: 0x3c
-	// Line 2321, Address: 0x24a828, Func Offset: 0x48
-	// Line 2322, Address: 0x24a834, Func Offset: 0x54
-	// Line 2324, Address: 0x24a83c, Func Offset: 0x5c
-	// Line 2325, Address: 0x24a848, Func Offset: 0x68
-	// Line 2326, Address: 0x24a850, Func Offset: 0x70
-	// Line 2332, Address: 0x24a858, Func Offset: 0x78
-	// Line 2334, Address: 0x24a85c, Func Offset: 0x7c
-	// Line 2330, Address: 0x24a86c, Func Offset: 0x8c
-	// Line 2334, Address: 0x24a870, Func Offset: 0x90
-	// Line 2335, Address: 0x24a878, Func Offset: 0x98
-	// Line 2337, Address: 0x24a894, Func Offset: 0xb4
-	// Line 2338, Address: 0x24a898, Func Offset: 0xb8
-	// Line 2337, Address: 0x24a8a4, Func Offset: 0xc4
-	// Line 2338, Address: 0x24a8a8, Func Offset: 0xc8
-	// Line 2339, Address: 0x24a8b8, Func Offset: 0xd8
-	// Line 2340, Address: 0x24a8c4, Func Offset: 0xe4
-	// Line 2343, Address: 0x24a8c8, Func Offset: 0xe8
-	// Line 2344, Address: 0x24a8d8, Func Offset: 0xf8
-	// Line 2346, Address: 0x24a8dc, Func Offset: 0xfc
-	// Line 2347, Address: 0x24a900, Func Offset: 0x120
-	// Line 2349, Address: 0x24a928, Func Offset: 0x148
-	// Line 2352, Address: 0x24a934, Func Offset: 0x154
-	// Line 2354, Address: 0x24a940, Func Offset: 0x160
-	// Line 2353, Address: 0x24a944, Func Offset: 0x164
-	// Line 2355, Address: 0x24a948, Func Offset: 0x168
-	// Line 2357, Address: 0x24a950, Func Offset: 0x170
-	// Line 2356, Address: 0x24a954, Func Offset: 0x174
-	// Line 2357, Address: 0x24a958, Func Offset: 0x178
-	// Line 2358, Address: 0x24a95c, Func Offset: 0x17c
-	// Line 2360, Address: 0x24a960, Func Offset: 0x180
-	// Line 2361, Address: 0x24a978, Func Offset: 0x198
-	// Line 2362, Address: 0x24a990, Func Offset: 0x1b0
-	// Line 2363, Address: 0x24a998, Func Offset: 0x1b8
-	// Line 2364, Address: 0x24a9a4, Func Offset: 0x1c4
-	// Line 2365, Address: 0x24a9ac, Func Offset: 0x1cc
-	// Line 2366, Address: 0x24a9b0, Func Offset: 0x1d0
-	// Line 2368, Address: 0x24a9c4, Func Offset: 0x1e4
-	// Line 2369, Address: 0x24a9cc, Func Offset: 0x1ec
-	// Line 2371, Address: 0x24a9dc, Func Offset: 0x1fc
-	// Line 2374, Address: 0x24a9f4, Func Offset: 0x214
-	// Line 2386, Address: 0x24a9fc, Func Offset: 0x21c
-	// Line 2388, Address: 0x24aa04, Func Offset: 0x224
-	// Func End, Address: 0x24aa34, Func Offset: 0x254
-	scePrintf("bhEff307Drw - UNIMPLEMENTED!\n");
+    R07_WORK* r07P; 
+    int vtx;       
+    int tgr;        
+    int idx;       
+    float frm;    
+    float tu_l, tu_r;     
+    int col;       
+     
+    r07P = (R07_WORK*)orP->free4;
+    
+    vtx = r07P->vtx_num;
+    
+    njTextureFilterMode(1);
+    
+    njColorBlendingMode(0, 8);
+    njColorBlendingMode(1, 10);
+    
+    njFogDisable();
+
+    if (r07P->eff_prm.texP != NULL) 
+    {
+        njSetTexture(r07P->eff_prm.texP);
+        njSetTextureNum(r07P->eff_prm.tex_id);
+    }
+
+    frm = 0;
+    
+    tgr = 0;
+    idx = 0;
+    
+    njOverhauserSpline((float*)&r07P->VtxBufS[0].x, (float*)&r07P->poly[0].x, NULL, 0);
+    njOverhauserSpline((float*)&r07P->VtxBufD[0].x, (float*)&r07P->poly[1].x, NULL, 0);
+
+    while (TRUE)
+    {
+        frm += r07P->eff_prm.frm_inc;
+        
+        if (frm > 1.0f) 
+        {
+            frm -= 1.0f;
+            
+            idx++;
+        }
+
+        if (idx > (vtx - 3))
+        {
+            break;
+        }
+
+        tgr ^= 2;
+
+        njOverhauserSpline((float*)&r07P->VtxBufS[idx].x, (float*)&r07P->poly[tgr].x,     NULL, frm);
+        njOverhauserSpline((float*)&r07P->VtxBufD[idx].x, (float*)&r07P->poly[tgr + 1].x, NULL, frm);
+
+        if (r07P->eff_prm.texP != NULL)
+        {
+            if ((tgr & 0x2)) 
+            {
+                tu_l = frm;
+                tu_r = frm - r07P->eff_prm.frm_inc;
+            } 
+            else 
+            {
+                tu_r = frm;
+                tu_l = frm - r07P->eff_prm.frm_inc;
+            }
+
+            col = ryLinerColor(r07P->VtxCol[idx], r07P->VtxCol[idx + 1], tu_r);
+            
+            r07P->poly[0].col = r07P->poly[1].col = col;
+
+            col = ryLinerColor(r07P->VtxCol[idx], r07P->VtxCol[idx + 1], tu_l);
+            
+            r07P->poly[2].col = r07P->poly[3].col = col;
+
+            r07P->poly[0].u = tu_l;
+            r07P->poly[0].v = 0;
+            
+            r07P->poly[1].u = tu_l;
+            r07P->poly[1].v = 1.0f;
+
+            r07P->poly[2].u = tu_r;
+            r07P->poly[2].v = 0;
+            
+            r07P->poly[3].u = tu_r;
+            r07P->poly[3].v = 1.0f;
+
+            njDrawTexture3DEx(r07P->poly, 4, 1);
+        } 
+        else
+        {
+            col = ryLinerColor(r07P->VtxCol[idx], r07P->VtxCol[idx + 1], frm);
+            
+            npDrawPlane((NJS_POINT3*)&r07P->poly[0].x, (NJS_POINT3*)&r07P->poly[1].x, (NJS_POINT3*)&r07P->poly[3].x, (NJS_POINT3*)&r07P->poly[2].x, col);
+        }
+    }
+    
+    njFogEnable();
 }
 
 // 100% matching!

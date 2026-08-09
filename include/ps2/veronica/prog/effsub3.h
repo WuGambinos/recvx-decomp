@@ -358,6 +358,39 @@ typedef struct R49_WORK
     int free[1024];             // offset 0x8, size 0x1000
 } R49_WORK;
 
+typedef struct EFFPRM_WORK 
+{
+    // total size: 0x30
+    NJS_MATRIX* mtxP;  // offset 0x0, size 0x4
+    NJS_POINT3 src;    // offset 0x4, size 0xC
+    NJS_POINT3 dst;    // offset 0x10, size 0xC
+    float frm_inc;     // offset 0x1C, size 0x4
+    int col;           // offset 0x20, size 0x4
+    int tim;           // offset 0x24, size 0x4
+    NJS_TEXLIST* texP; // offset 0x28, size 0x4
+    int tex_id;        // offset 0x2C, size 0x4
+} EFFPRM_WORK;
+
+typedef struct R07_WORK
+{
+    // total size: 0x40C
+    EFFPRM_WORK eff_prm;     // offset 0x0, size 0x30
+    int mode0;               // offset 0x30, size 0x4
+    int entry;               // offset 0x34, size 0x4
+    int vtx_top;             // offset 0x38, size 0x4
+    int vtx_num;             // offset 0x3C, size 0x4
+    float spl_frm;           // offset 0x40, size 0x4
+    float tex_frm;           // offset 0x44, size 0x4
+    int VtxAlp[18];          // offset 0x48, size 0x48
+    int VtxCol[18];          // offset 0x90, size 0x48
+    NJS_POINT3 VtxDir[18];   // offset 0xD8, size 0xD8
+    NJS_POINT3 VtxBufS[18];  // offset 0x1B0, size 0xD8
+    NJS_POINT3 VtxBufD[18];  // offset 0x288, size 0xD8
+    NJS_TEXTURE_VTX poly[4]; // offset 0x360, size 0x60
+    float wnd_acl;           // offset 0x3C0, size 0x4
+    float WndSpd[18];        // offset 0x3C4, size 0x48
+} R07_WORK;
+
 static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();

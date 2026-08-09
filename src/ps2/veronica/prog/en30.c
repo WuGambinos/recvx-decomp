@@ -2210,33 +2210,25 @@ void bhEne30_CollisionLine(BH_PWORK* epw) {
     }
 }
 
-/*// 
-// Start address: 0x215da0
-void bhEne30_SetFluidEffect(_anon3* pos, _anon3* vec, int type, float size)
-{
-	int eno;
-	// Line 1470, Address: 0x215da0, Func Offset: 0
-	// Line 1473, Address: 0x215dac, Func Offset: 0xc
-	// Line 1474, Address: 0x215dbc, Func Offset: 0x1c
-	// Line 1473, Address: 0x215dc0, Func Offset: 0x20
-	// Line 1474, Address: 0x215dcc, Func Offset: 0x2c
-	// Line 1484, Address: 0x215dd4, Func Offset: 0x34
-	// Line 1474, Address: 0x215ddc, Func Offset: 0x3c
-	// Line 1475, Address: 0x215de8, Func Offset: 0x48
-	// Line 1476, Address: 0x215dfc, Func Offset: 0x5c
-	// Line 1484, Address: 0x215e08, Func Offset: 0x68
-	// Line 1476, Address: 0x215e0c, Func Offset: 0x6c
-	// Line 1477, Address: 0x215e18, Func Offset: 0x78
-	// Line 1478, Address: 0x215e30, Func Offset: 0x90
-	// Line 1479, Address: 0x215e48, Func Offset: 0xa8
-	// Line 1480, Address: 0x215e5c, Func Offset: 0xbc
-	// Line 1481, Address: 0x215e70, Func Offset: 0xd0
-	// Line 1484, Address: 0x215e84, Func Offset: 0xe4
-	// Line 1485, Address: 0x215e9c, Func Offset: 0xfc
-	// Line 1486, Address: 0x215ea8, Func Offset: 0x108
-	// Line 1487, Address: 0x215ed0, Func Offset: 0x130
-	// Line 1488, Address: 0x215ee4, Func Offset: 0x144
-	// Line 1490, Address: 0x215ef8, Func Offset: 0x158
-	// Func End, Address: 0x215f08, Func Offset: 0x168
-}*/
+// 100% matching!
+void bhEne30_SetFluidEffect(NJS_POINT3* pos, NJS_POINT3* vec, int type, float size) {
+    int eno;
+
+    sys->ef.id = 0x10B;
+    sys->ef.flg = 1;
+    sys->ef.type = type;
+    sys->ef.px = pos->x;
+    sys->ef.py = pos->y;
+    sys->ef.pz = pos->z;
+    sys->ef.sx = size;
+    sys->ef.sy = size;
+    sys->ef.sz = size;
+    eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    
+    if (eno != -1) {
+        eff[eno].xn = vec->x;
+        eff[eno].yn = vec->y;
+        eff[eno].zn = vec->z;
+    }
+}
 

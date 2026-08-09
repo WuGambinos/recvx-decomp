@@ -343,6 +343,13 @@ typedef struct R08_WORK
     float wnd_acl;              // offset 0x3E4, size 0x4
 } R08_WORK;
 
+typedef struct E02_WRK 
+{
+    // total size: 0x484
+    unsigned int flg;       // offset 0x0, size 0x4
+    NJS_POINT3 vtx_pos[96]; // offset 0x4, size 0x480
+} E02_WRK;
+
 static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();

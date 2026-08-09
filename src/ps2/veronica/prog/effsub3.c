@@ -830,75 +830,101 @@ O_WRK* bhSetEffParticle(BH_PWORK* ewP, int lnk_no, NJS_POINT3* offP, NJS_POINT3*
 	scePrintf("bhSetEffParticle - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x248310
+// 100% matching!
 O_WRK* bhSetEffParticleMk2(BH_PWORK* ewP, int lnk_no, NJS_POINT3* offP, NJS_POINT3* dirP, unsigned int src_col, unsigned int dst_col, int typ_no)
 {
-	unsigned int tmp;
-	//_anon3* e02bP;
-	E02_WORK* e02aP;
-	int set_no;
-	O_WRK* oP;
-	PD_WORK* pdP;
-	PT_WORK* ptP;
-	// Line 1054, Address: 0x248310, Func Offset: 0
-	// Line 1059, Address: 0x24832c, Func Offset: 0x1c
-	// Line 1054, Address: 0x248330, Func Offset: 0x20
-	// Line 1059, Address: 0x24833c, Func Offset: 0x2c
-	// Line 1054, Address: 0x248348, Func Offset: 0x38
-	// Line 1060, Address: 0x24834c, Func Offset: 0x3c
-	// Line 1065, Address: 0x248350, Func Offset: 0x40
-	// Line 1067, Address: 0x248368, Func Offset: 0x58
-	// Line 1071, Address: 0x24838c, Func Offset: 0x7c
-	// Line 1072, Address: 0x248394, Func Offset: 0x84
-	// Line 1073, Address: 0x24839c, Func Offset: 0x8c
-	// Line 1076, Address: 0x2483a4, Func Offset: 0x94
-	// Line 1077, Address: 0x2483c0, Func Offset: 0xb0
-	// Line 1078, Address: 0x2483cc, Func Offset: 0xbc
-	// Line 1079, Address: 0x2483d8, Func Offset: 0xc8
-	// Line 1081, Address: 0x2483e4, Func Offset: 0xd4
-	// Line 1085, Address: 0x2483f0, Func Offset: 0xe0
-	// Line 1086, Address: 0x2483f4, Func Offset: 0xe4
-	// Line 1087, Address: 0x2483f8, Func Offset: 0xe8
-	// Line 1089, Address: 0x248404, Func Offset: 0xf4
-	// Line 1087, Address: 0x248408, Func Offset: 0xf8
-	// Line 1090, Address: 0x248414, Func Offset: 0x104
-	// Line 1103, Address: 0x248418, Func Offset: 0x108
-	// Line 1099, Address: 0x24841c, Func Offset: 0x10c
-	// Line 1087, Address: 0x248424, Func Offset: 0x114
-	// Line 1088, Address: 0x248428, Func Offset: 0x118
-	// Line 1089, Address: 0x248430, Func Offset: 0x120
-	// Line 1090, Address: 0x248434, Func Offset: 0x124
-	// Line 1091, Address: 0x248448, Func Offset: 0x138
-	// Line 1097, Address: 0x248460, Func Offset: 0x150
-	// Line 1098, Address: 0x248468, Func Offset: 0x158
-	// Line 1099, Address: 0x248474, Func Offset: 0x164
-	// Line 1101, Address: 0x24847c, Func Offset: 0x16c
-	// Line 1103, Address: 0x248480, Func Offset: 0x170
-	// Line 1101, Address: 0x248484, Func Offset: 0x174
-	// Line 1102, Address: 0x248488, Func Offset: 0x178
-	// Line 1103, Address: 0x248494, Func Offset: 0x184
-	// Line 1110, Address: 0x2484a4, Func Offset: 0x194
-	// Line 1111, Address: 0x2484ac, Func Offset: 0x19c
-	// Line 1112, Address: 0x2484b4, Func Offset: 0x1a4
-	// Line 1119, Address: 0x2484b8, Func Offset: 0x1a8
-	// Line 1120, Address: 0x2484dc, Func Offset: 0x1cc
-	// Line 1121, Address: 0x2484e4, Func Offset: 0x1d4
-	// Line 1122, Address: 0x2484ec, Func Offset: 0x1dc
-	// Line 1123, Address: 0x2484f4, Func Offset: 0x1e4
-	// Line 1124, Address: 0x2484f8, Func Offset: 0x1e8
-	// Line 1126, Address: 0x2484fc, Func Offset: 0x1ec
-	// Line 1127, Address: 0x248514, Func Offset: 0x204
-	// Line 1131, Address: 0x248518, Func Offset: 0x208
-	// Line 1137, Address: 0x248520, Func Offset: 0x210
-	// Line 1138, Address: 0x24852c, Func Offset: 0x21c
-	// Line 1137, Address: 0x248530, Func Offset: 0x220
-	// Line 1138, Address: 0x248538, Func Offset: 0x228
-	// Line 1139, Address: 0x248540, Func Offset: 0x230
-	// Line 1143, Address: 0x248550, Func Offset: 0x240
-	// Line 1145, Address: 0x248554, Func Offset: 0x244
-	// Func End, Address: 0x248584, Func Offset: 0x274
-	scePrintf("bhSetEffParticleMk2 - UNIMPLEMENTED!\n");
+    PT_WORK* ptP;    
+    PD_WORK* pdP;  
+    O_WRK* oP;        
+    E02_WORK* e02aP; 
+    int set_no; // different position than DWARF     
+    E02_WRK* e02bP;   
+    unsigned int tmp; 
+    
+	ptP = (PT_WORK*)&PtclTbl[typ_no];
+    pdP = ptP->pdP;
+    
+    owk_scn_noG = 0;
+
+    for (set_no = ptP->set_num; set_no > 0; set_no--, pdP++) 
+    {
+        oP = AllocOwork();
+        
+        e02aP = (E02_WORK*)AllocOwork();
+        e02bP = (E02_WRK*)AllocOwork();
+
+        if ((oP == NULL) || (e02aP == NULL) || (e02bP == NULL)) 
+        {
+            if (oP != NULL) 
+            {
+                oP->flg = 0;
+            }
+            
+            if (e02aP != NULL) 
+            {
+                e02aP->flg = 0;
+            }
+            
+            if (e02bP != NULL) 
+            {
+                e02bP->flg = 0;
+            }
+            
+            return NULL;
+        }
+
+        oP->exp0 = (unsigned char*)e02aP;
+        oP->exp1 = (unsigned char*)e02bP;
+        
+        oP->func = (void*)FuncTbl[pdP->drw_typ];
+        
+        oP->type = pdP->mov_no;
+        
+        oP->id = 302;
+        
+        oP->txp[0] = &sys->ef_tlist;
+        
+        oP->tex_id = sys->ef_tn[4];
+        
+        oP->mtn_attr = (((src_col   & 0xFF00FF) * (pdP->col_lv + 1)) >> 8) & 0xFF00FF;
+        oP->mtn_attr |= ((((src_col & 0xFF00)   * (pdP->col_lv + 1)) >> 8) & 0xFF00) | 0xFF000000;
+        
+        oP->mtn_no = dst_col; 
+
+        if (ewP != NULL)
+        {
+            oP->flg = 0x81;
+            
+            oP->lkwkp = (unsigned char*)ewP;
+            oP->lkono = lnk_no;
+            
+            if (offP != NULL) 
+            {
+                *(NJS_POINT3*)&oP->lox = *offP;
+            }
+            else 
+            {
+                oP->lox = oP->loy = oP->loz = 0;
+            }
+        }
+        else 
+        {
+            oP->flg = 1;
+            
+            oP->lkwkp = NULL;
+            oP->lkono = lnk_no;
+            
+            *(NJS_POINT3*)&oP->px = *offP;
+        }
+
+        oP->mtx = (NJS_MATRIX*)oP->mtxbuf;
+        
+        *(NJS_POINT3*)&oP->xn = *dirP;
+        
+        njUnitVector((NJS_VECTOR*)&oP->xn);
+    }
+
+    return oP;
 }
 
 // 
@@ -1187,7 +1213,7 @@ static void bhEff_PtclLineDraw(O_WRK* oP)
         for (i = 0; i < 16; i++) 
         {
             spd = *spdP;
-			
+
             scl = spd * e02aP->scale;
              
             pntP = (float*)e02aP->lne_pnt;

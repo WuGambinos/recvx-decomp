@@ -1,5 +1,7 @@
 #include "../../../ps2/veronica/prog/en30.h"
 #include "../../../ps2/veronica/prog/subpl.h"
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
 
 // ENEMY: Alexia's Baby 
 
@@ -1723,85 +1725,85 @@ void bhEne30_MV04(BH_PWORK* epw)
 	// Line 816, Address: 0x2148e8, Func Offset: 0xa8
 	// Line 818, Address: 0x2148f4, Func Offset: 0xb4
 	// Func End, Address: 0x214904, Func Offset: 0xc4
-}
+}*/
 
-// 
-// Start address: 0x214910
-void bhEne30_MV05(BH_PWORK* epw)
-{
-	_anon18* owk;
+// 100% matching!
+void bhEne30_MV05(BH_PWORK* epw) {
+	int mtn[3] = {8, 7, 8};
+	NJS_POINT3 pos;
 	int i;
-	_anon3 pos;
-	int mtn[3];
-	// Line 828, Address: 0x214910, Func Offset: 0
-	// Line 829, Address: 0x21491c, Func Offset: 0xc
-	// Line 828, Address: 0x214920, Func Offset: 0x10
-	// Line 829, Address: 0x214928, Func Offset: 0x18
-	// Line 838, Address: 0x214944, Func Offset: 0x34
-	// Line 840, Address: 0x214964, Func Offset: 0x54
-	// Line 843, Address: 0x214968, Func Offset: 0x58
-	// Line 840, Address: 0x214970, Func Offset: 0x60
-	// Line 843, Address: 0x21497c, Func Offset: 0x6c
-	// Line 844, Address: 0x214994, Func Offset: 0x84
-	// Line 845, Address: 0x2149d0, Func Offset: 0xc0
-	// Line 846, Address: 0x2149f4, Func Offset: 0xe4
-	// Line 847, Address: 0x214a30, Func Offset: 0x120
-	// Line 848, Address: 0x214a38, Func Offset: 0x128
-	// Line 850, Address: 0x214a3c, Func Offset: 0x12c
-	// Line 852, Address: 0x214a40, Func Offset: 0x130
-	// Line 853, Address: 0x214a44, Func Offset: 0x134
-	// Line 855, Address: 0x214a48, Func Offset: 0x138
-	// Line 850, Address: 0x214a4c, Func Offset: 0x13c
-	// Line 859, Address: 0x214a58, Func Offset: 0x148
-	// Line 850, Address: 0x214a60, Func Offset: 0x150
-	// Line 851, Address: 0x214a64, Func Offset: 0x154
-	// Line 852, Address: 0x214a68, Func Offset: 0x158
-	// Line 853, Address: 0x214a6c, Func Offset: 0x15c
-	// Line 854, Address: 0x214a70, Func Offset: 0x160
-	// Line 859, Address: 0x214a74, Func Offset: 0x164
-	// Line 854, Address: 0x214a7c, Func Offset: 0x16c
-	// Line 855, Address: 0x214a9c, Func Offset: 0x18c
-	// Line 856, Address: 0x214aa0, Func Offset: 0x190
-	// Line 859, Address: 0x214aa8, Func Offset: 0x198
-	// Line 860, Address: 0x214ab0, Func Offset: 0x1a0
-	// Line 862, Address: 0x214ab8, Func Offset: 0x1a8
-	// Line 864, Address: 0x214ac8, Func Offset: 0x1b8
-	// Line 865, Address: 0x214ad0, Func Offset: 0x1c0
-	// Line 871, Address: 0x214ad4, Func Offset: 0x1c4
-	// Line 875, Address: 0x214b08, Func Offset: 0x1f8
-	// Line 876, Address: 0x214b10, Func Offset: 0x200
-	// Line 880, Address: 0x214b14, Func Offset: 0x204
-	// Line 876, Address: 0x214b28, Func Offset: 0x218
-	// Line 877, Address: 0x214b30, Func Offset: 0x220
-	// Line 878, Address: 0x214b38, Func Offset: 0x228
-	// Line 879, Address: 0x214b40, Func Offset: 0x230
-	// Line 880, Address: 0x214b44, Func Offset: 0x234
-	// Line 882, Address: 0x214b54, Func Offset: 0x244
-	// Line 885, Address: 0x214b68, Func Offset: 0x258
-	// Line 886, Address: 0x214b7c, Func Offset: 0x26c
-	// Line 885, Address: 0x214b80, Func Offset: 0x270
-	// Line 886, Address: 0x214b88, Func Offset: 0x278
-	// Line 887, Address: 0x214b90, Func Offset: 0x280
-	// Line 886, Address: 0x214b94, Func Offset: 0x284
-	// Line 887, Address: 0x214b9c, Func Offset: 0x28c
-	// Line 888, Address: 0x214ba4, Func Offset: 0x294
-	// Line 887, Address: 0x214ba8, Func Offset: 0x298
-	// Line 888, Address: 0x214bb0, Func Offset: 0x2a0
-	// Line 890, Address: 0x214bc8, Func Offset: 0x2b8
-	// Line 893, Address: 0x214bdc, Func Offset: 0x2cc
-	// Line 894, Address: 0x214bec, Func Offset: 0x2dc
-	// Line 895, Address: 0x214bf8, Func Offset: 0x2e8
-	// Line 896, Address: 0x214c04, Func Offset: 0x2f4
-	// Line 897, Address: 0x214c30, Func Offset: 0x320
-	// Line 898, Address: 0x214c38, Func Offset: 0x328
-	// Line 899, Address: 0x214c40, Func Offset: 0x330
-	// Line 909, Address: 0x214c50, Func Offset: 0x340
-	// Line 911, Address: 0x214c58, Func Offset: 0x348
-	// Line 913, Address: 0x214c68, Func Offset: 0x358
-	// Func End, Address: 0x214c80, Func Offset: 0x370
+    O_WORK* owk;
+    float temp_f1;
+
+    switch (epw->mode3) {                           
+    case 0:
+        epw->flg |=  0x80000;
+        
+        temp_f1 = ((float*)epw->exp0)[61];
+        
+        if (temp_f1 < 30.0f) {
+            epw->ct1 = (int)(3.0f * ((float) -rand() / -2.1474836e9f));
+        } else if (temp_f1 < 70.0f) {
+            epw->ct1 = (int)(2.0f * ((float) -rand() / -2.1474836e9f));
+        } else {
+            epw->ct1 = 0;
+        }
+        
+        epw->mtn_no = mtn[epw->ct1];
+        epw->frm_no = 0;
+        epw->hokan_count = 8;
+        epw->hokan_rate = 0x6666;
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num  - 2;
+        epw->ct1  = 1;
+        epw->mode3 += 1;
+        bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x1230C);
+        break;
+        
+    case 1:
+        if (epw->ct0-- == 0) {
+            epw->mode2 = 3;
+            epw->mode3  = 0U;
+        }
+        break;
+    }
+    
+    if ((epw->ct1 != 0) && !(plp->flg & 4) && !(plp->stflg & 0x30)) {
+            for(i = 8; i <= 15; i++) {
+                
+            owk = &epw->mlwP->owP[i];
+            pos.x = owk->mtx[12];
+            pos.y = owk->mtx[13];
+            pos.z = owk->mtx[14];
+            
+            if (bhEne_AttackHitCheck(plp, &pos, 3.0f)) {
+                bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x1230D);
+                plp->flg |= 0x10004;
+                plp->stflg |= 0x10000;
+                plp->hp -= 5;
+                
+                if (plp->hp < 0) {
+                    plp->hp = 0;
+                }
+                
+                bhEne_SetBloodEffect5(plp, 0xA, 1);
+                plp->mode0 = 2;
+                plp->mode2 = 0;
+                plp->mode3 = 0;
+                
+                if (abs((short)(epw->ay - plp->ay)) > 0x4000) {
+                    plp->mode1 = 0;
+                } else {
+                    plp->mode1 = 1;
+                }
+                
+                epw->ct1 = 0;
+                return;
+            }
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x214c80
 void bhEne30_MV06(BH_PWORK* epw)
 {

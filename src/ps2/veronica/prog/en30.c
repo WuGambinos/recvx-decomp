@@ -2119,37 +2119,30 @@ void bhEne30_DD00(BH_PWORK* epw)
 	// Line 1281, Address: 0x215970, Func Offset: 0x290
 	// Line 1284, Address: 0x215974, Func Offset: 0x294
 	// Func End, Address: 0x215984, Func Offset: 0x2a4
+}*/
+
+// 100% matching!
+void bhEne30_DD01(BH_PWORK* epw) {
+    switch (epw->mode3) {                         
+    case 0:
+        epw->flg |= 0x8002;
+        epw->flg &= ~0x28;
+        epw->flg &= 0xFFEFFFFF;
+        bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x1230E);
+        epw->stflg |= 8; 
+        epw->mdflg |= 1;
+        epw->ct0 = 0x3C;
+        epw->mode3 += 1;
+        
+    case 1:
+        if (epw->ct0-- == 0) {
+            epw->mode0 = 0;
+        }
+        return;
+    }
 }
 
-// 
-// Start address: 0x215990
-void bhEne30_DD01(BH_PWORK* epw)
-{
-	// Line 1294, Address: 0x215990, Func Offset: 0
-	// Line 1295, Address: 0x21599c, Func Offset: 0xc
-	// Line 1297, Address: 0x2159bc, Func Offset: 0x2c
-	// Line 1299, Address: 0x2159c0, Func Offset: 0x30
-	// Line 1298, Address: 0x2159c8, Func Offset: 0x38
-	// Line 1302, Address: 0x2159cc, Func Offset: 0x3c
-	// Line 1297, Address: 0x2159d0, Func Offset: 0x40
-	// Line 1298, Address: 0x2159d8, Func Offset: 0x48
-	// Line 1302, Address: 0x2159dc, Func Offset: 0x4c
-	// Line 1298, Address: 0x2159e4, Func Offset: 0x54
-	// Line 1299, Address: 0x2159ec, Func Offset: 0x5c
-	// Line 1302, Address: 0x2159f4, Func Offset: 0x64
-	// Line 1305, Address: 0x2159fc, Func Offset: 0x6c
-	// Line 1308, Address: 0x215a00, Func Offset: 0x70
-	// Line 1305, Address: 0x215a04, Func Offset: 0x74
-	// Line 1307, Address: 0x215a0c, Func Offset: 0x7c
-	// Line 1308, Address: 0x215a18, Func Offset: 0x88
-	// Line 1309, Address: 0x215a1c, Func Offset: 0x8c
-	// Line 1311, Address: 0x215a28, Func Offset: 0x98
-	// Line 1313, Address: 0x215a38, Func Offset: 0xa8
-	// Line 1316, Address: 0x215a3c, Func Offset: 0xac
-	// Func End, Address: 0x215a4c, Func Offset: 0xbc
-}
-
-// 
+/*// 
 // Start address: 0x215a50
 void bhEne30_CheckEnemies(BH_PWORK* epw)
 {

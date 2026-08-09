@@ -1142,77 +1142,79 @@ static void bhEff_PtclSpriteDrawB(O_WRK* oP)
     njSetSystemAttr((NJS_SYS_ATTR*)&e02aP->atr_bak);
 }
 
-// 
-// Start address: 0x248ef0
+// 100% matching!
 static void bhEff_PtclLineDraw(O_WRK* oP)
 {
-	float* pntP;
-	float scl;
-	float spd;
-	NJS_POINT3 vct;
-	NJS_POINT3* grvP;
-	NJS_POINT3* p3P;
-	NJS_POINT3* dirP;
-	float* spdP;
-	int i;
-	int col;
-	int* colP;
-	NJS_POINT3COL* p3cP;
-	int stg_no;
-	int stg_num;
-	E02_WORK* e02aP;
-	// Line 1491, Address: 0x248ef0, Func Offset: 0
-	// Line 1492, Address: 0x248f20, Func Offset: 0x30
-	// Line 1494, Address: 0x248f24, Func Offset: 0x34
-	// Line 1497, Address: 0x248f34, Func Offset: 0x44
-	// Line 1501, Address: 0x248f38, Func Offset: 0x48
-	// Line 1497, Address: 0x248f3c, Func Offset: 0x4c
-	// Line 1498, Address: 0x248f40, Func Offset: 0x50
-	// Line 1502, Address: 0x248f48, Func Offset: 0x58
-	// Line 1501, Address: 0x248f4c, Func Offset: 0x5c
-	// Line 1502, Address: 0x248f50, Func Offset: 0x60
-	// Line 1504, Address: 0x248f54, Func Offset: 0x64
-	// Line 1503, Address: 0x248f58, Func Offset: 0x68
-	// Line 1504, Address: 0x248f5c, Func Offset: 0x6c
-	// Line 1506, Address: 0x248f60, Func Offset: 0x70
-	// Line 1522, Address: 0x248f90, Func Offset: 0xa0
-	// Line 1510, Address: 0x248f94, Func Offset: 0xa4
-	// Line 1520, Address: 0x248f98, Func Offset: 0xa8
-	// Line 1524, Address: 0x248f9c, Func Offset: 0xac
-	// Line 1522, Address: 0x248fa0, Func Offset: 0xb0
-	// Line 1512, Address: 0x248fa4, Func Offset: 0xb4
-	// Line 1513, Address: 0x248fb0, Func Offset: 0xc0
-	// Line 1519, Address: 0x248fb4, Func Offset: 0xc4
-	// Line 1521, Address: 0x248fb8, Func Offset: 0xc8
-	// Line 1526, Address: 0x248fc0, Func Offset: 0xd0
-	// Line 1527, Address: 0x248fc4, Func Offset: 0xd4
-	// Line 1530, Address: 0x248fc8, Func Offset: 0xd8
-	// Line 1527, Address: 0x248fcc, Func Offset: 0xdc
-	// Line 1532, Address: 0x248fd4, Func Offset: 0xe4
-	// Line 1527, Address: 0x248fd8, Func Offset: 0xe8
-	// Line 1530, Address: 0x248fdc, Func Offset: 0xec
-	// Line 1531, Address: 0x248fe4, Func Offset: 0xf4
-	// Line 1527, Address: 0x248fe8, Func Offset: 0xf8
-	// Line 1528, Address: 0x248fec, Func Offset: 0xfc
-	// Line 1530, Address: 0x248ff0, Func Offset: 0x100
-	// Line 1532, Address: 0x248ff8, Func Offset: 0x108
-	// Line 1530, Address: 0x248ffc, Func Offset: 0x10c
-	// Line 1531, Address: 0x249000, Func Offset: 0x110
-	// Line 1532, Address: 0x249024, Func Offset: 0x134
-	// Line 1534, Address: 0x24902c, Func Offset: 0x13c
-	// Line 1535, Address: 0x249034, Func Offset: 0x144
-	// Line 1538, Address: 0x249038, Func Offset: 0x148
-	// Line 1534, Address: 0x24903c, Func Offset: 0x14c
-	// Line 1535, Address: 0x249048, Func Offset: 0x158
-	// Line 1536, Address: 0x249054, Func Offset: 0x164
-	// Line 1535, Address: 0x249058, Func Offset: 0x168
-	// Line 1536, Address: 0x249060, Func Offset: 0x170
-	// Line 1538, Address: 0x249074, Func Offset: 0x184
-	// Line 1539, Address: 0x249080, Func Offset: 0x190
-	// Line 1542, Address: 0x2490a4, Func Offset: 0x1b4
-	// Line 1547, Address: 0x2490c8, Func Offset: 0x1d8
-	// Func End, Address: 0x2490fc, Func Offset: 0x20c
-	scePrintf("bhEff_PtclLineDraw - UNIMPLEMENTED!\n");
+    E02_WORK* e02aP;     
+    int stg_num, stg_no;       
+    NJS_POINT3COL* p3cP; 
+    int* colP;          
+    int col;             
+    int i;              
+    float* spdP;        
+    NJS_POINT3* dirP, *p3P, *grvP;    
+    NJS_POINT3 vct;      
+    float spd, scl;         
+    float* pntP;        
+    
+    e02aP = (E02_WORK*)oP->exp0;
+    
+    njSetMatrix(NULL, cam.mtx);
+
+    stg_num = e02aP->stg_num;
+    stg_no  = e02aP->stg_stt;
+
+    p3cP = &e02aP->lne_p3c;
+
+    e02aP->lne_p3c.p   = e02aP->lne_pnt;
+    e02aP->lne_p3c.col = e02aP->lne_col;
+    e02aP->lne_p3c.tex = NULL;
+    e02aP->lne_p3c.num = 1;
+
+    for (; stg_num > 0; stg_no++, stg_num--) 
+    {
+        col = e02aP->stg_col[stg_no];
+        
+        dirP = &e02aP->vtx_dir[15];
+        grvP = &e02aP->stg_grv[stg_no];
+
+        e02aP->lne_col[0].color = col & 0xFFFFFF;
+        e02aP->lne_col[1].color = col;
+
+        spdP = e02aP->stg_spd[stg_no];
+        p3P  = e02aP->stg_buf[stg_no];
+
+        for (i = 0; i < 16; i++) 
+        {
+            spd = *spdP;
+			
+            scl = spd * e02aP->scale;
+             
+            pntP = (float*)e02aP->lne_pnt;
+            
+            scl = scl * 100.0f;
+            
+            *pntP++ = p3P->x;
+            *pntP++ = p3P->y;
+            *pntP++ = p3P->z;
+
+            vct.x = dirP->x * spd;
+            vct.y = dirP->y * spd;
+            vct.z = dirP->z * spd;
+
+            njAddVector(&vct, grvP);
+
+            *pntP++ = p3P->x + (vct.x * scl);
+            *pntP++ = p3P->y + (vct.y * scl);
+            *pntP++ = p3P->z + (vct.z * scl);
+
+            njDrawLine3D(p3cP, p3cP->num, 0x40);
+
+            p3P++;
+            spdP++;
+            dirP--;
+        }
+    } 
 }
 
 // 

@@ -3,6 +3,9 @@
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
 #include "../../../ps2/veronica/prog/hitchkl.h"
+#include "../../../ps2/veronica/prog/Motion.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/en03.h"
 
 // ENEMY: Alexia's Baby 
 
@@ -1269,37 +1272,40 @@ void(*bhEne30_DeadMode2[2])(BH_PWORK*) = {
     bhEne30_DD01,
 };
 
-// 
-// Start address: 0x213630
-void bhEne30(BH_PWORK* epw)
-{
-	float wy;
-	// Line 205, Address: 0x213630, Func Offset: 0
-	// Line 207, Address: 0x213644, Func Offset: 0x14
-	// Line 210, Address: 0x213664, Func Offset: 0x34
-	// Line 211, Address: 0x21367c, Func Offset: 0x4c
-	// Line 214, Address: 0x213688, Func Offset: 0x58
-	// Line 216, Address: 0x21369c, Func Offset: 0x6c
-	// Line 217, Address: 0x2136b0, Func Offset: 0x80
-	// Line 218, Address: 0x2136b8, Func Offset: 0x88
-	// Line 222, Address: 0x2136c0, Func Offset: 0x90
-	// Line 223, Address: 0x2136d4, Func Offset: 0xa4
-	// Line 227, Address: 0x2136dc, Func Offset: 0xac
-	// Line 230, Address: 0x2136ec, Func Offset: 0xbc
-	// Line 232, Address: 0x2136f4, Func Offset: 0xc4
-	// Line 233, Address: 0x2136f8, Func Offset: 0xc8
-	// Line 234, Address: 0x2136fc, Func Offset: 0xcc
-	// Line 233, Address: 0x213700, Func Offset: 0xd0
-	// Line 234, Address: 0x213704, Func Offset: 0xd4
-	// Line 235, Address: 0x21370c, Func Offset: 0xdc
-	// Line 236, Address: 0x213714, Func Offset: 0xe4
-	// Line 235, Address: 0x213718, Func Offset: 0xe8
-	// Line 236, Address: 0x213720, Func Offset: 0xf0
-	// Line 249, Address: 0x213734, Func Offset: 0x104
-	// Line 252, Address: 0x213740, Func Offset: 0x110
-	// Line 253, Address: 0x213758, Func Offset: 0x128
-	// Func End, Address: 0x21376c, Func Offset: 0x13c
-	scePrintf("bhEne30 - UNIMPLEMENTED!\n");
+// 100% matching!
+void bhEne30(BH_PWORK* epw) {
+    float wy;
+
+    bhEne30_Mode0[epw->mode0](epw);
+
+    if (((BH_PWORK*)epw->lkwkp)->stflg & 0x01000000) {
+        epw->stflg |= 0x01000000;
+    }
+    
+    bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+    
+    if (!(epw->flg & 0x80000)) {
+        bhCheckPlayer(epw);
+        bhCheckEnemies(epw);
+    }
+    
+    if (!(epw->flg & 0x80000)) {
+        bhEne30_CheckEnemies(epw);
+    }
+    
+    if (epw->flg & 0x10) {
+        bhEne30_CollisionLine(epw);
+        wy = epw->py;
+        epw->py = wy + epw->ar;
+        bhEne03_Collision(epw);
+        epw->py -= epw->ar;
+        if (!(epw->flg & 0x200000)) {
+            epw->py = wy;
+        }
+    }
+    
+    bhCalcModel(epw);
+    bhEne_SetWeponAtr(epw, 0, 3, 3.0f);
 }
 
 /*// 

@@ -1269,13 +1269,12 @@ static void bhEff_PtclLineDraw(O_WRK* oP)
     } 
 }
 
-// 
-// Start address: 0x249100
+// 99.66% matching
 void bhEff303(O_WRK* oP)
 {
-	PRM_WORK* prmP;
-	DSP_WRK* dspP;
-	ANM_WORK* anmP;
+    ANM_WORK* anmP; 
+    DSP_WRK* dspP;  
+    const PRM_WORK* prmP;
 	static const PRM_WORK PrmTbl[8] =
 	{
 		{ 3, 0xC0C0C0C0, 0.01f,  -1 },
@@ -1287,77 +1286,91 @@ void bhEff303(O_WRK* oP)
 		{ 5, 0xC0C0C0C0, 0.75f, 208 },
 		{ 3, 0xC0808080, 0.75f, 160 }
 	};
-	// Line 1557, Address: 0x249100, Func Offset: 0
-	// Line 1581, Address: 0x249118, Func Offset: 0x18
-	// Line 1571, Address: 0x249120, Func Offset: 0x20
-	// Line 1581, Address: 0x249124, Func Offset: 0x24
-	// Line 1588, Address: 0x249154, Func Offset: 0x54
-	// Line 1585, Address: 0x249158, Func Offset: 0x58
-	// Line 1588, Address: 0x24915c, Func Offset: 0x5c
-	// Line 1585, Address: 0x249160, Func Offset: 0x60
-	// Line 1589, Address: 0x249168, Func Offset: 0x68
-	// Line 1588, Address: 0x249174, Func Offset: 0x74
-	// Line 1585, Address: 0x24917c, Func Offset: 0x7c
-	// Line 1588, Address: 0x249184, Func Offset: 0x84
-	// Line 1593, Address: 0x249188, Func Offset: 0x88
-	// Line 1588, Address: 0x24918c, Func Offset: 0x8c
-	// Line 1593, Address: 0x249190, Func Offset: 0x90
-	// Line 1589, Address: 0x249194, Func Offset: 0x94
-	// Line 1592, Address: 0x249198, Func Offset: 0x98
-	// Line 1594, Address: 0x24919c, Func Offset: 0x9c
-	// Line 1588, Address: 0x2491a0, Func Offset: 0xa0
-	// Line 1589, Address: 0x2491ac, Func Offset: 0xac
-	// Line 1595, Address: 0x2491b4, Func Offset: 0xb4
-	// Line 1599, Address: 0x2491b8, Func Offset: 0xb8
-	// Line 1589, Address: 0x2491bc, Func Offset: 0xbc
-	// Line 1601, Address: 0x2491c8, Func Offset: 0xc8
-	// Line 1608, Address: 0x2491d0, Func Offset: 0xd0
-	// Line 1611, Address: 0x2491d4, Func Offset: 0xd4
-	// Line 1589, Address: 0x2491d8, Func Offset: 0xd8
-	// Line 1611, Address: 0x2491dc, Func Offset: 0xdc
-	// Line 1613, Address: 0x2491e0, Func Offset: 0xe0
-	// Line 1589, Address: 0x2491e4, Func Offset: 0xe4
-	// Line 1592, Address: 0x2491f0, Func Offset: 0xf0
-	// Line 1593, Address: 0x2491f4, Func Offset: 0xf4
-	// Line 1594, Address: 0x2491f8, Func Offset: 0xf8
-	// Line 1595, Address: 0x2491fc, Func Offset: 0xfc
-	// Line 1596, Address: 0x249200, Func Offset: 0x100
-	// Line 1597, Address: 0x24920c, Func Offset: 0x10c
-	// Line 1598, Address: 0x249214, Func Offset: 0x114
-	// Line 1599, Address: 0x24921c, Func Offset: 0x11c
-	// Line 1601, Address: 0x249220, Func Offset: 0x120
-	// Line 1602, Address: 0x24922c, Func Offset: 0x12c
-	// Line 1605, Address: 0x249238, Func Offset: 0x138
-	// Line 1608, Address: 0x249240, Func Offset: 0x140
-	// Line 1609, Address: 0x249244, Func Offset: 0x144
-	// Line 1611, Address: 0x249250, Func Offset: 0x150
-	// Line 1612, Address: 0x249254, Func Offset: 0x154
-	// Line 1613, Address: 0x24925c, Func Offset: 0x15c
-	// Line 1615, Address: 0x249270, Func Offset: 0x170
-	// Line 1617, Address: 0x249284, Func Offset: 0x184
-	// Line 1619, Address: 0x249294, Func Offset: 0x194
-	// Line 1620, Address: 0x24929c, Func Offset: 0x19c
-	// Line 1623, Address: 0x2492a4, Func Offset: 0x1a4
-	// Line 1625, Address: 0x2492dc, Func Offset: 0x1dc
-	// Line 1626, Address: 0x2492ec, Func Offset: 0x1ec
-	// Line 1628, Address: 0x249308, Func Offset: 0x208
-	// Line 1629, Address: 0x24933c, Func Offset: 0x23c
-	// Line 1632, Address: 0x249344, Func Offset: 0x244
-	// Line 1633, Address: 0x24937c, Func Offset: 0x27c
-	// Line 1634, Address: 0x249388, Func Offset: 0x288
-	// Line 1636, Address: 0x24939c, Func Offset: 0x29c
-	// Line 1639, Address: 0x2493a4, Func Offset: 0x2a4
-	// Line 1640, Address: 0x2493b4, Func Offset: 0x2b4
-	// Line 1642, Address: 0x2493bc, Func Offset: 0x2bc
-	// Line 1640, Address: 0x2493c8, Func Offset: 0x2c8
-	// Line 1641, Address: 0x2493d0, Func Offset: 0x2d0
-	// Line 1642, Address: 0x2493dc, Func Offset: 0x2dc
-	// Line 1643, Address: 0x2493e4, Func Offset: 0x2e4
-	// Line 1644, Address: 0x249418, Func Offset: 0x318
-	// Line 1645, Address: 0x249420, Func Offset: 0x320
-	// Line 1649, Address: 0x249424, Func Offset: 0x324
-	// Func End, Address: 0x24943c, Func Offset: 0x33c
-	scePrintf("bhEff303 - UNIMPLEMENTED!\n");
+
+    anmP = (ANM_WORK*)((char*)oP + 1028);
+    dspP =  (DSP_WRK*)((char*)oP + 1060);
+
+    switch (oP->mode0)
+    {                              
+    case 0: 
+        prmP = &PrmTbl[oP->type];
+        
+        sys->bl_ct = (sys->bl_ct + 1) & 0x1FF;
+        
+        oP->py += 0.001f * sys->bl_ct;
+        
+        oP->tex_id = 5;
+        
+        oP->flg = 0x200001;
+        
+        oP->bl_src = 8;
+        oP->bl_dst = 6;
+        
+        oP->sx = oP->sy = oP->sz = 0;
+        
+        oP->spd = prmP->speed;
+        
+        oP->frm_no   = prmP->time;
+        oP->frm_mode = 16;
+        
+        oP->sxb *= 2.0f;
+        oP->szb *= 2.0f;
+        
+        oP->ani_ct = oP->mdlver;
+        
+        oP->tvp = dspP->VtxBuf;
+        
+        oP->ax += 16384;
+        
+        anmP->uv_tabP = (UV_WORK*)Tex5uv;
+        
+        anmP->anm_no = prmP->anm_no;
+        
+        ryRapAnmColSet(anmP, prmP->color, prmP->color & 0xFFFFFF, oP->frm_mode);
+        ryRapDspSet((NJS_POINT3*)&oP->px, dspP, 1.0f);
+        ryRapTexAnm(anmP, dspP, FALSE);
+        
+        oP->mode0++;
+        break;
+    case 1:
+        if ((oP->sxb - oP->sx) < 0.01f) 
+        {
+            oP->mode0++;
+        } 
+        else 
+        {
+            oP->sx += oP->spd * (oP->sxb - oP->sx);
+            oP->sy += oP->spd * (oP->szb - oP->sy);
+        }
+        
+        sys->ef_trs[sys->ef_trsn++] = oP;
+        break;
+    case 2:
+        sys->ef_trs[sys->ef_trsn++] = oP;
+        
+        if ((oP->frm_no > 0) && (--oP->frm_no == 0))
+        {
+            oP->mode0++;
+        }
+        
+        break;
+    case 3:
+        if ((int)--oP->frm_mode >= 0) 
+        {
+            anmP->color += anmP->col_add;
+            anmP->color -= anmP->col_sub;
+            
+            ryRapTexAnm(anmP, dspP, FALSE);
+            
+            sys->ef_trs[sys->ef_trsn++] = oP;
+        }
+        else 
+        {
+            oP->flg = 0;
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!

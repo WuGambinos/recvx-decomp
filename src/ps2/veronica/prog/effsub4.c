@@ -301,11 +301,6 @@ static void bhEff_SetBlood5(NJS_POINT3* pos, NJS_VECTOR* vec, float size, int co
 // 100% matching!
 void bhEff_Sub350(O_WRK* op)
 {
-    NJS_POINT3 p1, p2; 
-    float wk0, wk1;     
-    int tmp;      
-    int i;      
-    int eno; // not from DWARF
 	static UV_WORK uvinfo[11] = 
 	{
 		{   0.0f,  96.0f,  16.0f,  16.0f },
@@ -343,6 +338,11 @@ void bhEff_Sub350(O_WRK* op)
 	{
 		anim00_tbl, anim01_tbl
 	};
+	NJS_POINT3 p1, p2; 
+    float wk0, wk1;     
+    int tmp;      
+    int i;      
+    int eno; // not from DWARF
 
     switch (op->mode0) 
     {                    
@@ -865,14 +865,9 @@ void bhEff_Sub353(O_WRK* op)
 	scePrintf("bhEff_Sub353 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x24e410
-void bhEff_Sub354(O_WRK* op)
+// 100% matching!
+void bhEff_Sub354(O_WRK* op) 
 {
-	NJS_POINT3 p2;
-	NJS_POINT3 p1;
-	NJS_POINT3 ofs;
-	O_WORK* owk;
 	static UV_WORK uvinfo[29] = 
 	{
 		{   0.0f,   0.0f,  40.0f,  40.0f },
@@ -932,88 +927,101 @@ void bhEff_Sub354(O_WRK* op)
 	{
 		anim00_tbl, anim01_tbl, anim02_tbl, anim03_tbl
 	};
-	unsigned int argb_tbl[2] = 
+    O_WORK* owk;   
+    unsigned int argb_tbl[2] =
 	{
 		0xC0FFFFFF, 0x20FFFFFF
 	};
-	// Line 1226, Address: 0x24e410, Func Offset: 0
-	// Line 1295, Address: 0x24e428, Func Offset: 0x18
-	// Line 1226, Address: 0x24e42c, Func Offset: 0x1c
-	// Line 1295, Address: 0x24e430, Func Offset: 0x20
-	// Line 1226, Address: 0x24e434, Func Offset: 0x24
-	// Line 1295, Address: 0x24e438, Func Offset: 0x28
-	// Line 1301, Address: 0x24e448, Func Offset: 0x38
-	// Line 1305, Address: 0x24e474, Func Offset: 0x64
-	// Line 1306, Address: 0x24e47c, Func Offset: 0x6c
-	// Line 1308, Address: 0x24e484, Func Offset: 0x74
-	// Line 1323, Address: 0x24e48c, Func Offset: 0x7c
-	// Line 1315, Address: 0x24e494, Func Offset: 0x84
-	// Line 1328, Address: 0x24e498, Func Offset: 0x88
-	// Line 1308, Address: 0x24e49c, Func Offset: 0x8c
-	// Line 1309, Address: 0x24e4a4, Func Offset: 0x94
-	// Line 1328, Address: 0x24e4a8, Func Offset: 0x98
-	// Line 1309, Address: 0x24e4ac, Func Offset: 0x9c
-	// Line 1310, Address: 0x24e4b4, Func Offset: 0xa4
-	// Line 1312, Address: 0x24e4b8, Func Offset: 0xa8
-	// Line 1313, Address: 0x24e4c0, Func Offset: 0xb0
-	// Line 1315, Address: 0x24e4d0, Func Offset: 0xc0
-	// Line 1316, Address: 0x24e4d4, Func Offset: 0xc4
-	// Line 1318, Address: 0x24e4d8, Func Offset: 0xc8
-	// Line 1319, Address: 0x24e4e0, Func Offset: 0xd0
-	// Line 1320, Address: 0x24e4e8, Func Offset: 0xd8
-	// Line 1322, Address: 0x24e4f0, Func Offset: 0xe0
-	// Line 1323, Address: 0x24e4f8, Func Offset: 0xe8
-	// Line 1325, Address: 0x24e504, Func Offset: 0xf4
-	// Line 1326, Address: 0x24e50c, Func Offset: 0xfc
-	// Line 1328, Address: 0x24e510, Func Offset: 0x100
-	// Line 1330, Address: 0x24e514, Func Offset: 0x104
-	// Line 1333, Address: 0x24e520, Func Offset: 0x110
-	// Line 1334, Address: 0x24e52c, Func Offset: 0x11c
-	// Line 1336, Address: 0x24e538, Func Offset: 0x128
-	// Line 1337, Address: 0x24e540, Func Offset: 0x130
-	// Line 1338, Address: 0x24e548, Func Offset: 0x138
-	// Line 1346, Address: 0x24e554, Func Offset: 0x144
-	// Line 1350, Address: 0x24e560, Func Offset: 0x150
-	// Line 1352, Address: 0x24e570, Func Offset: 0x160
-	// Line 1353, Address: 0x24e580, Func Offset: 0x170
-	// Line 1361, Address: 0x24e590, Func Offset: 0x180
-	// Line 1363, Address: 0x24e59c, Func Offset: 0x18c
-	// Line 1365, Address: 0x24e5c8, Func Offset: 0x1b8
-	// Line 1376, Address: 0x24e5d4, Func Offset: 0x1c4
-	// Line 1377, Address: 0x24e5e0, Func Offset: 0x1d0
-	// Line 1378, Address: 0x24e5e4, Func Offset: 0x1d4
-	// Line 1377, Address: 0x24e5e8, Func Offset: 0x1d8
-	// Line 1376, Address: 0x24e5ec, Func Offset: 0x1dc
-	// Line 1377, Address: 0x24e5f0, Func Offset: 0x1e0
-	// Line 1376, Address: 0x24e5f4, Func Offset: 0x1e4
-	// Line 1382, Address: 0x24e5f8, Func Offset: 0x1e8
-	// Line 1376, Address: 0x24e5fc, Func Offset: 0x1ec
-	// Line 1377, Address: 0x24e600, Func Offset: 0x1f0
-	// Line 1378, Address: 0x24e608, Func Offset: 0x1f8
-	// Line 1377, Address: 0x24e60c, Func Offset: 0x1fc
-	// Line 1378, Address: 0x24e614, Func Offset: 0x204
-	// Line 1381, Address: 0x24e628, Func Offset: 0x218
-	// Line 1382, Address: 0x24e648, Func Offset: 0x238
-	// Line 1384, Address: 0x24e650, Func Offset: 0x240
-	// Line 1385, Address: 0x24e6b8, Func Offset: 0x2a8
-	// Line 1386, Address: 0x24e724, Func Offset: 0x314
-	// Line 1388, Address: 0x24e728, Func Offset: 0x318
-	// Line 1389, Address: 0x24e73c, Func Offset: 0x32c
-	// Line 1390, Address: 0x24e748, Func Offset: 0x338
-	// Line 1391, Address: 0x24e74c, Func Offset: 0x33c
-	// Line 1389, Address: 0x24e750, Func Offset: 0x340
-	// Line 1393, Address: 0x24e754, Func Offset: 0x344
-	// Line 1389, Address: 0x24e758, Func Offset: 0x348
-	// Line 1390, Address: 0x24e760, Func Offset: 0x350
-	// Line 1391, Address: 0x24e778, Func Offset: 0x368
-	// Line 1393, Address: 0x24e78c, Func Offset: 0x37c
-	// Line 1394, Address: 0x24e794, Func Offset: 0x384
-	// Line 1396, Address: 0x24e7a4, Func Offset: 0x394
-	// Line 1397, Address: 0x24e7ac, Func Offset: 0x39c
-	// Line 1398, Address: 0x24e7b4, Func Offset: 0x3a4
-	// Line 1401, Address: 0x24e7bc, Func Offset: 0x3ac
-	// Func End, Address: 0x24e7e0, Func Offset: 0x3d0
-	scePrintf("bhEff_Sub354 - UNIMPLEMENTED!\n");
+    NJS_POINT3 ofs; 
+    NJS_POINT3 p1, p2;  
+    
+    switch (op->mode0) 
+    {                           
+    case 0:
+        op->bl_src = 8;
+        op->bl_dst = 10;
+        
+        op->flg   |= 0x4180000;
+        op->stflg |= 0x20;
+        
+        op->ani_ct = 0;
+        
+        op->tv[0].col = argb_tbl[0];
+        op->tv[3].col = op->tv[2].col = op->tv[1].col = op->tv[0].col;
+        
+        op->spd = 1.0f;
+        
+        op->ct0 = 0;
+        
+        op->ofx = op->lox;
+        op->ofy = op->loy;
+        op->ofz = op->loz;
+        
+        op->xn = op->sxb;
+        op->yn = op->sxb / 8.0f;
+        
+        op->mode1 = op->type;
+        op->mode2 = 0;
+        
+        op->func = (void*)bhEff_3DSpriteDraw;
+        
+        op->mode0++;
+    case 1:
+        op->ct3--;
+        
+        if (op->ct3 >= 0) 
+        {
+            break;
+        }
+        
+        op->mode2 = 1;
+        
+        op->ct3 = 11;
+        
+        op->mode0++;
+    case 2:
+        if ((op->mode1 == 0) && (--op->ct3 < 0))
+        {
+            op->tv[0].col += 0xE0000000;
+            op->tv[3].col = op->tv[2].col = op->tv[1].col = op->tv[0].col;
+        }
+        
+        break;
+    }
+    
+    if (op->mode2 != 0) 
+    {
+        bhEff_SetSpriteAnime(op, anim_tbl[op->mode1], uvinfo, 1);
+        
+        if (op->lkwkp != NULL) 
+        {
+            p1.x = -cam.vx * op->zn;
+            p1.y = -cam.vy * op->zn;
+            p1.z = -cam.vz * op->zn;
+            
+            owk = &((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono];
+            
+            njSetMatrix(NULL, &owk->mtx);
+            
+            ofs.x = op->ofx + ((-rand() / -2147483648.0f) - 0.5);
+            ofs.y = op->ofy + ((-rand() / -2147483648.0f) - 0.5);
+            ofs.z = op->ofz;
+            
+            njCalcPoint(NULL, &ofs, &p2);
+            
+            p1.x = (p1.x + p2.x) - owk->mtx[12];
+            p1.y = (p1.y + p2.y) - owk->mtx[13];
+            p1.z = (p1.z + p2.z) - owk->mtx[14];
+            
+            njInvertMatrix(NULL);
+            
+            njCalcVector(NULL, &p1, &p2);
+            
+            op->lox = p2.x;
+            op->loy = p2.y;
+            op->loz = p2.z;
+        }
+    }
 }
 
 // 100% matching!

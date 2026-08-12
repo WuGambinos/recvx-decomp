@@ -111,7 +111,7 @@ void bhEne01_ExpWormEffect(BH_PWORK* epw);
 void bhEne01_PoisonEffect(BH_PWORK* epw, int num);
 void bhEne01_LinkFireEffect(BH_PWORK* epw, int type);
 int bhEne01_ChgTextID(BH_PWORK* epw, int tex_id);
-void bhEne01_SePlay(BH_PWORK* epw, int no);
+void bhEne01_SePlay(BH_PWORK* epw, NJS_POINT3* pos, int no);
 void bhEne01_GetWalkMotion(BH_PWORK* epw);
 int bhEne01_FastCheck(BH_PWORK* epw);
 int bhEne01_CmnFlgCheck(BH_PWORK* epw);

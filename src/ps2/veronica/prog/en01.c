@@ -9663,7 +9663,7 @@ int bhEne01_ChgTextID(BH_PWORK* epw, int tex_id)
 
 // 
 // Start address: 0x189190
-void bhEne01_SePlay(BH_PWORK* epw, int no)
+void bhEne01_SePlay(BH_PWORK* epw, NJS_POINT3* pos, int no) // second parameter not present on DWARF 
 {
 	int se_no;
 	int add_seno[27];

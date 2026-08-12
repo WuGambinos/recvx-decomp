@@ -2334,25 +2334,12 @@ OR_WORK* rySetEffBlood(NJS_MATRIX* mtxP, NJS_POINT3* posP, NJS_POINT3* dirP, int
     return orP;
 }
 
-// 
-// Start address: 0x24b550
-void bhEff309(OR_WORK* orP)
+// 99.88% matching
+void bhEff309(OR_WORK* orP) 
 {
-	float acl;
-	NJS_POINT3* dirP;
-	rap_tex_typ* rtP;
-	int i;
-	float sp;
-	//NJS_POINT3* dirP;
-	NJS_POINT3 pos;
-	//rap_tex_typ* rtP;
-	char* timP;
-	//int i;
-	//rap_tex_typ* rtP;
-	//int i;
-	//_anon50* pmbP;
-	R09_WORK* r09P;
-	static const UV_WORK Tex5Buv[12] = 
+    R09_WORK* r09P;   
+    PMB_WRK* pmbP;    
+    static const UV_WORK Tex5Buv[12] = 
 	{
 		{ 0.1875f, 0.4375f, 0.12109375f, 0.12109375f },
 		{ 0.0625f, 0.4375f, 0.12109375f, 0.12109375f },
@@ -2367,84 +2354,155 @@ void bhEff309(OR_WORK* orP)
 		{ 0.1875f, 0.3125f, 0.12109375f, 0.12109375f },
 		{ 0.0625f, 0.3125f, 0.12109375f, 0.12109375f }
 	};
-	// Line 2724, Address: 0x24b550, Func Offset: 0
-	// Line 2748, Address: 0x24b57c, Func Offset: 0x2c
-	// Line 2744, Address: 0x24b580, Func Offset: 0x30
-	// Line 2748, Address: 0x24b584, Func Offset: 0x34
-	// Line 2751, Address: 0x24b5ac, Func Offset: 0x5c
-	// Line 2755, Address: 0x24b5b4, Func Offset: 0x64
-	// Line 2751, Address: 0x24b5b8, Func Offset: 0x68
-	// Line 2759, Address: 0x24b5bc, Func Offset: 0x6c
-	// Line 2757, Address: 0x24b5c0, Func Offset: 0x70
-	// Line 2761, Address: 0x24b5c4, Func Offset: 0x74
-	// Line 2760, Address: 0x24b5c8, Func Offset: 0x78
-	// Line 2761, Address: 0x24b5cc, Func Offset: 0x7c
-	// Line 2762, Address: 0x24b5d0, Func Offset: 0x80
-	// Line 2763, Address: 0x24b5e0, Func Offset: 0x90
-	// Line 2764, Address: 0x24b5e4, Func Offset: 0x94
-	// Line 2767, Address: 0x24b5e8, Func Offset: 0x98
-	// Line 2768, Address: 0x24b5f8, Func Offset: 0xa8
-	// Line 2769, Address: 0x24b604, Func Offset: 0xb4
-	// Line 2770, Address: 0x24b628, Func Offset: 0xd8
-	// Line 2771, Address: 0x24b64c, Func Offset: 0xfc
-	// Line 2773, Address: 0x24b658, Func Offset: 0x108
-	// Line 2779, Address: 0x24b664, Func Offset: 0x114
-	// Line 2781, Address: 0x24b668, Func Offset: 0x118
-	// Line 2782, Address: 0x24b66c, Func Offset: 0x11c
-	// Line 2785, Address: 0x24b67c, Func Offset: 0x12c
-	// Line 2787, Address: 0x24b680, Func Offset: 0x130
-	// Line 2792, Address: 0x24b684, Func Offset: 0x134
-	// Line 2786, Address: 0x24b688, Func Offset: 0x138
-	// Line 2787, Address: 0x24b690, Func Offset: 0x140
-	// Line 2792, Address: 0x24b694, Func Offset: 0x144
-	// Line 2793, Address: 0x24b6a0, Func Offset: 0x150
-	// Line 2797, Address: 0x24b6b0, Func Offset: 0x160
-	// Line 2798, Address: 0x24b6c0, Func Offset: 0x170
-	// Line 2799, Address: 0x24b71c, Func Offset: 0x1cc
-	// Line 2802, Address: 0x24b778, Func Offset: 0x228
-	// Line 2804, Address: 0x24b794, Func Offset: 0x244
-	// Line 2802, Address: 0x24b798, Func Offset: 0x248
-	// Line 2804, Address: 0x24b79c, Func Offset: 0x24c
-	// Line 2802, Address: 0x24b7a0, Func Offset: 0x250
-	// Line 2804, Address: 0x24b7b4, Func Offset: 0x264
-	// Line 2802, Address: 0x24b7bc, Func Offset: 0x26c
-	// Line 2804, Address: 0x24b7c4, Func Offset: 0x274
-	// Line 2805, Address: 0x24b7cc, Func Offset: 0x27c
-	// Line 2809, Address: 0x24b7d0, Func Offset: 0x280
-	// Line 2810, Address: 0x24b7d8, Func Offset: 0x288
-	// Line 2805, Address: 0x24b7dc, Func Offset: 0x28c
-	// Line 2809, Address: 0x24b7fc, Func Offset: 0x2ac
-	// Line 2810, Address: 0x24b800, Func Offset: 0x2b0
-	// Line 2811, Address: 0x24b804, Func Offset: 0x2b4
-	// Line 2812, Address: 0x24b814, Func Offset: 0x2c4
-	// Line 2813, Address: 0x24b818, Func Offset: 0x2c8
-	// Line 2818, Address: 0x24b824, Func Offset: 0x2d4
-	// Line 2823, Address: 0x24b828, Func Offset: 0x2d8
-	// Line 2826, Address: 0x24b82c, Func Offset: 0x2dc
-	// Line 2824, Address: 0x24b830, Func Offset: 0x2e0
-	// Line 2827, Address: 0x24b834, Func Offset: 0x2e4
-	// Line 2830, Address: 0x24b840, Func Offset: 0x2f0
-	// Line 2829, Address: 0x24b844, Func Offset: 0x2f4
-	// Line 2832, Address: 0x24b848, Func Offset: 0x2f8
-	// Line 2834, Address: 0x24b854, Func Offset: 0x304
-	// Line 2842, Address: 0x24b858, Func Offset: 0x308
-	// Line 2834, Address: 0x24b864, Func Offset: 0x314
-	// Line 2835, Address: 0x24b86c, Func Offset: 0x31c
-	// Line 2836, Address: 0x24b878, Func Offset: 0x328
-	// Line 2837, Address: 0x24b884, Func Offset: 0x334
-	// Line 2840, Address: 0x24b894, Func Offset: 0x344
-	// Line 2842, Address: 0x24b8a0, Func Offset: 0x350
-	// Line 2843, Address: 0x24b8b0, Func Offset: 0x360
-	// Line 2845, Address: 0x24b8b8, Func Offset: 0x368
-	// Line 2846, Address: 0x24b8c0, Func Offset: 0x370
-	// Line 2848, Address: 0x24b8c4, Func Offset: 0x374
-	// Line 2849, Address: 0x24b8c8, Func Offset: 0x378
-	// Line 2851, Address: 0x24b8d4, Func Offset: 0x384
-	// Line 2852, Address: 0x24b8e8, Func Offset: 0x398
-	// Line 2854, Address: 0x24b920, Func Offset: 0x3d0
-	// Func End, Address: 0x24b94c, Func Offset: 0x3fc
-	scePrintf("bhEff309 - UNIMPLEMENTED!\n");
-}
+    
+    r09P = (R09_WORK*)orP->free4;
+    pmbP = &r09P->prm_b;
+
+    if (r09P->mode != 2) 
+    {
+        switch (r09P->mode) 
+        {
+        case 0:
+        {
+            int i;           
+            rap_tex_typ* rtP;  
+
+            rtP = r09P->RapTex;
+            
+            orP->func = (void*)bhEff309Drw;
+            
+            r09P->freeP = rtP;
+            
+            for (i = 5; i > 0; i--, rtP++) 
+            {
+                rtP->mode  = 0;
+                rtP->nextP = &rtP[1];
+            }
+            
+            rtP->mode  = 0;
+            rtP->nextP = NULL;
+            
+            njSetMatrix(lcmat, pmbP->vtx_mtxP);
+            
+            njInvertMatrix(lcmat);
+            
+            if (!(r09P->type & 0x1)) 
+            {
+                njCalcPoint(lcmat, &pmbP->vtx_pos, &pmbP->vtx_pos);
+            }
+            
+            if (!(r09P->type & 0x2)) 
+            {
+                njCalcVector(lcmat, &pmbP->vtx_dir, &pmbP->vtx_dir);
+            }
+            
+            njUnitVector(&pmbP->vtx_dir);
+            
+            r09P->mode++;
+        }
+        case 1:
+        {
+            int i;      
+            char* timP; 
+
+            timP = r09P->prm_a.SetTim;
+            
+            for (i = 6; i > 0; i--, timP++)
+            {
+                if ((*timP)-- == 0) 
+                {
+                    rap_tex_typ* rtP; 
+                    NJS_POINT3 pos;  
+                    NJS_POINT3* dirP; 
+                    float sp;         
+
+                    rtP         = r09P->freeP;
+                    r09P->freeP = rtP->nextP;
+                    
+                    rtP->mode = -1;
+                    
+                    njCalcPoint(pmbP->vtx_mtxP, &pmbP->vtx_pos, &pos);
+                    
+                    ryRapDspSet(&pos, &rtP->dsp_wrk, r09P->prm_a.scale);
+                    
+                    njSetMatrix(lcmat, pmbP->vtx_mtxP);
+                    
+                    njRotateY(lcmat, 182.04445f * (r09P->prm_a.ang_rand * ((-rand() / -2147483648.0f) - 0.5f)));
+                    njRotateX(lcmat, 182.04445f * (r09P->prm_a.ang_rand * ((-rand() / -2147483648.0f) - 0.5f)));
+                    
+                    dirP = &rtP->mov_wrk.vtx_vel;
+                    
+                    sp = r09P->prm_a.speed + (r09P->prm_a.spd_rand * ((-rand() / -2147483648.0f) - 0.5f));
+                    
+                    njCalcVector(lcmat, &pmbP->vtx_dir, dirP);
+                    
+                    dirP->x *= sp;
+                    dirP->y *= sp;
+                    dirP->z *= sp;
+                    
+                    rtP->anm_wrk.uv_tabP = (UV_WORK*)Tex5Buv;
+                    rtP->anm_wrk.anm_no  = 12;
+                    
+                    ryRapAnmColSet(&rtP->anm_wrk, r09P->prm_a.col_src, r09P->prm_a.col_dst, 12);
+                }
+            }
+            
+            break;
+        }
+        }
+    }
+    
+    {
+        int i;            
+        rap_tex_typ* rtP; 
+
+        rtP = r09P->RapTex;
+        
+        r09P->busyP = NULL;
+        
+        for (i = 5; i > 0; i--, rtP++) 
+        {
+            if (rtP->mode != 0)
+            {
+                NJS_POINT3* dirP; 
+                float acl;        
+
+                dirP = &rtP->mov_wrk.vtx_vel; 
+                
+                acl = r09P->prm_a.accel;
+                
+                njAddVector(&rtP->dsp_wrk.vtx_pos, dirP);
+                
+                dirP->x *= acl;
+                dirP->y *= acl;
+                dirP->z *= acl;
+                
+                dirP->y += r09P->prm_a.gravity;
+                
+                rtP->dsp_wrk.vtx_scl *= r09P->prm_a.scl_accel;
+                
+                if (ryRapTexAnm(&rtP->anm_wrk, &rtP->dsp_wrk, 1) >= 0) 
+                {
+                    rtP->nextP  = r09P->busyP;
+                    r09P->busyP = rtP;
+                } 
+                else
+                {
+                    rtP->mode = 0;
+                }
+            }
+        }
+    }
+    
+    if (r09P->busyP == NULL) 
+    {
+        orP->flg = 0;
+    }
+    else 
+    {
+        sys->ef_fnc[sys->ef_fncn++] = (O_WRK*)orP;
+    }
+} 
 
 // 100% matching!
 void bhEff309Drw(OR_WORK* orP) 

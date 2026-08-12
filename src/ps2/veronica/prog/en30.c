@@ -7,6 +7,8 @@
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/en03.h"
 #include "../../../ps2/veronica/prog/macros.h"
+#include "../../../ps2/veronica/prog/eneset.h"
+#include "../../../ps2/veronica/prog/effect.h"
 
 // ENEMY: Alexia's Baby 
 
@@ -1225,11 +1227,19 @@ struct _anon32
 	_anon3 c2;
 	float r;
 };
+*/
 
-int ENE30_HITPOINT[16];
-char SdwTab[3];
-_anon15 CapColTab[3];
-void(*bhEne30_Mode0)(BH_PWORK*)[6];
+int ENE30_HITPOINT[16] = {0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0x14, 0x14};
+char SdwTab[3] = {0x1, 0x4, 0xFF};
+CPCL CapColTab[3] =
+{
+    { 0, 0, 16 },
+    { 5, 0, 0},
+    { 0, 0, 0},
+};
+
+
+/*void(*bhEne30_Mode0)(BH_PWORK*)[6];
 void(*bhEne30_BrainType)(BH_PWORK*)[1];
 void(*bhEne30_MoveMode2)(BH_PWORK*)[8];
 void(*bhEne30_DamageMode2)(BH_PWORK*)[2];
@@ -1309,105 +1319,101 @@ void bhEne30(BH_PWORK* epw) {
     bhEne_SetWeponAtr(epw, 0, 3, 3.0f);
 }
 
-/*// 
-// Start address: 0x213770
+// 100% matching!
 void bhEne30_Init(BH_PWORK* epw)
 {
-	npobj* pObj;
-	int i;
-	npobj* obj;
-	int i;
-	npobj* obj;
-	// Line 263, Address: 0x213770, Func Offset: 0
-	// Line 265, Address: 0x21377c, Func Offset: 0xc
-	// Line 267, Address: 0x213784, Func Offset: 0x14
-	// Line 266, Address: 0x21378c, Func Offset: 0x1c
-	// Line 265, Address: 0x213790, Func Offset: 0x20
-	// Line 266, Address: 0x213798, Func Offset: 0x28
-	// Line 268, Address: 0x21379c, Func Offset: 0x2c
-	// Line 271, Address: 0x2137a0, Func Offset: 0x30
-	// Line 272, Address: 0x2137a4, Func Offset: 0x34
-	// Line 266, Address: 0x2137ac, Func Offset: 0x3c
-	// Line 267, Address: 0x2137b4, Func Offset: 0x44
-	// Line 273, Address: 0x2137b8, Func Offset: 0x48
-	// Line 277, Address: 0x2137bc, Func Offset: 0x4c
-	// Line 279, Address: 0x2137c0, Func Offset: 0x50
-	// Line 267, Address: 0x2137c4, Func Offset: 0x54
-	// Line 268, Address: 0x2137cc, Func Offset: 0x5c
-	// Line 269, Address: 0x2137d8, Func Offset: 0x68
-	// Line 270, Address: 0x2137e4, Func Offset: 0x74
-	// Line 271, Address: 0x2137f0, Func Offset: 0x80
-	// Line 272, Address: 0x2137f4, Func Offset: 0x84
-	// Line 273, Address: 0x2137f8, Func Offset: 0x88
-	// Line 274, Address: 0x2137fc, Func Offset: 0x8c
-	// Line 277, Address: 0x213800, Func Offset: 0x90
-	// Line 278, Address: 0x213804, Func Offset: 0x94
-	// Line 279, Address: 0x213808, Func Offset: 0x98
-	// Line 282, Address: 0x213810, Func Offset: 0xa0
-	// Line 286, Address: 0x213860, Func Offset: 0xf0
-	// Line 292, Address: 0x213864, Func Offset: 0xf4
-	// Line 282, Address: 0x213868, Func Offset: 0xf8
-	// Line 286, Address: 0x21386c, Func Offset: 0xfc
-	// Line 287, Address: 0x213870, Func Offset: 0x100
-	// Line 288, Address: 0x213874, Func Offset: 0x104
-	// Line 289, Address: 0x213878, Func Offset: 0x108
-	// Line 292, Address: 0x21387c, Func Offset: 0x10c
-	// Line 293, Address: 0x213880, Func Offset: 0x110
-	// Line 294, Address: 0x213884, Func Offset: 0x114
-	// Line 295, Address: 0x213888, Func Offset: 0x118
-	// Line 296, Address: 0x21388c, Func Offset: 0x11c
-	// Line 297, Address: 0x213890, Func Offset: 0x120
-	// Line 301, Address: 0x213894, Func Offset: 0x124
-	// Line 300, Address: 0x213898, Func Offset: 0x128
-	// Line 301, Address: 0x21389c, Func Offset: 0x12c
-	// Line 302, Address: 0x2138a0, Func Offset: 0x130
-	// Line 303, Address: 0x2138a8, Func Offset: 0x138
-	// Line 304, Address: 0x2138b0, Func Offset: 0x140
-	// Line 305, Address: 0x2138b8, Func Offset: 0x148
-	// Line 306, Address: 0x2138c0, Func Offset: 0x150
-	// Line 307, Address: 0x2138c8, Func Offset: 0x158
-	// Line 310, Address: 0x2138d8, Func Offset: 0x168
-	// Line 311, Address: 0x2138e4, Func Offset: 0x174
-	// Line 317, Address: 0x2138f4, Func Offset: 0x184
-	// Line 318, Address: 0x2138f8, Func Offset: 0x188
-	// Line 319, Address: 0x213904, Func Offset: 0x194
-	// Line 322, Address: 0x21390c, Func Offset: 0x19c
-	// Line 319, Address: 0x213910, Func Offset: 0x1a0
-	// Line 320, Address: 0x213918, Func Offset: 0x1a8
-	// Line 321, Address: 0x213928, Func Offset: 0x1b8
-	// Line 322, Address: 0x213934, Func Offset: 0x1c4
-	// Line 321, Address: 0x213938, Func Offset: 0x1c8
-	// Line 322, Address: 0x213940, Func Offset: 0x1d0
-	// Line 331, Address: 0x213950, Func Offset: 0x1e0
-	// Line 332, Address: 0x213954, Func Offset: 0x1e4
-	// Line 331, Address: 0x213958, Func Offset: 0x1e8
-	// Line 334, Address: 0x213960, Func Offset: 0x1f0
-	// Line 333, Address: 0x213964, Func Offset: 0x1f4
-	// Line 334, Address: 0x213968, Func Offset: 0x1f8
-	// Line 341, Address: 0x21397c, Func Offset: 0x20c
-	// Line 342, Address: 0x213980, Func Offset: 0x210
-	// Line 343, Address: 0x213990, Func Offset: 0x220
-	// Line 344, Address: 0x213994, Func Offset: 0x224
-	// Line 347, Address: 0x2139a0, Func Offset: 0x230
-	// Line 349, Address: 0x2139b0, Func Offset: 0x240
-	// Line 353, Address: 0x2139c0, Func Offset: 0x250
-	// Line 354, Address: 0x2139d0, Func Offset: 0x260
-	// Line 355, Address: 0x2139fc, Func Offset: 0x28c
-	// Line 357, Address: 0x213a08, Func Offset: 0x298
-	// Line 360, Address: 0x213a10, Func Offset: 0x2a0
-	// Line 357, Address: 0x213a18, Func Offset: 0x2a8
-	// Line 363, Address: 0x213a20, Func Offset: 0x2b0
-	// Line 368, Address: 0x213a64, Func Offset: 0x2f4
-	// Line 363, Address: 0x213a68, Func Offset: 0x2f8
-	// Line 366, Address: 0x213a6c, Func Offset: 0x2fc
-	// Line 367, Address: 0x213a74, Func Offset: 0x304
-	// Line 368, Address: 0x213a7c, Func Offset: 0x30c
-	// Line 369, Address: 0x213a88, Func Offset: 0x318
-	// Line 371, Address: 0x213a8c, Func Offset: 0x31c
-	// Func End, Address: 0x213a9c, Func Offset: 0x32c
+    NJS_CNK_OBJECT* obj;
+    int idx;
+    NJS_CNK_OBJECT* pObj;
+    int i;
+
+    epw->flg = (epw->flg & ~0x78);
+    epw->flg = (epw->flg & ~6);
+    epw->flg = (epw->flg & 0xFFE7FFFF);
+
+    epw->flg2 = (epw->flg2 & ~1);
+    epw->flg2 = (epw->flg2 | 0x10);
+
+    epw->mdflg = (epw->mdflg | 1);
+
+    epw->ar  = 3.0f;
+    epw->ah  = 1.0f;
+    epw->car = 2.0f;
+    epw->cah = 1.0f;
+
+    epw->mlwP   = &epw->mdl[0];
+    epw->mdl_no = 0;
+
+    epw->mdflg = (epw->mdflg & ~2);
+
+    idx = (int)(16.0f * ((float)-rand() / -2147483648.0f));
+    epw->hp = ENE30_HITPOINT[idx];
+
+    epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
+
+    epw->hokan_rate  = 0x10000;
+    epw->hokan_count = 0;
+    epw->mtn_no      = 0;
+    epw->mtn_md      = 0;
+    epw->mtn_add     = 0x10000;
+    epw->frm_no      = 0;
+
+    epw->clp_jno[0] = 1;
+    epw->clp_jno[1] = 7;
+    epw->clp_jno[2] = 9;
+    epw->clp_jno[3] = 0xB;
+    epw->clp_jno[4] = 0xD;
+    epw->clp_jno[5] = 0xF;
+    epw->clp_jno[6] = -1;
+
+    epw->mdflg = (epw->mdflg & ~0x20);
+
+    if (epw->exp0 == NULL) {
+        epw->exp0 = bhEne_CallocWork(0xFC, 8);
+        pObj = epw->mdl[1].objP;
+        
+        for(i = 0; i < epw->mdl[1].obj_num; i++, pObj++) {
+            ((float*)(epw->exp0))[3*i+0]= pObj->pos[0];
+            ((float*)(epw->exp0))[3*i+1]= pObj->pos[1];
+            ((float*)(epw->exp0))[3*i+2]= pObj->pos[2];
+        }
+    }
+
+    {
+        NJS_CNK_OBJECT* p = &epw->mlwP->objP[5];
+        i = 5;
+        for(i = 5; i <= 15; i++, p++) {
+            p->pos[1] = 0.0f;
+        }
+    }
+
+    epw->mdl[0].objP[1].evalflags  &= ~8;
+    epw->mdl[0].objP[16].evalflags &= ~8;
+    epw->mdl[1].objP[1].evalflags  &= ~8;
+    epw->mdl[1].objP[16].evalflags &= ~8;
+
+    if (!(epw->flg & 0x800)) {
+        bhSetShadow(SdwTab, (unsigned char*)epw, 0x10, 4.0f, 5.0f, 6.0f);
+        epw->flg |= 0x800;
+    }
+
+    epw->stflg &= ~8;
+    epw->cpcl = CapColTab;
+
+    idx = (int)(20.0f * ((float)-rand() / -2147483648.0f));
+    EXP0_I(0xF0) = idx + 0x14;
+
+    epw->obj_a = epw->mdl[0].objP;
+    epw->obj_b = epw->mdl[1].objP;
+
+    epw->mdflg &= ~2;
+    epw->shp_ct = 0;
 }
 
-// 
+/*// 
 // Start address: 0x213aa0
 void bhEne30_Brain(BH_PWORK* epw)
 {

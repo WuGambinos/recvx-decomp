@@ -6,6 +6,7 @@
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/en03.h"
+#include "../../../ps2/veronica/prog/macros.h"
 
 // ENEMY: Alexia's Baby 
 
@@ -1412,31 +1413,38 @@ void bhEne30_Brain(BH_PWORK* epw)
 {
 	// Line 382, Address: 0x213aa0, Func Offset: 0
 	// Func End, Address: 0x213ac0, Func Offset: 0x20
-}
+}*/
 
-// 
-// Start address: 0x213ac0
-void bhEne30_BR00(BH_PWORK* epw)
-{
-	// Line 393, Address: 0x213ac0, Func Offset: 0
-	// Line 458, Address: 0x213acc, Func Offset: 0xc
-	// Line 461, Address: 0x213b04, Func Offset: 0x44
-	// Line 462, Address: 0x213b24, Func Offset: 0x64
-	// Line 463, Address: 0x213b34, Func Offset: 0x74
-	// Line 467, Address: 0x213bbc, Func Offset: 0xfc
-	// Line 466, Address: 0x213bc0, Func Offset: 0x100
-	// Line 467, Address: 0x213bc4, Func Offset: 0x104
-	// Line 471, Address: 0x213bc8, Func Offset: 0x108
-	// Line 473, Address: 0x213c0c, Func Offset: 0x14c
-	// Line 477, Address: 0x213c14, Func Offset: 0x154
-	// Line 479, Address: 0x213c34, Func Offset: 0x174
-	// Line 478, Address: 0x213c38, Func Offset: 0x178
-	// Line 479, Address: 0x213c3c, Func Offset: 0x17c
-	// Line 483, Address: 0x213c40, Func Offset: 0x180
-	// Line 488, Address: 0x213c88, Func Offset: 0x1c8
-	// Func End, Address: 0x213c98, Func Offset: 0x1d8
+// 100% matching!
+void bhEne30_BR00(BH_PWORK* epw) {
+    int* temp_v1;
+
+    EXP0_F(0xF4) = njSqrt((epw->px - plp->px) * (epw->px - plp->px) + (epw->pz - plp->pz) * (epw->pz - plp->pz));
+    temp_v1 = &((int*)epw->exp0)[0x3C];
+
+    if (temp_v1[0] != 0) {
+        temp_v1[0] -= 1;
+    }
+
+    if (EXP0_I(0xF0) != 0) {
+        return;
+    }
+    
+    if ((float) -rand() / -2147483648.0f > 0.3f
+        && EXP0_F(0xF4) < 15.0f
+        && bhEne_CheckDirTarget(epw, plp->px, plp->pz, 0x1555) ) {
+        epw->mode1 = 0;
+        epw->mode2 = 7;
+        epw->mode3 = 0;
+        EXP0_I(0xF0) = (int)(20.0f * ((float) -rand() / -2147483648.0f)) + 0x14;
+    } else if (EXP0_F(0xF4) < 15.0f) {
+        epw->mode1 = 0;
+        epw->mode2 = 2;
+        epw->mode3 = 0;
+        EXP0_I(0xF0) = (int)(20.0f * ((float) -rand() / -2147483648.0f)) + 0x14;
+        return;
+    }
 }
-*/
 
 // 100% matching!
 void bhEne30_Move(BH_PWORK* epw) {

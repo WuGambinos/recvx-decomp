@@ -113,78 +113,86 @@ void bhEff_SetPtcl1(BH_PWORK* epw, NJS_POINT3* pos, int tex_id, int wcnt)
     }
 }
 
-// 
-// Start address: 0x24cb70
-void bhEff_SetPtcl2(NJS_POINT3* pos, NJS_MATRIX* mtx)
+// 100% matching!
+void bhEff_SetPtcl2(BH_PWORK* epw, NJS_POINT3* pos, NJS_MATRIX* mtx) // first parameter not present on DWARF
 {
-	float spd;
-	int ang2;
-	int ang;
-	NJS_POINT3* vec;
-	NJS_POINT3* vtx_p2;
-	NJS_POINT3* vtx_p;
-	int i;
-	int eff_no;
-	EFFSUB366_WORK* effect;
-	O_WRK* op;
-	POINT ps;
+    POINT ps;              
+    O_WRK* op;             
+    EFFSUB366_WORK* effect; 
+    int eff_no;           
+    int i;                
+    NJS_POINT3* vtx_p, *vtx_p2;     
+    NJS_VECTOR* vec;      
+    int ang, ang2;                
+    float spd;             
 	static float eff_tbl[2] = 
 	{
 		1.0f, 2.0f
 	};
-	// Line 232, Address: 0x24cb70, Func Offset: 0
-	// Line 241, Address: 0x24cb9c, Func Offset: 0x2c
-	// Line 247, Address: 0x24cba8, Func Offset: 0x38
-	// Line 241, Address: 0x24cbb0, Func Offset: 0x40
-	// Line 242, Address: 0x24cbb4, Func Offset: 0x44
-	// Line 247, Address: 0x24cbb8, Func Offset: 0x48
-	// Line 242, Address: 0x24cbbc, Func Offset: 0x4c
-	// Line 243, Address: 0x24cbc0, Func Offset: 0x50
-	// Line 244, Address: 0x24cbc8, Func Offset: 0x58
-	// Line 245, Address: 0x24cbcc, Func Offset: 0x5c
-	// Line 247, Address: 0x24cbd0, Func Offset: 0x60
-	// Line 253, Address: 0x24cbe8, Func Offset: 0x78
-	// Line 255, Address: 0x24cbf0, Func Offset: 0x80
-	// Line 258, Address: 0x24cc10, Func Offset: 0xa0
-	// Line 257, Address: 0x24cc18, Func Offset: 0xa8
-	// Line 258, Address: 0x24cc1c, Func Offset: 0xac
-	// Line 280, Address: 0x24cc20, Func Offset: 0xb0
-	// Line 259, Address: 0x24cc24, Func Offset: 0xb4
-	// Line 260, Address: 0x24cc28, Func Offset: 0xb8
-	// Line 272, Address: 0x24cc2c, Func Offset: 0xbc
-	// Line 273, Address: 0x24cc30, Func Offset: 0xc0
-	// Line 272, Address: 0x24cc34, Func Offset: 0xc4
-	// Line 274, Address: 0x24cc38, Func Offset: 0xc8
-	// Line 273, Address: 0x24cc3c, Func Offset: 0xcc
-	// Line 278, Address: 0x24cc40, Func Offset: 0xd0
-	// Line 274, Address: 0x24cc44, Func Offset: 0xd4
-	// Line 280, Address: 0x24cc48, Func Offset: 0xd8
-	// Line 281, Address: 0x24cc50, Func Offset: 0xe0
-	// Line 282, Address: 0x24cc58, Func Offset: 0xe8
-	// Line 284, Address: 0x24cc64, Func Offset: 0xf4
-	// Line 286, Address: 0x24cc68, Func Offset: 0xf8
-	// Line 287, Address: 0x24cc74, Func Offset: 0x104
-	// Line 288, Address: 0x24cc80, Func Offset: 0x110
-	// Line 290, Address: 0x24cc88, Func Offset: 0x118
-	// Line 291, Address: 0x24cca8, Func Offset: 0x138
-	// Line 292, Address: 0x24ccc4, Func Offset: 0x154
-	// Line 294, Address: 0x24cce4, Func Offset: 0x174
-	// Line 292, Address: 0x24cce8, Func Offset: 0x178
-	// Line 294, Address: 0x24cd04, Func Offset: 0x194
-	// Line 295, Address: 0x24cd1c, Func Offset: 0x1ac
-	// Line 294, Address: 0x24cd20, Func Offset: 0x1b0
-	// Line 295, Address: 0x24cd24, Func Offset: 0x1b4
-	// Line 296, Address: 0x24cd30, Func Offset: 0x1c0
-	// Line 298, Address: 0x24cd4c, Func Offset: 0x1dc
-	// Line 296, Address: 0x24cd58, Func Offset: 0x1e8
-	// Line 298, Address: 0x24cd5c, Func Offset: 0x1ec
-	// Line 303, Address: 0x24cd64, Func Offset: 0x1f4
-	// Line 300, Address: 0x24cd6c, Func Offset: 0x1fc
-	// Line 301, Address: 0x24cd70, Func Offset: 0x200
-	// Line 303, Address: 0x24cd74, Func Offset: 0x204
-	// Line 305, Address: 0x24cd7c, Func Offset: 0x20c
-	// Func End, Address: 0x24cdac, Func Offset: 0x23c
-	scePrintf("bhEff_SetPtcl2 - UNIMPLEMENTED!\n");
+
+    ps.px = pos->x;
+    ps.py = pos->y;
+    ps.pz = pos->z;
+    
+    ps.ox = 0;
+    ps.oy = 0;
+    ps.oz = 0;
+    
+    if ((eff_no = bhSetEffect(366, &ps, NULL, 0)) != -1) 
+    {
+        effect = (EFFSUB366_WORK*)bhEff_AllocOwork();
+        
+        op = &eff[eff_no];
+        
+        op->exp0 = (unsigned char*)effect;
+        
+        op->func = (void*)bhEff_LineDraw;
+        
+        op->ct3 = 0;
+        
+        op->type = 0;
+        
+        vtx_p = effect->vtx_pos;
+        
+        effect->dtbl.num = 16;
+        
+        vtx_p2 = effect->vtx_pos2;
+        
+        effect->dtbl.exp0 = (unsigned char*)vtx_p;
+        
+        vec = effect->add_vec;
+        
+        effect->dtbl.exp1 = (unsigned char*)vtx_p2;
+        
+        njSetMatrix(NULL, mtx);
+        
+        njUnitTransPortion(NULL);
+        njRotateZ(NULL, -16384);
+        
+        for (i = 0; i < 16; i++) 
+        {
+            vtx_p->x = vtx_p2->x = pos->x;
+            vtx_p->y = vtx_p2->y = pos->y;
+            vtx_p->z = vtx_p2->z = pos->z;
+            
+            ang  = ((rand() % 16) * 4096) & 0xFFFF;
+            ang2 = (rand()  % 5461) + 5461;
+            
+            spd = eff_tbl[0] + (eff_tbl[1] * (-rand() / -2.1474836E9f));
+            
+            vec->x = -njSin(ang) * (spd * njCos(ang2));
+            vec->y = spd * njSin(ang2);
+            vec->z = -njCos(ang) * (spd * njCos(ang2));
+            
+            njCalcPoint(NULL, vec, vec);
+            
+            vec++;
+            vtx_p++;
+            vtx_p2++;
+        }
+        
+        return;
+    }
 }
 
 // 

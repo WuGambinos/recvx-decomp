@@ -650,13 +650,9 @@ void bhEff_Sub351(O_WRK* op)
     }
 }
 
-// 
-// Start address: 0x24dbc0
+// 100% matching!
 void bhEff_Sub352(O_WRK* op)
 {
-	O_WORK* owk;
-	NJS_POINT3 p2;
-	NJS_POINT3 p1;
 	static UV_WORK uvinfo[10] = 
 	{
 		{   0.0f,   0.0f,  48.0f,  48.0f },
@@ -680,120 +676,161 @@ void bhEff_Sub352(O_WRK* op)
 	{
 		anim00_tbl
 	};
-	// Line 898, Address: 0x24dbc0, Func Offset: 0
-	// Line 926, Address: 0x24dbe0, Func Offset: 0x20
-	// Line 929, Address: 0x24dbf8, Func Offset: 0x38
-	// Line 932, Address: 0x24dc04, Func Offset: 0x44
-	// Line 938, Address: 0x24dc1c, Func Offset: 0x5c
-	// Line 942, Address: 0x24dc54, Func Offset: 0x94
-	// Line 943, Address: 0x24dc58, Func Offset: 0x98
-	// Line 942, Address: 0x24dc5c, Func Offset: 0x9c
-	// Line 943, Address: 0x24dc60, Func Offset: 0xa0
-	// Line 945, Address: 0x24dc64, Func Offset: 0xa4
-	// Line 948, Address: 0x24dc6c, Func Offset: 0xac
-	// Line 950, Address: 0x24dc70, Func Offset: 0xb0
-	// Line 951, Address: 0x24dc74, Func Offset: 0xb4
-	// Line 957, Address: 0x24dc78, Func Offset: 0xb8
-	// Line 945, Address: 0x24dc7c, Func Offset: 0xbc
-	// Line 946, Address: 0x24dc84, Func Offset: 0xc4
-	// Line 947, Address: 0x24dc88, Func Offset: 0xc8
-	// Line 948, Address: 0x24dc8c, Func Offset: 0xcc
-	// Line 950, Address: 0x24dc90, Func Offset: 0xd0
-	// Line 951, Address: 0x24dc94, Func Offset: 0xd4
-	// Line 952, Address: 0x24dc98, Func Offset: 0xd8
-	// Line 953, Address: 0x24dc9c, Func Offset: 0xdc
-	// Line 954, Address: 0x24dca0, Func Offset: 0xe0
-	// Line 955, Address: 0x24dca4, Func Offset: 0xe4
-	// Line 956, Address: 0x24dca8, Func Offset: 0xe8
-	// Line 957, Address: 0x24dcac, Func Offset: 0xec
-	// Line 958, Address: 0x24dcb0, Func Offset: 0xf0
-	// Line 959, Address: 0x24dcb4, Func Offset: 0xf4
-	// Line 960, Address: 0x24dcb8, Func Offset: 0xf8
-	// Line 961, Address: 0x24dcbc, Func Offset: 0xfc
-	// Line 962, Address: 0x24dcc0, Func Offset: 0x100
-	// Line 964, Address: 0x24dcd4, Func Offset: 0x114
-	// Line 966, Address: 0x24dce0, Func Offset: 0x120
-	// Line 969, Address: 0x24dce8, Func Offset: 0x128
-	// Line 970, Address: 0x24dcf4, Func Offset: 0x134
-	// Line 971, Address: 0x24dcfc, Func Offset: 0x13c
-	// Line 973, Address: 0x24dd0c, Func Offset: 0x14c
-	// Line 971, Address: 0x24dd10, Func Offset: 0x150
-	// Line 973, Address: 0x24dd14, Func Offset: 0x154
-	// Line 971, Address: 0x24dd18, Func Offset: 0x158
-	// Line 972, Address: 0x24dd1c, Func Offset: 0x15c
-	// Line 973, Address: 0x24dd28, Func Offset: 0x168
-	// Line 975, Address: 0x24dd38, Func Offset: 0x178
-	// Line 986, Address: 0x24dd3c, Func Offset: 0x17c
-	// Line 975, Address: 0x24dd44, Func Offset: 0x184
-	// Line 977, Address: 0x24dd50, Func Offset: 0x190
-	// Line 978, Address: 0x24dd54, Func Offset: 0x194
-	// Line 979, Address: 0x24dd58, Func Offset: 0x198
-	// Line 981, Address: 0x24dd5c, Func Offset: 0x19c
-	// Line 982, Address: 0x24dd64, Func Offset: 0x1a4
-	// Line 983, Address: 0x24dd6c, Func Offset: 0x1ac
-	// Line 985, Address: 0x24dd74, Func Offset: 0x1b4
-	// Line 986, Address: 0x24dd7c, Func Offset: 0x1bc
-	// Line 988, Address: 0x24dd88, Func Offset: 0x1c8
-	// Line 994, Address: 0x24dd90, Func Offset: 0x1d0
-	// Line 995, Address: 0x24dd94, Func Offset: 0x1d4
-	// Line 996, Address: 0x24dd98, Func Offset: 0x1d8
-	// Line 999, Address: 0x24dda4, Func Offset: 0x1e4
-	// Line 1000, Address: 0x24ddb0, Func Offset: 0x1f0
-	// Line 1002, Address: 0x24ddbc, Func Offset: 0x1fc
-	// Line 1003, Address: 0x24ddf0, Func Offset: 0x230
-	// Line 1004, Address: 0x24ddf8, Func Offset: 0x238
-	// Line 1012, Address: 0x24de04, Func Offset: 0x244
-	// Line 1013, Address: 0x24de14, Func Offset: 0x254
-	// Line 1015, Address: 0x24de28, Func Offset: 0x268
-	// Line 1017, Address: 0x24de2c, Func Offset: 0x26c
-	// Line 1020, Address: 0x24de34, Func Offset: 0x274
-	// Line 1022, Address: 0x24de44, Func Offset: 0x284
-	// Line 1024, Address: 0x24de54, Func Offset: 0x294
-	// Line 1025, Address: 0x24de5c, Func Offset: 0x29c
-	// Line 1028, Address: 0x24de64, Func Offset: 0x2a4
-	// Line 1031, Address: 0x24de6c, Func Offset: 0x2ac
-	// Line 1032, Address: 0x24de88, Func Offset: 0x2c8
-	// Line 1034, Address: 0x24de8c, Func Offset: 0x2cc
-	// Line 1036, Address: 0x24de9c, Func Offset: 0x2dc
-	// Line 1047, Address: 0x24dea0, Func Offset: 0x2e0
-	// Line 1049, Address: 0x24deb8, Func Offset: 0x2f8
-	// Line 1054, Address: 0x24ded8, Func Offset: 0x318
-	// Line 1056, Address: 0x24dee4, Func Offset: 0x324
-	// Line 1064, Address: 0x24df10, Func Offset: 0x350
-	// Line 1065, Address: 0x24df1c, Func Offset: 0x35c
-	// Line 1066, Address: 0x24df20, Func Offset: 0x360
-	// Line 1065, Address: 0x24df24, Func Offset: 0x364
-	// Line 1064, Address: 0x24df28, Func Offset: 0x368
-	// Line 1065, Address: 0x24df2c, Func Offset: 0x36c
-	// Line 1064, Address: 0x24df30, Func Offset: 0x370
-	// Line 1070, Address: 0x24df34, Func Offset: 0x374
-	// Line 1064, Address: 0x24df38, Func Offset: 0x378
-	// Line 1065, Address: 0x24df3c, Func Offset: 0x37c
-	// Line 1066, Address: 0x24df44, Func Offset: 0x384
-	// Line 1065, Address: 0x24df48, Func Offset: 0x388
-	// Line 1066, Address: 0x24df50, Func Offset: 0x390
-	// Line 1069, Address: 0x24df64, Func Offset: 0x3a4
-	// Line 1070, Address: 0x24df84, Func Offset: 0x3c4
-	// Line 1071, Address: 0x24df8c, Func Offset: 0x3cc
-	// Line 1072, Address: 0x24df9c, Func Offset: 0x3dc
-	// Line 1073, Address: 0x24dfa8, Func Offset: 0x3e8
-	// Line 1074, Address: 0x24dfac, Func Offset: 0x3ec
-	// Line 1072, Address: 0x24dfb0, Func Offset: 0x3f0
-	// Line 1076, Address: 0x24dfb4, Func Offset: 0x3f4
-	// Line 1072, Address: 0x24dfb8, Func Offset: 0x3f8
-	// Line 1073, Address: 0x24dfc0, Func Offset: 0x400
-	// Line 1074, Address: 0x24dfd8, Func Offset: 0x418
-	// Line 1076, Address: 0x24dfec, Func Offset: 0x42c
-	// Line 1077, Address: 0x24dff4, Func Offset: 0x434
-	// Line 1079, Address: 0x24e004, Func Offset: 0x444
-	// Line 1083, Address: 0x24e008, Func Offset: 0x448
-	// Line 1079, Address: 0x24e00c, Func Offset: 0x44c
-	// Line 1080, Address: 0x24e010, Func Offset: 0x450
-	// Line 1081, Address: 0x24e018, Func Offset: 0x458
-	// Line 1083, Address: 0x24e020, Func Offset: 0x460
-	// Line 1085, Address: 0x24e024, Func Offset: 0x464
-	// Func End, Address: 0x24e048, Func Offset: 0x488
-	scePrintf("bhEff_Sub352 - UNIMPLEMENTED!\n");
+    NJS_POINT3 p1, p2; 
+    O_WORK* owk;  
+    
+    if ((sys->pt_flg & 0x2)) 
+    {
+        if ((op->mode0 == 0) || (!(((O_WRK*)op->lkwkp)->stflg & 0x1000000))) 
+        {
+            switch ((unsigned short)op->mode0) 
+            {                   
+            case 0:
+                op->bl_src = 8;
+                op->bl_dst = 10;
+                
+                op->flg |= 0x4180000;
+                
+                op->tex_id = 8;
+                
+                op->ani_ct = 0;
+                
+                op->spd = 1.0f;
+                
+                op->tv[0].x = -1.0f;
+                op->tv[0].y = -1.5f;
+                op->tv[0].z = 0;
+                
+                op->tv[1].x = 1.0f;
+                op->tv[1].y = -1.5f;
+                op->tv[1].z = 0;
+                
+                op->tv[2].x = -1.0f;
+                op->tv[2].y = 0.5f;
+                op->tv[2].z = 0;
+                
+                op->tv[3].x = 1.0f;
+                op->tv[3].y = 0.5f;
+                op->tv[3].z = 0;
+                
+                if ((op->type == 0) || (op->type == 2)) 
+                {
+                    op->tv[0].col = 0xC0FFFFFF;
+                    
+                    op->ct1 = 0;
+                } 
+                else 
+                {
+                    op->tv[0].col = 0xB4FFFFFF;
+                    
+                    op->ct1 = 5;
+                    
+                    op->sxb *= 1.2f;
+                    op->syb *= 1.2f;
+                    
+                    op->tv[0].z = op->tv[1].z = op->tv[2].z = op->tv[3].z = 0.05f;
+                }
+                
+                op->tv[3].col = op->tv[2].col = op->tv[1].col = op->tv[0].col;
+                
+                op->ct0 = 0;
+                op->ct2 = 0;
+                op->ct3 = 0;
+                
+                op->ofx = op->lox;
+                op->ofy = op->loy;
+                op->ofz = op->loz;
+                
+                op->xn = op->sxb;
+                op->yn = op->sxb / 8.0f;
+                
+                op->sxb = op->syb = 0;
+                
+                op->mode1 = 0;
+                op->mode2 = 0;
+                
+                op->mode0++;
+            case 1:
+                op->ct3--;
+                
+                if (op->ct3 >= 0) 
+                {
+                    break;
+                }
+                
+                if (op->type >= 2) 
+                {
+                    op->ct3 = (rand() % 60) + 30;
+                }
+                
+                op->mode2 = 1;
+                
+                op->mode0++;
+            case 2:
+                op->sxb += op->yn; 
+                
+                if (op->sxb > op->xn) 
+                {
+                    op->sxb = op->xn;
+                }
+                
+                op->syb = op->sxb;
+                
+                if ((op->type >= 2) && (--op->ct3 < 0))
+                {
+                    op->ct3 = 40;
+                    
+                    op->mode0++;
+                }
+                
+                break;
+            case 3:
+                op->sxb *= 0.96f;
+                op->syb = op->sxb; 
+                
+                if (--op->ct3 < 0) 
+                {
+                    op->flg = 0;
+                }
+                
+                break;
+            }
+            
+            if ((op->flg != 0) && ((op->ct2 != 0) && (op->shp_ct > op->mtx[0][13]))) 
+            {
+                op->flg = 0;
+            }
+            
+            if (op->mode2 != 0)
+            {
+                bhEff_SetSpriteAnime(op, anim_tbl[op->mode1], uvinfo, 0);
+                
+                p1.x = -cam.vx * op->zn;
+                p1.y = -cam.vy * op->zn;
+                p1.z = -cam.vz * op->zn;
+                
+                owk = &((O_WRK*)op->lkwkp)->mlwP->owP[op->lkono];
+                
+                njSetMatrix(NULL, &owk->mtx);
+                
+                njCalcPoint(NULL, (NJS_POINT3*)&op->ofx, &p2);
+                
+                p1.x = (p1.x + p2.x) - owk->mtx[12];
+                p1.y = (p1.y + p2.y) - owk->mtx[13];
+                p1.z = (p1.z + p2.z) - owk->mtx[14];
+                
+                njInvertMatrix(NULL);
+                
+                njCalcVector(NULL, &p1, &p2);
+                
+                op->lox = p2.x;
+                op->loy = p2.y;
+                op->loz = p2.z;
+                
+                op->ct2 = 1;
+            }
+        }
+    }
 }
 
 // 100% matching!

@@ -1,6 +1,6 @@
 #include "../../../ps2/veronica/prog/en11.h"
 
-// ENEMY: Spotter
+// ENEMY: Spotter 
 
 /*typedef struct npobj;
 typedef struct BH_PWORK;

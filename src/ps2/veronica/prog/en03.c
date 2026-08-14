@@ -1,6 +1,6 @@
 #include "../../../ps2/veronica/prog/en03.h"
 
-// ENEMY: Black Widow
+// ENEMY: Black Widow 
 
 /*typedef struct _anon0;
 typedef struct npobj;

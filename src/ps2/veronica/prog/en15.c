@@ -2,7 +2,7 @@
 #include "../../../ps2/veronica/prog/main.h"
 //#include <string.h>
 
-// ENEMY: Nosferatu
+// ENEMY: Nosferatu 
 
 /*typedef struct _anon0;
 typedef struct _anon1;

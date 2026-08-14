@@ -1,6 +1,6 @@
 #include "../../../ps2/veronica/prog/en19.h"
 
-// ENEMY: TYRANT 
+// ENEMY: Tyrant T-078 
 
 /*typedef struct npobj;
 typedef struct BH_PWORK;

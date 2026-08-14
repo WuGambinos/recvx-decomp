@@ -1,5 +1,7 @@
 #include "../../../ps2/veronica/prog/en18.h"
 
+// ENEMY: Alexia's Tentacle 
+
 /*typedef struct npobj;
 typedef struct _anon0;
 typedef struct _anon1;

@@ -1,6 +1,6 @@
 #include "../../../ps2/veronica/prog/en26.h"
 
-// ENEMY: Anatomist Zombie
+// ENEMY: Anatomist Zombie 
 
 /*typedef struct BH_PWORK;
 typedef struct _anon0;

@@ -7,6 +7,8 @@
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon.h"
 
+// ENEMY: Armored Knight A (with sword and medium shield) 
+
 typedef void (*bhEne54_Mode0_proc)(BH_PWORK* epw);
 typedef void (*bhEne54_MoveType_proc)(BH_PWORK* epw);
 typedef void (*bhEne54_MoveMode2_proc)(BH_PWORK* epw);

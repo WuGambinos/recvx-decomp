@@ -13,7 +13,7 @@
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/effect.h"
 
-// ENEMY: MOTH
+// ENEMY: Moth 
 
 static int ENE06_HITPOINT[16] = 
 {

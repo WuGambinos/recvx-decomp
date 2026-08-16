@@ -195,18 +195,6 @@ char PlyTrsZ[6][3] =
     { 9,   9, 9  },
     { 0,   0, 0  }
 };
-void (*bhCtrPly_mode0[9])() = 
-{
-    bhSetPlayer,
-    bhCPM0_action,
-    bhCPM0_damage,
-    bhCPM0_die,
-    bhCPM0_nage,
-    bhCPM0_enedam,
-    bhCPM0_enedie,
-    bhCPM0_event,
-    bhCPM0_nothing
-}; 
 
 const float PlyInfo[4][2] = 
 {
@@ -1053,7 +1041,10 @@ void bhResetPlayer()
 // 100% matching! 
 void bhCheckMothEgg()
 {
-    EGG_WORK egg = { 0 };
+    EGG_WORK egg = 
+    {
+        1, 27, 0, 0, 0, 0, 0, 0.0f, 0.0f, 0.0f, 0, 0, 0, 0, {0, 0, 0, 0}    
+    };
 
     if ((plp->stflg & 0x8000000)) 
     {
@@ -1338,6 +1329,19 @@ void bhCheckEvtTimer()
         }
     }
 }
+
+void (*bhCtrPly_mode0[9])() = 
+{
+    bhSetPlayer,
+    bhCPM0_action,
+    bhCPM0_damage,
+    bhCPM0_die,
+    bhCPM0_nage,
+    bhCPM0_enedam,
+    bhCPM0_enedie,
+    bhCPM0_event,
+    bhCPM0_nothing
+}; 
 
 #pragma divbyzerocheck on 
 

@@ -1,12 +1,12 @@
 {
   "measures": {
-    "fuzzy_match_percent": 74.48247,
+    "fuzzy_match_percent": 74.48242,
     "total_code": "1904472",
     "matched_code": "1151384",
     "matched_code_percent": 60.45686,
     "total_data": "28428164",
-    "matched_data": "28295708",
-    "matched_data_percent": 99.53407,
+    "matched_data": "28299732",
+    "matched_data_percent": 99.54822,
     "total_functions": 4529,
     "matched_functions": 3490,
     "matched_functions_percent": 77.05895,
@@ -1194,6 +1194,8 @@
         "matched_code": "36544",
         "matched_code_percent": 49.9426,
         "total_data": "7224",
+        "matched_data": "4024",
+        "matched_data_percent": 55.70321,
         "total_functions": 49,
         "matched_functions": 35,
         "matched_functions_percent": 71.42857,
@@ -1207,7 +1209,7 @@
         {
           "name": ".data",
           "size": "4024",
-          "fuzzy_match_percent": 99.94982,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -26801,7 +26803,7 @@
     {
       "name": "ps2/veronica/prog/adv",
       "measures": {
-        "fuzzy_match_percent": 97.75915,
+        "fuzzy_match_percent": 97.75676,
         "total_code": "30176",
         "matched_code": "15760",
         "matched_code_percent": 52.226936,
@@ -26843,7 +26845,7 @@
         {
           "name": ".text",
           "size": "30624",
-          "fuzzy_match_percent": 97.75915,
+          "fuzzy_match_percent": 97.75676,
           "metadata": {}
         },
         {
@@ -27408,7 +27410,7 @@
         {
           "name": "DisplayOptionPlateLevel3",
           "size": "1152",
-          "fuzzy_match_percent": 99.770836,
+          "fuzzy_match_percent": 99.708336,
           "metadata": {},
           "address": "27440"
         },
@@ -41421,13 +41423,13 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 73.30486,
+        "fuzzy_match_percent": 73.30482,
         "total_code": "1820460",
         "matched_code": "1067372",
         "matched_code_percent": 58.631992,
         "total_data": "28336764",
-        "matched_data": "28229420",
-        "matched_data_percent": 99.621185,
+        "matched_data": "28233444",
+        "matched_data_percent": 99.63538,
         "total_functions": 3834,
         "matched_functions": 2795,
         "matched_functions_percent": 72.90037,

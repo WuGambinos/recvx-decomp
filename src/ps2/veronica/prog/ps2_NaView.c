@@ -5,7 +5,7 @@
 #include "../../../ps2/veronica/prog/ps2_Vu1Strip.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-NJS_MATRIX NaViwViewMatrix __attribute__((aligned(64)));
+NJS_MATRIX NaViwViewMatrix;
 float fNaViwHalfW;
 float fNaViwHalfH;
 NJS_MATRIX NaViewScreenMatrix;

@@ -9,7 +9,7 @@ SND_STATUS get_iop_snddata __attribute__((aligned(64)));
 static unsigned char sbuff[512] __attribute__((aligned(64)));
 static unsigned int getbuff[4] __attribute__((aligned(64)));
 static sceSifClientData ClientData;
-static sceSifClientData GetStClientData __attribute__((aligned(64)));
+static sceSifClientData GetStClientData;
 static SNDQUE sndque_tbl[128];
 static volatile int sque_r_idx;
 static int sque_w_idx;

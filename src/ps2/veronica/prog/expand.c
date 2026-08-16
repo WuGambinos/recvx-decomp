@@ -1,6 +1,6 @@
 #include "../../../ps2/veronica/prog/expand.h"
 
-EXPAND_CTRL_BUF ExpandCtrlBuf __attribute__((aligned(64)));
+EXPAND_CTRL_BUF ExpandCtrlBuf;
 
 // 100% matching!
 void Init_Expand() 

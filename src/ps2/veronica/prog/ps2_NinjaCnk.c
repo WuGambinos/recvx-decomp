@@ -163,20 +163,20 @@ VU1_COLOR NaCnkAmbientEm __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f
 VU1_COLOR NaCnkAmbientSs __attribute__((aligned(64))) = { 1.0f, 1.0f, 1.0f, 1.0f };
 VU1_COLOR NaCnkAmbientSm = { 1.0f, 1.0f, 1.0f, 1.0f };
 CNK_LIGHT NaCnkLightEs __attribute__((aligned(64))) = { 1.401298464f, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 };
-CNK_LIGHT NaCnkLightEm[6] __attribute__((aligned(64))) = { { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
+CNK_LIGHT NaCnkLightEm[6] = { { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
 														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
 														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
 														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
 														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
 														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 } };
 CNK_LIGHT NaCnkLightSs = { 1.401298464f, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 };
-CNK_LIGHT NaCnkLightSm[6] __attribute__((aligned(64))) = { { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
+CNK_LIGHT NaCnkLightSm[6] = { { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
 														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
 														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
 														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
 														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 },
 														   { 0, 0, 1.0f, 10.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0, 0, 0, 0, 0, 0, 0, 0 } };
-CNK_LIGHTING NaCnkLighting[4] __attribute__((aligned(64))) = { { &NaCnkLightEs, 1, &NaCnkDefaultOne, &NaCnkSpeculaMaterial, &NaCnkAmbientEs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+CNK_LIGHTING NaCnkLighting[4] = { { &NaCnkLightEs, 1, &NaCnkDefaultOne, &NaCnkSpeculaMaterial, &NaCnkAmbientEs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 														       { NaCnkLightEm, 6, &NaCnkDefaultOne, &NaCnkDefaultOne, &NaCnkAmbientEm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 														       { &NaCnkLightSs, 1, &NaCnkDiffuseMaterial, &NaCnkSpeculaMaterial, &NaCnkAmbientSs, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 														       { NaCnkLightSm, 6, &NaCnkDiffuseMaterial, &NaCnkDefaultOne, &NaCnkAmbientSm, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };

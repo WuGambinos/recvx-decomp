@@ -17,10 +17,10 @@ int movie_draw;
 StrFile infile;
 VideoDec videoDec __attribute__((aligned(64)));
 AudioDec audioDec;
-VoBuf voBuf __attribute__((aligned(64)));
+VoBuf voBuf;
 u_long128 test_tag[1400] __attribute__((aligned(64)));
 RMI_WORK rmi;
-MDSIZE_WORK mdSize __attribute__((aligned(64)));
+MDSIZE_WORK mdSize;
 u_long128 new_tags[64] __attribute__((aligned(64)));
 
 // The original game has a bug and mistakenly overwrites the

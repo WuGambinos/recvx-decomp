@@ -1,7 +1,7 @@
 #include "../../../ps2/veronica/prog/padman.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-PAD_WRK Pad[4] __attribute__((aligned(64))); 
+PAD_WRK Pad[4]; 
 REPEAT_INFO RepeatInfo[4][6];
 int SoftResetFlag;
 int MaxContorolPlayer;

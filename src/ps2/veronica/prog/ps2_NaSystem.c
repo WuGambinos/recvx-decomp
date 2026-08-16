@@ -3,7 +3,7 @@
 #include "../../../ps2/veronica/prog/ps2_loadtim2.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-PS2_NJ_SAVE Ps2_nj_save_current __attribute__((aligned(64)));
+PS2_NJ_SAVE Ps2_nj_save_current;
 
 // 100% matching!
 void	njSetTextureMemorySize(Uint32 size )

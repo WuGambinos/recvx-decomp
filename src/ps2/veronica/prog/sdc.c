@@ -3,8 +3,8 @@
 #include "../../../ps2/veronica/prog/main.h"
 
 SDS_INFO MidiInfo[8];
-SDMIDI MidiHandle[8] __attribute__((aligned(64)));
-SDS_INFO SeInfo[20] __attribute__((aligned(64)));
+SDMIDI MidiHandle[8];
+SDS_INFO SeInfo[20];
 SDSHOT SeHandle[20];
 char SdcMasterVolume;
 char SdcGdDaVolume;

@@ -147,7 +147,7 @@ extern NJS_MATRIX crmat;
 extern float Ps2_shadow_fog;
 extern float Ps2_shadow_vec[4];
 extern int Ps2_shadow_z;
-extern NJS_MATRIX lcmat[12] __attribute__((aligned(64)));
+extern NJS_MATRIX lcmat[12];
 extern Uint8* _BSG_END;
 extern NJS_VERTEX_BUF* _nj_vertex_buf_;
 extern unsigned int _nj_control_3d_flag_;

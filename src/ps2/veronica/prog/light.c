@@ -5,7 +5,7 @@
 #include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-LGT_WORK lgttab[5] = 
+LGT_WK lgttab[5] = 
 {
     // lgttab[0]
     {
@@ -193,7 +193,7 @@ void bhInitLight()
 }
 
 // 100% matching! 
-void bhSetLightTab(LGT_WORK* lt, int lno) 
+void bhSetLightTab(LGT_WK* lt, int lno) 
 { 
     LGT_WORK* lp;
 
@@ -238,7 +238,7 @@ void bhSetLightTab(LGT_WORK* lt, int lno)
 	lp->fr = lt->fr;
     
 	lp->iang = lt->iang;
-	lp->oang = lt-> oang;
+	lp->oang = lt->oang;
     
 	lp->ax = lt->ax;
 	lp->ay = lt->ay;

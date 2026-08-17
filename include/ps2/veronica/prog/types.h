@@ -453,35 +453,35 @@ typedef struct LGT_WRK
 typedef struct LGT_WK 
 {
     // total size: 0x74
-    unsigned int flg; // offset 0x0, size 0x4
+    unsigned int flg;  // offset 0x0, size 0x4
     unsigned int type; // offset 0x4, size 0x4
-    signed int aspd; // offset 0x8, size 0x4
-    signed int lkflg; // offset 0xC, size 0x4
-    signed int lkno; // offset 0x10, size 0x4
-    signed int lkono; // offset 0x14, size 0x4
-    signed int lsrc; // offset 0x18, size 0x4
-    float px; // offset 0x1C, size 0x4
-    float py; // offset 0x20, size 0x4
-    float pz; // offset 0x24, size 0x4
-    float lx; // offset 0x28, size 0x4
-    float ly; // offset 0x2C, size 0x4
-    float lz; // offset 0x30, size 0x4
-    float vx; // offset 0x34, size 0x4
-    float vy; // offset 0x38, size 0x4
-    float vz; // offset 0x3C, size 0x4
-    float spc; // offset 0x40, size 0x4
-    float dif; // offset 0x44, size 0x4
-    float amb; // offset 0x48, size 0x4
-    float r; // offset 0x4C, size 0x4
-    float g; // offset 0x50, size 0x4
-    float b; // offset 0x54, size 0x4
-    float nr; // offset 0x58, size 0x4
-    float fr; // offset 0x5C, size 0x4
-    signed int iang; // offset 0x60, size 0x4
-    signed int oang; // offset 0x64, size 0x4
-    signed int ax; // offset 0x68, size 0x4
-    signed int ay; // offset 0x6C, size 0x4
-    signed int az; // offset 0x70, size 0x4
+    int aspd;          // offset 0x8, size 0x4
+    int lkflg;         // offset 0xC, size 0x4
+    int lkno;          // offset 0x10, size 0x4
+    int lkono;         // offset 0x14, size 0x4
+    int lsrc;          // offset 0x18, size 0x4
+    float px;          // offset 0x1C, size 0x4
+    float py;          // offset 0x20, size 0x4
+    float pz;          // offset 0x24, size 0x4
+    float lx;          // offset 0x28, size 0x4
+    float ly;          // offset 0x2C, size 0x4
+    float lz;          // offset 0x30, size 0x4
+    float vx;          // offset 0x34, size 0x4
+    float vy;          // offset 0x38, size 0x4
+    float vz;          // offset 0x3C, size 0x4
+    float spc;         // offset 0x40, size 0x4
+    float dif;         // offset 0x44, size 0x4
+    float amb;         // offset 0x48, size 0x4
+    float r;           // offset 0x4C, size 0x4
+    float g;           // offset 0x50, size 0x4
+    float b;           // offset 0x54, size 0x4
+    float nr;          // offset 0x58, size 0x4
+    float fr;          // offset 0x5C, size 0x4
+    int iang;          // offset 0x60, size 0x4
+    int oang;          // offset 0x64, size 0x4
+    int ax;            // offset 0x68, size 0x4
+    int ay;            // offset 0x6C, size 0x4
+    int az;            // offset 0x70, size 0x4
 } LGT_WK;
 
 typedef struct LPTB

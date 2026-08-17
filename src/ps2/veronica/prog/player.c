@@ -1464,12 +1464,12 @@ void bhControlPlayer()
                 
                 bhSetEffectTb(WpnEffTab[plp->wpnr_no], (NJS_POINT3*)&WpnTab[plp->wpnr_no].wp_fps1, (unsigned char*)plp, 9);
                 
-                lgttab->ct2 = 1;
-                lgttab->ct3 = 0;
+                lgttab[1].lkflg = 1;
+
+                lgttab[1].lkno  = 0;
+                lgttab[1].lkono = 9;
                 
-                lgttab->wpx = 1.3e-44f;
-                
-                bhSetLightTab((LGT_WORK*)&lgttab->mode, 1); // the first parameter is probably a dev mistake
+                bhSetLightTab(&lgttab[1], 1);
                 
                 rom->lgtp[1].flg |= 0x2;
             }

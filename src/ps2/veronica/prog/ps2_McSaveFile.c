@@ -335,7 +335,7 @@ ICONINFORMATION* mcCreateIconInit(ICONINFORMATION* pIcon, char** cppFileName, un
     
     strcpy(pIcon, "PS2D");
     
-    strcpy(pIcon->icon.TitleName, "‚q‚d‚r‚h‚c‚d‚m‚s@‚d‚u‚h‚k?‚b‚n‚c‚dF‚u‚…‚’‚‚Ž‚‰‚ƒ‚?‚w"); 
+    strcpy(pIcon->icon.TitleName, "‚q‚d‚r‚h‚c‚d‚m‚s@‚d‚u‚h‚k|‚b‚n‚c‚dF‚u‚…‚’‚‚Ž‚‰‚ƒ‚|‚w"); 
     
     pIcon->icon.OffsLF = 26;
     

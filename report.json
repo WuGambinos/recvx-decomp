@@ -1,12 +1,12 @@
 {
   "measures": {
-    "fuzzy_match_percent": 74.48242,
+    "fuzzy_match_percent": 74.48287,
     "total_code": "1904472",
     "matched_code": "1151384",
     "matched_code_percent": 60.45686,
     "total_data": "28428164",
-    "matched_data": "28300292",
-    "matched_data_percent": 99.55019,
+    "matched_data": "28300372",
+    "matched_data_percent": 99.550476,
     "total_functions": 4529,
     "matched_functions": 3490,
     "matched_functions_percent": 77.05895,
@@ -16337,7 +16337,7 @@
     {
       "name": "ps2/veronica/prog/effsub1b",
       "measures": {
-        "fuzzy_match_percent": 98.86326,
+        "fuzzy_match_percent": 98.91145,
         "total_code": "17844",
         "matched_code": "8800",
         "matched_code_percent": 49.316296,
@@ -16373,7 +16373,7 @@
         {
           "name": ".text",
           "size": "17904",
-          "fuzzy_match_percent": 98.86326,
+          "fuzzy_match_percent": 98.91145,
           "metadata": {}
         },
         {
@@ -16427,7 +16427,7 @@
         {
           "name": "bhDraw137",
           "size": "1828",
-          "fuzzy_match_percent": 92.910286,
+          "fuzzy_match_percent": 93.380745,
           "metadata": {},
           "address": "7616"
         },
@@ -24117,6 +24117,8 @@
         "matched_code": "5172",
         "matched_code_percent": 63.320274,
         "total_data": "80",
+        "matched_data": "80",
+        "matched_data_percent": 100.0,
         "total_functions": 23,
         "matched_functions": 17,
         "matched_functions_percent": 73.91304,
@@ -24134,7 +24136,7 @@
         {
           "name": ".rodata",
           "size": "80",
-          "fuzzy_match_percent": 71.875,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -41423,13 +41425,13 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 73.30482,
+        "fuzzy_match_percent": 73.30529,
         "total_code": "1820460",
         "matched_code": "1067372",
         "matched_code_percent": 58.631992,
         "total_data": "28336764",
-        "matched_data": "28234004",
-        "matched_data_percent": 99.63736,
+        "matched_data": "28234084",
+        "matched_data_percent": 99.63764,
         "total_functions": 3834,
         "matched_functions": 2795,
         "matched_functions_percent": 72.90037,

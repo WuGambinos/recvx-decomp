@@ -229,137 +229,174 @@ int bhSetBloodPoolLnk(BH_PWORK* ewP, NJS_POINT3* posP, int ay, BP_WORK* tabP, in
     return 0;
 }
 
-// 
-// Start address: 0x246be0
+// 99.53% matching
 void bhEff300(O_WRK* oP)
 {
-	BH_PWORK* ewP;
-	NJS_POINT3 pos;
-	int pnt;
-	NJS_TEXTURE_VTX* tvP;
-	NJS_POINT3 add;
-	float spd;
-	int srt_no;
-	int i;
-	//NJS_TEXTURE_VTX* tvP;
-	NJS_POINT3* addP;
-	//float spd;
-	int tmp;
-	int ang;
-	//int i;
-	NJS_POINT3* spdP;
-	//NJS_TEXTURE_VTX* tvP;
-	//int ang;
-	//float spd;
-	NJS_POINT3 center;
-	//_anon60* e17P;
-	static const int VtxTbl[16] = 
-	{
-		0, 1, 3, 5, 7, 9, 11, 13, 15, 14, 12, 10, 8, 6, 4, 2
-	};
-	// Line 404, Address: 0x246be0, Func Offset: 0
-	// Line 409, Address: 0x246c0c, Func Offset: 0x2c
-	// Line 418, Address: 0x246c14, Func Offset: 0x34
-	// Line 425, Address: 0x246c40, Func Offset: 0x60
-	// Line 426, Address: 0x246c48, Func Offset: 0x68
-	// Line 425, Address: 0x246c4c, Func Offset: 0x6c
-	// Line 428, Address: 0x246c50, Func Offset: 0x70
-	// Line 430, Address: 0x246c60, Func Offset: 0x80
-	// Line 428, Address: 0x246c64, Func Offset: 0x84
-	// Line 430, Address: 0x246c68, Func Offset: 0x88
-	// Line 434, Address: 0x246c74, Func Offset: 0x94
-	// Line 435, Address: 0x246c78, Func Offset: 0x98
-	// Line 430, Address: 0x246c7c, Func Offset: 0x9c
-	// Line 436, Address: 0x246c80, Func Offset: 0xa0
-	// Line 438, Address: 0x246c84, Func Offset: 0xa4
-	// Line 436, Address: 0x246c8c, Func Offset: 0xac
-	// Line 441, Address: 0x246c90, Func Offset: 0xb0
-	// Line 443, Address: 0x246c94, Func Offset: 0xb4
-	// Line 444, Address: 0x246ca8, Func Offset: 0xc8
-	// Line 446, Address: 0x246cac, Func Offset: 0xcc
-	// Line 447, Address: 0x246cb4, Func Offset: 0xd4
-	// Line 448, Address: 0x246cc8, Func Offset: 0xe8
-	// Line 447, Address: 0x246ccc, Func Offset: 0xec
-	// Line 448, Address: 0x246cd4, Func Offset: 0xf4
-	// Line 451, Address: 0x246ce4, Func Offset: 0x104
-	// Line 448, Address: 0x246ce8, Func Offset: 0x108
-	// Line 449, Address: 0x246cec, Func Offset: 0x10c
-	// Line 448, Address: 0x246cf4, Func Offset: 0x114
-	// Line 451, Address: 0x246cfc, Func Offset: 0x11c
-	// Line 453, Address: 0x246d08, Func Offset: 0x128
-	// Line 451, Address: 0x246d0c, Func Offset: 0x12c
-	// Line 453, Address: 0x246d10, Func Offset: 0x130
-	// Line 454, Address: 0x246d20, Func Offset: 0x140
-	// Line 455, Address: 0x246d30, Func Offset: 0x150
-	// Line 454, Address: 0x246d38, Func Offset: 0x158
-	// Line 455, Address: 0x246d3c, Func Offset: 0x15c
-	// Line 458, Address: 0x246d48, Func Offset: 0x168
-	// Line 460, Address: 0x246d4c, Func Offset: 0x16c
-	// Line 461, Address: 0x246d54, Func Offset: 0x174
-	// Line 466, Address: 0x246d5c, Func Offset: 0x17c
-	// Line 467, Address: 0x246d60, Func Offset: 0x180
-	// Line 470, Address: 0x246d64, Func Offset: 0x184
-	// Line 471, Address: 0x246d68, Func Offset: 0x188
-	// Line 472, Address: 0x246d74, Func Offset: 0x194
-	// Line 473, Address: 0x246d84, Func Offset: 0x1a4
-	// Line 472, Address: 0x246d88, Func Offset: 0x1a8
-	// Line 473, Address: 0x246d8c, Func Offset: 0x1ac
-	// Line 472, Address: 0x246d94, Func Offset: 0x1b4
-	// Line 473, Address: 0x246da4, Func Offset: 0x1c4
-	// Line 480, Address: 0x246dac, Func Offset: 0x1cc
-	// Line 481, Address: 0x246db4, Func Offset: 0x1d4
-	// Line 483, Address: 0x246db8, Func Offset: 0x1d8
-	// Line 487, Address: 0x246dd0, Func Offset: 0x1f0
-	// Line 489, Address: 0x246dd4, Func Offset: 0x1f4
-	// Line 495, Address: 0x246dec, Func Offset: 0x20c
-	// Line 486, Address: 0x246df0, Func Offset: 0x210
-	// Line 496, Address: 0x246df4, Func Offset: 0x214
-	// Line 489, Address: 0x246e08, Func Offset: 0x228
-	// Line 495, Address: 0x246e30, Func Offset: 0x250
-	// Line 496, Address: 0x246e48, Func Offset: 0x268
-	// Line 498, Address: 0x246e60, Func Offset: 0x280
-	// Line 500, Address: 0x246e84, Func Offset: 0x2a4
-	// Line 504, Address: 0x246e8c, Func Offset: 0x2ac
-	// Line 505, Address: 0x246e94, Func Offset: 0x2b4
-	// Line 504, Address: 0x246e98, Func Offset: 0x2b8
-	// Line 505, Address: 0x246eac, Func Offset: 0x2cc
-	// Line 507, Address: 0x246ec4, Func Offset: 0x2e4
-	// Line 508, Address: 0x246ed4, Func Offset: 0x2f4
-	// Line 507, Address: 0x246ed8, Func Offset: 0x2f8
-	// Line 508, Address: 0x246edc, Func Offset: 0x2fc
-	// Line 507, Address: 0x246ee8, Func Offset: 0x308
-	// Line 508, Address: 0x246ef0, Func Offset: 0x310
-	// Line 507, Address: 0x246efc, Func Offset: 0x31c
-	// Line 508, Address: 0x246f04, Func Offset: 0x324
-	// Line 509, Address: 0x246f1c, Func Offset: 0x33c
-	// Line 511, Address: 0x246f50, Func Offset: 0x370
-	// Line 512, Address: 0x246f60, Func Offset: 0x380
-	// Line 511, Address: 0x246f64, Func Offset: 0x384
-	// Line 512, Address: 0x246f68, Func Offset: 0x388
-	// Line 511, Address: 0x246f74, Func Offset: 0x394
-	// Line 512, Address: 0x246f7c, Func Offset: 0x39c
-	// Line 511, Address: 0x246f88, Func Offset: 0x3a8
-	// Line 512, Address: 0x246f90, Func Offset: 0x3b0
-	// Line 513, Address: 0x246fa8, Func Offset: 0x3c8
-	// Line 515, Address: 0x246fdc, Func Offset: 0x3fc
-	// Line 516, Address: 0x246fec, Func Offset: 0x40c
-	// Line 515, Address: 0x246ff0, Func Offset: 0x410
-	// Line 516, Address: 0x246ff4, Func Offset: 0x414
-	// Line 515, Address: 0x247000, Func Offset: 0x420
-	// Line 516, Address: 0x247008, Func Offset: 0x428
-	// Line 515, Address: 0x247014, Func Offset: 0x434
-	// Line 516, Address: 0x24701c, Func Offset: 0x43c
-	// Line 517, Address: 0x247034, Func Offset: 0x454
-	// Line 519, Address: 0x247068, Func Offset: 0x488
-	// Line 521, Address: 0x247078, Func Offset: 0x498
-	// Line 522, Address: 0x24708c, Func Offset: 0x4ac
-	// Line 523, Address: 0x247098, Func Offset: 0x4b8
-	// Line 530, Address: 0x24709c, Func Offset: 0x4bc
-	// Line 533, Address: 0x2470a0, Func Offset: 0x4c0
-	// Line 535, Address: 0x2470d4, Func Offset: 0x4f4
-	// Line 546, Address: 0x24710c, Func Offset: 0x52c
-	// Func End, Address: 0x24713c, Func Offset: 0x55c
-	scePrintf("bhEff300 - UNIMPLEMENTED!\n");
+    static const int VtxTbl[16] = 
+    {
+        0, 1, 3, 5, 7, 9, 11, 13, 15, 14, 12, 10, 8, 6, 4, 2
+    };
+    E17_WORK* e17P; 
+
+    e17P = (E17_WORK*)oP->exp0;
+
+    switch (oP->mode0) 
+    {
+    case 0:
+    {
+        NJS_POINT3 center;    
+        float spd;           
+        int ang;            
+        int tmp; // not from DWARF
+        NJS_TEXTURE_VTX* tvP;
+        NJS_POINT3* spdP;    
+        int i;               
+        
+        spd = e17P->srd_pos * e17P->bld_spd;
+        ang = e17P->srd_dir;
+        
+        center.x = spd * -njCos(ang);
+        center.y = 0;
+        center.z = spd * njSin(ang);
+
+        tvP  = &e17P->tv_buf[0];
+        spdP = &e17P->tv_spd[0];
+        
+        ang = e17P->eff_dir + 16384;
+        
+        for (i = 0; i < 16; i++, tvP++, spdP++) 
+        {
+            tmp = 4096 * i;
+            
+            spd = e17P->bld_spd;
+            
+            if (!(i & 0x1)) 
+            {
+                tmp *= -1;
+            }
+            
+            ang += tmp;
+            
+            tvP->x = tvP->y = tvP->z = 0;
+            
+            tvP->u = 0.5f + (0.5f * njCos(ang));
+            tvP->v = 0.5f + (0.5f * njSin(ang));
+            
+            tvP->col = 0xF0808080;
+            
+            spdP->x = spd * njCos(ang);
+            spdP->y = 0;
+            spdP->z = spd * -njSin(ang);
+            
+            njSubVector(spdP, &center);
+        }
+        
+        oP->ct0 = 0;
+        
+        oP->mode0++;
+        break;
+    }
+    case 1:
+    {
+        int ang;             
+        int tmp;             
+        float spd;           
+        NJS_POINT3* addP;    
+        NJS_TEXTURE_VTX* tvP; 
+        int i;               
+        int srt_no;           
+        
+        addP = &e17P->tv_spd[0];
+        tvP  = &e17P->tv_buf[0];
+        
+        for (i = 0; i < 16; ) 
+        {
+            njAddVector((NJS_VECTOR*)&tvP->x, addP);
+            
+            addP->x *= 0.98f;
+            addP->z *= 0.98f;
+            
+            i++;
+            tvP++;
+            addP++;
+        }
+        
+        for (srt_no = 0; srt_no < 5; srt_no++) 
+        {
+            float spd;     
+            
+            spd = e17P->srt_spd[srt_no];
+            
+            if (spd != 0) 
+            {
+                NJS_POINT3 add;
+                NJS_TEXTURE_VTX* tvP; 
+                int pnt;              
+                NJS_POINT3 pos;       
+
+                tvP = e17P->tv_buf;
+                
+                pnt = e17P->srt_vtx[srt_no];
+                
+                add = e17P->tv_spd[VtxTbl[pnt]];
+                
+                pos = *(NJS_POINT3*)&oP->px;
+                
+                njAddVector(&pos, (NJS_VECTOR*)&tvP[VtxTbl[pnt & 0xF]].x);
+                
+                if (bhCheckWallType(&pos, 0, 0.2f, 0) != NULL) 
+                {
+                    e17P->srt_spd[srt_no] = 0;
+                } 
+                else 
+                {
+                    add.x *= spd;
+                    add.z *= spd;
+                    
+                    njAddVector((NJS_VECTOR*)&tvP[VtxTbl[pnt & 0xF]].x,       &add);
+                    
+                    add.x *= 0.9f;
+                    add.z *= 0.9f;
+                    
+                    njAddVector((NJS_VECTOR*)&tvP[VtxTbl[(pnt + 1) & 0xF]].x, &add);
+                    njAddVector((NJS_VECTOR*)&tvP[VtxTbl[(pnt - 1) & 0xF]].x, &add);
+                    
+                    add.x *= 0.4f;
+                    add.z *= 0.4f;
+                    
+                    njAddVector((NJS_VECTOR*)&tvP[VtxTbl[(pnt + 2) & 0xF]].x, &add);
+                    njAddVector((NJS_VECTOR*)&tvP[VtxTbl[(pnt - 2) & 0xF]].x, &add);
+                    
+                    add.x *= 0.2f;
+                    add.z *= 0.2f;
+                    
+                    njAddVector((NJS_VECTOR*)&tvP[VtxTbl[(pnt + 3) & 0xF]].x, &add);
+                    njAddVector((NJS_VECTOR*)&tvP[VtxTbl[(pnt - 3) & 0xF]].x, &add);
+                }
+            }
+        }
+         
+        if (oP->ct0++ > 256) 
+        {
+            oP->mode0++;
+            
+            oP->ct0 = 0;
+        }
+    }
+    case 2:
+    {
+        BH_PWORK* ewP; 
+        
+        ewP = (BH_PWORK*)oP->lkwkp;
+        
+        if ((ewP == NULL) || ((!(ewP->stflg & 0x1000000)) && ((sys->pt_flg & 0x2)))) 
+        {
+            sys->ef_trs[sys->ef_trsn++] = oP;
+        }
+        
+        break;
+    }
+    } 
 }
 
 // 

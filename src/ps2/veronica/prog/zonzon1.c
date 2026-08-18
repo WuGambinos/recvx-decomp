@@ -130,7 +130,7 @@ void bhEne_SetMinceEffect2(BH_PWORK* epw, int type, float size, int num)
 }
 
 // 100% matching!
-void bhEne_SetBloodEffect(BH_PWORK* epw, int type)
+void bhEne_SetBloodEffect(BH_PWORK* epw, int type, int param) // third parameter not present in DWARF
 {
     bhEne_SetBloodEffect5(epw, 0, type);
 }

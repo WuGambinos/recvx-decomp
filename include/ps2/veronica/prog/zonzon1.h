@@ -36,7 +36,7 @@ typedef struct COMBWEP_WORK
 
 void bhEne_SetMinceEffect(BH_PWORK* epw, int type, int num);
 void bhEne_SetMinceEffect2(BH_PWORK* epw, int type, float size, int num);
-void bhEne_SetBloodEffect(BH_PWORK* epw, int type);
+void bhEne_SetBloodEffect(BH_PWORK* epw, int type, int param);
 void bhEne_SetBloodEffect2(BH_PWORK* epw, int type, int jno, NJS_POINT3* ofp);
 void bhEne_SetBloodEffect4(NJS_POINT3* pos, NJS_POINT3* vec, int col, int type1, int type2);
 void bhEne_SetBloodEffect5(BH_PWORK* epw, int type1, int type2);

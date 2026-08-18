@@ -1,12 +1,17 @@
 #include "../../../ps2/veronica/prog/en15.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/zonzon.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
+
 //#include <string.h>
 
 // ENEMY: Nosferatu 
 
-/*typedef struct _anon0;
+/*typedef struct NJS_SPHERE;
 typedef struct _anon1;
-typedef struct _anon2;
+typedef struct NJS_POINT3;
 typedef struct _anon3;
 typedef struct BH_PWORK;
 typedef struct _anon4;
@@ -18,7 +23,7 @@ typedef struct _anon8;
 typedef struct _anon9;
 typedef struct _anon10;
 typedef struct _MTN_RELAY_RELAY;
-typedef struct _anon11;
+typedef struct NJS_BOX;
 typedef struct _COMBO_EFF;
 typedef union _anon12;
 typedef struct _MTN_RELAY;
@@ -40,7 +45,7 @@ typedef struct _anon24;
 typedef struct _anon25;
 typedef struct _anon26;
 typedef struct _anon27;
-typedef struct _anon28;
+typedef struct NJS_CAPSULE;
 typedef struct _anon29;
 typedef struct _anon30;
 typedef struct _anon31;
@@ -71,7 +76,7 @@ typedef void(*type_98)(BH_PWORK*);
 typedef void(*type_114)(void*);
 typedef void(*type_155)(BH_PWORK*);
 
-typedef _anon2 type_0[32];
+typedef NJS_POINT3 type_0[32];
 typedef _anon1* type_1[512];
 typedef _anon1* type_2[128];
 typedef _anon1* type_3[128];
@@ -206,7 +211,7 @@ typedef unsigned int type_134[8];
 typedef int type_135[4];
 typedef unsigned int type_136[1];
 typedef unsigned int type_137[384];
-typedef _anon2 type_138[8];
+typedef NJS_POINT3 type_138[8];
 typedef unsigned int type_139[2];
 typedef int type_140[3];
 typedef unsigned int type_141[4];
@@ -229,9 +234,9 @@ typedef unsigned int type_158[4];
 typedef unsigned int type_159[32];
 typedef _anon1* type_160[128];
 
-struct _anon0
+struct NJS_SPHERE
 {
-	_anon2 c;
+	NJS_POINT3 c;
 	float r;
 };
 
@@ -339,7 +344,7 @@ struct _anon1
 	int ct2;
 	int ct3;
 	unsigned char* objbak;
-	_anon0 cspr;
+	NJS_SPHERE cspr;
 	int pn;
 	_anon40* pvp;
 	_anon3* tvp;
@@ -359,7 +364,7 @@ struct _anon1
 	int Dummy2;
 };
 
-struct _anon2
+struct NJS_POINT3
 {
 	float x;
 	float y;
@@ -482,7 +487,7 @@ struct BH_PWORK
 	int wpnr_no;
 	int wpnl_no;
 	unsigned int at_flg;
-	_anon28 watr;
+	NJS_CAPSULE watr;
 	_anon29* cpcl;
 	short wax;
 	short way;
@@ -653,9 +658,9 @@ struct _MTN_RELAY_RELAY
 	_MTN_RELAY* relay;
 };
 
-struct _anon11
+struct NJS_BOX
 {
-	_anon2 v[8];
+	NJS_POINT3 v[8];
 };
 
 struct _COMBO_EFF
@@ -666,8 +671,8 @@ struct _COMBO_EFF
 
 union _anon12
 {
-	_anon28 cap;
-	_anon11 box;
+	NJS_CAPSULE cap;
+	NJS_BOX box;
 };
 
 struct _MTN_RELAY
@@ -998,10 +1003,10 @@ struct _anon27
 	void* p[2];
 };
 
-struct _anon28
+struct NJS_CAPSULE
 {
-	_anon2 c1;
-	_anon2 c2;
+	NJS_POINT3 c1;
+	NJS_POINT3 c2;
 	float r;
 };
 
@@ -1069,7 +1074,7 @@ struct _anon31
 	unsigned int mp_flg[8];
 	unsigned int itm[384];
 	unsigned int ply_stflg[4];
-	_anon2 ply_pos;
+	NJS_POINT3 ply_pos;
 	int ply_ang;
 	char ply_wno[4];
 	short ply_hp[4];
@@ -1294,8 +1299,8 @@ struct _anon31
 	BH_PWORK* plp;
 	_anon24* pl_htp;
 	int costume;
-	_anon2 hd_pos;
-	_anon2 apos;
+	NJS_POINT3 hd_pos;
+	NJS_POINT3 apos;
 	_anon24* ahtp;
 	int mwal_n;
 	int metc_n;
@@ -1372,7 +1377,7 @@ struct _anon31
 	unsigned char ufo_md;
 	unsigned char ufo_flg;
 	short ufo_oidx;
-	_anon2 ufo_pos;
+	NJS_POINT3 ufo_pos;
 	unsigned int opt_flg;
 	unsigned short opt_md0;
 	unsigned short opt_md1;
@@ -1399,7 +1404,7 @@ struct _anon31
 	_anon39 gatc[16];
 	int ght_ct;
 	unsigned int ghtc[32];
-	_anon2 ghtp[32];
+	NJS_POINT3 ghtp[32];
 	unsigned short db_md0;
 	unsigned short db_md1;
 	char db_stgno;
@@ -1454,8 +1459,8 @@ struct _UVINFO
 struct _anon34
 {
 	float mtrx[16];
-	_anon2 pnt;
-	_anon2 vctr;
+	NJS_POINT3 pnt;
+	NJS_POINT3 vctr;
 	int stat;
 	int reserve;
 	_anon38 ltcal;
@@ -1464,7 +1469,7 @@ struct _anon34
 
 struct _anon35
 {
-	_anon2 ps;
+	NJS_POINT3 ps;
 	float nr;
 	float fr;
 	float cr;
@@ -1476,7 +1481,7 @@ struct _anon36
 {
 	int* vlist;
 	short* plist;
-	_anon2 center;
+	NJS_POINT3 center;
 	float r;
 };
 
@@ -1506,9 +1511,9 @@ struct _anon38
 	float intns;
 	int exp;
 	int reserve;
-	_anon2 lpnt;
-	_anon2 lvctr;
-	_anon2 lmvctr;
+	NJS_POINT3 lpnt;
+	NJS_POINT3 lvctr;
+	NJS_POINT3 lmvctr;
 	_anon25 atten;
 	_anon25 amb;
 	_anon25 dif;
@@ -1526,8 +1531,8 @@ struct _EFF_INFO
 
 struct _anon39
 {
-	_anon2 c1;
-	_anon2 c2;
+	NJS_POINT3 c1;
+	NJS_POINT3 c2;
 	float r1;
 	float r2;
 };
@@ -1665,7 +1670,7 @@ struct _WPNDG_TBL
 	char mince_type;
 };*/
 
-char dbgout_buf[256];
+static char dbgout_buf[256];
 /*_WPNDG_TBL WpnDamageTbl[21];
 _anon45 CombWepTbl[21];
 _anon47 CombJointTbl[24];
@@ -1681,12 +1686,68 @@ _LEGLOCK_LIST lrl_fldmg[2];
 _LEGLOCK_LIST lrl_bldmg[2];
 _LEGLOCK_LIST lrl_crdmg[2];
 _LEGLOCK_LIST lrl_dummy[1];
-_LEGLOCK_TAB leglock_tab[11];
-int attack1_col_joint[5];
-int attack2_col_joint[4];
-int attack3_col_joint[6];
-_ATTACK_COL_TBL attack_col_tab[3];
-_anon29 CapColTab[23];
+_LEGLOCK_TAB leglock_tab[11];*/
+static int attack1_col_joint[5] = 
+{
+	7,
+	8,
+	9,
+	10,
+	-1
+};
+static int attack2_col_joint[4] = 
+{
+	8,
+	9,
+	10,
+	-1
+};
+static int attack3_col_joint[6] = 
+{
+	6,
+	7,
+	8,
+	9,
+	10,
+	-1
+};
+static ATTACK_COL_TBL attack_col_tab[3] =
+{
+    {
+        attack1_col_joint,
+        31,      
+        56,      
+        50,      
+        8192,  
+        6.05f,   
+        4.3f,    
+        41,      
+        52       
+    },
+    {
+        attack2_col_joint,
+        29,      
+        40,      
+        50,      
+        5461,  
+        4.0f,    
+        3.3f,    
+        0,
+        0
+    },
+    {
+        attack3_col_joint,
+        24,      
+        32,      
+        30,      
+        7281,  
+        4.5f,    
+        5.0f,    
+        24,      
+        30       
+    }
+};
+/*_anon29 CapColTab[23];
 unsigned char flip_tree[24];
 void(*Mode_func)(BH_PWORK*)[6];
 void(*Move_func)(BH_PWORK*)[5];
@@ -1730,7 +1791,7 @@ int target_direction(BH_PWORK* epw)
 float target_distance(BH_PWORK* epw)
 {
 	_anon30* owk;
-	_anon2 epos;
+	NJS_POINT3 epos;
 	// Line 958, Address: 0x1e0f80, Func Offset: 0
 	// Line 961, Address: 0x1e0f88, Func Offset: 0x8
 	// Line 965, Address: 0x1e0f8c, Func Offset: 0xc
@@ -1999,9 +2060,9 @@ void Chase(BH_PWORK* epw)
 
 // 
 // Start address: 0x1e20f0
-void __goalAng(BH_PWORK* epw, _anon2* vec, _anon2* ans)
+void __goalAng(BH_PWORK* epw, NJS_POINT3* vec, NJS_POINT3* ans)
 {
-	_anon2 v;
+	NJS_POINT3 v;
 	// Line 1740, Address: 0x1e20f0, Func Offset: 0
 	// Line 1741, Address: 0x1e2104, Func Offset: 0x14
 	// Line 1742, Address: 0x1e2118, Func Offset: 0x28
@@ -2017,8 +2078,8 @@ void __goalAng(BH_PWORK* epw, _anon2* vec, _anon2* ans)
 // Start address: 0x1e2180
 int _goalAng(BH_PWORK* epw)
 {
-	_anon2 ans;
-	_anon2 vec;
+	NJS_POINT3 ans;
+	NJS_POINT3 vec;
 	// Line 1748, Address: 0x1e2180, Func Offset: 0
 	// Line 1750, Address: 0x1e2184, Func Offset: 0x4
 	// Line 1748, Address: 0x1e2188, Func Offset: 0x8
@@ -2032,8 +2093,8 @@ int _goalAng(BH_PWORK* epw)
 // Start address: 0x1e21c0
 int _goalAng2(BH_PWORK* epw)
 {
-	_anon2 ans;
-	_anon2 vec;
+	NJS_POINT3 ans;
+	NJS_POINT3 vec;
 	// Line 1755, Address: 0x1e21c0, Func Offset: 0
 	// Line 1757, Address: 0x1e21c4, Func Offset: 0x4
 	// Line 1755, Address: 0x1e21c8, Func Offset: 0x8
@@ -2062,168 +2123,317 @@ void KeepFar(BH_PWORK* epw)
 	// Line 1777, Address: 0x1e2320, Func Offset: 0x110
 	// Line 1778, Address: 0x1e232c, Func Offset: 0x11c
 	// Func End, Address: 0x1e233c, Func Offset: 0x12c
+}*/
+
+// 100% matching!
+void Attack(BH_PWORK* epw) 
+{    
+    static char left_idx[4]  = { 0, 4, 5, 1 }, right_idx[4] = { 3, 7, 6, 2 }; 
+    int i;                                                 
+    NJS_VECTOR attack_v;                                
+    ATTACK_COL col;                                        
+
+    if (epw->ct3 != 0) 
+    {
+        epw->ct3--;
+    }
+
+    if ((epw->mtn_no >= 2) && (epw->mtn_no < 5)) 
+    {
+        ikou(epw, (NJS_POINT3*)&plp->px, epw->way);
+        
+        if ((epw->frm_no / 65536) == 20) 
+        {
+            epw->way = 0;
+        }
+        
+        if (((attack_col_tab[MTN_NO_CHECK(epw)].start_frm <= (epw->frm_no / 65536)) && ((epw->frm_no / 65536) < attack_col_tab[MTN_NO_CHECK(epw)].end_frm)) && (!(EXP0_S(90) & 0x1)))
+        {
+            for (i = 0; attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i] != -1; i++) 
+            {
+                if (MTN_NO_CHECK(epw) == 1)
+                {
+                    NJS_POINT3 _p; 
+                    
+                    col.cap.r = attack_col_tab[MTN_NO_CHECK(epw)].volume;
+                    
+                    _p.x = 0;
+                    _p.y = 0;
+                    _p.z = 0;
+                    
+                    njCalcPoint(&epw->mlwP->owP[attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i]].mtx, &_p, &col.cap.c1);
+                    
+                    if (attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i + 1] != -1) 
+                    {
+                        NJS_POINT3 _p; 
+
+                        _p.x = 0;
+                        _p.y = 0;
+                        _p.z = 0;
+                        
+                        njCalcPoint(&epw->mlwP->owP[attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i + 1]].mtx, &_p, &col.cap.c2);
+                    } 
+                    else 
+                    {
+                        NJS_POINT3 _p = { 0, 8.0f, 0 }; 
+                        
+                        njCalcPoint(&epw->mlwP->owP[10].mtx, &_p, &col.cap.c2);
+                    }
+                } 
+                else
+                {
+                    float vane_width; 
+                    char* f_idx, *b_idx;      
+
+                    vane_width = 2.0f;
+                    
+                    if (MTN_NO_CHECK(epw) == 0)
+                    {
+                        b_idx = left_idx;
+                        f_idx = right_idx;
+                    } 
+                    else
+                    {
+                        vane_width *= -1.0f;
+                        
+                        b_idx = right_idx;
+                        f_idx = left_idx;
+                    }
+
+                    col.box.v[b_idx[0]] = col.box.v[b_idx[1]] = *((NJS_POINT3*)epw->exp0 + (attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i] - 5));
+                    
+                    col.box.v[b_idx[0]].y += attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                    col.box.v[b_idx[1]].y -= attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                    
+                    {
+                        NJS_POINT3 _p; 
+                        
+                        _p.x = vane_width;
+                        _p.y = 0;
+                        _p.z = 0;
+                        
+                        njCalcPoint(&epw->mlwP->owP[attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i]].mtx, &_p, &col.box.v[b_idx[3]]);
+                    }
+                    
+                    col.box.v[b_idx[2]] = col.box.v[b_idx[3]];
+                    
+                    col.box.v[b_idx[3]].y += attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                    col.box.v[b_idx[2]].y -= attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+
+                    if (attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i + 1] != -1)
+                    {
+                        col.box.v[f_idx[0]] = col.box.v[f_idx[1]] = *((NJS_POINT3*)epw->exp0 + (attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i + 1] - 5));
+                        
+                        col.box.v[f_idx[0]].y += attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                        col.box.v[f_idx[1]].y -= attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+
+                        {
+                            NJS_POINT3 _p; 
+                            
+                            _p.x = vane_width;
+                            _p.y = 0;
+                            _p.z = 0;
+                            
+                            njCalcPoint(&epw->mlwP->owP[attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i + 1]].mtx, &_p, &col.box.v[f_idx[3]]);
+                        }
+
+                        col.box.v[f_idx[2]] = col.box.v[f_idx[3]];
+                        
+                        col.box.v[f_idx[3]].y += attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                        col.box.v[f_idx[2]].y -= attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                    } 
+                    else 
+                    {
+                        
+                        col.box.v[f_idx[0]] = col.box.v[f_idx[1]] = *((NJS_POINT3*)epw->exp0 + (attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i] - 4));
+
+                        col.box.v[f_idx[0]].y += attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                        col.box.v[f_idx[1]].y -= attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+
+                        {
+                            NJS_POINT3 _p = { 0, 9.8f, 0 }; 
+                            
+                            _p.x = vane_width;
+                            
+                            njCalcPoint(&epw->mlwP->owP[10].mtx, &_p, &col.box.v[f_idx[3]]);
+                        }
+
+                        col.box.v[f_idx[2]] = col.box.v[f_idx[3]];
+                        
+                        col.box.v[f_idx[3]].y += attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                        col.box.v[f_idx[2]].y -= attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                    }
+                }
+
+                if (MTN_NO_CHECK(epw) == 1) 
+                {
+                    NJS_MATRIX mat;                   
+                    NJS_VECTOR vec = { 0, 0, -1.0f }; 
+                    
+                    njUnitMatrix(&mat);
+                    
+                    njRotateY(&mat, epw->ay);
+                    njCalcVector(&mat, &vec, &attack_v);
+                } 
+                else
+                {
+                    NJS_VECTOR vec0, vec1; 
+
+                    vec0 = col.box.v[1];
+                    vec1 = col.box.v[2];
+                    
+                    njSubVector(&vec1, &vec0);
+                    
+                    vec0.x = 0;
+                    vec0.y = 1.0f;
+                    vec0.z = 0;
+                    
+                    njOuterProduct(&vec0, &vec1, &attack_v);
+                }
+                    
+                njUnitVector(&attack_v);
+                
+                attack_v.x *= attack_col_tab[MTN_NO_CHECK(epw)].spd;
+                attack_v.y *= attack_col_tab[MTN_NO_CHECK(epw)].spd;
+                attack_v.z *= attack_col_tab[MTN_NO_CHECK(epw)].spd;
+                
+                {
+                    NJS_MATRIX mat;                 
+                    NJS_VECTOR vec = { 0, 1.0f, 0 };
+                    NJS_POINT3 axis;                 
+
+                    njOuterProduct(&attack_v, &vec, &axis);
+                    
+                    njUnitVector(&axis);
+                    
+                    vec = attack_v; 
+                    
+                    njUnitMatrix(&mat);
+                    
+                    njRotate(&mat, &axis, attack_col_tab[MTN_NO_CHECK(epw)].impact_ang);
+                    njCalcVector(&mat, &vec, &attack_v);
+                }
+                
+                if (((MTN_NO_CHECK(epw) == 1) ? bhEne15_AttackPlayerCC(&col.cap, &attack_v, attack_col_tab[MTN_NO_CHECK(epw)].damage) : bhEne15_AttackPlayerBC(&col.box, &attack_v, attack_col_tab[MTN_NO_CHECK(epw)].damage)) != 0)
+                {
+                    bhEne_SetBloodEffect(plp, 1, -1);  
+                    
+                    RequestEnemySe(GetLocalEneNo(epw), (NJS_POINT3*)&epw->dpx, (MTN_NO_CHECK(epw) == 1) ? 0x12305 : 0x12303);
+                    
+                    StartVibrationEx(1, 11);
+                    
+                    plp->flg &= ~0x110;
+                    
+                    if (bhDGCdirCheck((NJS_VECTOR*)&plp->dvx, plp->ay) != 0) 
+                    {
+                        plp->day += 32768;
+                        
+                        plp->mnwP = epw->mnwP;
+                        
+                        EXP0_S(90) |= 0x1;
+                        
+                        epw->mode3 = 0;
+                        
+                        plp->spd = 0;
+                        
+                        SetPlyMtn(14);
+                        
+                        plp->mode0 = 5;
+                        plp->mode1 = 0;
+                        plp->mode2 = 0;
+                        plp->mode3 = 0;
+                        
+                        plp->flg |=  0x10004;
+                        plp->flg &= ~0x40000;
+                        
+                        plp->stflg |= 0x50000;
+                    } 
+                    else
+                    {
+                        plp->mnwP = epw->mnwP;
+                        
+                        EXP0_S(90) |= 0x1;
+                        
+                        epw->mode3 = 0;
+                        
+                        plp->spd = 0;
+                        
+                        SetPlyMtn(15);
+                        
+                        plp->mode0 = 5;
+                        plp->mode1 = 0;
+                        plp->mode2 = 0;
+                        plp->mode3 = 0;
+                        
+                        plp->flg |=  0x10004;
+                        plp->flg &= ~0x40000;
+                        
+                        plp->stflg |= 0x50000;
+                    }
+                    
+                    break;
+                }
+            }
+        }
+
+        if (((attack_col_tab[MTN_NO_CHECK(epw)].sp_start_frm <= (epw->frm_no / 65536)) && ((epw->frm_no / 65536) < attack_col_tab[MTN_NO_CHECK(epw)].sp_end_frm)) && (epw->mode2 == 1))
+        {
+            NJS_VECTOR splash_v;            
+            NJS_POINT3 _p = { 0, 9.8f, 0 }; 
+            
+            _p.x = 0; 
+            
+            njCalcPoint(&epw->mlwP->owP[10].mtx, &_p, &splash_v);
+            njSubVector(&splash_v, (NJS_VECTOR*)epw->exp0 + 6);
+            
+            SpecialAttack(epw, &splash_v);
+        }
+
+        if (MTN_NO_CHECK(epw) != 1) 
+        {
+            NJS_POINT3 _p; 
+            
+            for (i = 0; attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i] != -1; i++) 
+            {
+                _p.x = 0;
+                _p.y = 0;
+                _p.z = 0;
+                
+                njCalcPoint(&epw->mlwP->owP[attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i]].mtx, &_p, (NJS_POINT3*)epw->exp0 + (attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i] - 5));
+            }
+            
+            {
+                NJS_POINT3 _p = { 0, 9.8f, 0 };
+                
+                _p.x = 0; 
+                
+                njCalcPoint(&epw->mlwP->owP[10].mtx, &_p, (NJS_POINT3*)epw->exp0 + 6);
+            }
+        }
+
+        if ((epw->frm_no / 65536) == (epw->mnwP[epw->mtn_no].frm_num - 1)) 
+        {
+            epw->ct0 = (rand() % 150) + 30;
+            
+            epw->mode0 = 1;
+            epw->mode1 = 3;
+            
+            epw->way = 145;
+            
+            ReqMtn(epw, 1);
+        }
+    }
 }
 
-// 
-// Start address: 0x1e2340
-void Attack(BH_PWORK* epw)
-{
-	_anon2 _p;
-	_anon2 _p;
-	_anon2 _p;
-	_anon2 splash_v;
-	_anon2 axis;
-	_anon2 vec;
-	float mat[16];
-	_anon2 vec1;
-	_anon2 vec0;
-	_anon2 vec;
-	float mat[16];
-	_anon2 _p;
-	_anon2 _p;
-	_anon2 _p;
-	char* b_idx;
-	char* f_idx;
-	float vane_width;
-	_anon2 _p;
-	_anon2 _p;
-	_anon2 _p;
-	_anon12 col;
-	_anon2 attack_v;
-	int i;
-	char left_idx[4];
-	char right_idx[4];
-	// Line 1826, Address: 0x1e2340, Func Offset: 0
-	// Line 1829, Address: 0x1e2364, Func Offset: 0x24
-	// Line 1831, Address: 0x1e2378, Func Offset: 0x38
-	// Line 1832, Address: 0x1e2394, Func Offset: 0x54
-	// Line 1833, Address: 0x1e23ac, Func Offset: 0x6c
-	// Line 1834, Address: 0x1e23c0, Func Offset: 0x80
-	// Line 1838, Address: 0x1e23c4, Func Offset: 0x84
-	// Line 1840, Address: 0x1e2484, Func Offset: 0x144
-	// Line 1847, Address: 0x1e2494, Func Offset: 0x154
-	// Line 1849, Address: 0x1e24c8, Func Offset: 0x188
-	// Line 1850, Address: 0x1e2510, Func Offset: 0x1d0
-	// Line 1849, Address: 0x1e2518, Func Offset: 0x1d8
-	// Line 1850, Address: 0x1e251c, Func Offset: 0x1dc
-	// Line 1851, Address: 0x1e25a0, Func Offset: 0x260
-	// Line 1852, Address: 0x1e25fc, Func Offset: 0x2bc
-	// Line 1853, Address: 0x1e2688, Func Offset: 0x348
-	// Line 1855, Address: 0x1e26c0, Func Offset: 0x380
-	// Line 1858, Address: 0x1e26c8, Func Offset: 0x388
-	// Line 1862, Address: 0x1e26cc, Func Offset: 0x38c
-	// Line 1858, Address: 0x1e26d0, Func Offset: 0x390
-	// Line 1862, Address: 0x1e26d4, Func Offset: 0x394
-	// Line 1863, Address: 0x1e2718, Func Offset: 0x3d8
-	// Line 1864, Address: 0x1e2738, Func Offset: 0x3f8
-	// Line 1865, Address: 0x1e2784, Func Offset: 0x444
-	// Line 1864, Address: 0x1e2788, Func Offset: 0x448
-	// Line 1865, Address: 0x1e27fc, Func Offset: 0x4bc
-	// Line 1866, Address: 0x1e28c4, Func Offset: 0x584
-	// Line 1865, Address: 0x1e28c8, Func Offset: 0x588
-	// Line 1866, Address: 0x1e28dc, Func Offset: 0x59c
-	// Line 1865, Address: 0x1e28e4, Func Offset: 0x5a4
-	// Line 1866, Address: 0x1e28f0, Func Offset: 0x5b0
-	// Line 1867, Address: 0x1e2984, Func Offset: 0x644
-	// Line 1868, Address: 0x1e298c, Func Offset: 0x64c
-	// Line 1867, Address: 0x1e2990, Func Offset: 0x650
-	// Line 1868, Address: 0x1e29d0, Func Offset: 0x690
-	// Line 1869, Address: 0x1e2ab0, Func Offset: 0x770
-	// Line 1868, Address: 0x1e2ab4, Func Offset: 0x774
-	// Line 1869, Address: 0x1e2ac0, Func Offset: 0x780
-	// Line 1870, Address: 0x1e2b18, Func Offset: 0x7d8
-	// Line 1871, Address: 0x1e2b64, Func Offset: 0x824
-	// Line 1870, Address: 0x1e2b68, Func Offset: 0x828
-	// Line 1871, Address: 0x1e2bdc, Func Offset: 0x89c
-	// Line 1872, Address: 0x1e2ca4, Func Offset: 0x964
-	// Line 1871, Address: 0x1e2ca8, Func Offset: 0x968
-	// Line 1872, Address: 0x1e2cbc, Func Offset: 0x97c
-	// Line 1871, Address: 0x1e2cc4, Func Offset: 0x984
-	// Line 1872, Address: 0x1e2cd0, Func Offset: 0x990
-	// Line 1873, Address: 0x1e2d64, Func Offset: 0xa24
-	// Line 1874, Address: 0x1e2d6c, Func Offset: 0xa2c
-	// Line 1873, Address: 0x1e2d70, Func Offset: 0xa30
-	// Line 1874, Address: 0x1e2db0, Func Offset: 0xa70
-	// Line 1875, Address: 0x1e2e98, Func Offset: 0xb58
-	// Line 1876, Address: 0x1e2ea0, Func Offset: 0xb60
-	// Line 1877, Address: 0x1e2eec, Func Offset: 0xbac
-	// Line 1876, Address: 0x1e2ef0, Func Offset: 0xbb0
-	// Line 1877, Address: 0x1e2f64, Func Offset: 0xc24
-	// Line 1878, Address: 0x1e3024, Func Offset: 0xce4
-	// Line 1877, Address: 0x1e3028, Func Offset: 0xce8
-	// Line 1878, Address: 0x1e3048, Func Offset: 0xd08
-	// Line 1877, Address: 0x1e3050, Func Offset: 0xd10
-	// Line 1878, Address: 0x1e305c, Func Offset: 0xd1c
-	// Line 1879, Address: 0x1e3098, Func Offset: 0xd58
-	// Line 1880, Address: 0x1e30a0, Func Offset: 0xd60
-	// Line 1879, Address: 0x1e30a4, Func Offset: 0xd64
-	// Line 1880, Address: 0x1e30e4, Func Offset: 0xda4
-	// Line 1885, Address: 0x1e31d0, Func Offset: 0xe90
-	// Line 1893, Address: 0x1e3208, Func Offset: 0xec8
-	// Line 1894, Address: 0x1e3220, Func Offset: 0xee0
-	// Line 1895, Address: 0x1e3238, Func Offset: 0xef8
-	// Line 1896, Address: 0x1e3248, Func Offset: 0xf08
-	// Line 1898, Address: 0x1e3250, Func Offset: 0xf10
-	// Line 1899, Address: 0x1e328c, Func Offset: 0xf4c
-	// Line 1900, Address: 0x1e3294, Func Offset: 0xf54
-	// Line 1901, Address: 0x1e32a0, Func Offset: 0xf60
-	// Line 1902, Address: 0x1e32b4, Func Offset: 0xf74
-	// Line 1903, Address: 0x1e32b8, Func Offset: 0xf78
-	// Line 1904, Address: 0x1e32c4, Func Offset: 0xf84
-	// Line 1905, Address: 0x1e3310, Func Offset: 0xfd0
-	// Line 1904, Address: 0x1e3314, Func Offset: 0xfd4
-	// Line 1905, Address: 0x1e331c, Func Offset: 0xfdc
-	// Line 1906, Address: 0x1e3364, Func Offset: 0x1024
-	// Line 1905, Address: 0x1e3368, Func Offset: 0x1028
-	// Line 1906, Address: 0x1e3370, Func Offset: 0x1030
-	// Line 1915, Address: 0x1e33b8, Func Offset: 0x1078
-	// Line 1917, Address: 0x1e33bc, Func Offset: 0x107c
-	// Line 1906, Address: 0x1e33c4, Func Offset: 0x1084
-	// Line 1915, Address: 0x1e33c8, Func Offset: 0x1088
-	// Line 1906, Address: 0x1e33d0, Func Offset: 0x1090
-	// Line 1915, Address: 0x1e33d4, Func Offset: 0x1094
-	// Line 1917, Address: 0x1e33e0, Func Offset: 0x10a0
-	// Line 1918, Address: 0x1e33f0, Func Offset: 0x10b0
-	// Line 1919, Address: 0x1e3404, Func Offset: 0x10c4
-	// Line 1920, Address: 0x1e346c, Func Offset: 0x112c
-	// Line 1923, Address: 0x1e347c, Func Offset: 0x113c
-	// Line 1927, Address: 0x1e356c, Func Offset: 0x122c
-	// Line 1928, Address: 0x1e3580, Func Offset: 0x1240
-	// Line 1929, Address: 0x1e35e4, Func Offset: 0x12a4
-	// Line 1930, Address: 0x1e35f0, Func Offset: 0x12b0
-	// Line 1931, Address: 0x1e37b4, Func Offset: 0x1474
-	// Line 1933, Address: 0x1e37c0, Func Offset: 0x1480
-	// Line 1934, Address: 0x1e3824, Func Offset: 0x14e4
-	// Line 1936, Address: 0x1e3828, Func Offset: 0x14e8
-	// Line 1937, Address: 0x1e38d4, Func Offset: 0x1594
-	// Line 1940, Address: 0x1e38e4, Func Offset: 0x15a4
-	// Line 1941, Address: 0x1e3918, Func Offset: 0x15d8
-	// Line 1942, Address: 0x1e3928, Func Offset: 0x15e8
-	// Line 1947, Address: 0x1e3934, Func Offset: 0x15f4
-	// Line 1948, Address: 0x1e396c, Func Offset: 0x162c
-	// Line 1949, Address: 0x1e3978, Func Offset: 0x1638
-	// Line 1950, Address: 0x1e3a60, Func Offset: 0x1720
-	// Line 1951, Address: 0x1e3ac4, Func Offset: 0x1784
-	// Line 1955, Address: 0x1e3afc, Func Offset: 0x17bc
-	// Line 1956, Address: 0x1e3b2c, Func Offset: 0x17ec
-	// Line 1957, Address: 0x1e3b3c, Func Offset: 0x17fc
-	// Line 1956, Address: 0x1e3b44, Func Offset: 0x1804
-	// Line 1957, Address: 0x1e3b48, Func Offset: 0x1808
-	// Line 1956, Address: 0x1e3b4c, Func Offset: 0x180c
-	// Line 1957, Address: 0x1e3b54, Func Offset: 0x1814
-	// Line 1960, Address: 0x1e3b68, Func Offset: 0x1828
-	// Func End, Address: 0x1e3b90, Func Offset: 0x1850
-}
-
-// 
+/*// 
 // Start address: 0x1e3b90
 void Throw(BH_PWORK* epw)
 {
-	_anon2 vec;
-	_anon2 attack_v;
+	NJS_POINT3 vec;
+	NJS_POINT3 attack_v;
 	float mat[16];
-	_anon2 _p;
-	_anon2 pos;
+	NJS_POINT3 _p;
+	NJS_POINT3 pos;
 	// Line 1976, Address: 0x1e3b90, Func Offset: 0
 	// Line 1977, Address: 0x1e3ba0, Func Offset: 0x10
 	// Line 1978, Address: 0x1e3bd0, Func Offset: 0x40
@@ -2296,7 +2506,7 @@ void Damage(BH_PWORK* epw)
 // Start address: 0x1e4390
 void Die(BH_PWORK* epw)
 {
-	_anon2 vec;
+	NJS_POINT3 vec;
 	// Line 2104, Address: 0x1e4390, Func Offset: 0
 	// Line 2105, Address: 0x1e43a0, Func Offset: 0x10
 	// Line 2108, Address: 0x1e43b0, Func Offset: 0x20
@@ -2332,17 +2542,17 @@ void Die(BH_PWORK* epw)
 
 // 
 // Start address: 0x1e4560
-int NearestCapsule(BH_PWORK* epw, _anon2* pos, _anon28* dest, short* jnt)
+int NearestCapsule(BH_PWORK* epw, NJS_POINT3* pos, NJS_CAPSULE* dest, short* jnt)
 {
-	_anon2 p;
+	NJS_POINT3 p;
 	short _jnt;
 	float dis;
-	_anon28 cap;
+	NJS_CAPSULE cap;
 	_anon29* ctab;
 	int notop;
 	float topdis;
 	short topjnt;
-	_anon28 top;
+	NJS_CAPSULE top;
 	// Line 2140, Address: 0x1e4560, Func Offset: 0
 	// Line 2145, Address: 0x1e4590, Func Offset: 0x30
 	// Line 2144, Address: 0x1e4594, Func Offset: 0x34
@@ -2408,10 +2618,10 @@ int NearestCapsule(BH_PWORK* epw, _anon2* pos, _anon28* dest, short* jnt)
 void CheckDamage(BH_PWORK* epw)
 {
 	short jnt;
-	_anon28 cap;
-	_anon2 ofp;
-	_anon2 pos;
-	_anon2 ofs;
+	NJS_CAPSULE cap;
+	NJS_POINT3 ofp;
+	NJS_POINT3 pos;
+	NJS_POINT3 ofs;
 	int is_core_damage;
 	// Line 2347, Address: 0x1e4890, Func Offset: 0
 	// Line 2348, Address: 0x1e48a0, Func Offset: 0x10
@@ -2577,7 +2787,7 @@ void SetMtn(BH_PWORK* epw)
 	// Line 2609, Address: 0x1e544c, Func Offset: 0x16c
 	// Line 2610, Address: 0x1e5460, Func Offset: 0x180
 	// Func End, Address: 0x1e5470, Func Offset: 0x190
-}
+}*/
 
 // 
 // Start address: 0x1e5470
@@ -2586,6 +2796,7 @@ void ReqMtn(BH_PWORK* epw, unsigned int mtn_no)
 	// Line 2613, Address: 0x1e5470, Func Offset: 0
 	// Line 2614, Address: 0x1e5474, Func Offset: 0x4
 	// Func End, Address: 0x1e547c, Func Offset: 0xc
+	scePrintf("ReqMtn - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2610,13 +2821,14 @@ void SetPlyMtn(unsigned int mtn_no)
 	// Line 2635, Address: 0x1e5574, Func Offset: 0xf4
 	// Line 2637, Address: 0x1e5590, Func Offset: 0x110
 	// Func End, Address: 0x1e559c, Func Offset: 0x11c
+	scePrintf("SetPlyMtn - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1e55a0
-int VacumeToPoint(BH_PWORK* pw, _anon2* pos)
+int VacumeToPoint(BH_PWORK* pw, NJS_POINT3* pos)
 {
-	_anon2 v;
+	NJS_POINT3 v;
 	// Line 2652, Address: 0x1e55a0, Func Offset: 0
 	// Line 2654, Address: 0x1e55b0, Func Offset: 0x10
 	// Line 2655, Address: 0x1e55d0, Func Offset: 0x30
@@ -2661,15 +2873,15 @@ void LockLeg(BH_PWORK* epw)
 	// Line 2702, Address: 0x1e578c, Func Offset: 0x10c
 	// Line 2703, Address: 0x1e57c0, Func Offset: 0x140
 	// Func End, Address: 0x1e57cc, Func Offset: 0x14c
-}
+}*/
 
 // 
 // Start address: 0x1e57d0
-int bhEne15_AttackPlayerCC(_anon28* cap, _anon2* attack_v, int damage)
+int bhEne15_AttackPlayerCC(NJS_CAPSULE* cap, NJS_VECTOR* attack_v, int damage)
 {
-	_anon2 tar_p;
+	NJS_POINT3 tar_p;
 	float distance;
-	_anon2 hit_p;
+	NJS_POINT3 hit_p;
 	float latest;
 	int kno;
 	int j;
@@ -2716,15 +2928,16 @@ int bhEne15_AttackPlayerCC(_anon28* cap, _anon2* attack_v, int damage)
 	// Line 2754, Address: 0x1e5a28, Func Offset: 0x258
 	// Line 2755, Address: 0x1e5a2c, Func Offset: 0x25c
 	// Func End, Address: 0x1e5a5c, Func Offset: 0x28c
+	scePrintf("bhEne15_AttackPlayerCC - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e5a60
-int bhEne15_AttackPlayerBC(_anon11* box, _anon2* attack_v, int damage)
+int bhEne15_AttackPlayerBC(NJS_BOX* box, NJS_VECTOR* attack_v, int damage)
 {
-	_anon2 tar_p;
+	NJS_POINT3 tar_p;
 	float distance;
-	_anon2 hit_p;
+	NJS_POINT3 hit_p;
 	float latest;
 	int kno;
 	int j;
@@ -2771,13 +2984,14 @@ int bhEne15_AttackPlayerBC(_anon11* box, _anon2* attack_v, int damage)
 	// Line 2794, Address: 0x1e5ce8, Func Offset: 0x288
 	// Line 2795, Address: 0x1e5cec, Func Offset: 0x28c
 	// Func End, Address: 0x1e5d1c, Func Offset: 0x2bc
+	scePrintf("bhEne15_AttackPlayerBC - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e5d20
-int bhEne15_AttackPlayerSS(_anon0* spr, _anon2* attack_v, int damage)
+int bhEne15_AttackPlayerSS(NJS_SPHERE* spr, NJS_VECTOR* attack_v, int damage)
 {
-	_anon0 plcol;
+	NJS_SPHERE plcol;
 	// Line 2807, Address: 0x1e5d20, Func Offset: 0
 	// Line 2810, Address: 0x1e5d38, Func Offset: 0x18
 	// Line 2813, Address: 0x1e5d48, Func Offset: 0x28
@@ -2809,11 +3023,12 @@ int bhEne15_AttackPlayerSS(_anon0* spr, _anon2* attack_v, int damage)
 	// Line 2829, Address: 0x1e5e78, Func Offset: 0x158
 	// Line 2830, Address: 0x1e5e7c, Func Offset: 0x15c
 	// Func End, Address: 0x1e5e94, Func Offset: 0x174
+	scePrintf("bhEne15_AttackPlayerSS - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1e5ea0
-void SetSmoke(_anon2* pos)
+void SetSmoke(NJS_POINT3* pos)
 {
 	// Line 2845, Address: 0x1e5ea0, Func Offset: 0
 	// Line 2846, Address: 0x1e5eac, Func Offset: 0xc
@@ -2827,13 +3042,13 @@ void SetSmoke(_anon2* pos)
 	// Line 2849, Address: 0x1e5f20, Func Offset: 0x80
 	// Line 2851, Address: 0x1e5f5c, Func Offset: 0xbc
 	// Func End, Address: 0x1e5f74, Func Offset: 0xd4
-}
+}*/
 
 // 
 // Start address: 0x1e5f80
-void SpecialAttack(BH_PWORK* epw, _anon2* splash_v)
+void SpecialAttack(BH_PWORK* epw, NJS_VECTOR* splash_v)
 {
-	_anon2 _p;
+	NJS_POINT3 _p;
 	int eno;
 	// Line 2992, Address: 0x1e5f80, Func Offset: 0
 	// Line 2995, Address: 0x1e5f90, Func Offset: 0x10
@@ -2880,11 +3095,12 @@ void SpecialAttack(BH_PWORK* epw, _anon2* splash_v)
 	// Line 3015, Address: 0x1e6128, Func Offset: 0x1a8
 	// Line 3018, Address: 0x1e6140, Func Offset: 0x1c0
 	// Func End, Address: 0x1e6154, Func Offset: 0x1d4
+	scePrintf("SpecialAttack - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1e6160
-void _bhEne_SetPoison(BH_PWORK* epw, _anon2* ofp, short ry)
+void _bhEne_SetPoison(BH_PWORK* epw, NJS_POINT3* ofp, short ry)
 {
 	int eno;
 	// Line 3021, Address: 0x1e6160, Func Offset: 0
@@ -3022,7 +3238,7 @@ void _bhEne_SetPoison(BH_PWORK* epw, _anon2* ofp, short ry)
 
 // 
 // Start address: 0x1e6830
-void _bhEne_SetPoison2(_anon1* op, int type, _anon2* ofp)
+void _bhEne_SetPoison2(_anon1* op, int type, NJS_POINT3* ofp)
 {
 	int eno;
 	// Line 3105, Address: 0x1e6830, Func Offset: 0
@@ -3064,8 +3280,8 @@ void _bhEne_SetPoison2(_anon1* op, int type, _anon2* ofp)
 void bhEne_SetPoison(BH_PWORK* epw, _anon37* bt)
 {
 	int fhit;
-	_anon2 ps;
-	_anon2 ofp;
+	NJS_POINT3 ps;
+	NJS_POINT3 ofp;
 	_anon30* owk;
 	// Line 3153, Address: 0x1e6a70, Func Offset: 0
 	// Line 3158, Address: 0x1e6a88, Func Offset: 0x18
@@ -3101,8 +3317,8 @@ void bhEne_SetPoison(BH_PWORK* epw, _anon37* bt)
 // Start address: 0x1e6c50
 void PoisonAttack(_anon1* op)
 {
-	_anon2 attack_v;
-	_anon0 col;
+	NJS_POINT3 attack_v;
+	NJS_SPHERE col;
 	// Line 3192, Address: 0x1e6c50, Func Offset: 0
 	// Line 3203, Address: 0x1e6c5c, Func Offset: 0xc
 	// Line 3204, Address: 0x1e6c6c, Func Offset: 0x1c
@@ -3140,8 +3356,8 @@ void PoisonAttack(_anon1* op)
 // Start address: 0x1e6e50
 void AddWindForce(_anon1* op, float reg)
 {
-	_anon2 vec2;
-	_anon2 vec1;
+	NJS_POINT3 vec2;
+	NJS_POINT3 vec1;
 	// Line 3242, Address: 0x1e6e50, Func Offset: 0
 	// Line 3245, Address: 0x1e6e60, Func Offset: 0x10
 	// Line 3247, Address: 0x1e6e9c, Func Offset: 0x4c
@@ -3168,9 +3384,9 @@ void AddWindForce(_anon1* op, float reg)
 // Start address: 0x1e6f80
 void bhEff_E15_Poison(O_WRK* op)
 {
-	//_anon2 pos;
-	//_anon2 pos;
-	//_anon2 pos;
+	//NJS_POINT3 pos;
+	//NJS_POINT3 pos;
+	//NJS_POINT3 pos;
 	//_UVINFO* uvp;
 	// Line 3271, Address: 0x1e6f80, Func Offset: 0
 	// Line 3272, Address: 0x1e6f90, Func Offset: 0x10
@@ -3472,7 +3688,7 @@ void FallingPlayer(BH_PWORK* epw)
 void SlidePlayer(BH_PWORK* epw)
 {
 	int _mtnno;
-	_anon2 delta;
+	NJS_POINT3 delta;
 	int _mtnno;
 	// Line 3628, Address: 0x1e83f0, Func Offset: 0
 	// Line 3629, Address: 0x1e8404, Func Offset: 0x14
@@ -3524,9 +3740,9 @@ void StandupPlayer(BH_PWORK* epw)
 void HoldPlayer(BH_PWORK* epw)
 {
 	_anon30* owk;
-	_anon2 pos;
-	_anon2 _v;
-	_anon2 _v;
+	NJS_POINT3 pos;
+	NJS_POINT3 _v;
+	NJS_POINT3 _v;
 	// Line 3682, Address: 0x1e8a50, Func Offset: 0
 	// Line 3683, Address: 0x1e8a64, Func Offset: 0x14
 	// Line 3684, Address: 0x1e8a7c, Func Offset: 0x2c
@@ -3556,11 +3772,11 @@ void HoldPlayer(BH_PWORK* epw)
 // Start address: 0x1e8b80
 void FlyingPlayer(BH_PWORK* epw)
 {
-	_anon2 _p;
+	NJS_POINT3 _p;
 	_anon30* owk;
-	_anon2 pos3;
-	_anon2 pos2;
-	_anon2 pos1;
+	NJS_POINT3 pos3;
+	NJS_POINT3 pos2;
+	NJS_POINT3 pos1;
 	// Line 3714, Address: 0x1e8b80, Func Offset: 0
 	// Line 3718, Address: 0x1e8b84, Func Offset: 0x4
 	// Line 3714, Address: 0x1e8b8c, Func Offset: 0xc

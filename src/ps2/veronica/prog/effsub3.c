@@ -2486,133 +2486,210 @@ void bhSetEffSpark(NJS_POINT3* posP, NJS_POINT3* dirP, unsigned int src_col, uns
     }
 }
 
-// 
-// Start address: 0x24ac90
-void bhEff308(OR_WORK* orP)
+#pragma divbyzerocheck on
+
+// 99.95% matching
+void bhEff308(OR_WORK* orP) 
 {
-	float sp;
-	int ay;
-	unsigned int* colP;
-	NJS_POINT3* dirP;
-	NJS_POINT3* vtxP;
-	NJS_POINT3 wnd;
-	int i;
-	int tmp;
-	int dst;
-	int src;
-	int tim;
-	int* subP;
-	int* addP;
-	int* timP;
-	//int i;
-	//unsigned int* colP;
-	//NJS_POINT3* vtxP;
-	//int i;
-	//float sp;
-	//int ay;
-	int ax;
-	//NJS_POINT3* dirP;
-	//int i;
-	PMB_WORK* pmbP;
-	//_anon4* r08P;
-	// Line 2468, Address: 0x24ac90, Func Offset: 0
-	// Line 2473, Address: 0x24acc0, Func Offset: 0x30
-	// Line 2469, Address: 0x24acc4, Func Offset: 0x34
-	// Line 2473, Address: 0x24acc8, Func Offset: 0x38
-	// Line 2476, Address: 0x24ace4, Func Offset: 0x54
-	// Line 2477, Address: 0x24acf0, Func Offset: 0x60
-	// Line 2483, Address: 0x24acfc, Func Offset: 0x6c
-	// Line 2484, Address: 0x24ad08, Func Offset: 0x78
-	// Line 2485, Address: 0x24ad54, Func Offset: 0xc4
-	// Line 2486, Address: 0x24ada0, Func Offset: 0x110
-	// Line 2488, Address: 0x24adbc, Func Offset: 0x12c
-	// Line 2486, Address: 0x24adc0, Func Offset: 0x130
-	// Line 2488, Address: 0x24adc4, Func Offset: 0x134
-	// Line 2486, Address: 0x24adc8, Func Offset: 0x138
-	// Line 2488, Address: 0x24ade4, Func Offset: 0x154
-	// Line 2489, Address: 0x24adec, Func Offset: 0x15c
-	// Line 2490, Address: 0x24adfc, Func Offset: 0x16c
-	// Line 2491, Address: 0x24ae0c, Func Offset: 0x17c
-	// Line 2492, Address: 0x24ae20, Func Offset: 0x190
-	// Line 2493, Address: 0x24ae24, Func Offset: 0x194
-	// Line 2492, Address: 0x24ae28, Func Offset: 0x198
-	// Line 2493, Address: 0x24ae48, Func Offset: 0x1b8
-	// Line 2501, Address: 0x24ae50, Func Offset: 0x1c0
-	// Line 2498, Address: 0x24ae54, Func Offset: 0x1c4
-	// Line 2501, Address: 0x24ae58, Func Offset: 0x1c8
-	// Line 2502, Address: 0x24ae60, Func Offset: 0x1d0
-	// Line 2506, Address: 0x24ae6c, Func Offset: 0x1dc
-	// Line 2502, Address: 0x24ae70, Func Offset: 0x1e0
-	// Line 2503, Address: 0x24ae7c, Func Offset: 0x1ec
-	// Line 2506, Address: 0x24ae80, Func Offset: 0x1f0
-	// Line 2503, Address: 0x24ae84, Func Offset: 0x1f4
-	// Line 2504, Address: 0x24ae88, Func Offset: 0x1f8
-	// Line 2506, Address: 0x24ae98, Func Offset: 0x208
-	// Line 2515, Address: 0x24aea0, Func Offset: 0x210
-	// Line 2511, Address: 0x24aea4, Func Offset: 0x214
-	// Line 2512, Address: 0x24aea8, Func Offset: 0x218
-	// Line 2515, Address: 0x24aeac, Func Offset: 0x21c
-	// Line 2518, Address: 0x24aeb4, Func Offset: 0x224
-	// Line 2519, Address: 0x24aefc, Func Offset: 0x26c
-	// Line 2520, Address: 0x24af00, Func Offset: 0x270
-	// Line 2522, Address: 0x24af04, Func Offset: 0x274
-	// Line 2523, Address: 0x24af20, Func Offset: 0x290
-	// Line 2524, Address: 0x24af38, Func Offset: 0x2a8
-	// Line 2526, Address: 0x24af40, Func Offset: 0x2b0
-	// Line 2527, Address: 0x24af5c, Func Offset: 0x2cc
-	// Line 2528, Address: 0x24af7c, Func Offset: 0x2ec
-	// Line 2530, Address: 0x24af90, Func Offset: 0x300
-	// Line 2531, Address: 0x24afb0, Func Offset: 0x320
-	// Line 2532, Address: 0x24afd4, Func Offset: 0x344
-	// Line 2534, Address: 0x24afe8, Func Offset: 0x358
-	// Line 2535, Address: 0x24aff0, Func Offset: 0x360
-	// Line 2536, Address: 0x24b00c, Func Offset: 0x37c
-	// Line 2537, Address: 0x24b030, Func Offset: 0x3a0
-	// Line 2538, Address: 0x24b048, Func Offset: 0x3b8
-	// Line 2542, Address: 0x24b060, Func Offset: 0x3d0
-	// Line 2543, Address: 0x24b064, Func Offset: 0x3d4
-	// Line 2545, Address: 0x24b08c, Func Offset: 0x3fc
-	// Line 2557, Address: 0x24b098, Func Offset: 0x408
-	// Line 2561, Address: 0x24b09c, Func Offset: 0x40c
-	// Line 2562, Address: 0x24b0a4, Func Offset: 0x414
-	// Line 2553, Address: 0x24b0a8, Func Offset: 0x418
-	// Line 2554, Address: 0x24b0ac, Func Offset: 0x41c
-	// Line 2561, Address: 0x24b0b0, Func Offset: 0x420
-	// Line 2555, Address: 0x24b0bc, Func Offset: 0x42c
-	// Line 2564, Address: 0x24b0c0, Func Offset: 0x430
-	// Line 2566, Address: 0x24b0d0, Func Offset: 0x440
-	// Line 2564, Address: 0x24b0d4, Func Offset: 0x444
-	// Line 2566, Address: 0x24b0d8, Func Offset: 0x448
-	// Line 2572, Address: 0x24b0e8, Func Offset: 0x458
-	// Line 2566, Address: 0x24b0f0, Func Offset: 0x460
-	// Line 2568, Address: 0x24b0f4, Func Offset: 0x464
-	// Line 2572, Address: 0x24b0fc, Func Offset: 0x46c
-	// Line 2573, Address: 0x24b104, Func Offset: 0x474
-	// Line 2574, Address: 0x24b110, Func Offset: 0x480
-	// Line 2575, Address: 0x24b118, Func Offset: 0x488
-	// Line 2580, Address: 0x24b11c, Func Offset: 0x48c
-	// Line 2575, Address: 0x24b124, Func Offset: 0x494
-	// Line 2578, Address: 0x24b12c, Func Offset: 0x49c
-	// Line 2580, Address: 0x24b140, Func Offset: 0x4b0
-	// Line 2581, Address: 0x24b148, Func Offset: 0x4b8
-	// Line 2583, Address: 0x24b154, Func Offset: 0x4c4
-	// Line 2584, Address: 0x24b164, Func Offset: 0x4d4
-	// Line 2585, Address: 0x24b174, Func Offset: 0x4e4
-	// Line 2586, Address: 0x24b184, Func Offset: 0x4f4
-	// Line 2588, Address: 0x24b194, Func Offset: 0x504
-	// Line 2589, Address: 0x24b1a4, Func Offset: 0x514
-	// Line 2591, Address: 0x24b1b4, Func Offset: 0x524
-	// Line 2592, Address: 0x24b1cc, Func Offset: 0x53c
-	// Line 2593, Address: 0x24b1e4, Func Offset: 0x554
-	// Line 2595, Address: 0x24b1ec, Func Offset: 0x55c
-	// Line 2593, Address: 0x24b1f0, Func Offset: 0x560
-	// Line 2596, Address: 0x24b1f4, Func Offset: 0x564
-	// Line 2599, Address: 0x24b218, Func Offset: 0x588
-	// Line 2600, Address: 0x24b22c, Func Offset: 0x59c
-	// Line 2605, Address: 0x24b264, Func Offset: 0x5d4
-	// Func End, Address: 0x24b294, Func Offset: 0x604
-	scePrintf("bhEff308 - UNIMPLEMENTED!\n");
+    R08_WORK* r08P;     
+    PMB_WORK* pmbP;     
+    
+    r08P = (R08_WORK*)orP->free4;
+    pmbP = &r08P->prm_b;
+    
+    switch (r08P->mode) 
+    {
+    case 0:
+    {
+        NJS_POINT3* dirP; 
+        int ax, ay;         
+        int i; // modified DWARF position 
+        float sp;         
+        
+        njUnitVector(&pmbP->vtx_dir);
+        
+        orP->func = (void*)bhEff308Drw;
+        
+        dirP = r08P->VtxDir;
+        
+        for (i = r08P->prm_a.vtx_num; i > 0; i--, dirP++) 
+        {
+            ax = 182.04445f * (r08P->prm_a.ang_rand * ((-rand() / -2147483648.0f) - 0.5f));
+            ay = 182.04445f * (r08P->prm_a.ang_rand * ((-rand() / -2147483648.0f) - 0.5f));
+            
+            sp = r08P->prm_a.speed + (r08P->prm_a.spd_rand * ((-rand() / -2147483648.0f) - 0.5f));
+    
+            njUnitMatrix(lcmat);
+            
+            njRotateY(lcmat, ay);
+            njRotateX(lcmat, ax);
+            
+            njCalcVector(lcmat, &pmbP->vtx_dir, dirP);
+    
+            dirP->x *= sp;
+            dirP->y *= sp;
+            dirP->z *= sp;
+        }
+    
+        {
+        NJS_POINT3* vtxP;   
+        unsigned int* colP; 
+        int i; // modified DWARF position 
+        
+        vtxP = (NJS_POINT3*)r08P->VtxBuf;
+        colP = (unsigned int*)r08P->VtxCol;
+            
+        for (i = r08P->prm_a.vtx_num; i > 0; i--, vtxP += 2, colP += 2) 
+        {
+            vtxP[0] = pmbP->vtx_pos;
+            
+            colP[0] = pmbP->col_src;
+            colP[1] = pmbP->col_dst & 0xFFFFFF;
+        }
+        }
+        
+        {
+        int i;     
+        int* timP, *addP, *subP; 
+        int tmp;  
+        int tim;      // modified DWARF position 
+        int src, dst; // modified DWARF position 
+        
+        timP = r08P->TimBuf;
+            
+        addP = r08P->ColAdd;
+        subP = r08P->ColSub;
+            
+        for (i = r08P->prm_a.vtx_num; i > 0; i--, timP++, addP++, subP++) 
+        {
+            *timP = tim = r08P->prm_a.time + (int)(r08P->prm_a.tim_rand * (-rand() / -2147483648.0f));
+        
+            src = pmbP->col_src;
+            dst = pmbP->col_dst;
+        
+            tmp = ((dst & 0xFF) - (src & 0xFF)) / tim;
+            
+            if (tmp < 0) 
+            {
+                *subP  = ~tmp & 0xFF;
+            }
+            else        
+            {
+                *addP  = tmp  & 0xFF;
+            }
+        
+            tmp = ((dst & 0xFF00) - (src & 0xFF00)) / tim;
+            
+            if (tmp < 0)
+            {
+                *subP |= ~tmp & 0xFF00;
+            }
+            else        
+            {
+                *addP |= tmp  & 0xFF00;
+            }
+        
+            tmp = ((dst & 0xFF0000) - (src & 0xFF0000)) / tim;
+            
+            if (tmp < 0) 
+            {
+                *subP |= ~tmp & 0xFF0000;
+            }
+            else         
+            {
+                *addP |= tmp  & 0xFF0000;
+            }
+    
+            src >>= 16;
+            dst >>= 16;
+            
+            tmp = ((dst & 0xFF00) - (src & 0xFF00)) / tim;
+            
+            if (tmp < 0) 
+            { 
+                *subP |= (~tmp & 0xFF00) << 16; 
+            }
+            else         
+            { 
+                *addP |= (tmp  & 0xFF00) << 16;
+            }
+        }
+        }
+        
+        r08P->wnd_spd = 0;
+        r08P->wnd_acl = 0.01f * sys->winds;
+        
+        r08P->mode++;
+    }
+    case 1:
+    {
+        int i;           
+        NJS_POINT3 wnd;    
+        NJS_POINT3* vtxP, *dirP;  
+        unsigned int* colP; 
+        int ay;             
+        float sp;           
+        
+        r08P->drw_num = 0;
+    
+        sp = r08P->wnd_spd;
+        
+        ay = sys->windr;
+
+        vtxP = (NJS_POINT3*)r08P->VtxBuf;
+        dirP = r08P->VtxDir;
+        colP = (unsigned int*)r08P->VtxCol;
+    
+        wnd.x = sp * -njSin(ay);
+        wnd.y = 0;
+        wnd.z = sp * -njCos(ay);
+    
+        r08P->wnd_spd = sp + r08P->wnd_acl;
+        
+        for (i = 0; i < r08P->prm_a.vtx_num; i++, vtxP += 2, dirP++, colP += 2) 
+        {
+            if (r08P->TimBuf[i] > 0)
+            {
+                r08P->TimBuf[i]--;
+                
+                r08P->drw_num++;
+                
+                vtxP[1] = vtxP[0];
+                
+                njAddVector(vtxP, dirP);
+                njAddVector(vtxP, &wnd);
+                
+                dirP->x *= r08P->prm_a.accel;
+                dirP->y *= r08P->prm_a.accel;
+                dirP->z *= r08P->prm_a.accel;
+                
+                dirP->y += r08P->prm_a.gravity;
+                
+                colP[0] += r08P->ColAdd[i];
+                colP[0] -= r08P->ColSub[i];
+                
+                if (vtxP[0].y < pmbP->gnd_hgh) 
+                {
+                    dirP->y *= -0.5f;
+                    
+                    vtxP[0].y = pmbP->gnd_hgh;
+                }
+            }
+        }
+        
+        if (r08P->drw_num == 0) 
+        {
+            orP->flg = 0;
+        }
+        else 
+        {
+            sys->ef_fnc[sys->ef_fncn++] = (O_WRK*)orP;
+        }
+    }
+    }
 }
+
+#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEff308Drw(OR_WORK* orP) 

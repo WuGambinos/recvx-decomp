@@ -1952,18 +1952,16 @@ void bhEne30_MV07(BH_PWORK* epw) {
     }
 }
 
-// 100% matching
+// 100% matching!
 void bhEne30_Nage(BH_PWORK* epw)
 {
 }
 
-// 
-// Start address: 0x215590
-void bhEne30_Damage(BH_PWORK* epw)
-{
-	// Line 1124, Address: 0x215590, Func Offset: 0
-	// Func End, Address: 0x2155b0, Func Offset: 0x20
+// 100% matching!
+void bhEne30_Damage(BH_PWORK* epw) {
+    bhEne30_DamageMode2[epw->mode2](epw);
 }
+
 
 // 100% matching!
 void bhEne30_DG00(BH_PWORK* epw) {

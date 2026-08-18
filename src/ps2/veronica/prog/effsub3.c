@@ -1535,21 +1535,11 @@ void bhEff304(O_WRK* oP)
 	scePrintf("bhEff304 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x249a40
-void bhEff305(O_WRK* oP)
+#pragma divbyzerocheck on
+
+// 100% matching!
+void bhEff305(O_WRK* oP) 
 {
-	unsigned int col;
-	NJS_TEXTURE_VTX* tvP;
-	UV_WORK* uvP;
-	float sp;
-	int ay;
-	float spd;
-	int ax;
-	//int ay;
-	float dst;
-	NJS_POINT3 vct;
-	Eff305PRM_WORK* prmP;
 	static const Eff305PRM_WORK Eff305Prm[4] = 
 	{
 		{ 0x70F0C080, 0.1f, -0.01f, 16, 1.5f, 1.5f, 3.0f },
@@ -1568,93 +1558,149 @@ void bhEff305(O_WRK* oP)
 		{ 0.87500000f, 0.00000000f, 0.12109375f, 0.12109375f }, 
 		{ 0.87500000f, 0.00000000f, 0.12109375f, 0.12109375f } 
 	};
-	// Line 1872, Address: 0x249a40, Func Offset: 0
-	// Line 1892, Address: 0x249a5c, Func Offset: 0x1c
-	// Line 1895, Address: 0x249a7c, Func Offset: 0x3c
-	// Line 1896, Address: 0x249a88, Func Offset: 0x48
-	// Line 1898, Address: 0x249a90, Func Offset: 0x50
-	// Line 1897, Address: 0x249a94, Func Offset: 0x54
-	// Line 1898, Address: 0x249a98, Func Offset: 0x58
-	// Line 1899, Address: 0x249a9c, Func Offset: 0x5c
-	// Line 1902, Address: 0x249aa4, Func Offset: 0x64
-	// Line 1904, Address: 0x249ac0, Func Offset: 0x80
-	// Line 1905, Address: 0x249ac8, Func Offset: 0x88
-	// Line 1906, Address: 0x249ad0, Func Offset: 0x90
-	// Line 1907, Address: 0x249ad8, Func Offset: 0x98
-	// Line 1908, Address: 0x249ae0, Func Offset: 0xa0
-	// Line 1917, Address: 0x249afc, Func Offset: 0xbc
-	// Line 1908, Address: 0x249b00, Func Offset: 0xc0
-	// Line 1909, Address: 0x249b08, Func Offset: 0xc8
-	// Line 1910, Address: 0x249b0c, Func Offset: 0xcc
-	// Line 1917, Address: 0x249b10, Func Offset: 0xd0
-	// Line 1923, Address: 0x249b1c, Func Offset: 0xdc
-	// Line 1910, Address: 0x249b24, Func Offset: 0xe4
-	// Line 1911, Address: 0x249b2c, Func Offset: 0xec
-	// Line 1923, Address: 0x249b30, Func Offset: 0xf0
-	// Line 1924, Address: 0x249b34, Func Offset: 0xf4
-	// Line 1911, Address: 0x249b38, Func Offset: 0xf8
-	// Line 1912, Address: 0x249b40, Func Offset: 0x100
-	// Line 1913, Address: 0x249b50, Func Offset: 0x110
-	// Line 1914, Address: 0x249b5c, Func Offset: 0x11c
-	// Line 1915, Address: 0x249b7c, Func Offset: 0x13c
-	// Line 1916, Address: 0x249ba0, Func Offset: 0x160
-	// Line 1917, Address: 0x249bac, Func Offset: 0x16c
-	// Line 1921, Address: 0x249bc8, Func Offset: 0x188
-	// Line 1923, Address: 0x249bcc, Func Offset: 0x18c
-	// Line 1924, Address: 0x249be0, Func Offset: 0x1a0
-	// Line 1925, Address: 0x249be8, Func Offset: 0x1a8
-	// Line 1927, Address: 0x249bf0, Func Offset: 0x1b0
-	// Line 1928, Address: 0x249c04, Func Offset: 0x1c4
-	// Line 1929, Address: 0x249c18, Func Offset: 0x1d8
-	// Line 1933, Address: 0x249c2c, Func Offset: 0x1ec
-	// Line 1934, Address: 0x249c30, Func Offset: 0x1f0
-	// Line 1936, Address: 0x249c34, Func Offset: 0x1f4
-	// Line 1937, Address: 0x249c4c, Func Offset: 0x20c
-	// Line 1938, Address: 0x249c5c, Func Offset: 0x21c
-	// Line 1941, Address: 0x249c78, Func Offset: 0x238
-	// Line 1945, Address: 0x249c84, Func Offset: 0x244
-	// Line 1949, Address: 0x249c9c, Func Offset: 0x25c
-	// Line 1952, Address: 0x249ca0, Func Offset: 0x260
-	// Line 1957, Address: 0x249ca8, Func Offset: 0x268
-	// Line 1952, Address: 0x249cb0, Func Offset: 0x270
-	// Line 1953, Address: 0x249cbc, Func Offset: 0x27c
-	// Line 1954, Address: 0x249cd0, Func Offset: 0x290
-	// Line 1957, Address: 0x249ce0, Func Offset: 0x2a0
-	// Line 1958, Address: 0x249ce8, Func Offset: 0x2a8
-	// Line 1962, Address: 0x249cf8, Func Offset: 0x2b8
-	// Line 1958, Address: 0x249d00, Func Offset: 0x2c0
-	// Line 1961, Address: 0x249d08, Func Offset: 0x2c8
-	// Line 1962, Address: 0x249d10, Func Offset: 0x2d0
-	// Line 1966, Address: 0x249d24, Func Offset: 0x2e4
-	// Line 1967, Address: 0x249d2c, Func Offset: 0x2ec
-	// Line 1966, Address: 0x249d30, Func Offset: 0x2f0
-	// Line 1969, Address: 0x249d3c, Func Offset: 0x2fc
-	// Line 1970, Address: 0x249d4c, Func Offset: 0x30c
-	// Line 1969, Address: 0x249d50, Func Offset: 0x310
-	// Line 1970, Address: 0x249d58, Func Offset: 0x318
-	// Line 1977, Address: 0x249d68, Func Offset: 0x328
-	// Line 1970, Address: 0x249d70, Func Offset: 0x330
-	// Line 1972, Address: 0x249d7c, Func Offset: 0x33c
-	// Line 1977, Address: 0x249d8c, Func Offset: 0x34c
-	// Line 1979, Address: 0x249d90, Func Offset: 0x350
-	// Line 1977, Address: 0x249d94, Func Offset: 0x354
-	// Line 1981, Address: 0x249d9c, Func Offset: 0x35c
-	// Line 1982, Address: 0x249dac, Func Offset: 0x36c
-	// Line 1984, Address: 0x249db0, Func Offset: 0x370
-	// Line 1985, Address: 0x249dc8, Func Offset: 0x388
-	// Line 1987, Address: 0x249dcc, Func Offset: 0x38c
-	// Line 1988, Address: 0x249de4, Func Offset: 0x3a4
-	// Line 1990, Address: 0x249de8, Func Offset: 0x3a8
-	// Line 1991, Address: 0x249e08, Func Offset: 0x3c8
-	// Line 1994, Address: 0x249e0c, Func Offset: 0x3cc
-	// Line 1995, Address: 0x249e1c, Func Offset: 0x3dc
-	// Line 1996, Address: 0x249e2c, Func Offset: 0x3ec
-	// Line 1997, Address: 0x249e3c, Func Offset: 0x3fc
-	// Line 1999, Address: 0x249e54, Func Offset: 0x414
-	// Line 2004, Address: 0x249e8c, Func Offset: 0x44c
-	// Func End, Address: 0x249ea8, Func Offset: 0x468
-	scePrintf("bhEff305 - UNIMPLEMENTED!\n");
+
+    switch (oP->mode0)
+    {                     
+    case 0:
+    {
+        const Eff305PRM_WORK* prmP;
+        NJS_POINT3 vct;       
+        float dst;           
+        int ay, ax;              
+        
+        oP->flg = 0x4300001;
+        
+        oP->tex_id = 2;
+        
+        oP->ani_ct = 0;
+        
+        oP->bl_src = 8;
+        oP->bl_dst = 10;
+        
+        prmP = &Eff305Prm[oP->type];
+        
+        oP->spd = prmP->speed;
+        
+        oP->shp_ct = prmP->accel;
+        
+        oP->ct0 = prmP->time;
+        oP->ct1 = prmP->color;
+        oP->ct2 = (prmP->color / oP->ct0) & 0xFF000000;
+        oP->ct3 = 0;
+        
+        oP->sx = oP->sy = prmP->src_scl;
+        
+        oP->sx *= oP->sxb;
+        oP->sy *= oP->syb;
+        
+        oP->lox = oP->loy = prmP->dst_scl;
+        
+        oP->lox = ((oP->lox * oP->sxb) - oP->sx) / oP->ct0;
+        oP->loy = ((oP->loy * oP->syb) - oP->sy) / oP->ct0;
+        
+        oP->xn = oP->yn = oP->zn = 0;
+        
+        oP->gpx = oP->gpy = 0.1f * sys->winds;
+        
+        dst = prmP->offset;
+        
+        vct = *(NJS_POINT3*)&cam.wpx;
+        
+        njSubVector(&vct, (NJS_VECTOR*)&oP->px);
+        
+        njUnitVector(&vct);
+        
+        oP->px += vct.x * dst;
+        oP->py += vct.y * dst;
+        oP->pz += vct.z * dst;
+        
+        ay = oP->ay;
+        ax = oP->ax;
+        
+        oP->aox = -njSin(ay) * njCos(ax);
+        oP->aoy =  njSin(ax);
+        oP->aoz = -njCos(ay) * njCos(ax);
+        
+        oP->mode0++;
+    }
+    case 1:
+    {
+        float spd;        
+        int ay;           
+        float sp;          
+        const UV_WORK* uvP;        
+        NJS_TEXTURE_VTX* tvP; 
+        unsigned int col;    
+        
+        if (oP->ct0-- <= 0) 
+        {
+            oP->flg = 0;
+            break;
+        }
+        
+        spd = oP->spd;
+        
+        oP->px += oP->aox * spd;
+        oP->py += oP->aoy * spd;
+        oP->pz += oP->aoz * spd;
+        
+        njAddVector((NJS_VECTOR*)&oP->px, (NJS_VECTOR*)&oP->xn);
+        
+        oP->yn -= -0.0054444447f;
+        
+        spd += oP->shp_ct;
+        
+        if (spd > 0)
+        {
+            oP->spd = spd; 
+        }
+        
+        sp = oP->gpx;
+        
+        ay = sys->windr;
+        
+        oP->px += sp * -njSin(ay);
+        oP->pz += sp * -njCos(ay);
+        
+        oP->gpx += oP->gpy;
+        
+        col = oP->ct1;
+        
+        uvP = &Tex2uv[oP->ct3];
+        
+        oP->tv[0].u   = uvP->u;
+        oP->tv[0].v   = uvP->v;
+        oP->tv[0].col = col;
+        
+        oP->tv[1].u   = uvP->u + uvP->xs;
+        oP->tv[1].v   = uvP->v;
+        oP->tv[1].col = col;
+        
+        oP->tv[2].u   = uvP->u;
+        oP->tv[2].v   = uvP->v + uvP->ys;
+        oP->tv[2].col = col;
+        
+        oP->tv[3].u   = uvP->u + uvP->xs;
+        oP->tv[3].v   = uvP->v + uvP->ys;
+        oP->tv[3].col = col;
+        
+        oP->ct1 -= oP->ct2;
+        
+        oP->sx += oP->lox;
+        oP->sy += oP->loy;
+        
+        if (oP->ct3 < 7) 
+        {
+            oP->ct3++;
+        }
+        
+        sys->ef_trs[sys->ef_trsn++] = oP;
+        break;
+    }
+    }
 }
+
+#pragma divbyzerocheck off
 
 // 
 // Start address: 0x249eb0

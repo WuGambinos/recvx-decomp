@@ -1792,87 +1792,81 @@ void bhEne30_MV05(BH_PWORK* epw) {
     }
 }
 
-/*// 
-// Start address: 0x214c80
-void bhEne30_MV06(BH_PWORK* epw)
-{
-	float size;
-	float spd;
-	_anon3 pos;
-	_anon3 v;
-	int i;
-	// Line 923, Address: 0x214c80, Func Offset: 0
-	// Line 924, Address: 0x214ca8, Func Offset: 0x28
-	// Line 926, Address: 0x214cc8, Func Offset: 0x48
-	// Line 927, Address: 0x214cd4, Func Offset: 0x54
-	// Line 928, Address: 0x214cd8, Func Offset: 0x58
-	// Line 926, Address: 0x214cdc, Func Offset: 0x5c
-	// Line 927, Address: 0x214ce4, Func Offset: 0x64
-	// Line 932, Address: 0x214ce8, Func Offset: 0x68
-	// Line 927, Address: 0x214cec, Func Offset: 0x6c
-	// Line 928, Address: 0x214cf4, Func Offset: 0x74
-	// Line 929, Address: 0x214d00, Func Offset: 0x80
-	// Line 930, Address: 0x214d04, Func Offset: 0x84
-	// Line 931, Address: 0x214d08, Func Offset: 0x88
-	// Line 932, Address: 0x214d0c, Func Offset: 0x8c
-	// Line 933, Address: 0x214d10, Func Offset: 0x90
-	// Line 935, Address: 0x214d14, Func Offset: 0x94
-	// Line 938, Address: 0x214d18, Func Offset: 0x98
-	// Line 939, Address: 0x214d24, Func Offset: 0xa4
-	// Line 941, Address: 0x214d30, Func Offset: 0xb0
-	// Line 944, Address: 0x214d3c, Func Offset: 0xbc
-	// Line 947, Address: 0x214d48, Func Offset: 0xc8
-	// Line 954, Address: 0x214d58, Func Offset: 0xd8
-	// Line 955, Address: 0x214d64, Func Offset: 0xe4
-	// Line 954, Address: 0x214d68, Func Offset: 0xe8
-	// Line 955, Address: 0x214d6c, Func Offset: 0xec
-	// Line 956, Address: 0x214d70, Func Offset: 0xf0
-	// Line 958, Address: 0x214d84, Func Offset: 0x104
-	// Line 960, Address: 0x214d88, Func Offset: 0x108
-	// Line 961, Address: 0x214dcc, Func Offset: 0x14c
-	// Line 962, Address: 0x214e04, Func Offset: 0x184
-	// Line 965, Address: 0x214e4c, Func Offset: 0x1cc
-	// Line 968, Address: 0x214e8c, Func Offset: 0x20c
-	// Line 969, Address: 0x214ebc, Func Offset: 0x23c
-	// Line 968, Address: 0x214ec0, Func Offset: 0x240
-	// Line 969, Address: 0x214ec8, Func Offset: 0x248
-	// Line 970, Address: 0x214ed0, Func Offset: 0x250
-	// Line 971, Address: 0x214ed8, Func Offset: 0x258
-	// Line 974, Address: 0x214f00, Func Offset: 0x280
-	// Line 971, Address: 0x214f04, Func Offset: 0x284
-	// Line 974, Address: 0x214f24, Func Offset: 0x2a4
-	// Line 975, Address: 0x214f2c, Func Offset: 0x2ac
-	// Line 976, Address: 0x214f80, Func Offset: 0x300
-	// Line 978, Address: 0x214f90, Func Offset: 0x310
-	// Line 979, Address: 0x214fa4, Func Offset: 0x324
-	// Line 981, Address: 0x214fb4, Func Offset: 0x334
-	// Line 983, Address: 0x214fb8, Func Offset: 0x338
-	// Line 984, Address: 0x214ffc, Func Offset: 0x37c
-	// Line 985, Address: 0x215030, Func Offset: 0x3b0
-	// Line 988, Address: 0x215074, Func Offset: 0x3f4
-	// Line 991, Address: 0x2150b4, Func Offset: 0x434
-	// Line 992, Address: 0x2150e4, Func Offset: 0x464
-	// Line 991, Address: 0x2150e8, Func Offset: 0x468
-	// Line 992, Address: 0x2150f0, Func Offset: 0x470
-	// Line 993, Address: 0x2150f8, Func Offset: 0x478
-	// Line 994, Address: 0x215100, Func Offset: 0x480
-	// Line 997, Address: 0x215128, Func Offset: 0x4a8
-	// Line 994, Address: 0x21512c, Func Offset: 0x4ac
-	// Line 997, Address: 0x21514c, Func Offset: 0x4cc
-	// Line 998, Address: 0x215154, Func Offset: 0x4d4
-	// Line 999, Address: 0x2151a8, Func Offset: 0x528
-	// Line 1001, Address: 0x2151b8, Func Offset: 0x538
-	// Line 1002, Address: 0x2151cc, Func Offset: 0x54c
-	// Line 1003, Address: 0x2151dc, Func Offset: 0x55c
-	// Line 1005, Address: 0x2151e0, Func Offset: 0x560
-	// Line 1007, Address: 0x2151f8, Func Offset: 0x578
-	// Line 1008, Address: 0x215200, Func Offset: 0x580
-	// Line 1009, Address: 0x215204, Func Offset: 0x584
-	// Line 1011, Address: 0x215208, Func Offset: 0x588
-	// Line 1014, Address: 0x215214, Func Offset: 0x594
-	// Line 1017, Address: 0x21521c, Func Offset: 0x59c
-	// Func End, Address: 0x215244, Func Offset: 0x5c4
-}*/
+
+// 99.95% matching!
+void bhEne30_MV06(BH_PWORK* epw) {
+
+    int i;
+    NJS_POINT3 v;
+    NJS_POINT3 pos;
+    float spd;
+    float size;
+
+    switch (epw->mode3) {
+    case 0:
+        epw->flg &=  0xFFF7FFFF;
+        epw->flg2 &= ~1;
+        epw->flg |= 0x100000;
+        epw->mtn_no = 0;
+        epw->frm_no = 0;
+        epw->hokan_count = 0;
+        epw->spd = 1.0f;
+        epw->ct0 = 0;
+        epw->ax = 0;
+        epw->mdflg &= ~1;
+        epw->flg |= 0x68;
+        epw->mode3 += 1;
+        /* fallthrough */
+
+    case 1:
+        bhAddSpeed(epw, 0);
+        if (epw->ct0 < 0xA) {
+            v.x = -njSin(epw->ay);
+            v.y = 0.0f;
+            v.z = -njCos(epw->ay);
+            for (i = 0; i < 6; i++) {
+                pos.x = (epw->px + (2.0f * (-rand() / -2.1474836e9f))) - 1.0f;
+                pos.y = epw->py + (2.0f * (-rand() / -2.1474836e9f));
+                pos.z = (epw->pz + (2.0f * (-rand() / -2.1474836e9f))) - 1.0f;
+                size = 0.3f + (0.4f * (-rand() / -2.1474836e9f));
+                spd = 0.4f + (0.4f * (-rand() / -2.1474836e9f));
+                v.x *= spd;
+                v.z *= spd;
+                v.y = 0.3f + (0.2f * (-rand() / -2.1474836e9f));
+                njUnitMatrix(NULL);
+                njRotateY(NULL, (int)((21845.0f * (-rand() / -2.1474836e9f)) - 10922.0f));
+                njCalcVector(NULL, &v, &v);
+                bhEne30_SetFluidEffect(&pos, &v, 0, size);
+            }
+
+            for (i = 0; i < 3; i++) {
+                pos.x = (epw->px + (2.0f * (-rand() / -2.1474836e9f))) - 1.0f;
+                pos.y = epw->py + (2.0f * (-rand() / -2.1474836e9f));
+                pos.z = (epw->pz + (2.0f * (-rand() / -2.1474836e9f))) - 1.0f;
+                size = 0.3f + (0.4f * (-rand() / -2.1474836e9f));
+                spd = 0.4f + (0.4f * (-rand() / -2.1474836e9f));
+                v.x *= spd;
+                v.z *= spd;
+                v.y = 0.3f + (0.2f * (-rand() / -2.1474836e9f));
+                njUnitMatrix(NULL);
+                njRotateY(NULL, (int)((21845.0f * (-rand() / -2.1474836e9f)) - 10922.0f));
+                njCalcVector(NULL, &v, &v);
+                bhEne30_SetFluidEffect(&pos, &v, 1, size);
+            }
+        }
+
+        if (epw->ct0++ >= 0xA) {
+            epw->mode1 = 1;
+            epw->mode2 = 1;
+            epw->mode3 = 0U;
+            epw->flg |= 0x10;
+            ((int*)epw->exp0)[0x3C] = 0;
+        }
+
+        break;
+    }
+}
+
 
 // 100% matching!
 void bhEne30_MV07(BH_PWORK* epw) {

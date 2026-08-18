@@ -2018,13 +2018,10 @@ void bhEne30_DG01(BH_PWORK* epw) {
     }
 }
 
-/*// 
-// Start address: 0x2156c0
-void bhEne30_Die(BH_PWORK* epw)
-{
-	// Line 1195, Address: 0x2156c0, Func Offset: 0
-	// Func End, Address: 0x2156e0, Func Offset: 0x20
-}*/
+// 100% matching!
+void bhEne30_Die(BH_PWORK* epw) {
+    bhEne30_DeadMode2[epw->mode2](epw);
+}
 
 // 100% matching!
 void bhEne30_DD00(BH_PWORK* epw)

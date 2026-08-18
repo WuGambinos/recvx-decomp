@@ -1413,13 +1413,10 @@ void bhEne30_Init(BH_PWORK* epw)
     epw->shp_ct = 0;
 }
 
-/*// 
-// Start address: 0x213aa0
-void bhEne30_Brain(BH_PWORK* epw)
-{
-	// Line 382, Address: 0x213aa0, Func Offset: 0
-	// Func End, Address: 0x213ac0, Func Offset: 0x20
-}*/
+// 100% matching!
+void bhEne30_Brain(BH_PWORK* epw) {
+    bhEne30_BrainType[epw->type](epw);
+}
 
 // 100% matching!
 void bhEne30_BR00(BH_PWORK* epw) {

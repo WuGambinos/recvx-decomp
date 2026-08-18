@@ -1940,18 +1940,9 @@ void bhEff305(O_WRK* oP)
 
 #pragma divbyzerocheck off
 
-// 
-// Start address: 0x249eb0
+// 100% matching!
 void bhEff306(O_WRK* oP)
 {
-	unsigned int col;
-	NJS_TEXTURE_VTX* tvP;
-	UV_WORK* uvP;
-	float dst;
-	NJS_POINT3 vct;
-	float rnd;
-	float dst_scl;
-	Eff306PRM_WORK* prmP;
 	static const int ColTbl[4] = 
 	{
 		0xFFF0F0F0, 0xFF808080, 0xFFD0D0D0, 0xFFC0C0C0
@@ -1999,88 +1990,147 @@ void bhEff306(O_WRK* oP)
 		{ 8, 0,  4,  48, 3.0f, 0.2f, 1.0f },
 		{ 8, 0,  4,  32, 3.0f, 0.2f, 1.0f }
 	};
-	// Line 2014, Address: 0x249eb0, Func Offset: 0
-	// Line 2073, Address: 0x249ec4, Func Offset: 0x14
-	// Line 2076, Address: 0x249f08, Func Offset: 0x58
-	// Line 2078, Address: 0x249f14, Func Offset: 0x64
-	// Line 2077, Address: 0x249f18, Func Offset: 0x68
-	// Line 2078, Address: 0x249f1c, Func Offset: 0x6c
-	// Line 2079, Address: 0x249f20, Func Offset: 0x70
-	// Line 2083, Address: 0x249f28, Func Offset: 0x78
-	// Line 2085, Address: 0x249f78, Func Offset: 0xc8
-	// Line 2089, Address: 0x249f84, Func Offset: 0xd4
-	// Line 2085, Address: 0x249f8c, Func Offset: 0xdc
-	// Line 2086, Address: 0x249f9c, Func Offset: 0xec
-	// Line 2088, Address: 0x249fa0, Func Offset: 0xf0
-	// Line 2089, Address: 0x249fa8, Func Offset: 0xf8
-	// Line 2090, Address: 0x249fbc, Func Offset: 0x10c
-	// Line 2091, Address: 0x249fc8, Func Offset: 0x118
-	// Line 2092, Address: 0x249fd0, Func Offset: 0x120
-	// Line 2093, Address: 0x249fd8, Func Offset: 0x128
-	// Line 2094, Address: 0x249fec, Func Offset: 0x13c
-	// Line 2095, Address: 0x24a004, Func Offset: 0x154
-	// Line 2097, Address: 0x24a00c, Func Offset: 0x15c
-	// Line 2098, Address: 0x24a054, Func Offset: 0x1a4
-	// Line 2100, Address: 0x24a060, Func Offset: 0x1b0
-	// Line 2105, Address: 0x24a06c, Func Offset: 0x1bc
-	// Line 2107, Address: 0x24a084, Func Offset: 0x1d4
-	// Line 2108, Address: 0x24a08c, Func Offset: 0x1dc
-	// Line 2107, Address: 0x24a094, Func Offset: 0x1e4
-	// Line 2108, Address: 0x24a09c, Func Offset: 0x1ec
-	// Line 2109, Address: 0x24a0c4, Func Offset: 0x214
-	// Line 2111, Address: 0x24a0fc, Func Offset: 0x24c
-	// Line 2113, Address: 0x24a114, Func Offset: 0x264
-	// Line 2116, Address: 0x24a11c, Func Offset: 0x26c
-	// Line 2117, Address: 0x24a14c, Func Offset: 0x29c
-	// Line 2118, Address: 0x24a184, Func Offset: 0x2d4
-	// Line 2119, Address: 0x24a194, Func Offset: 0x2e4
-	// Line 2120, Address: 0x24a198, Func Offset: 0x2e8
-	// Line 2119, Address: 0x24a1a0, Func Offset: 0x2f0
-	// Line 2120, Address: 0x24a1a4, Func Offset: 0x2f4
-	// Line 2121, Address: 0x24a1b0, Func Offset: 0x300
-	// Line 2123, Address: 0x24a1b8, Func Offset: 0x308
-	// Line 2126, Address: 0x24a1c0, Func Offset: 0x310
-	// Line 2131, Address: 0x24a1c4, Func Offset: 0x314
-	// Line 2133, Address: 0x24a1d4, Func Offset: 0x324
-	// Line 2135, Address: 0x24a1f4, Func Offset: 0x344
-	// Line 2133, Address: 0x24a1f8, Func Offset: 0x348
-	// Line 2143, Address: 0x24a1fc, Func Offset: 0x34c
-	// Line 2135, Address: 0x24a208, Func Offset: 0x358
-	// Line 2144, Address: 0x24a214, Func Offset: 0x364
-	// Line 2135, Address: 0x24a218, Func Offset: 0x368
-	// Line 2136, Address: 0x24a220, Func Offset: 0x370
-	// Line 2141, Address: 0x24a230, Func Offset: 0x380
-	// Line 2143, Address: 0x24a234, Func Offset: 0x384
-	// Line 2144, Address: 0x24a248, Func Offset: 0x398
-	// Line 2145, Address: 0x24a250, Func Offset: 0x3a0
-	// Line 2147, Address: 0x24a258, Func Offset: 0x3a8
-	// Line 2156, Address: 0x24a25c, Func Offset: 0x3ac
-	// Line 2147, Address: 0x24a260, Func Offset: 0x3b0
-	// Line 2156, Address: 0x24a264, Func Offset: 0x3b4
-	// Line 2147, Address: 0x24a268, Func Offset: 0x3b8
-	// Line 2148, Address: 0x24a274, Func Offset: 0x3c4
-	// Line 2149, Address: 0x24a288, Func Offset: 0x3d8
-	// Line 2156, Address: 0x24a29c, Func Offset: 0x3ec
-	// Line 2153, Address: 0x24a2a0, Func Offset: 0x3f0
-	// Line 2156, Address: 0x24a2a8, Func Offset: 0x3f8
-	// Line 2153, Address: 0x24a2b0, Func Offset: 0x400
-	// Line 2156, Address: 0x24a2b4, Func Offset: 0x404
-	// Line 2153, Address: 0x24a2b8, Func Offset: 0x408
-	// Line 2156, Address: 0x24a2bc, Func Offset: 0x40c
-	// Line 2158, Address: 0x24a2c0, Func Offset: 0x410
-	// Line 2156, Address: 0x24a2c4, Func Offset: 0x414
-	// Line 2158, Address: 0x24a2c8, Func Offset: 0x418
-	// Line 2159, Address: 0x24a2d4, Func Offset: 0x424
-	// Line 2161, Address: 0x24a2d8, Func Offset: 0x428
-	// Line 2162, Address: 0x24a2f0, Func Offset: 0x440
-	// Line 2164, Address: 0x24a2f4, Func Offset: 0x444
-	// Line 2165, Address: 0x24a30c, Func Offset: 0x45c
-	// Line 2167, Address: 0x24a310, Func Offset: 0x460
-	// Line 2168, Address: 0x24a330, Func Offset: 0x480
-	// Line 2171, Address: 0x24a334, Func Offset: 0x484
-	// Line 2174, Address: 0x24a354, Func Offset: 0x4a4
-	// Func End, Address: 0x24a368, Func Offset: 0x4b8
-	scePrintf("bhEff306 - UNIMPLEMENTED!\n");
+    const Eff306PRM_WORK* prmP; 
+    float dst_scl;        
+    float rnd;            
+    NJS_POINT3 vct;       
+    float dst;           
+    const UV_WORK* uvP;       
+    NJS_TEXTURE_VTX* tvP; 
+    unsigned int col;     
+
+    switch (oP->mode0) 
+    {                            
+    case 0:
+        oP->flg = 0x4300001;
+        
+        oP->ani_ct = 0;
+        
+        oP->bl_src = 8;
+        oP->bl_dst = 10;
+        
+        if (oP->mdlver != 0) 
+        {
+            oP->type = (int)(255.0f * (-rand() / -2.1474836E9f)) & 7;
+        }
+        
+        prmP = &Eff306Prm[oP->type];
+        
+        dst_scl = prmP->dst_scl;
+        
+        oP->tex_id = prmP->tex_id;
+        
+        oP->exp0 = (unsigned char*)TexTab[oP->tex_id];
+        
+        oP->ct0 = oP->mtn_no = prmP->time0;
+        oP->ct1 = prmP->wait;
+        oP->ct2 = prmP->time1;
+        
+        oP->sx = oP->sy = oP->sz = oP->sxb = prmP->src_scl;
+        
+        oP->syb = (dst_scl - prmP->src_scl) / prmP->time0;
+        
+        oP->spd = prmP->offset;
+        
+        oP->axp = 0;
+        oP->ayp = (int)(5461.0f * (-rand() / -2.1474836E9f)) + 10922;
+        
+        oP->ct3 = oP->ayp & 7;
+        
+        oP->mode0++;
+    case 1:
+    case 3:
+        if (oP->ct1 > 0) 
+        {
+            oP->ct1--;
+        } 
+        else
+        {
+            oP->sxb += oP->syb;
+            
+            njCalcPoint(&((O_WRK*)oP->lkwkp)->mlwP->owP[oP->lkono].mtx, (NJS_POINT3*)&oP->lox, (NJS_POINT3*)&oP->px);
+            
+            sys->ef_trs[sys->ef_trsn++] = oP;
+            
+            if (oP->ct0-- < 0) 
+            {
+                oP->mode0++;
+            }
+        }
+        
+        break;
+    case 2:
+        njCalcPoint(&((O_WRK*)oP->lkwkp)->mlwP->owP[oP->lkono].mtx, (NJS_POINT3*)&oP->lox, (NJS_POINT3*)&oP->px);
+        
+        sys->ef_trs[sys->ef_trsn++] = oP;
+        
+        if (oP->ct2-- < 0) 
+        {
+            oP->ct0 = oP->mtn_no;
+            
+            oP->syb *= -1.0f;
+            
+            oP->mode0++;
+        }
+        
+        break;
+    case 4:
+        oP->flg = 0;
+        break;
+    }
+    
+    if (oP->mode0 != 4) 
+    {
+        rnd = 0.1f * njSin(oP->axp += oP->ayp);
+        
+        oP->sx = oP->sxb * (1.0f + rnd);
+        oP->sy = oP->sxb * (1.0f - rnd);
+        
+        dst = oP->spd;
+        
+        vct = *(NJS_POINT3*)&cam.wpx;
+        
+        njSubVector(&vct, (NJS_VECTOR*)&oP->px);
+        
+        njUnitVector(&vct);
+        
+        oP->px += vct.x * dst;
+        oP->py += vct.y * dst;
+        oP->pz += vct.z * dst;
+        
+        uvP = (UV_WORK*)oP->exp0 + oP->ct3;
+        
+        col = ColTbl[(oP->axp >> 13) & 3];
+    
+        tvP = oP->tv;
+        
+        tvP->u   = uvP->u;
+        tvP->v   = uvP->v;
+        tvP->col = col;
+
+        tvP++;
+        
+        tvP->u   = uvP->u + uvP->xs;
+        tvP->v   = uvP->v;
+        tvP->col = col;
+
+        tvP++;
+        
+        tvP->u   = uvP->u;
+        tvP->v   = uvP->v + uvP->ys;
+        tvP->col = col;
+
+        tvP++;
+        
+        tvP->u   = uvP->u + uvP->xs;
+        tvP->v   = uvP->v + uvP->ys;
+        tvP->col = col;
+        
+        if (++oP->ct3 > 9) 
+        {
+            oP->ct3 -= 9;
+        }
+    }
 }
 
 // 100% matching!
@@ -2136,6 +2186,7 @@ void bhEff307(OR_WORK* orP)
             r07P->VtxDir[vtx] = r07P->VtxBufD[vtx];
             
             njSubVector(&r07P->VtxDir[vtx], &r07P->VtxBufS[vtx]);
+
             njUnitVector(&r07P->VtxDir[vtx]);
             
             r07P->VtxAlp[vtx] = (unsigned int)r07P->eff_prm.col >> 24;

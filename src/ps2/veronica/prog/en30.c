@@ -1952,12 +1952,9 @@ void bhEne30_MV07(BH_PWORK* epw) {
     }
 }
 
-/*// 
-// Start address: 0x215580
-void bhEne30_Nage()
+// 100% matching
+void bhEne30_Nage(BH_PWORK* epw)
 {
-	// Line 1113, Address: 0x215580, Func Offset: 0
-	// Func End, Address: 0x215588, Func Offset: 0x8
 }
 
 // 
@@ -1966,7 +1963,7 @@ void bhEne30_Damage(BH_PWORK* epw)
 {
 	// Line 1124, Address: 0x215590, Func Offset: 0
 	// Func End, Address: 0x2155b0, Func Offset: 0x20
-}*/
+}
 
 // 100% matching!
 void bhEne30_DG00(BH_PWORK* epw) {

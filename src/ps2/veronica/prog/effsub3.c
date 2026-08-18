@@ -1679,94 +1679,98 @@ O_WRK* rySetShadow(BH_PWORK* ewP, int obj0, int obj1, int obj2, float off_a, flo
     return oP;
 }
 
-// 
-// Start address: 0x2496f0
-void bhEff304(O_WRK* oP)
+// 100% matching!
+void bhEff304(O_WRK* oP) 
 {
-	BH_PWORK* ewP;
-	NJS_POINT3 dlt;
-	NJS_POINT3 pos;
-	NJS_POINT3 vct;
-	float tmp;
-	NJS_POINT3* p2P;
-	//float tmp;
-	NJS_POINT3* p1P;
-	NJS_POINT3* p0P;
-	float rb;
-	float ra;
-	NJS_POINT3* pbP;
-	NJS_POINT3* paP;
-	NJS_POINT3 pp;
-	// Line 1754, Address: 0x2496f0, Func Offset: 0
-	// Line 1764, Address: 0x249714, Func Offset: 0x24
-	// Line 1765, Address: 0x249718, Func Offset: 0x28
-	// Line 1768, Address: 0x24971c, Func Offset: 0x2c
-	// Line 1770, Address: 0x249724, Func Offset: 0x34
-	// Line 1768, Address: 0x249728, Func Offset: 0x38
-	// Line 1769, Address: 0x24973c, Func Offset: 0x4c
-	// Line 1770, Address: 0x249750, Func Offset: 0x60
-	// Line 1782, Address: 0x249764, Func Offset: 0x74
-	// Line 1788, Address: 0x249768, Func Offset: 0x78
-	// Line 1772, Address: 0x24976c, Func Offset: 0x7c
-	// Line 1774, Address: 0x249774, Func Offset: 0x84
-	// Line 1788, Address: 0x24977c, Func Offset: 0x8c
-	// Line 1786, Address: 0x249780, Func Offset: 0x90
-	// Line 1772, Address: 0x249788, Func Offset: 0x98
-	// Line 1774, Address: 0x24978c, Func Offset: 0x9c
-	// Line 1786, Address: 0x249790, Func Offset: 0xa0
-	// Line 1788, Address: 0x249794, Func Offset: 0xa4
-	// Line 1775, Address: 0x249798, Func Offset: 0xa8
-	// Line 1773, Address: 0x24979c, Func Offset: 0xac
-	// Line 1787, Address: 0x2497a0, Func Offset: 0xb0
-	// Line 1789, Address: 0x2497a4, Func Offset: 0xb4
-	// Line 1775, Address: 0x2497ac, Func Offset: 0xbc
-	// Line 1791, Address: 0x2497b0, Func Offset: 0xc0
-	// Line 1795, Address: 0x2497c0, Func Offset: 0xd0
-	// Line 1796, Address: 0x2497c4, Func Offset: 0xd4
-	// Line 1793, Address: 0x2497c8, Func Offset: 0xd8
-	// Line 1797, Address: 0x2497cc, Func Offset: 0xdc
-	// Line 1792, Address: 0x2497d0, Func Offset: 0xe0
-	// Line 1801, Address: 0x2497d4, Func Offset: 0xe4
-	// Line 1802, Address: 0x2497dc, Func Offset: 0xec
-	// Line 1808, Address: 0x2497ec, Func Offset: 0xfc
-	// Line 1809, Address: 0x2497fc, Func Offset: 0x10c
-	// Line 1808, Address: 0x249800, Func Offset: 0x110
-	// Line 1809, Address: 0x249808, Func Offset: 0x118
-	// Line 1811, Address: 0x249810, Func Offset: 0x120
-	// Line 1817, Address: 0x249838, Func Offset: 0x148
-	// Line 1820, Address: 0x249848, Func Offset: 0x158
-	// Line 1817, Address: 0x24984c, Func Offset: 0x15c
-	// Line 1829, Address: 0x249850, Func Offset: 0x160
-	// Line 1830, Address: 0x249854, Func Offset: 0x164
-	// Line 1817, Address: 0x249858, Func Offset: 0x168
-	// Line 1832, Address: 0x24985c, Func Offset: 0x16c
-	// Line 1817, Address: 0x249864, Func Offset: 0x174
-	// Line 1818, Address: 0x24986c, Func Offset: 0x17c
-	// Line 1820, Address: 0x249884, Func Offset: 0x194
-	// Line 1828, Address: 0x24989c, Func Offset: 0x1ac
-	// Line 1829, Address: 0x2498a4, Func Offset: 0x1b4
-	// Line 1828, Address: 0x2498a8, Func Offset: 0x1b8
-	// Line 1829, Address: 0x2498b4, Func Offset: 0x1c4
-	// Line 1830, Address: 0x2498c4, Func Offset: 0x1d4
-	// Line 1832, Address: 0x2498d4, Func Offset: 0x1e4
-	// Line 1833, Address: 0x2498ec, Func Offset: 0x1fc
-	// Line 1834, Address: 0x249908, Func Offset: 0x218
-	// Line 1835, Address: 0x24991c, Func Offset: 0x22c
-	// Line 1836, Address: 0x24992c, Func Offset: 0x23c
-	// Line 1837, Address: 0x249934, Func Offset: 0x244
-	// Line 1841, Address: 0x249950, Func Offset: 0x260
-	// Line 1842, Address: 0x24995c, Func Offset: 0x26c
-	// Line 1849, Address: 0x249968, Func Offset: 0x278
-	// Line 1851, Address: 0x24996c, Func Offset: 0x27c
-	// Line 1853, Address: 0x249984, Func Offset: 0x294
-	// Line 1854, Address: 0x2499b4, Func Offset: 0x2c4
-	// Line 1856, Address: 0x2499c8, Func Offset: 0x2d8
-	// Line 1857, Address: 0x2499d4, Func Offset: 0x2e4
-	// Line 1856, Address: 0x2499d8, Func Offset: 0x2e8
-	// Line 1857, Address: 0x2499e0, Func Offset: 0x2f0
-	// Line 1862, Address: 0x249a14, Func Offset: 0x324
-	// Func End, Address: 0x249a3c, Func Offset: 0x34c
-	scePrintf("bhEff304 - UNIMPLEMENTED!\n");
+    NJS_POINT3 pp;   
+    NJS_POINT3* paP, *pbP; 
+    float ra, rb;        
+    NJS_POINT3* p0P, *p1P; 
+    float tmp;      
+    NJS_POINT3* p2P; 
+    //float tmp; // needs using
+    NJS_VECTOR vct;  
+    NJS_POINT3 pos;  
+    NJS_POINT3 dlt; 
+    BH_PWORK* ewP;   
+
+    p0P = (NJS_POINT3*)oP->ct0;
+    p1P = (NJS_POINT3*)oP->ct1;
+    
+    pp.x = (p0P->x + p1P->x) * 0.5f;
+    pp.y = (p0P->y + p1P->y) * 0.5f;
+    pp.z = (p0P->z + p1P->z) * 0.5f;
+    
+    p2P = (NJS_POINT3*)oP->ct2;
+
+    ra =   p1P->x - p0P->x;
+    ra *=  p1P->x - p0P->x;
+    ra += (p1P->z - p0P->z) * (p1P->z - p0P->z); 
+    
+    rb =  (p2P->x - pp.x) * (p2P->x - pp.x);
+    rb += (p2P->z - pp.z) * (p2P->z - pp.z);
+
+    if (rb > ra) 
+    {
+        tmp = ra;
+        
+        ra = rb;
+        rb = tmp;
+        
+        p1P = &pp;
+        p0P = p2P;
+    }
+
+    ra = njSqrt(ra);
+    rb = njSqrt(rb);
+
+    vct = *p0P;
+    
+    njSubVector(&vct, p1P);
+    
+    oP->ay = -(int)(10430.381f * atan2f(vct.z, vct.x));
+
+    oP->sx = (oP->sx + (ra + oP->xn)) * 0.5f;
+    oP->sz = (oP->sz + (rb + oP->zn)) * 0.5f;
+
+    pos = *p0P;
+    
+    dlt.x = (pos.x + p1P->x) * 0.5f;
+    dlt.y = (pos.y + p1P->y) * 0.5f;
+    dlt.z = (pos.z + p1P->z) * 0.5f;
+
+    if (njDistanceP2P(&dlt, (NJS_POINT3*)&oP->px) < rb)
+    {
+        oP->px = (oP->px + dlt.x) * 0.5f;
+        oP->py = (oP->py + dlt.y) * 0.5f;
+        oP->pz = (oP->pz + dlt.z) * 0.5f;
+    }
+    else
+    {
+        *(NJS_POINT3*)&oP->px = dlt;
+    }
+
+    if (oP->type == 0) 
+    {
+        oP->py = bhGetGroundPosition((NJS_POINT3*)&oP->px);
+    }
+
+    ewP = (BH_PWORK*)oP->lkwkp;
+    
+    if (!(ewP->flg & 0x1)) 
+    {
+        oP->flg = 0;
+    }
+    else if ((((ewP->stflg & 0x8)) || ((ewP->stflg & 0x1000000))) || ((ewP->mdflg & 0x1)))
+    {
+        oP->flg |= 0x1000000;
+    }
+    else
+    {
+        oP->flg &= ~0x1000000;
+        
+        sys->ef_mdf[sys->ef_mdfn++] = oP;
+    }
 }
 
 #pragma divbyzerocheck on

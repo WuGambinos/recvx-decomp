@@ -80,15 +80,11 @@ void bhEne01Parent_Init(BH_PWORK* epw)
 	// Func End, Address: 0x18bcb8, Func Offset: 0x28
 }
 
-// 
-// Start address: 0x18bcc0
+// 100% matching!
 void bhEne01Parent_Move()
 {
-	// Line 265, Address: 0x18bcc0, Func Offset: 0
-	// Line 267, Address: 0x18bcc8, Func Offset: 0x8
-	// Line 269, Address: 0x18bcd0, Func Offset: 0x10
-	// Line 270, Address: 0x18bcd8, Func Offset: 0x18
-	// Func End, Address: 0x18bce4, Func Offset: 0x24
+	bhEne01Parent_NearestCheck();
+	bhEne01Parent_NoKaidanCheck();
 }
 
 // 

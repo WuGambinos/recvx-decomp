@@ -749,15 +749,15 @@ int bhEne13_RestoreObject(BH_PWORK* epw, _anon32* pos, _anon32** v, int no)
 	// Line 1279, Address: 0x1dbfb8, Func Offset: 0xb8
 	// Line 1282, Address: 0x1dbfd8, Func Offset: 0xd8
 	// Func End, Address: 0x1dbfe0, Func Offset: 0xe0
-}
+}*/
 
 // 
 // Start address: 0x1dbfe0
 void bhEne13_PutAttacker(BH_PWORK* epw, int no)
 {
 	int ang[3];
-	_anon32 pos[3];
-	_anon32 wp;
+	//_anon32 pos[3];
+	//_anon32 wp;
 	int i;
 	BH_PWORK* ep;
 	// Line 1337, Address: 0x1dbfe0, Func Offset: 0
@@ -792,6 +792,7 @@ void bhEne13_PutAttacker(BH_PWORK* epw, int no)
 	// Line 1376, Address: 0x1dc12c, Func Offset: 0x14c
 	// Line 1377, Address: 0x1dc140, Func Offset: 0x160
 	// Func End, Address: 0x1dc158, Func Offset: 0x178
+	scePrintf("bhEne13_PutAttacker - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -805,6 +806,7 @@ void bhEne13_Tentacle(BH_PWORK* epw, int no)
 	// Line 1394, Address: 0x1dc194, Func Offset: 0x34
 	// Line 1395, Address: 0x1dc19c, Func Offset: 0x3c
 	// Func End, Address: 0x1dc1a4, Func Offset: 0x44
+	scePrintf("bhEne13_Tentacle - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -814,6 +816,7 @@ int bhEne13_GetHatchNo(BH_PWORK* epw)
 	// Line 1406, Address: 0x1dc1b0, Func Offset: 0
 	// Line 1407, Address: 0x1dc1b4, Func Offset: 0x4
 	// Func End, Address: 0x1dc1bc, Func Offset: 0xc
+	scePrintf("bhEne13_GetHatchNo - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -823,9 +826,10 @@ int bhEne13_GetTentaNo(BH_PWORK* epw)
 	// Line 1418, Address: 0x1dc1c0, Func Offset: 0
 	// Line 1419, Address: 0x1dc1c4, Func Offset: 0x4
 	// Func End, Address: 0x1dc1cc, Func Offset: 0xc
+	scePrintf("bhEne13_GetTentaNo - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1dc1d0
 BH_PWORK** bhEne13_GetChild(BH_PWORK* epw, int* num)
 {

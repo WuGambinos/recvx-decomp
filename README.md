@@ -18,7 +18,7 @@ Issues and pull-requests that are clearly **AI-generated** will be automatically
 
 **recvx-decomp** is a reverse-engineering project for Resident Evil: Code Veronica X which has the goal of reconstructing the source code of the game by decompiling the MIPS in the PS2 ELF back to C. The project currently only works with the US release (**SLUS-20184**), with plans to add support for more regions in the future.
 
-Currently, the engine and gameplay systems are decompiled, as well as the **CRI ADXT (Jan 26th, 2001)** lib employed by the game. Enemy AI and GFX code is still incomplete. Testing is done by repackaging the retail disc with our own compiled ELF using a script, and trying out the results on PCSX2. 
+Currently, the engine and gameplay systems are decompiled, as well as the GFX code and the **CRI ADXT (Jan 26th, 2001)** lib employed by the game. Enemy AI is still incomplete. Testing is done by repackaging the retail disc with our own compiled ELF using a script, and trying out the results on PCSX2. 
 
 Groundwork has been made for decompiling the Dreamcast and GameCube releases of Code Veronica; see the Resources section on this page for some links. Once the project is completed, there will be many potential uses of the code, including and beyond porting.
 

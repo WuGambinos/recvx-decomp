@@ -7469,34 +7469,33 @@ void bhEne01_NeckBloodEffect2(BH_PWORK* epw, int type)
 	scePrintf("bhEne01_NeckBloodEffect2 - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x187ce0
+// 100% matching!
 void bhEne01_ExpHeadEffect(BH_PWORK* epw)
 {
-	int i;
+	NJS_VECTOR v;
+	NJS_POINT3 ps;
+	NJS_POINT3 pd;
+	O_WORK* owk;
 	int ang1;
-	_anon2* owk;
-	_anon11 pd;
-	_anon11 ps;
-	_anon11 v;
-	// Line 11504, Address: 0x187ce0, Func Offset: 0
-	// Line 11601, Address: 0x187d00, Func Offset: 0x20
-	// Line 11602, Address: 0x187d04, Func Offset: 0x24
-	// Line 11603, Address: 0x187d0c, Func Offset: 0x2c
-	// Line 11601, Address: 0x187d14, Func Offset: 0x34
-	// Line 11602, Address: 0x187d1c, Func Offset: 0x3c
-	// Line 11603, Address: 0x187d24, Func Offset: 0x44
-	// Line 11605, Address: 0x187d30, Func Offset: 0x50
-	// Line 11607, Address: 0x187d38, Func Offset: 0x58
-	// Line 11609, Address: 0x187d44, Func Offset: 0x64
-	// Line 11610, Address: 0x187d5c, Func Offset: 0x7c
-	// Line 11611, Address: 0x187d6c, Func Offset: 0x8c
-	// Line 11612, Address: 0x187d84, Func Offset: 0xa4
-	// Line 11613, Address: 0x187dac, Func Offset: 0xcc
-	// Line 11633, Address: 0x187dbc, Func Offset: 0xdc
-	// Func End, Address: 0x187ddc, Func Offset: 0xfc
+	int i;
+
+	owk = &epw->mlwP->owP[10];
+	ps.x = 0.0f;
+	ps.y = 0.5f;
+	ps.z = -1.0f;
+	njCalcPoint(&owk->mtx, &ps, &pd);
+
+	for (i = 0; i < 4; i++)
+	{
+		ang1 = epw->ay + NJM_DEG_ANG(45.0f) + (i * NJM_DEG_ANG(90.0f));
+		v.x = -njSin(ang1) * njCos(NJM_DEG_ANG(22.5f));
+		v.y = njSin(NJM_DEG_ANG(22.5f));
+		v.z = -njCos(ang1) * njCos(NJM_DEG_ANG(22.5f));
+		bhEne_SetNikuhenEffect(epw, 0, &pd, &v, bhEne01_ChgTextID(epw, 5));
+	}
 }
 
+/* 
 // 
 // Start address: 0x187de0
 void bhEne01_ExpHeadEffect2(BH_PWORK* epw, int type)

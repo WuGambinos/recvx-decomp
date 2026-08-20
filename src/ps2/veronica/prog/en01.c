@@ -2828,46 +2828,61 @@ void bhEne01_InitType15(BH_PWORK* epw)
 	}
 }
 
-/*// 
-// Start address: 0x17a3a0
+// 100% matching!
 void bhEne01_EneSearch(BH_PWORK* epw)
 {
-	_anon11 pos;
-	_anon2* neck_owk;
-	npobj* neck_obj;
-	// Line 3431, Address: 0x17a3a0, Func Offset: 0
-	// Line 3439, Address: 0x17a3ac, Func Offset: 0xc
-	// Line 3440, Address: 0x17a3b4, Func Offset: 0x14
-	// Line 3441, Address: 0x17a3b8, Func Offset: 0x18
-	// Line 3440, Address: 0x17a3bc, Func Offset: 0x1c
-	// Line 3441, Address: 0x17a3c0, Func Offset: 0x20
-	// Line 3442, Address: 0x17a3c4, Func Offset: 0x24
-	// Line 3443, Address: 0x17a3c8, Func Offset: 0x28
-	// Line 3446, Address: 0x17a3d0, Func Offset: 0x30
-	// Line 3448, Address: 0x17a3e8, Func Offset: 0x48
-	// Line 3472, Address: 0x17a428, Func Offset: 0x88
-	// Line 3475, Address: 0x17a438, Func Offset: 0x98
-	// Line 3478, Address: 0x17a450, Func Offset: 0xb0
-	// Line 3479, Address: 0x17a45c, Func Offset: 0xbc
-	// Line 3480, Address: 0x17a468, Func Offset: 0xc8
-	// Line 3483, Address: 0x17a470, Func Offset: 0xd0
-	// Line 3485, Address: 0x17a480, Func Offset: 0xe0
-	// Line 3489, Address: 0x17a48c, Func Offset: 0xec
-	// Line 3492, Address: 0x17a49c, Func Offset: 0xfc
-	// Line 3494, Address: 0x17a4b8, Func Offset: 0x118
-	// Line 3498, Address: 0x17a4c4, Func Offset: 0x124
-	// Line 3500, Address: 0x17a4d8, Func Offset: 0x138
-	// Line 3501, Address: 0x17a4dc, Func Offset: 0x13c
-	// Line 3500, Address: 0x17a4e0, Func Offset: 0x140
-	// Line 3501, Address: 0x17a4e8, Func Offset: 0x148
-	// Line 3502, Address: 0x17a4ec, Func Offset: 0x14c
-	// Line 3505, Address: 0x17a4f4, Func Offset: 0x154
-	// Line 3507, Address: 0x17a504, Func Offset: 0x164
-	// Line 3510, Address: 0x17a51c, Func Offset: 0x17c
-	// Line 3515, Address: 0x17a530, Func Offset: 0x190
-	// Func End, Address: 0x17a540, Func Offset: 0x1a0
+    NJS_CNK_OBJECT* neck_obj;
+    O_WORK* neck_owk;
+    NJS_POINT3 pos;
+
+    neck_owk = &epw->mlwP->owP[11];
+    neck_obj = &epw->mlwP->objP[11];
+
+    pos.x = neck_owk->mtx[12];
+    pos.y = 0.0f;
+    pos.z = neck_owk->mtx[14];
+
+    if ((EXP0_UC(0x28) & 0x1F) < 31)
+    {
+        if (bhSearchPlayer2(epw, &pos, epw->ay + neck_obj->ang[1], en01_PersonalType[EXP0_I(0x4C)].ang) != -1)
+        {
+            EXP0_UC(0x28) |= 0x20;
+        }
+        
+        if (EXP0_UC(0x28) & 0x20)
+        {
+            EXP0_UC(0x28) |= 0x40;
+            EXP0_UC(0x28) &= 0xDF;
+        } 
+        else if ((EXP0_UC(0x28) & 0x1F) == 30)
+        {
+            EXP0_UC(0x28) &= 0xBF;
+        }
+    }
+    
+    EXP0_UC(0x28)++;
+    if ((EXP0_UC(0x28) & 0x1F) >= 31)
+    {
+        EXP0_UC(0x28) &= 0xE0;
+    }
+
+    if (EXP0_UC(0x28) & 0x40)
+    {
+        EXP0_I(0x40) |= 0x400;
+        EXP0_UC(0x29) = 15;
+        return;
+    }
+    
+    if (EXP0_I(0x40) & 0x400)
+    {
+        if (--EXP0_UC(0x29) < 0)
+        {
+            EXP0_I(0x40) &= ~0x400;
+        }
+    }
 }
 
+/*
 // 
 // Start address: 0x17a540
 void bhEne01_Brain00(BH_PWORK* epw)

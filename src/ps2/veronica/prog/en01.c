@@ -887,10 +887,38 @@ NJS_POINT2_XZ st_mtn05_xz[50] = {
     { -4.5000000682193786e-05f, 0.040839001536369324f },
 };
 /*_anon17 en01_keff_tbl[11];
-_anon32 en01_weff_tbl[18];
-float en01_kamikami[71];
-float en01_kamikami2[70];
-float en01_mogmog[40];*/
+_anon32 en01_weff_tbl[18];*/
+
+const float en01_kamikami[71] =
+{
+    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+    200.0f, 400.0f, 600.0f, 800.0f, 1000.0f, 1000.0f, 1000.0f, 1000.0f, 900.0f, 800.0f,
+    700.0f, 600.0f, 500.0f, 300.0f, 150.0f, 0.0f, 250.0f, 500.0f, 250.0f, 500.0f,
+    250.0f, 500.0f, 250.0f, 0.0f, 500.0f, 250.0f, 0.0f, 250.0f, 500.0f, 250.0f,
+    0.0f, 500.0f, 500.0f, 500.0f, 500.0f, 500.0f, 250.0f, 0.0f, 0.0f, 250.0f,
+    500.0f, 1000.0f, 1000.0f, 1000.0f, 750.0f, 750.0f, 500.0f, 500.0f, 250.0f, 0.0f,
+    250.0f, 0.0f, 250.0f, 500.0f, 250.0f, 0.0f, 250.0f, 500.0f, 250.0f, 500.0f, 500.0f
+};
+
+const float en01_kamikami2[70] =
+{
+    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 200.0f, 400.0f, 600.0f,
+    800.0f, 1000.0f, 1000.0f, 1000.0f, 1000.0f, 1000.0f, 1000.0f, 900.0f, 800.0f, 700.0f,
+    600.0f, 500.0f, 300.0f, 150.0f, 0.0f, 250.0f, 500.0f, 250.0f, 500.0f, 250.0f,
+    500.0f, 250.0f, 0.0f, 500.0f, 250.0f, 0.0f, 250.0f, 500.0f, 250.0f, 0.0f,
+    500.0f, 500.0f, 500.0f, 500.0f, 500.0f, 250.0f, 0.0f, 0.0f, 250.0f, 500.0f,
+    1000.0f, 1000.0f, 1000.0f, 750.0f, 750.0f, 500.0f, 500.0f, 250.0f, 0.0f, 250.0f,
+    0.0f, 250.0f, 500.0f, 250.0f, 0.0f, 250.0f, 500.0f, 250.0f, 500.0f, 250.0f
+};
+
+const float en01_mogmog[40] =
+{
+    100.0f, 200.0f, 300.0f, 400.0f, 500.0f, 400.0f, 300.0f, 200.0f, 100.0f, 0.0f,
+    100.0f, 200.0f, 300.0f, 400.0f, 500.0f, 600.0f, 700.0f, 800.0f, 900.0f, 1000.0f,
+    900.0f, 800.0f, 700.0f, 600.0f, 500.0f, 400.0f, 300.0f, 200.0f, 100.0f, 0.0f,
+    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f
+};
+
 void(*bhEne01_Mode0[6])(BH_PWORK*) = 
 {
 	bhEne01_Init,
@@ -8182,52 +8210,72 @@ int bhEne01_PoisonCheck(BH_PWORK* epw)
 	// Func End, Address: 0x189bcc, Func Offset: 0x29c
 }
 
-// 
-// Start address: 0x189bd0
+// 100% matching!
 int bhEne01_EatCheck(BH_PWORK* epw, int rng, float dist, int mode)
 {
-	scePrintf("bhEne01_EatCheck - UNIMPLEMENTED!\n");
-	// float ds;
-	// _anon11 eps;
-	// _anon11 ps;
-	// _anon56 at;
-	// _anon2* owk;
-	// Line 12812, Address: 0x189bd0, Func Offset: 0
-	// Line 12822, Address: 0x189bf4, Func Offset: 0x24
-	// Line 12826, Address: 0x189c44, Func Offset: 0x74
-	// Line 12864, Address: 0x189c50, Func Offset: 0x80
-	// Line 12866, Address: 0x189c54, Func Offset: 0x84
-	// Line 12867, Address: 0x189c58, Func Offset: 0x88
-	// Line 12873, Address: 0x189c5c, Func Offset: 0x8c
-	// Line 12864, Address: 0x189c60, Func Offset: 0x90
-	// Line 12873, Address: 0x189c64, Func Offset: 0x94
-	// Line 12865, Address: 0x189c68, Func Offset: 0x98
-	// Line 12866, Address: 0x189c70, Func Offset: 0xa0
-	// Line 12867, Address: 0x189c78, Func Offset: 0xa8
-	// Line 12869, Address: 0x189c80, Func Offset: 0xb0
-	// Line 12870, Address: 0x189c88, Func Offset: 0xb8
-	// Line 12871, Address: 0x189c90, Func Offset: 0xc0
-	// Line 12872, Address: 0x189c98, Func Offset: 0xc8
-	// Line 12873, Address: 0x189c9c, Func Offset: 0xcc
-	// Line 12876, Address: 0x189ca4, Func Offset: 0xd4
-	// Line 12879, Address: 0x189ccc, Func Offset: 0xfc
-	// Line 12884, Address: 0x189d28, Func Offset: 0x158
-	// Line 12889, Address: 0x189d30, Func Offset: 0x160
-	// Line 12892, Address: 0x189d5c, Func Offset: 0x18c
-	// Line 12897, Address: 0x189d64, Func Offset: 0x194
-	// Line 12900, Address: 0x189d68, Func Offset: 0x198
-	// Line 12901, Address: 0x189d6c, Func Offset: 0x19c
-	// Line 12897, Address: 0x189d74, Func Offset: 0x1a4
-	// Line 12898, Address: 0x189d7c, Func Offset: 0x1ac
-	// Line 12899, Address: 0x189d80, Func Offset: 0x1b0
-	// Line 12901, Address: 0x189d84, Func Offset: 0x1b4
-	// Line 12902, Address: 0x189d90, Func Offset: 0x1c0
-	// Line 12906, Address: 0x189d98, Func Offset: 0x1c8
-	// Line 12908, Address: 0x189db4, Func Offset: 0x1e4
-	// Line 12913, Address: 0x189e04, Func Offset: 0x234
-	// Line 12919, Address: 0x189e0c, Func Offset: 0x23c
-	// Line 12920, Address: 0x189e10, Func Offset: 0x240
-	// Func End, Address: 0x189e38, Func Offset: 0x268
+    NJS_SPHERE at;
+    O_WORK* owk;
+    NJS_POINT3 ps;
+    NJS_POINT3 eps;
+    float ds;
+
+    if ((EXP0_I(0x40) & 0x20000000) || (plp->flg & 2) || (plp->stflg & 0x80000000))
+    {
+        return 0;
+    }
+    
+    owk = &plp->mlwP->owP[3];
+    ps.x = owk->mtx[12];
+    ps.y = plp->py;
+    ps.z = owk->mtx[14];
+    owk = &epw->mlwP->owP[10];
+    eps.x = owk->mtx[12];
+    eps.y = plp->py;
+    eps.z = owk->mtx[14];
+
+    ds = njDistanceP2P(&ps, &eps);
+
+    switch (mode)
+    {
+    case 0:
+        if ((bhSearchPlayer2(epw, &eps, epw->ay, rng) == -1) ||
+            (ds >= dist) ||
+            (plp->py != epw->py) ||
+            (plp->hp < 0))
+        {
+            break;
+        }
+            
+        return 1;
+
+    case 1:
+        if ((plp->py != epw->py) || (plp->hp < 0))
+        {
+            break;
+        }
+        
+        return 1;
+
+    case 2:
+        owk = &epw->mlwP->owP[10];
+        ps.x = 0.0f;
+        ps.y = 0.0f;
+        ps.z = -4.0f;
+        njCalcPoint((NJS_MATRIX*)owk->mtx, &ps, &at.c);
+        at.r = 1.0f;
+
+        if (!npCollisionCheckSC(&at, &plp->watr) ||
+           (plp->py != epw->py) ||
+           (plp->flg & 2) ||
+           (plp->stflg & 0x80000000) ||
+           (plp->hp < 0))
+        {
+            break;            
+        }
+        return 1;
+       
+    }
+    return 0;
 }
 
 // 

@@ -25,7 +25,7 @@ int bhSetEffect(int effno, POINT* pnt, unsigned char* lkp, int lkono);
 int bhSetEffectTb(EF_WORK* efp, NJS_POINT3* off, unsigned char* lkp, int lkono);
 int bhSetEffectEvt(int effno, POINT* pnt, unsigned short type, int ax, int ay);
 int bhSetShadow(char* jtb, unsigned char* lkp, int lkono, float sx, float sy, float sz);
-void bhLinkBlood();
+void bhLinkBlood(BH_PWORK*, int, NJS_POINT3*, float); // signature different from DWARF
 void bhControlEffect();
 void bhDrawEffect();
 void bhDrawPolEffect(unsigned int* owp, int ct);

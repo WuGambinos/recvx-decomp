@@ -51,8 +51,34 @@ const char en01_tree[8][8] =
     { 0x00, 0x01, 0x05, 0x06, 0xFF, 0x00, 0x00, 0x00 },
     { 0x00, 0x01, 0x08, 0x09, 0x0A, 0xFF, 0x00, 0x00 }
 };
+
+WPNDAMAGE_WORK En01_WpnDamageTbl[22] =
+{
+    { 0x0000, 0, 0, 0, 0 }, // [0]
+    { 0x0000, 0, 0, 0, 0 }, // [1]
+    { 0x0C02, 0, 3, 6, 3 }, // [2]
+    { 0x0FC2, 0, 7, 3, 3 }, // [3]
+    { 0x0FC2, 0, 7, 3, 3 }, // [4]
+    { 0x0FC2, 0, 7, 3, 3 }, // [5]
+    { 0x0112, 0, 7, 3, 3 }, // [6]
+    { 0x0112, 0, 7, 3, 3 }, // [7]
+    { 0x0EC2, 0, 7, 6, 3 }, // [8]
+    { 0x0FC2, 0, 7, 3, 3 }, // [9]
+    { 0x0FC2, 7, 7, 3, 3 }, // [10]
+    { 0x0039, 2, 9, 3, 9 }, // [11]
+    { 0x0EC2, 0, 7, 6, 3 }, // [12]
+    { 0x011D, 0, 3, 3, 3 }, // [13]
+    { 0x111C, 0, 1, 3, 8 }, // [14]
+    { 0xC100, 0, 1, 3, 3 }, // [15]
+    { 0x511C, 0, 1, 3, 8 }, // [16]
+    { 0x4000, 6, 1, 5, 3 }, // [17]
+    { 0x6000, 4, 3, 4, 3 }, // [18]
+    { 0x111C, 0, 1, 3, 8 }, // [19]
+    { 0x6000, 4, 3, 4, 3 }, // [20]
+    { 0x0FC2, 0, 1, 3, 3 }  // [21]
+};
+
 /*
-_anon20 En01_WpnDamageTbl[22];
 _anon59 CombWepTbl[21];
 _anon61 CombJointTbl[18];*/
 const int en01_hp_tbl[2][16] =
@@ -1863,80 +1889,124 @@ void bhEne01_DmgCheck(BH_PWORK* epw)
 	scePrintf("bhEne01_DmgCheck - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x177bc0
+// 99.97% matching
 void bhEne01_SetBlood(BH_PWORK* epw, int hp)
 {
-	// int obj_no;
-	// _anon11 ofp;
-	// BH_PWORK* epp;
-	// _anon2* owk;
-	// _anon20* wp_tbl;
-	// Line 1802, Address: 0x177bc0, Func Offset: 0
-	// Line 1809, Address: 0x177bdc, Func Offset: 0x1c
-	// Line 1803, Address: 0x177be8, Func Offset: 0x28
-	// Line 1815, Address: 0x177bf0, Func Offset: 0x30
-	// Line 1809, Address: 0x177bf4, Func Offset: 0x34
-	// Line 1815, Address: 0x177c00, Func Offset: 0x40
-	// Line 1819, Address: 0x177c20, Func Offset: 0x60
-	// Line 1825, Address: 0x177c30, Func Offset: 0x70
-	// Line 1829, Address: 0x177c58, Func Offset: 0x98
-	// Line 1833, Address: 0x177c5c, Func Offset: 0x9c
-	// Line 1829, Address: 0x177c68, Func Offset: 0xa8
-	// Line 1830, Address: 0x177c70, Func Offset: 0xb0
-	// Line 1831, Address: 0x177c7c, Func Offset: 0xbc
-	// Line 1833, Address: 0x177c88, Func Offset: 0xc8
-	// Line 1836, Address: 0x177c94, Func Offset: 0xd4
-	// Line 1839, Address: 0x177cb0, Func Offset: 0xf0
-	// Line 1841, Address: 0x177cd0, Func Offset: 0x110
-	// Line 1843, Address: 0x177cd8, Func Offset: 0x118
-	// Line 1845, Address: 0x177cf4, Func Offset: 0x134
-	// Line 1846, Address: 0x177cfc, Func Offset: 0x13c
-	// Line 1847, Address: 0x177d00, Func Offset: 0x140
-	// Line 1848, Address: 0x177d04, Func Offset: 0x144
-	// Line 1851, Address: 0x177d0c, Func Offset: 0x14c
-	// Line 1852, Address: 0x177d14, Func Offset: 0x154
-	// Line 1853, Address: 0x177d18, Func Offset: 0x158
-	// Line 1852, Address: 0x177d1c, Func Offset: 0x15c
-	// Line 1856, Address: 0x177d20, Func Offset: 0x160
-	// Line 1858, Address: 0x177d30, Func Offset: 0x170
-	// Line 1860, Address: 0x177d40, Func Offset: 0x180
-	// Line 1862, Address: 0x177d64, Func Offset: 0x1a4
-	// Line 1865, Address: 0x177d6c, Func Offset: 0x1ac
-	// Line 1870, Address: 0x177d90, Func Offset: 0x1d0
-	// Line 1871, Address: 0x177d98, Func Offset: 0x1d8
-	// Line 1872, Address: 0x177da0, Func Offset: 0x1e0
-	// Line 1873, Address: 0x177dbc, Func Offset: 0x1fc
-	// Line 1876, Address: 0x177dc4, Func Offset: 0x204
-	// Line 1880, Address: 0x177de8, Func Offset: 0x228
-	// Line 1883, Address: 0x177df0, Func Offset: 0x230
-	// Line 1885, Address: 0x177e00, Func Offset: 0x240
-	// Line 1886, Address: 0x177e18, Func Offset: 0x258
-	// Line 1888, Address: 0x177e34, Func Offset: 0x274
-	// Line 1889, Address: 0x177e3c, Func Offset: 0x27c
-	// Line 1890, Address: 0x177e40, Func Offset: 0x280
-	// Line 1891, Address: 0x177e44, Func Offset: 0x284
-	// Line 1894, Address: 0x177e4c, Func Offset: 0x28c
-	// Line 1895, Address: 0x177e54, Func Offset: 0x294
-	// Line 1896, Address: 0x177e58, Func Offset: 0x298
-	// Line 1895, Address: 0x177e5c, Func Offset: 0x29c
-	// Line 1899, Address: 0x177e60, Func Offset: 0x2a0
-	// Line 1901, Address: 0x177e70, Func Offset: 0x2b0
-	// Line 1903, Address: 0x177e94, Func Offset: 0x2d4
-	// Line 1906, Address: 0x177e9c, Func Offset: 0x2dc
-	// Line 1909, Address: 0x177ec0, Func Offset: 0x300
-	// Line 1913, Address: 0x177ec8, Func Offset: 0x308
-	// Line 1919, Address: 0x177edc, Func Offset: 0x31c
-	// Line 1925, Address: 0x177f24, Func Offset: 0x364
-	// Line 1929, Address: 0x177f2c, Func Offset: 0x36c
-	// Line 1925, Address: 0x177f34, Func Offset: 0x374
-	// Line 1926, Address: 0x177f48, Func Offset: 0x388
-	// Line 1927, Address: 0x177f50, Func Offset: 0x390
-	// Line 1928, Address: 0x177f58, Func Offset: 0x398
-	// Line 1929, Address: 0x177f5c, Func Offset: 0x39c
-	// Line 1931, Address: 0x177f7c, Func Offset: 0x3bc
-	// Func End, Address: 0x177f9c, Func Offset: 0x3dc
+	WPNDAMAGE_WORK* wp_tbl;
+ 	O_WORK* owk;
+    BH_PWORK* epp;
+    NJS_POINT3 ofp;
+	int obj_no;
+ 	          
+    wp_tbl = &En01_WpnDamageTbl[epw->wpnr_no];
+    if (EXP0_I(0x40) & 0x80000000)
+    {
+        epp = (BH_PWORK *)epw->lkwkp;
+    } 
+    else
+    {
+        epp = epw;
+    }
+    
+    if (!(wp_tbl->flg & 0x4000))
+    {
+        if ((epw->djnt_no == 9) || (epw->djnt_no == 1) || (epw->djnt_no == 8))
+        {
+            ofp.x = -epw->dvx;
+            ofp.y = -epw->dvy;
+            ofp.z = -epw->dvz;
+            bhLinkBlood(epp, epw->djnt_no, &ofp, 0.5f);
+        }
+        
+        if ((epw->comb_flg & 1) || (epw->hp < 0))
+        {
+            if ((EXP0_I(0x30) <= 0) && (EXP0_I(0x78) != -1))
+            {
+                EXP0_I(0x30) = 20;
+
+                if ((1 < epw->djnt_no) && (epw->djnt_no < 8))
+                {
+                    ofp.z = 0.0f;
+                    ofp.x = 0.0f;
+                    ofp.y = -2.0f;
+                    obj_no = 1;
+                } 
+                else
+                {
+                    ofp.z = 0.0f;
+                    ofp.x = 0.0f;
+                    ofp.y = 2.5f;
+                    obj_no = 9;
+                }
+
+                if (wp_tbl->cb_blood == 9)
+                {
+                    if (epw->comb_flg & 0x40)
+                    {
+                        bhEne_SetBlood4(epp, obj_no, &ofp, bhEne01_ChgTextID(epp, 6), 3);
+                    } 
+                    else
+                    {
+                        bhEne_SetBlood4(epp, obj_no, &ofp, bhEne01_ChgTextID(epp, 6), 1);
+                    }
+                    
+                    ofp.z = 0.0f;
+                    ofp.x = 0.0f;
+                    ofp.y = 2.5f;
+                    bhEne_SetBlood2(epp, 9, &ofp, plp->way);
+                } 
+                else
+                {
+                    bhEne_SetBlood4(epp, obj_no, &ofp, bhEne01_ChgTextID(epp, 6), 0);
+                }
+            }
+        }
+        else
+        {
+            if (wp_tbl->nm_blood == 9)
+            {
+                bhEne_SetBlood2(epp, 9, &ofp, plp->way);
+
+                if ((1 < epw->djnt_no) && (epw->djnt_no < 8))
+                {
+                    ofp.z = 0.0f;
+                    ofp.x = 0.0f;
+                    ofp.y = -2.0f;
+                    obj_no = 1;
+                } 
+                else
+                {
+                    ofp.z = 0.0f;
+                    ofp.x = 0.0f;
+                    ofp.y = 2.5f;
+                    obj_no = 9;
+                }
+                
+                if (epw->comb_flg & 0x40)
+                {
+                    bhEne_SetBlood4(epp, obj_no, &ofp, bhEne01_ChgTextID(epp, 6), 3);
+                } 
+                else
+                {
+                    bhEne_SetBlood4(epp, obj_no, &ofp, bhEne01_ChgTextID(epp, 6), 0);
+                }
+            } 
+            else
+            {
+                bhEne_SetBlood(epp, wp_tbl->nm_blood, en01prt_blood_tbl);
+            }
+        }
+    }
+    if ((wp_tbl->flg & 1) && (epw->comb_flg & 0x10) && (EXP0_I(0x78) != -1) && (epw->hp < 0) && (hp >= 0))
+    {
+        owk = &epp->mlwP->owP[epp->djnt_no];
+        ofp.x = owk->mtx[12];
+        ofp.y = owk->mtx[13];
+        ofp.z = owk->mtx[14];
+        bhEne_SetNikuhenEffect2(epp, 0, &ofp, 4, bhEne01_ChgTextID(epp, 5));
+    }
 }
+
 
 // 
 // Start address: 0x177fa0
@@ -1947,7 +2017,7 @@ void bhEne01_DmgCheckType00(BH_PWORK* epw)
 	// int act;
 	// _anon0* hp;
 	// BH_PWORK* cepw;
-	// _anon20* wp_tbl;
+	// WPNDAMAGE_WORK* wp_tbl;
 	// Line 1947, Address: 0x177fa0, Func Offset: 0
 	// Line 1955, Address: 0x177fbc, Func Offset: 0x1c
 	// Line 1948, Address: 0x177fc0, Func Offset: 0x20
@@ -2164,7 +2234,7 @@ void bhEne01_DamageAdd(BH_PWORK* epw)
 	// BH_PWORK* epp2;
 	// BH_PWORK* epp;
 	// BH_PWORK* cepw;
-	// _anon20* wp_tbl;
+	// WPNDAMAGE_WORK* wp_tbl;
 	// Line 2419, Address: 0x1789e0, Func Offset: 0
 	// Line 2421, Address: 0x1789f8, Func Offset: 0x18
 	// Line 2420, Address: 0x1789fc, Func Offset: 0x1c

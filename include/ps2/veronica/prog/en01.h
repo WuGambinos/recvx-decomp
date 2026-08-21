@@ -127,6 +127,9 @@ int bhEne01_CutLeg(BH_PWORK* epw);
 void bhEne01_CutHead(BH_PWORK* epw);
 void bhEne01_FlyingCap(BH_PWORK* epw, int tbl_no);
 
+extern const float en01_kamikami[71];
+extern const float en01_kamikami2[70];
+extern const float en01_mogmog[40];
 extern BP_WORK en01_BldTbl;
 extern BP_WORK en01_BldTbl2;
 extern int kaidan_ang[4];

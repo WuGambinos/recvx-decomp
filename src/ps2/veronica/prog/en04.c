@@ -684,14 +684,14 @@ void bhEne04_DmgChk(BH_PWORK* epw)
     }
 }
 
-// 98.62% matching
+// 100% matching!
 void bhEne04_ChgDmgMode(BH_PWORK* epw)
 {
     WPNDAMAGE_WORK* wp_tbl;
     int act;
 
-
-    wp_tbl = &En04_WpnDamageTbl[epw->wpnr_no];
+    wp_tbl = En04_WpnDamageTbl;
+    wp_tbl += epw->wpnr_no;
     act = wp_tbl->nm_act;
     if ((EXP0_I(0x10) & 0x100000) || epw->hp < 0)
     {

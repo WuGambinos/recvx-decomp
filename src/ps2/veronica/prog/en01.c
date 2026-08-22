@@ -1889,7 +1889,7 @@ void bhEne01_DmgCheck(BH_PWORK* epw)
 	scePrintf("bhEne01_DmgCheck - UNIMPLEMENTED!\n");
 }
 
-// 99.97% matching
+// 100% matching!
 void bhEne01_SetBlood(BH_PWORK* epw, int hp)
 {
 	WPNDAMAGE_WORK* wp_tbl;
@@ -1897,8 +1897,9 @@ void bhEne01_SetBlood(BH_PWORK* epw, int hp)
     BH_PWORK* epp;
     NJS_POINT3 ofp;
 	int obj_no;
- 	          
-    wp_tbl = &En01_WpnDamageTbl[epw->wpnr_no];
+
+    wp_tbl = En01_WpnDamageTbl;
+    wp_tbl += epw->wpnr_no;
     if (EXP0_I(0x40) & 0x80000000)
     {
         epp = (BH_PWORK *)epw->lkwkp;

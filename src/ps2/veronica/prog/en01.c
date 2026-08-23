@@ -8116,31 +8116,39 @@ void bhEne01_SePlay(BH_PWORK* epw, NJS_POINT3* pos, int no) // second parameter 
 	// Func End, Address: 0x1892bc, Func Offset: 0x12c
 }
 
-// 
-// Start address: 0x1892c0
+// 100% matching!
 void bhEne01_GetWalkMotion(BH_PWORK* epw)
 {
+    int i;
+    BH_PWORK* ep;
 	BH_PWORK* epp;
-	BH_PWORK* ep;
-	int i;
-	scePrintf("bhEne01_GetWalkMotion - UNIMPLEMENTED!\n");
-	// Line 12426, Address: 0x1892c0, Func Offset: 0
-	// Line 12430, Address: 0x1892c4, Func Offset: 0x4
-	// Line 12426, Address: 0x1892c8, Func Offset: 0x8
-	// Line 12430, Address: 0x1892d0, Func Offset: 0x10
-	// Line 12433, Address: 0x1892d4, Func Offset: 0x14
-	// Line 12431, Address: 0x1892e4, Func Offset: 0x24
-	// Line 12433, Address: 0x1892e8, Func Offset: 0x28
-	// Line 12435, Address: 0x1892fc, Func Offset: 0x3c
-	// Line 12437, Address: 0x189324, Func Offset: 0x64
-	// Line 12439, Address: 0x18932c, Func Offset: 0x6c
-	// Line 12441, Address: 0x189330, Func Offset: 0x70
-	// Line 12442, Address: 0x189348, Func Offset: 0x88
-	// Line 12445, Address: 0x189350, Func Offset: 0x90
-	// Line 12446, Address: 0x189374, Func Offset: 0xb4
-	// Line 12450, Address: 0x18937c, Func Offset: 0xbc
-	// Line 12452, Address: 0x1893a4, Func Offset: 0xe4
-	// Func End, Address: 0x1893b4, Func Offset: 0xf4
+	    
+    ep = ene;
+    epp = NULL;
+
+    for (i = 0; i < sys->ewk_n; i++, ep++)
+    {
+        if ((ep->id == 1) && ((ep->flg & 1) != 0) && !(ep->flg & 0x80))
+        {
+            if (ep != epw)
+            {
+                epp = ep;
+                
+            } 
+            else
+            {
+                break;
+            }                
+        } 
+    }
+    if (epp == NULL)
+    {
+        EXP0_I(0xA0) = (rand() % 3) * 2;
+    }
+    else
+    {
+        EXP0_I(0xA0) = (EPP_EXP0_I(0xA0) + 2) % 6;
+    }
 }
 
 // 100% matching!

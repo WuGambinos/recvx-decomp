@@ -8090,30 +8090,47 @@ int bhEne01_ChgTextID(BH_PWORK* epw, int tex_id)
     return tex_id + 5;
 }
 
-// 
-// Start address: 0x189190
-void bhEne01_SePlay(BH_PWORK* epw, NJS_POINT3* pos, int no) // second parameter not present on DWARF 
+// 99.87% matching
+void bhEne01_SePlay(BH_PWORK* epw, NJS_VECTOR* pos, int no)
 {
-	int se_no;
-	int add_seno[27];
-	scePrintf("bhEne01_SePlay - UNIMPLEMENTED!\n");
-	// Line 12365, Address: 0x189190, Func Offset: 0
-	// Line 12382, Address: 0x1891a4, Func Offset: 0x14
-	// Line 12385, Address: 0x1891b8, Func Offset: 0x28
-	// Line 12387, Address: 0x1891d0, Func Offset: 0x40
-	// Line 12389, Address: 0x1891d4, Func Offset: 0x44
-	// Line 12387, Address: 0x1891d8, Func Offset: 0x48
-	// Line 12389, Address: 0x1891e4, Func Offset: 0x54
-	// Line 12387, Address: 0x1891e8, Func Offset: 0x58
-	// Line 12389, Address: 0x1891f4, Func Offset: 0x64
-	// Line 12391, Address: 0x1891fc, Func Offset: 0x6c
-	// Line 12396, Address: 0x18924c, Func Offset: 0xbc
-	// Line 12398, Address: 0x189260, Func Offset: 0xd0
-	// Line 12401, Address: 0x189278, Func Offset: 0xe8
-	// Line 12402, Address: 0x189280, Func Offset: 0xf0
-	// Line 12407, Address: 0x189288, Func Offset: 0xf8
-	// Line 12408, Address: 0x1892a8, Func Offset: 0x118
-	// Func End, Address: 0x1892bc, Func Offset: 0x12c
+    static int add_seno[27] =
+    {
+        28, 32, 16, 0, 4, 8, 32, 36, 0, 8, 20, 24, 8, 12, 8, 12, 16, 4, 40, 36, 40, 0, 8, 24, 20, 28, 8
+    };    
+    int se_no;
+
+    if ((epw->flg & 0x10000))
+    {
+        return;
+    }
+    
+    se_no = no;
+
+    if (((unsigned char)no >= 20) && ((unsigned char)no < 64))
+    {
+        se_no += add_seno[EXP0_I(0x4C)];
+
+        if ((unsigned char)no == 20 || (unsigned char)no == 21)
+        { 
+            if ((ChechPlayEnemySe(sys->enow, se_no)) || (!(rand() % 2)))
+            {
+                return;
+            }
+        }
+    }
+    
+    if (epw->stflg & 0x100000)
+    {
+        if (se_no == 70414 || se_no == 70415)
+        {
+            se_no += 2;
+        } 
+        else if (se_no == 8963)
+        {
+            return;
+        }
+    }
+    RequestEnemySe(sys->enow, (NJS_POINT3*)&epw->px, se_no);
 }
 
 // 100% matching!

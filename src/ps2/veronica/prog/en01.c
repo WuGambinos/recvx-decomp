@@ -2457,68 +2457,112 @@ void bhEne01_CollCheck(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1792e0
+// 100% matching!
 void bhEne01_CollCheckPush(BH_PWORK* epw, BH_PWORK* top_epw)
 {
-	BH_PWORK* ep;
-	int fhit;
-	int whit;
-	int i;
-	float z;
-	float y;
 	float x;
-	// Line 2808, Address: 0x1792e0, Func Offset: 0
-	// Line 2814, Address: 0x179308, Func Offset: 0x28
-	// Line 2808, Address: 0x17930c, Func Offset: 0x2c
-	// Line 2814, Address: 0x179314, Func Offset: 0x34
-	// Line 2816, Address: 0x17931c, Func Offset: 0x3c
-	// Line 2817, Address: 0x179348, Func Offset: 0x68
-	// Line 2821, Address: 0x179370, Func Offset: 0x90
-	// Line 2824, Address: 0x179378, Func Offset: 0x98
-	// Line 2825, Address: 0x17937c, Func Offset: 0x9c
-	// Line 2826, Address: 0x179380, Func Offset: 0xa0
-	// Line 2827, Address: 0x179384, Func Offset: 0xa4
-	// Line 2830, Address: 0x17938c, Func Offset: 0xac
-	// Line 2831, Address: 0x179390, Func Offset: 0xb0
-	// Line 2833, Address: 0x179398, Func Offset: 0xb8
-	// Line 2845, Address: 0x179484, Func Offset: 0x1a4
-	// Line 2847, Address: 0x179494, Func Offset: 0x1b4
-	// Line 2848, Address: 0x1794a0, Func Offset: 0x1c0
-	// Line 2851, Address: 0x1794c0, Func Offset: 0x1e0
-	// Line 2852, Address: 0x1794c4, Func Offset: 0x1e4
-	// Line 2851, Address: 0x1794c8, Func Offset: 0x1e8
-	// Line 2853, Address: 0x1794d0, Func Offset: 0x1f0
-	// Line 2857, Address: 0x1794d8, Func Offset: 0x1f8
-	// Line 2858, Address: 0x1794e0, Func Offset: 0x200
-	// Line 2857, Address: 0x1794e4, Func Offset: 0x204
-	// Line 2862, Address: 0x1794f0, Func Offset: 0x210
-	// Line 2864, Address: 0x179508, Func Offset: 0x228
-	// Line 2865, Address: 0x179518, Func Offset: 0x238
-	// Line 2866, Address: 0x179528, Func Offset: 0x248
-	// Line 2868, Address: 0x17952c, Func Offset: 0x24c
-	// Line 2871, Address: 0x17953c, Func Offset: 0x25c
-	// Line 2872, Address: 0x179540, Func Offset: 0x260
-	// Line 2876, Address: 0x179548, Func Offset: 0x268
-	// Line 2877, Address: 0x17955c, Func Offset: 0x27c
-	// Line 2879, Address: 0x179560, Func Offset: 0x280
-	// Line 2883, Address: 0x179568, Func Offset: 0x288
-	// Line 2886, Address: 0x179570, Func Offset: 0x290
-	// Line 2887, Address: 0x179578, Func Offset: 0x298
-	// Line 2888, Address: 0x17957c, Func Offset: 0x29c
-	// Line 2889, Address: 0x179580, Func Offset: 0x2a0
-	// Line 2890, Address: 0x17958c, Func Offset: 0x2ac
-	// Line 2892, Address: 0x179590, Func Offset: 0x2b0
-	// Line 2893, Address: 0x1795a0, Func Offset: 0x2c0
-	// Line 2894, Address: 0x1795a4, Func Offset: 0x2c4
-	// Line 2895, Address: 0x1795a8, Func Offset: 0x2c8
-	// Line 2897, Address: 0x1795d0, Func Offset: 0x2f0
-	// Line 2900, Address: 0x1795d8, Func Offset: 0x2f8
-	// Line 2901, Address: 0x1795dc, Func Offset: 0x2fc
-	// Line 2902, Address: 0x1795e0, Func Offset: 0x300
-	// Line 2904, Address: 0x1795e4, Func Offset: 0x304
-	// Func End, Address: 0x179610, Func Offset: 0x330
-	scePrintf("bhEne01_CollCheckPush - UNIMPLEMENTED!\n");
+	float y;
+	float z;
+ 	int i;   
+	int whit;
+	int fhit;
+    BH_PWORK* ep;
+
+    ep = top_epw;
+    for (i = 0; i < sys->ewk_n; i++, ep++)
+    {
+        if ((ep->flg & 1) && !(ep->flg & 0x80))
+        {
+            ep->stflg &= ~2;
+        }
+    }
+
+    bhCheckPlayer(epw);
+    x = epw->px;
+    y = epw->py;
+    z = epw->pz;
+    bhCheckEnemies(epw);
+    whit = 0;
+
+    ep = top_epw;
+    for (i = 0; i < sys->ewk_n; i++, ep++)
+    {
+        if (ep->id == 1 || ep->id == 26)
+        {              
+            if ((ep->flg & 1) && !(ep->flg & 2) && !(ep->flg & 0x80) && (ep != epw))
+            {
+                if ((ep->type != 2) && (ep->type != 3) && (ep->type != 6) && (ep->type != 7) && (ep->type != 9) && (ep->type != 10) && (ep->mode0 == 1))
+                {
+                    if (ep->exp0 != NULL)
+                    {                       
+                        if (!(EP_EXP0_I(0x40) & 0x400000) && !(EP_EXP0_I(0x40) & 0x40000) && !(EP_EXP0_I(0x40) & 0x200))
+                        {
+                            if (ep->stflg & 2)
+                            {
+                                EP_EXP0_I(0x40) |= 0x200;
+                                if (bhCdirCheck((unsigned short)(epw->ay + NJM_DEG_ANG(180.0f)), ep->ay) == 0)
+                                {
+                                    fhit = 1;
+                                    EP_EXP0_I(0x40) |= 0x2000;
+                                } 
+                                else
+                                {
+                                    fhit = 0;
+                                    EP_EXP0_I(0x40) &= ~0x2000;
+                                }
+
+                                if (bhEne01_EnemyHitChk(epw, ep, 5461) != 0)
+                                {
+                                    ep->dvx = -njSin(ep->ay);
+                                    ep->dvz = -njCos(ep->ay);
+                                    ep->dvy = 0.0f;
+                                    
+                                    if (ep->id == 26)
+                                    {
+                                        ep->mode2 = 2;
+                                    } 
+                                    else
+                                    {
+                                        if (fhit == 0)
+                                        {
+                                            ep->mode2 = 3;
+                                        } 
+                                        else
+                                        {
+                                            ep->mode2 = 4;
+                                        }
+                                    }
+                                } 
+                                else
+                                {
+                                    ep->mode2 = 2;
+                                }
+                                
+                                ep->mode0 = 3;
+                                ep->mode1 = 0;
+                                ep->mode3 = 0;
+
+                                if (epw->exp1 != NULL)
+                                {
+                                    EPW_EXP1_UC(0xC) = 3;
+                                }
+                            }
+                            if (ep->stflg & 1)
+                            {
+                                whit = 1;
+                            }
+                        }
+                    }
+                }
+            }            
+        }
+    }
+    if (whit == 0)
+    {
+        epw->px = x;
+        epw->py = y;
+        epw->pz = z;
+    }
 }
 
 // 98.81% matching!

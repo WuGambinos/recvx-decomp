@@ -2521,25 +2521,27 @@ void bhEne01_CollCheckPush(BH_PWORK* epw, BH_PWORK* top_epw)
 	scePrintf("bhEne01_CollCheckPush - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x179610
+// 98.81% matching!
 int bhEne01_EnemyHitChk(BH_PWORK* epw, BH_PWORK* tepw, int rng)
 {
-	int r2;
-	int ang;
-	// Line 2909, Address: 0x179610, Func Offset: 0
-	// Line 2913, Address: 0x179620, Func Offset: 0x10
-	// Line 2914, Address: 0x17963c, Func Offset: 0x2c
-	// Line 2913, Address: 0x179640, Func Offset: 0x30
-	// Line 2914, Address: 0x179644, Func Offset: 0x34
-	// Line 2918, Address: 0x17964c, Func Offset: 0x3c
-	// Line 2917, Address: 0x179654, Func Offset: 0x44
-	// Line 2918, Address: 0x179658, Func Offset: 0x48
-	// Line 2920, Address: 0x179670, Func Offset: 0x60
-	// Line 2922, Address: 0x179678, Func Offset: 0x68
-	// Line 2923, Address: 0x17967c, Func Offset: 0x6c
-	// Func End, Address: 0x179690, Func Offset: 0x80
-}*/
+	int ang; // r3
+	int r2; // r2
+
+    ang = (unsigned short)NitenDir_ck(tepw->px, tepw->pz, epw->px, epw->pz);
+    ang = (unsigned short)(tepw->ay + ang);
+    r2 = (unsigned short)(tepw->ay - rng);
+
+
+    if (!((unsigned short)(tepw->ay + rng) < ang)
+        || !((unsigned short)(ang < r2)))
+    {
+        return 1;
+    } 
+    else
+    {
+        return 0;
+    }
+}
 
 // 
 // Start address: 0x179690

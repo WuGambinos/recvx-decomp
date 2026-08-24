@@ -2277,6 +2277,15 @@ typedef struct DMG_REACT
 	char exef; // offset 0x6, size 0x1
 } DMG_REACT;
 
+typedef struct STG_WORK 
+{
+    // total size: 0x4
+    char stg_no;  // offset 0x0, size 0x1
+    char rom_no;  // offset 0x1, size 0x1
+    char flr_no;  // offset 0x2, size 0x1
+    char ene_max; // offset 0x3, size 0x1
+} STG_WORK;
+
 // constant definition for ClutType, ImageType in picture header
 enum TIM2_gattr_type {
 	TIM2_NONE = 0,			// no CLUT (for ClutType)

@@ -1,10 +1,11 @@
 #include "../../../ps2/veronica/prog/en01b.h"
+#include "../../../ps2/veronica/prog/en01.h"
 #include "../../../ps2/veronica/prog/zonzon.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/rutchk.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-void(*bhEne01_MoveTypeB[16])(BH_PWORK*) = 
+void (*bhEne01_MoveTypeB[16])(BH_PWORK*) = 
 {
 	bhEne01_MVType00B,
 	bhEne01_MVType00B,
@@ -22,7 +23,6 @@ void(*bhEne01_MoveTypeB[16])(BH_PWORK*) =
 	bhEne01_MVType00B,
 	bhEne01_MVType00B,
 	bhEne01_MVType00B
-
 };
 void (*bhEne01_MoveMode2B[17])(BH_PWORK*) = 
 {
@@ -63,7 +63,7 @@ void (*bhEne01_NageTypeB[16])(BH_PWORK*) =
 	bhEne01_NGType00B,
 	bhEne01_NGType00B
 };
-void(*bhEne01_NageMode2B[4])(BH_PWORK*) = 
+void (*bhEne01_NageMode2B[4])(BH_PWORK*) = 
 {
 	bhEne01_Dummy,
 	bhEne01_Dummy,
@@ -135,7 +135,6 @@ void (*bhEne01_DieMode2B[4])(BH_PWORK*) =
 	bhEne01_DD02B,
 	bhEne01_Dummy
 };
-/*_anon23 en01_BldTbl;*/
 
 // 100% matching!
 void bhEne01_Dummy()
@@ -432,9 +431,9 @@ void bhEne01_DG05B(BH_PWORK* epw)
 // Start address: 0x18af10
 void bhEne01_DG09B(BH_PWORK* epw)
 {
-	NJS_POINT3 ps;
+	NJS_POINT3 ps = { 0 };
 	int frm;
-	// NJS_POINT3 ps;
+	//NJS_POINT3 ps;
 	O_WORK* owk;
 	BH_PWORK* epp;
 	// Line 777, Address: 0x18af10, Func Offset: 0
@@ -608,7 +607,7 @@ void bhEne01_DG13B(BH_PWORK* epw)
 // Start address: 0x18b630
 void bhEne01_DD02B(BH_PWORK* epw)
 {
-	// _anon29 line;
+	NJS_LINE line;
 	NJS_POINT3 pd;
 	NJS_POINT3 ps;
 	O_WORK* owk;

@@ -145,5 +145,6 @@ extern const float en01_mogmog[40];
 extern BP_WORK en01_BldTbl;
 extern BP_WORK en01_BldTbl2;
 extern int kaidan_ang[4];
+extern int En01_PlyMtn_OffsetTbl[4];
 
 #endif

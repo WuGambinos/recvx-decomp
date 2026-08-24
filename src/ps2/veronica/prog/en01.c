@@ -20,7 +20,7 @@
 
 int En01_PlyMtn_OffsetTbl[4] =
 {
-    0x190, 0x1A9, 0x1C2, 0x1A9
+    400, 425, 450, 425
 };
 
 const char en01_flipTree[19] =
@@ -42,14 +42,14 @@ _anon39 en01_mtn_tbl3[16];
 */
 const char en01_tree[8][8] =
 {
-    { 0x00, 0x01, 0x05, 0x06, 0x07, 0xFF, 0x00, 0x00 },
-    { 0x00, 0x01, 0x02, 0x03, 0x04, 0xFF, 0x00, 0x00 },
-    { 0x00, 0x01, 0x08, 0x09, 0x0F, 0x10, 0x11, 0xFF },
-    { 0x00, 0x01, 0x08, 0x09, 0x0C, 0x0D, 0x0E, 0xFF },
-    { 0x08, 0x09, 0x0F, 0x10, 0x11, 0xFF, 0x00, 0x00 },
-    { 0x08, 0x09, 0x0C, 0x0D, 0x0E, 0xFF, 0x00, 0x00 },
-    { 0x00, 0x01, 0x05, 0x06, 0xFF, 0x00, 0x00, 0x00 },
-    { 0x00, 0x01, 0x08, 0x09, 0x0A, 0xFF, 0x00, 0x00 }
+    { 0, 1, 5, 6, 7, 255, 0, 0 },
+    { 0, 1, 2, 3, 4, 255, 0, 0 },
+    { 0, 1, 8, 9, 15, 16, 17, 255 },
+    { 0, 1, 8, 9, 12, 13, 14, 255 },
+    { 8, 9, 15, 16, 17, 255, 0, 0 },
+    { 8, 9, 12, 13, 14, 255, 0, 0 },
+    { 0, 1, 5, 6, 255, 0, 0, 0 },
+    { 0, 1, 8, 9, 10, 255, 0, 0 }
 };
 
 WPNDAMAGE_WORK En01_WpnDamageTbl[22] =
@@ -197,6 +197,8 @@ char En01SdwTabB[3] =
     8, 10, -1
 };
 
+int en01_walk_mtn[6] = { 0, 200, 40, 240, 41, 241 };
+
 BT_WORK en01prt_blood_tbl[18] =
 {
     // lnk_obj,   x,      y,      z,     xlen,   ylen,   size,   len
@@ -224,7 +226,7 @@ BT_WORK en01prt_blood_tbl[18] =
 _anon8 chg_mtn_tbl[28];
 */
 
-int en01_walk_mtn[6] = { 0x00, 0xC8, 0x28, 0xF0, 0x29, 0xF1 };
+
 
 int kaidan_ang[4] = { 0, 49152, 32768, 16384 };
 
@@ -1146,10 +1148,14 @@ void bhEne01(BH_PWORK* epw)
 // 100% matching!
 void bhEne01_MainLoop(BH_PWORK* epw)
 {
-	if (epw->mode0 > 0) {
-        if ((epw->flg & 0x80) == 0) {
-            if (epw->type == 1 || epw->type == 3 || epw->type == 7) {
-				if (( EXP0_I(64) & 0x10000) == 0) {
+    if (epw->mode0 > 0)
+    {
+        if (!(epw->flg & 0x80))
+        {
+            if (epw->type == 1 || epw->type == 3 || epw->type == 7)
+            {
+				if (!(EXP0_I(64) & 0x10000))
+                {
 					
 					bhEne01_LinkFireEffect(epw, rand() % 4);
 					EXP0_I(64) |= 0x10000;
@@ -1158,7 +1164,8 @@ void bhEne01_MainLoop(BH_PWORK* epw)
         }
     }
 
-    if (epw->mode0 != 6) {
+    if (epw->mode0 != 6)
+    {
         bhEne01_Mode0[epw->mode0](epw);
     }
 
@@ -1503,12 +1510,17 @@ void bhEne01_Move(BH_PWORK* epw)
 void bhEne01_Nage(BH_PWORK* epw)
 {
 	EXP0_I(0x40) &= ~0x800;
-	if (EXP0_I(0x44) & 0x80){
+	if (EXP0_I(0x44) & 0x80)
+    {
 		EXP0_I(0x44) &= ~0x80;
 	}
-	if (EXP0_I(0x40) & 0x80000000){
+    
+	if (EXP0_I(0x40) & 0x80000000)
+    {
 		bhEne01_NageTypeB[epw->type](epw);
-	} else {
+	} 
+    else
+    {
 		bhEne01_NageTypeW[epw->type](epw);
 	}
 }
@@ -1517,43 +1529,55 @@ void bhEne01_Nage(BH_PWORK* epw)
 void bhEne01_Damage(BH_PWORK* epw)
 {
 	EXP0_I(0x40) &= ~0x800;
-	if (EXP0_I(0x44) & 0x80){
+	if (EXP0_I(0x44) & 0x80)
+    {
 		EXP0_I(0x44) &= ~0x80;
 	}
-	if (EXP0_I(0x40) & 0x80000000){
+
+	if (EXP0_I(0x40) & 0x80000000)
+    {
 		bhEne01_DamageTypeB[epw->type](epw);
-	} else {
+	} 
+    else
+    {
 		bhEne01_DamageTypeW[epw->type](epw);
 	}
 }
 
-// 
-// Start address: 0x176d50
-void bhEne01_Die(BH_PWORK* epw) {
+// 100% matching!
+void bhEne01_Die(BH_PWORK* epw)
+{
     BH_PWORK* epp;
     
     EXP0_I(0x40) &= ~0x800;
-	if (EXP0_I(0x44) & 0x80){
+	if (EXP0_I(0x44) & 0x80)
+    {
 		EXP0_I(0x44) &= ~0x80;
 	}
-	if (EXP0_I(0x40) & 0x80000000){
+    
+	if (EXP0_I(0x40) & 0x80000000)
+    {
         epp = (BH_PWORK*)(epw->lkwkp);
 		bhEne01_DieTypeB[epw->type](epw);
         
-        if (*(int*)(epp->exp0 + 0x38)) {
+        if (EPP_EXP0_I(0x38))
+        {
             epp->mdflg |= 0x400;
             
-            if ((*(int*)(epp->exp0 + 0x3c) & 0xffffff) > 0) {
-                *(int *)(epp->exp0 + 0x3c) += ~0x10100; 
+            if ((EPP_EXP0_I(0x3C) & 0xffffff) > 0) 
+            {
+                EPP_EXP0_I(0x3C) += ~0x10100; 
             }
             
             npSetAllMatColor(
                 epp->mlwP->objP,
                 epp->mlwP->obj_num,
-                *(unsigned int*)(epp->exp0 + 0x3c)
+                EPP_EXP0_I(0x3C)
             );
         }
-	} else {
+	} 
+    else
+    {
 		bhEne01_DieTypeW[epw->type](epw);
 	}
 }
@@ -1561,8 +1585,10 @@ void bhEne01_Die(BH_PWORK* epw) {
 // 100% matching!
 void bhEne01_PlayerControl(BH_PWORK* pl, BH_PWORK* epw)
 {
-	if (EXP0_I(0x40) & 0x00020000){
-		if (pl->mode0 == 4 || pl->mode0 == 6){
+	if (EXP0_I(0x40) & 0x20000)
+    {
+		if (pl->mode0 == 4 || pl->mode0 == 6)
+        {
 			bhEne01_PlyDmgMode[pl->mode2](pl, epw);
 		}
 	}
@@ -1927,15 +1953,13 @@ void bhEne01_SetBlood(BH_PWORK* epw, int hp)
 
                 if ((1 < epw->djnt_no) && (epw->djnt_no < 8))
                 {
-                    ofp.z = 0.0f;
-                    ofp.x = 0.0f;
+                    ofp.x = ofp.z = 0.0f;
                     ofp.y = -2.0f;
                     obj_no = 1;
                 } 
                 else
                 {
-                    ofp.z = 0.0f;
-                    ofp.x = 0.0f;
+                    ofp.x = ofp.z = 0.0f;
                     ofp.y = 2.5f;
                     obj_no = 9;
                 }
@@ -1951,8 +1975,7 @@ void bhEne01_SetBlood(BH_PWORK* epw, int hp)
                         bhEne_SetBlood4(epp, obj_no, &ofp, bhEne01_ChgTextID(epp, 6), 1);
                     }
                     
-                    ofp.z = 0.0f;
-                    ofp.x = 0.0f;
+                    ofp.x = ofp.z = 0.0f;
                     ofp.y = 2.5f;
                     bhEne_SetBlood2(epp, 9, &ofp, plp->way);
                 } 
@@ -1970,15 +1993,13 @@ void bhEne01_SetBlood(BH_PWORK* epw, int hp)
 
                 if ((1 < epw->djnt_no) && (epw->djnt_no < 8))
                 {
-                    ofp.z = 0.0f;
-                    ofp.x = 0.0f;
+                    ofp.x = ofp.z = 0.0f;
                     ofp.y = -2.0f;
                     obj_no = 1;
                 } 
                 else
                 {
-                    ofp.z = 0.0f;
-                    ofp.x = 0.0f;
+                    ofp.x = ofp.z = 0.0f;
                     ofp.y = 2.5f;
                     obj_no = 9;
                 }
@@ -2007,7 +2028,6 @@ void bhEne01_SetBlood(BH_PWORK* epw, int hp)
         bhEne_SetNikuhenEffect2(epp, 0, &ofp, 4, bhEne01_ChgTextID(epp, 5));
     }
 }
-
 
 // 
 // Start address: 0x177fa0
@@ -2568,8 +2588,8 @@ void bhEne01_CollCheckPush(BH_PWORK* epw, BH_PWORK* top_epw)
 // 98.81% matching!
 int bhEne01_EnemyHitChk(BH_PWORK* epw, BH_PWORK* tepw, int rng)
 {
-	int ang; // r3
-	int r2; // r2
+	int ang;
+	int r2;
 
     ang = (unsigned short)NitenDir_ck(tepw->px, tepw->pz, epw->px, epw->pz);
     ang = (unsigned short)(tepw->ay + ang);
@@ -2969,28 +2989,26 @@ void bhEne01_EneSearch(BH_PWORK* epw)
         if (EXP0_UC(0x28) & 0x20)
         {
             EXP0_UC(0x28) |= 0x40;
-            EXP0_UC(0x28) &= 0xDF;
+            EXP0_UC(0x28) &= ~0x20;
         } 
         else if ((EXP0_UC(0x28) & 0x1F) == 30)
         {
-            EXP0_UC(0x28) &= 0xBF;
+            EXP0_UC(0x28) &= ~0x40;
         }
     }
     
     EXP0_UC(0x28)++;
     if ((EXP0_UC(0x28) & 0x1F) >= 31)
     {
-        EXP0_UC(0x28) &= 0xE0;
+        EXP0_UC(0x28) &= ~0x1F;
     }
 
     if (EXP0_UC(0x28) & 0x40)
     {
         EXP0_I(0x40) |= 0x400;
         EXP0_UC(0x29) = 15;
-        return;
-    }
-    
-    if (EXP0_I(0x40) & 0x400)
+    }    
+    else if (EXP0_I(0x40) & 0x400)
     {
         if (--EXP0_UC(0x29) < 0)
         {
@@ -2998,7 +3016,6 @@ void bhEne01_EneSearch(BH_PWORK* epw)
         }
     }
 }
-
 /*
 // 
 // Start address: 0x17a540

@@ -733,7 +733,7 @@ int bhSetShadow(char* jtb, unsigned char* lkp, int lkono, float sx, float sy, fl
 }
 
 // 100% matching!
-void bhLinkBlood()
+void bhLinkBlood(BH_PWORK*, int, NJS_POINT3*, float)
 {
 
 }

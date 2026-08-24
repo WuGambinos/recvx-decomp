@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 76.77877,
+    "fuzzy_match_percent": 78.30816,
     "total_code": "1904472",
-    "matched_code": "1183564",
-    "matched_code_percent": 62.14657,
+    "matched_code": "1209704",
+    "matched_code_percent": 63.519127,
     "total_data": "28428164",
-    "matched_data": "28305908",
-    "matched_data_percent": 99.56995,
+    "matched_data": "28310820",
+    "matched_data_percent": 99.58723,
     "total_functions": 4529,
-    "matched_functions": 3543,
-    "matched_functions_percent": 78.22919,
+    "matched_functions": 3602,
+    "matched_functions_percent": 79.531906,
     "total_units": 200
   },
   "units": [
@@ -1189,7 +1189,7 @@
     {
       "name": "ps2/veronica/prog/player",
       "measures": {
-        "fuzzy_match_percent": 99.805115,
+        "fuzzy_match_percent": 99.80621,
         "total_code": "73172",
         "matched_code": "36544",
         "matched_code_percent": 49.9426,
@@ -1225,7 +1225,7 @@
         {
           "name": ".text",
           "size": "73440",
-          "fuzzy_match_percent": 99.805115,
+          "fuzzy_match_percent": 99.80621,
           "metadata": {}
         },
         {
@@ -1363,7 +1363,7 @@
         {
           "name": "bhCPM2_act_wlk",
           "size": "1740",
-          "fuzzy_match_percent": 99.37471,
+          "fuzzy_match_percent": 99.42069,
           "metadata": {},
           "address": "17520"
         },
@@ -4206,14 +4206,14 @@
     {
       "name": "ps2/veronica/prog/en01",
       "measures": {
-        "fuzzy_match_percent": 14.321623,
+        "fuzzy_match_percent": 18.800539,
         "total_code": "83004",
-        "matched_code": "10848",
-        "matched_code_percent": 13.06925,
+        "matched_code": "14764",
+        "matched_code_percent": 17.787094,
         "total_data": "18640",
         "total_functions": 113,
-        "matched_functions": 38,
-        "matched_functions_percent": 33.62832,
+        "matched_functions": 46,
+        "matched_functions_percent": 40.707962,
         "total_units": 1
       },
       "sections": [
@@ -4224,7 +4224,7 @@
         {
           "name": ".data",
           "size": "17296",
-          "fuzzy_match_percent": 44.25731,
+          "fuzzy_match_percent": 47.461987,
           "metadata": {}
         },
         {
@@ -4234,13 +4234,13 @@
         {
           "name": ".rodata",
           "size": "1344",
-          "fuzzy_match_percent": 17.76,
+          "fuzzy_match_percent": 75.68,
           "metadata": {}
         },
         {
           "name": ".text",
           "size": "83648",
-          "fuzzy_match_percent": 14.321623,
+          "fuzzy_match_percent": 18.800539,
           "metadata": {}
         },
         {
@@ -4308,7 +4308,7 @@
         {
           "name": "bhEne01_Die",
           "size": "284",
-          "fuzzy_match_percent": 99.69014,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "4016"
         },
@@ -4350,7 +4350,7 @@
         {
           "name": "bhEne01_SetBlood",
           "size": "988",
-          "fuzzy_match_percent": 0.5668016,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "7712"
         },
@@ -4406,13 +4406,14 @@
         {
           "name": "bhEne01_CollCheckPush",
           "size": "816",
-          "fuzzy_match_percent": 1.1029412,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "13632"
         },
         {
           "name": "bhEne01_EnemyHitChk",
           "size": "128",
+          "fuzzy_match_percent": 98.90625,
           "metadata": {},
           "address": "14448"
         },
@@ -4468,6 +4469,7 @@
         {
           "name": "bhEne01_EneSearch",
           "size": "416",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "17920"
         },
@@ -4862,6 +4864,7 @@
         {
           "name": "bhEne01_ExpHeadEffect",
           "size": "252",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "73536"
         },
@@ -4913,14 +4916,14 @@
         {
           "name": "bhEne01_SePlay",
           "size": "300",
-          "fuzzy_match_percent": 3.0,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "78832"
         },
         {
           "name": "bhEne01_GetWalkMotion",
           "size": "244",
-          "fuzzy_match_percent": 3.6885245,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "79136"
         },
@@ -4975,7 +4978,7 @@
         {
           "name": "bhEne01_EatCheck",
           "size": "616",
-          "fuzzy_match_percent": 1.4935066,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "81456"
         },
@@ -5206,14 +5209,14 @@
     {
       "name": "ps2/veronica/prog/en01sub",
       "measures": {
-        "fuzzy_match_percent": 3.245498,
+        "fuzzy_match_percent": 4.2478814,
         "total_code": "15104",
-        "matched_code": "368",
-        "matched_code_percent": 2.4364407,
+        "matched_code": "444",
+        "matched_code_percent": 2.9396186,
         "total_data": "368",
         "total_functions": 44,
-        "matched_functions": 19,
-        "matched_functions_percent": 43.18182,
+        "matched_functions": 21,
+        "matched_functions_percent": 47.727272,
         "total_units": 1
       },
       "sections": [
@@ -5239,7 +5242,7 @@
         {
           "name": ".text",
           "size": "15296",
-          "fuzzy_match_percent": 3.245498,
+          "fuzzy_match_percent": 4.2478814,
           "metadata": {}
         },
         {
@@ -5258,26 +5261,28 @@
         {
           "name": "bhEne01Parent_Init",
           "size": "40",
-          "fuzzy_match_percent": 14.0,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "32"
         },
         {
           "name": "bhEne01Parent_Move",
           "size": "36",
-          "fuzzy_match_percent": 15.555555,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "80"
         },
         {
           "name": "bhEne01Parent_NearestCheck",
           "size": "256",
+          "fuzzy_match_percent": 3.515625,
           "metadata": {},
           "address": "128"
         },
         {
           "name": "bhEne01Parent_NoKaidanCheck",
           "size": "396",
+          "fuzzy_match_percent": 2.2727273,
           "metadata": {},
           "address": "384"
         },
@@ -5291,7 +5296,7 @@
         {
           "name": "bhEne01Arm_Init",
           "size": "128",
-          "fuzzy_match_percent": 4.375,
+          "fuzzy_match_percent": 5.3125,
           "metadata": {},
           "address": "816"
         },
@@ -5319,14 +5324,14 @@
         {
           "name": "bhEne01Arm_DG00",
           "size": "1328",
-          "fuzzy_match_percent": 0.42168674,
+          "fuzzy_match_percent": 0.67771083,
           "metadata": {},
           "address": "1008"
         },
         {
           "name": "bhEne01Arm_DG01",
           "size": "2304",
-          "fuzzy_match_percent": 0.33854166,
+          "fuzzy_match_percent": 0.39930555,
           "metadata": {},
           "address": "2336"
         },
@@ -5340,7 +5345,7 @@
         {
           "name": "bhEne01Leg_Init",
           "size": "128",
-          "fuzzy_match_percent": 4.375,
+          "fuzzy_match_percent": 5.3125,
           "metadata": {},
           "address": "4672"
         },
@@ -5368,7 +5373,7 @@
         {
           "name": "bhEne01Leg_DG00",
           "size": "696",
-          "fuzzy_match_percent": 0.8045977,
+          "fuzzy_match_percent": 1.3218391,
           "metadata": {},
           "address": "4864"
         },
@@ -5382,7 +5387,7 @@
         {
           "name": "bhEne01Head_Init",
           "size": "124",
-          "fuzzy_match_percent": 4.516129,
+          "fuzzy_match_percent": 5.483871,
           "metadata": {},
           "address": "5600"
         },
@@ -5410,21 +5415,21 @@
         {
           "name": "bhEne01Head_DG00",
           "size": "1300",
-          "fuzzy_match_percent": 0.43076923,
+          "fuzzy_match_percent": 0.7076923,
           "metadata": {},
           "address": "5792"
         },
         {
           "name": "bhEne01Cap",
           "size": "128",
-          "fuzzy_match_percent": 4.375,
+          "fuzzy_match_percent": 7.1875,
           "metadata": {},
           "address": "7104"
         },
         {
           "name": "bhEne01Cap_Init",
           "size": "172",
-          "fuzzy_match_percent": 3.2558138,
+          "fuzzy_match_percent": 3.9534883,
           "metadata": {},
           "address": "7232"
         },
@@ -5452,27 +5457,28 @@
         {
           "name": "bhEne01Cap_DG00",
           "size": "1132",
-          "fuzzy_match_percent": 0.49469966,
+          "fuzzy_match_percent": 0.795053,
           "metadata": {},
           "address": "7472"
         },
         {
           "name": "bhEne01Cap_DG01",
           "size": "780",
-          "fuzzy_match_percent": 0.71794873,
+          "fuzzy_match_percent": 1.1794872,
           "metadata": {},
           "address": "8608"
         },
         {
           "name": "bhEne01Worm",
           "size": "140",
-          "fuzzy_match_percent": 4.0,
+          "fuzzy_match_percent": 6.571429,
           "metadata": {},
           "address": "9392"
         },
         {
           "name": "bhEne01Worm_Init",
           "size": "280",
+          "fuzzy_match_percent": 3.2142856,
           "metadata": {},
           "address": "9536"
         },
@@ -5493,49 +5499,49 @@
         {
           "name": "bhEne01Worm_MV01",
           "size": "1888",
-          "fuzzy_match_percent": 0.29661018,
+          "fuzzy_match_percent": 0.48728815,
           "metadata": {},
           "address": "9872"
         },
         {
           "name": "bhEne01Worm_MV02",
           "size": "1896",
-          "fuzzy_match_percent": 0.29535866,
+          "fuzzy_match_percent": 0.47468355,
           "metadata": {},
           "address": "11760"
         },
         {
           "name": "bhEne01Bom",
           "size": "288",
-          "fuzzy_match_percent": 1.9444444,
+          "fuzzy_match_percent": 3.1944444,
           "metadata": {},
           "address": "13664"
         },
         {
           "name": "bhEne01Bom_Init",
           "size": "196",
-          "fuzzy_match_percent": 4.0816326,
+          "fuzzy_match_percent": 4.591837,
           "metadata": {},
           "address": "13952"
         },
         {
           "name": "bhEne01Bom_Move",
           "size": "336",
-          "fuzzy_match_percent": 1.6666666,
+          "fuzzy_match_percent": 2.6785715,
           "metadata": {},
           "address": "14160"
         },
         {
           "name": "bhEne01Scope",
           "size": "136",
-          "fuzzy_match_percent": 4.117647,
+          "fuzzy_match_percent": 6.617647,
           "metadata": {},
           "address": "14496"
         },
         {
           "name": "bhEne01Scope_Init",
           "size": "92",
-          "fuzzy_match_percent": 6.0869565,
+          "fuzzy_match_percent": 7.3913045,
           "metadata": {},
           "address": "14640"
         },
@@ -5549,6 +5555,7 @@
         {
           "name": "bhEne01Scope_Effect",
           "size": "536",
+          "fuzzy_match_percent": 1.6791044,
           "metadata": {},
           "address": "14752"
         }
@@ -6607,16 +6614,16 @@
     {
       "name": "ps2/veronica/prog/en04",
       "measures": {
-        "fuzzy_match_percent": 99.97267,
+        "fuzzy_match_percent": 99.986404,
         "total_code": "30592",
-        "matched_code": "24532",
-        "matched_code_percent": 80.190895,
+        "matched_code": "24836",
+        "matched_code_percent": 81.18462,
         "total_data": "4088",
         "matched_data": "4088",
         "matched_data_percent": 100.0,
         "total_functions": 65,
-        "matched_functions": 59,
-        "matched_functions_percent": 90.76923,
+        "matched_functions": 60,
+        "matched_functions_percent": 92.30769,
         "total_units": 1
       },
       "sections": [
@@ -6649,7 +6656,7 @@
         {
           "name": ".text",
           "size": "30976",
-          "fuzzy_match_percent": 99.97267,
+          "fuzzy_match_percent": 99.986404,
           "metadata": {}
         },
         {
@@ -6696,7 +6703,7 @@
         {
           "name": "bhEne04_ChgDmgMode",
           "size": "304",
-          "fuzzy_match_percent": 98.61842,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1616"
         },
@@ -13245,10 +13252,16 @@
     {
       "name": "ps2/veronica/prog/en26",
       "measures": {
-        "fuzzy_match_percent": 0.03562381,
+        "fuzzy_match_percent": 99.99256,
         "total_code": "25264",
+        "matched_code": "21844",
+        "matched_code_percent": 86.46295,
         "total_data": "4912",
+        "matched_data": "4912",
+        "matched_data_percent": 100.0,
         "total_functions": 50,
+        "matched_functions": 48,
+        "matched_functions_percent": 96.0,
         "total_units": 1
       },
       "sections": [
@@ -13259,6 +13272,7 @@
         {
           "name": ".data",
           "size": "4752",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -13268,12 +13282,13 @@
         {
           "name": ".rodata",
           "size": "160",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
           "name": ".text",
           "size": "25616",
-          "fuzzy_match_percent": 0.03562381,
+          "fuzzy_match_percent": 99.99256,
           "metadata": {}
         },
         {
@@ -13285,301 +13300,350 @@
         {
           "name": "bhEne26",
           "size": "240",
-          "fuzzy_match_percent": 3.75,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         },
         {
           "name": "bhEne26_DmgCheck",
           "size": "600",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "240"
         },
         {
           "name": "bhEne26_DamageAdd",
           "size": "548",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "848"
         },
         {
           "name": "bhEne26_LinkFireEffect",
           "size": "696",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1408"
         },
         {
           "name": "bhEne26_DmgCheckType00",
           "size": "644",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "2112"
         },
         {
           "name": "bhEne26_CheckExpHead",
           "size": "328",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "2768"
         },
         {
           "name": "bhEne26_SetBlood",
           "size": "820",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "3104"
         },
         {
           "name": "bhEne26_MainLoop",
           "size": "120",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "3936"
         },
         {
           "name": "bhEne26_PlayerControl",
           "size": "112",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "4064"
         },
         {
           "name": "bhEne26_SetMtn",
           "size": "1096",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "4176"
         },
         {
           "name": "bhEne26_CheckMtnTbl",
           "size": "1228",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5280"
         },
         {
           "name": "bhEne26_SearchNeck",
           "size": "360",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "6512"
         },
         {
           "name": "bhEne26_CollCheck",
           "size": "308",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "6880"
         },
         {
           "name": "bhEne26_CollCheckWall",
           "size": "1784",
+          "fuzzy_match_percent": 99.93946,
           "metadata": {},
           "address": "7200"
         },
         {
           "name": "bhEne26_PlayerLink",
           "size": "492",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "8992"
         },
         {
           "name": "bhEne26_CalcEnemy",
           "size": "208",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "9488"
         },
         {
           "name": "bhEne26_Init",
           "size": "684",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "9696"
         },
         {
           "name": "bhEne26_Move",
           "size": "156",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "10384"
         },
         {
           "name": "bhEne26_MVType",
           "size": "212",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "10544"
         },
         {
           "name": "bhEne26_EneSearch",
           "size": "388",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "10768"
         },
         {
           "name": "bhEne26_Brain00",
           "size": "308",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "11168"
         },
         {
           "name": "bhEne26_ActionModeCheck",
           "size": "964",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "11488"
         },
         {
           "name": "bhEne26_MV00",
           "size": "376",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "12464"
         },
         {
           "name": "bhEne26_MV01",
           "size": "644",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "12848"
         },
         {
           "name": "bhEne26_MV02",
           "size": "872",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "13504"
         },
         {
           "name": "bhEne26_MV03",
           "size": "344",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "14384"
         },
         {
           "name": "bhEne26_MV05",
           "size": "972",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "14736"
         },
         {
           "name": "bhEne26_MV06",
           "size": "360",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "15712"
         },
         {
           "name": "bhEne26_MV07",
           "size": "396",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "16080"
         },
         {
           "name": "bhEne26_MV16",
           "size": "264",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "16480"
         },
         {
           "name": "bhEne26_Nage",
           "size": "24",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "16752"
         },
         {
           "name": "bhEne26_NGType",
           "size": "140",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "16784"
         },
         {
           "name": "bhEne26_NG00",
           "size": "1636",
+          "fuzzy_match_percent": 99.9511,
           "metadata": {},
           "address": "16928"
         },
         {
           "name": "bhEne26_PlyDG00",
           "size": "2904",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "18576"
         },
         {
           "name": "bhEne26_Damage",
           "size": "24",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "21488"
         },
         {
           "name": "bhEne26_DGType",
           "size": "32",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "21520"
         },
         {
           "name": "bhEne26_DG00",
           "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "21552"
         },
         {
           "name": "bhEne26_DG01",
           "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "21568"
         },
         {
           "name": "bhEne26_DG02",
           "size": "652",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "21584"
         },
         {
           "name": "bhEne26_DG03",
           "size": "300",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "22240"
         },
         {
           "name": "bhEne26_DG04",
           "size": "516",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "22544"
         },
         {
           "name": "bhEne26_DG15",
           "size": "160",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "23072"
         },
         {
           "name": "bhEne26_Die",
           "size": "148",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "23232"
         },
         {
           "name": "bhEne26_DDType",
           "size": "32",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "23392"
         },
         {
           "name": "bhEne26_DD00",
           "size": "456",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "23424"
         },
         {
           "name": "bhEne26_EatCheck",
           "size": "616",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "23888"
         },
         {
           "name": "bhEne26_ExpHeadEffect",
           "size": "268",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "24512"
         },
         {
           "name": "bhEne26_NeckBloodEffect",
           "size": "392",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "24784"
         },
         {
           "name": "bhEne26_KamiEffect",
           "size": "224",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "25184"
         },
         {
           "name": "bhEne26_SePlay",
           "size": "200",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "25408"
         }
@@ -21269,7 +21333,7 @@
     {
       "name": "ps2/veronica/prog/light",
       "measures": {
-        "fuzzy_match_percent": 99.32357,
+        "fuzzy_match_percent": 99.31427,
         "total_code": "8604",
         "matched_code": "684",
         "matched_code_percent": 7.949791,
@@ -21305,7 +21369,7 @@
         {
           "name": ".text",
           "size": "8624",
-          "fuzzy_match_percent": 99.32357,
+          "fuzzy_match_percent": 99.31427,
           "metadata": {}
         },
         {
@@ -21352,7 +21416,7 @@
         {
           "name": "bhSetHalfLight",
           "size": "848",
-          "fuzzy_match_percent": 99.43396,
+          "fuzzy_match_percent": 99.33962,
           "metadata": {},
           "address": "7616"
         },
@@ -26873,7 +26937,7 @@
     {
       "name": "ps2/veronica/prog/adv",
       "measures": {
-        "fuzzy_match_percent": 97.75597,
+        "fuzzy_match_percent": 97.75676,
         "total_code": "30176",
         "matched_code": "15760",
         "matched_code_percent": 52.226936,
@@ -26915,7 +26979,7 @@
         {
           "name": ".text",
           "size": "30624",
-          "fuzzy_match_percent": 97.75597,
+          "fuzzy_match_percent": 97.75676,
           "metadata": {}
         },
         {
@@ -27459,7 +27523,7 @@
         {
           "name": "DisplayOptionPlateLevel0",
           "size": "3280",
-          "fuzzy_match_percent": 99.332924,
+          "fuzzy_match_percent": 99.34024,
           "metadata": {},
           "address": "18304"
         },
@@ -41493,16 +41557,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 75.707146,
+        "fuzzy_match_percent": 77.307106,
         "total_code": "1820460",
-        "matched_code": "1099552",
-        "matched_code_percent": 60.39968,
+        "matched_code": "1125692",
+        "matched_code_percent": 61.835583,
         "total_data": "28336764",
-        "matched_data": "28239620",
-        "matched_data_percent": 99.65718,
+        "matched_data": "28244532",
+        "matched_data_percent": 99.674515,
         "total_functions": 3834,
-        "matched_functions": 2848,
-        "matched_functions_percent": 74.28274,
+        "matched_functions": 2907,
+        "matched_functions_percent": 75.821594,
         "total_units": 152
       }
     },

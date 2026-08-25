@@ -1223,7 +1223,7 @@ int bhEne11_SelectDir(BH_PWORK* epw)
         }
     }
     
-    if ((epw->type == 0) && (_dpfgt(njRandom(), 0.5))) 
+    if ((epw->type == 0) && (njRandom() > 0.5)) 
     {
         njSetMatrix(NULL, (NJS_MATRIX *)&EXP0_F(0x0));
         njInvertMatrix(NULL);

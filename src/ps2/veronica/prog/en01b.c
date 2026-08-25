@@ -171,30 +171,36 @@ void bhEne01_MVType00B(BH_PWORK* epw)
 	bhEne01_MoveMode2B[epw->mode2](epw);
 }
 
-// 
-// Start address: 0x18a540
-void bhEne01_MVType02B(BH_PWORK* epw)
+// 100% matching!
+void bhEne01_MVType02B(BH_PWORK* epw) 
 {
-	// Line 321, Address: 0x18a540, Func Offset: 0
-	// Line 324, Address: 0x18a54c, Func Offset: 0xc
-	// Line 326, Address: 0x18a574, Func Offset: 0x34
-	// Line 327, Address: 0x18a584, Func Offset: 0x44
-	// Line 330, Address: 0x18a58c, Func Offset: 0x4c
-	// Line 335, Address: 0x18a5a4, Func Offset: 0x64
-	// Line 337, Address: 0x18a5cc, Func Offset: 0x8c
-	// Line 339, Address: 0x18a5ec, Func Offset: 0xac
-	// Line 341, Address: 0x18a5f4, Func Offset: 0xb4
-	// Line 340, Address: 0x18a5f8, Func Offset: 0xb8
-	// Line 341, Address: 0x18a5fc, Func Offset: 0xbc
-	// Line 342, Address: 0x18a600, Func Offset: 0xc0
-	// Line 345, Address: 0x18a604, Func Offset: 0xc4
-	// Line 346, Address: 0x18a614, Func Offset: 0xd4
-	// Line 352, Address: 0x18a61c, Func Offset: 0xdc
-	// Line 353, Address: 0x18a62c, Func Offset: 0xec
-	// Line 355, Address: 0x18a634, Func Offset: 0xf4
-	// Line 356, Address: 0x18a654, Func Offset: 0x114
-	// Func End, Address: 0x18a664, Func Offset: 0x124
-	scePrintf("bhEne01_MVType02B - UNIMPLEMENTED!\n");
+    if (bhEne_EnemyAtariCheck((NJS_POINT3*)&plp->px, plp->flr_no, epw->id, 0) != NULL) 
+    {
+        EXP0_I(0x40) |=  0x20000000;
+    }
+    else 
+    {
+        EXP0_I(0x40) &= ~0x20000000;
+    }
+    
+    if ((!(plp->flg & 0x4)) && (epw->mode2 == 3) && (bhEne01_EatCheck(epw, 2730, 5.5f, 0) != 0))
+    {
+        epw->mode0 = 2;
+        epw->mode1 = 0;
+        epw->mode2 = 3;
+        epw->mode3 = 0;
+        
+        plp->flg |= 0x4;
+    }
+    else
+    {
+        if ((epw->mode1 & 0x1)) 
+        {
+            bhEne01_Brain02B(epw);
+        }
+        
+        bhEne01_MoveMode2B[epw->mode2 + 10](epw);
+    }
 }
 
 // 100% matching!

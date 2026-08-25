@@ -710,9 +710,9 @@ int bhEne01_SideRotNeck(BH_PWORK* epw, int neck_no, NJS_VECTOR* trg, int neck_ry
     owk = &epw->mlwP->owP[neck_no];
     rot = (NitenDir_ck(owk->mtx[12], owk->mtx[14], trg->x, trg->z) - ang) & 0xFFFF;
 
-    if ((((rot - neck_ry) + 910) & 0xFFFF) < 1820)
+    if ((unsigned short)((rot - neck_ry) + 910) < 1820)
     {
-        if (((rot + neck_ry_max) & 0xFFFF) <= (neck_ry_max + neck_ry_max))
+        if ((unsigned short)(rot + neck_ry_max) <= (neck_ry_max + neck_ry_max))
         {
             neck_ry = rot;
         }
@@ -728,10 +728,10 @@ int bhEne01_SideRotNeck(BH_PWORK* epw, int neck_no, NJS_VECTOR* trg, int neck_ry
         return (unsigned short)(neck_ry - 910);
     }
 
-    if (((rot - neck_ry) & 0xFFFF) < 32768)
+    if ((unsigned short)(rot - neck_ry) < 32768)
     {
         ret = (unsigned short)(neck_ry + 910);
-        if (((ret - neck_ry_max) & 0xFFFF) < (65536 - (neck_ry_max + neck_ry_max)))
+        if ((unsigned short)(ret - neck_ry_max) < (65536 - (neck_ry_max + neck_ry_max)))
         {
             ret = neck_ry_max;
         }
@@ -739,7 +739,7 @@ int bhEne01_SideRotNeck(BH_PWORK* epw, int neck_no, NJS_VECTOR* trg, int neck_ry
     }
 
     ret = (unsigned short)(neck_ry - 910);
-    if (((ret + neck_ry_max) & 0xFFFF) > (neck_ry_max + neck_ry_max))
+    if ((unsigned short)(ret + neck_ry_max) > (neck_ry_max + neck_ry_max))
     {
         ret = 65536 - neck_ry_max;
     }

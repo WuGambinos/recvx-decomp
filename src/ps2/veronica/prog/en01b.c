@@ -194,6 +194,7 @@ void bhEne01_MVType02B(BH_PWORK* epw)
 	// Line 355, Address: 0x18a634, Func Offset: 0xf4
 	// Line 356, Address: 0x18a654, Func Offset: 0x114
 	// Func End, Address: 0x18a664, Func Offset: 0x124
+	scePrintf("bhEne01_MVType02B - UNIMPLEMENTED!\n");
 }
 
 // 100% matching!
@@ -214,19 +215,22 @@ void bhEne01_MV13B(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x18a710
+// 100% matching!
 void bhEne01_NGType00B(BH_PWORK* epw)
 {
-	// Line 410, Address: 0x18a710, Func Offset: 0
-	// Line 413, Address: 0x18a71c, Func Offset: 0xc
-	// Line 415, Address: 0x18a728, Func Offset: 0x18
-	// Line 418, Address: 0x18a744, Func Offset: 0x34
-	// Line 419, Address: 0x18a750, Func Offset: 0x40
-	// Line 423, Address: 0x18a758, Func Offset: 0x48
-	// Line 427, Address: 0x18a76c, Func Offset: 0x5c
-	// Line 428, Address: 0x18a78c, Func Offset: 0x7c
-	// Func End, Address: 0x18a79c, Func Offset: 0x8c
+    if (epw->mode3 == 0) 
+    {
+        if (bhCdirCheck(plp->ay, epw->ay) == 0) 
+        {
+            EXP0_I(0x40) |=  0x4000;
+        }
+        else 
+        {
+            EXP0_I(0x40) &= ~0x4000;
+        }
+    }
+    
+    bhEne01_NageMode2B[epw->mode2](epw);
 }
 
 // 
@@ -313,6 +317,7 @@ void bhEne01_NG03B(BH_PWORK* epw)
 	// Line 563, Address: 0x18ab1c, Func Offset: 0x37c
 	// Line 567, Address: 0x18ab20, Func Offset: 0x380
 	// Func End, Address: 0x18ab38, Func Offset: 0x398
+	scePrintf("bhEne01_NG03B - UNIMPLEMENTED!\n");
 }
 
 // 100% matching!
@@ -425,6 +430,7 @@ void bhEne01_DG05B(BH_PWORK* epw)
 	// Line 752, Address: 0x18aee0, Func Offset: 0x320
 	// Line 757, Address: 0x18aeec, Func Offset: 0x32c
 	// Func End, Address: 0x18af04, Func Offset: 0x344
+	scePrintf("bhEne01_DG05B - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -543,6 +549,7 @@ void bhEne01_DG09B(BH_PWORK* epw)
 	// Line 906, Address: 0x18b3d8, Func Offset: 0x4c8
 	// Line 911, Address: 0x18b3e4, Func Offset: 0x4d4
 	// Func End, Address: 0x18b3fc, Func Offset: 0x4ec
+	scePrintf("bhEne01_DG09B - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -574,6 +581,7 @@ void bhEne01_DG12B(BH_PWORK* epw)
 	// Line 967, Address: 0x18b538, Func Offset: 0x138
 	// Line 971, Address: 0x18b53c, Func Offset: 0x13c
 	// Func End, Address: 0x18b550, Func Offset: 0x150
+	scePrintf("bhEne01_DG12B - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -601,6 +609,7 @@ void bhEne01_DG13B(BH_PWORK* epw)
 	// Line 1009, Address: 0x18b614, Func Offset: 0xc4
 	// Line 1013, Address: 0x18b618, Func Offset: 0xc8
 	// Func End, Address: 0x18b62c, Func Offset: 0xdc
+	scePrintf("bhEne01_DG13B - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -671,6 +680,7 @@ void bhEne01_DD02B(BH_PWORK* epw)
 	// Line 1115, Address: 0x18b9cc, Func Offset: 0x39c
 	// Line 1119, Address: 0x18b9d4, Func Offset: 0x3a4
 	// Func End, Address: 0x18b9e8, Func Offset: 0x3b8
+	scePrintf("bhEne01_DD02B - UNIMPLEMENTED!\n");
 }
 
 // 100% matching!

@@ -1211,17 +1211,15 @@ void bhEne02_DG01(BH_PWORK* epw)
 	// Line 1880, Address: 0x192130, Func Offset: 0xb0
 	// Line 1884, Address: 0x19213c, Func Offset: 0xbc
 	// Func End, Address: 0x192144, Func Offset: 0xc4
-}
+}*/
 
-// 
-// Start address: 0x192150
+// 100% matching!
 void bhEne02_Die(BH_PWORK* epw)
 {
-	// Line 1895, Address: 0x192150, Func Offset: 0
-	// Func End, Address: 0x192170, Func Offset: 0x20
+	bhEne02_DeadMode2[epw->mode2](epw);
 }
 
-// 
+/*// 
 // Start address: 0x192170
 void bhEne02_DD00(BH_PWORK* epw)
 {

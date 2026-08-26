@@ -399,14 +399,12 @@ void bhEne02_Init(BH_PWORK* epw)
 	// Line 877, Address: 0x18fcbc, Func Offset: 0x39c
 	// Line 878, Address: 0x18fccc, Func Offset: 0x3ac
 	// Func End, Address: 0x18fce4, Func Offset: 0x3c4
-}
+}*/
 
-// 
-// Start address: 0x18fcf0
+// 100% matching!
 void bhEne02_Brain(BH_PWORK* epw)
 {
-	// Line 889, Address: 0x18fcf0, Func Offset: 0
-	// Func End, Address: 0x18fcf8, Func Offset: 0x8
+	bhEne02_BR00(epw);
 }
 
 // 
@@ -473,9 +471,10 @@ void bhEne02_BR00(BH_PWORK* epw)
 	// Line 985, Address: 0x190064, Func Offset: 0x364
 	// Line 989, Address: 0x190084, Func Offset: 0x384
 	// Func End, Address: 0x1900a0, Func Offset: 0x3a0
+	scePrintf("bhEne02_BR00 - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1900a0
 void bhEne02_Move(BH_PWORK* epw)
 {
@@ -1180,7 +1179,7 @@ void bhEne02_Damage(BH_PWORK* epw)
 // 100% matching!
 void bhEne02_DG00()
 {
-	
+
 }
 
 /*// 

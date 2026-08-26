@@ -1,37 +1,260 @@
 #include "../../../ps2/veronica/prog/en02.h"
+#include "../../../ps2/veronica/prog/en02sub.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/subpl.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
 
 // ENEMY: Gulp Worm 
 
-/*_anon22 cler_042[20];
-_anon22 cler_043[20];
-_anon22 cler_045[51];
-_anon22 cher_060[20];
-_anon22 cher_061[20];
-_anon22 cher_063[50];
-_anon18 child;
-char joint_tree[15][2];
-_anon28 DmgReact[21];
-_anon45 CombWepTbl[21];
-_anon49 CombJointTbl[24];
-_anon39 BloodTbl[24];
-_anon8 SD_01[38];
-_anon8 SD_03[54];
-_anon8 SD_11[113];
-_anon8 SD_14[8];
-_anon8 SD_16[47];
-_anon8 SD_17[37];
-_anon8 P0_42[3];
-_anon8 P0_43[2];
-_anon11 SandEffectTbl[9];
-_anon27 CapColTab[13];
-void(*bhEne02_Mode0)(BH_PWORK*)[6];
-void(*bhEne02_BrainType)(BH_PWORK*)[1];
-void(*bhEne02_MoveMode2)(BH_PWORK*)[6];
-void(*bhEne02_NageMode2)(BH_PWORK*)[1];
-void(*bhEne02_DamageMode2)(BH_PWORK*)[2];
-void(*bhEne02_DeadMode2)(BH_PWORK*)[2];
-void(*bhEne02sub)(BH_PWORK*);*/
+typedef void (*bhEne02_Mode0_proc)(BH_PWORK*);
+typedef void (*bhEne02_MoveMode2_proc)(BH_PWORK*);
+typedef void (*bhEne02_DamageMode2_proc)(BH_PWORK*);
+typedef void (*bhEne02_DeadMode2_proc)(BH_PWORK*);
+
+NJS_POINT3 cler_042[20] =
+{
+    { 0.0f, 0.0f, 0.0f },
+    { 0.0f, -0.620734f, -2.12481f },
+    { 0.0f, -0.627121f, -2.187942f },
+    { 0.0f, -0.648964f, -2.072721f },
+    { 0.0f, -0.671436f, -1.780175f },
+    { 0.0f, -0.646234f, -1.310607f },
+    { 0.0f, -0.563992f, -1.028731f },
+    { 0.0f, -0.424708f, -1.016538f },
+    { 0.0f, -0.229293f, -1.00816f },
+    { 0.0f, -0.10395f, -1.003594f },
+    { 0.0f, -0.157576f, -1.00284f },
+    { 0.0f, -0.246373f, -1.005897f },
+    { 0.0f, -0.241412f, -1.01277f },
+    { 0.0f, -0.120057f, -0.80743f },
+    { 0.0f, 0.200556f, -0.420704f },
+    { 0.0f, 0.254786f, -0.267502f },
+    { 0.0f, -0.013909f, -0.218467f },
+    { 0.0f, -0.188876f, -0.169968f },
+    { 0.0f, -0.146966f, -0.121239f },
+    { 0.0f, 0.000819f, -0.072285f },
+};
+NJS_POINT3 cler_043[20] = 
+{
+    { 0.0f, 0.0f, 0.0f },
+    { 0.0f, -1.059124f, 1.89403f },
+    { 0.0f, -0.917969f, 1.896158f },
+    { 0.0f, -1.156633f, 1.890566f },
+    { 0.0f, -1.079631f, 1.877255f },
+    { 0.0f, -0.934274f, 1.856224f },
+    { 0.0f, -1.023546f, 1.827473f },
+    { 0.0f, -0.843379f, 1.791f },
+    { 0.0f, -0.393773f, 1.458952f },
+    { 0.0f, 0.140793f, 0.900272f },
+    { 0.0f, 0.333097f, 0.492113f },
+    { 0.0f, 0.261335f, 0.234747f },
+    { 0.0f, -0.059474f, 0.128166f },
+    { 0.0f, -0.363428f, 0.172373f },
+    { 0.0f, -0.411375f, 0.339531f },
+    { 0.0f, -0.195706f, 0.408201f },
+    { 0.0f, 0.063265f, 0.416121f },
+    { 0.0f, 0.033204f, 0.387409f },
+    { 0.0f, -0.255225f, 0.322071f },
+    { 0.0f, -0.10127f, 0.220104f },
+};
+NJS_POINT3 cler_045[51] = 
+{
+    { 0.0f, 0.0f, 0.0f },
+    { 0.000189f, 0.000204f, 0.024727f },
+    { 0.000135f, 0.001824f, 0.016388f },
+    { -0.000572f, 0.005267f, 0.00716f },
+    { -0.001929f, 0.010533f, -0.00296f },
+    { -0.003937f, 0.017619f, -0.013968f },
+    { -0.006596f, 0.026527f, -0.025865f },
+    { -0.009906f, 0.037258f, -0.038655f },
+    { -0.013868f, 0.049811f, -0.052331f },
+    { -0.018479f, 0.064185f, -0.066901f },
+    { -0.023743f, 0.08038f, -0.082355f },
+    { -0.029657f, 0.098399f, -0.098705f },
+    { -0.041943f, 0.11824f, -0.115941f },
+    { -0.057238f, 0.1399f, -0.134067f },
+    { -0.068146f, 0.163384f, -0.156576f },
+    { -0.074665f, 0.167295f, -0.18035f },
+    { -0.076794f, 0.171939f, -0.20034f },
+    { -0.074535f, 0.208866f, -0.216551f },
+    { -0.067887f, 0.276337f, -0.228973f },
+    { -0.056851f, 0.260755f, -0.237616f },
+    { -0.041424f, 0.234464f, -0.242475f },
+    { -0.021611f, 0.277857f, -0.243551f },
+    { -0.002011f, 0.3249f, -0.240845f },
+    { 0.013014f, 0.328456f, -0.234354f },
+    { 0.025889f, 0.330988f, -0.224081f },
+    { 0.036616f, 0.332499f, -0.210024f },
+    { 0.045193f, 0.332987f, -0.20052f },
+    { 0.051621f, 0.332453f, -0.194435f },
+    { 0.055899f, 0.330896f, -0.182867f },
+    { 0.058027f, 0.328317f, -0.165821f },
+    { 0.058007f, 0.324714f, -0.143297f },
+    { 0.055747f, 0.320091f, -0.11529f },
+    { 0.050819f, 0.314443f, -0.081804f },
+    { 0.045415f, 0.307774f, -0.042839f },
+    { 0.04005f, 0.300082f, -0.014368f },
+    { 0.034724f, 0.291368f, -0.000868f },
+    { 0.029436f, 0.281631f, 0.011396f },
+    { 0.024189f, 0.270871f, 0.022425f },
+    { 0.01898f, 0.259089f, 0.032219f },
+    { 0.013811f, 0.246286f, 0.040773f },
+    { 0.008681f, 0.232458f, 0.048096f },
+    { 0.005656f, 0.217609f, 0.05418f },
+    { 0.004759f, 0.201737f, 0.059031f },
+    { 0.003938f, 0.184843f, 0.062643f },
+    { 0.003193f, 0.166926f, 0.065021f },
+    { 0.002523f, 0.147986f, 0.066162f },
+    { 0.001927f, 0.128025f, 0.066069f },
+    { 0.001409f, 0.107041f, 0.064739f },
+    { 0.000964f, 0.085033f, 0.062174f },
+    { 0.000595f, 0.062004f, 0.058371f },
+    { 0.000302f, 0.037952f, 0.053335f },
+};
+NJS_POINT3 cher_060[20] = 
+{
+    { 0.0f, 0.0f, 0.0f },
+    { 0.0f, -0.779553f, -1.461983f },
+    { 0.0f, -0.750942f, -1.447103f },
+    { 0.0f, -0.722287f, -1.429072f },
+    { 0.0f, -0.69359f, -1.407892f },
+    { 0.0f, -0.66485f, -1.383564f },
+    { 0.0f, -0.636068f, -1.356088f },
+    { 0.0f, -0.607241f, -1.32546f },
+    { 0.0f, -0.578373f, -1.291683f },
+    { 0.0f, -0.549461f, -1.254758f },
+    { 0.0f, -0.520506f, -1.214684f },
+    { 0.0f, -0.491509f, -1.171461f },
+    { 0.0f, -0.46247f, -1.125088f },
+    { 6.6e-05f, -0.141891f, -0.954111f },
+    { 0.000155f, 0.204556f, -0.689911f },
+    { 0.000176f, 0.152544f, -0.469623f },
+    { 0.000132f, -0.059541f, -0.293259f },
+    { 2.2e-05f, -0.114551f, -0.160811f },
+    { -0.000154f, -0.092301f, -0.072282f },
+    { -0.000397f, 0.00721f, -0.02767f },
+};
+NJS_POINT3 cher_061[20] = 
+{
+    { 0.0f, 0.0f, 0.0f },
+    { 0.0f, -1.023485f, 2.016719f },
+    { 0.0f, -0.981441f, 1.855077f },
+    { 0.0f, -0.939375f, 1.720633f },
+    { 0.0f, -0.897289f, 1.613388f },
+    { 0.0f, -0.855185f, 1.533343f },
+    { 0.0f, -0.813058f, 1.480495f },
+    { 0.0f, -0.770913f, 1.454845f },
+    { 0.0f, -0.728744f, 1.456395f },
+    { 0.0f, -0.187407f, 0.956171f },
+    { 0.0f, 0.120347f, 0.575286f },
+    { 0.0f, -0.240101f, 0.703337f },
+    { 0.0f, -0.361943f, 0.67611f },
+    { 0.0f, -0.22268f, 0.611448f },
+    { 0.0f, -0.045971f, 0.493896f },
+    { 0.0f, -0.01742f, 0.348406f },
+    { 0.0f, -0.032555f, 0.270178f },
+    { 0.0f, -0.017353f, 0.242271f },
+    { 0.0f, 0.010803f, 0.188967f },
+    { 0.0f, 0.010113f, 0.110258f },
+};
+NJS_POINT3 cher_063[50] = 
+{
+    { 0.0f, 0.0f, 0.0f },
+    { 0.01499f, 0.00029f, 0.030832f },
+    { 0.02403f, -6e-06f, 0.01372f },
+    { 0.032291f, -0.000251f, -0.000155f },
+    { 0.039773f, -0.000453f, -0.010793f },
+    { 0.046473f, -0.000606f, -0.018191f },
+    { 0.052396f, -0.00071f, -0.022354f },
+    { 0.057539f, -0.00077f, -0.023277f },
+    { 0.061901f, -0.000781f, -0.020964f },
+    { 0.065484f, -0.000745f, -0.027778f },
+    { 0.068289f, -0.000661f, -0.049477f },
+    { 0.070312f, -0.000531f, -0.076561f },
+    { 0.071556f, -0.000354f, -0.109041f },
+    { 0.072021f, -0.000128f, -0.146906f },
+    { 0.07833f, 0.048734f, -0.172268f },
+    { 0.08752f, 0.138106f, -0.185469f },
+    { 0.091485f, 0.215344f, -0.204576f },
+    { 0.090229f, 0.280442f, -0.229593f },
+    { 0.083749f, 0.333404f, -0.26059f },
+    { 0.072044f, 0.374224f, -0.299078f },
+    { 0.055118f, 0.402911f, -0.329302f },
+    { 0.032967f, 0.419457f, -0.344871f },
+    { 0.009256f, 0.423868f, -0.345787f },
+    { 0.00267f, 0.416138f, -0.332049f },
+    { -0.001042f, 0.396297f, -0.303657f },
+    { -0.004824f, 0.40255f, -0.263276f },
+    { -0.008673f, 0.434275f, -0.225015f },
+    { -0.012591f, 0.458427f, -0.190285f },
+    { -0.016576f, 0.475005f, -0.158771f },
+    { -0.02063f, 0.484011f, -0.130475f },
+    { -0.024752f, 0.48544f, -0.105394f },
+    { -0.028942f, 0.479296f, -0.083534f },
+    { -0.0332f, 0.465578f, -0.064892f },
+    { -0.037526f, 0.444289f, -0.049465f },
+    { -0.041921f, 0.415421f, -0.037258f },
+    { -0.046382f, 0.378981f, -0.028269f },
+    { -0.050913f, 0.334968f, -0.022497f },
+    { -0.055513f, 0.283382f, -0.019942f },
+    { -0.060178f, 0.224219f, -0.020607f },
+    { -0.063639f, 0.184548f, -0.003177f },
+    { -0.065679f, 0.169313f, 0.030195f },
+    { -0.067461f, 0.153923f, 0.057129f },
+    { -0.068989f, 0.138379f, 0.077625f },
+    { -0.070259f, 0.122677f, 0.091685f },
+    { -0.071275f, 0.106824f, 0.0993f },
+    { -0.072033f, 0.090814f, 0.100481f },
+    { -0.072537f, 0.074649f, 0.095221f },
+    { -0.072784f, 0.05833f, 0.083524f },
+    { -0.072775f, 0.041857f, 0.065386f },
+    { -0.072509f, 0.025227f, 0.040813f },
+};
+
+static EGG_WORK child = { 0x8001, 0x1F, 0 };
+static DMG_REACT DmgReact[21];
+static COMBWEP_WORK CombWepTbl[21];
+static COMBJOINT_WORK CombJointTbl[24];
+static BLOOD_TBL BloodTbl[37];
+// SD_01
+// SD_03
+// SD_11
+// SD_14
+// SD_16
+// SD_17
+// P0_42
+// P0_43
+// SandEffectTbl
+static CPCL CapColTab[13];
+
+bhEne02_Mode0_proc bhEne02_Mode0[6] =
+{
+    bhEne02_Init,
+    bhEne02_Move,
+    bhEne02_Nage,
+    bhEne02_Damage,
+    bhEne02_Die,
+    bhEne_Event
+};
+bhEne02_MoveMode2_proc bhEne02_MoveMode2[6] =
+{
+    bhEne02_MV00,
+    bhEne02_MV00,
+    bhEne02_MV02,
+    bhEne02_MV03,
+    bhEne02_MV04,
+    bhEne02_MV05
+};
+bhEne02_DamageMode2_proc bhEne02_DamageMode2[2] =
+{
+    bhEne02_DG00,
+    bhEne02_DG01
+};
+bhEne02_DeadMode2_proc bhEne02_DeadMode2[2] =
+{
+    bhEne02_DD00,
+    bhEne02_DD01
+};
 
 // 
 // Start address: 0x18f830
@@ -191,8 +414,8 @@ void bhEne02_Brain(BH_PWORK* epw)
 void bhEne02_BR00(BH_PWORK* epw)
 {
 	int i;
-	_anon22 pos;
-	_anon22 vec;
+	NJS_POINT3 pos;
+	NJS_POINT3 vec;
 	// Line 900, Address: 0x18fd00, Func Offset: 0
 	// Line 906, Address: 0x18fd18, Func Offset: 0x18
 	// Line 908, Address: 0x18fd2c, Func Offset: 0x2c
@@ -331,11 +554,11 @@ void bhEne02_MV02(BH_PWORK* epw)
 {
 	float dist;
 	_anon42 ln;
-	_anon22 pos;
+	NJS_POINT3 pos;
 	int i;
 	_anon1* owk;
-	_anon22 pos;
-	_anon22 trg_pos[2];
+	NJS_POINT3 pos;
+	NJS_POINT3 trg_pos[2];
 	// Line 1095, Address: 0x190500, Func Offset: 0
 	// Line 1096, Address: 0x190510, Func Offset: 0x10
 	// Line 1095, Address: 0x190518, Func Offset: 0x18
@@ -582,13 +805,13 @@ void bhEne02_MV02(BH_PWORK* epw)
 void bhEne02_MV03(BH_PWORK* epw)
 {
 	float dist;
-	_anon22 vec;
+	NJS_POINT3 vec;
 	_anon42 ln;
-	_anon22 pos;
+	NJS_POINT3 pos;
 	int tim[16][2];
 	_anon1* owk;
 	int i;
-	_anon22 pos;
+	NJS_POINT3 pos;
 	// Line 1359, Address: 0x190f90, Func Offset: 0
 	// Line 1363, Address: 0x190fa8, Func Offset: 0x18
 	// Line 1359, Address: 0x190fb8, Func Offset: 0x28
@@ -757,9 +980,9 @@ void bhEne02_MV03(BH_PWORK* epw)
 void bhEne02_MV04(BH_PWORK* epw)
 {
 	float dist;
-	_anon22 vec;
+	NJS_POINT3 vec;
 	_anon42 ln;
-	_anon22 pos;
+	NJS_POINT3 pos;
 	int i;
 	_anon1* owk;
 	// Line 1569, Address: 0x191810, Func Offset: 0
@@ -1005,7 +1228,7 @@ void bhEne02_DD00(BH_PWORK* epw)
 	int i;
 	_anon1* owk;
 	_anon1* owk;
-	_anon22 pos;
+	NJS_POINT3 pos;
 	BH_PWORK dmy_ene;
 	// Line 1906, Address: 0x192170, Func Offset: 0
 	// Line 1910, Address: 0x192188, Func Offset: 0x18
@@ -1280,22 +1503,19 @@ void bhEne02_SetSandEffect(BH_PWORK* epw, NJS_POINT3* pos, int type)
 	scePrintf("bhEne02_SetSandEffect - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x192d40
+// 100% matching!
 void bhEne02_SetSandEffectEV(int eno, int type1, int type2)
 {
-	// Line 2220, Address: 0x192d40, Func Offset: 0
-	// Func End, Address: 0x192d70, Func Offset: 0x30
-	scePrintf("bhEne02_SetSandEffectEV - UNIMPLEMENTED!\n");
+	bhEne02_SetSandEffectMain(type1, (NJS_POINT3*)&ene[eno].px, type2);
 }
 
-/*// 
+// 
 // Start address: 0x192d70
-void bhEne02_SetSandEffectMain(int type0, _anon22* pos, int type)
+void bhEne02_SetSandEffectMain(int type0, NJS_POINT3* pos, int type)
 {
 	float r;
 	int ang;
-	_anon22 wp;
+	NJS_POINT3 wp;
 	int i;
 	// Line 2233, Address: 0x192d70, Func Offset: 0
 	// Line 2239, Address: 0x192d94, Func Offset: 0x24
@@ -1538,11 +1758,12 @@ void bhEne02_SetSandEffectMain(int type0, _anon22* pos, int type)
 	// Line 2388, Address: 0x193fd8, Func Offset: 0x1268
 	// Line 2391, Address: 0x193fe8, Func Offset: 0x1278
 	// Func End, Address: 0x194010, Func Offset: 0x12a0
+	scePrintf("bhEne02_SetSandEffectMain - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x194010
-void bhEne02_SetSandSpr(int type0, _anon22* pos, int type, int flip, float size, int ang)
+void bhEne02_SetSandSpr(int type0, NJS_POINT3* pos, int type, int flip, float size, int ang)
 {
 	int eno;
 	// Line 2406, Address: 0x194010, Func Offset: 0
@@ -1580,7 +1801,7 @@ void bhEne02_SetSandSpr(int type0, _anon22* pos, int type, int flip, float size,
 void bhEne02_SandEffect(BH_PWORK* epw)
 {
 	int i;
-	_anon22 ofp;
+	NJS_POINT3 ofp;
 	unsigned int fno;
 	_anon11* wp;
 	_anon8* we;
@@ -1623,8 +1844,8 @@ void bhEne02_SandEffectP(BH_PWORK* epw)
 {
 	int j;
 	int i;
-	_anon22 pos;
-	_anon22 ofp;
+	NJS_POINT3 pos;
+	NJS_POINT3 ofp;
 	unsigned int fno;
 	_anon11* wp;
 	_anon8* we;
@@ -1689,7 +1910,7 @@ void bhEne02_SandEffectP(BH_PWORK* epw)
 // Start address: 0x194740
 void bhEne02_PlayerControl(BH_PWORK* epw)
 {
-	_anon22* trans[3][3];
+	NJS_POINT3* trans[3][3];
 	int mtn[8][3];
 	// Line 2539, Address: 0x194740, Func Offset: 0
 	// Line 2540, Address: 0x194744, Func Offset: 0x4
@@ -1935,7 +2156,7 @@ void bhEne02_DamageInit(BH_PWORK* epw)
 
 // 
 // Start address: 0x195220
-void bhEne02_SetSandParticle(_anon22* pos, int type)
+void bhEne02_SetSandParticle(NJS_POINT3* pos, int type)
 {
 	float vy[6];
 	int col[6];
@@ -2161,7 +2382,7 @@ void bhEne02_HitMark(BH_PWORK* epw)
 	int i;
 	int range;
 	_anon39* blp;
-	_anon22 ofp;
+	NJS_POINT3 ofp;
 	// Line 3067, Address: 0x195d70, Func Offset: 0
 	// Line 3073, Address: 0x195d90, Func Offset: 0x20
 	// Line 3074, Address: 0x195d94, Func Offset: 0x24

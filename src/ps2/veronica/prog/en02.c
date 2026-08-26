@@ -474,22 +474,25 @@ void bhEne02_BR00(BH_PWORK* epw)
 	scePrintf("bhEne02_BR00 - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x1900a0
+// 100% matching!
 void bhEne02_Move(BH_PWORK* epw)
 {
-	// Line 999, Address: 0x1900a0, Func Offset: 0
-	// Line 1001, Address: 0x1900ac, Func Offset: 0xc
-	// Line 1002, Address: 0x1900bc, Func Offset: 0x1c
-	// Line 1005, Address: 0x1900c4, Func Offset: 0x24
-	// Line 1008, Address: 0x1900e4, Func Offset: 0x44
-	// Line 1009, Address: 0x190100, Func Offset: 0x60
-	// Line 1010, Address: 0x19010c, Func Offset: 0x6c
-	// Line 1012, Address: 0x190114, Func Offset: 0x74
-	// Func End, Address: 0x190124, Func Offset: 0x84
+	if (epw->mode1 == 1)
+	{
+		bhEne02_Brain(epw);
+	}
+
+	bhEne02_MoveMode2[epw->mode2](epw);
+
+	if (((epw->flg & 0x4)) && (!(epw->flg & 0x2)))
+	{
+		epw->flg &= ~0x4;
+
+		bhEne02_DamageInit(epw);
+	}
 }
 
-// 
+/*// 
 // Start address: 0x190130
 void bhEne02_MV00(BH_PWORK* epw)
 {
@@ -1137,7 +1140,7 @@ void bhEne02_MV05(BH_PWORK* epw)
 // 100% matching!
 void bhEne02_Nage()
 {
-	
+
 }
 
 /*// 
@@ -2099,7 +2102,7 @@ void bhEne02_PlayerControl(BH_PWORK* epw)
 	// Line 2737, Address: 0x195084, Func Offset: 0x944
 	// Line 2739, Address: 0x19509c, Func Offset: 0x95c
 	// Func End, Address: 0x1950ac, Func Offset: 0x96c
-}
+}*/
 
 // 
 // Start address: 0x1950b0
@@ -2145,9 +2148,10 @@ void bhEne02_DamageInit(BH_PWORK* epw)
 	// Line 2799, Address: 0x195208, Func Offset: 0x158
 	// Line 2802, Address: 0x19520c, Func Offset: 0x15c
 	// Func End, Address: 0x19521c, Func Offset: 0x16c
+	scePrintf("bhEne02_DamageInit - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x195220
 void bhEne02_SetSandParticle(NJS_POINT3* pos, int type)
 {

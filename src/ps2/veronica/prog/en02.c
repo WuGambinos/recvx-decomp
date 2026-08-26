@@ -2331,37 +2331,41 @@ void bhEne02_WarpCheck(BH_PWORK* epw)
 	// Line 2949, Address: 0x195818, Func Offset: 0x168
 	// Line 2951, Address: 0x195820, Func Offset: 0x170
 	// Func End, Address: 0x195834, Func Offset: 0x184
-}
+}*/
 
-// 
-// Start address: 0x195840
+// 100% matching!
 void bhEne02_FallingRock(BH_PWORK* epw)
 {
-	int num;
 	int i;
-	// Line 2961, Address: 0x195840, Func Offset: 0
-	// Line 2962, Address: 0x195864, Func Offset: 0x24
-	// Line 2965, Address: 0x1958a0, Func Offset: 0x60
-	// Line 2966, Address: 0x1958bc, Func Offset: 0x7c
-	// Line 2967, Address: 0x1958c0, Func Offset: 0x80
-	// Line 2965, Address: 0x1958c4, Func Offset: 0x84
-	// Line 2966, Address: 0x1958c8, Func Offset: 0x88
-	// Line 2967, Address: 0x1958d0, Func Offset: 0x90
-	// Line 2968, Address: 0x1958e8, Func Offset: 0xa8
-	// Line 2967, Address: 0x1958f0, Func Offset: 0xb0
-	// Line 2969, Address: 0x1958f4, Func Offset: 0xb4
-	// Line 2971, Address: 0x195910, Func Offset: 0xd0
-	// Line 2972, Address: 0x195918, Func Offset: 0xd8
-	// Line 2974, Address: 0x195924, Func Offset: 0xe4
-	// Line 2975, Address: 0x195978, Func Offset: 0x138
-	// Line 2976, Address: 0x195984, Func Offset: 0x144
-	// Line 2978, Address: 0x1959d4, Func Offset: 0x194
-	// Line 2980, Address: 0x195a34, Func Offset: 0x1f4
-	// Line 2981, Address: 0x195a38, Func Offset: 0x1f8
-	// Line 2983, Address: 0x195a40, Func Offset: 0x200
-	// Line 2984, Address: 0x195a50, Func Offset: 0x210
-	// Func End, Address: 0x195a78, Func Offset: 0x238
-}*/
+	int num;
+	float dx, dy, dz; // not from DWARF below
+
+	num = (int)(4.0f * (-rand() / -2147483648.0f)) + 12;
+
+	dx = epw->px - (30.0f * njSin(epw->ay));
+	dy = epw->py + 60.0f;
+	dz = epw->pz - (30.0f * njCos(epw->ay));
+
+	for (i = 0; i < 16; i++)
+	{
+		if ((*(BH_PWORK**)((epw->exp0 + 48) + (i * 4)))->mode2 == 0)
+		{
+			(*(BH_PWORK**)((epw->exp0 + 48) + (i * 4)))->mode2 = 3;
+			(*(BH_PWORK**)((epw->exp0 + 48) + (i * 4)))->mode3 = 0;
+
+			(*(BH_PWORK**)((epw->exp0 + 48) + (i * 4)))->px = (dx + (80.0f * (-rand() / -2147483648.0f))) - 40.0f;
+			(*(BH_PWORK**)((epw->exp0 + 48) + (i * 4)))->py = dy;
+			(*(BH_PWORK**)((epw->exp0 + 48) + (i * 4)))->pz = (dz + (80.0f * (-rand() / -2147483648.0f))) - 40.0f;
+
+			(*(BH_PWORK**)((epw->exp0 + 48) + (i * 4)))->mlwP = &epw->mdl[(int)(3.0f * (-rand() / -2147483648.0f)) + 1];
+
+			if (--num == 0)
+			{
+				break;
+			}
+		}
+	}
+}
 
 // 100% matching!
 void bhEne02_CallSE(BH_PWORK* epw)
@@ -2483,13 +2487,13 @@ void bhEne02_CallSE(BH_PWORK* epw)
 	}
 }
 
-/*// 
+// 
 // Start address: 0x195d70
 void bhEne02_HitMark(BH_PWORK* epw)
 {
 	int i;
 	int range;
-	_anon39* blp;
+	//_anon39* blp;
 	NJS_POINT3 ofp;
 	// Line 3067, Address: 0x195d70, Func Offset: 0
 	// Line 3073, Address: 0x195d90, Func Offset: 0x20
@@ -2546,4 +2550,5 @@ void bhEne02_HitMark(BH_PWORK* epw)
 	// Line 3128, Address: 0x1962f8, Func Offset: 0x588
 	// Line 3130, Address: 0x196304, Func Offset: 0x594
 	// Func End, Address: 0x196328, Func Offset: 0x5b8
-}*/
+	scePrintf("bhEne02_HitMark - UNIMPLEMENTED!\n");
+}

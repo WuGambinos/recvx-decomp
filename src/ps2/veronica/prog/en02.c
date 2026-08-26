@@ -1132,17 +1132,15 @@ void bhEne02_MV05(BH_PWORK* epw)
 	// Line 1736, Address: 0x191efc, Func Offset: 0xec
 	// Line 1740, Address: 0x191f00, Func Offset: 0xf0
 	// Func End, Address: 0x191f10, Func Offset: 0x100
-}
+}*/
 
-// 
-// Start address: 0x191f10
+// 100% matching!
 void bhEne02_Nage()
 {
-	// Line 1773, Address: 0x191f10, Func Offset: 0
-	// Func End, Address: 0x191f18, Func Offset: 0x8
+	
 }
 
-// 
+/*// 
 // Start address: 0x191f20
 void bhEne02_Damage(BH_PWORK* epw)
 {

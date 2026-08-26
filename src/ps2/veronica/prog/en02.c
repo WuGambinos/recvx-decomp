@@ -1490,13 +1490,10 @@ void bhEne02_DD01(BH_PWORK* epw)
 	// Func End, Address: 0x192d18, Func Offset: 0x138
 }*/
 
-// 
-// Start address: 0x192d20
+// 100% matching!
 void bhEne02_SetSandEffect(BH_PWORK* epw, NJS_POINT3* pos, int type)
 {
-	// Line 2206, Address: 0x192d20, Func Offset: 0
-	// Func End, Address: 0x192d34, Func Offset: 0x14
-	scePrintf("bhEne02_SetSandEffect - UNIMPLEMENTED!\n");
+	bhEne02_SetSandEffectMain((epw->type == 0) ? 0 : 1, pos, type);
 }
 
 // 100% matching!

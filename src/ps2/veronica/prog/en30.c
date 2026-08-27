@@ -96,7 +96,6 @@ void bhEne30(BH_PWORK* epw)
 void bhEne30_Init(BH_PWORK* epw)
 {
     NJS_CNK_OBJECT* obj;
-    int idx;
     NJS_CNK_OBJECT* pObj;
     int i;
 
@@ -119,8 +118,7 @@ void bhEne30_Init(BH_PWORK* epw)
 
     epw->mdflg = (epw->mdflg & ~2);
 
-    idx = (int)(16.0f * ((float)-rand() / -2147483648.0f));
-    epw->hp = ENE30_HITPOINT[idx];
+    epw->hp = ENE30_HITPOINT[(int)(16.0f * ((float)-rand() / -2147483648.0f))];
 
     epw->mode0 = 1;
     epw->mode1 = 0;
@@ -155,12 +153,9 @@ void bhEne30_Init(BH_PWORK* epw)
         }
     }
 
-    {
-        NJS_CNK_OBJECT* p = &epw->mlwP->objP[5];
-        i = 5;
-        for(i = 5; i <= 15; i++, p++) {
-            p->pos[1] = 0.0f;
-        }
+    obj = &epw->mlwP->objP[5];
+    for(i = 5; i <= 15; i++, obj++) {
+        obj->pos[1] = 0.0f;
     }
 
     epw->mdl[0].objP[1].evalflags  &= ~8;
@@ -176,8 +171,7 @@ void bhEne30_Init(BH_PWORK* epw)
     epw->stflg &= ~8;
     epw->cpcl = CapColTab;
 
-    idx = (int)(20.0f * ((float)-rand() / -2147483648.0f));
-    EXP0_I(0xF0) = idx + 0x14;
+    EXP0_I(0xF0) = (int)(20.0f * ((float)-rand() / -2147483648.0f)) + 0x14;
 
     epw->obj_a = epw->mdl[0].objP;
     epw->obj_b = epw->mdl[1].objP;
@@ -195,13 +189,9 @@ void bhEne30_Brain(BH_PWORK* epw)
 // 100% matching!
 void bhEne30_BR00(BH_PWORK* epw) 
 {
-    int* temp_v1;
-
     EXP0_F(0xF4) = njSqrt((epw->px - plp->px) * (epw->px - plp->px) + (epw->pz - plp->pz) * (epw->pz - plp->pz));
-    temp_v1 = &((int*)epw->exp0)[0x3C];
-
-    if (temp_v1[0] != 0) {
-        temp_v1[0] -= 1;
+    if(((int*)epw->exp0)[0x3C]) {
+        ((int*)epw->exp0)[0x3C] -= 1;
     }
 
     if (EXP0_I(0xF0) != 0) {
@@ -362,7 +352,6 @@ void bhEne30_MV02(BH_PWORK* epw)
     float size;
     NJS_CNK_OBJECT* objA;
     NJS_CNK_OBJECT* objB;
-    int j;
 
     switch (epw->mode3) {
     case 0:
@@ -422,8 +411,11 @@ void bhEne30_MV02(BH_PWORK* epw)
         objA = &epw->obj_a[5];
         objB = &epw->obj_b[5];
         
-        for (j = 5; j <= 15; j++, objA++, objB++) {
-            objA->pos[1] = objB->pos[1] = (epw->shp_ct * (*(float*)(epw->exp0 + j * 0xC + 4))) / 1000.0f;
+        {
+            int i;
+            for (i = 5; i <= 15; i++, objA++, objB++) {
+                objA->pos[1] = objB->pos[1] = (epw->shp_ct * (*(float*)(epw->exp0 + i * 0xC + 4))) / 1000.0f;
+            }
         }
         
         break;
@@ -504,17 +496,14 @@ void bhEne30_MV05(BH_PWORK* epw)
 	NJS_POINT3 pos;
 	int i;
     O_WORK* owk;
-    float temp_f1;
 
     switch (epw->mode3) {                           
     case 0:
         epw->flg |=  0x80000;
         
-        temp_f1 = ((float*)epw->exp0)[61];
-        
-        if (temp_f1 < 30.0f) {
+        if (EXP0_F(244) < 30.0f) {
             epw->ct1 = (int)(3.0f * ((float) -rand() / -2.1474836e9f));
-        } else if (temp_f1 < 70.0f) {
+        } else if (EXP0_F(244) < 70.0f) {
             epw->ct1 = (int)(2.0f * ((float) -rand() / -2.1474836e9f));
         } else {
             epw->ct1 = 0;
@@ -655,8 +644,6 @@ void bhEne30_MV06(BH_PWORK* epw)
 void bhEne30_MV07(BH_PWORK* epw) 
 {
     float dist;
-    float px;
-    float pz;
     
     switch (epw->mode3) {                             
     case 0:
@@ -669,11 +656,7 @@ void bhEne30_MV07(BH_PWORK* epw)
         epw->mtn_add = 0;
         epw->hokan_count = 0;
         epw->ct0 = 0x64;
-        
-        px = plp->px - epw->px;
-        pz = plp->pz - epw->pz;
-        dist = njSqrt((px * px) + (pz * pz));
-        
+        dist = njSqrt(((plp->px - epw->px) * (plp->px - epw->px)) + ((plp->pz - epw->pz) * (plp->pz - epw->pz)));
         epw->xn =  ((dist * -njSin(epw->ay)) / 10.0f);
         epw->zn =  ((dist * -njCos(epw->ay)) / 10.0f);
         epw->yn = 3.0f;
@@ -933,10 +916,6 @@ void bhEne30_DamageInit(BH_PWORK* epw)
 	int dam;
     NJS_POINT3 ofp;
 
-    //  NOT IN DWARF
-    int flg;
-
-
     dam = 0;
     for(i = 0; i < epw->mlwP->obj_num; i++) {
         if (epw->dam[i] != 0) {
@@ -949,7 +928,7 @@ void bhEne30_DamageInit(BH_PWORK* epw)
         epw->hp =  (epw->hp - dam);
         bhEne_SetBloodEffectBurst(epw, 2, 1, NULL, 0);
         
-        if ((epw->hp < 0) || (flg = epw->flg & 0x80000, (flg != 0))) {
+        if ((epw->hp < 0) || (i = epw->flg & 0x80000, (i != 0))) {
             ofp.x = 0.0f;
             ofp.y = 1.0f;
             ofp.z = 0.0f;
@@ -975,7 +954,7 @@ void bhEne30_DamageInit(BH_PWORK* epw)
         }
         
         if (!(epw->flg & 0x200000)) {
-            if (flg != 0) {
+            if (i != 0) {
                 epw->mode2 = 0;
             } else {
                 epw->mode2= 1;
@@ -992,8 +971,9 @@ void bhEne30_DamageInit(BH_PWORK* epw)
 void bhEne30_CollisionLine(BH_PWORK* epw) 
 {
     NJS_POINT3 n;
+    ATR_WORK* hp;
     
-    if ((bhCollisionCheckLine((NJS_POINT3*)&epw->pxb,  (NJS_POINT3*)&epw->px) != NULL) && (epw->flg & 0x200000)) {
+    if (((hp = bhCollisionCheckLine((NJS_POINT3*)&epw->pxb,  (NJS_POINT3*)&epw->px)) != NULL) && (epw->flg & 0x200000)) {
         bhGetHitCollisionNormal(&n);
         njUnitVector(&n);
         if (!(n.y < 0.99f)) {

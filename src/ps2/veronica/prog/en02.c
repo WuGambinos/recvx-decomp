@@ -2700,33 +2700,35 @@ void bhEne02_CheckWall(BH_PWORK* epw)
 	// Line 2882, Address: 0x195448, Func Offset: 0xa8
 	// Line 2888, Address: 0x195450, Func Offset: 0xb0
 	// Func End, Address: 0x19546c, Func Offset: 0xcc
-}
+}*/
 
-// 
-// Start address: 0x195470
+// 100% matching!
 void bhEne02_CameraControl(BH_PWORK* epw)
 {
-	// Line 2898, Address: 0x195470, Func Offset: 0
-	// Line 2901, Address: 0x195484, Func Offset: 0x14
-	// Line 2902, Address: 0x195494, Func Offset: 0x24
-	// Line 2903, Address: 0x1954a8, Func Offset: 0x38
-	// Line 2904, Address: 0x1954ec, Func Offset: 0x7c
-	// Line 2905, Address: 0x195530, Func Offset: 0xc0
-	// Line 2906, Address: 0x195570, Func Offset: 0x100
-	// Line 2907, Address: 0x195578, Func Offset: 0x108
-	// Line 2908, Address: 0x19559c, Func Offset: 0x12c
-	// Line 2909, Address: 0x1955dc, Func Offset: 0x16c
-	// Line 2910, Address: 0x195620, Func Offset: 0x1b0
-	// Line 2911, Address: 0x195640, Func Offset: 0x1d0
-	// Line 2910, Address: 0x195644, Func Offset: 0x1d4
-	// Line 2911, Address: 0x195648, Func Offset: 0x1d8
-	// Line 2910, Address: 0x19564c, Func Offset: 0x1dc
-	// Line 2911, Address: 0x19566c, Func Offset: 0x1fc
-	// Line 2912, Address: 0x19567c, Func Offset: 0x20c
-	// Line 2913, Address: 0x195684, Func Offset: 0x214
-	// Line 2918, Address: 0x19569c, Func Offset: 0x22c
-	// Func End, Address: 0x1956b0, Func Offset: 0x240
-}*/
+	if (epw->mode0 == 5)
+	{
+		return;
+	}
+
+	if ((epw->flg & 0x80000))
+	{
+		cam.ofx = (EXP0_F(36) * (-rand() / -2147483648.0f)) - (EXP0_F(36) / 2.0f);
+		cam.ofy = (EXP0_F(36) * (-rand() / -2147483648.0f)) - (EXP0_F(36) / 2.0f);
+		cam.ofz = (EXP0_F(36) * (-rand() / -2147483648.0f)) - (EXP0_F(36) / 2.0f);
+	}
+	else if (EXP0_F(36) > 0.01f)
+	{
+		cam.ofx = (EXP0_F(36) * (-rand() / -2147483648.0f)) - (EXP0_F(36) / 2.0f);
+		cam.ofy = (EXP0_F(36) * (-rand() / -2147483648.0f)) - (EXP0_F(36) / 2.0f);
+		cam.ofz = (EXP0_F(36) * (-rand() / -2147483648.0f)) - (EXP0_F(36) / 2.0f);
+
+		EXP0_F(36) *= 0.9f;
+	}
+	else
+	{
+		cam.ofx = cam.ofy = cam.ofz = 0;
+	}
+}
 
 // 100% matching!
 void bhEne02_WarpCheck(BH_PWORK* epw)
@@ -2759,7 +2761,7 @@ void bhEne02_WarpCheck(BH_PWORK* epw)
 	}
 	else
 	{
-		*(int*)(epw->exp0 + 116) = 0;
+		EXP0_I(116) = 0;
 	}
 }
 

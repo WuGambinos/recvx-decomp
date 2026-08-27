@@ -2674,33 +2674,36 @@ void bhEne02_SetSandParticle(NJS_POINT3* pos, int type)
 	scePrintf("bhEne02_SetSandParticle - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x1953a0
+// 100% matching!
 void bhEne02_CheckWall(BH_PWORK* epw)
 {
+	float dx, dz;
 	float ar;
-	float dz;
-	float dx;
-	// Line 2857, Address: 0x1953a0, Func Offset: 0
-	// Line 2860, Address: 0x1953b8, Func Offset: 0x18
-	// Line 2861, Address: 0x1953c8, Func Offset: 0x28
-	// Line 2864, Address: 0x1953d8, Func Offset: 0x38
-	// Line 2865, Address: 0x1953e8, Func Offset: 0x48
-	// Line 2867, Address: 0x1953fc, Func Offset: 0x5c
-	// Line 2865, Address: 0x195400, Func Offset: 0x60
-	// Line 2870, Address: 0x195404, Func Offset: 0x64
-	// Line 2872, Address: 0x195408, Func Offset: 0x68
-	// Line 2868, Address: 0x19540c, Func Offset: 0x6c
-	// Line 2869, Address: 0x195418, Func Offset: 0x78
-	// Line 2872, Address: 0x195424, Func Offset: 0x84
-	// Line 2877, Address: 0x19542c, Func Offset: 0x8c
-	// Line 2882, Address: 0x195430, Func Offset: 0x90
-	// Line 2877, Address: 0x195434, Func Offset: 0x94
-	// Line 2878, Address: 0x19543c, Func Offset: 0x9c
-	// Line 2882, Address: 0x195448, Func Offset: 0xa8
-	// Line 2888, Address: 0x195450, Func Offset: 0xb0
-	// Func End, Address: 0x19546c, Func Offset: 0xcc
-}*/
+
+	if ((epw->flg & 0x10))
+	{
+		epw->stflg &= ~0x1;
+
+		dx = -40.0f * njSin(epw->ay);
+		dz = -40.0f * njCos(epw->ay);
+		
+		ar = epw->ar;
+
+		epw->px += dx;
+		epw->pz += dz;
+
+		epw->ar = 5.0f;
+
+		bhCheckWall(epw);
+
+		epw->px -= dx;
+		epw->pz -= dz;
+
+		epw->ar = ar;
+
+		bhCheckWall(epw);
+	}
+}
 
 // 100% matching!
 void bhEne02_CameraControl(BH_PWORK* epw)

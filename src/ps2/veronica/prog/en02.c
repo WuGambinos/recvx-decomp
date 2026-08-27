@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/en02.h"
 #include "../../../ps2/veronica/prog/en02sub.h"
+#include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
@@ -2616,12 +2617,10 @@ void bhEne02_DamageInit(BH_PWORK* epw)
 	scePrintf("bhEne02_DamageInit - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x195220
+// 100% matching!
 void bhEne02_SetSandParticle(NJS_POINT3* pos, int type)
 {
-	// already reversed DWARF order
-	//_anon0* op;
+	O_WRK* op;
 	int eno;
 	int col[6] = 
 	{ 
@@ -2631,47 +2630,37 @@ void bhEne02_SetSandParticle(NJS_POINT3* pos, int type)
 	{ 
 		2.0f, 2.0f, 1.0f, 1.0f, 1.0f, 0.5f 
 	};
-	// Line 2813, Address: 0x195220, Func Offset: 0
-	// Line 2816, Address: 0x195224, Func Offset: 0x4
-	// Line 2813, Address: 0x195228, Func Offset: 0x8
-	// Line 2816, Address: 0x195230, Func Offset: 0x10
-	// Line 2825, Address: 0x195240, Func Offset: 0x20
-	// Line 2817, Address: 0x195244, Func Offset: 0x24
-	// Line 2816, Address: 0x19524c, Func Offset: 0x2c
-	// Line 2817, Address: 0x195254, Func Offset: 0x34
-	// Line 2823, Address: 0x195260, Func Offset: 0x40
-	// Line 2824, Address: 0x195268, Func Offset: 0x48
-	// Line 2817, Address: 0x19526c, Func Offset: 0x4c
-	// Line 2823, Address: 0x195274, Func Offset: 0x54
-	// Line 2825, Address: 0x195278, Func Offset: 0x58
-	// Line 2831, Address: 0x19527c, Func Offset: 0x5c
-	// Line 2823, Address: 0x195288, Func Offset: 0x68
-	// Line 2824, Address: 0x195294, Func Offset: 0x74
-	// Line 2825, Address: 0x1952a8, Func Offset: 0x88
-	// Line 2826, Address: 0x1952c0, Func Offset: 0xa0
-	// Line 2827, Address: 0x1952d8, Func Offset: 0xb8
-	// Line 2828, Address: 0x1952f0, Func Offset: 0xd0
-	// Line 2831, Address: 0x195308, Func Offset: 0xe8
-	// Line 2832, Address: 0x195320, Func Offset: 0x100
-	// Line 2833, Address: 0x195328, Func Offset: 0x108
-	// Line 2837, Address: 0x195348, Func Offset: 0x128
-	// Line 2836, Address: 0x19534c, Func Offset: 0x12c
-	// Line 2837, Address: 0x195350, Func Offset: 0x130
-	// Line 2840, Address: 0x195354, Func Offset: 0x134
-	// Line 2844, Address: 0x195358, Func Offset: 0x138
-	// Line 2845, Address: 0x19535c, Func Offset: 0x13c
-	// Line 2837, Address: 0x19536c, Func Offset: 0x14c
-	// Line 2838, Address: 0x195370, Func Offset: 0x150
-	// Line 2840, Address: 0x195374, Func Offset: 0x154
-	// Line 2841, Address: 0x195378, Func Offset: 0x158
-	// Line 2842, Address: 0x19537c, Func Offset: 0x15c
-	// Line 2845, Address: 0x195380, Func Offset: 0x160
-	// Line 2844, Address: 0x195384, Func Offset: 0x164
-	// Line 2845, Address: 0x195388, Func Offset: 0x168
-	// Line 2846, Address: 0x19538c, Func Offset: 0x16c
-	// Line 2847, Address: 0x195390, Func Offset: 0x170
-	// Func End, Address: 0x1953a0, Func Offset: 0x180
-	scePrintf("bhEne02_SetSandParticle - UNIMPLEMENTED!\n");
+	
+	sys->ef.id = 254;
+
+	sys->ef.flg = 1;
+
+	sys->ef.type = col[type];
+
+	sys->ef.px = pos->x;
+	sys->ef.py = pos->y;
+	sys->ef.pz = pos->z;
+
+	eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+
+	if (eno < 0)
+	{
+		return;
+	}
+
+	op = &eff[eno];
+
+	op->xn = 0;
+	op->yn = vy[type];
+	op->zn = 0;
+
+	op->sx = 8.0f;
+	op->sy = 8.0f;
+	op->sz = 8.0f;
+
+	op->sxb = 1.0f;
+	op->syb = 0.6f * vy[type];
+	op->szb = 1.0f;
 }
 
 // 100% matching!

@@ -2212,42 +2212,49 @@ void bhEne02_SetSandEffectMain(int type0, NJS_POINT3* pos, int type)
 	scePrintf("bhEne02_SetSandEffectMain - UNIMPLEMENTED!\n");
 }
 
-/*// 
-// Start address: 0x194010
+// 100% matching!
 void bhEne02_SetSandSpr(int type0, NJS_POINT3* pos, int type, int flip, float size, int ang)
 {
 	int eno;
-	// Line 2406, Address: 0x194010, Func Offset: 0
-	// Line 2413, Address: 0x194020, Func Offset: 0x10
-	// Line 2415, Address: 0x194030, Func Offset: 0x20
-	// Line 2413, Address: 0x194034, Func Offset: 0x24
-	// Line 2414, Address: 0x194040, Func Offset: 0x30
-	// Line 2424, Address: 0x194048, Func Offset: 0x38
-	// Line 2414, Address: 0x19404c, Func Offset: 0x3c
-	// Line 2415, Address: 0x194058, Func Offset: 0x48
-	// Line 2416, Address: 0x19406c, Func Offset: 0x5c
-	// Line 2417, Address: 0x194084, Func Offset: 0x74
-	// Line 2418, Address: 0x19409c, Func Offset: 0x8c
-	// Line 2419, Address: 0x1940b4, Func Offset: 0xa4
-	// Line 2420, Address: 0x1940c8, Func Offset: 0xb8
-	// Line 2421, Address: 0x1940dc, Func Offset: 0xcc
-	// Line 2422, Address: 0x1940f0, Func Offset: 0xe0
-	// Line 2424, Address: 0x194100, Func Offset: 0xf0
-	// Line 2425, Address: 0x194134, Func Offset: 0x124
-	// Line 2427, Address: 0x19416c, Func Offset: 0x15c
-	// Line 2428, Address: 0x194190, Func Offset: 0x180
-	// Line 2427, Address: 0x194194, Func Offset: 0x184
-	// Line 2428, Address: 0x194198, Func Offset: 0x188
-	// Line 2430, Address: 0x1941a0, Func Offset: 0x190
-	// Line 2431, Address: 0x1941b4, Func Offset: 0x1a4
-	// Line 2430, Address: 0x1941b8, Func Offset: 0x1a8
-	// Line 2431, Address: 0x1941dc, Func Offset: 0x1cc
-	// Line 2432, Address: 0x194200, Func Offset: 0x1f0
-	// Line 2434, Address: 0x194258, Func Offset: 0x248
-	// Func End, Address: 0x19426c, Func Offset: 0x25c
+
+	sys->ef.id   = 253;
+	sys->ef.type = type;
+
+	sys->ef.flg = 1;
+
+	sys->ef.px = pos->x;
+	sys->ef.py = pos->y;
+	sys->ef.pz = pos->z;
+
+	sys->ef.sx = size;
+	sys->ef.sy = size;
+	sys->ef.sz = size;
+
+	sys->ef.mdlver = type0;
+
+	if ((flip & 0x1))
+	{
+		sys->ef.sx *= -1.0f;
+	}
+
+	if ((flip & 0x2))
+	{
+		sys->ef.sz *= -1.0f;
+	}
+
+	eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+
+	if (eno == -1)
+	{
+		return;
+	}
+
+	eff[eno].xn = -njSin(ang) * 0.5f;
+	eff[eno].zn = -njCos(ang) * 0.5f;
+	eff[eno].yn = 0.3f + (0.6f * (-rand() / -2147483648.0f));
 }
 
-// 
+/*// 
 // Start address: 0x194270
 void bhEne02_SandEffect(BH_PWORK* epw)
 {

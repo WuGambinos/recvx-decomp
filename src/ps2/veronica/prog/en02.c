@@ -1601,39 +1601,55 @@ void bhEne02_Nage()
 
 }
 
-/*// 
-// Start address: 0x191f20
+// 100% matching!
 void bhEne02_Damage(BH_PWORK* epw)
 {
-	// Line 1794, Address: 0x191f20, Func Offset: 0
-	// Line 1795, Address: 0x191f2c, Func Offset: 0xc
-	// Line 1796, Address: 0x191f3c, Func Offset: 0x1c
-	// Line 1799, Address: 0x191f48, Func Offset: 0x28
-	// Line 1802, Address: 0x191f5c, Func Offset: 0x3c
-	// Line 1803, Address: 0x191f7c, Func Offset: 0x5c
-	// Line 1806, Address: 0x191f8c, Func Offset: 0x6c
-	// Line 1809, Address: 0x191f94, Func Offset: 0x74
-	// Line 1806, Address: 0x191f98, Func Offset: 0x78
-	// Line 1809, Address: 0x191fa0, Func Offset: 0x80
-	// Line 1814, Address: 0x191fbc, Func Offset: 0x9c
-	// Line 1818, Address: 0x191fc8, Func Offset: 0xa8
-	// Line 1819, Address: 0x191fdc, Func Offset: 0xbc
-	// Line 1822, Address: 0x191fe8, Func Offset: 0xc8
-	// Line 1823, Address: 0x191ff0, Func Offset: 0xd0
-	// Line 1824, Address: 0x191ff8, Func Offset: 0xd8
-	// Line 1823, Address: 0x191ffc, Func Offset: 0xdc
-	// Line 1824, Address: 0x192004, Func Offset: 0xe4
-	// Line 1825, Address: 0x192008, Func Offset: 0xe8
-	// Line 1826, Address: 0x19200c, Func Offset: 0xec
-	// Line 1827, Address: 0x192010, Func Offset: 0xf0
-	// Line 1829, Address: 0x19201c, Func Offset: 0xfc
-	// Line 1830, Address: 0x192024, Func Offset: 0x104
-	// Line 1833, Address: 0x19202c, Func Offset: 0x10c
-	// Line 1834, Address: 0x192034, Func Offset: 0x114
-	// Line 1839, Address: 0x19203c, Func Offset: 0x11c
-	// Line 1840, Address: 0x19205c, Func Offset: 0x13c
-	// Func End, Address: 0x19206c, Func Offset: 0x14c
-}*/
+	if ((epw->flg & 0x4))
+	{
+		epw->flg &= ~0x4;
+
+		bhEne_CalcDamage(epw, CombWepTbl, CombJointTbl);
+
+		if ((epw->wpnr_no == 16) && (!(epw->flg2 & 0x4)) && (epw->comb_pnt != 1))
+		{
+			goto label;
+		}
+
+		epw->hp -= epw->total_dam;
+
+		if ((epw->wpnr_no == 17) && (!(epw->flg2 & 0x4)))
+		{
+			goto label;
+		}
+
+		bhEne02_HitMark(epw);
+	}
+
+	if (((epw->flg & 0x400000)) && (epw->hp < 0))
+	{
+		epw->flg |=  0x2;
+		epw->flg &= ~0x20;
+
+		epw->mode0 = 4;
+		epw->mode1 = 0;
+		epw->mode3 = 0;
+
+		if (epw->type == 0)
+		{
+			epw->mode2 = 0;
+		}
+		else
+		{
+			epw->mode2 = 1;
+		}
+
+		bhEne02_Die(epw);
+		return;
+	}
+
+label:
+	bhEne02_DamageMode2[epw->mode2](epw);
+}
 
 // 100% matching!
 void bhEne02_DG00()
@@ -1648,7 +1664,7 @@ void bhEne02_DG01(BH_PWORK* epw)
 	{
 	case 0:
 		epw->flg &= ~0x10;
-		
+
 		epw->mtn_no = 6;
 		epw->frm_no = 0;
 

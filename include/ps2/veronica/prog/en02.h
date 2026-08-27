@@ -3,6 +3,24 @@
 
 #include "types.h"
 
+typedef struct EN02_WE_WORK 
+{
+    // total size: 0x14
+    unsigned int frm_no; // offset 0x0, size 0x4
+    float ofx;           // offset 0x4, size 0x4
+    float ofy;           // offset 0x8, size 0x4
+    float ofz;           // offset 0xC, size 0x4
+    unsigned int size;   // offset 0x10, size 0x4
+} EN02_WE_WORK;
+
+typedef struct EN02_SANDEFFECTTBL_WORK 
+{
+    // total size: 0xC
+    int mtn_no;       // offset 0x0, size 0x4
+    EN02_WE_WORK* we; // offset 0x4, size 0x4
+    unsigned int num; // offset 0x8, size 0x4
+} EN02_SANDEFFECTTBL_WORK;
+
 void bhEne02(BH_PWORK* epw);
 void bhEne02_Init(BH_PWORK* epw);
 void bhEne02_Brain(BH_PWORK* epw);

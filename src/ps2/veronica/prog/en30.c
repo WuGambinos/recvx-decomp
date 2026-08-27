@@ -12,24 +12,14 @@
 
 // ENEMY: Alexia's Baby 
 
-int ENE30_HITPOINT[16] = {0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0x14, 0x14};
-char SdwTab[3] = {0x1, 0x4, 0xFF};
-CPCL CapColTab[3] =
+static int ENE30_HITPOINT[16] = {0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0x14, 0x14};
+static char SdwTab[3] = {0x1, 0x4, 0xFF};
+static CPCL CapColTab[3] =
 {
-    { 0, 0, 16 },
-    { 5, 0, 0},
+    { 0, 0, 16},
+    { 0, 5, 0},
     { 0, 0, 0},
 };
-
-/*void(*bhEne30_Mode0)(BH_PWORK*)[6];
-void(*bhEne30_BrainType)(BH_PWORK*)[1];
-void(*bhEne30_MoveMode2)(BH_PWORK*)[8];
-void(*bhEne30_DamageMode2)(BH_PWORK*)[2];
-void(*bhEne30_DeadMode2)(BH_PWORK*)[2];
-BH_PWORK* plp;
-_anon10* sys;
-BH_PWORK ene[0];
-_anon0 eff[0];*/
 
 void(*bhEne30_Mode0[6])(BH_PWORK*) = {
     bhEne30_Init,
@@ -40,7 +30,7 @@ void(*bhEne30_Mode0[6])(BH_PWORK*) = {
     bhEne_Event,
 };
 
-void(*bhEne30_BrainType[2])(BH_PWORK*) = {
+void(*bhEne30_BrainType[1])(BH_PWORK*) = {
     bhEne30_BR00,
 };
 

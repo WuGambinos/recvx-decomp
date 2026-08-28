@@ -12,7 +12,7 @@
 
 // ENEMY: Alexia's Baby 
 
-static int ENE30_HITPOINT[16] = {0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0x14, 0x14};
+static int ENE30_HITPOINT[16] = {5, 5, 5, 5, 5, 5, 5, 5, 15, 15, 15, 15, 15, 15, 20, 20};
 static char SdwTab[3] = {0x1, 0x4, 0xFF};
 static CPCL CapColTab[3] =
 {
@@ -99,24 +99,24 @@ void bhEne30_Init(BH_PWORK* epw)
     NJS_CNK_OBJECT* pObj;
     int i;
 
-    epw->flg = (epw->flg & ~0x78);
-    epw->flg = (epw->flg & ~6);
-    epw->flg = (epw->flg & 0xFFE7FFFF);
+    epw->flg &= ~0x78;
+    epw->flg &= ~6;
+    epw->flg &= ~0x180000;
 
-    epw->flg2 = (epw->flg2 & ~1);
-    epw->flg2 = (epw->flg2 | 0x10);
+    epw->flg2 &= ~1; 
+    epw->flg2 |= 0x10; 
 
-    epw->mdflg = (epw->mdflg | 1);
+    epw->mdflg |= 1;
 
     epw->ar  = 3.0f;
     epw->ah  = 1.0f;
     epw->car = 2.0f;
     epw->cah = 1.0f;
 
-    epw->mlwP   = &epw->mdl[0];
+    epw->mlwP = &epw->mdl[0];
     epw->mdl_no = 0;
 
-    epw->mdflg = (epw->mdflg & ~2);
+    epw->mdflg &= ~2; 
 
     epw->hp = ENE30_HITPOINT[(int)(16.0f * ((float)-rand() / -2147483648.0f))];
 
@@ -125,25 +125,25 @@ void bhEne30_Init(BH_PWORK* epw)
     epw->mode2 = 0;
     epw->mode3 = 0;
 
-    epw->hokan_rate  = 0x10000;
+    epw->hokan_rate  = 65536;
     epw->hokan_count = 0;
     epw->mtn_no      = 0;
     epw->mtn_md      = 0;
-    epw->mtn_add     = 0x10000;
+    epw->mtn_add     = 65536;
     epw->frm_no      = 0;
 
     epw->clp_jno[0] = 1;
     epw->clp_jno[1] = 7;
     epw->clp_jno[2] = 9;
-    epw->clp_jno[3] = 0xB;
-    epw->clp_jno[4] = 0xD;
-    epw->clp_jno[5] = 0xF;
+    epw->clp_jno[3] = 11;
+    epw->clp_jno[4] = 13;
+    epw->clp_jno[5] = 15;
     epw->clp_jno[6] = -1;
 
-    epw->mdflg = (epw->mdflg & ~0x20);
+    epw->mdflg &= ~0x20;
 
     if (epw->exp0 == NULL) {
-        epw->exp0 = bhEne_CallocWork(0xFC, 8);
+        epw->exp0 = bhEne_CallocWork(252, 8);
         pObj = epw->mdl[1].objP;
         
         for(i = 0; i < epw->mdl[1].obj_num; i++, pObj++) {
@@ -164,14 +164,14 @@ void bhEne30_Init(BH_PWORK* epw)
     epw->mdl[1].objP[16].evalflags &= ~8;
 
     if (!(epw->flg & 0x800)) {
-        bhSetShadow(SdwTab, (unsigned char*)epw, 0x10, 4.0f, 5.0f, 6.0f);
+        bhSetShadow(SdwTab, (unsigned char*)epw, 16, 4.0f, 5.0f, 6.0f);
         epw->flg |= 0x800;
     }
 
     epw->stflg &= ~8;
     epw->cpcl = CapColTab;
 
-    EXP0_I(0xF0) = (int)(20.0f * ((float)-rand() / -2147483648.0f)) + 0x14;
+    EXP0_I(240) = (int)(20.0f * ((float)-rand() / -2147483648.0f)) + 20;
 
     epw->obj_a = epw->mdl[0].objP;
     epw->obj_b = epw->mdl[1].objP;
@@ -189,27 +189,27 @@ void bhEne30_Brain(BH_PWORK* epw)
 // 100% matching!
 void bhEne30_BR00(BH_PWORK* epw) 
 {
-    EXP0_F(0xF4) = njSqrt((epw->px - plp->px) * (epw->px - plp->px) + (epw->pz - plp->pz) * (epw->pz - plp->pz));
-    if(((int*)epw->exp0)[0x3C]) {
-        ((int*)epw->exp0)[0x3C] -= 1;
+    EXP0_F(244) = njSqrt((epw->px - plp->px) * (epw->px - plp->px) + (epw->pz - plp->pz) * (epw->pz - plp->pz));
+    if(((int*)epw->exp0)[60]) {
+        ((int*)epw->exp0)[60] -= 1;
     }
 
-    if (EXP0_I(0xF0) != 0) {
+    if (EXP0_I(240) != 0) {
         return;
     }
     
     if ((float) -rand() / -2147483648.0f > 0.3f
-        && EXP0_F(0xF4) < 15.0f
-        && bhEne_CheckDirTarget(epw, plp->px, plp->pz, 0x1555) ) {
+        && EXP0_F(244) < 15.0f
+        && bhEne_CheckDirTarget(epw, plp->px, plp->pz, 5461) ) {
         epw->mode1 = 0;
         epw->mode2 = 7;
         epw->mode3 = 0;
-        EXP0_I(0xF0) = (int)(20.0f * ((float) -rand() / -2147483648.0f)) + 0x14;
-    } else if (EXP0_F(0xF4) < 15.0f) {
+        EXP0_I(240) = (int)(20.0f * ((float) -rand() / -2147483648.0f)) + 20;
+    } else if (EXP0_F(244) < 15.0f) {
         epw->mode1 = 0;
         epw->mode2 = 2;
         epw->mode3 = 0;
-        EXP0_I(0xF0) = (int)(20.0f * ((float) -rand() / -2147483648.0f)) + 0x14;
+        EXP0_I(240) = (int)(20.0f * ((float) -rand() / -2147483648.0f)) + 20;
         return;
     }
 }
@@ -225,7 +225,7 @@ void bhEne30_Move(BH_PWORK* epw)
     bhEne30_MoveMode2[epw->mode2](epw);
     
     if (epw->flg & 4) {
-        epw->flg =  (epw->flg & ~4);
+        epw->flg &= ~4;
         bhEne30_DamageInit(epw);
     }
 }
@@ -250,18 +250,17 @@ void bhEne30_MV01(BH_PWORK* epw)
 
     switch (epw->mode3) {                             
     case 0:
-        
-        epw->flg &= 0xFFF7FFFF;
+        epw->flg &= ~0x80000;
         epw->flg2 &= ~1;
-        epw->flg |=  0x100000;
+        epw->flg |= 0x100000;
         epw->mtn_no = 0;
         epw->frm_no = 0;
         epw->hokan_count = 8;
-        epw->hokan_rate = 0xB333;
+        epw->hokan_rate = 45875;
         epw->axp = 0;
-        epw->ct0 = 0x2D;
+        epw->ct0 = 45;
         epw->ct1 = 0;
-        epw->ayp =  epw->ay;
+        epw->ayp = epw->ay;
         epw->mode3 += 1;
         /* fallthrough */
     case 1:
@@ -269,7 +268,7 @@ void bhEne30_MV01(BH_PWORK* epw)
         wdist = 100.0f;
         for(i = 0; i < sys->ewk_n; i++, ep++) {
             if (ep != epw) {
-                if ((ep->flg & 1) && (ep->id == 0x1E) && (ep->flg & 0x100000)) {
+                if ((ep->flg & 1) && (ep->id == 30) && (ep->flg & 0x100000)) {
                     {
                         float px = epw->px - ep->px;
                         float pz = epw->pz - ep->pz;
@@ -277,7 +276,7 @@ void bhEne30_MV01(BH_PWORK* epw)
                     }
                     if (!(wdist <= dist)) {
                         ang = (short) ((bhArcTan2(epw->px - ep->px, epw->pz - ep->pz) - epw->ay));
-                        if ((ang < 0x4000) && (ang > -0x4000)) {
+                        if ((ang < 16384) && (ang > -16384)) {
                             wdist = dist;
                             if (epw->ct1 == 0) {
                                 if (ang < 0) {
@@ -293,11 +292,10 @@ void bhEne30_MV01(BH_PWORK* epw)
         }
 
         if (wdist < 10.0f) {
-            epw->ayp = epw->ayp + (epw->ct1 * 0x444);
-        }
-        else if ((bhCheckRoute((NJS_POINT3*)&epw->px, (NJS_POINT3*)&plp->px, &pos) & 0xFF) != 0xFF) {
+            epw->ayp = epw->ayp + (epw->ct1 * 1092);
+        } else if ((bhCheckRoute((NJS_POINT3*)&epw->px, (NJS_POINT3*)&plp->px, &pos) & 0xFF) != 0xFF) {
             epw->ay =  epw->ayp;
-            epw->ayp = epw->ayp + bhEne_DirTarget(epw, pos.x, pos.z, 0x888);
+            epw->ayp = epw->ayp + bhEne_DirTarget(epw, pos.x, pos.z, 2184);
         } else {
             pos.x = epw->px - (7.0f * njSin(epw->ay));
             pos.y = epw->py;
@@ -311,22 +309,22 @@ void bhEne30_MV01(BH_PWORK* epw)
                     njCalcVector(NULL, &vec, &vec);
                     
                     if  (vec.x < 0.0f) {
-                        epw->ayp += 0x444;
+                        epw->ayp += 1092;
                         epw->ct1 = 1;
                     } else {
-                        epw->ayp -= 0x444;
+                        epw->ayp -= 1092;
                         epw->ct1 = -1;
                     }
                 }
                 
-                epw->ayp = epw->ayp + (epw->ct1 * 0x444);
+                epw->ayp = epw->ayp + (epw->ct1 * 1092);
             } else {
                 epw->ay = epw->ayp;
-                epw->ayp = epw->ayp + bhEne_DirTarget(epw, plp->px, plp->pz, 0x888);
+                epw->ayp = epw->ayp + bhEne_DirTarget(epw, plp->px, plp->pz, 2184);
             }
         }
         
-        epw->axp += 0x38E;
+        epw->axp += 910;
         epw->ay = (epw->ayp + (int)(910.0f * njSin(epw->axp)));
         epw->spd = (0.5f + fabsf(0.5f * njSin(epw->axp * 2)));
         
@@ -337,7 +335,7 @@ void bhEne30_MV01(BH_PWORK* epw)
         }
         
         epw->mode1 = 1;
-        epw->ct0 = 0x96;
+        epw->ct0 = 150;
         epw->ct1 = 0;
         break;
     }
@@ -674,10 +672,10 @@ void bhEne30_MV07(BH_PWORK* epw)
                 {
                     int temp;
                     temp = ((short)((0x4000 - epw->ax)));
-                    epw->ax += (temp >> 2);
+                    epw->ax += (temp / 4);
                 }
             } else {
-                epw->ax = epw->ax - (epw->ax >> 2);
+                epw->ax = epw->ax - (epw->ax / 4);
             }
             
             if (!(plp->flg & 4) && (bhEne_AttackHitCheck(plp, (NJS_POINT3*)&epw->px, 2))) {

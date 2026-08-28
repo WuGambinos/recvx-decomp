@@ -433,7 +433,7 @@ void bhEne30_MV03(BH_PWORK* epw)
         epw->mtn_no = 2;
         epw->frm_no = 0;
         epw->hokan_count = 8;
-        epw->hokan_rate = 0xB333;
+        epw->hokan_rate = 45875;
         epw->mlwP = epw->mdl;
         epw->obj_a = epw->mdl[0].objP;
         epw->obj_b = epw->mdl[1].objP;
@@ -483,7 +483,7 @@ void bhEne30_MV04(BH_PWORK* epw)
     epw->mtn_no = mtn[(((int)(3.0f * ((float) -rand() / -2.1474836e9f))))];
     epw->frm_no = 0;
     epw->hokan_count = 8;
-    epw->hokan_rate = 0xB333;
+    epw->hokan_rate = 45875;
     epw->mode3 += 1;
 }
 
@@ -510,7 +510,7 @@ void bhEne30_MV05(BH_PWORK* epw)
         epw->mtn_no = mtn[epw->ct1];
         epw->frm_no = 0;
         epw->hokan_count = 8;
-        epw->hokan_rate = 0x6666;
+        epw->hokan_rate = 26214;
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num  - 2;
         epw->ct1  = 1;
         epw->mode3 += 1;
@@ -520,7 +520,7 @@ void bhEne30_MV05(BH_PWORK* epw)
     case 1:
         if (epw->ct0-- == 0) {
             epw->mode2 = 3;
-            epw->mode3  = 0U;
+            epw->mode3  = 0;
         }
         break;
     }
@@ -548,7 +548,7 @@ void bhEne30_MV05(BH_PWORK* epw)
                 plp->mode2 = 0;
                 plp->mode3 = 0;
                 
-                if (abs((short)(epw->ay - plp->ay)) > 0x4000) {
+                if (abs((short)(epw->ay - plp->ay)) > 16384) {
                     plp->mode1 = 0;
                 } else {
                     plp->mode1 = 1;
@@ -574,7 +574,7 @@ void bhEne30_MV06(BH_PWORK* epw)
 
     switch (epw->mode3) {
     case 0:
-        epw->flg &=  0xFFF7FFFF;
+        epw->flg &=  ~0x80000;
         epw->flg2 &= ~1;
         epw->flg |= 0x100000;
         epw->mtn_no = 0;
@@ -590,7 +590,7 @@ void bhEne30_MV06(BH_PWORK* epw)
 
     case 1:
         bhAddSpeed(epw, 0);
-        if (epw->ct0 < 0xA) {
+        if (epw->ct0 < 10) {
             v.x = -njSin(epw->ay);
             v.y = 0.0f;
             v.z = -njCos(epw->ay);
@@ -625,12 +625,12 @@ void bhEne30_MV06(BH_PWORK* epw)
             }
         }
 
-        if (epw->ct0++ >= 0xA) {
+        if (epw->ct0++ >= 10) {
             epw->mode1 = 1;
             epw->mode2 = 1;
-            epw->mode3 = 0U;
+            epw->mode3 = 0;
             epw->flg |= 0x10;
-            ((int*)epw->exp0)[0x3C] = 0;
+            ((int*)epw->exp0)[60] = 0;
         }
 
         break;
@@ -645,7 +645,7 @@ void bhEne30_MV07(BH_PWORK* epw)
     
     switch (epw->mode3) {                             
     case 0:
-        epw->flg &= 0xFFF7FFFF;
+        epw->flg &= ~0x80000;
         epw->flg2 &= ~1;
         epw->flg &= ~0x60;
         epw->flg |= 0x200000;
@@ -653,7 +653,7 @@ void bhEne30_MV07(BH_PWORK* epw)
         epw->frm_no = 0;
         epw->mtn_add = 0;
         epw->hokan_count = 0;
-        epw->ct0 = 0x64;
+        epw->ct0 = 100;
         dist = njSqrt(((plp->px - epw->px) * (plp->px - epw->px)) + ((plp->pz - epw->pz) * (plp->pz - epw->pz)));
         epw->xn =  ((dist * -njSin(epw->ay)) / 10.0f);
         epw->zn =  ((dist * -njCos(epw->ay)) / 10.0f);
@@ -671,7 +671,7 @@ void bhEne30_MV07(BH_PWORK* epw)
             if (!(epw->yn <= 0.0f)) {
                 {
                     int temp;
-                    temp = ((short)((0x4000 - epw->ax)));
+                    temp = ((short)((16384 - epw->ax)));
                     epw->ax += (temp / 4);
                 }
             } else {
@@ -692,7 +692,7 @@ void bhEne30_MV07(BH_PWORK* epw)
                 plp->mode2 = 0;
                 plp->mode3 = 0;
                 
-                bhEne_SetBloodEffect4((NJS_POINT3*)&epw->px, (NJS_POINT3*)&epw->xn, 0, 0xA, 1);
+                bhEne_SetBloodEffect4((NJS_POINT3*)&epw->px, (NJS_POINT3*)&epw->xn, 0, 10, 1);
                 
                 epw->xn *= -0.6f;
                 epw->zn *= -0.6f;
@@ -702,7 +702,7 @@ void bhEne30_MV07(BH_PWORK* epw)
         } else {
             epw->mode1 = 1;
             epw->mode2 = 1;
-            epw->mode3 = 0U;
+            epw->mode3 = 0;
             epw->flg |= 0x60;
             epw->mtn_add = 0x10000;
             epw->ax = 0;
@@ -738,19 +738,19 @@ void bhEne30_DG00(BH_PWORK* epw)
         epw->mtn_no = 2;
         epw->frm_no = 0;
         epw->hokan_count = 8;
-        epw->hokan_rate = 0x6666;
-        epw->mtn_add = 0x20000;
-        epw->ct0 = 0xA;
+        epw->hokan_rate = 26214;
+        epw->mtn_add = 131072;
+        epw->ct0 = 10;
         epw->mode3 += 1;
         break;
         
     case 1:
         if (epw->ct0-- == 0) {
-            epw->mtn_add = 0x10000;
+            epw->mtn_add = 65536;
             epw->mode0 = 1;
             epw->mode1 = 0;
             epw->mode2 = 3;
-            epw->mode3 = 0U;
+            epw->mode3 = 0;
         }
         break;
     }
@@ -764,18 +764,18 @@ void bhEne30_DG01(BH_PWORK* epw)
         epw->mtn_no = 9;
         epw->frm_no = 0;
         epw->hokan_count = 8;
-        epw->hokan_rate = 0x6666;
-        epw->mtn_add = 0x10000;
+        epw->hokan_rate = 26214;
+        epw->mtn_add = 65536;
         epw->mode3 += 1;
         break;
         
     case 1:
         if (epw->frm_no == 0) {
-            epw->mtn_add = 0x10000;
+            epw->mtn_add = 65536;
             epw->mode0= 1;
             epw->mode1 = 1;
             epw->mode2 = 1;
-            epw->mode3 = 0U;
+            epw->mode3 = 0;
         }
         break;
     }
@@ -797,14 +797,14 @@ void bhEne30_DD00(BH_PWORK* epw)
 
     switch (epw->mode3) {
     case 0:
-        epw->flg = (epw->flg | 0x8002);
-        epw->flg = (epw->flg & ~0x28);
-        epw->flg = (epw->flg & 0xFFEFFFFF);
-        epw->stflg = (epw->stflg | 8);
+        epw->flg |= 0x8002;
+        epw->flg &= ~0x28;
+        epw->flg &= ~0x100000;
+        epw->stflg |= 8; 
         epw->mtn_no = 4;
         epw->frm_no = 0;
         epw->hokan_count = 8;
-        epw->hokan_rate = 0x6666;
+        epw->hokan_rate = 26214;
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
         epw->mlwP->objP[1].evalflags |= 8;
         epw->mlwP->objP[16].evalflags |= 8;
@@ -844,7 +844,7 @@ void bhEne30_DD00(BH_PWORK* epw)
     case 2:
         epw->mdflg |= 1;
         bhEne_SetBloodEffectBurst(epw, 3, 7, NULL, 0);
-        epw->ct0 = 0x3C;
+        epw->ct0 = 60;
         epw->mode3++;
         /* fallthrough */
         
@@ -864,11 +864,11 @@ void bhEne30_DD01(BH_PWORK* epw)
     case 0:
         epw->flg |= 0x8002;
         epw->flg &= ~0x28;
-        epw->flg &= 0xFFEFFFFF;
+        epw->flg &= ~0x100000;
         bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x1230E);
         epw->stflg |= 8; 
         epw->mdflg |= 1;
-        epw->ct0 = 0x3C;
+        epw->ct0 = 60;
         epw->mode3 += 1;
         
     case 1:
@@ -890,7 +890,7 @@ void bhEne30_CheckEnemies(BH_PWORK* epw)
 
     ep = ene;
     for (i = 0; i < sys->ewk_n; i++, ep++) {
-        if ((ep->flg & 1) && (ep->flg & 8) && (ep->id == 0x1E) && (ep->flg & 0x80000)) {
+        if ((ep->flg & 1) && (ep->flg & 8) && (ep->id == 30) && (ep->flg & 0x80000)) {
             dx = epw->px - ep->px;
             dz = epw->pz - ep->pz;
             
@@ -975,7 +975,7 @@ void bhEne30_CollisionLine(BH_PWORK* epw)
         bhGetHitCollisionNormal(&n);
         njUnitVector(&n);
         if (!(n.y < 0.99f)) {
-            epw->flg &= 0xFFDFFFFF;
+            epw->flg &= ~0x200000;
         }
     }
 }
@@ -985,7 +985,7 @@ void bhEne30_SetFluidEffect(NJS_POINT3* pos, NJS_POINT3* vec, int type, float si
 {
     int eno;
 
-    sys->ef.id = 0x10B;
+    sys->ef.id = 267;
     sys->ef.flg = 1;
     sys->ef.type = type;
     sys->ef.px = pos->x;

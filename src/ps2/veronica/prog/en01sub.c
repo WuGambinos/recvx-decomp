@@ -1638,39 +1638,51 @@ void bhEne01Worm_MV02(BH_PWORK* epw)
 	scePrintf("bhEne01Worm_MV02 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x18f1d0
+// 100% matching!
 void bhEne01Bom(BH_PWORK* epw)
 {
-	NJS_POINT3 pos;
-	O_WORK* owk;
-	BH_PWORK* ep;
-	// Line 2378, Address: 0x18f1d0, Func Offset: 0
-	// Line 2379, Address: 0x18f1e8, Func Offset: 0x18
-	// Line 2383, Address: 0x18f1ec, Func Offset: 0x1c
-	// Line 2385, Address: 0x18f200, Func Offset: 0x30
-	// Line 2386, Address: 0x18f208, Func Offset: 0x38
-	// Line 2389, Address: 0x18f210, Func Offset: 0x40
-	// Line 2393, Address: 0x18f224, Func Offset: 0x54
-	// Line 2395, Address: 0x18f234, Func Offset: 0x64
-	// Line 2398, Address: 0x18f244, Func Offset: 0x74
-	// Line 2402, Address: 0x18f264, Func Offset: 0x94
-	// Line 2404, Address: 0x18f274, Func Offset: 0xa4
-	// Line 2407, Address: 0x18f280, Func Offset: 0xb0
-	// Line 2410, Address: 0x18f28c, Func Offset: 0xbc
-	// Line 2412, Address: 0x18f290, Func Offset: 0xc0
-	// Line 2414, Address: 0x18f298, Func Offset: 0xc8
-	// Line 2410, Address: 0x18f29c, Func Offset: 0xcc
-	// Line 2414, Address: 0x18f2a0, Func Offset: 0xd0
-	// Line 2411, Address: 0x18f2a4, Func Offset: 0xd4
-	// Line 2412, Address: 0x18f2a8, Func Offset: 0xd8
-	// Line 2414, Address: 0x18f2ac, Func Offset: 0xdc
-	// Line 2415, Address: 0x18f2b8, Func Offset: 0xe8
-	// Line 2416, Address: 0x18f2bc, Func Offset: 0xec
-	// Line 2417, Address: 0x18f2d0, Func Offset: 0x100
-	// Line 2423, Address: 0x18f2d8, Func Offset: 0x108
-	// Func End, Address: 0x18f2f0, Func Offset: 0x120
-	scePrintf("bhEne01Bom - UNIMPLEMENTED!\n");
+    BH_PWORK* ep;
+    O_WORK* owk;
+    NJS_POINT3 pos;
+   
+    ep = (BH_PWORK*)epw->lkwkp;
+    
+    if ((ep->stflg & 0x1000000)) 
+    {
+        epw->stflg |= 0x1000000;
+    } 
+    else 
+    {
+        epw->stflg &= ~0x1000000;
+    }
+    
+    if ((ep->flg & 0x2)) 
+    {
+        epw->flg &= ~0x20;
+    }
+    
+    bhEne01Bom_Mode0[epw->mode0](epw);
+    
+    if ((epw->flg & 0x4)) 
+    {
+        epw->flg &= ~0x4;
+    }
+    
+    bhCalcModel(epw);
+    
+    owk = epw->mlwP->owP;
+    
+    pos.x = 0;
+    pos.y = 1.0f;
+    pos.z = 0;
+    
+    njCalcPoint(&owk->mtx, &pos, (NJS_POINT3*)&epw->watr.c1);
+    
+    pos.y = -1.0f;
+    
+    njCalcPoint(&owk->mtx, &pos, (NJS_POINT3*)&epw->watr.c2);
+    
+    epw->watr.r = 2.0f;
 }
 
 CPCL Ene01BomCapColTab[3] = 

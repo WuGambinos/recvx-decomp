@@ -827,36 +827,41 @@ void bhEne01Cap(BH_PWORK* epw)
     bhCalcModel(epw);
 }
 
-// 
-// Start address: 0x18d8b0
+// 100% matching!
 void bhEne01Cap_Init(BH_PWORK* epw)
 {
-	// Line 1437, Address: 0x18d8b0, Func Offset: 0
-	// Line 1438, Address: 0x18d8bc, Func Offset: 0xc
-	// Line 1439, Address: 0x18d8c0, Func Offset: 0x10
-	// Line 1442, Address: 0x18d8cc, Func Offset: 0x1c
-	// Line 1444, Address: 0x18d8d8, Func Offset: 0x28
-	// Line 1448, Address: 0x18d8e8, Func Offset: 0x38
-	// Line 1450, Address: 0x18d8f8, Func Offset: 0x48
-	// Line 1451, Address: 0x18d900, Func Offset: 0x50
-	// Line 1452, Address: 0x18d904, Func Offset: 0x54
-	// Line 1453, Address: 0x18d908, Func Offset: 0x58
-	// Line 1454, Address: 0x18d90c, Func Offset: 0x5c
-	// Line 1455, Address: 0x18d910, Func Offset: 0x60
-	// Line 1456, Address: 0x18d914, Func Offset: 0x64
-	// Line 1460, Address: 0x18d918, Func Offset: 0x68
-	// Line 1465, Address: 0x18d91c, Func Offset: 0x6c
-	// Line 1460, Address: 0x18d920, Func Offset: 0x70
-	// Line 1461, Address: 0x18d924, Func Offset: 0x74
-	// Line 1462, Address: 0x18d92c, Func Offset: 0x7c
-	// Line 1463, Address: 0x18d934, Func Offset: 0x84
-	// Line 1465, Address: 0x18d93c, Func Offset: 0x8c
-	// Line 1466, Address: 0x18d940, Func Offset: 0x90
-	// Line 1467, Address: 0x18d944, Func Offset: 0x94
-	// Line 1468, Address: 0x18d948, Func Offset: 0x98
-	// Line 1469, Address: 0x18d94c, Func Offset: 0x9c
-	// Func End, Address: 0x18d95c, Func Offset: 0xac
-	scePrintf("bhEne01Cap_Init - UNIMPLEMENTED!\n");
+    epw->stflg = 0;
+    
+    epw->flg |= 0x8000;
+    
+    if (epw->exp0 == NULL) 
+    {
+        epw->exp0 = bhEne_CallocWork(112, 8);
+    }
+    
+    if (!(epw->flg & 0x80)) 
+    {
+        epw->flg |= 0x80;
+        
+        epw->px = 0;
+        epw->py = 0;
+        epw->pz = 0;
+        
+        epw->ax = 0;
+        epw->ay = 0;
+        epw->az = 0;
+    }
+    
+    EXP0_I(0) = 0;
+    EXP0_I(4) = 0;
+    EXP0_I(8) = 0;
+    
+    EXP0_I(20) = 0;
+    
+    epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
 }
 
 // 100% matching!

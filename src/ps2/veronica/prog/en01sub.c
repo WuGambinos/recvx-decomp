@@ -1,12 +1,14 @@
 #include "../../../ps2/veronica/prog/en01sub.h"
 #include "../../../ps2/veronica/prog/en01.h"
 #include "../../../ps2/veronica/prog/eneset.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/weapon.h"
+#include "../../../ps2/veronica/prog/zonzon.h"
 
 void (*bhEne01Parent_Mode0[2])(BH_PWORK*) =
 {
@@ -180,7 +182,7 @@ void bhEne01Parent_NoKaidanCheck()
 
     for (no = 0; i < sys->ewk_n; i++, ep++) 
     {
-        if ((ep->id == 1) && (((ep->flg & 0x1)) && (ep->type != 10)) && (ep->exp0 != NULL) && ((!(ep->stflg & 0x1000000)) && ((!(ep->flg & 0x2)) && (!(ep->flg & 0x80)))))
+        if (((ep->id == 1) && ((ep->flg & 0x1)) && (ep->type != 10)) && (ep->exp0 != NULL) && ((!(ep->stflg & 0x1000000)) && ((!(ep->flg & 0x2)) && (!(ep->flg & 0x80)))))
         {
             ep->flg &= ~0x200000;
             
@@ -622,71 +624,94 @@ void bhEne01Leg_Damage(BH_PWORK* epw)
 	bhEne01Leg_DamageMode[epw->mode2](epw);
 }
 
-// 
-// Start address: 0x18cf70
+// 99.89% matching
 void bhEne01Leg_DG00(BH_PWORK* epw)
 {
-	NJS_POINT3 pd;
-	BH_PWORK* epp;
-	O_WORK* owk;
-	NJS_CNK_OBJECT* obj;
-	ATR_WORK* hp;
-	// Line 1050, Address: 0x18cf70, Func Offset: 0
-	// Line 1054, Address: 0x18cf84, Func Offset: 0x14
-	// Line 1059, Address: 0x18cf8c, Func Offset: 0x1c
-	// Line 1062, Address: 0x18cfb8, Func Offset: 0x48
-	// Line 1067, Address: 0x18cfbc, Func Offset: 0x4c
-	// Line 1068, Address: 0x18cfc4, Func Offset: 0x54
-	// Line 1070, Address: 0x18cfd0, Func Offset: 0x60
-	// Line 1072, Address: 0x18cfdc, Func Offset: 0x6c
-	// Line 1073, Address: 0x18cfe4, Func Offset: 0x74
-	// Line 1072, Address: 0x18cfe8, Func Offset: 0x78
-	// Line 1073, Address: 0x18cfec, Func Offset: 0x7c
-	// Line 1074, Address: 0x18cff4, Func Offset: 0x84
-	// Line 1075, Address: 0x18d018, Func Offset: 0xa8
-	// Line 1078, Address: 0x18d024, Func Offset: 0xb4
-	// Line 1080, Address: 0x18d044, Func Offset: 0xd4
-	// Line 1081, Address: 0x18d048, Func Offset: 0xd8
-	// Line 1082, Address: 0x18d04c, Func Offset: 0xdc
-	// Line 1083, Address: 0x18d050, Func Offset: 0xe0
-	// Line 1084, Address: 0x18d054, Func Offset: 0xe4
-	// Line 1083, Address: 0x18d060, Func Offset: 0xf0
-	// Line 1084, Address: 0x18d064, Func Offset: 0xf4
-	// Line 1086, Address: 0x18d070, Func Offset: 0x100
-	// Line 1090, Address: 0x18d074, Func Offset: 0x104
-	// Line 1092, Address: 0x18d07c, Func Offset: 0x10c
-	// Line 1086, Address: 0x18d080, Func Offset: 0x110
-	// Line 1088, Address: 0x18d088, Func Offset: 0x118
-	// Line 1089, Address: 0x18d090, Func Offset: 0x120
-	// Line 1090, Address: 0x18d098, Func Offset: 0x128
-	// Line 1091, Address: 0x18d0a4, Func Offset: 0x134
-	// Line 1092, Address: 0x18d0ac, Func Offset: 0x13c
-	// Line 1093, Address: 0x18d0bc, Func Offset: 0x14c
-	// Line 1095, Address: 0x18d0dc, Func Offset: 0x16c
-	// Line 1096, Address: 0x18d0e0, Func Offset: 0x170
-	// Line 1095, Address: 0x18d0ec, Func Offset: 0x17c
-	// Line 1096, Address: 0x18d0f0, Func Offset: 0x180
-	// Line 1097, Address: 0x18d0fc, Func Offset: 0x18c
-	// Line 1098, Address: 0x18d110, Func Offset: 0x1a0
-	// Line 1101, Address: 0x18d120, Func Offset: 0x1b0
-	// Line 1102, Address: 0x18d124, Func Offset: 0x1b4
-	// Line 1104, Address: 0x18d154, Func Offset: 0x1e4
-	// Line 1106, Address: 0x18d160, Func Offset: 0x1f0
-	// Line 1104, Address: 0x18d168, Func Offset: 0x1f8
-	// Line 1105, Address: 0x18d170, Func Offset: 0x200
-	// Line 1106, Address: 0x18d178, Func Offset: 0x208
-	// Line 1107, Address: 0x18d180, Func Offset: 0x210
-	// Line 1108, Address: 0x18d194, Func Offset: 0x224
-	// Line 1109, Address: 0x18d1a8, Func Offset: 0x238
-	// Line 1110, Address: 0x18d1b0, Func Offset: 0x240
-	// Line 1124, Address: 0x18d1b8, Func Offset: 0x248
-	// Line 1112, Address: 0x18d1bc, Func Offset: 0x24c
-	// Line 1125, Address: 0x18d1c0, Func Offset: 0x250
-	// Line 1126, Address: 0x18d1d0, Func Offset: 0x260
-	// Line 1127, Address: 0x18d1f0, Func Offset: 0x280
-	// Line 1135, Address: 0x18d210, Func Offset: 0x2a0
-	// Func End, Address: 0x18d228, Func Offset: 0x2b8
-	scePrintf("bhEne01Leg_DG00 - UNIMPLEMENTED!\n");
+    ATR_WORK* hp;        
+    NJS_CNK_OBJECT* obj; 
+    O_WORK* owk;        
+    BH_PWORK* epp;    
+    NJS_POINT3 pd;      
+
+    epp = (BH_PWORK*)epw->lkwkp;
+
+    switch (epw->mode3) 
+    {
+    case 0:
+        epw->ct0 = 0;
+        
+        obj = (NJS_CNK_OBJECT*)EXP0_I(0);
+        
+        obj[0].ang[0] = obj[0].ang[1] = obj[0].ang[2] = 0;
+        obj[1].ang[0] = obj[1].ang[1] = obj[1].ang[2] = 0;
+
+        owk = (O_WORK*)EXP0_I(4) + 1;
+        
+        njSetMatrix((NJS_MATRIX*)&epw->exp0[48], &owk->mtx);
+        
+        njTranslate((NJS_MATRIX*)&epw->exp0[48], 0, -1.0f, -2.2f);
+
+        epw->mode3++;
+    case 1:
+        if ((epw->ct0 % 8) == 0) 
+        {
+            pd.x = 0;
+            pd.y = 0;
+            pd.z = 0;
+            
+            epp->djnt_no = EXP0_I(12);
+            bhEne_SetBlood2(epp, 1, &pd, 0);
+        }
+        
+        epw->ct0++;
+
+        owk = (O_WORK*)EXP0_I(4);
+        
+        pd.x = owk[0].mtx[12];
+        pd.y = owk[0].mtx[13] - 1.0f;
+        pd.z = owk[0].mtx[14];
+        
+        hp = bhCheckWallType(&pd, epw->flg, 1.0f, 1.0f);
+
+        if ((hp == NULL) || ((hp != NULL) && (hp->type != 7)))
+        {
+            owk = (O_WORK*)EXP0_I(4) + 1;
+            
+            njRotateXYZ((NJS_MATRIX*)&epw->exp0[48], 0, 0, epw->ax);
+            njRotateXYZ(&owk[0].mtx,                 0, 0, epw->ax);
+            
+            epw->ax += epw->wax;
+        }
+
+        owk = (O_WORK*)EXP0_I(4);
+        
+        if (((hp != NULL) && (hp->type == 7)) || (owk[1].mtx[13] > owk[0].mtx[13]))
+        {
+            owk->mtx[13] += -100.0f;
+            
+            obj = (NJS_CNK_OBJECT*)EXP0_I(0) + 1;
+
+            njSetMatrix(&owk[1].mtx, &owk[0].mtx);
+            
+            njTranslate(&owk[1].mtx, obj->pos[0], obj->pos[1], obj->pos[2]);
+            njRotateXYZ(&owk[1].mtx, obj->ang[0], obj->ang[1], obj->ang[2]);
+
+            epw->mode3++;
+            break;
+        }
+
+        obj = (NJS_CNK_OBJECT*)EXP0_I(0) + 1;
+        
+        owk = (O_WORK*)EXP0_I(4) + 1;
+
+        njSetMatrix(&owk[-1].mtx, &owk[0].mtx);
+        
+        njRotateXYZ(&owk[-1].mtx, -obj->ang[0], -obj->ang[1], -obj->ang[2]);
+        njTranslate(&owk[-1].mtx, -obj->pos[0], -obj->pos[1], -obj->pos[2]);
+        break;
+    case 2:
+        break;
+    }
 }
 
 // 100% matching!

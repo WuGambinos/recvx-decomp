@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/en01sub.h"
+#include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/en01.h"
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
@@ -1649,7 +1650,7 @@ void bhEne01Bom(BH_PWORK* epw)
     
     if ((ep->stflg & 0x1000000)) 
     {
-        epw->stflg |= 0x1000000;
+        epw->stflg |=  0x1000000;
     } 
     else 
     {
@@ -1819,47 +1820,51 @@ void bhEne01Scope_Move()
 	
 }
 
-// 
-// Start address: 0x18f610
-void bhEne01Scope_Effect(BH_PWORK* epw)
+// 100% matching!
+void bhEne01Scope_Effect(BH_PWORK* epw) 
 {
-	int eno;
-	int i;
-	BH_PWORK* ep;
 	static NJS_POINT3 scope_ofs[2] = 
 	{
 		{  0.3f, -0.5f, -1.1f },
 		{ -0.3f, -0.5f, -1.1f }
 	};
-	// Line 2642, Address: 0x18f610, Func Offset: 0
-	// Line 2652, Address: 0x18f62c, Func Offset: 0x1c
-	// Line 2647, Address: 0x18f630, Func Offset: 0x20
-	// Line 2652, Address: 0x18f634, Func Offset: 0x24
-	// Line 2655, Address: 0x18f650, Func Offset: 0x40
-	// Line 2659, Address: 0x18f658, Func Offset: 0x48
-	// Line 2662, Address: 0x18f65c, Func Offset: 0x4c
-	// Line 2659, Address: 0x18f668, Func Offset: 0x58
-	// Line 2660, Address: 0x18f678, Func Offset: 0x68
-	// Line 2661, Address: 0x18f684, Func Offset: 0x74
-	// Line 2667, Address: 0x18f688, Func Offset: 0x78
-	// Line 2660, Address: 0x18f68c, Func Offset: 0x7c
-	// Line 2661, Address: 0x18f698, Func Offset: 0x88
-	// Line 2662, Address: 0x18f6ac, Func Offset: 0x9c
-	// Line 2663, Address: 0x18f6c0, Func Offset: 0xb0
-	// Line 2664, Address: 0x18f6d4, Func Offset: 0xc4
-	// Line 2665, Address: 0x18f6e8, Func Offset: 0xd8
-	// Line 2669, Address: 0x18f6fc, Func Offset: 0xec
-	// Line 2671, Address: 0x18f71c, Func Offset: 0x10c
-	// Line 2672, Address: 0x18f740, Func Offset: 0x130
-	// Line 2671, Address: 0x18f744, Func Offset: 0x134
-	// Line 2672, Address: 0x18f748, Func Offset: 0x138
-	// Line 2674, Address: 0x18f758, Func Offset: 0x148
-	// Line 2675, Address: 0x18f7a0, Func Offset: 0x190
-	// Line 2676, Address: 0x18f7c8, Func Offset: 0x1b8
-	// Line 2677, Address: 0x18f7f0, Func Offset: 0x1e0
-	// Line 2678, Address: 0x18f7f4, Func Offset: 0x1e4
-	// Line 2680, Address: 0x18f7f8, Func Offset: 0x1e8
-	// Line 2682, Address: 0x18f808, Func Offset: 0x1f8
-	// Func End, Address: 0x18f828, Func Offset: 0x218
-	scePrintf("bhEne01Scope_Effect - UNIMPLEMENTED!\n");
+    BH_PWORK* ep;
+    int i;
+    int eno;
+    
+    ep = (BH_PWORK*)epw->lkwkp;
+    
+    if (((epw->mdflg & 0x1)) || ((ep->flg & 0x2))) 
+    {
+        return;
+    }
+    
+    sys->ef.id   = 355;
+    sys->ef.type = 0;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.sx = 0.18f;
+    sys->ef.sy = 0.18f;
+    sys->ef.sz = 0.18f;
+    
+    sys->ef.mdlver = 0;
+    
+    for (i = 0; i < 2; i++) 
+    {
+        njCalcPoint(epw->mtx, &scope_ofs[i], (NJS_POINT3*)&sys->ef.px);
+        
+        eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        
+        if ((eno != -1) || (eno < 512)) 
+        {
+            eff[eno].ax = 10430.381f * atan2f(epw->mtx[0][6], epw->mtx[0][10]);
+            eff[eno].ay = 10430.381f * asinf(-epw->mtx[0][2]);
+            eff[eno].az = 10430.381f * atan2f(epw->mtx[0][1], epw->mtx[0][0]);
+            
+            eff[eno].ct3 = 0;
+            
+            eff[eno].exp0 = (unsigned char*)ep;
+        }
+    }
 }

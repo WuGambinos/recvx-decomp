@@ -2,6 +2,8 @@
 #include "../../../ps2/veronica/prog/en01.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/weapon.h"
 
 void (*bhEne01Parent_Mode0[2])(BH_PWORK*) =
 {
@@ -1613,35 +1615,37 @@ void bhEne01Bom_Init(BH_PWORK* epw)
 	scePrintf("bhEne01Bom_Init - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x18f3c0
+// 100% matching!
 void bhEne01Bom_Move(BH_PWORK* epw)
 {
-	NJS_POINT3 pos2;
-	NJS_POINT3 pos = { 0.0f, 0.0f, 2.0f };
-	BH_PWORK* ep;
-	// Line 2495, Address: 0x18f3c0, Func Offset: 0
-	// Line 2498, Address: 0x18f3cc, Func Offset: 0xc
-	// Line 2495, Address: 0x18f3d0, Func Offset: 0x10
-	// Line 2498, Address: 0x18f3d4, Func Offset: 0x14
-	// Line 2496, Address: 0x18f3d8, Func Offset: 0x18
-	// Line 2498, Address: 0x18f3dc, Func Offset: 0x1c
-	// Line 2501, Address: 0x18f3f4, Func Offset: 0x34
-	// Line 2505, Address: 0x18f414, Func Offset: 0x54
-	// Line 2507, Address: 0x18f424, Func Offset: 0x64
-	// Line 2516, Address: 0x18f45c, Func Offset: 0x9c
-	// Line 2518, Address: 0x18f474, Func Offset: 0xb4
-	// Line 2520, Address: 0x18f4a4, Func Offset: 0xe4
-	// Line 2522, Address: 0x18f4b8, Func Offset: 0xf8
-	// Line 2525, Address: 0x18f4c4, Func Offset: 0x104
-	// Line 2527, Address: 0x18f4d4, Func Offset: 0x114
-	// Line 2528, Address: 0x18f4d8, Func Offset: 0x118
-	// Line 2527, Address: 0x18f4dc, Func Offset: 0x11c
-	// Line 2528, Address: 0x18f4e4, Func Offset: 0x124
-	// Line 2529, Address: 0x18f4f0, Func Offset: 0x130
-	// Line 2537, Address: 0x18f4fc, Func Offset: 0x13c
-	// Func End, Address: 0x18f510, Func Offset: 0x150
-	scePrintf("bhEne01Bom_Move - UNIMPLEMENTED!\n");
+    BH_PWORK* ep = (BH_PWORK*)epw->lkwkp;
+    NJS_POINT3 pos = { 0.0f, 0.0f, 2.0f }, pos2;
+    
+    switch (epw->mode3)
+    {                             
+    case 0:
+        if (((epw->flg & 0x4)) && (((epw->wpnr_no != 2) && (epw->wpnr_no != 10)) && ((epw->wpnr_no != 17) || ((epw->flg2 & 0x4)))))
+        {
+			njCalcPoint(&epw->mlwP->owP->mtx, &pos, &pos2);
+			
+			if (pos2.y < rom->grand[epw->flr_no + 2]) 
+			{
+				pos2.y = 1.0f + rom->grand[epw->flr_no + 2];
+			}
+			
+			bhSetExplosion(&pos2);
+			
+			bhEne01_SePlay(ep, &pos2, 4936);
+			
+			epw->mdflg |= 0x1;
+			
+			epw->flg &= ~0x20;
+			
+			epw->mode3++;
+        }
+    case 1:
+        break;
+    }
 }
 
 // 

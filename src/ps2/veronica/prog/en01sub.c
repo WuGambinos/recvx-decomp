@@ -144,48 +144,64 @@ void bhEne01Parent_NearestCheck()
     }
 }
 
-// 
-// Start address: 0x18bdf0
-void bhEne01Parent_NoKaidanCheck()
+// 100% matching!
+void bhEne01Parent_NoKaidanCheck() 
 {
-	int no;
-	int n;
-	int i;
-	BH_PWORK* ep;
-	BH_PWORK* ep_p[10];
-	STG_WORK* stg_p;
-	static STG_WORK ene_stg_tbl[2] = 
+    static STG_WORK ene_stg_tbl[2] = 
 	{
 		{  0, 6, 2, 2 },
 		{ -1, 0, 0, 0 }
 	};
-	// Line 364, Address: 0x18bdf0, Func Offset: 0
-	// Line 357, Address: 0x18bdf4, Func Offset: 0x4
-	// Line 364, Address: 0x18bdfc, Func Offset: 0xc
-	// Line 362, Address: 0x18be00, Func Offset: 0x10
-	// Line 344, Address: 0x18be04, Func Offset: 0x14
-	// Line 362, Address: 0x18be08, Func Offset: 0x18
-	// Line 364, Address: 0x18be0c, Func Offset: 0x1c
-	// Line 366, Address: 0x18be10, Func Offset: 0x20
-	// Line 368, Address: 0x18be20, Func Offset: 0x30
-	// Line 374, Address: 0x18be3c, Func Offset: 0x4c
-	// Line 377, Address: 0x18be50, Func Offset: 0x60
-	// Line 379, Address: 0x18be7c, Func Offset: 0x8c
-	// Line 387, Address: 0x18bed8, Func Offset: 0xe8
-	// Line 388, Address: 0x18bee0, Func Offset: 0xf0
-	// Line 391, Address: 0x18bef0, Func Offset: 0x100
-	// Line 394, Address: 0x18bef8, Func Offset: 0x108
-	// Line 396, Address: 0x18bf04, Func Offset: 0x114
-	// Line 397, Address: 0x18bf08, Func Offset: 0x118
-	// Line 400, Address: 0x18bf30, Func Offset: 0x140
-	// Line 402, Address: 0x18bf40, Func Offset: 0x150
-	// Line 404, Address: 0x18bf4c, Func Offset: 0x15c
-	// Line 405, Address: 0x18bf54, Func Offset: 0x164
-	// Line 404, Address: 0x18bf5c, Func Offset: 0x16c
-	// Line 405, Address: 0x18bf68, Func Offset: 0x178
-	// Line 407, Address: 0x18bf70, Func Offset: 0x180
-	// Func End, Address: 0x18bf7c, Func Offset: 0x18c
-	scePrintf("bhEne01Parent_NoKaidanCheck - UNIMPLEMENTED!\n");
+    STG_WORK* stg_p;    
+    BH_PWORK* ep_p[10]; 
+    BH_PWORK* ep;       
+    int i;              
+    int n, no;             
+
+    ep = ene;
+    
+    stg_p = ene_stg_tbl;
+
+    for (i = 0; i < 0xFF; i++, stg_p++) 
+    {
+        if (stg_p->stg_no == -1) 
+        {
+            return;
+        }
+        
+        if ((sys->stg_no == stg_p->stg_no) || (sys->rom_no == stg_p->rom_no)) 
+        {
+            break;
+        }
+    }
+
+    i = 0;
+    n = 0;
+
+    for (no = 0; i < sys->ewk_n; i++, ep++) 
+    {
+        if ((ep->id == 1) && (((ep->flg & 0x1)) && (ep->type != 10)) && (ep->exp0 != NULL) && ((!(ep->stflg & 0x1000000)) && ((!(ep->flg & 0x2)) && (!(ep->flg & 0x80)))))
+        {
+            ep->flg &= ~0x200000;
+            
+            if (ep->flr_no == stg_p->flr_no) 
+            {
+                n++;
+            } 
+            else 
+            {
+                ep_p[no++] = ep; 
+            }
+        }
+    }
+
+    if (n >= stg_p->ene_max)
+    {
+        for (i = 0; i < no; i++) 
+        {
+            ep_p[i]->flg |= 0x200000;
+        }
+    }
 }
 
 // 100% matching!

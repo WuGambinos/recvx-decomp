@@ -109,30 +109,39 @@ void bhEne01Parent_Move()
 	bhEne01Parent_NoKaidanCheck();
 }
 
-// 
-// Start address: 0x18bcf0
-void bhEne01Parent_NearestCheck()
+// 100% matching!
+void bhEne01Parent_NearestCheck() 
 {
-	int i;
-	float dist;
-	BH_PWORK* epp;
-	BH_PWORK* ep;
-	// Line 293, Address: 0x18bcf0, Func Offset: 0
-	// Line 295, Address: 0x18bcf8, Func Offset: 0x8
-	// Line 297, Address: 0x18bcfc, Func Offset: 0xc
-	// Line 294, Address: 0x18bd08, Func Offset: 0x18
-	// Line 297, Address: 0x18bd0c, Func Offset: 0x1c
-	// Line 299, Address: 0x18bd18, Func Offset: 0x28
-	// Line 307, Address: 0x18bd74, Func Offset: 0x84
-	// Line 308, Address: 0x18bd80, Func Offset: 0x90
-	// Line 310, Address: 0x18bda0, Func Offset: 0xb0
-	// Line 311, Address: 0x18bda4, Func Offset: 0xb4
-	// Line 314, Address: 0x18bda8, Func Offset: 0xb8
-	// Line 316, Address: 0x18bdd0, Func Offset: 0xe0
-	// Line 318, Address: 0x18bdd8, Func Offset: 0xe8
-	// Line 320, Address: 0x18bde8, Func Offset: 0xf8
-	// Func End, Address: 0x18bdf0, Func Offset: 0x100
-	scePrintf("bhEne01Parent_NearestCheck - UNIMPLEMENTED!\n");
+    BH_PWORK* ep, *epp;  
+    float dist;    
+    int i;         
+    
+    ep  = ene;
+    epp = NULL;
+    
+    dist = 0;
+
+    for (i = 0; i < sys->ewk_n; i++, ep++) 
+    {
+        if (((ep->id == 1) && ((ep->flg & 0x1)) && (ep->type != 10)) && (ep->exp0 != NULL) && ((!(ep->stflg & 0x1000000)) && ((!(ep->flg & 0x2)) && (!(ep->flg & 0x80))))) 
+        {
+            EP_EXP0_I(68) &= ~0x2;
+            
+            if ((dist > EP_EXP0_F(84)) || (epp == NULL)) 
+            {
+                dist = EP_EXP0_F(84);
+                
+                epp = ep;
+            }
+        }
+    }
+
+    if (epp != NULL) 
+    {
+        ep = epp; 
+        
+        EP_EXP0_I(68) |= 0x2;
+    }
 }
 
 // 
@@ -1077,7 +1086,7 @@ void bhEne01Worm_Init(BH_PWORK* epw)
 {
     epw->stflg = 0;
     
-    epw->flg |= 0x8000;
+    epw->flg |=  0x8000;
     epw->flg &= ~0x100000;
     
     epw->hokan_rate  = 0;

@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/en01sub.h"
 #include "../../../ps2/veronica/prog/en01.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
@@ -1648,21 +1649,23 @@ void bhEne01Bom_Move(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x18f510
-void bhEne01Scope(BH_PWORK* epw)
+// 100% matching!
+void bhEne01Scope(BH_PWORK* epw) 
 {
-	// Line 2555, Address: 0x18f510, Func Offset: 0
-	// Line 2558, Address: 0x18f51c, Func Offset: 0xc
-	// Line 2560, Address: 0x18f534, Func Offset: 0x24
-	// Line 2561, Address: 0x18f53c, Func Offset: 0x2c
-	// Line 2564, Address: 0x18f544, Func Offset: 0x34
-	// Line 2567, Address: 0x18f558, Func Offset: 0x48
-	// Line 2569, Address: 0x18f578, Func Offset: 0x68
-	// Line 2572, Address: 0x18f580, Func Offset: 0x70
-	// Line 2573, Address: 0x18f588, Func Offset: 0x78
-	// Func End, Address: 0x18f598, Func Offset: 0x88
-	scePrintf("bhEne01Scope - UNIMPLEMENTED!\n");
+    if ((((O_WRK*)epw->lkwkp)->stflg & 0x1000000)) 
+    {
+        epw->stflg |= 0x1000000;
+    } 
+    else 
+    {
+        epw->stflg &= ~0x1000000;
+    }
+    
+    bhEne01Scope_Mode0[epw->mode0](epw);
+    
+    bhCalcModel(epw);
+    
+    bhEne01Scope_Effect(epw); 
 }
 
 // 

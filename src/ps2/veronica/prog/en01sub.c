@@ -6,7 +6,9 @@
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/weapon.h"
 #include "../../../ps2/veronica/prog/zonzon.h"
 
@@ -932,103 +934,109 @@ void bhEne01Cap_Damage(BH_PWORK* epw)
 	bhEne01Cap_DamageMode[epw->mode2](epw);
 }
 
-// 
-// Start address: 0x18d9a0
-void bhEne01Cap_DG00(BH_PWORK* epw)
+// 99.91% matching
+void bhEne01Cap_DG00(BH_PWORK* epw) 
 {
-	int i;
-	int ay;
-	float wk1;
-	float wk0;
-	float heavy;
-	O_WORK* owk;
-	ATR_WORK* hp;
-	NJS_POINT3 pp[3];
-	NJS_POINT3 p[3] = 
+    NJS_POINT3 p[3] = 
 	{
 		{ 0.0f, -1.200000048f, -1.350000024f },
 		{ 0.0f,          0.0f,          0.0f },
 		{ 0.0f, -1.200000048f,          1.0f }
 	};
-	// Line 1577, Address: 0x18d9a0, Func Offset: 0
-	// Line 1578, Address: 0x18d9bc, Func Offset: 0x1c
-	// Line 1577, Address: 0x18d9c0, Func Offset: 0x20
-	// Line 1578, Address: 0x18d9c4, Func Offset: 0x24
-	// Line 1577, Address: 0x18d9c8, Func Offset: 0x28
-	// Line 1578, Address: 0x18d9cc, Func Offset: 0x2c
-	// Line 1588, Address: 0x18d9ec, Func Offset: 0x4c
-	// Line 1593, Address: 0x18da18, Func Offset: 0x78
-	// Line 1591, Address: 0x18da20, Func Offset: 0x80
-	// Line 1593, Address: 0x18da24, Func Offset: 0x84
-	// Line 1595, Address: 0x18da48, Func Offset: 0xa8
-	// Line 1597, Address: 0x18da58, Func Offset: 0xb8
-	// Line 1600, Address: 0x18da68, Func Offset: 0xc8
-	// Line 1601, Address: 0x18da6c, Func Offset: 0xcc
-	// Line 1602, Address: 0x18da70, Func Offset: 0xd0
-	// Line 1605, Address: 0x18da7c, Func Offset: 0xdc
-	// Line 1607, Address: 0x18da84, Func Offset: 0xe4
-	// Line 1608, Address: 0x18da90, Func Offset: 0xf0
-	// Line 1610, Address: 0x18daac, Func Offset: 0x10c
-	// Line 1608, Address: 0x18dab0, Func Offset: 0x110
-	// Line 1610, Address: 0x18dac0, Func Offset: 0x120
-	// Line 1611, Address: 0x18dad8, Func Offset: 0x138
-	// Line 1612, Address: 0x18dae4, Func Offset: 0x144
-	// Line 1615, Address: 0x18daf0, Func Offset: 0x150
-	// Line 1612, Address: 0x18daf8, Func Offset: 0x158
-	// Line 1615, Address: 0x18dafc, Func Offset: 0x15c
-	// Line 1612, Address: 0x18db00, Func Offset: 0x160
-	// Line 1613, Address: 0x18db08, Func Offset: 0x168
-	// Line 1617, Address: 0x18db14, Func Offset: 0x174
-	// Line 1618, Address: 0x18db24, Func Offset: 0x184
-	// Line 1617, Address: 0x18db2c, Func Offset: 0x18c
-	// Line 1618, Address: 0x18db30, Func Offset: 0x190
-	// Line 1619, Address: 0x18db38, Func Offset: 0x198
-	// Line 1620, Address: 0x18db3c, Func Offset: 0x19c
-	// Line 1619, Address: 0x18db44, Func Offset: 0x1a4
-	// Line 1620, Address: 0x18db58, Func Offset: 0x1b8
-	// Line 1621, Address: 0x18db90, Func Offset: 0x1f0
-	// Line 1623, Address: 0x18db9c, Func Offset: 0x1fc
-	// Line 1624, Address: 0x18dbb8, Func Offset: 0x218
-	// Line 1625, Address: 0x18dbbc, Func Offset: 0x21c
-	// Line 1626, Address: 0x18dbc8, Func Offset: 0x228
-	// Line 1624, Address: 0x18dbcc, Func Offset: 0x22c
-	// Line 1625, Address: 0x18dbd0, Func Offset: 0x230
-	// Line 1628, Address: 0x18dbd4, Func Offset: 0x234
-	// Line 1625, Address: 0x18dbe4, Func Offset: 0x244
-	// Line 1628, Address: 0x18dbe8, Func Offset: 0x248
-	// Line 1625, Address: 0x18dbf0, Func Offset: 0x250
-	// Line 1626, Address: 0x18dbf4, Func Offset: 0x254
-	// Line 1628, Address: 0x18dbf8, Func Offset: 0x258
-	// Line 1626, Address: 0x18dc00, Func Offset: 0x260
-	// Line 1627, Address: 0x18dc04, Func Offset: 0x264
-	// Line 1628, Address: 0x18dc08, Func Offset: 0x268
-	// Line 1630, Address: 0x18dc18, Func Offset: 0x278
-	// Line 1632, Address: 0x18dc40, Func Offset: 0x2a0
-	// Line 1634, Address: 0x18dc4c, Func Offset: 0x2ac
-	// Line 1635, Address: 0x18dc8c, Func Offset: 0x2ec
-	// Line 1636, Address: 0x18dccc, Func Offset: 0x32c
-	// Line 1637, Address: 0x18dcdc, Func Offset: 0x33c
-	// Line 1638, Address: 0x18dd0c, Func Offset: 0x36c
-	// Line 1639, Address: 0x18dd10, Func Offset: 0x370
-	// Line 1640, Address: 0x18dd18, Func Offset: 0x378
-	// Line 1643, Address: 0x18dd20, Func Offset: 0x380
-	// Line 1646, Address: 0x18dd2c, Func Offset: 0x38c
-	// Line 1647, Address: 0x18dd30, Func Offset: 0x390
-	// Line 1646, Address: 0x18dd40, Func Offset: 0x3a0
-	// Line 1647, Address: 0x18dd44, Func Offset: 0x3a4
-	// Line 1648, Address: 0x18dd50, Func Offset: 0x3b0
-	// Line 1650, Address: 0x18dd58, Func Offset: 0x3b8
-	// Line 1654, Address: 0x18dd74, Func Offset: 0x3d4
-	// Line 1656, Address: 0x18dda0, Func Offset: 0x400
-	// Line 1658, Address: 0x18ddb0, Func Offset: 0x410
-	// Line 1660, Address: 0x18ddb4, Func Offset: 0x414
-	// Line 1658, Address: 0x18ddc0, Func Offset: 0x420
-	// Line 1660, Address: 0x18ddc4, Func Offset: 0x424
-	// Line 1658, Address: 0x18ddcc, Func Offset: 0x42c
-	// Line 1660, Address: 0x18ddd0, Func Offset: 0x430
-	// Line 1668, Address: 0x18dde4, Func Offset: 0x444
-	// Func End, Address: 0x18de0c, Func Offset: 0x46c
-	scePrintf("bhEne01Cap_DG00 - UNIMPLEMENTED!\n");
+    NJS_POINT3 pp[3]; 
+    ATR_WORK* hp;    
+    O_WORK* owk;     
+    float heavy;    
+    float wk0, wk1;        
+    int ay;          
+    int i;            
+
+    switch (epw->mode3)
+    {
+    case 0:
+        owk = epw->mlwP->owP;
+        
+        if ((((sys->st_flg & 0x40)) && (!(epw->stflg & 0x100000))) && (bhCheckWater((NJS_POINT3*)&owk->mtx[12]) != NULL)) 
+        {
+            epw->stflg |= 0x100000;
+        }
+        
+        epw->ct0 = 0;
+        epw->ct1 = 0;
+        
+        epw->mode3++;
+    case 1:
+        owk = epw->mlwP->owP;
+        
+        wk0 =  epw->dpx * njCos(epw->waz);
+        wk1 = (epw->dpx * njSin(epw->waz)) - (0.08f * epw->ct1);
+
+        owk->mtx[12] -= wk0 * njSin(epw->way);
+        owk->mtx[13] += wk1;
+        owk->mtx[14] -= wk0 * njCos(epw->way);
+        
+        epw->ct1++;
+
+        for (i = 0; i < 3; i++)
+        {
+            njCalcPoint(&owk->mtx, &p[i], &pp[i]);
+        }
+
+        heavy = pp[epw->waxp].y;
+
+        if ((heavy > pp[0].y) || (heavy > pp[1].y) || (heavy > pp[2].y)) 
+        {
+            njRotateX(&owk->mtx, epw->wax);
+        }
+
+        njTranslate(&owk->mtx, 0, -0.6f, 0);
+
+        pp[0].x = owk->mtx[12];
+        pp[0].y = owk->mtx[13] - 0.6f;
+        pp[0].z = owk->mtx[14];
+        
+        ay = epw->way;
+
+        if (bhCheckWallRefAngle(pp, 0x400, 1.0f, 1.2f, &ay) != NULL) 
+        {
+            if ((owk->mtx[13] - 0.6f) != pp[0].y)
+            {
+                if (epw->ct0 == 0)
+                {
+                    wk0 = (epw->dpx * njCos(epw->waz)) * 0.4;
+                    wk1 = (epw->dpx * njSin(epw->waz)) * 0.6;
+                    
+                    epw->dpx = njSqrt((wk0 * wk0) + (wk1 * wk1));
+                    
+                    epw->waz = 10430.381f * acosf(wk0 / epw->dpx);
+                    
+                    epw->ct1 = 0;
+                    epw->ct0++;
+                } 
+                else 
+                {
+                    epw->mode3++;
+                }
+            }
+            
+            owk->mtx[12] = pp[0].x;
+            owk->mtx[13] = pp[0].y + 0.6f;
+            owk->mtx[14] = pp[0].z;
+        }
+
+        njTranslate(&owk->mtx, 0, 0.6f, 0);
+
+        if ((((sys->st_flg & 0x40)) && (!(epw->stflg & 0x100000))) && (bhCheckWater((NJS_POINT3*)&owk->mtx[12]) != NULL)) 
+        {
+            epw->stflg |= 0x100000;
+            
+            bhSetWaterSplash2(epw, (NJS_POINT3*)&owk->mtx[12], 1, 1.1f, 1.1f, 1.1f);
+        }
+        
+        break;
+    case 2:
+        break;
+    }
 }
 
 // 100% matching!
@@ -1055,6 +1063,7 @@ void bhEne01Cap_DG01(BH_PWORK* epw)
         epw->ax = 32768;
         
         njSetMatrix((NJS_MATRIX*)&epw->exp0[48], &epw->mlwP->owP->mtx);
+
         njTranslate((NJS_MATRIX*)&epw->exp0[48], 0.0f, -1.2f, -1.35f);
         
         epw->waz = 0;

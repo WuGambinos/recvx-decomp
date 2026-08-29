@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/en01sub.h"
 #include "../../../ps2/veronica/prog/en01.h"
+#include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
@@ -671,28 +672,28 @@ void bhEne01Head(BH_PWORK* epw)
 	bhEne01Head_Mode0[epw->mode0](epw);
 }
 
-// 
-// Start address: 0x18d250
-void bhEne01Head_Init(BH_PWORK* epw)
+// 100% matching!
+void bhEne01Head_Init(BH_PWORK* epw) 
 {
-	// Line 1172, Address: 0x18d250, Func Offset: 0
-	// Line 1173, Address: 0x18d25c, Func Offset: 0xc
-	// Line 1174, Address: 0x18d260, Func Offset: 0x10
-	// Line 1177, Address: 0x18d26c, Func Offset: 0x1c
-	// Line 1179, Address: 0x18d278, Func Offset: 0x28
-	// Line 1182, Address: 0x18d288, Func Offset: 0x38
-	// Line 1187, Address: 0x18d28c, Func Offset: 0x3c
-	// Line 1182, Address: 0x18d290, Func Offset: 0x40
-	// Line 1183, Address: 0x18d294, Func Offset: 0x44
-	// Line 1184, Address: 0x18d29c, Func Offset: 0x4c
-	// Line 1185, Address: 0x18d2a4, Func Offset: 0x54
-	// Line 1187, Address: 0x18d2ac, Func Offset: 0x5c
-	// Line 1188, Address: 0x18d2b0, Func Offset: 0x60
-	// Line 1189, Address: 0x18d2b4, Func Offset: 0x64
-	// Line 1190, Address: 0x18d2b8, Func Offset: 0x68
-	// Line 1191, Address: 0x18d2bc, Func Offset: 0x6c
-	// Func End, Address: 0x18d2cc, Func Offset: 0x7c
-	scePrintf("bhEne01Head_Init - UNIMPLEMENTED!\n");
+    epw->stflg = 0;
+    
+    epw->flg |= 0x8000;
+    
+    if (epw->exp0 == NULL) 
+    {
+        epw->exp0 = bhEne_CallocWork(32, 8);
+    }
+    
+    EXP0_I(0) = 0;
+    EXP0_I(4) = 0;
+    EXP0_I(8) = 0;
+    
+    EXP0_I(20) = 0;
+    
+    epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
 }
 
 // 100% matching!
@@ -816,7 +817,7 @@ void bhEne01Cap(BH_PWORK* epw)
 {
     if ((((O_WRK*)epw->lkwkp)->stflg & 0x1000000)) 
     {
-        epw->stflg |= 0x1000000;
+        epw->stflg |=  0x1000000;
     } 
 	else 
     {

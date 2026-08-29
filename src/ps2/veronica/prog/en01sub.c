@@ -1675,24 +1675,26 @@ void bhEne01Scope(BH_PWORK* epw)
     bhEne01Scope_Effect(epw); 
 }
 
-// 
-// Start address: 0x18f5a0
+// 100% matching!
 void bhEne01Scope_Init(BH_PWORK* epw)
 {
-	// Line 2592, Address: 0x18f5a0, Func Offset: 0
-	// Line 2594, Address: 0x18f5b4, Func Offset: 0x14
-	// Line 2595, Address: 0x18f5c0, Func Offset: 0x20
-	// Line 2598, Address: 0x18f5c8, Func Offset: 0x28
-	// Line 2601, Address: 0x18f5d4, Func Offset: 0x34
-	// Line 2602, Address: 0x18f5d8, Func Offset: 0x38
-	// Line 2604, Address: 0x18f5dc, Func Offset: 0x3c
-	// Line 2602, Address: 0x18f5e0, Func Offset: 0x40
-	// Line 2604, Address: 0x18f5e8, Func Offset: 0x48
-	// Line 2605, Address: 0x18f5ec, Func Offset: 0x4c
-	// Line 2606, Address: 0x18f5f0, Func Offset: 0x50
-	// Line 2608, Address: 0x18f5f4, Func Offset: 0x54
-	// Func End, Address: 0x18f5fc, Func Offset: 0x5c
-	scePrintf("bhEne01Scope_Init - UNIMPLEMENTED!\n");
+    if (((O_WRK*)epw->lkwkp)->type == 14) 
+    {
+        epw->mdflg &= ~0x1;
+    } 
+    else 
+    {
+        epw->mdflg |= 0x1;
+    }
+    
+    epw->stflg = 0;
+    
+    epw->flg |= 0x8000;
+    
+    epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
 }
 
 // 100% matching!

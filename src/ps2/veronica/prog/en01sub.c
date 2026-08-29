@@ -811,20 +811,21 @@ void bhEne01Head_DG00(BH_PWORK* epw)
 	scePrintf("bhEne01Head_DG00 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x18d830
-void bhEne01Cap(BH_PWORK* epw)
+// 100% matching!
+void bhEne01Cap(BH_PWORK* epw) 
 {
-	// Line 1406, Address: 0x18d830, Func Offset: 0
-	// Line 1409, Address: 0x18d83c, Func Offset: 0xc
-	// Line 1411, Address: 0x18d854, Func Offset: 0x24
-	// Line 1412, Address: 0x18d85c, Func Offset: 0x2c
-	// Line 1415, Address: 0x18d864, Func Offset: 0x34
-	// Line 1418, Address: 0x18d878, Func Offset: 0x48
-	// Line 1420, Address: 0x18d898, Func Offset: 0x68
-	// Line 1421, Address: 0x18d8a0, Func Offset: 0x70
-	// Func End, Address: 0x18d8b0, Func Offset: 0x80
-	scePrintf("bhEne01Cap - UNIMPLEMENTED!\n");
+    if ((((O_WRK*)epw->lkwkp)->stflg & 0x1000000)) 
+    {
+        epw->stflg |= 0x1000000;
+    } 
+	else 
+    {
+        epw->stflg &= ~0x1000000;
+    }
+    
+    bhEne01Cap_Mode0[epw->mode0](epw);
+    
+    bhCalcModel(epw);
 }
 
 // 

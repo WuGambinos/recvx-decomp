@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/en01sub.h"
 #include "../../../ps2/veronica/prog/en01.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
@@ -1043,23 +1044,27 @@ void bhEne01Cap_DG01(BH_PWORK* epw)
 	scePrintf("bhEne01Cap_DG01 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x18e120
-void bhEne01Worm(BH_PWORK* epw)
+// 100% matching!
+void bhEne01Worm(BH_PWORK* epw) 
 {
-	NJS_CNK_OBJECT* obj;
-	// Line 1833, Address: 0x18e120, Func Offset: 0
-	// Line 1836, Address: 0x18e130, Func Offset: 0x10
-	// Line 1840, Address: 0x18e150, Func Offset: 0x30
-	// Line 1841, Address: 0x18e164, Func Offset: 0x44
-	// Line 1844, Address: 0x18e174, Func Offset: 0x54
-	// Line 1845, Address: 0x18e17c, Func Offset: 0x5c
-	// Line 1847, Address: 0x18e180, Func Offset: 0x60
-	// Line 1852, Address: 0x18e184, Func Offset: 0x64
-	// Line 1853, Address: 0x18e194, Func Offset: 0x74
-	// Line 1855, Address: 0x18e19c, Func Offset: 0x7c
-	// Func End, Address: 0x18e1ac, Func Offset: 0x8c
-	scePrintf("bhEne01Worm - UNIMPLEMENTED!\n");
+    NJS_CNK_OBJECT* obj;
+
+    bhEne01Worm_Mode0[epw->mode0](epw);
+    
+    bhSetMotion(epw, (int)epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+    
+    if (epw->mtn_no == 159) 
+    {
+        obj = epw->mlwP->objP;
+        
+        obj->pos[0] = 0;
+        obj->pos[2] = 0;
+    }
+    
+    if (!(epw->mdflg & 0x4)) 
+    {
+        bhCalcModel(epw);
+    }
 }
 
 // 
@@ -1684,7 +1689,7 @@ void bhEne01Scope_Init(BH_PWORK* epw)
     } 
     else 
     {
-        epw->mdflg |= 0x1;
+        epw->mdflg |=  0x1;
     }
     
     epw->stflg = 0;

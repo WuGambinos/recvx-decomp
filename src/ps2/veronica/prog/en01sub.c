@@ -555,29 +555,28 @@ void bhEne01Leg(BH_PWORK* epw)
 	bhEne01Leg_Mode0[epw->mode0](epw);
 }
 
-// 
-// Start address: 0x18ceb0
-void bhEne01Leg_Init(BH_PWORK* epw)
+// 100% matching!
+void bhEne01Leg_Init(BH_PWORK* epw) 
 {
-	// Line 945, Address: 0x18ceb0, Func Offset: 0
-	// Line 946, Address: 0x18cebc, Func Offset: 0xc
-	// Line 947, Address: 0x18cec0, Func Offset: 0x10
-	// Line 950, Address: 0x18cecc, Func Offset: 0x1c
-	// Line 952, Address: 0x18ced8, Func Offset: 0x28
-	// Line 955, Address: 0x18cee8, Func Offset: 0x38
-	// Line 957, Address: 0x18ceec, Func Offset: 0x3c
-	// Line 960, Address: 0x18cef0, Func Offset: 0x40
-	// Line 955, Address: 0x18cef4, Func Offset: 0x44
-	// Line 956, Address: 0x18cef8, Func Offset: 0x48
-	// Line 957, Address: 0x18cf00, Func Offset: 0x50
-	// Line 958, Address: 0x18cf08, Func Offset: 0x58
-	// Line 960, Address: 0x18cf10, Func Offset: 0x60
-	// Line 961, Address: 0x18cf14, Func Offset: 0x64
-	// Line 962, Address: 0x18cf18, Func Offset: 0x68
-	// Line 963, Address: 0x18cf1c, Func Offset: 0x6c
-	// Line 964, Address: 0x18cf20, Func Offset: 0x70
-	// Func End, Address: 0x18cf30, Func Offset: 0x80
-	scePrintf("bhEne01Leg_Init - UNIMPLEMENTED!\n");
+    epw->stflg = 0;
+    
+    epw->flg |= 0x8000;
+    
+    if (epw->exp0 == NULL)
+    {
+        epw->exp0 = bhEne_CallocWork(112, 8);
+    }
+    
+    EXP0_I(0) = 0;
+    EXP0_I(4) = 0;
+    EXP0_I(8) = 2;
+    
+    EXP0_I(20) = 0;
+    
+    epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
 }
 
 // 100% matching!

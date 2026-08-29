@@ -10,6 +10,8 @@
 #include "../../../ps2/veronica/prog/player.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
 
+// ENEMY: Alfred Ashford 
+
 void(*bhEne16_Mode0[6])(BH_PWORK*) =
 {
     bhEne16_Init,

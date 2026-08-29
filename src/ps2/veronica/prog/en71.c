@@ -4,6 +4,8 @@
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 
+// ENEMY: Ant C 
+
 #pragma optimization_level 4
 
 typedef void (*bhEne71_Mode0_proc)(BH_PWORK* epw);

@@ -8,7 +8,7 @@
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
 
-// ENEMY: Ceiling Trap
+// ENEMY: Ceiling Trap 
 
 static BP_WORK BloodParam = {
     {0.0f, 0.2f, 0.0f},

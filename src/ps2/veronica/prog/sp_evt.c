@@ -24,7 +24,6 @@
 
 typedef void (*bhCtrSpEvtCom_mode0_proc)();
 
-// TODO: the string tables seem to have an issue, they don't fully match in objiff and display incorrect text in-game. Investigate further.
 char* comevt_message_tst[27] = 
 {
     "COMPUTER SYSTEM Ver0.01",
@@ -1998,7 +1997,7 @@ void bhControlComEvtScript()
         case 245:
             sys->com_flg |= 0x200;
             break;
-        case 246:
+        case 254:
             CallSystemSe(0, 0x8000026E);
             
             ce->tx = 0;

@@ -3,10 +3,10 @@
 [![Build Status]][actions] [![Code Progress]][progress] [![Data Progress]][progress] 
 
 [Build Status]: https://github.com/AshfordFamily/recvx-decomp/actions/workflows/progress.yml/badge.svg
-[actions]: https://github.com/AshfordFamily/recvx-decomp/actions/workflows/progres.yml
+[actions]: https://github.com/AshfordFamily/recvx-decomp/actions/workflows/progress.yml
 
 [Code Progress]: https://decomp.dev/AshfordFamily/recvx-decomp.svg?mode=shield&label=Code&measure=fuzzy_match_percent
-[Data Progress]: https://decomp.dev/AshfordFamily/recvx-decomp.svg?mode=shield&label=Functions&measure=matched_functions
+[Data Progress]: https://decomp.dev/AshfordFamily/recvx-decomp.svg?mode=shield&label=Data&measure=matched_data_percent
 [progress]: https://decomp.dev/AshfordFamily/recvx-decomp
 
 <img src="https://i.imgur.com/FreVpxO.png"/> 
@@ -18,7 +18,7 @@ Issues and pull-requests that are clearly **AI-generated** will be automatically
 
 **recvx-decomp** is a reverse-engineering project for Resident Evil: Code Veronica X which has the goal of reconstructing the source code of the game by decompiling the MIPS in the PS2 ELF back to C. The project currently only works with the US release (**SLUS-20184**), with plans to add support for more regions in the future.
 
-Currently, the engine and gameplay systems are decompiled, as well as the **CRI ADXT (Jan 26th, 2001)** lib employed by the game. Enemy AI and GFX code is still incomplete. Testing is done by repackaging the retail disc with our own compiled ELF using a script, and trying out the results on PCSX2. 
+Currently, the engine and gameplay systems are decompiled, as well as the GFX code and the **CRI ADXT (Jan 26th, 2001)** lib employed by the game. Enemy AI is still incomplete. Testing is done by repackaging the retail disc with our own compiled ELF using a script, and trying out the results on PCSX2. 
 
 Groundwork has been made for decompiling the Dreamcast and GameCube releases of Code Veronica; see the Resources section on this page for some links. Once the project is completed, there will be many potential uses of the code, including and beyond porting.
 

@@ -111,7 +111,7 @@ void bhEne01_ExpWormEffect(BH_PWORK* epw);
 void bhEne01_PoisonEffect(BH_PWORK* epw, int num);
 void bhEne01_LinkFireEffect(BH_PWORK* epw, int type);
 int bhEne01_ChgTextID(BH_PWORK* epw, int tex_id);
-void bhEne01_SePlay(BH_PWORK* epw, int no);
+void bhEne01_SePlay(BH_PWORK* epw, NJS_POINT3* pos, int no);
 void bhEne01_GetWalkMotion(BH_PWORK* epw);
 int bhEne01_FastCheck(BH_PWORK* epw);
 int bhEne01_CmnFlgCheck(BH_PWORK* epw);
@@ -127,6 +127,24 @@ int bhEne01_CutLeg(BH_PWORK* epw);
 void bhEne01_CutHead(BH_PWORK* epw);
 void bhEne01_FlyingCap(BH_PWORK* epw, int tbl_no);
 
+extern NJS_POINT2_XZ cl_mtn01_xz[60];
+extern NJS_POINT2_XZ cl_mtn02_xz[60];
+extern NJS_POINT2_XZ cl_mtn04_xz[50];
+extern NJS_POINT2_XZ cl_mtn05_xz[50];
+extern NJS_POINT2_XZ ch_mtn01_xz[60];
+extern NJS_POINT2_XZ ch_mtn02_xz[60];
+extern NJS_POINT2_XZ ch_mtn04_xz[50];
+extern NJS_POINT2_XZ ch_mtn05_xz[50];
+extern NJS_POINT2_XZ st_mtn01_xz[60];
+extern NJS_POINT2_XZ st_mtn02_xz[60];
+extern NJS_POINT2_XZ st_mtn04_xz[50];
+extern NJS_POINT2_XZ st_mtn05_xz[50];
+extern const float en01_kamikami[71];
+extern const float en01_kamikami2[70];
+extern const float en01_mogmog[40];
+extern BP_WORK en01_BldTbl;
+extern BP_WORK en01_BldTbl2;
 extern int kaidan_ang[4];
+extern int En01_PlyMtn_OffsetTbl[4];
 
 #endif

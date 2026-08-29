@@ -187,19 +187,13 @@ void _fmGetVChunkType(MASK_WORK* fm)
 
     switch (fm->vtype)
     {
-    case 32:
-    case 35:
-    case 36:
-    case 37:
-    case 38:
-    case 39:
-    case 40:
+    case 33:
         fm->vtop = 2;
         fm->ntop = 6;
         
         fm->vofs = 8;
         break;
-    case 33:
+    case 34:
         fm->vtop = 2;
         fm->ntop = 2;
         
@@ -207,7 +201,13 @@ void _fmGetVChunkType(MASK_WORK* fm)
         
         fm->mode |= 0x1;
         break;
-    case 34:
+    case 32:
+    case 35:
+    case 36:
+    case 37:
+    case 38:
+    case 39:
+    case 40:
         fm->vtop = 2;
         fm->ntop = 2;
         

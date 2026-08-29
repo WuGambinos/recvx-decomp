@@ -15,7 +15,7 @@
 #include "ninjaapi.h"
 #include "ninjastr.h"
 
-// ENEMY: Bat
+// ENEMY: Bat 
 
 static int ENE07_HITPOINT[16] = {
     1, 1, 1, 1, 1, 1, 1, 1,

@@ -58,8 +58,8 @@ typedef struct EFFSUB367_WORK
 
 void bhEff_SetPtcl(BH_PWORK* epw, NJS_POINT3* pos, int tex_id);
 void bhEff_SetPtcl1(BH_PWORK* epw, NJS_POINT3* pos, int tex_id, int wcnt);
-void bhEff_SetPtcl2(NJS_POINT3* pos, NJS_MATRIX* mtx);
-void bhEff_SetPtcl2V(NJS_POINT3* pos, NJS_POINT3* dv, int wcnt);
+void bhEff_SetPtcl2(BH_PWORK* epw, NJS_POINT3* pos, NJS_MATRIX* mtx);
+void bhEff_SetPtcl2V(BH_PWORK* epw, NJS_POINT3* pos, NJS_POINT3* dv, int wcnt);
 static void bhEff_SetBlood5(NJS_POINT3* pos, NJS_VECTOR* vec, float size, int col);
 void bhEff_Sub350(O_WRK* op);
 void bhEff_Sub351(O_WRK* op);

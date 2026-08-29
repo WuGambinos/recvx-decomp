@@ -3453,12 +3453,12 @@ void bhSetLighterFire(O_WRK* op, int flg)
         
         bhSetEffectTb(&sys->ef, (NJS_POINT3*)&WpnTab[1].wp_fps1, (unsigned char*)op, 0);
         
-        lgttab->ct2 = 3; 
-        lgttab->ct3 = op->idx_ct;
+        lgttab[1].lkflg = 3; 
+
+        lgttab[1].lkno  = op->idx_ct;
+        lgttab[1].lkono = 0;
         
-        lgttab->wpx = 0;
-        
-        bhSetLightTab((LGT_WORK*)&lgttab->mode, 1);
+        bhSetLightTab(&lgttab[1], 1);
         
         rom->lgtp[1].flg |= 0x2;
         sys->st_flg      |= 0x20000000;

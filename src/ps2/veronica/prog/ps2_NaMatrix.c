@@ -752,101 +752,93 @@ void	njRotate(NJS_MATRIX *m, NJS_VECTOR *v, Angle ang)
     asm volatile
     ("
     .set noreorder
-        ldl      a4, 0x7(%1)
-        ldr      a4,   0(%1)
+        ldl       a4, 0x7(%1)
+        ldr       a4,   0(%1)
 
-        lw       a5, NJS_VECTOR.z(%1)
+        lw        a5, NJS_VECTOR.z(%1)
 
-        pcpyld   a4, a5, a4
+        pcpyld    a4, a5, a4
 
-        qmtc2.ni a4, vf4
+        qmtc2.ni  a4, vf4
 
-        vmul     vf5, vf4, vf4
+        vmul.xyz  vf5, vf4, vf4
 
-        vaddy    vf5, vf5, vf5
-        vaddz    vf5, vf5, vf5
+        vaddy.x   vf5, vf5, vf5
+        vaddz.x   vf5, vf5, vf5
 
-        vrsqrt   Q, vf0w, vf5
+        vrsqrt    Q, vf0w, vf5
 
-        mfc1     t4, %2 
-        mfc1     t5, %3
+        mfc1      t4, %2 
+        mfc1      t5, %3
     
-        qmtc2    t4, vf11
-        qmtc2    t5, vf12
+        qmtc2     t4, vf11
+        qmtc2     t5, vf12
 
         vwaitq
 
-        vmulq    vf11, vf11, Q
-        vmulx    vf4,   vf4, vf11
-        vmul     vf5,  vf12, vf12
+        vmulq.x   vf11, vf11, Q
+        vmulx.xyz vf4,   vf4, vf11
+        vmul.x    vf5,  vf12, vf12
 
-        vaddx    vf5,  vf0,  vf5
+        vaddx.yz  vf5,  vf0,  vf5
 
-        vmulx    vf6,  vf4,  vf4
-        vmuly    vf7,  vf4,  vf4
-        vmulz    vf8,  vf4,  vf4
-        vmulx    vf9,  vf4,  vf12
+        vmulx.xyz vf6,  vf4,  vf4
+        vmuly.xyz vf7,  vf4,  vf4
+        vmulz.xyz vf8,  vf4,  vf4
+        vmulx.xyz vf9,  vf4,  vf12
 
-        vadd     vf11, vf5,  vf6
+        vadd.x    vf11, vf5,  vf6
+        vsuby.x   vf11, vf11, vf7
+        vsubz.x   vf11, vf11, vf8
+        vsubz.x   vf12, vf7,  vf9
+        vadd.x    vf12, vf12, vf12
+        vaddy.x   vf13, vf8,  vf9
+        vadd.x    vf13, vf13, vf13
 
-        vsuby    vf11, vf11, vf7
-        vsubz    vf11, vf11, vf8
-        vsubz    vf12, vf7,  vf9
+        vaddz.y   vf11, vf6,  vf9
+        vadd.y    vf11, vf11, vf11
+        vsubx.y   vf12, vf5,  vf6
+        vadd.y    vf12, vf12, vf7
+        vsubz.y   vf12, vf12, vf8
+        vsubx.y   vf13, vf8,  vf9
+        vadd.y    vf13, vf13, vf13
 
-        vadd     vf12, vf12, vf12
-        vaddy    vf13, vf8,  vf9
-        vadd     vf13, vf13, vf13
-        vaddz    vf11, vf6,  vf9
-        vadd     vf11, vf11, vf11
+        vsuby.z   vf11, vf6,  vf9
+        vadd.z    vf11, vf11, vf11
+        vaddx.z   vf12, vf7,  vf9
+        vadd.z    vf12, vf12, vf12
+        vsubx.z   vf13, vf5,  vf6
+        vsuby.z   vf13, vf13, vf7
+        vadd.z    vf13, vf13, vf8
 
-        vsubx    vf12, vf5,  vf6
+        lqc2      vf4,    0(%0)
+        lqc2      vf5, 0x10(%0)
+        lqc2      vf6, 0x20(%0)
 
-        vadd     vf12, vf12, vf7
+        vmulx.xyz vf7,  vf4, vf11
+        vmuly.xyz vf10, vf5, vf11
+        vmulz.xyz vf11, vf6, vf11
 
-        vsubz    vf12, vf12, vf8
-        vsubx    vf13, vf8,  vf9
+        vadd.xyz  vf7,  vf7, vf10
+        vadd.xyz  vf7,  vf7, vf11
 
-        vadd     vf13, vf13, vf13
+        vmulx.xyz vf8,  vf4, vf12
+        vmuly.xyz vf10, vf5, vf12
+        vmulz.xyz vf12, vf6, vf12
 
-        vsuby    vf11, vf6,  vf9
-
-        vadd     vf11, vf11, vf11
-        vaddx    vf12, vf7,  vf9
-        vadd     vf12, vf12, vf12
-
-        vsubx    vf13, vf5,  vf6
-        vsuby    vf13, vf13, vf7
-
-        vadd     vf13, vf13, vf8
-
-        lqc2     vf4,    0(%0)
-        lqc2     vf5, 0x10(%0)
-        lqc2     vf6, 0x20(%0)
-
-        vmulx    vf7,  vf4, vf11
-        vmuly    vf10, vf5, vf11
-        vmulz    vf11, vf6, vf11
-
-        vadd     vf7,  vf7, vf10
-        vadd     vf7,  vf7, vf11
-
-        vmulx    vf8,  vf4, vf12
-        vmuly    vf10, vf5, vf12
-        vmulz    vf12, vf6, vf12
-
-        vadd     vf8,  vf8, vf10
-        vadd     vf8,  vf8, vf12
+        vadd.xyz  vf8,  vf8, vf10
+        vadd.xyz  vf8,  vf8, vf12
     
-        vmulx    vf9,  vf4, vf13
-        vmuly    vf10, vf5, vf13
-        vmulz    vf13, vf6, vf13
+        vmulx.xyz vf9,  vf4, vf13
+        vmuly.xyz vf10, vf5, vf13
+        vmulz.xyz vf13, vf6, vf13
 
-        vadd     vf9,  vf9, vf10
-        vadd     vf9,  vf9, vf13
+        vadd.xyz  vf9,  vf9, vf10
+        vadd.xyz  vf9,  vf9, vf13
         
-        sqc2     vf7,    0(%0)
-        sqc2     vf8, 0x10(%0)
-        sqc2     vf9, 0x20(%0)
+        sqc2      vf7,    0(%0)
+        sqc2      vf8, 0x10(%0)
+        sqc2      vf9, 0x20(%0)
     .set reorder
     " : : "r"(m), "r"(v), "f"(fSin), "f"(fCos) : 
     );
@@ -898,26 +890,26 @@ void	njScaleV(NJS_MATRIX *m, NJS_VECTOR *v)
     asm volatile
     ("
     .set noreorder
-        ldl         a4, 0x7(%1)
-        ldr         a4,   0(%1)
+        ldl       a4, 0x7(%1)
+        ldr       a4,   0(%1)
 
-        lw          a5, NJS_VECTOR.z(%1) 
+        lw        a5, NJS_VECTOR.z(%1) 
 
-        pcpyld      a4, a5, a4
+        pcpyld    a4, a5, a4
 
-        qmtc2.ni    a4, vf4
+        qmtc2.ni  a4, vf4
 
-        lqc2        vf5,    0(%0)
-        lqc2        vf6, 0x10(%0)
-        lqc2        vf7, 0x20(%0)
+        lqc2      vf5,    0(%0)
+        lqc2      vf6, 0x10(%0)
+        lqc2      vf7, 0x20(%0)
 
-        vmulx       vf5, vf5, vf4
-        vmuly       vf6, vf6, vf4
-        vmulz       vf7, vf7, vf4
+        vmulx.xyz vf5, vf5, vf4
+        vmuly.xyz vf6, vf6, vf4
+        vmulz.xyz vf7, vf7, vf4
     
-        sqc2        vf5,     0(%0)
-        sqc2        vf6,  0x10(%0)
-        sqc2        vf7,  0x20(%0)
+        sqc2      vf5,     0(%0)
+        sqc2      vf6,  0x10(%0)
+        sqc2      vf7,  0x20(%0)
     .set reorder
     " : : "r"(m), "r"(v) : 
     );
@@ -934,44 +926,44 @@ Bool	njInvertMatrix(NJS_MATRIX *m)
     asm volatile
     ("
     .set noreorder
-        lq       t0,     0(%0)
-        lq       t1,  0x10(%0)
-        lq       t2,  0x20(%0)
-        lqc2     vf4, 0x30(%0)
+        lq          t0,     0(%0)
+        lq          t1,  0x10(%0)
+        lq          t2,  0x20(%0)
+        lqc2        vf4, 0x30(%0)
 
-        vmove    vf5, vf4
+        vmove       vf5, vf4
 
-        vsub     vf4, vf4, vf4
+        vsub.xyz    vf4, vf4, vf4
 
-        vmove    vf10, vf4
+        vmove       vf10, vf4
 
-        qmfc2.ni t3, vf4
+        qmfc2.ni    t3, vf4
 
-        pextlw   t4, t1, t0
-        pextuw   t5, t1, t0
+        pextlw      t4, t1, t0
+        pextuw      t5, t1, t0
  
-        pextlw   t6, t3, t2
-        pextuw   t7, t3, t2
+        pextlw      t6, t3, t2
+        pextuw      t7, t3, t2
  
-        pcpyld   t0, t6, t4
-        pcpyud   t1, t4, t6
-        pcpyld   t2, t7, t5
+        pcpyld      t0, t6, t4
+        pcpyud      t1, t4, t6
+        pcpyld      t2, t7, t5
  
-        qmtc2.ni t0, vf7
-        qmtc2.ni t1, vf8
-        qmtc2.ni t2, vf9
+        qmtc2.ni    t0, vf7
+        qmtc2.ni    t1, vf8
+        qmtc2.ni    t2, vf9
 
-        vmulax   ACC, vf7, vf5
+        vmulax.xyz  ACC, vf7, vf5
 
-        vmadday  ACC, vf8, vf5
-        vmaddz   vf4, vf9, vf5
+        vmadday.xyz ACC, vf8, vf5
+        vmaddz.xyz  vf4, vf9, vf5
 
-        vsub     vf4, vf10, vf4
+        vsub.xyz    vf4, vf10, vf4
 
-        sq       t0,     0(%0)
-        sq       t1,  0x10(%0)
-        sq       t2,  0x20(%0)
-        sqc2     vf4, 0x30(%0)
+        sq          t0,     0(%0)
+        sq          t1,  0x10(%0)
+        sq          t2,  0x20(%0)
+        sqc2        vf4, 0x30(%0)
     .set reorder
     " : : "r"(m) : 
     );
@@ -990,25 +982,25 @@ void	njTransposeMatrix(NJS_MATRIX *m)
     asm volatile
     ("
     .set noreorder
-        lqc2  vf4,    0(%0)
-        lqc2  vf5, 0x10(%0)
-        lqc2  vf6, 0x20(%0)
+        lqc2    vf4,    0(%0)
+        lqc2    vf5, 0x10(%0)
+        lqc2    vf6, 0x20(%0)
 
-        vaddx vf7, vf0, vf4
-        vaddx vf7, vf0, vf5
-        vaddx vf7, vf0, vf6
+        vaddx.x vf7, vf0, vf4
+        vaddx.y vf7, vf0, vf5
+        vaddx.z vf7, vf0, vf6
 
-        vaddy vf8, vf0, vf4
-        vaddy vf8, vf0, vf5
-        vaddy vf8, vf0, vf6
+        vaddy.x vf8, vf0, vf4
+        vaddy.y vf8, vf0, vf5
+        vaddy.z vf8, vf0, vf6
 
-        vaddz vf9, vf0, vf4
-        vaddz vf9, vf0, vf5
-        vaddz vf9, vf0, vf6
+        vaddz.x vf9, vf0, vf4
+        vaddz.y vf9, vf0, vf5
+        vaddz.z vf9, vf0, vf6
 
-        sqc2  vf7,    0(%0)
-        sqc2  vf8, 0x10(%0)
-        sqc2  vf9, 0x20(%0)
+        sqc2    vf7,    0(%0)
+        sqc2    vf8, 0x10(%0)
+        sqc2    vf9, 0x20(%0)
     .set reorder
     " : : "r"(m) : 
     );
@@ -1466,39 +1458,39 @@ Float	njUnitVector(NJS_VECTOR *v)
     asm volatile
     ("
     .set noreorder
-        ldl      a4, 0x7(%1)
-        ldr      a4,   0(%1)
+        ldl       a4, 0x7(%1)
+        ldr       a4,   0(%1)
      
-        lw       a5, NJS_VECTOR.z(%1) 
+        lw        a5, NJS_VECTOR.z(%1) 
      
-        pcpyld   a4, a5, a4
+        pcpyld    a4, a5, a4
      
-        qmtc2.ni a4, vf4
+        qmtc2.ni  a4, vf4
      
-        vmul     vf5, vf4, vf4
+        vmul.xyz  vf5, vf4, vf4
      
-        vaddy    vf5, vf5, vf5
-        vaddz    vf5, vf5, vf5
+        vaddy.x   vf5, vf5, vf5
+        vaddz.x   vf5, vf5, vf5
      
-        vrsqrt   Q, vf0w, vf5
+        vrsqrt    Q, vf0w, vf5
      
         vwaitq   
 
-        vmulq    vf6, vf4, Q
-        vmulq    vf7, vf5, Q
+        vmulq.xyz vf6, vf4, Q
+        vmulq.x   vf7, vf5, Q
 
-        qmfc2.ni a6, vf6
+        qmfc2.ni  a6, vf6
 
-        pcpyud   a7, a6, a6
+        pcpyud    a7, a6, a6
 
-        sdl      a6, 0x7(%1)
-        sdr      a6,   0(%1)
+        sdl       a6, 0x7(%1)
+        sdr       a6,   0(%1)
      
-        sw       a7, NJS_VECTOR.z(%1) 
+        sw        a7, NJS_VECTOR.z(%1) 
      
-        qmfc2.ni v0, vf7
+        qmfc2.ni  v0, vf7
 
-        mtc1     v0, %0
+        mtc1      v0, %0
     .set reorder
     " : "=r"(ret) : "r"(v) : 
     );
@@ -1523,16 +1515,16 @@ Float	njScalor(NJS_VECTOR *v)
      
         qmtc2.ni a4, vf4
      
-        vmul     vf5, vf4, vf4
+        vmul.xyz vf5, vf4, vf4
      
-        vaddy    vf5, vf5, vf5
-        vaddz    vf5, vf5, vf5
+        vaddy.x  vf5, vf5, vf5
+        vaddz.x  vf5, vf5, vf5
      
         vsqrt    Q, vf5
      
         vwaitq   
      
-        vaddq    vf6, vf0, Q
+        vaddq.x  vf6, vf0, Q
      
         qmfc2.ni v0, vf6
 
@@ -1561,10 +1553,10 @@ Float	njScalor2(NJS_VECTOR *v)
      
         qmtc2.ni a4, vf4
      
-        vmul     vf5, vf4, vf4
+        vmul.xyz vf5, vf4, vf4
      
-        vaddy    vf5, vf5, vf5
-        vaddz    vf6, vf5, vf5
+        vaddy.x  vf5, vf5, vf5
+        vaddz.x  vf6, vf5, vf5
      
         qmfc2.ni v0, vf6
         
@@ -1654,10 +1646,10 @@ Float	njOuterProduct(NJS_VECTOR *v1, NJS_VECTOR *v2, NJS_VECTOR *ov)
         vopmula  ACC, vf4, vf5
         vopmsub  vf6, vf5, vf4
      
-        vmul     vf7, vf6, vf6
+        vmul.xyz vf7, vf6, vf6
      
-        vaddy    vf7, vf7, vf7
-        vaddz    vf7, vf7, vf7
+        vaddy.x  vf7, vf7, vf7
+        vaddz.x  vf7, vf7, vf7
 
         vsqrt    Q, vf7
 
@@ -1672,7 +1664,7 @@ Float	njOuterProduct(NJS_VECTOR *v1, NJS_VECTOR *v2, NJS_VECTOR *ov)
 
         vwaitq
 
-        vaddq    vf8, vf0, Q
+        vaddq.x  vf8, vf0, Q
      
         qmfc2.ni v0, vf8
         
@@ -1708,10 +1700,10 @@ Float	njInnerProduct(NJS_VECTOR *v1, NJS_VECTOR *v2)
         qmtc2.ni a4, vf4
         qmtc2.ni a6, vf5
      
-        vmul     vf6,  vf4, vf5
+        vmul.xyz vf6,  vf4, vf5
      
-        vaddy    vf6,  vf6, vf6
-        vaddz    vf14, vf6, vf6
+        vaddy.x  vf6,  vf6, vf6
+        vaddz.x  vf14, vf6, vf6
      
         qmfc2.ni v0, vf14
         
@@ -1838,11 +1830,11 @@ void njRotTransPers(NJS_POINT3* pPoint, NJS_SCRVECTOR* pScreen)
 
         vwaitq
 
-        vmulq.xy vf8,  vf4,  Q
+        vmulq.x  vf8,  vf4,  Q
 
         vaddq.z  vf14, vf0,  Q
 
-        vmulx    vf8,  vf18, vf8
+        vmulx.xy vf8,  vf18, vf8
         
         vaddx.x  vf14, vf8,  vf5
         vaddx.y  vf14, vf8,  vf6

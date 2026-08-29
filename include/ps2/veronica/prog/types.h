@@ -450,6 +450,40 @@ typedef struct LGT_WRK
 	float f_rang;         // offset 0x20, size 0x4
 } LGT_WRK; 
 
+typedef struct LGT_WK 
+{
+    // total size: 0x74
+    unsigned int flg;  // offset 0x0, size 0x4
+    unsigned int type; // offset 0x4, size 0x4
+    int aspd;          // offset 0x8, size 0x4
+    int lkflg;         // offset 0xC, size 0x4
+    int lkno;          // offset 0x10, size 0x4
+    int lkono;         // offset 0x14, size 0x4
+    int lsrc;          // offset 0x18, size 0x4
+    float px;          // offset 0x1C, size 0x4
+    float py;          // offset 0x20, size 0x4
+    float pz;          // offset 0x24, size 0x4
+    float lx;          // offset 0x28, size 0x4
+    float ly;          // offset 0x2C, size 0x4
+    float lz;          // offset 0x30, size 0x4
+    float vx;          // offset 0x34, size 0x4
+    float vy;          // offset 0x38, size 0x4
+    float vz;          // offset 0x3C, size 0x4
+    float spc;         // offset 0x40, size 0x4
+    float dif;         // offset 0x44, size 0x4
+    float amb;         // offset 0x48, size 0x4
+    float r;           // offset 0x4C, size 0x4
+    float g;           // offset 0x50, size 0x4
+    float b;           // offset 0x54, size 0x4
+    float nr;          // offset 0x58, size 0x4
+    float fr;          // offset 0x5C, size 0x4
+    int iang;          // offset 0x60, size 0x4
+    int oang;          // offset 0x64, size 0x4
+    int ax;            // offset 0x68, size 0x4
+    int ay;            // offset 0x6C, size 0x4
+    int az;            // offset 0x70, size 0x4
+} LGT_WK;
+
 typedef struct LPTB
 {
     // total size: 0x20
@@ -1894,6 +1928,15 @@ typedef struct EnemySlot
     unsigned short EnemyNo; // offset 0xA, size 0x2
 } EnemySlot;
 
+typedef struct WPNDAMAGE_WORK
+{
+	int flg; // offset 0x0, size 0x4
+	int nm_act; // offset 0x4, size 0x4
+	int nm_blood; // offset 0x8, size 0x4
+	int cb_act; // offset 0xC, size 0x4
+	int cb_blood; // offset 0x10, size 0x4
+} WPNDAMAGE_WORK;
+
 typedef struct COLBAR_DEF
 {
 	// total size: 0x8
@@ -2215,6 +2258,33 @@ typedef struct GA_WORK
     int ax;              // offset 0x3C, size 0x4
     int ay;              // offset 0x40, size 0x4
 } GA_WORK;
+
+typedef struct BLOOD_TBL
+{
+    // total size: 0x1C
+    int flg; // offset 0x0, size 0x4
+    NJS_POINT3 ofp; // offset 0x4, size 0xC
+    float rx; // offset 0x10, size 0x4
+    float ry; // offset 0x14, size 0x4
+    float rz; // offset 0x18, size 0x4
+} BLOOD_TBL;
+
+typedef struct DMG_REACT
+{
+    // total size: 0x7
+	char type[3]; // offset 0x0, size 0x3
+	char bloodstain[3]; // offset 0x3, size 0x3
+	char exef; // offset 0x6, size 0x1
+} DMG_REACT;
+
+typedef struct STG_WORK 
+{
+    // total size: 0x4
+    char stg_no;  // offset 0x0, size 0x1
+    char rom_no;  // offset 0x1, size 0x1
+    char flr_no;  // offset 0x2, size 0x1
+    char ene_max; // offset 0x3, size 0x1
+} STG_WORK;
 
 // constant definition for ClutType, ImageType in picture header
 enum TIM2_gattr_type {

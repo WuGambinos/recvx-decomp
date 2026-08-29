@@ -8,7 +8,7 @@
 #include "../../../ps2/veronica/prog/ps2_sg_syhw.h"
 #include "../../../ps2/veronica/prog/ps2_sg_syrtc.h"
 
-unsigned char gMapleRecvBuf[1024 * 24 * 2 + 32] __attribute__((aligned(64)));
+unsigned char gMapleRecvBuf[1024 * 24 * 2 + 32];
 unsigned char gMapleSendBuf[1024 * 24 * 2 + 32];
 
 // 100% matching!

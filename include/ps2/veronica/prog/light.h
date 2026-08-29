@@ -4,13 +4,13 @@
 #include "types.h"
 
 void bhInitLight();
-void bhSetLightTab(LGT_WORK* lt, int lno);
+void bhSetLightTab(LGT_WK* lt, int lno);
 void bhSetEasyDirLight(float it);
 void bhControlLight();
 void bhSetLight();
 void bhSetHalfLight();
 void bhGetLightVector(int xr, int yr, int zr, NJS_VECTOR* vec);
 
-extern LGT_WORK lgttab[5];
+extern LGT_WK lgttab[5];
 
 #endif

@@ -1,1671 +1,16 @@
 #include "../../../ps2/veronica/prog/en15.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "../../../ps2/veronica/prog/zonzon.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
+
 //#include <string.h>
 
-// ENEMY: Nosferatu
+// ENEMY: Nosferatu 
 
-/*typedef struct _anon0;
-typedef struct _anon1;
-typedef struct _anon2;
-typedef struct _anon3;
-typedef struct BH_PWORK;
-typedef struct _anon4;
-typedef struct npobj;
-typedef struct _anon5;
-typedef struct _anon6;
-typedef struct _anon7;
-typedef struct _anon8;
-typedef struct _anon9;
-typedef struct _anon10;
-typedef struct _MTN_RELAY_RELAY;
-typedef struct _anon11;
-typedef struct _COMBO_EFF;
-typedef union _anon12;
-typedef struct _MTN_RELAY;
-typedef struct _anon13;
-typedef struct _anon14;
-typedef struct _anon15;
-typedef struct _anon16;
-typedef struct _anon17;
-typedef struct _LEGLOCK_LIST;
-typedef struct _anon18;
-typedef struct MTN_SE_TBL;
-typedef struct _anon19;
-typedef struct _anon20;
-typedef struct _anon21;
-typedef struct _LEGLOCK_TAB;
-typedef struct _anon22;
-typedef struct _anon23;
-typedef struct _anon24;
-typedef struct _anon25;
-typedef struct _anon26;
-typedef struct _anon27;
-typedef struct _anon28;
-typedef struct _anon29;
-typedef struct _anon30;
-typedef struct _anon31;
-typedef struct _anon32;
-typedef struct _anon33;
-typedef struct _UVINFO;
-typedef struct _anon34;
-typedef struct _anon35;
-typedef struct _anon36;
-typedef struct _anon37;
-typedef struct _anon38;
-typedef struct _EFF_INFO;
-typedef struct _anon39;
-typedef struct _anon40;
-typedef struct _anon41;
-typedef struct _anon42;
-typedef struct _anon43;
-typedef struct _JOINT_PARE;
-typedef struct _anon44;
-typedef struct _ATTACK_COL_TBL;
-typedef struct _anon45;
-typedef struct _anon46;
-typedef struct _anon47;
-typedef struct _WPNDG_TBL;
-
-typedef void(*type_67)(BH_PWORK*);
-typedef void(*type_98)(BH_PWORK*);
-typedef void(*type_114)(void*);
-typedef void(*type_155)(BH_PWORK*);
-
-typedef _anon2 type_0[32];
-typedef _anon1* type_1[512];
-typedef _anon1* type_2[128];
-typedef _anon1* type_3[128];
-typedef char type_4[256];
-typedef _anon1* type_5[128];
-typedef _anon1* type_6[512];
-typedef _WPNDG_TBL type_7[21];
-typedef _anon1* type_8[512];
-typedef unsigned char type_9[64];
-typedef float type_10[16];
-typedef _anon1* type_11[512];
-typedef unsigned int type_12[4];
-typedef _anon1* type_13[32];
-typedef _anon1* type_14[512];
-typedef _LEGLOCK_LIST type_15[2];
-typedef _UVINFO type_16[16];
-typedef _anon6* type_17[16];
-typedef _anon1* type_18[32];
-typedef _anon1* type_19[512];
-typedef _anon6* type_20[16][16];
-typedef _anon29 type_21[23];
-typedef _anon6* type_22[16][16][100];
-typedef char type_23[8];
-typedef _anon1* type_24[32];
-typedef _anon1* type_25[512];
-typedef _anon6* type_26[1300];
-typedef float type_27[32];
-typedef _anon1* type_28[512];
-typedef char type_29[32];
-typedef _anon6* type_30[200];
-typedef short type_31[32];
-typedef _anon23 type_32[1];
-typedef unsigned int type_33[1];
-typedef char type_34[3];
-typedef _anon6* type_35[8];
-typedef int* type_36[16];
-typedef char type_37[3];
-typedef _anon5 type_38[256];
-typedef char type_39[12];
-typedef _anon46 type_40[16];
-typedef npobj* type_41[16];
-typedef _MTN_RELAY_RELAY type_42[4];
-typedef _COMBO_EFF type_43[21];
-typedef _LEGLOCK_LIST type_44[2];
-typedef _UVINFO type_45[16];
-typedef _anon6* type_46[16];
-typedef int type_47[4];
-typedef float type_48[4];
-typedef _anon16 type_49[16];
-typedef unsigned int type_50[4];
-typedef float type_51[4];
-typedef int type_52[6];
-typedef float type_53[4];
-typedef char type_54[256];
-typedef float type_55[4];
-typedef float type_56[4];
-typedef MTN_SE_TBL type_57[30];
-typedef _anon9* type_58[128];
-typedef float type_59[4];
-typedef unsigned char type_60[64];
-typedef char type_61[6];
-typedef char type_62[8];
-typedef _LEGLOCK_LIST type_63[2];
-typedef void* type_64[2];
-typedef _anon45 type_65[21];
-typedef _anon6* type_66[256];
-typedef void(*type_68)(BH_PWORK*)[5];
-typedef unsigned char* type_69[256];
-typedef int type_70[4];
-typedef unsigned int type_71[2];
-typedef short type_72[256];
-typedef _LEGLOCK_LIST type_73[2];
-typedef _UVINFO type_74[23];
-typedef float type_75[3];
-typedef _anon35 type_76[4];
-typedef int type_77[5];
-typedef short type_78[256];
-typedef int type_79[3];
-typedef int type_80[8];
-typedef float type_81[3];
-typedef _anon6* type_82[256];
-typedef _anon13 type_83[256];
-typedef _anon23 type_84[450];
-typedef _LEGLOCK_LIST type_85[1];
-typedef char type_86[3];
-typedef _anon33 type_87[16];
-typedef short type_88[256];
-typedef char type_89[4];
-typedef float type_90[128];
-typedef int type_91[64];
-typedef _anon16 type_92[450];
-typedef unsigned int type_93[16];
-typedef char type_94[3];
-typedef _EFF_INFO type_95[5];
-typedef char type_96[4];
-typedef unsigned int type_97[8];
-typedef void(*type_99)(BH_PWORK*)[6];
-typedef unsigned char type_100[24];
-typedef _anon40 type_101[4];
-typedef _ATTACK_COL_TBL type_102[3];
-typedef _anon3 type_103[4];
-typedef int type_104[450];
-typedef unsigned int type_105[8];
-typedef unsigned char type_106[450];
-typedef char type_107[4];
-typedef char type_108[6];
-typedef _UVINFO type_109[5];
-typedef _LEGLOCK_LIST type_110[2];
-typedef char type_111[16];
-typedef char type_112[4];
-typedef unsigned int type_113[3];
-typedef _anon26 type_115[2];
-typedef _MTN_RELAY type_116[21];
-typedef unsigned int type_117[32];
-typedef unsigned char type_118[256];
-typedef _anon47 type_119[24];
-typedef unsigned int type_120[16];
-typedef unsigned int type_121[16];
-typedef unsigned char type_122[2];
-typedef _anon24 type_123[64];
-typedef _JOINT_PARE type_124[11];
-typedef unsigned int type_125[32];
-typedef char type_126[32];
-typedef _anon24 type_127[64];
-typedef _LEGLOCK_LIST type_128[2];
-typedef unsigned int type_129[16];
-typedef _UVINFO type_130[30];
-typedef char type_131[64];
-typedef _anon24 type_132[64];
-typedef BH_PWORK* type_133[16];
-typedef unsigned int type_134[8];
-typedef int type_135[4];
-typedef unsigned int type_136[1];
-typedef unsigned int type_137[384];
-typedef _anon2 type_138[8];
-typedef unsigned int type_139[2];
-typedef int type_140[3];
-typedef unsigned int type_141[4];
-typedef int* type_142[16];
-typedef BH_PWORK type_143[0];
-typedef npobj* type_144[16];
-typedef _anon1 type_145[0];
-typedef _anon6* type_146[16];
-typedef char type_147[4];
-typedef _anon16 type_148[16];
-typedef short type_149[4];
-typedef float type_150[16][0];
-typedef _LEGLOCK_TAB type_151[11];
-typedef unsigned char type_152[4];
-typedef _anon37 type_153[24];
-typedef _anon39 type_154[16];
-typedef void(*type_156)(BH_PWORK*)[8];
-typedef unsigned int type_157[8];
-typedef unsigned int type_158[4];
-typedef unsigned int type_159[32];
-typedef _anon1* type_160[128];
-
-struct _anon0
-{
-	_anon2 c;
-	float r;
-};
-
-struct _anon1
-{
-	unsigned int flg;
-	unsigned short id;
-	unsigned short type;
-	char flr_no;
-	char flr_nob;
-	unsigned char mdlver;
-	unsigned char param;
-	unsigned char mode0;
-	unsigned char mode1;
-	unsigned char mode2;
-	unsigned char mode3;
-	float px;
-	float py;
-	float pz;
-	int ax;
-	int ay;
-	int az;
-	float ar;
-	float aw;
-	float ah;
-	float ad;
-	float car;
-	float cah;
-	float pxb;
-	float pyb;
-	float pzb;
-	int axb;
-	int ayb;
-	int azb;
-	float gpx;
-	float gpy;
-	float gpz;
-	float lox;
-	float loy;
-	float loz;
-	float aox;
-	float aoy;
-	float aoz;
-	float spd;
-	unsigned int flg2;
-	unsigned int mdflg;
-	unsigned int stflg;
-	unsigned int Dummy3;
-	int draw_tp;
-	int mdl_n;
-	void* mskp;
-	unsigned int Dummy[1];
-	int* skp[16];
-	npobj* mbp[16];
-	_anon6* txp[16];
-	_anon16 mdl[16];
-	_anon16* mlwP;
-	unsigned int mdl_no;
-	int lkono;
-	unsigned char* lkwkp;
-	unsigned char* exp0;
-	unsigned char* exp1;
-	unsigned char* exp2;
-	unsigned char* exp3;
-	unsigned char mtxbuf[64];
-	float mtx[16];
-	npobj* obj_a;
-	npobj* obj_b;
-	float shp_ct;
-	char clp_jno[8];
-	int lok_jno;
-	_anon9* mnwP;
-	_anon9* mnwPb;
-	unsigned int mtn_attr;
-	unsigned int mtn_no;
-	int frm_no;
-	unsigned int frm_mode;
-	int hokan_rate;
-	unsigned int hokan_count;
-	unsigned int hokan_ctbak;
-	int mtn_add;
-	unsigned int mtn_md;
-	unsigned char* mtn_tp;
-	int axp;
-	int ayp;
-	int azp;
-	short psh_ct;
-	short psh_idx;
-	int idx_ct;
-	int mtn_chk;
-	float ofx;
-	float ofy;
-	float ofz;
-	float sx;
-	float sy;
-	float sz;
-	float sxb;
-	float syb;
-	float szb;
-	float xn;
-	float yn;
-	float zn;
-	int ct0;
-	int ct1;
-	int ct2;
-	int ct3;
-	unsigned char* objbak;
-	_anon0 cspr;
-	int pn;
-	_anon40* pvp;
-	_anon3* tvp;
-	_anon40 pv[4];
-	_anon3 tv[4];
-	int bl_src;
-	int bl_dst;
-	int ani_ct;
-	int tex_id;
-	int aspd;
-	unsigned int gidx;
-	int bank;
-	char jno[16];
-	char hide[4];
-	void(*func)(void*);
-	int idx;
-	int Dummy2;
-};
-
-struct _anon2
-{
-	float x;
-	float y;
-	float z;
-};
-
-struct _anon3
-{
-	float x;
-	float y;
-	float z;
-	float u;
-	float v;
-	unsigned int col;
-};
-
-struct BH_PWORK
-{
-	unsigned int flg;
-	unsigned short id;
-	unsigned short type;
-	char flr_no;
-	char flr_nob;
-	unsigned char mdlver;
-	unsigned char param;
-	unsigned char mode0;
-	unsigned char mode1;
-	unsigned char mode2;
-	unsigned char mode3;
-	float px;
-	float py;
-	float pz;
-	int ax;
-	int ay;
-	int az;
-	float ar;
-	float aw;
-	float ah;
-	float ad;
-	float car;
-	float cah;
-	float pxb;
-	float pyb;
-	float pzb;
-	int axb;
-	int ayb;
-	int azb;
-	float gpx;
-	float gpy;
-	float gpz;
-	float lox;
-	float loy;
-	float loz;
-	float aox;
-	float aoy;
-	float aoz;
-	float spd;
-	unsigned int flg2;
-	unsigned int mdflg;
-	unsigned int stflg;
-	unsigned int Dummy3;
-	int draw_tp;
-	int mdl_n;
-	void* mskp;
-	unsigned int Dummy[1];
-	int* skp[16];
-	npobj* mbp[16];
-	_anon6* txp[16];
-	_anon16 mdl[16];
-	_anon16* mlwP;
-	unsigned int mdl_no;
-	int lkono;
-	unsigned char* lkwkp;
-	unsigned char* exp0;
-	unsigned char* exp1;
-	unsigned char* exp2;
-	unsigned char* exp3;
-	unsigned char mtxbuf[64];
-	float mtx[16];
-	npobj* obj_a;
-	npobj* obj_b;
-	float shp_ct;
-	char clp_jno[8];
-	int lok_jno;
-	_anon9* mnwP;
-	_anon9* mnwPb;
-	unsigned int mtn_attr;
-	unsigned int mtn_no;
-	int frm_no;
-	unsigned int frm_mode;
-	int hokan_rate;
-	unsigned int hokan_count;
-	unsigned int hokan_ctbak;
-	int mtn_add;
-	unsigned int mtn_md;
-	unsigned char* mtn_tp;
-	int axp;
-	int ayp;
-	int azp;
-	short psh_ct;
-	short psh_idx;
-	int idx_ct;
-	int mtn_chk;
-	float ofx;
-	float ofy;
-	float ofz;
-	float sx;
-	float sy;
-	float sz;
-	float sxb;
-	float syb;
-	float szb;
-	float xn;
-	float yn;
-	float zn;
-	int ct0;
-	int ct1;
-	int ct2;
-	int ct3;
-	int wpnr_no;
-	int wpnl_no;
-	unsigned int at_flg;
-	_anon28 watr;
-	_anon29* cpcl;
-	short wax;
-	short way;
-	short waz;
-	short waxp;
-	short wayp;
-	short wazp;
-	int hp;
-	int dam[64];
-	int djnt_no;
-	int cpcl_no;
-	int dax;
-	int day;
-	float dpx;
-	float dpy;
-	float dpz;
-	float dvx;
-	float dvy;
-	float dvz;
-	int flr_snd;
-	int ko_num;
-	int footeff;
-	int src_no;
-	unsigned char* kdnp;
-	int kdnidx;
-	void* dan_ap;
-	unsigned int comb_flg;
-	unsigned int comb_wep;
-	int comb_pnt;
-	int comb_timeout;
-	int total_dam;
-	unsigned int Dummy2[2];
-};
-
-struct _anon4
-{
-	unsigned int flg;
-	unsigned int type;
-	int aspd;
-	int lkflg;
-	int lkno;
-	int lkono;
-	int lsrc;
-	float px;
-	float py;
-	float pz;
-	float lx;
-	float ly;
-	float lz;
-	float vx;
-	float vy;
-	float vz;
-	float spc;
-	float dif;
-	float amb;
-	float r;
-	float g;
-	float b;
-	float nr;
-	float fr;
-	int iang;
-	int oang;
-	int ax;
-	int ay;
-	int az;
-	unsigned int mode;
-	int ct0;
-	int ct1;
-	int ct2;
-	int ct3;
-	float wpx;
-	float wpy;
-	float wpz;
-	float wvx;
-	float wvy;
-	float wvz;
-	float wspc;
-	float wdif;
-	float wamb;
-	float wr;
-	float wg;
-	float wb;
-	float wnr;
-	float wfr;
-	int wiang;
-	int woang;
-	int wax;
-	int way;
-	int waz;
-	unsigned char* lkwkp;
-	unsigned char* exp;
-	_anon34* light;
-};
-
-struct npobj
-{
-	unsigned int evalflags;
-	_anon36* model;
-	float pos[3];
-	int ang[3];
-	float scl[3];
-	npobj* child;
-	npobj* sibling;
-};
-
-struct _anon5
-{
-	float x;
-	float y;
-	float z;
-	float u;
-	float v;
-	unsigned int bcol;
-	unsigned int ocol;
-};
-
-struct _anon6
-{
-	_anon23* textures;
-	unsigned int nbTexture;
-};
-
-struct _anon7
-{
-	float px;
-	float py;
-	float pz;
-	int ay;
-};
-
-struct _anon8
-{
-	unsigned int Type;
-	unsigned int BitDepth;
-	unsigned int PixelFormat;
-	unsigned int nWidth;
-	unsigned int nHeight;
-	unsigned int TextureSize;
-	unsigned int fSurfaceFlags;
-	unsigned int* pSurface;
-	unsigned int* pVirtual;
-	unsigned int* pPhysical;
-};
-
-struct _anon9
-{
-	unsigned int flg;
-	unsigned int obj_num;
-	unsigned int frm_num;
-	void* datP;
-	_anon27* md2P;
-	unsigned short* atrP;
-};
-
-struct _anon10
-{
-	unsigned short flg;
-	unsigned short type;
-	short nxt_no;
-	short keyf_n;
-	_anon46 keyf[16];
-};
-
-struct _MTN_RELAY_RELAY
-{
-	short old_mtn_no;
-	short next_mtn_no;
-	_MTN_RELAY* relay;
-};
-
-struct _anon11
-{
-	_anon2 v[8];
-};
-
-struct _COMBO_EFF
-{
-	char dmg_type[3];
-	char blood_type[3];
-};
-
-union _anon12
-{
-	_anon28 cap;
-	_anon11 box;
-};
-
-struct _MTN_RELAY
-{
-	short old_mtn_no;
-	short next_mtn_no;
-	short from;
-	short to;
-};
-
-struct _anon13
-{
-	unsigned char* adr;
-	unsigned int gidx;
-	unsigned int attr;
-	unsigned int w;
-	unsigned int h;
-};
-
-struct _anon14
-{
-	_anon15* cutp;
-	_anon4* lgtp;
-	_anon19* enep;
-	_anon19* objp;
-	_anon19* itmp;
-	_anon22* effp;
-	_anon24* walp;
-	_anon24* etcp;
-	_anon24* flrp;
-	_anon7* posp;
-	_anon24* rutp;
-	unsigned char* ruttp;
-	_anon32* evtp;
-	_anon10* evcp;
-	unsigned int* mesp;
-	_anon4* evlp;
-	unsigned char* dmp00;
-	unsigned char* dmp01;
-	unsigned char* dmp02;
-	unsigned char* dmp03;
-	unsigned char* dmp04;
-	unsigned char* dmp05;
-	unsigned char* dmp06;
-	unsigned char* dmp07;
-	unsigned char* dmp08;
-	unsigned char* dmp09;
-	unsigned char* dmp10;
-	unsigned char* dmp11;
-	unsigned char* dmp12;
-	unsigned char* dmp13;
-	unsigned char* dmp14;
-	unsigned char* dmp15;
-	int cut_n;
-	int lgt_n;
-	int ene_n;
-	int obj_n;
-	int itm_n;
-	int eff_n;
-	int wal_n;
-	int etc_n;
-	int flr_n;
-	int pos_n;
-	int rut_n;
-	int evc_n;
-	int mes_n;
-	int evl_n;
-	int dmy00;
-	int dmy01;
-	int dmy02;
-	int dmy03;
-	int dmy04;
-	int dmy05;
-	int dmy06;
-	int dmy07;
-	int dmy08;
-	int dmy09;
-	int dmy10;
-	int dmy11;
-	int dmy12;
-	int dmy13;
-	int dmy14;
-	int dmy15;
-	int dmy16;
-	int dmy17;
-	unsigned int flg;
-	unsigned int bak_col;
-	unsigned int fog_col;
-	float fog_nr;
-	float fog_fr;
-	float w;
-	float h;
-	float d;
-	float grand[32];
-	_anon16 mdl;
-	float fog[128];
-	char amb_rom;
-	char amb_chr;
-	char amb_obj;
-	char amb_itm;
-	float amb_r[4];
-	float amb_g[4];
-	float amb_b[4];
-};
-
-struct _anon15
-{
-	unsigned char flg;
-	unsigned char type;
-	char flr_no;
-	unsigned char ctab_n;
-	_anon18* cuttp;
-	float cx;
-	float cy;
-	float cz;
-	float cw;
-	float ch;
-	float cd;
-	_anon26 cam[2];
-	unsigned char exd[256];
-};
-
-struct _anon16
-{
-	unsigned int flg;
-	unsigned int obj_num;
-	void* datP;
-	npobj* objP;
-	_anon6* texP;
-	_anon30* owP;
-};
-
-struct _anon17
-{
-	unsigned int id;
-	unsigned int support;
-	unsigned int on;
-	unsigned int off;
-	unsigned int press;
-	unsigned int release;
-	unsigned short r;
-	unsigned short l;
-	short x1;
-	short y1;
-	short x2;
-	short y2;
-	char* name;
-	void* extend;
-	unsigned int old;
-	_anon43* info;
-};
-
-struct _LEGLOCK_LIST
-{
-	char start;
-	char end;
-};
-
-struct _anon18
-{
-	unsigned int attr;
-	char flr_no;
-	char reserve0;
-	char reserve1;
-	char atr_tp;
-	float h;
-	float dmy;
-	float minx;
-	float minz;
-	float maxx;
-	float maxz;
-};
-
-struct MTN_SE_TBL
-{
-	unsigned int mtn_no;
-	unsigned int frm;
-	int seno;
-};
-
-struct _anon19
-{
-	unsigned int flg;
-	unsigned short id;
-	unsigned short type;
-	char flr_no;
-	unsigned char mdlver;
-	unsigned char wrk_no;
-	char prm1;
-	float px;
-	float py;
-	float pz;
-	short ax;
-	short az;
-	short ay;
-	short aspd;
-	char hide[4];
-};
-
-struct _anon20
-{
-	unsigned int flg;
-	char stg_no;
-	char rom_no;
-	unsigned char pos_no;
-	unsigned char dor_tp;
-	unsigned char mode0;
-	unsigned char mode1;
-	unsigned char mode2;
-	unsigned char mode3;
-	int ct0;
-	int ct1;
-	int ct2;
-	int ct3;
-};
-
-struct _anon21
-{
-	void* texaddr;
-	_anon8 texsurface;
-};
-
-struct _LEGLOCK_TAB
-{
-	char mtn_no;
-	char default_lr;
-	_LEGLOCK_LIST* list;
-};
-
-struct _anon22
-{
-	unsigned int flg;
-	unsigned short id;
-	unsigned short type;
-	short flr_no;
-	unsigned short mdlver;
-	float px;
-	float py;
-	float pz;
-	float sx;
-	float sy;
-	float sz;
-	short ay;
-	short ax;
-	int lkflg;
-	int lkno;
-	int lkono;
-	float lx;
-	float ly;
-	float lz;
-	int param;
-};
-
-struct _anon23
-{
-	void* filename;
-	unsigned int attr;
-	unsigned int texaddr;
-};
-
-struct _anon24
-{
-	unsigned char flg;
-	unsigned char type;
-	unsigned char id;
-	char flr_no;
-	unsigned int attr;
-	float px;
-	float py;
-	float pz;
-	float w;
-	float h;
-	float d;
-	unsigned char prm0;
-	unsigned char prm1;
-	unsigned char prm2;
-	unsigned char prm3;
-};
-
-struct _anon25
-{
-	float a;
-	float r;
-	float g;
-	float b;
-};
-
-struct _anon26
-{
-	unsigned short flg;
-	unsigned char lgtclip;
-	char spd;
-	float px;
-	float py;
-	float pz;
-	float ln;
-	float w;
-	float h;
-	float d;
-	float y0;
-	float y1;
-	float y2;
-	float y3;
-	float am_spd;
-	int ax;
-	int ay;
-	int az;
-	int lax;
-	int lay;
-	short laz0;
-	short laz1;
-	short laz2;
-	short laz3;
-	char aa_spd;
-	char fil_no;
-	char fil_rt;
-	char reserve;
-	int pers;
-	unsigned int hidobj[16];
-	unsigned int hidlgt[8];
-	unsigned int fog_col;
-	float fog_nr;
-	float fog_fr;
-};
-
-struct _anon27
-{
-	void* p[2];
-};
-
-struct _anon28
-{
-	_anon2 c1;
-	_anon2 c2;
-	float r;
-};
-
-struct _anon29
-{
-	short jnt_a;
-	short jnt_b;
-	int cap_r;
-};
-
-struct _anon30
-{
-	unsigned int flg;
-	int dmy;
-	unsigned int dummy[2];
-	float mtx[16];
-};
-
-struct _anon31
-{
-	unsigned int ssd_ver;
-	unsigned int ssd_flg;
-	unsigned int ssd_reserve;
-	char keytype;
-	char adjust_x;
-	char adjust_y;
-	char vibration;
-	int best_tm[8];
-	unsigned int sys_partid;
-	unsigned int itm_partid;
-	unsigned int fil_partid;
-	unsigned int dor_partid;
-	unsigned int ss_flg;
-	int pdm_no;
-	unsigned int typ_flg;
-	unsigned short typ_md0;
-	unsigned short typ_md1;
-	void* typ_exp;
-	unsigned int tk_flg;
-	unsigned int ts_flg;
-	unsigned int gm_flg;
-	unsigned int st_flg;
-	unsigned int cb_flg;
-	unsigned int rm_flg;
-	unsigned int pt_flg;
-	unsigned int sp_flg;
-	unsigned int ef_flg;
-	unsigned int error;
-	unsigned int version;
-	int save_ct;
-	char ply_id;
-	char stg_no;
-	char rom_no;
-	char rcase;
-	char pos_no;
-	char cut_no;
-	char flr_no;
-	char reserve0;
-	int gm_mode;
-	unsigned int ev_flg[32];
-	unsigned int it_flg[16];
-	unsigned int ic_flg[16];
-	unsigned int ed_flg[32];
-	unsigned int ky_flg[16];
-	unsigned int mp_flg[8];
-	unsigned int itm[384];
-	unsigned int ply_stflg[4];
-	_anon2 ply_pos;
-	int ply_ang;
-	char ply_wno[4];
-	short ply_hp[4];
-	unsigned char evt_posno[4];
-	int time;
-	int stv_tm;
-	short spray_ct;
-	short retry_ct;
-	short clear_ct;
-	short reserve1;
-	unsigned int save_end;
-	char stg_nob;
-	char rom_nob;
-	char pos_nob;
-	char rcase_b;
-	unsigned int en_flg[4];
-	_anon6* et_lp[16][16][100];
-	_anon6* ot_lp[1300];
-	_anon6* it_lp[200];
-	int eft_n;
-	_anon6* eft_lp[8];
-	int loop_ct;
-	int loop_now;
-	int cng_pid;
-	_anon17* p1per;
-	_anon17* p2per;
-	_anon17* kbper;
-	_anon17* msper;
-	_anon17 ms_per;
-	int pad_port;
-	unsigned int pad_on;
-	unsigned int pad_oncpy;
-	unsigned int pad_ps;
-	unsigned int pad_rs;
-	unsigned int pad_old;
-	unsigned int pad_onb;
-	unsigned int pad_psb;
-	unsigned int pad_oldb;
-	short pad_ax;
-	short pad_ay;
-	short pad_dx;
-	short pad_dy;
-	unsigned short pad_ar;
-	unsigned short pad_al;
-	int fixcno;
-	int fixkno;
-	unsigned int exm_attr;
-	short evc_no;
-	short evc_kn;
-	short evc_ono;
-	short evc_okn;
-	int evc_sc;
-	unsigned char mn_mode0;
-	unsigned char mn_mode1;
-	unsigned char mn_mode2;
-	unsigned char mn_mode3;
-	unsigned char mn_md0;
-	unsigned char mn_md1;
-	unsigned char mn_md2;
-	unsigned char mn_md3;
-	int mn_setct;
-	unsigned int mn_stack[8];
-	unsigned int sdm_flg;
-	unsigned int sdm_mode;
-	unsigned char* ltc_bp;
-	unsigned int ltc_tsbak;
-	int ewk_n;
-	unsigned int enow;
-	unsigned int onow;
-	unsigned int efnow;
-	int vsyc_ct;
-	int vsyc_flg;
-	int fog_ct;
-	int bcl_ct;
-	int gfrm_ct;
-	int gframe;
-	int eor_ct;
-	unsigned int pfm_cts;
-	int evt_tmd;
-	int evt_tim;
-	int evt_tdg;
-	int evt_fcd;
-	unsigned int evt_fcdct;
-	unsigned int fsize;
-	unsigned int rdtsz;
-	unsigned char* memp;
-	unsigned char* mempb;
-	unsigned char* endp;
-	unsigned char* rdtp;
-	unsigned char* plmdlp;
-	unsigned char* lmmdlp;
-	unsigned char* wrmdlp;
-	unsigned char* wlmdlp;
-	unsigned char* plmthp;
-	unsigned char* plbmtp;
-	unsigned char* plwmtp;
-	unsigned char* plzmtp;
-	unsigned char* plemtp;
-	unsigned char* plexwp;
-	unsigned char* plhdwp;
-	unsigned char* pletcp;
-	unsigned char* subtxp;
-	unsigned char* doordp;
-	unsigned char* sbs_sp;
-	_anon1* obwp;
-	_anon1* itwp;
-	_anon9* emtp[128];
-	_anon9* rmthp;
-	unsigned char* mspp;
-	unsigned char* lspp;
-	unsigned int* mes_ip;
-	unsigned int* mes_sp;
-	void* mes_tp;
-	short txr_n;
-	short txr_ct;
-	_anon6* txlp[256];
-	unsigned char* txdp[256];
-	short txloff[256];
-	short txb_ct;
-	short txb_n;
-	short txb[256];
-	_anon6* txblp[256];
-	_anon13 txbp[256];
-	unsigned char* ef_psp;
-	_anon23 ef_tex[450];
-	_anon6 ef_tlist;
-	_anon42 ef;
-	short efid[256];
-	_anon16 efm[450];
-	int ef_ct;
-	int ef_ctb;
-	int ef_extn;
-	int ef_tn[450];
-	unsigned char ef_pbkb[450];
-	int ef_pbnk;
-	int ef_slow;
-	int ef_ctrn;
-	int yk_ct;
-	int mg_ct;
-	int bl_ct;
-	int windr;
-	float winds;
-	int windrb;
-	float windsb;
-	unsigned int thunder;
-	float gas_py;
-	int en_objn;
-	BH_PWORK* en_obj[16];
-	int ef_poln;
-	int ef_mdfn;
-	int ef_linn;
-	int ef_ntxn;
-	int ef_trsn;
-	int ef_pncn;
-	int ef_opqn;
-	int ef_thln;
-	int ef_ntx2dn;
-	int ef_trs2dn;
-	int ef_pnc2dn;
-	int ef_fncn;
-	_anon1* ef_pol[512];
-	_anon1* ef_mdf[128];
-	_anon1* ef_lin[512];
-	_anon1* ef_ntx[512];
-	_anon1* ef_trs[512];
-	_anon1* ef_pnc[512];
-	_anon1* ef_opq[512];
-	_anon1* ef_thl[512];
-	_anon1* ef_ntx2d[128];
-	_anon1* ef_trs2d[128];
-	_anon1* ef_pnc2d[128];
-	_anon1* ef_fnc[512];
-	int ob_nlgn;
-	int ob_hlgn;
-	int ob_spcn;
-	_anon1* ob_nlg[32];
-	_anon1* ob_hlg[32];
-	_anon1* ob_spc[32];
-	unsigned int ren_gid;
-	_anon21 ren_info;
-	_anon23 ren_tex[1];
-	_anon6 ren_tlist;
-	_anon5 rpb[256];
-	int ren_n;
-	int ren_idx[4];
-	int wt_nbpt;
-	float wt_px;
-	float wt_pz;
-	int wt_xp;
-	int wt_zp;
-	int wt_minx;
-	int wt_minz;
-	int wt_maxx;
-	int wt_maxz;
-	unsigned char* wt_wvp;
-	_anon41 mr_pl;
-	unsigned char* zan_memp;
-	unsigned char* zanp;
-	_anon4* lgtp;
-	float lg_vx;
-	float lg_vy;
-	float lg_vz;
-	float lg_r;
-	float lg_g;
-	float lg_b;
-	int lg_pnt;
-	_anon35 lg_ptb[4];
-	int mes_idx;
-	unsigned int* mes_dp;
-	int mes_ct;
-	int mes_tim;
-	int mes_fls;
-	int mes_sel;
-	int mes_seln;
-	_anon33 mes_sps[16];
-	int rt_sp;
-	unsigned char* rt_wp;
-	unsigned char* rt_dp;
-	unsigned char* rt_nw;
-	unsigned char* rt_nx;
-	float* rt_ln;
-	BH_PWORK* plp;
-	_anon24* pl_htp;
-	int costume;
-	_anon2 hd_pos;
-	_anon2 apos;
-	_anon24* ahtp;
-	int mwal_n;
-	int metc_n;
-	int mflr_n;
-	_anon24 mwalp[64];
-	_anon24 metcp[64];
-	_anon24 mflrp[64];
-	int dla_n;
-	_anon24* htp;
-	int psh_snd;
-	int fog_cngct;
-	unsigned int fog_col;
-	float fog_nr;
-	float fog_fr;
-	float fade_ct;
-	float fade_hkn;
-	float fade_ao;
-	float fade_an;
-	float fade_ap;
-	float fade_ro;
-	float fade_rn;
-	float fade_rp;
-	float fade_go;
-	float fade_gn;
-	float fade_gp;
-	float fade_bo;
-	float fade_bn;
-	float fade_bp;
-	unsigned int fade_pbk;
-	unsigned short ssv_md0;
-	unsigned short ssv_md1;
-	int ssv_tim;
-	float ssv_ct;
-	float ssv_hkn;
-	float ssv_ao;
-	float ssv_an;
-	float ssv_ap;
-	short fil_no;
-	short fil_rt;
-	float rvf_sc;
-	float rvf_sn;
-	unsigned int rvfc[4];
-	float cine_an;
-	float cine_ap;
-	unsigned int sco_flg;
-	float amb_r[4];
-	float amb_g[4];
-	float amb_b[4];
-	int sb_id;
-	int sb_cmd;
-	int sb_rdid;
-	int sb_rdsz;
-	void* sb_rdp;
-	void* sb_mlb;
-	void* sb_ppp;
-	_anon6* sb_tlist;
-	int ddmd;
-	_anon20 door;
-	int mpmd;
-	int mp_prm[4];
-	unsigned short gov_md0;
-	unsigned short gov_md1;
-	int gov_ct;
-	void* gov_exp;
-	unsigned int com_flg;
-	unsigned short com_md0;
-	unsigned short com_md1;
-	unsigned int com_num;
-	void* com_exp;
-	short ond_tnm;
-	short ond_ud;
-	char ond_cx;
-	char ond_n[3];
-	unsigned char ufo_md;
-	unsigned char ufo_flg;
-	short ufo_oidx;
-	_anon2 ufo_pos;
-	unsigned int opt_flg;
-	unsigned short opt_md0;
-	unsigned short opt_md1;
-	void* opt_exp;
-	unsigned int etc_idx;
-	unsigned int flr_idx;
-	int mvi_no;
-	int mvi_tp;
-	unsigned short mvi_md;
-	unsigned short mvi_flg;
-	unsigned int mvi_tsb;
-	unsigned int mvi_spb;
-	unsigned char* mvi_memp;
-	unsigned int dcg_tkbak;
-	unsigned int dcg_tsbak;
-	unsigned int pau_spbak;
-	unsigned int pau_pad_on;
-	unsigned int pau_pad_ps;
-	unsigned int pau_pad_old;
-	unsigned char* pdm_dp;
-	unsigned char* pdm_pd;
-	int pdm_keytpb;
-	int gat_ct;
-	_anon39 gatc[16];
-	int ght_ct;
-	unsigned int ghtc[32];
-	_anon2 ghtp[32];
-	unsigned short db_md0;
-	unsigned short db_md1;
-	char db_stgno;
-	char db_romno;
-	char db_rcase;
-	char db_muteki;
-	short db_px;
-	short db_py;
-	int db_mes;
-	int calc_v;
-	unsigned int brkfg;
-	char brkfg_typ[32];
-	short brkfg_bit[32];
-	unsigned int brkfg_tkb;
-	unsigned int brkfg_tsb;
-	int brkfg_ct;
-	unsigned int bmt_size;
-	unsigned int lmt_size;
-	unsigned int emt_size;
-	unsigned int wmt_size;
-	char mes[256];
-	float sfx;
-	float sfy;
-	float sfxn;
-	float sfyn;
-	float sfct;
-};
-
-struct _anon32
-{
-	unsigned short* scd0;
-	unsigned short* scd1;
-	unsigned short* evd;
-};
-
-struct _anon33
-{
-	float x;
-	float y;
-};
-
-struct _UVINFO
-{
-	short u;
-	short v;
-	short sx;
-	short sy;
-	short frm;
-	short scale;
-};
-
-struct _anon34
-{
-	float mtrx[16];
-	_anon2 pnt;
-	_anon2 vctr;
-	int stat;
-	int reserve;
-	_anon38 ltcal;
-	_anon44 attr;
-};
-
-struct _anon35
-{
-	_anon2 ps;
-	float nr;
-	float fr;
-	float cr;
-	float cg;
-	float cb;
-};
-
-struct _anon36
-{
-	int* vlist;
-	short* plist;
-	_anon2 center;
-	float r;
-};
-
-struct _anon37
-{
-	int lnk_obj;
-	float x;
-	float y;
-	float z;
-	float xlen;
-	float ylen;
-	float size;
-	float len;
-};
-
-struct _anon38
-{
-	float ratten;
-	float ipd;
-	float nrr;
-	float frr;
-	float cosi;
-	float cose;
-	float idev;
-	float odev;
-	float rate;
-	float intns;
-	int exp;
-	int reserve;
-	_anon2 lpnt;
-	_anon2 lvctr;
-	_anon2 lmvctr;
-	_anon25 atten;
-	_anon25 amb;
-	_anon25 dif;
-	_anon25 spc;
-	_anon25 mamb;
-	_anon25 mdif;
-	_anon25 mspc;
-};
-
-struct _EFF_INFO
-{
-	int texid;
-	_UVINFO* uvtbl;
-};
-
-struct _anon39
-{
-	_anon2 c1;
-	_anon2 c2;
-	float r1;
-	float r2;
-};
-
-struct _anon40
-{
-	float x;
-	float y;
-	float z;
-	unsigned int col;
-};
-
-struct _anon41
-{
-	float px;
-	float py;
-	float pz;
-	float vx;
-	float vy;
-	float vz;
-};
-
-struct _anon42
-{
-	unsigned int flg;
-	unsigned short id;
-	unsigned short type;
-	short flr_no;
-	unsigned short mdlver;
-	float px;
-	float py;
-	float pz;
-	float sx;
-	float sy;
-	float sz;
-	short ay;
-	short ax;
-};
-
-struct _anon43
-{
-	unsigned int type;
-	unsigned int reserved[3];
-	unsigned char is_root;
-	unsigned char area_code;
-	unsigned char connector_dir[2];
-	char product_name[32];
-	char license[64];
-	unsigned short stdby_pow;
-	unsigned short max_pow;
-};
-
-struct _JOINT_PARE
-{
-	char cur;
-	char parent;
-};
-
-struct _anon44
-{
-	int lsrc;
-	float iamb;
-	float idif;
-	float ispc;
-	float nrang;
-	float frang;
-	void* func;
-	int iang;
-	int oang;
-	_anon25 argb;
-};
-
-struct _ATTACK_COL_TBL
-{
-	int* obj_no;
-	int start_frm;
-	int end_frm;
-	int damage;
-	int impact_ang;
-	float spd;
-	float volume;
-	int sp_start_frm;
-	int sp_end_frm;
-};
-
-struct _anon45
-{
-	int crit;
-	int pt[3];
-	int timeout;
-	int bonus;
-};
-
-struct _anon46
-{
-	unsigned short flg;
-	short frame;
-	float px;
-	float py;
-	float pz;
-	short ax;
-	short ay;
-	short az;
-	short pers;
-	unsigned int hidobj[8];
-	unsigned int hidlgt[4];
-	unsigned int fog_col;
-	float fog_nr;
-	float fog_fr;
-	short lkflg;
-	short lkno;
-	short lkono;
-	short nxt_no;
-	float lx;
-	float ly;
-	float lz;
-	float prm_0;
-	float prm_1;
-	float prm_2;
-	float prm_3;
-	float prm_4;
-	unsigned char* recp;
-};
-
-struct _anon47
-{
-	int flg;
-	int correct;
-};
-
-struct _WPNDG_TBL
-{
-	char dmg_type;
-	char blood_type;
-	char mince_type;
-};*/
-
-char dbgout_buf[256];
+static char dbgout_buf[256];
 /*_WPNDG_TBL WpnDamageTbl[21];
 _anon45 CombWepTbl[21];
 _anon47 CombJointTbl[24];
@@ -1681,22 +26,76 @@ _LEGLOCK_LIST lrl_fldmg[2];
 _LEGLOCK_LIST lrl_bldmg[2];
 _LEGLOCK_LIST lrl_crdmg[2];
 _LEGLOCK_LIST lrl_dummy[1];
-_LEGLOCK_TAB leglock_tab[11];
-int attack1_col_joint[5];
-int attack2_col_joint[4];
-int attack3_col_joint[6];
-_ATTACK_COL_TBL attack_col_tab[3];
-_anon29 CapColTab[23];
+_LEGLOCK_TAB leglock_tab[11];*/
+static int attack1_col_joint[5] = 
+{
+	7,
+	8,
+	9,
+	10,
+	-1
+};
+static int attack2_col_joint[4] = 
+{
+	8,
+	9,
+	10,
+	-1
+};
+static int attack3_col_joint[6] = 
+{
+	6,
+	7,
+	8,
+	9,
+	10,
+	-1
+};
+static ATTACK_COL_TBL attack_col_tab[3] =
+{
+    {
+        attack1_col_joint,
+        31,      
+        56,      
+        50,      
+        8192,  
+        6.05f,   
+        4.3f,    
+        41,      
+        52       
+    },
+    {
+        attack2_col_joint,
+        29,      
+        40,      
+        50,      
+        5461,  
+        4.0f,    
+        3.3f,    
+        0,
+        0
+    },
+    {
+        attack3_col_joint,
+        24,      
+        32,      
+        30,      
+        7281,  
+        4.5f,    
+        5.0f,    
+        24,      
+        30       
+    }
+};
+/*_anon29 CapColTab[23];
 unsigned char flip_tree[24];
 void(*Mode_func)(BH_PWORK*)[6];
 void(*Move_func)(BH_PWORK*)[5];
 void(*Ply_func)(BH_PWORK*)[8];
-BH_PWORK* plp;
 _JOINT_PARE jointTree[11];
 char joint_tree_buf[12];
 char poison_attack_wait;
 char poison_eff_wait;
-_anon31* sys;
 _MTN_RELAY mtn_relay[21];
 _MTN_RELAY_RELAY mtn_relay_relay[4];
 _UVINFO uvinfo1_1[5];
@@ -1705,9 +104,6 @@ _UVINFO uvinfo1_3[23];
 _UVINFO uvinfo2_1[30];
 _UVINFO uvinfo2_2[16];
 _EFF_INFO eff_info[5];
-_anon1 eff[0];
-float lcmat[16][0];
-_anon14* rom;
 
 // 
 // Start address: 0x1e0eb0
@@ -1730,7 +126,7 @@ int target_direction(BH_PWORK* epw)
 float target_distance(BH_PWORK* epw)
 {
 	_anon30* owk;
-	_anon2 epos;
+	NJS_POINT3 epos;
 	// Line 958, Address: 0x1e0f80, Func Offset: 0
 	// Line 961, Address: 0x1e0f88, Func Offset: 0x8
 	// Line 965, Address: 0x1e0f8c, Func Offset: 0xc
@@ -1999,9 +395,9 @@ void Chase(BH_PWORK* epw)
 
 // 
 // Start address: 0x1e20f0
-void __goalAng(BH_PWORK* epw, _anon2* vec, _anon2* ans)
+void __goalAng(BH_PWORK* epw, NJS_POINT3* vec, NJS_POINT3* ans)
 {
-	_anon2 v;
+	NJS_POINT3 v;
 	// Line 1740, Address: 0x1e20f0, Func Offset: 0
 	// Line 1741, Address: 0x1e2104, Func Offset: 0x14
 	// Line 1742, Address: 0x1e2118, Func Offset: 0x28
@@ -2017,8 +413,8 @@ void __goalAng(BH_PWORK* epw, _anon2* vec, _anon2* ans)
 // Start address: 0x1e2180
 int _goalAng(BH_PWORK* epw)
 {
-	_anon2 ans;
-	_anon2 vec;
+	NJS_POINT3 ans;
+	NJS_POINT3 vec;
 	// Line 1748, Address: 0x1e2180, Func Offset: 0
 	// Line 1750, Address: 0x1e2184, Func Offset: 0x4
 	// Line 1748, Address: 0x1e2188, Func Offset: 0x8
@@ -2032,8 +428,8 @@ int _goalAng(BH_PWORK* epw)
 // Start address: 0x1e21c0
 int _goalAng2(BH_PWORK* epw)
 {
-	_anon2 ans;
-	_anon2 vec;
+	NJS_POINT3 ans;
+	NJS_POINT3 vec;
 	// Line 1755, Address: 0x1e21c0, Func Offset: 0
 	// Line 1757, Address: 0x1e21c4, Func Offset: 0x4
 	// Line 1755, Address: 0x1e21c8, Func Offset: 0x8
@@ -2062,168 +458,317 @@ void KeepFar(BH_PWORK* epw)
 	// Line 1777, Address: 0x1e2320, Func Offset: 0x110
 	// Line 1778, Address: 0x1e232c, Func Offset: 0x11c
 	// Func End, Address: 0x1e233c, Func Offset: 0x12c
+}*/
+
+// 100% matching!
+void Attack(BH_PWORK* epw) 
+{    
+    static char left_idx[4]  = { 0, 4, 5, 1 }, right_idx[4] = { 3, 7, 6, 2 }; 
+    int i;                                                 
+    NJS_VECTOR attack_v;                                
+    ATTACK_COL col;                                        
+
+    if (epw->ct3 != 0) 
+    {
+        epw->ct3--;
+    }
+
+    if ((epw->mtn_no >= 2) && (epw->mtn_no < 5)) 
+    {
+        ikou(epw, (NJS_POINT3*)&plp->px, epw->way);
+        
+        if ((epw->frm_no / 65536) == 20) 
+        {
+            epw->way = 0;
+        }
+        
+        if (((attack_col_tab[MTN_NO_CHECK(epw)].start_frm <= (epw->frm_no / 65536)) && ((epw->frm_no / 65536) < attack_col_tab[MTN_NO_CHECK(epw)].end_frm)) && (!(EXP0_S(90) & 0x1)))
+        {
+            for (i = 0; attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i] != -1; i++) 
+            {
+                if (MTN_NO_CHECK(epw) == 1)
+                {
+                    NJS_POINT3 _p; 
+                    
+                    col.cap.r = attack_col_tab[MTN_NO_CHECK(epw)].volume;
+                    
+                    _p.x = 0;
+                    _p.y = 0;
+                    _p.z = 0;
+                    
+                    njCalcPoint(&epw->mlwP->owP[attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i]].mtx, &_p, &col.cap.c1);
+                    
+                    if (attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i + 1] != -1) 
+                    {
+                        NJS_POINT3 _p; 
+
+                        _p.x = 0;
+                        _p.y = 0;
+                        _p.z = 0;
+                        
+                        njCalcPoint(&epw->mlwP->owP[attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i + 1]].mtx, &_p, &col.cap.c2);
+                    } 
+                    else 
+                    {
+                        NJS_POINT3 _p = { 0, 8.0f, 0 }; 
+                        
+                        njCalcPoint(&epw->mlwP->owP[10].mtx, &_p, &col.cap.c2);
+                    }
+                } 
+                else
+                {
+                    float vane_width; 
+                    char* f_idx, *b_idx;      
+
+                    vane_width = 2.0f;
+                    
+                    if (MTN_NO_CHECK(epw) == 0)
+                    {
+                        b_idx = left_idx;
+                        f_idx = right_idx;
+                    } 
+                    else
+                    {
+                        vane_width *= -1.0f;
+                        
+                        b_idx = right_idx;
+                        f_idx = left_idx;
+                    }
+
+                    col.box.v[b_idx[0]] = col.box.v[b_idx[1]] = *((NJS_POINT3*)epw->exp0 + (attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i] - 5));
+                    
+                    col.box.v[b_idx[0]].y += attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                    col.box.v[b_idx[1]].y -= attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                    
+                    {
+                        NJS_POINT3 _p; 
+                        
+                        _p.x = vane_width;
+                        _p.y = 0;
+                        _p.z = 0;
+                        
+                        njCalcPoint(&epw->mlwP->owP[attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i]].mtx, &_p, &col.box.v[b_idx[3]]);
+                    }
+                    
+                    col.box.v[b_idx[2]] = col.box.v[b_idx[3]];
+                    
+                    col.box.v[b_idx[3]].y += attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                    col.box.v[b_idx[2]].y -= attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+
+                    if (attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i + 1] != -1)
+                    {
+                        col.box.v[f_idx[0]] = col.box.v[f_idx[1]] = *((NJS_POINT3*)epw->exp0 + (attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i + 1] - 5));
+                        
+                        col.box.v[f_idx[0]].y += attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                        col.box.v[f_idx[1]].y -= attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+
+                        {
+                            NJS_POINT3 _p; 
+                            
+                            _p.x = vane_width;
+                            _p.y = 0;
+                            _p.z = 0;
+                            
+                            njCalcPoint(&epw->mlwP->owP[attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i + 1]].mtx, &_p, &col.box.v[f_idx[3]]);
+                        }
+
+                        col.box.v[f_idx[2]] = col.box.v[f_idx[3]];
+                        
+                        col.box.v[f_idx[3]].y += attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                        col.box.v[f_idx[2]].y -= attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                    } 
+                    else 
+                    {
+                        
+                        col.box.v[f_idx[0]] = col.box.v[f_idx[1]] = *((NJS_POINT3*)epw->exp0 + (attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i] - 4));
+
+                        col.box.v[f_idx[0]].y += attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                        col.box.v[f_idx[1]].y -= attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+
+                        {
+                            NJS_POINT3 _p = { 0, 9.8f, 0 }; 
+                            
+                            _p.x = vane_width;
+                            
+                            njCalcPoint(&epw->mlwP->owP[10].mtx, &_p, &col.box.v[f_idx[3]]);
+                        }
+
+                        col.box.v[f_idx[2]] = col.box.v[f_idx[3]];
+                        
+                        col.box.v[f_idx[3]].y += attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                        col.box.v[f_idx[2]].y -= attack_col_tab[MTN_NO_CHECK(epw)].volume / 2.0f;
+                    }
+                }
+
+                if (MTN_NO_CHECK(epw) == 1) 
+                {
+                    NJS_MATRIX mat;                   
+                    NJS_VECTOR vec = { 0, 0, -1.0f }; 
+                    
+                    njUnitMatrix(&mat);
+                    
+                    njRotateY(&mat, epw->ay);
+                    njCalcVector(&mat, &vec, &attack_v);
+                } 
+                else
+                {
+                    NJS_VECTOR vec0, vec1; 
+
+                    vec0 = col.box.v[1];
+                    vec1 = col.box.v[2];
+                    
+                    njSubVector(&vec1, &vec0);
+                    
+                    vec0.x = 0;
+                    vec0.y = 1.0f;
+                    vec0.z = 0;
+                    
+                    njOuterProduct(&vec0, &vec1, &attack_v);
+                }
+                    
+                njUnitVector(&attack_v);
+                
+                attack_v.x *= attack_col_tab[MTN_NO_CHECK(epw)].spd;
+                attack_v.y *= attack_col_tab[MTN_NO_CHECK(epw)].spd;
+                attack_v.z *= attack_col_tab[MTN_NO_CHECK(epw)].spd;
+                
+                {
+                    NJS_MATRIX mat;                 
+                    NJS_VECTOR vec = { 0, 1.0f, 0 };
+                    NJS_POINT3 axis;                 
+
+                    njOuterProduct(&attack_v, &vec, &axis);
+                    
+                    njUnitVector(&axis);
+                    
+                    vec = attack_v; 
+                    
+                    njUnitMatrix(&mat);
+                    
+                    njRotate(&mat, &axis, attack_col_tab[MTN_NO_CHECK(epw)].impact_ang);
+                    njCalcVector(&mat, &vec, &attack_v);
+                }
+                
+                if (((MTN_NO_CHECK(epw) == 1) ? bhEne15_AttackPlayerCC(&col.cap, &attack_v, attack_col_tab[MTN_NO_CHECK(epw)].damage) : bhEne15_AttackPlayerBC(&col.box, &attack_v, attack_col_tab[MTN_NO_CHECK(epw)].damage)) != 0)
+                {
+                    bhEne_SetBloodEffect(plp, 1, -1);  
+                    
+                    RequestEnemySe(GetLocalEneNo(epw), (NJS_POINT3*)&epw->dpx, (MTN_NO_CHECK(epw) == 1) ? 0x12305 : 0x12303);
+                    
+                    StartVibrationEx(1, 11);
+                    
+                    plp->flg &= ~0x110;
+                    
+                    if (bhDGCdirCheck((NJS_VECTOR*)&plp->dvx, plp->ay) != 0) 
+                    {
+                        plp->day += 32768;
+                        
+                        plp->mnwP = epw->mnwP;
+                        
+                        EXP0_S(90) |= 0x1;
+                        
+                        epw->mode3 = 0;
+                        
+                        plp->spd = 0;
+                        
+                        SetPlyMtn(14);
+                        
+                        plp->mode0 = 5;
+                        plp->mode1 = 0;
+                        plp->mode2 = 0;
+                        plp->mode3 = 0;
+                        
+                        plp->flg |=  0x10004;
+                        plp->flg &= ~0x40000;
+                        
+                        plp->stflg |= 0x50000;
+                    } 
+                    else
+                    {
+                        plp->mnwP = epw->mnwP;
+                        
+                        EXP0_S(90) |= 0x1;
+                        
+                        epw->mode3 = 0;
+                        
+                        plp->spd = 0;
+                        
+                        SetPlyMtn(15);
+                        
+                        plp->mode0 = 5;
+                        plp->mode1 = 0;
+                        plp->mode2 = 0;
+                        plp->mode3 = 0;
+                        
+                        plp->flg |=  0x10004;
+                        plp->flg &= ~0x40000;
+                        
+                        plp->stflg |= 0x50000;
+                    }
+                    
+                    break;
+                }
+            }
+        }
+
+        if (((attack_col_tab[MTN_NO_CHECK(epw)].sp_start_frm <= (epw->frm_no / 65536)) && ((epw->frm_no / 65536) < attack_col_tab[MTN_NO_CHECK(epw)].sp_end_frm)) && (epw->mode2 == 1))
+        {
+            NJS_VECTOR splash_v;            
+            NJS_POINT3 _p = { 0, 9.8f, 0 }; 
+            
+            _p.x = 0; 
+            
+            njCalcPoint(&epw->mlwP->owP[10].mtx, &_p, &splash_v);
+            njSubVector(&splash_v, (NJS_VECTOR*)epw->exp0 + 6);
+            
+            SpecialAttack(epw, &splash_v);
+        }
+
+        if (MTN_NO_CHECK(epw) != 1) 
+        {
+            NJS_POINT3 _p; 
+            
+            for (i = 0; attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i] != -1; i++) 
+            {
+                _p.x = 0;
+                _p.y = 0;
+                _p.z = 0;
+                
+                njCalcPoint(&epw->mlwP->owP[attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i]].mtx, &_p, (NJS_POINT3*)epw->exp0 + (attack_col_tab[MTN_NO_CHECK(epw)].obj_no[i] - 5));
+            }
+            
+            {
+                NJS_POINT3 _p = { 0, 9.8f, 0 };
+                
+                _p.x = 0; 
+                
+                njCalcPoint(&epw->mlwP->owP[10].mtx, &_p, (NJS_POINT3*)epw->exp0 + 6);
+            }
+        }
+
+        if ((epw->frm_no / 65536) == (epw->mnwP[epw->mtn_no].frm_num - 1)) 
+        {
+            epw->ct0 = (rand() % 150) + 30;
+            
+            epw->mode0 = 1;
+            epw->mode1 = 3;
+            
+            epw->way = 145;
+            
+            ReqMtn(epw, 1);
+        }
+    }
 }
 
-// 
-// Start address: 0x1e2340
-void Attack(BH_PWORK* epw)
-{
-	_anon2 _p;
-	_anon2 _p;
-	_anon2 _p;
-	_anon2 splash_v;
-	_anon2 axis;
-	_anon2 vec;
-	float mat[16];
-	_anon2 vec1;
-	_anon2 vec0;
-	_anon2 vec;
-	float mat[16];
-	_anon2 _p;
-	_anon2 _p;
-	_anon2 _p;
-	char* b_idx;
-	char* f_idx;
-	float vane_width;
-	_anon2 _p;
-	_anon2 _p;
-	_anon2 _p;
-	_anon12 col;
-	_anon2 attack_v;
-	int i;
-	char left_idx[4];
-	char right_idx[4];
-	// Line 1826, Address: 0x1e2340, Func Offset: 0
-	// Line 1829, Address: 0x1e2364, Func Offset: 0x24
-	// Line 1831, Address: 0x1e2378, Func Offset: 0x38
-	// Line 1832, Address: 0x1e2394, Func Offset: 0x54
-	// Line 1833, Address: 0x1e23ac, Func Offset: 0x6c
-	// Line 1834, Address: 0x1e23c0, Func Offset: 0x80
-	// Line 1838, Address: 0x1e23c4, Func Offset: 0x84
-	// Line 1840, Address: 0x1e2484, Func Offset: 0x144
-	// Line 1847, Address: 0x1e2494, Func Offset: 0x154
-	// Line 1849, Address: 0x1e24c8, Func Offset: 0x188
-	// Line 1850, Address: 0x1e2510, Func Offset: 0x1d0
-	// Line 1849, Address: 0x1e2518, Func Offset: 0x1d8
-	// Line 1850, Address: 0x1e251c, Func Offset: 0x1dc
-	// Line 1851, Address: 0x1e25a0, Func Offset: 0x260
-	// Line 1852, Address: 0x1e25fc, Func Offset: 0x2bc
-	// Line 1853, Address: 0x1e2688, Func Offset: 0x348
-	// Line 1855, Address: 0x1e26c0, Func Offset: 0x380
-	// Line 1858, Address: 0x1e26c8, Func Offset: 0x388
-	// Line 1862, Address: 0x1e26cc, Func Offset: 0x38c
-	// Line 1858, Address: 0x1e26d0, Func Offset: 0x390
-	// Line 1862, Address: 0x1e26d4, Func Offset: 0x394
-	// Line 1863, Address: 0x1e2718, Func Offset: 0x3d8
-	// Line 1864, Address: 0x1e2738, Func Offset: 0x3f8
-	// Line 1865, Address: 0x1e2784, Func Offset: 0x444
-	// Line 1864, Address: 0x1e2788, Func Offset: 0x448
-	// Line 1865, Address: 0x1e27fc, Func Offset: 0x4bc
-	// Line 1866, Address: 0x1e28c4, Func Offset: 0x584
-	// Line 1865, Address: 0x1e28c8, Func Offset: 0x588
-	// Line 1866, Address: 0x1e28dc, Func Offset: 0x59c
-	// Line 1865, Address: 0x1e28e4, Func Offset: 0x5a4
-	// Line 1866, Address: 0x1e28f0, Func Offset: 0x5b0
-	// Line 1867, Address: 0x1e2984, Func Offset: 0x644
-	// Line 1868, Address: 0x1e298c, Func Offset: 0x64c
-	// Line 1867, Address: 0x1e2990, Func Offset: 0x650
-	// Line 1868, Address: 0x1e29d0, Func Offset: 0x690
-	// Line 1869, Address: 0x1e2ab0, Func Offset: 0x770
-	// Line 1868, Address: 0x1e2ab4, Func Offset: 0x774
-	// Line 1869, Address: 0x1e2ac0, Func Offset: 0x780
-	// Line 1870, Address: 0x1e2b18, Func Offset: 0x7d8
-	// Line 1871, Address: 0x1e2b64, Func Offset: 0x824
-	// Line 1870, Address: 0x1e2b68, Func Offset: 0x828
-	// Line 1871, Address: 0x1e2bdc, Func Offset: 0x89c
-	// Line 1872, Address: 0x1e2ca4, Func Offset: 0x964
-	// Line 1871, Address: 0x1e2ca8, Func Offset: 0x968
-	// Line 1872, Address: 0x1e2cbc, Func Offset: 0x97c
-	// Line 1871, Address: 0x1e2cc4, Func Offset: 0x984
-	// Line 1872, Address: 0x1e2cd0, Func Offset: 0x990
-	// Line 1873, Address: 0x1e2d64, Func Offset: 0xa24
-	// Line 1874, Address: 0x1e2d6c, Func Offset: 0xa2c
-	// Line 1873, Address: 0x1e2d70, Func Offset: 0xa30
-	// Line 1874, Address: 0x1e2db0, Func Offset: 0xa70
-	// Line 1875, Address: 0x1e2e98, Func Offset: 0xb58
-	// Line 1876, Address: 0x1e2ea0, Func Offset: 0xb60
-	// Line 1877, Address: 0x1e2eec, Func Offset: 0xbac
-	// Line 1876, Address: 0x1e2ef0, Func Offset: 0xbb0
-	// Line 1877, Address: 0x1e2f64, Func Offset: 0xc24
-	// Line 1878, Address: 0x1e3024, Func Offset: 0xce4
-	// Line 1877, Address: 0x1e3028, Func Offset: 0xce8
-	// Line 1878, Address: 0x1e3048, Func Offset: 0xd08
-	// Line 1877, Address: 0x1e3050, Func Offset: 0xd10
-	// Line 1878, Address: 0x1e305c, Func Offset: 0xd1c
-	// Line 1879, Address: 0x1e3098, Func Offset: 0xd58
-	// Line 1880, Address: 0x1e30a0, Func Offset: 0xd60
-	// Line 1879, Address: 0x1e30a4, Func Offset: 0xd64
-	// Line 1880, Address: 0x1e30e4, Func Offset: 0xda4
-	// Line 1885, Address: 0x1e31d0, Func Offset: 0xe90
-	// Line 1893, Address: 0x1e3208, Func Offset: 0xec8
-	// Line 1894, Address: 0x1e3220, Func Offset: 0xee0
-	// Line 1895, Address: 0x1e3238, Func Offset: 0xef8
-	// Line 1896, Address: 0x1e3248, Func Offset: 0xf08
-	// Line 1898, Address: 0x1e3250, Func Offset: 0xf10
-	// Line 1899, Address: 0x1e328c, Func Offset: 0xf4c
-	// Line 1900, Address: 0x1e3294, Func Offset: 0xf54
-	// Line 1901, Address: 0x1e32a0, Func Offset: 0xf60
-	// Line 1902, Address: 0x1e32b4, Func Offset: 0xf74
-	// Line 1903, Address: 0x1e32b8, Func Offset: 0xf78
-	// Line 1904, Address: 0x1e32c4, Func Offset: 0xf84
-	// Line 1905, Address: 0x1e3310, Func Offset: 0xfd0
-	// Line 1904, Address: 0x1e3314, Func Offset: 0xfd4
-	// Line 1905, Address: 0x1e331c, Func Offset: 0xfdc
-	// Line 1906, Address: 0x1e3364, Func Offset: 0x1024
-	// Line 1905, Address: 0x1e3368, Func Offset: 0x1028
-	// Line 1906, Address: 0x1e3370, Func Offset: 0x1030
-	// Line 1915, Address: 0x1e33b8, Func Offset: 0x1078
-	// Line 1917, Address: 0x1e33bc, Func Offset: 0x107c
-	// Line 1906, Address: 0x1e33c4, Func Offset: 0x1084
-	// Line 1915, Address: 0x1e33c8, Func Offset: 0x1088
-	// Line 1906, Address: 0x1e33d0, Func Offset: 0x1090
-	// Line 1915, Address: 0x1e33d4, Func Offset: 0x1094
-	// Line 1917, Address: 0x1e33e0, Func Offset: 0x10a0
-	// Line 1918, Address: 0x1e33f0, Func Offset: 0x10b0
-	// Line 1919, Address: 0x1e3404, Func Offset: 0x10c4
-	// Line 1920, Address: 0x1e346c, Func Offset: 0x112c
-	// Line 1923, Address: 0x1e347c, Func Offset: 0x113c
-	// Line 1927, Address: 0x1e356c, Func Offset: 0x122c
-	// Line 1928, Address: 0x1e3580, Func Offset: 0x1240
-	// Line 1929, Address: 0x1e35e4, Func Offset: 0x12a4
-	// Line 1930, Address: 0x1e35f0, Func Offset: 0x12b0
-	// Line 1931, Address: 0x1e37b4, Func Offset: 0x1474
-	// Line 1933, Address: 0x1e37c0, Func Offset: 0x1480
-	// Line 1934, Address: 0x1e3824, Func Offset: 0x14e4
-	// Line 1936, Address: 0x1e3828, Func Offset: 0x14e8
-	// Line 1937, Address: 0x1e38d4, Func Offset: 0x1594
-	// Line 1940, Address: 0x1e38e4, Func Offset: 0x15a4
-	// Line 1941, Address: 0x1e3918, Func Offset: 0x15d8
-	// Line 1942, Address: 0x1e3928, Func Offset: 0x15e8
-	// Line 1947, Address: 0x1e3934, Func Offset: 0x15f4
-	// Line 1948, Address: 0x1e396c, Func Offset: 0x162c
-	// Line 1949, Address: 0x1e3978, Func Offset: 0x1638
-	// Line 1950, Address: 0x1e3a60, Func Offset: 0x1720
-	// Line 1951, Address: 0x1e3ac4, Func Offset: 0x1784
-	// Line 1955, Address: 0x1e3afc, Func Offset: 0x17bc
-	// Line 1956, Address: 0x1e3b2c, Func Offset: 0x17ec
-	// Line 1957, Address: 0x1e3b3c, Func Offset: 0x17fc
-	// Line 1956, Address: 0x1e3b44, Func Offset: 0x1804
-	// Line 1957, Address: 0x1e3b48, Func Offset: 0x1808
-	// Line 1956, Address: 0x1e3b4c, Func Offset: 0x180c
-	// Line 1957, Address: 0x1e3b54, Func Offset: 0x1814
-	// Line 1960, Address: 0x1e3b68, Func Offset: 0x1828
-	// Func End, Address: 0x1e3b90, Func Offset: 0x1850
-}
-
-// 
+/*// 
 // Start address: 0x1e3b90
 void Throw(BH_PWORK* epw)
 {
-	_anon2 vec;
-	_anon2 attack_v;
+	NJS_POINT3 vec;
+	NJS_POINT3 attack_v;
 	float mat[16];
-	_anon2 _p;
-	_anon2 pos;
+	NJS_POINT3 _p;
+	NJS_POINT3 pos;
 	// Line 1976, Address: 0x1e3b90, Func Offset: 0
 	// Line 1977, Address: 0x1e3ba0, Func Offset: 0x10
 	// Line 1978, Address: 0x1e3bd0, Func Offset: 0x40
@@ -2296,7 +841,7 @@ void Damage(BH_PWORK* epw)
 // Start address: 0x1e4390
 void Die(BH_PWORK* epw)
 {
-	_anon2 vec;
+	NJS_POINT3 vec;
 	// Line 2104, Address: 0x1e4390, Func Offset: 0
 	// Line 2105, Address: 0x1e43a0, Func Offset: 0x10
 	// Line 2108, Address: 0x1e43b0, Func Offset: 0x20
@@ -2332,17 +877,17 @@ void Die(BH_PWORK* epw)
 
 // 
 // Start address: 0x1e4560
-int NearestCapsule(BH_PWORK* epw, _anon2* pos, _anon28* dest, short* jnt)
+int NearestCapsule(BH_PWORK* epw, NJS_POINT3* pos, NJS_CAPSULE* dest, short* jnt)
 {
-	_anon2 p;
+	NJS_POINT3 p;
 	short _jnt;
 	float dis;
-	_anon28 cap;
+	NJS_CAPSULE cap;
 	_anon29* ctab;
 	int notop;
 	float topdis;
 	short topjnt;
-	_anon28 top;
+	NJS_CAPSULE top;
 	// Line 2140, Address: 0x1e4560, Func Offset: 0
 	// Line 2145, Address: 0x1e4590, Func Offset: 0x30
 	// Line 2144, Address: 0x1e4594, Func Offset: 0x34
@@ -2408,10 +953,10 @@ int NearestCapsule(BH_PWORK* epw, _anon2* pos, _anon28* dest, short* jnt)
 void CheckDamage(BH_PWORK* epw)
 {
 	short jnt;
-	_anon28 cap;
-	_anon2 ofp;
-	_anon2 pos;
-	_anon2 ofs;
+	NJS_CAPSULE cap;
+	NJS_POINT3 ofp;
+	NJS_POINT3 pos;
+	NJS_POINT3 ofs;
 	int is_core_damage;
 	// Line 2347, Address: 0x1e4890, Func Offset: 0
 	// Line 2348, Address: 0x1e48a0, Func Offset: 0x10
@@ -2577,7 +1122,7 @@ void SetMtn(BH_PWORK* epw)
 	// Line 2609, Address: 0x1e544c, Func Offset: 0x16c
 	// Line 2610, Address: 0x1e5460, Func Offset: 0x180
 	// Func End, Address: 0x1e5470, Func Offset: 0x190
-}
+}*/
 
 // 
 // Start address: 0x1e5470
@@ -2586,6 +1131,7 @@ void ReqMtn(BH_PWORK* epw, unsigned int mtn_no)
 	// Line 2613, Address: 0x1e5470, Func Offset: 0
 	// Line 2614, Address: 0x1e5474, Func Offset: 0x4
 	// Func End, Address: 0x1e547c, Func Offset: 0xc
+	scePrintf("ReqMtn - UNIMPLEMENTED!\n");
 }
 
 // 
@@ -2610,13 +1156,14 @@ void SetPlyMtn(unsigned int mtn_no)
 	// Line 2635, Address: 0x1e5574, Func Offset: 0xf4
 	// Line 2637, Address: 0x1e5590, Func Offset: 0x110
 	// Func End, Address: 0x1e559c, Func Offset: 0x11c
+	scePrintf("SetPlyMtn - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1e55a0
-int VacumeToPoint(BH_PWORK* pw, _anon2* pos)
+int VacumeToPoint(BH_PWORK* pw, NJS_POINT3* pos)
 {
-	_anon2 v;
+	NJS_POINT3 v;
 	// Line 2652, Address: 0x1e55a0, Func Offset: 0
 	// Line 2654, Address: 0x1e55b0, Func Offset: 0x10
 	// Line 2655, Address: 0x1e55d0, Func Offset: 0x30
@@ -2661,15 +1208,15 @@ void LockLeg(BH_PWORK* epw)
 	// Line 2702, Address: 0x1e578c, Func Offset: 0x10c
 	// Line 2703, Address: 0x1e57c0, Func Offset: 0x140
 	// Func End, Address: 0x1e57cc, Func Offset: 0x14c
-}
+}*/
 
 // 
 // Start address: 0x1e57d0
-int bhEne15_AttackPlayerCC(_anon28* cap, _anon2* attack_v, int damage)
+int bhEne15_AttackPlayerCC(NJS_CAPSULE* cap, NJS_VECTOR* attack_v, int damage)
 {
-	_anon2 tar_p;
+	NJS_POINT3 tar_p;
 	float distance;
-	_anon2 hit_p;
+	NJS_POINT3 hit_p;
 	float latest;
 	int kno;
 	int j;
@@ -2716,15 +1263,16 @@ int bhEne15_AttackPlayerCC(_anon28* cap, _anon2* attack_v, int damage)
 	// Line 2754, Address: 0x1e5a28, Func Offset: 0x258
 	// Line 2755, Address: 0x1e5a2c, Func Offset: 0x25c
 	// Func End, Address: 0x1e5a5c, Func Offset: 0x28c
+	scePrintf("bhEne15_AttackPlayerCC - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e5a60
-int bhEne15_AttackPlayerBC(_anon11* box, _anon2* attack_v, int damage)
+int bhEne15_AttackPlayerBC(NJS_BOX* box, NJS_VECTOR* attack_v, int damage)
 {
-	_anon2 tar_p;
+	NJS_POINT3 tar_p;
 	float distance;
-	_anon2 hit_p;
+	NJS_POINT3 hit_p;
 	float latest;
 	int kno;
 	int j;
@@ -2771,13 +1319,14 @@ int bhEne15_AttackPlayerBC(_anon11* box, _anon2* attack_v, int damage)
 	// Line 2794, Address: 0x1e5ce8, Func Offset: 0x288
 	// Line 2795, Address: 0x1e5cec, Func Offset: 0x28c
 	// Func End, Address: 0x1e5d1c, Func Offset: 0x2bc
+	scePrintf("bhEne15_AttackPlayerBC - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e5d20
-int bhEne15_AttackPlayerSS(_anon0* spr, _anon2* attack_v, int damage)
+int bhEne15_AttackPlayerSS(NJS_SPHERE* spr, NJS_VECTOR* attack_v, int damage)
 {
-	_anon0 plcol;
+	NJS_SPHERE plcol;
 	// Line 2807, Address: 0x1e5d20, Func Offset: 0
 	// Line 2810, Address: 0x1e5d38, Func Offset: 0x18
 	// Line 2813, Address: 0x1e5d48, Func Offset: 0x28
@@ -2809,11 +1358,12 @@ int bhEne15_AttackPlayerSS(_anon0* spr, _anon2* attack_v, int damage)
 	// Line 2829, Address: 0x1e5e78, Func Offset: 0x158
 	// Line 2830, Address: 0x1e5e7c, Func Offset: 0x15c
 	// Func End, Address: 0x1e5e94, Func Offset: 0x174
+	scePrintf("bhEne15_AttackPlayerSS - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1e5ea0
-void SetSmoke(_anon2* pos)
+void SetSmoke(NJS_POINT3* pos)
 {
 	// Line 2845, Address: 0x1e5ea0, Func Offset: 0
 	// Line 2846, Address: 0x1e5eac, Func Offset: 0xc
@@ -2827,13 +1377,13 @@ void SetSmoke(_anon2* pos)
 	// Line 2849, Address: 0x1e5f20, Func Offset: 0x80
 	// Line 2851, Address: 0x1e5f5c, Func Offset: 0xbc
 	// Func End, Address: 0x1e5f74, Func Offset: 0xd4
-}
+}*/
 
 // 
 // Start address: 0x1e5f80
-void SpecialAttack(BH_PWORK* epw, _anon2* splash_v)
+void SpecialAttack(BH_PWORK* epw, NJS_VECTOR* splash_v)
 {
-	_anon2 _p;
+	NJS_POINT3 _p;
 	int eno;
 	// Line 2992, Address: 0x1e5f80, Func Offset: 0
 	// Line 2995, Address: 0x1e5f90, Func Offset: 0x10
@@ -2880,11 +1430,12 @@ void SpecialAttack(BH_PWORK* epw, _anon2* splash_v)
 	// Line 3015, Address: 0x1e6128, Func Offset: 0x1a8
 	// Line 3018, Address: 0x1e6140, Func Offset: 0x1c0
 	// Func End, Address: 0x1e6154, Func Offset: 0x1d4
+	scePrintf("SpecialAttack - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x1e6160
-void _bhEne_SetPoison(BH_PWORK* epw, _anon2* ofp, short ry)
+void _bhEne_SetPoison(BH_PWORK* epw, NJS_POINT3* ofp, short ry)
 {
 	int eno;
 	// Line 3021, Address: 0x1e6160, Func Offset: 0
@@ -3022,7 +1573,7 @@ void _bhEne_SetPoison(BH_PWORK* epw, _anon2* ofp, short ry)
 
 // 
 // Start address: 0x1e6830
-void _bhEne_SetPoison2(_anon1* op, int type, _anon2* ofp)
+void _bhEne_SetPoison2(_anon1* op, int type, NJS_POINT3* ofp)
 {
 	int eno;
 	// Line 3105, Address: 0x1e6830, Func Offset: 0
@@ -3064,8 +1615,8 @@ void _bhEne_SetPoison2(_anon1* op, int type, _anon2* ofp)
 void bhEne_SetPoison(BH_PWORK* epw, _anon37* bt)
 {
 	int fhit;
-	_anon2 ps;
-	_anon2 ofp;
+	NJS_POINT3 ps;
+	NJS_POINT3 ofp;
 	_anon30* owk;
 	// Line 3153, Address: 0x1e6a70, Func Offset: 0
 	// Line 3158, Address: 0x1e6a88, Func Offset: 0x18
@@ -3101,8 +1652,8 @@ void bhEne_SetPoison(BH_PWORK* epw, _anon37* bt)
 // Start address: 0x1e6c50
 void PoisonAttack(_anon1* op)
 {
-	_anon2 attack_v;
-	_anon0 col;
+	NJS_POINT3 attack_v;
+	NJS_SPHERE col;
 	// Line 3192, Address: 0x1e6c50, Func Offset: 0
 	// Line 3203, Address: 0x1e6c5c, Func Offset: 0xc
 	// Line 3204, Address: 0x1e6c6c, Func Offset: 0x1c
@@ -3140,8 +1691,8 @@ void PoisonAttack(_anon1* op)
 // Start address: 0x1e6e50
 void AddWindForce(_anon1* op, float reg)
 {
-	_anon2 vec2;
-	_anon2 vec1;
+	NJS_POINT3 vec2;
+	NJS_POINT3 vec1;
 	// Line 3242, Address: 0x1e6e50, Func Offset: 0
 	// Line 3245, Address: 0x1e6e60, Func Offset: 0x10
 	// Line 3247, Address: 0x1e6e9c, Func Offset: 0x4c
@@ -3168,9 +1719,9 @@ void AddWindForce(_anon1* op, float reg)
 // Start address: 0x1e6f80
 void bhEff_E15_Poison(O_WRK* op)
 {
-	//_anon2 pos;
-	//_anon2 pos;
-	//_anon2 pos;
+	//NJS_POINT3 pos;
+	//NJS_POINT3 pos;
+	//NJS_POINT3 pos;
 	//_UVINFO* uvp;
 	// Line 3271, Address: 0x1e6f80, Func Offset: 0
 	// Line 3272, Address: 0x1e6f90, Func Offset: 0x10
@@ -3472,7 +2023,7 @@ void FallingPlayer(BH_PWORK* epw)
 void SlidePlayer(BH_PWORK* epw)
 {
 	int _mtnno;
-	_anon2 delta;
+	NJS_POINT3 delta;
 	int _mtnno;
 	// Line 3628, Address: 0x1e83f0, Func Offset: 0
 	// Line 3629, Address: 0x1e8404, Func Offset: 0x14
@@ -3524,9 +2075,9 @@ void StandupPlayer(BH_PWORK* epw)
 void HoldPlayer(BH_PWORK* epw)
 {
 	_anon30* owk;
-	_anon2 pos;
-	_anon2 _v;
-	_anon2 _v;
+	NJS_POINT3 pos;
+	NJS_POINT3 _v;
+	NJS_POINT3 _v;
 	// Line 3682, Address: 0x1e8a50, Func Offset: 0
 	// Line 3683, Address: 0x1e8a64, Func Offset: 0x14
 	// Line 3684, Address: 0x1e8a7c, Func Offset: 0x2c
@@ -3556,11 +2107,11 @@ void HoldPlayer(BH_PWORK* epw)
 // Start address: 0x1e8b80
 void FlyingPlayer(BH_PWORK* epw)
 {
-	_anon2 _p;
+	NJS_POINT3 _p;
 	_anon30* owk;
-	_anon2 pos3;
-	_anon2 pos2;
-	_anon2 pos1;
+	NJS_POINT3 pos3;
+	NJS_POINT3 pos2;
+	NJS_POINT3 pos1;
 	// Line 3714, Address: 0x1e8b80, Func Offset: 0
 	// Line 3718, Address: 0x1e8b84, Func Offset: 0x4
 	// Line 3714, Address: 0x1e8b8c, Func Offset: 0xc

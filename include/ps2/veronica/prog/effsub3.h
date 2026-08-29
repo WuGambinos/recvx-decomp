@@ -305,6 +305,116 @@ typedef struct E02_WORK
     float scl_add_2nd;      // offset 0x448, size 0x4
 } E02_WORK;
 
+typedef struct PRM_WRK 
+{
+    // total size: 0x24
+    NJS_MATRIX* mtxP;  // offset 0x0, size 0x4
+    NJS_TEXLIST* texP; // offset 0x4, size 0x4
+    NJS_MODEL* mdlP;   // offset 0x8, size 0x4
+    float pos[3];      // offset 0xC, size 0xC
+    int ang[3];        // offset 0x18, size 0xC
+} PRM_WRK;
+
+typedef struct R0_WK 
+{
+    // total size: 0x70
+    PRM_WRK prm;      // offset 0x0, size 0x24
+    int mode;         // offset 0x24, size 0x4
+    int erase;        // offset 0x28, size 0x4
+    NJS_MATRIX* mtxP; // offset 0x2C, size 0x4
+    char mtx_buf[64]; // offset 0x30, size 0x40
+} R0_WK; 
+
+typedef struct R08_WORK 
+{
+    // total size: 0x3E8
+    Eff308PRM_WORK prm_a;       // offset 0x0, size 0x24
+    PMB_WORK prm_b;             // offset 0x24, size 0x24
+    int mode;                   // offset 0x48, size 0x4
+    int drw_num;                // offset 0x4C, size 0x4
+    int TimBuf[16];             // offset 0x50, size 0x40
+    int ColAdd[16];             // offset 0x90, size 0x40
+    int ColSub[16];             // offset 0xD0, size 0x40
+    NJS_POINT3 VtxDir[16];      // offset 0x110, size 0xC0
+    NJS_POINT3 VtxBuf[16][2];   // offset 0x1D0, size 0x180
+    unsigned int VtxCol[16][2]; // offset 0x350, size 0x80
+    NJS_POINT3COL lne_p3c;      // offset 0x3D0, size 0x10
+    float wnd_spd;              // offset 0x3E0, size 0x4
+    float wnd_acl;              // offset 0x3E4, size 0x4
+} R08_WORK;
+
+typedef struct E02_WRK 
+{
+    // total size: 0x484
+    unsigned int flg;       // offset 0x0, size 0x4
+    NJS_POINT3 vtx_pos[96]; // offset 0x4, size 0x480
+} E02_WRK;
+
+typedef struct R49_WORK
+{
+    // total size: 0x1008
+    void (*fnc_prcP)(void*);    // offset 0x0, size 0x4
+    void (*fnc_drwP)(OR_WORK*); // offset 0x4, size 0x4
+    int free[1024];             // offset 0x8, size 0x1000
+} R49_WORK;
+
+typedef struct EFFPRM_WORK 
+{
+    // total size: 0x30
+    NJS_MATRIX* mtxP;  // offset 0x0, size 0x4
+    NJS_POINT3 src;    // offset 0x4, size 0xC
+    NJS_POINT3 dst;    // offset 0x10, size 0xC
+    float frm_inc;     // offset 0x1C, size 0x4
+    int col;           // offset 0x20, size 0x4
+    int tim;           // offset 0x24, size 0x4
+    NJS_TEXLIST* texP; // offset 0x28, size 0x4
+    int tex_id;        // offset 0x2C, size 0x4
+} EFFPRM_WORK;
+
+typedef struct R07_WORK
+{
+    // total size: 0x40C
+    EFFPRM_WORK eff_prm;     // offset 0x0, size 0x30
+    int mode0;               // offset 0x30, size 0x4
+    int entry;               // offset 0x34, size 0x4
+    int vtx_top;             // offset 0x38, size 0x4
+    int vtx_num;             // offset 0x3C, size 0x4
+    float spl_frm;           // offset 0x40, size 0x4
+    float tex_frm;           // offset 0x44, size 0x4
+    int VtxAlp[18];          // offset 0x48, size 0x48
+    int VtxCol[18];          // offset 0x90, size 0x48
+    NJS_POINT3 VtxDir[18];   // offset 0xD8, size 0xD8
+    NJS_POINT3 VtxBufS[18];  // offset 0x1B0, size 0xD8
+    NJS_POINT3 VtxBufD[18];  // offset 0x288, size 0xD8
+    NJS_TEXTURE_VTX poly[4]; // offset 0x360, size 0x60
+    float wnd_acl;           // offset 0x3C0, size 0x4
+    float WndSpd[18];        // offset 0x3C4, size 0x48
+} R07_WORK;
+
+typedef struct PMA_WORK
+{
+    // total size: 0x20
+    int type;     // offset 0x0, size 0x4
+    int ang_fst;  // offset 0x4, size 0x4
+    int add_ax;   // offset 0x8, size 0x4
+    float x_rang; // offset 0xC, size 0x4
+    float x_rate; // offset 0x10, size 0x4
+    int add_ay;   // offset 0x14, size 0x4
+    float y_rang; // offset 0x18, size 0x4
+    float y_rate; // offset 0x1C, size 0x4
+} PMA_WORK;
+
+typedef struct R0A_WORK
+{
+    // total size: 0x44
+    PMA_WORK prm_a;     // offset 0x0, size 0x20
+    int mode;           // offset 0x20, size 0x4
+    int ang_x;          // offset 0x24, size 0x4
+    int ang_y;          // offset 0x28, size 0x4
+    NJS_POINT3 off_pos; // offset 0x2C, size 0xC
+    NJS_POINT3 dst_pos; // offset 0x38, size 0xC
+} R0A_WORK;
+
 static O_WRK* AllocOwork();
 O_WRK* AllocOworkOne();
 void bhClrEff_RY();

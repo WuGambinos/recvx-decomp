@@ -2,6 +2,53 @@
 #define _EN09_H_
 
 #include "types.h"
+#include "macros.h"
+
+typedef struct CHG_TBL_WORK
+{
+	signed int mtn_no; // offset 0x0, size 0x4
+    signed int type; // offset 0x4, size 0x4
+    signed int frm_no; // offset 0x8, size 0x4
+    unsigned int h_cnt; // offset 0xC, size 0x4
+    unsigned int mode; // offset 0x10, size 0x4
+} CHG_TBL_WORK;
+
+typedef struct CHK_TBL_WORK
+{
+    signed int mtn_no; // offset 0x0, size 0x4
+    signed int s_frm; // offset 0x4, size 0x4
+    signed int e_frm; // offset 0x8, size 0x4
+    CHG_TBL_WORK chg_tbl[4]; // offset 0xC, size 0x50
+} CHK_TBL_WORK;
+
+typedef struct ARM_POS
+{
+    signed int frm; // offset 0x0, size 0x4
+    float len; // offset 0x4, size 0x4
+} ARM_POS;
+
+typedef struct MTN_TBL_FMTN_WORK 
+{
+    signed int no; // offset 0x0, size 0x4
+    // total size: 0xC
+    struct /* @anon56 */ {
+        // Members
+        signed int type; // offset 0x0, size 0x4
+        signed int s_frm; // offset 0x4, size 0x4
+        signed int e_frm; // offset 0x8, size 0x4
+    } fmtn[3]; // offset 0x4, size 0x24
+} MTN_TBL_FMTN_WORK;
+
+typedef struct MTN_TBL_ATB_WORK 
+{
+    signed int no; // offset 0x0, size 0x4
+    // total size: 0x8
+    struct /* @anon10 */ {
+        // Members
+        signed int frm; // offset 0x0, size 0x4
+        unsigned int act; // offset 0x4, size 0x4
+    } atb[5]; // offset 0x4, size 0x28
+} MTN_TBL_ATB_WORK;
 
 void bhEne09_DmmyBrain();
 void bhEne09(BH_PWORK* epw);
@@ -27,11 +74,11 @@ void bhEne09_MVType10(BH_PWORK* epw);
 void bhEne09_EneSearch(BH_PWORK* epw);
 void bhEne09_Brain(BH_PWORK* epw);
 int bhEne09_OtherEnemyCheck(BH_PWORK* epw, float dist, int ang);
-/*_anon4* bhEne09_GetCloseEnemyAtari(BH_PWORK* epw, unsigned char type, unsigned char id);
-int bhEne09_JumpCheck(BH_PWORK* epw, _anon4* hp);*/
+ATR_WORK* bhEne09_GetCloseEnemyAtari(BH_PWORK* epw, unsigned char type, unsigned char id);
+int bhEne09_JumpCheck(BH_PWORK* epw, ATR_WORK* hp);
 void bhEne09_Brain00(BH_PWORK* epw);
 int bhEne09_AttackCheck(BH_PWORK* epw, int mode);
-/*int bhEne09_AramLineCheck(BH_PWORK* epw, _anon25* p1, _anon25* p2);*/
+int bhEne09_AramLineCheck(BH_PWORK* epw, NJS_VECTOR* p1, NJS_VECTOR* p2);
 void bhEne09_MV00(BH_PWORK* epw);
 void bhEne09_MV01(BH_PWORK* epw);
 void bhEne09_MV02();
@@ -70,11 +117,11 @@ void bhEne09_DD00(BH_PWORK* epw);
 int bhEne09_CollChkArm(BH_PWORK* epw, BH_PWORK* trg);
 int bhEne09_CollChkArm2(BH_PWORK* epw);
 float bhEne09_ChkArmLen2(BH_PWORK* epw);
-/*_anon4* bhEne09_ChkArmLen(BH_PWORK* epw, float* len, _anon25* vec);*/
+ATR_WORK* bhEne09_ChkArmLen(BH_PWORK* epw, float* len, NJS_VECTOR* vec);
 int bhEne09_ChkDiffAngle(int pang, int dang);
 int bhEne09_SetMtn(BH_PWORK* epw);
 void bhEne09_MtnTblPlay(BH_PWORK* epw, int frm);
 void bhEne09_SePlay(BH_PWORK* epw, int no);
-/*void bhEne09_SetSmokeEffect(BH_PWORK* epw, _anon25* ofs, int rot);*/
+void bhEne09_SetSmokeEffect(BH_PWORK* epw, NJS_VECTOR* ofs, int rot);
 
 #endif

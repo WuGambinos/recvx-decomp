@@ -40,6 +40,13 @@
 #define EXP0_I(o) (*(int   *)((char *)epw->exp0 + (o)))
 #define EXP0_F(o) (*(float *)((char *)epw->exp0 + (o)))
 
+#define EPW_EXP1_C(o) (*(char  *)((char *)epw->exp1 + (o)))
+#define EPW_EXP1_UC(o) (*(unsigned char  *)((char *)epw->exp1 + (o)))
+#define EPW_EXP1_S(o) (*(short *)((char *)epw->exp1 + (o)))
+#define EPW_EXP1_US(o) (*(unsigned short *)((char *)epw->exp1 + (o)))
+#define EPW_EXP1_I(o) (*(int   *)((char *)epw->exp1 + (o)))
+#define EPW_EXP1_F(o) (*(float *)((char *)epw->exp1 + (o)))
+
 #define EXP1_UC(o) (*(unsigned char  *)((unsigned char *)plp->exp1 + (o)))
 #define EXP1_C(o) (*(char  *)((char *)plp->exp1 + (o)))
 #define EXP1_S(o) (*(short *)((char *)plp->exp1 + (o)))
@@ -66,6 +73,8 @@
 #define EXP0_ATR(n) (*(ATR_WORK**)(epw->exp0 + (n) * 4 + 0x4))
 #define EXP0_P3(n)  ((NJS_POINT3*)(epw->exp0 + (n) * 12 + 0x84))
 #define EXP0_P(i) (*(NJS_POINT3 *)((char *)epw->exp0 + 4 + ((i) * 12)))
+
+#define MTN_NO_CHECK(epw) ((epw->mtn_no == 2) ? 0 : (epw->mtn_no == 3) ? 1 : 2) 
 
 #define PREFETCH(_v) asm("pref 0x0,0(%0)": : "r"(_v) : "memory")
 

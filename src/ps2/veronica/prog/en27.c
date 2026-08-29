@@ -11,6 +11,8 @@
 #include "../../../ps2/veronica/prog/zonzon.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
 
+// ENEMY: Moth Egg 
+
 typedef void (*bhEne27_Mode0_proc)(BH_PWORK* epw);
 typedef void (*bhEne27_BrainType_proc)(BH_PWORK* epw);
 typedef void (*bhEne27_MoveMode2_proc)(BH_PWORK* epw);

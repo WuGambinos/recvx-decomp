@@ -1,9 +1,12 @@
 #include "../../../ps2/veronica/prog/en01b.h"
+#include "../../../ps2/veronica/prog/effsub3.h"
 #include "../../../ps2/veronica/prog/en01.h"
-#include "../../../ps2/veronica/prog/zonzon.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
+#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/pwksub.h"
 #include "../../../ps2/veronica/prog/rutchk.h"
-#include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/zonzon.h"
 
 void (*bhEne01_MoveTypeB[16])(BH_PWORK*) = 
 {
@@ -641,75 +644,114 @@ void bhEne01_DG13B(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x18b630
+// 99.94% matching
 void bhEne01_DD02B(BH_PWORK* epw)
 {
-	NJS_LINE line;
-	NJS_POINT3 pd;
-	NJS_POINT3 ps;
-	O_WORK* owk;
-	// Line 1034, Address: 0x18b630, Func Offset: 0
-	// Line 1039, Address: 0x18b640, Func Offset: 0x10
-	// Line 1042, Address: 0x18b684, Func Offset: 0x54
-	// Line 1043, Address: 0x18b688, Func Offset: 0x58
-	// Line 1047, Address: 0x18b68c, Func Offset: 0x5c
-	// Line 1042, Address: 0x18b690, Func Offset: 0x60
-	// Line 1043, Address: 0x18b698, Func Offset: 0x68
-	// Line 1047, Address: 0x18b6a4, Func Offset: 0x74
-	// Line 1049, Address: 0x18b6b4, Func Offset: 0x84
-	// Line 1052, Address: 0x18b6b8, Func Offset: 0x88
-	// Line 1053, Address: 0x18b6bc, Func Offset: 0x8c
-	// Line 1049, Address: 0x18b6c4, Func Offset: 0x94
-	// Line 1050, Address: 0x18b6cc, Func Offset: 0x9c
-	// Line 1051, Address: 0x18b6d0, Func Offset: 0xa0
-	// Line 1053, Address: 0x18b6d4, Func Offset: 0xa4
-	// Line 1054, Address: 0x18b6e0, Func Offset: 0xb0
-	// Line 1055, Address: 0x18b6e4, Func Offset: 0xb4
-	// Line 1054, Address: 0x18b6f0, Func Offset: 0xc0
-	// Line 1055, Address: 0x18b6f4, Func Offset: 0xc4
-	// Line 1059, Address: 0x18b704, Func Offset: 0xd4
-	// Line 1061, Address: 0x18b72c, Func Offset: 0xfc
-	// Line 1065, Address: 0x18b730, Func Offset: 0x100
-	// Line 1069, Address: 0x18b738, Func Offset: 0x108
-	// Line 1061, Address: 0x18b740, Func Offset: 0x110
-	// Line 1062, Address: 0x18b744, Func Offset: 0x114
-	// Line 1063, Address: 0x18b74c, Func Offset: 0x11c
-	// Line 1064, Address: 0x18b754, Func Offset: 0x124
-	// Line 1065, Address: 0x18b758, Func Offset: 0x128
-	// Line 1069, Address: 0x18b75c, Func Offset: 0x12c
-	// Line 1070, Address: 0x18b764, Func Offset: 0x134
-	// Line 1072, Address: 0x18b774, Func Offset: 0x144
-	// Line 1073, Address: 0x18b78c, Func Offset: 0x15c
-	// Line 1074, Address: 0x18b790, Func Offset: 0x160
-	// Line 1075, Address: 0x18b7ac, Func Offset: 0x17c
-	// Line 1074, Address: 0x18b7b0, Func Offset: 0x180
-	// Line 1076, Address: 0x18b7b8, Func Offset: 0x188
-	// Line 1078, Address: 0x18b7c0, Func Offset: 0x190
-	// Line 1081, Address: 0x18b7c8, Func Offset: 0x198
-	// Line 1084, Address: 0x18b7d0, Func Offset: 0x1a0
-	// Line 1086, Address: 0x18b7e0, Func Offset: 0x1b0
-	// Line 1087, Address: 0x18b7e8, Func Offset: 0x1b8
-	// Line 1088, Address: 0x18b7ec, Func Offset: 0x1bc
-	// Line 1090, Address: 0x18b7f4, Func Offset: 0x1c4
-	// Line 1093, Address: 0x18b7fc, Func Offset: 0x1cc
-	// Line 1094, Address: 0x18b838, Func Offset: 0x208
-	// Line 1096, Address: 0x18b844, Func Offset: 0x214
-	// Line 1098, Address: 0x18b85c, Func Offset: 0x22c
-	// Line 1099, Address: 0x18b89c, Func Offset: 0x26c
-	// Line 1100, Address: 0x18b8a0, Func Offset: 0x270
-	// Line 1101, Address: 0x18b8a8, Func Offset: 0x278
-	// Line 1103, Address: 0x18b8b0, Func Offset: 0x280
-	// Line 1106, Address: 0x18b8b8, Func Offset: 0x288
-	// Line 1107, Address: 0x18b90c, Func Offset: 0x2dc
-	// Line 1109, Address: 0x18b918, Func Offset: 0x2e8
-	// Line 1111, Address: 0x18b930, Func Offset: 0x300
-	// Line 1113, Address: 0x18b984, Func Offset: 0x354
-	// Line 1114, Address: 0x18b9c8, Func Offset: 0x398
-	// Line 1115, Address: 0x18b9cc, Func Offset: 0x39c
-	// Line 1119, Address: 0x18b9d4, Func Offset: 0x3a4
-	// Func End, Address: 0x18b9e8, Func Offset: 0x3b8
-	scePrintf("bhEne01_DD02B - UNIMPLEMENTED!\n");
+    O_WORK* owk;  
+    NJS_POINT3 ps, pd; 
+    NJS_LINE line; 
+
+    switch (epw->mode3)
+    {
+    case 0:
+        epw->flg |=  0x2;
+        epw->flg &= ~0x28;
+        
+        if (!(epw->stflg & 0x100000)) 
+        {
+            owk = &epw->mlwP->owP[10];
+            
+            ps.x = 0;
+            ps.y = 0;
+            ps.z = 3.0f;
+            
+            njCalcPoint(&owk->mtx, &ps, &pd);
+            
+            pd.y = epw->py;
+            
+            bhSetBloodPoolLnk(NULL, &pd, epw->ay, &en01_BldTbl, 0);
+        }
+        
+        if ((!(EXP0_I(0x40) & 0x100000)) && ((epw->stflg & 0x100000))) 
+        {
+            line.px = epw->px;
+            line.py = epw->py;
+            line.pz = epw->pz;
+            
+            line.vx = 0;
+            line.vy = 18.2f;
+            line.vz = 0;
+            
+            bhCheckL2Water(&line, &pd);
+            
+            if (&pd == NULL) 
+            {
+                pd.y = 0;
+            }
+            
+            epw->xn = pd.y - 1.0f;
+            epw->yn = epw->py;
+            
+            epw->ct0 = (rand() % 30) + 60;
+            
+            epw->mode3 = 2;
+            break;
+        }
+        
+        epw->mode3++;
+        break;
+    case 1:
+        break;
+    case 2:
+        if (--epw->ct0 >= 0)
+        {
+            break;
+        }
+        
+        EXP0_F(148) = 0;
+        
+        epw->ct0 = 0;
+        
+        epw->mode3++;
+        break;
+    case 3:
+        epw->py = epw->yn + ((0.001f * (epw->ct0 * epw->ct0)) / 2.0f);
+        
+        epw->ct0++;
+        
+        if (epw->xn < epw->py) 
+        {
+            EXP0_F(148) = 0.5 * (-0.001f * epw->ct0);
+            
+            epw->ct0 = 0;
+            
+            epw->py = epw->xn;
+            
+            epw->mode3++;
+        }
+        
+        break;
+    case 4:
+        epw->py = (epw->xn + (EXP0_F(148) * epw->ct0)) + ((0.001f * (epw->ct0 * epw->ct0)) / 2.0f);
+        
+        epw->ct0++;
+        
+        if (epw->xn < epw->py) 
+        {
+            *&EXP0_F(148) = -(0.5 * (*&EXP0_F(148) - (-0.001f * epw->ct0)));
+            
+            if (*&EXP0_F(148) > -0.04) 
+            {
+                *&EXP0_F(148) = -0.04f;
+            }
+            
+            epw->ct0 = 0;
+            
+            epw->py = epw->xn;
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!

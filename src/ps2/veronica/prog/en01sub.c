@@ -1576,44 +1576,51 @@ CPCL Ene01BomCapColTab[3] =
 	{ 0, 0, 0  }
 };
 
-// 
-// Start address: 0x18f2f0
-void bhEne01Bom_Init(BH_PWORK* epw)
+// 100% matching!
+void bhEne01Bom_Init(BH_PWORK* epw) 
 {
-	int i;
-	BH_PWORK* ep;
-	// Line 2447, Address: 0x18f2f0, Func Offset: 0
-	// Line 2450, Address: 0x18f2f4, Func Offset: 0x4
-	// Line 2457, Address: 0x18f2f8, Func Offset: 0x8
-	// Line 2458, Address: 0x18f2fc, Func Offset: 0xc
-	// Line 2450, Address: 0x18f304, Func Offset: 0x14
-	// Line 2451, Address: 0x18f308, Func Offset: 0x18
-	// Line 2452, Address: 0x18f30c, Func Offset: 0x1c
-	// Line 2453, Address: 0x18f310, Func Offset: 0x20
-	// Line 2454, Address: 0x18f314, Func Offset: 0x24
-	// Line 2455, Address: 0x18f318, Func Offset: 0x28
-	// Line 2456, Address: 0x18f31c, Func Offset: 0x2c
-	// Line 2457, Address: 0x18f320, Func Offset: 0x30
-	// Line 2458, Address: 0x18f324, Func Offset: 0x34
-	// Line 2460, Address: 0x18f340, Func Offset: 0x50
-	// Line 2463, Address: 0x18f344, Func Offset: 0x54
-	// Line 2465, Address: 0x18f34c, Func Offset: 0x5c
-	// Line 2460, Address: 0x18f350, Func Offset: 0x60
-	// Line 2463, Address: 0x18f358, Func Offset: 0x68
-	// Line 2465, Address: 0x18f35c, Func Offset: 0x6c
-	// Line 2466, Address: 0x18f360, Func Offset: 0x70
-	// Line 2467, Address: 0x18f364, Func Offset: 0x74
-	// Line 2468, Address: 0x18f368, Func Offset: 0x78
-	// Line 2470, Address: 0x18f36c, Func Offset: 0x7c
-	// Line 2472, Address: 0x18f37c, Func Offset: 0x8c
-	// Line 2473, Address: 0x18f388, Func Offset: 0x98
-	// Line 2476, Address: 0x18f390, Func Offset: 0xa0
-	// Line 2477, Address: 0x18f394, Func Offset: 0xa4
-	// Line 2476, Address: 0x18f398, Func Offset: 0xa8
-	// Line 2477, Address: 0x18f3a0, Func Offset: 0xb0
-	// Line 2479, Address: 0x18f3ac, Func Offset: 0xbc
-	// Func End, Address: 0x18f3b4, Func Offset: 0xc4
-	scePrintf("bhEne01Bom_Init - UNIMPLEMENTED!\n");
+    BH_PWORK* ep;
+    int i;
+    
+    ep = (BH_PWORK*)epw->lkwkp;
+    
+    epw->ar = 3.0f;
+    epw->ah = 3.0f;
+    
+    epw->aw = 0;
+    epw->ad = 0;
+    
+    epw->car = 3.0f;
+    epw->cah = 3.0f;
+    
+    epw->stflg = 0;
+    
+    epw->hp = 1;
+    
+    for (i = 0; i < 64; i++) 
+    {
+        epw->dam[i] = 0;
+    } 
+    
+    epw->flg |= 0x8020;
+    
+    epw->cpcl = Ene01BomCapColTab;
+    
+    epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
+    
+    if (ep->type == 13) 
+    {
+        epw->mdflg &= ~0x1;
+    }
+    else 
+    {
+        epw->mdflg |= 0x1;
+        
+        epw->flg &= ~0x20;
+    }
 }
 
 // 100% matching!
@@ -1654,7 +1661,7 @@ void bhEne01Scope(BH_PWORK* epw)
 {
     if ((((O_WRK*)epw->lkwkp)->stflg & 0x1000000)) 
     {
-        epw->stflg |= 0x1000000;
+        epw->stflg |=  0x1000000;
     } 
     else 
     {

@@ -1072,54 +1072,59 @@ void bhEne01Worm(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x18e1b0
-void bhEne01Worm_Init(BH_PWORK* epw)
+// 100% matching!
+void bhEne01Worm_Init(BH_PWORK* epw) 
 {
-	// Line 1871, Address: 0x18e1b0, Func Offset: 0
-	// Line 1872, Address: 0x18e1bc, Func Offset: 0xc
-	// Line 1873, Address: 0x18e1c0, Func Offset: 0x10
-	// Line 1875, Address: 0x18e1c4, Func Offset: 0x14
-	// Line 1880, Address: 0x18e1cc, Func Offset: 0x1c
-	// Line 1881, Address: 0x18e1d0, Func Offset: 0x20
-	// Line 1873, Address: 0x18e1d4, Func Offset: 0x24
-	// Line 1875, Address: 0x18e1dc, Func Offset: 0x2c
-	// Line 1877, Address: 0x18e1e8, Func Offset: 0x38
-	// Line 1878, Address: 0x18e1ec, Func Offset: 0x3c
-	// Line 1879, Address: 0x18e1f0, Func Offset: 0x40
-	// Line 1880, Address: 0x18e1f4, Func Offset: 0x44
-	// Line 1881, Address: 0x18e1f8, Func Offset: 0x48
-	// Line 1882, Address: 0x18e1fc, Func Offset: 0x4c
-	// Line 1883, Address: 0x18e200, Func Offset: 0x50
-	// Line 1886, Address: 0x18e204, Func Offset: 0x54
-	// Line 1888, Address: 0x18e210, Func Offset: 0x60
-	// Line 1892, Address: 0x18e220, Func Offset: 0x70
-	// Line 1894, Address: 0x18e230, Func Offset: 0x80
-	// Line 1895, Address: 0x18e238, Func Offset: 0x88
-	// Line 1896, Address: 0x18e244, Func Offset: 0x94
-	// Line 1897, Address: 0x18e248, Func Offset: 0x98
-	// Line 1898, Address: 0x18e24c, Func Offset: 0x9c
-	// Line 1899, Address: 0x18e250, Func Offset: 0xa0
-	// Line 1900, Address: 0x18e254, Func Offset: 0xa4
-	// Line 1902, Address: 0x18e258, Func Offset: 0xa8
-	// Line 1906, Address: 0x18e260, Func Offset: 0xb0
-	// Line 1908, Address: 0x18e270, Func Offset: 0xc0
-	// Line 1911, Address: 0x18e274, Func Offset: 0xc4
-	// Line 1908, Address: 0x18e278, Func Offset: 0xc8
-	// Line 1909, Address: 0x18e280, Func Offset: 0xd0
-	// Line 1910, Address: 0x18e288, Func Offset: 0xd8
-	// Line 1911, Address: 0x18e28c, Func Offset: 0xdc
-	// Line 1912, Address: 0x18e290, Func Offset: 0xe0
-	// Line 1915, Address: 0x18e294, Func Offset: 0xe4
-	// Line 1917, Address: 0x18e29c, Func Offset: 0xec
-	// Line 1915, Address: 0x18e2a0, Func Offset: 0xf0
-	// Line 1917, Address: 0x18e2a8, Func Offset: 0xf8
-	// Line 1918, Address: 0x18e2ac, Func Offset: 0xfc
-	// Line 1919, Address: 0x18e2b0, Func Offset: 0x100
-	// Line 1920, Address: 0x18e2b4, Func Offset: 0x104
-	// Line 1921, Address: 0x18e2b8, Func Offset: 0x108
-	// Func End, Address: 0x18e2c8, Func Offset: 0x118
-	scePrintf("bhEne01Worm_Init - UNIMPLEMENTED!\n");
+    epw->stflg = 0;
+    
+    epw->flg |= 0x8000;
+    epw->flg &= ~0x100000;
+    
+    epw->hokan_rate  = 0;
+    epw->hokan_count = 0;
+    
+    epw->frm_no = 0;
+    
+    epw->mtn_add = 65536;
+    epw->mtn_no  = 168;
+    epw->mtn_tp  = NULL;
+    epw->mtn_md  = 0;
+    
+    if (epw->exp0 == NULL) 
+    {
+        epw->exp0 = bhEne_CallocWork(112, 8);
+    }
+    
+    if (!(epw->flg & 0x80))
+    {
+        epw->flg   |= 0x80;
+        epw->mdflg |= 0x1;
+        
+        epw->px = 0;
+        epw->py = 0;
+        epw->pz = 0;
+        
+        epw->ax = 0;
+        epw->ay = 0;
+        epw->az = 0;
+    } 
+    else if (epw->lkwkp != epw->exp1) 
+    {
+        epw->mdflg |= 0x1;
+        
+        epw->lkwkp = epw->exp1;
+        
+        epw->lox = 0;
+        epw->loy = 1.0f;
+        epw->loz = 0;
+    }
+    
+    epw->flg &= ~0x2;
+    
+    epw->mode0 = 1;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
 }
 
 // 100% matching!

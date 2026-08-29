@@ -558,36 +558,55 @@ void bhEne01_DG09B(BH_PWORK* epw)
 	scePrintf("bhEne01_DG09B - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x18b400
+// 100% matching!
 void bhEne01_DG12B(BH_PWORK* epw)
 {
-	BH_PWORK* epp;
-	// Line 930, Address: 0x18b400, Func Offset: 0
-	// Line 933, Address: 0x18b410, Func Offset: 0x10
-	// Line 931, Address: 0x18b414, Func Offset: 0x14
-	// Line 933, Address: 0x18b418, Func Offset: 0x18
-	// Line 936, Address: 0x18b440, Func Offset: 0x40
-	// Line 939, Address: 0x18b468, Func Offset: 0x68
-	// Line 941, Address: 0x18b474, Func Offset: 0x74
-	// Line 942, Address: 0x18b488, Func Offset: 0x88
-	// Line 943, Address: 0x18b48c, Func Offset: 0x8c
-	// Line 946, Address: 0x18b494, Func Offset: 0x94
-	// Line 947, Address: 0x18b4a8, Func Offset: 0xa8
-	// Line 951, Address: 0x18b4b4, Func Offset: 0xb4
-	// Line 953, Address: 0x18b4d8, Func Offset: 0xd8
-	// Line 954, Address: 0x18b4e0, Func Offset: 0xe0
-	// Line 955, Address: 0x18b4e4, Func Offset: 0xe4
-	// Line 958, Address: 0x18b4ec, Func Offset: 0xec
-	// Line 961, Address: 0x18b4f4, Func Offset: 0xf4
-	// Line 963, Address: 0x18b524, Func Offset: 0x124
-	// Line 964, Address: 0x18b52c, Func Offset: 0x12c
-	// Line 965, Address: 0x18b530, Func Offset: 0x130
-	// Line 966, Address: 0x18b534, Func Offset: 0x134
-	// Line 967, Address: 0x18b538, Func Offset: 0x138
-	// Line 971, Address: 0x18b53c, Func Offset: 0x13c
-	// Func End, Address: 0x18b550, Func Offset: 0x150
-	scePrintf("bhEne01_DG12B - UNIMPLEMENTED!\n");
+    BH_PWORK* epp;
+    
+    epp = (BH_PWORK*)epw->lkwkp;
+    
+    switch (epw->mode3)
+    {                            
+    case 0:
+        bhEne_ChgMtn(epw, 26, 0, 5);
+        
+        EXP0_I(64) &= ~0x3000000;
+        
+        if (epw->hp < 0)
+        {
+            bhEne01_SePlay(epp, (NJS_POINT3*)&epw->px, 16786197);
+            
+            epw->mode3 = 2;
+        }
+        else
+        {
+            bhEne01_SePlay(epp, (NJS_POINT3*)&epw->px, 16786196);
+            
+            epw->mode3++;
+        }
+    case 1:
+        if ((epw->mtn_no == 26) && ((epw->frm_no / 65536) > 10)) 
+        {
+            epw->mode0 = 1;
+            epw->mode1 = 1;
+            epw->mode2 = 3;
+            epw->mode3 = 0;
+        }
+        
+        break;
+    case 2:
+        if ((epw->frm_no / 65536) == (epw->mnwP[epw->mtn_no].frm_num - 1)) 
+        {
+            epw->mode0 = 4;
+            epw->mode1 = 0;
+            epw->mode2 = 2;
+            epw->mode3 = 0;
+            
+            epw->mtn_add = 0;
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!

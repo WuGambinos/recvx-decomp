@@ -853,71 +853,97 @@ void bhEne02_Brain(BH_PWORK* epw)
 	bhEne02_BR00(epw);
 }
 
-// 
-// Start address: 0x18fd00
-void bhEne02_BR00(BH_PWORK* epw)
+// 100% matching!
+void bhEne02_BR00(BH_PWORK* epw) 
 {
-	int i;
-	NJS_POINT3 pos;
-	NJS_POINT3 vec;
-	// Line 900, Address: 0x18fd00, Func Offset: 0
-	// Line 906, Address: 0x18fd18, Func Offset: 0x18
-	// Line 908, Address: 0x18fd2c, Func Offset: 0x2c
-	// Line 911, Address: 0x18fd44, Func Offset: 0x44
-	// Line 918, Address: 0x18fd4c, Func Offset: 0x4c
-	// Line 919, Address: 0x18fd5c, Func Offset: 0x5c
-	// Line 920, Address: 0x18fd60, Func Offset: 0x60
-	// Line 921, Address: 0x18fd64, Func Offset: 0x64
-	// Line 919, Address: 0x18fd68, Func Offset: 0x68
-	// Line 920, Address: 0x18fd6c, Func Offset: 0x6c
-	// Line 921, Address: 0x18fd74, Func Offset: 0x74
-	// Line 922, Address: 0x18fd7c, Func Offset: 0x7c
-	// Line 923, Address: 0x18fd98, Func Offset: 0x98
-	// Line 924, Address: 0x18fd9c, Func Offset: 0x9c
-	// Line 927, Address: 0x18fdac, Func Offset: 0xac
-	// Line 924, Address: 0x18fdb0, Func Offset: 0xb0
-	// Line 932, Address: 0x18fdb8, Func Offset: 0xb8
-	// Line 933, Address: 0x18fddc, Func Offset: 0xdc
-	// Line 934, Address: 0x18fde4, Func Offset: 0xe4
-	// Line 937, Address: 0x18fdf4, Func Offset: 0xf4
-	// Line 938, Address: 0x18fe24, Func Offset: 0x124
-	// Line 940, Address: 0x18fe44, Func Offset: 0x144
-	// Line 938, Address: 0x18fe48, Func Offset: 0x148
-	// Line 940, Address: 0x18fe58, Func Offset: 0x158
-	// Line 941, Address: 0x18fe7c, Func Offset: 0x17c
-	// Line 942, Address: 0x18fe80, Func Offset: 0x180
-	// Line 943, Address: 0x18fe84, Func Offset: 0x184
-	// Line 945, Address: 0x18fe88, Func Offset: 0x188
-	// Line 946, Address: 0x18fea0, Func Offset: 0x1a0
-	// Line 947, Address: 0x18fee4, Func Offset: 0x1e4
-	// Line 948, Address: 0x18feec, Func Offset: 0x1ec
-	// Line 951, Address: 0x18ff30, Func Offset: 0x230
-	// Line 958, Address: 0x18ff38, Func Offset: 0x238
-	// Line 959, Address: 0x18ff3c, Func Offset: 0x23c
-	// Line 960, Address: 0x18ff40, Func Offset: 0x240
-	// Line 958, Address: 0x18ff44, Func Offset: 0x244
-	// Line 959, Address: 0x18ff48, Func Offset: 0x248
-	// Line 960, Address: 0x18ff50, Func Offset: 0x250
-	// Line 961, Address: 0x18ff58, Func Offset: 0x258
-	// Line 962, Address: 0x18ff74, Func Offset: 0x274
-	// Line 963, Address: 0x18ff78, Func Offset: 0x278
-	// Line 966, Address: 0x18ff88, Func Offset: 0x288
-	// Line 963, Address: 0x18ff8c, Func Offset: 0x28c
-	// Line 971, Address: 0x18ff94, Func Offset: 0x294
-	// Line 972, Address: 0x18ffb8, Func Offset: 0x2b8
-	// Line 973, Address: 0x18ffc0, Func Offset: 0x2c0
-	// Line 976, Address: 0x18ffd0, Func Offset: 0x2d0
-	// Line 977, Address: 0x190000, Func Offset: 0x300
-	// Line 979, Address: 0x190020, Func Offset: 0x320
-	// Line 977, Address: 0x190024, Func Offset: 0x324
-	// Line 979, Address: 0x190034, Func Offset: 0x334
-	// Line 981, Address: 0x190058, Func Offset: 0x358
-	// Line 982, Address: 0x19005c, Func Offset: 0x35c
-	// Line 983, Address: 0x190060, Func Offset: 0x360
-	// Line 985, Address: 0x190064, Func Offset: 0x364
-	// Line 989, Address: 0x190084, Func Offset: 0x384
-	// Func End, Address: 0x1900a0, Func Offset: 0x3a0
-	scePrintf("bhEne02_BR00 - UNIMPLEMENTED!\n");
+    NJS_VECTOR vec; 
+    NJS_POINT3 pos;
+    int i;      
+    
+    if (((epw->flg & 0x100000)) && (plp->mode0 != 6)) 
+    {
+        bhEne02_WarpCheck(epw);
+
+        if (EXP0_I(112) == 0) 
+        {
+            pos.x = epw->px;
+            pos.y = epw->py;
+            pos.z = epw->pz;
+
+            vec.x = -10.0f * njSin(epw->ay);
+            vec.y = 0;
+            vec.z = -10.0f * njCos(epw->ay);
+
+            for (i = 0; i < 4; i++)
+            {
+                if (bhCheckWallType(&pos, 0, 10.0f, 5.0f) != NULL) 
+                {
+                    goto label;
+                }
+                
+                njAddVector(&pos, &vec);
+            }
+
+            pos.x = (epw->px - (20.0f * njSin(epw->ay))) - plp->px;
+            pos.z = (epw->pz - (20.0f * njCos(epw->ay))) - plp->pz;
+            pos.y = 0;
+            
+            if (njScalor(&pos) < 20.0f) 
+            {
+                epw->mode1 = 0;
+                epw->mode2 = 2;
+                epw->mode3 = 0;
+
+                if (plp->hp > 40) 
+                {
+                    EXP0_I(112) = (int)(2.0f * (-rand() / -2147483648.0f)) + 1;
+                } 
+                else 
+                {
+                    EXP0_I(112) = 3.0f * (-rand() / -2147483648.0f);
+                }
+                
+                return;
+            }
+        }
+
+    label:
+        pos.x = epw->px;
+        pos.y = epw->py;
+        pos.z = epw->pz;
+
+        vec.x = -10.0f * njSin(epw->ay);
+        vec.y = 0;
+        vec.z = -10.0f * njCos(epw->ay);
+
+        for (i = 0; i < 4; i++) 
+        {
+            if (bhCheckWallType(&pos, 0, 10.0f, 5.0f) != NULL) 
+            {
+                return;
+            }
+            
+            njAddVector(&pos, &vec);
+        }
+
+        pos.x = (epw->px - (30.0f * njSin(epw->ay))) - plp->px;
+        pos.z = (epw->pz - (30.0f * njCos(epw->ay))) - plp->pz;
+        pos.y = 0;
+
+        if (njScalor(&pos) < 23.0f) 
+        {
+            epw->mode1 = 0;
+            epw->mode2 = 3;
+            epw->mode3 = 0;
+
+            if (EXP0_I(112) != 0) 
+            {
+                EXP0_I(112)--;
+            }
+        }
+        
+        return;
+    }
 }
 
 // 100% matching!

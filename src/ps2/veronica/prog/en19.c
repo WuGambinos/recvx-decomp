@@ -6,7 +6,7 @@
 
 /*void(*bhEne19_Mode0)(BH_PWORK*)[6];
 void(*bhEne19_BrainType)(BH_PWORK*)[3];
-_enum_4(*bhEne19_CheckDmgLvl)(BH_PWORK*, _anon4*)[3];
+_enum_4(*bhEne19_CheckDmgLvl)(BH_PWORK*, FW_WORK*)[3];
 char FlpTbl[26];
 _anon30 Ene19CapColTbl[28];
 _anon48 En19ActTbl[50];
@@ -29,7 +29,7 @@ void bhEne19(BH_PWORK* ewP)
 	//_anon21* ebP;
 	//_anon46* r49P;
 	int sts;
-	//_anon4* fwP;
+	//FW_WORK* fwP;
 	// Line 449, Address: 0x1f0450, Func Offset: 0
 	// Line 453, Address: 0x1f0464, Func Offset: 0x14
 	// Line 455, Address: 0x1f0470, Func Offset: 0x20
@@ -67,7 +67,7 @@ void bhEne19_Init(BH_PWORK* ewP)
 	_anon6* posP;
 	npobj* objP;
 	float* rngP;
-	_anon4* fwP;
+	FW_WORK* fwP;
 	// Line 526, Address: 0x1f05a0, Func Offset: 0
 	// Line 530, Address: 0x1f05b4, Func Offset: 0x14
 	// Line 531, Address: 0x1f05d4, Func Offset: 0x34
@@ -200,7 +200,7 @@ void bhEne19_Move(BH_PWORK* ewP)
 	_anon6 pos;
 	npobj* objP;
 	int* stsP;
-	_anon4* fwP;
+	FW_WORK* fwP;
 	// Line 666, Address: 0x1f0970, Func Offset: 0
 	// Line 667, Address: 0x1f098c, Func Offset: 0x1c
 	// Line 668, Address: 0x1f0994, Func Offset: 0x24
@@ -300,7 +300,7 @@ void bhEne19_Br00(BH_PWORK* ewP)
 	int sts;
 	int* pstP;
 	int* stsP;
-	_anon4* fwP;
+	FW_WORK* fwP;
 	// Line 820, Address: 0x1f0c70, Func Offset: 0
 	// Line 824, Address: 0x1f0c98, Func Offset: 0x28
 	// Line 826, Address: 0x1f0ca4, Func Offset: 0x34
@@ -475,7 +475,7 @@ void bhEne19_Br01(BH_PWORK* ewP)
 	int sts;
 	int* pstP;
 	int* stsP;
-	_anon4* fwP;
+	FW_WORK* fwP;
 	// Line 1174, Address: 0x1f1370, Func Offset: 0
 	// Line 1175, Address: 0x1f139c, Func Offset: 0x2c
 	// Line 1183, Address: 0x1f13a4, Func Offset: 0x34
@@ -680,7 +680,7 @@ void bhEne19_Br02(BH_PWORK* ewP)
 	unsigned char rut;
 	int* pstP;
 	int* stsP;
-	_anon4* fwP;
+	FW_WORK* fwP;
 	// Line 1585, Address: 0x1f1d80, Func Offset: 0
 	// Line 1586, Address: 0x1f1da8, Func Offset: 0x28
 	// Line 1600, Address: 0x1f1db0, Func Offset: 0x30
@@ -837,7 +837,7 @@ static void bhEne19_Mv01()
 
 /*// 
 // Start address: 0x1f2510
-void bhEne19_Mv02(_anon4* fwP, int count)
+void bhEne19_Mv02(FW_WORK* fwP, int count)
 {
 	int* stsP;
 	// Line 1949, Address: 0x1f2510, Func Offset: 0
@@ -853,7 +853,7 @@ static void bhEne19_Mv03()
 
 /*// 
 // Start address: 0x1f2540
-void bhEne19_Mv04a(_anon4* fwP, int count)
+void bhEne19_Mv04a(FW_WORK* fwP, int count)
 {
 	int* stsP;
 	// Line 1974, Address: 0x1f2540, Func Offset: 0
@@ -863,7 +863,7 @@ void bhEne19_Mv04a(_anon4* fwP, int count)
 
 // 
 // Start address: 0x1f2560
-void bhEne19_Mv04b(_anon4* fwP, int count)
+void bhEne19_Mv04b(FW_WORK* fwP, int count)
 {
 	int* flgP;
 	int* stsP;
@@ -879,7 +879,7 @@ void bhEne19_Mv04b(_anon4* fwP, int count)
 
 // 
 // Start address: 0x1f25b0
-void bhEne19_Mv05(_anon4* fwP, int count)
+void bhEne19_Mv05(FW_WORK* fwP, int count)
 {
 	int* flgP;
 	int* stsP;
@@ -897,12 +897,12 @@ void bhEne19_Mv05(_anon4* fwP, int count)
 // 100% matching!
 static void bhEne19_Mv06()
 {
-	
+
 }
 
 /*// 
 // Start address: 0x1f2610
-void bhEne19_Mv07(BH_PWORK* ewP, _anon4* fwP, int count)
+void bhEne19_Mv07(BH_PWORK* ewP, FW_WORK* fwP, int count)
 {
 	int ang[3];
 	float pos[3];
@@ -937,7 +937,7 @@ void bhEne19_Mv07(BH_PWORK* ewP, _anon4* fwP, int count)
 
 // 
 // Start address: 0x1f27b0
-void bhEne19_Mv08(BH_PWORK* ewP, _anon4* fwP)
+void bhEne19_Mv08(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	float mtxP[16];
 	_anon6 pos;
@@ -980,7 +980,7 @@ void bhEne19_Mv08(BH_PWORK* ewP, _anon4* fwP)
 
 // 
 // Start address: 0x1f2960
-void bhEne19_Mv09(BH_PWORK* ewP, _anon4* fwP)
+void bhEne19_Mv09(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	float mtxP[16];
 	_anon6 pos;
@@ -1023,7 +1023,7 @@ void bhEne19_Mv09(BH_PWORK* ewP, _anon4* fwP)
 
 // 
 // Start address: 0x1f2b10
-void bhEne19_Mv10(BH_PWORK* ewP, _anon4* fwP, int count)
+void bhEne19_Mv10(BH_PWORK* ewP, FW_WORK* fwP, int count)
 {
 	float mtxP[16];
 	_anon6 dir;
@@ -1079,7 +1079,7 @@ void bhEne19_Mv10(BH_PWORK* ewP, _anon4* fwP, int count)
 
 // 
 // Start address: 0x1f2d60
-void bhEne19_Mv11(BH_PWORK* ewP, _anon4* fwP)
+void bhEne19_Mv11(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	// Line 2278, Address: 0x1f2d60, Func Offset: 0
 	// Line 2281, Address: 0x1f2d70, Func Offset: 0x10
@@ -1092,7 +1092,7 @@ void bhEne19_Mv11(BH_PWORK* ewP, _anon4* fwP)
 
 // 
 // Start address: 0x1f2de0
-void bhEne19_Mv12(BH_PWORK* ewP, _anon4* fwP)
+void bhEne19_Mv12(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	// Line 2304, Address: 0x1f2de0, Func Offset: 0
 	// Line 2307, Address: 0x1f2df0, Func Offset: 0x10
@@ -1105,7 +1105,7 @@ void bhEne19_Mv12(BH_PWORK* ewP, _anon4* fwP)
 
 // 
 // Start address: 0x1f2e60
-void bhEne19_Mv13(BH_PWORK* ewP, _anon4* fwP, int count)
+void bhEne19_Mv13(BH_PWORK* ewP, FW_WORK* fwP, int count)
 {
 	_anon6* posP;
 	float mtxP[16];
@@ -1202,7 +1202,7 @@ void bhEne19_Mv13(BH_PWORK* ewP, _anon4* fwP, int count)
 
 // 
 // Start address: 0x1f31f0
-void bhEne19_Mv14(BH_PWORK* ewP, _anon4* fwP, int count)
+void bhEne19_Mv14(BH_PWORK* ewP, FW_WORK* fwP, int count)
 {
 	_anon6* posP;
 	float mtxP[16];
@@ -1300,7 +1300,7 @@ void bhEne19_Mv14(BH_PWORK* ewP, _anon4* fwP, int count)
 
 // 
 // Start address: 0x1f35b0
-void bhEne19_Mv15(_anon4* fwP, int count)
+void bhEne19_Mv15(FW_WORK* fwP, int count)
 {
 	int* bstP;
 	int* stsP;
@@ -1314,7 +1314,7 @@ void bhEne19_Mv15(_anon4* fwP, int count)
 
 // 
 // Start address: 0x1f3600
-void bhEne19_Mv16(_anon4* fwP, int count)
+void bhEne19_Mv16(FW_WORK* fwP, int count)
 {
 	int* bstP;
 	int* stsP;
@@ -1328,7 +1328,7 @@ void bhEne19_Mv16(_anon4* fwP, int count)
 
 // 
 // Start address: 0x1f3650
-void bhEne19_Mv17(_anon4* fwP, int count)
+void bhEne19_Mv17(FW_WORK* fwP, int count)
 {
 	int* bstP;
 	int* stsP;
@@ -1345,7 +1345,7 @@ void bhEne19_Mv17(_anon4* fwP, int count)
 
 // 
 // Start address: 0x1f36b0
-void bhEne19_Mv18(BH_PWORK* ewP, _anon4* fwP, int count)
+void bhEne19_Mv18(BH_PWORK* ewP, FW_WORK* fwP, int count)
 {
 	// Line 2637, Address: 0x1f36b0, Func Offset: 0
 	// Line 2638, Address: 0x1f36b8, Func Offset: 0x8
@@ -1359,7 +1359,7 @@ void bhEne19_Mv18(BH_PWORK* ewP, _anon4* fwP, int count)
 
 // 
 // Start address: 0x1f36f0
-void bhEne19_Mv19(_anon4* fwP, int count)
+void bhEne19_Mv19(FW_WORK* fwP, int count)
 {
 	int* stsP;
 	// Line 2658, Address: 0x1f36f0, Func Offset: 0
@@ -1370,7 +1370,7 @@ void bhEne19_Mv19(_anon4* fwP, int count)
 
 // 
 // Start address: 0x1f3710
-void bhEne19_Mv20(BH_PWORK* ewP, _anon4* fwP, int count)
+void bhEne19_Mv20(BH_PWORK* ewP, FW_WORK* fwP, int count)
 {
 	// Line 2675, Address: 0x1f3710, Func Offset: 0
 	// Line 2677, Address: 0x1f3724, Func Offset: 0x14
@@ -1407,7 +1407,7 @@ _anon48* bhEne19_ActionSearch(int act_nw, int act_no)
 
 // 
 // Start address: 0x1f37e0
-int bhEne19_ActionChange(BH_PWORK* ewP, _anon4* fwP, int act_dst)
+int bhEne19_ActionChange(BH_PWORK* ewP, FW_WORK* fwP, int act_dst)
 {
 	_anon48* eaP;
 	// Line 2729, Address: 0x1f37e0, Func Offset: 0
@@ -1446,7 +1446,7 @@ int bhEne19_ActionChange(BH_PWORK* ewP, _anon4* fwP, int act_dst)
 
 // 
 // Start address: 0x1f3980
-int bhEne19_ActionMain(BH_PWORK* ewP, _anon4* fwP)
+int bhEne19_ActionMain(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	short* s16P;
 	int ang;
@@ -1489,7 +1489,7 @@ int bhEne19_ActionMain(BH_PWORK* ewP, _anon4* fwP)
 
 // 
 // Start address: 0x1f3be0
-void bhEne19_TargetAnalyze(BH_PWORK* ewP, _anon4* fwP)
+void bhEne19_TargetAnalyze(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	float mtxP[16];
 	_anon6 pos;
@@ -1548,7 +1548,7 @@ void bhEne19_TargetAnalyze(BH_PWORK* ewP, _anon4* fwP)
 
 // 
 // Start address: 0x1f3f10
-void bhEne19_PositonFix(BH_PWORK* ewP, _anon4* fwP)
+void bhEne19_PositonFix(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	_anon6* vzP;
 	_anon6 vct;
@@ -1586,7 +1586,7 @@ void bhEne19_PositonFix(BH_PWORK* ewP, _anon4* fwP)
 
 // 
 // Start address: 0x1f40f0
-void bhEne19_HeadTurn(BH_PWORK* ewP, _anon4* fwP, int mode)
+void bhEne19_HeadTurn(BH_PWORK* ewP, FW_WORK* fwP, int mode)
 {
 	int ang;
 	int dlt;
@@ -1620,7 +1620,7 @@ void bhEne19_HeadTurn(BH_PWORK* ewP, _anon4* fwP, int mode)
 int bhEne19_AttackHitCheck(BH_PWORK* ewP, _enum_2 arm_no, float ar, int* angP)
 {
 	int dir;
-	_anon4* fwP;
+	FW_WORK* fwP;
 	_anon53 spr;
 	int hit;
 	_enum_6 AtkObj[2][2];
@@ -1653,7 +1653,7 @@ int bhEne19_AttackHitCheck(BH_PWORK* ewP, _enum_2 arm_no, float ar, int* angP)
 
 // 
 // Start address: 0x1f4370
-void bhEne19_CalcEnemy(BH_PWORK* ewP, _anon4* fwP)
+void bhEne19_CalcEnemy(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	_anon14* owP;
 	_anon6* dstP;
@@ -1678,7 +1678,7 @@ void bhEne19_CalcEnemy(BH_PWORK* ewP, _anon4* fwP)
 
 // 
 // Start address: 0x1f4460
-void bhEne19_DmgCheck(BH_PWORK* ewP, _anon4* fwP)
+void bhEne19_DmgCheck(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	_anon6 dir;
 	int dst;
@@ -1916,7 +1916,7 @@ void bhEne19_TyBloodSet(_anon21* ebP)
 {
 	float* prmP;
 	int rnd;
-	_anon4* fwP;
+	FW_WORK* fwP;
 	BH_PWORK* ewP;
 	float SetPrm[3][2];
 	// Line 3606, Address: 0x1f5000, Func Offset: 0
@@ -1961,7 +1961,7 @@ void bhEne19_TyBloodSet(_anon21* ebP)
 
 // 
 // Start address: 0x1f5330
-void bhEne19_ClawReset(BH_PWORK* ewP, _anon4* fwP)
+void bhEne19_ClawReset(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	_anon6* posP;
 	npobj* objP;
@@ -1978,7 +1978,7 @@ void bhEne19_ClawReset(BH_PWORK* ewP, _anon4* fwP)
 
 // 
 // Start address: 0x1f53a0
-void bhEne19_SoundSet(BH_PWORK* ewP, _anon4* fwP)
+void bhEne19_SoundSet(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	int sts;
 	int obj_b;
@@ -2102,7 +2102,7 @@ int bhEne19_MtnAttrbuteGet(BH_PWORK* ewP)
 
 // 
 // Start address: 0x1f59b0
-int bhEne19_PlySetDamage(BH_PWORK* plP, _anon4* fwP, int dmg_mod)
+int bhEne19_PlySetDamage(BH_PWORK* plP, FW_WORK* fwP, int dmg_mod)
 {
 	int PlyDmgTbl[4];
 	// Line 3821, Address: 0x1f59b0, Func Offset: 0
@@ -2141,7 +2141,7 @@ int bhEne19_PlySetDamage(BH_PWORK* plP, _anon4* fwP, int dmg_mod)
 
 // 
 // Start address: 0x1f5ad0
-void bhEne19_PlyMoveMain(BH_PWORK* plP, _anon4* fwP)
+void bhEne19_PlyMoveMain(BH_PWORK* plP, FW_WORK* fwP)
 {
 	_anon29* htP;
 	int act;
@@ -2213,7 +2213,7 @@ void bhEne19_PlyMoveMain(BH_PWORK* plP, _anon4* fwP)
 
 // 
 // Start address: 0x1f5e40
-void bhEne19_PlyDmg042(BH_PWORK* plP, _anon4* fwP)
+void bhEne19_PlyDmg042(BH_PWORK* plP, FW_WORK* fwP)
 {
 	int obj;
 	int dlt;
@@ -2270,7 +2270,7 @@ void bhEne19_PlyDmg042(BH_PWORK* plP, _anon4* fwP)
 
 // 
 // Start address: 0x1f60d0
-void bhEne19_PlyDmg043(BH_PWORK* plP, _anon4* fwP)
+void bhEne19_PlyDmg043(BH_PWORK* plP, FW_WORK* fwP)
 {
 	// Line 4052, Address: 0x1f60d0, Func Offset: 0
 	// Line 4053, Address: 0x1f60e4, Func Offset: 0x14
@@ -2297,7 +2297,7 @@ void bhEne19_PlyDmg043(BH_PWORK* plP, _anon4* fwP)
 
 // 
 // Start address: 0x1f6240
-void bhEne19_PlyDmg044(BH_PWORK* plP, _anon4* fwP)
+void bhEne19_PlyDmg044(BH_PWORK* plP, FW_WORK* fwP)
 {
 	// Line 4083, Address: 0x1f6240, Func Offset: 0
 	// Line 4084, Address: 0x1f6250, Func Offset: 0x10
@@ -2312,7 +2312,7 @@ void bhEne19_PlyDmg044(BH_PWORK* plP, _anon4* fwP)
 
 // 
 // Start address: 0x1f62a0
-void bhEne19_PlyDmg045(BH_PWORK* plP, _anon4* fwP)
+void bhEne19_PlyDmg045(BH_PWORK* plP, FW_WORK* fwP)
 {
 	// Line 4105, Address: 0x1f62a0, Func Offset: 0
 	// Line 4106, Address: 0x1f62b0, Func Offset: 0x10
@@ -2321,19 +2321,17 @@ void bhEne19_PlyDmg045(BH_PWORK* plP, _anon4* fwP)
 	// Line 4107, Address: 0x1f62c8, Func Offset: 0x28
 	// Line 4110, Address: 0x1f62d4, Func Offset: 0x34
 	// Func End, Address: 0x1f62dc, Func Offset: 0x3c
-}
+}*/
 
-// 
-// Start address: 0x1f62e0
-void bhEne19_PlyDmg046_047(BH_PWORK* plP, _anon4* fwP)
+// 100% matching!
+static void bhEne19_PlyDmg046_047(BH_PWORK* plP, FW_WORK* fwP)
 {
-	// Line 4123, Address: 0x1f62e0, Func Offset: 0
-	// Func End, Address: 0x1f62e8, Func Offset: 0x8
+	bhEne19_PlyDmgDie(plP, fwP);
 }
 
-// 
+/*// 
 // Start address: 0x1f62f0
-void bhEne19_PlyDmg050_051(BH_PWORK* plP, _anon4* fwP)
+void bhEne19_PlyDmg050_051(BH_PWORK* plP, FW_WORK* fwP)
 {
 	// Line 4135, Address: 0x1f62f0, Func Offset: 0
 	// Line 4137, Address: 0x1f6300, Func Offset: 0x10
@@ -2344,7 +2342,7 @@ void bhEne19_PlyDmg050_051(BH_PWORK* plP, _anon4* fwP)
 
 // 
 // Start address: 0x1f6340
-void bhEne19_PlyDmg052_053(BH_PWORK* plP, _anon4* fwP)
+void bhEne19_PlyDmg052_053(BH_PWORK* plP, FW_WORK* fwP)
 {
 	int i;
 	int dlt;
@@ -2427,7 +2425,7 @@ void bhEne19_PlyDmg052_053(BH_PWORK* plP, _anon4* fwP)
 
 // 
 // Start address: 0x1f67a0
-void bhEne19_PlyDmg117_118(BH_PWORK* plP, _anon4* fwP)
+void bhEne19_PlyDmg117_118(BH_PWORK* plP, FW_WORK* fwP)
 {
 	int obj;
 	int dlt;
@@ -2481,13 +2479,13 @@ void bhEne19_PlyDmg117_118(BH_PWORK* plP, _anon4* fwP)
 	// Line 4312, Address: 0x1f6a20, Func Offset: 0x280
 	// Line 4313, Address: 0x1f6a2c, Func Offset: 0x28c
 	// Func End, Address: 0x1f6a48, Func Offset: 0x2a8
-}
+}*/
 
 // 
 // Start address: 0x1f6a50
-void bhEne19_PlyDmgDie(BH_PWORK* plP, _anon4* fwP)
+void bhEne19_PlyDmgDie(BH_PWORK* plP, FW_WORK* fwP)
 {
-	_anon1* pawP;
+	//_anon1* pawP;
 	// Line 4328, Address: 0x1f6a50, Func Offset: 0
 	// Line 4329, Address: 0x1f6a74, Func Offset: 0x24
 	// Line 4331, Address: 0x1f6a7c, Func Offset: 0x2c
@@ -2506,9 +2504,9 @@ void bhEne19_PlyDmgDie(BH_PWORK* plP, _anon4* fwP)
 	// Func End, Address: 0x1f6ae4, Func Offset: 0x94
 }
 
-// 
+/*// 
 // Start address: 0x1f6af0
-void bhEne19_PlyDmgRtn(BH_PWORK* plP, _anon4* fwP)
+void bhEne19_PlyDmgRtn(BH_PWORK* plP, FW_WORK* fwP)
 {
 	// Line 4358, Address: 0x1f6af0, Func Offset: 0
 	// Line 4360, Address: 0x1f6b04, Func Offset: 0x14
@@ -2536,7 +2534,7 @@ void bhEne19_PlyDmgRtn(BH_PWORK* plP, _anon4* fwP)
 
 // 
 // Start address: 0x1f6b90
-void bhEne19_PlyDmgFal(BH_PWORK* plP, _anon4* fwP)
+void bhEne19_PlyDmgFal(BH_PWORK* plP, FW_WORK* fwP)
 {
 	float spd;
 	int dir;
@@ -2681,7 +2679,7 @@ int bhEne_CalcCombRate(BH_PWORK* ewP, _anon47* cwP)
 
 // 
 // Start address: 0x1f70f0
-_enum_4 bhEne19_CheckDmgLvl0(BH_PWORK* ewP, _anon4* fwP)
+_enum_4 bhEne19_CheckDmgLvl0(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	int* flgP;
 	int cmb_lvl;
@@ -2712,7 +2710,7 @@ _enum_4 bhEne19_CheckDmgLvl0(BH_PWORK* ewP, _anon4* fwP)
 
 // 
 // Start address: 0x1f71d0
-_enum_4 bhEne19_CheckDmgLvl1(BH_PWORK* ewP, _anon4* fwP)
+_enum_4 bhEne19_CheckDmgLvl1(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	_enum_4 dmg_lvl;
 	// Line 4678, Address: 0x1f71d0, Func Offset: 0
@@ -2736,7 +2734,7 @@ _enum_4 bhEne19_CheckDmgLvl1(BH_PWORK* ewP, _anon4* fwP)
 
 // 
 // Start address: 0x1f72d0
-_enum_4 bhEne19_CheckDmgLvl2(BH_PWORK* ewP, _anon4* fwP)
+_enum_4 bhEne19_CheckDmgLvl2(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	int* flgP;
 	int cmb_lvl;

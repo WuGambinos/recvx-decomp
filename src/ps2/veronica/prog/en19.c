@@ -892,17 +892,15 @@ void bhEne19_Mv05(_anon4* fwP, int count)
 	// Line 2022, Address: 0x1f25f0, Func Offset: 0x40
 	// Line 2023, Address: 0x1f25f8, Func Offset: 0x48
 	// Func End, Address: 0x1f2600, Func Offset: 0x50
-}
+}*/
 
-// 
-// Start address: 0x1f2600
-void bhEne19_Mv06()
+// 100% matching!
+static void bhEne19_Mv06()
 {
-	// Line 2034, Address: 0x1f2600, Func Offset: 0
-	// Func End, Address: 0x1f2608, Func Offset: 0x8
+	
 }
 
-// 
+/*// 
 // Start address: 0x1f2610
 void bhEne19_Mv07(BH_PWORK* ewP, _anon4* fwP, int count)
 {

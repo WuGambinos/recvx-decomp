@@ -253,15 +253,13 @@ void bhEne19_Move(BH_PWORK* ewP)
 	// Line 754, Address: 0x1f0b80, Func Offset: 0x210
 	// Line 756, Address: 0x1f0b90, Func Offset: 0x220
 	// Func End, Address: 0x1f0bb0, Func Offset: 0x240
-}
+}*/
 
-// 
-// Start address: 0x1f0bb0
+// 100% matching!
 void bhEne19_Damage()
 {
-	// Line 765, Address: 0x1f0bb0, Func Offset: 0
-	// Func End, Address: 0x1f0bb8, Func Offset: 0x8
-}*/
+	
+}
 
 // 100% matching!
 void bhEne19_Die(BH_PWORK* ewP) 

@@ -7,6 +7,7 @@
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
@@ -2329,72 +2330,75 @@ void bhEne02_SandEffect(BH_PWORK* epw)
 	// Func End, Address: 0x1943b0, Func Offset: 0x140
 }
 
-// 
-// Start address: 0x1943b0
-void bhEne02_SandEffectP(BH_PWORK* epw)
+// 100% matching!
+void bhEne02_SandEffectP(BH_PWORK* epw) 
 {
-	int j;
-	int i;
-	NJS_POINT3 pos;
-	NJS_POINT3 ofp;
-	unsigned int fno;
-	//_anon11* wp;
-	//_anon8* we;
-	// Line 2482, Address: 0x1943b0, Func Offset: 0
-	// Line 2484, Address: 0x1943d4, Func Offset: 0x24
-	// Line 2482, Address: 0x1943d8, Func Offset: 0x28
-	// Line 2484, Address: 0x1943e0, Func Offset: 0x30
-	// Line 2490, Address: 0x1943e4, Func Offset: 0x34
-	// Line 2485, Address: 0x1943e8, Func Offset: 0x38
-	// Line 2490, Address: 0x1943f0, Func Offset: 0x40
-	// Line 2485, Address: 0x1943f8, Func Offset: 0x48
-	// Line 2492, Address: 0x194400, Func Offset: 0x50
-	// Line 2493, Address: 0x194408, Func Offset: 0x58
-	// Line 2494, Address: 0x19441c, Func Offset: 0x6c
-	// Line 2495, Address: 0x194420, Func Offset: 0x70
-	// Line 2496, Address: 0x194428, Func Offset: 0x78
-	// Line 2497, Address: 0x194438, Func Offset: 0x88
-	// Line 2498, Address: 0x19443c, Func Offset: 0x8c
-	// Line 2499, Address: 0x194440, Func Offset: 0x90
-	// Line 2500, Address: 0x194444, Func Offset: 0x94
-	// Line 2497, Address: 0x194448, Func Offset: 0x98
-	// Line 2498, Address: 0x19444c, Func Offset: 0x9c
-	// Line 2499, Address: 0x194454, Func Offset: 0xa4
-	// Line 2500, Address: 0x194458, Func Offset: 0xa8
-	// Line 2501, Address: 0x194460, Func Offset: 0xb0
-	// Line 2502, Address: 0x194474, Func Offset: 0xc4
-	// Line 2503, Address: 0x194484, Func Offset: 0xd4
-	// Line 2504, Address: 0x19449c, Func Offset: 0xec
-	// Line 2505, Address: 0x1944ac, Func Offset: 0xfc
-	// Line 2507, Address: 0x1944bc, Func Offset: 0x10c
-	// Line 2509, Address: 0x1944d0, Func Offset: 0x120
-	// Line 2510, Address: 0x1944d8, Func Offset: 0x128
-	// Line 2511, Address: 0x19451c, Func Offset: 0x16c
-	// Line 2512, Address: 0x194564, Func Offset: 0x1b4
-	// Line 2513, Address: 0x194580, Func Offset: 0x1d0
-	// Line 2512, Address: 0x194584, Func Offset: 0x1d4
-	// Line 2513, Address: 0x19459c, Func Offset: 0x1ec
-	// Line 2512, Address: 0x1945b0, Func Offset: 0x200
-	// Line 2513, Address: 0x1945bc, Func Offset: 0x20c
-	// Line 2512, Address: 0x1945c0, Func Offset: 0x210
-	// Line 2513, Address: 0x1945c4, Func Offset: 0x214
-	// Line 2514, Address: 0x1945cc, Func Offset: 0x21c
-	// Line 2515, Address: 0x1945dc, Func Offset: 0x22c
-	// Line 2516, Address: 0x1945e0, Func Offset: 0x230
-	// Line 2517, Address: 0x194624, Func Offset: 0x274
-	// Line 2518, Address: 0x194668, Func Offset: 0x2b8
-	// Line 2519, Address: 0x194688, Func Offset: 0x2d8
-	// Line 2518, Address: 0x194690, Func Offset: 0x2e0
-	// Line 2519, Address: 0x1946a0, Func Offset: 0x2f0
-	// Line 2518, Address: 0x1946ac, Func Offset: 0x2fc
-	// Line 2519, Address: 0x1946c0, Func Offset: 0x310
-	// Line 2520, Address: 0x1946c8, Func Offset: 0x318
-	// Line 2524, Address: 0x1946d8, Func Offset: 0x328
-	// Line 2525, Address: 0x1946dc, Func Offset: 0x32c
-	// Line 2527, Address: 0x1946f0, Func Offset: 0x340
-	// Line 2528, Address: 0x1946f4, Func Offset: 0x344
-	// Line 2529, Address: 0x194708, Func Offset: 0x358
-	// Func End, Address: 0x194738, Func Offset: 0x388
+    EN02_WE_WORK* we;            
+    EN02_SANDEFFECTTBL_WORK* wp; 
+    unsigned int fno;           
+    NJS_POINT3 ofp, pos;              
+    int i, j;                      
+    int type; // not from DWARF
+
+    wp = SandEffectTbl;
+    
+    type = (epw->type != 0) ? 1 : 0;
+    
+    fno = plp->frm_no / 65536;
+    
+    for ( ; wp->mtn_no != -1; wp++) 
+    {
+        if (plp->mtn_no == wp->mtn_no) 
+        {
+            we = wp->we;
+            
+            for (i = 0; i < wp->num; i++) 
+            {
+                if (we->frm_no == fno)
+                {
+                    ofp.x = we->ofx;
+                    ofp.y = we->ofy;
+                    ofp.z = we->ofz;
+                    
+                    njUnitMatrix(NULL);
+                    
+                    njRotateY(NULL, plp->ay);
+                    
+                    njCalcVector(NULL, &ofp, &ofp);
+                    
+                    ofp.x += plp->px;
+                    ofp.y += plp->py;
+                    ofp.z += plp->pz;
+                    
+                    switch (we->size)  
+                    {
+                    case 0:
+                        for (j = 0; j < 2; j++) 
+                        {
+                            pos.x = (ofp.x + (4.0f * (-rand() / -2147483648.0f))) - 2.0f;
+                            pos.y = (ofp.y + (4.0f * (-rand() / -2147483648.0f))) - 2.0f;
+                            pos.z = (ofp.z + (4.0f * (-rand() / -2147483648.0f))) - 2.0f;
+                            
+                            bhEne02_SetSandSpr(type, &pos, 0, 0, 1.0f, 0);
+                        }
+                            
+                        for (j = 0; j < 2; j++) 
+                        {
+                            pos.x = (ofp.x + (2.0f * (-rand() / -2147483648.0f))) - 1.0f;
+                            pos.y = (ofp.y + (2.0f * (-rand() / -2147483648.0f))) - 1.0f;
+                            pos.z = (ofp.z + (2.0f * (-rand() / -2147483648.0f))) - 1.0f;
+                            
+                            bhEne02_SetSandSpr(type, &pos, 1, 0, 1.0f, 0);
+                        }
+                            
+                        break;
+                    } 
+                }
+                
+                we++;
+            }
+        }
+    }
 }
 
 // 100% matching!

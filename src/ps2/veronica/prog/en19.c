@@ -826,18 +826,16 @@ void bhEne19_Br02(BH_PWORK* ewP)
 // 100% matching!
 static void bhEne19_Mv00()
 {
-	
+
+}
+
+// 100% matching!
+static void bhEne19_Mv01()
+{
+
 }
 
 /*// 
-// Start address: 0x1f2500
-void bhEne19_Mv01()
-{
-	// Line 1936, Address: 0x1f2500, Func Offset: 0
-	// Func End, Address: 0x1f2508, Func Offset: 0x8
-}
-
-// 
 // Start address: 0x1f2510
 void bhEne19_Mv02(_anon4* fwP, int count)
 {

@@ -336,7 +336,7 @@ void bhEne11_MV01(BH_PWORK* epw)
             }
             else 
             {
-                bhEne_SetSEPan((int)epw, (NJS_VECTOR *)&epw->px, 0x11300);
+                bhEne_SetSEPan(epw, (NJS_VECTOR *)&epw->px, 0x11300);
             }
             break;
     }
@@ -384,7 +384,7 @@ void bhEne11_MV02(BH_PWORK* epw)
             }
             else
             {
-                bhEne_SetSEPan((int)epw, (NJS_VECTOR *)&epw->px, 0x11300);
+                bhEne_SetSEPan(epw, (NJS_VECTOR *)&epw->px, 0x11300);
             }
             break;
     }
@@ -542,7 +542,7 @@ void bhEne11_MV04(BH_PWORK* epw)
             }
             else 
             {
-                bhEne_SetSEPan((int)epw, (NJS_VECTOR *)&epw->px, 0x11300);
+                bhEne_SetSEPan(epw, (NJS_VECTOR *)&epw->px, 0x11300);
             }
             break;
     }
@@ -614,7 +614,7 @@ void bhEne11_MV05(BH_PWORK* epw)
             }
             else 
             {
-                bhEne_SetSEPan((int)epw, (NJS_VECTOR *)&epw->px, 0x11300);
+                bhEne_SetSEPan(epw, (NJS_VECTOR *)&epw->px, 0x11300);
             }
             break;
     }
@@ -707,7 +707,7 @@ void bhEne11_MV06(BH_PWORK* epw)
             }
             else 
             {
-                bhEne_SetSEPan((int) epw, (NJS_VECTOR *)&epw->px, 0x11300);
+                bhEne_SetSEPan(epw, (NJS_VECTOR *)&epw->px, 0x11300);
             }
             break;
     }

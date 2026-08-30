@@ -7775,7 +7775,7 @@ void bhEne01_ExpLegEffect(BH_PWORK* epw, int lnk_obj)
 	// Line 11981, Address: 0x188480, Func Offset: 0x430
 	// Line 11982, Address: 0x188490, Func Offset: 0x440
 	// Func End, Address: 0x1884c0, Func Offset: 0x470
-}
+}*/
 
 // 
 // Start address: 0x1884c0
@@ -7786,10 +7786,10 @@ void bhEne01_ExpWormEffect(BH_PWORK* epw)
 	int eno;
 	int ang1;
 	float tmp;
-	_anon11 pd;
-	_anon11 ps;
-	_anon11 v;
-	_anon2* owk;
+	//_anon11 pd;
+	//_anon11 ps;
+	//_anon11 v;
+	//_anon2* owk;
 	BH_PWORK* p_epw;
 	// Line 11999, Address: 0x1884c0, Func Offset: 0
 	// Line 12011, Address: 0x1884f0, Func Offset: 0x30
@@ -7927,9 +7927,10 @@ void bhEne01_ExpWormEffect(BH_PWORK* epw)
 	// Line 12124, Address: 0x188b10, Func Offset: 0x650
 	// Line 12125, Address: 0x188b20, Func Offset: 0x660
 	// Func End, Address: 0x188b54, Func Offset: 0x694
+	scePrintf("bhEne01_ExpWormEffect - UNIMPLEMENTED!\n");
 }
 
-// 
+/*// 
 // Start address: 0x188b60
 void bhEne01_PoisonEffect(BH_PWORK* epw, int num)
 {

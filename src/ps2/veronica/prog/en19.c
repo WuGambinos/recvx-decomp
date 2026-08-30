@@ -256,13 +256,13 @@ void bhEne19_Move(BH_PWORK* ewP)
 }*/
 
 // 100% matching!
-void bhEne19_Damage()
+static void bhEne19_Damage()
 {
-	
+
 }
 
 // 100% matching!
-void bhEne19_Die(BH_PWORK* ewP) 
+static void bhEne19_Die(BH_PWORK* ewP) 
 {
     ewP->flg |= 0x2; 
 
@@ -821,17 +821,15 @@ void bhEne19_Br02(BH_PWORK* ewP)
 	// Line 1913, Address: 0x1f24ac, Func Offset: 0x72c
 	// Line 1916, Address: 0x1f24c0, Func Offset: 0x740
 	// Func End, Address: 0x1f24ec, Func Offset: 0x76c
-}
+}*/
 
-// 
-// Start address: 0x1f24f0
-void bhEne19_Mv00()
+// 100% matching!
+static void bhEne19_Mv00()
 {
-	// Line 1927, Address: 0x1f24f0, Func Offset: 0
-	// Func End, Address: 0x1f24f8, Func Offset: 0x8
+	
 }
 
-// 
+/*// 
 // Start address: 0x1f2500
 void bhEne19_Mv01()
 {

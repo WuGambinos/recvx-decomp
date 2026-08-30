@@ -2425,46 +2425,50 @@ void bhEne02_SetSandSpr(int type0, NJS_POINT3* pos, int type, int flip, float si
 	eff[eno].yn = 0.3f + (0.6f * (-rand() / -2147483648.0f));
 }
 
-// 
-// Start address: 0x194270
-void bhEne02_SandEffect(BH_PWORK* epw)
+// 100% matching!
+void bhEne02_SandEffect(BH_PWORK* epw) 
 {
-	int i;
-	NJS_POINT3 ofp;
-	unsigned int fno;
-	//_anon11* wp;
-	//_anon8* we;
-	// Line 2444, Address: 0x194270, Func Offset: 0
-	// Line 2447, Address: 0x194294, Func Offset: 0x24
-	// Line 2446, Address: 0x19429c, Func Offset: 0x2c
-	// Line 2451, Address: 0x1942a4, Func Offset: 0x34
-	// Line 2452, Address: 0x1942ac, Func Offset: 0x3c
-	// Line 2453, Address: 0x1942b8, Func Offset: 0x48
-	// Line 2454, Address: 0x1942bc, Func Offset: 0x4c
-	// Line 2455, Address: 0x1942c4, Func Offset: 0x54
-	// Line 2456, Address: 0x1942d0, Func Offset: 0x60
-	// Line 2457, Address: 0x1942d4, Func Offset: 0x64
-	// Line 2458, Address: 0x1942d8, Func Offset: 0x68
-	// Line 2459, Address: 0x1942dc, Func Offset: 0x6c
-	// Line 2456, Address: 0x1942e0, Func Offset: 0x70
-	// Line 2457, Address: 0x1942e4, Func Offset: 0x74
-	// Line 2458, Address: 0x1942ec, Func Offset: 0x7c
-	// Line 2459, Address: 0x1942f0, Func Offset: 0x80
-	// Line 2460, Address: 0x1942f8, Func Offset: 0x88
-	// Line 2461, Address: 0x194304, Func Offset: 0x94
-	// Line 2462, Address: 0x194314, Func Offset: 0xa4
-	// Line 2465, Address: 0x19431c, Func Offset: 0xac
-	// Line 2462, Address: 0x194320, Func Offset: 0xb0
-	// Line 2463, Address: 0x194328, Func Offset: 0xb8
-	// Line 2464, Address: 0x194338, Func Offset: 0xc8
-	// Line 2465, Address: 0x194348, Func Offset: 0xd8
-	// Line 2466, Address: 0x194354, Func Offset: 0xe4
-	// Line 2467, Address: 0x194358, Func Offset: 0xe8
-	// Line 2468, Address: 0x19435c, Func Offset: 0xec
-	// Line 2470, Address: 0x194370, Func Offset: 0x100
-	// Line 2471, Address: 0x194374, Func Offset: 0x104
-	// Line 2472, Address: 0x194388, Func Offset: 0x118
-	// Func End, Address: 0x1943b0, Func Offset: 0x140
+    EN02_WE_WORK* we;            
+    EN02_SANDEFFECTTBL_WORK* wp;
+    unsigned int fno;            
+    NJS_POINT3 ofp;             
+    int i;                      
+
+    wp = SandEffectTbl;
+    
+    fno = epw->frm_no / 65536;
+    
+    for ( ; wp->mtn_no != -1; wp++)  
+    {
+        if (epw->mtn_no == wp->mtn_no) 
+        {
+            we = wp->we;
+            
+            for (i = 0; i < wp->num; i++) 
+            {
+                if (we->frm_no == fno) 
+                {
+                    ofp.x = we->ofx;
+                    ofp.y = we->ofy;
+                    ofp.z = we->ofz;
+                    
+                    njUnitMatrix(NULL);
+                    
+                    njRotateY(NULL, epw->ay);
+                    
+                    njCalcVector(NULL, &ofp, &ofp);
+                    
+                    ofp.x += epw->px;
+                    ofp.y += epw->py;
+                    ofp.z += epw->pz;
+                    
+                    bhEne02_SetSandEffect(epw, &ofp, we->size);
+                }
+                
+                we++;
+            }
+        }
+    }
 }
 
 // 100% matching!

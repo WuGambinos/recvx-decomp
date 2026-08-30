@@ -3,6 +3,8 @@
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
@@ -706,27 +708,37 @@ bhEne02_DeadMode2_proc bhEne02_DeadMode2[2] =
     bhEne02_DD01
 };
 
-// 
-// Start address: 0x18f830
+// 100% matching!
 void bhEne02(BH_PWORK* epw)
 {
-	// Line 738, Address: 0x18f830, Func Offset: 0
-	// Line 740, Address: 0x18f840, Func Offset: 0x10
-	// Line 743, Address: 0x18f860, Func Offset: 0x30
-	// Line 744, Address: 0x18f874, Func Offset: 0x44
-	// Line 748, Address: 0x18f87c, Func Offset: 0x4c
-	// Line 751, Address: 0x18f890, Func Offset: 0x60
-	// Line 754, Address: 0x18f898, Func Offset: 0x68
-	// Line 757, Address: 0x18f8a0, Func Offset: 0x70
-	// Line 759, Address: 0x18f8b4, Func Offset: 0x84
-	// Line 760, Address: 0x18f8bc, Func Offset: 0x8c
-	// Line 764, Address: 0x18f8e0, Func Offset: 0xb0
-	// Line 767, Address: 0x18f8f8, Func Offset: 0xc8
-	// Line 770, Address: 0x18f900, Func Offset: 0xd0
-	// Line 773, Address: 0x18f908, Func Offset: 0xd8
-	// Line 774, Address: 0x18f910, Func Offset: 0xe0
-	// Func End, Address: 0x18f920, Func Offset: 0xf0
-	scePrintf("bhEne02 - UNIMPLEMENTED!\n");
+    bhEne02_Mode0[epw->mode0](epw);
+    
+    if (!(epw->flg & 0x100000)) 
+    {
+        bhEne02_SandEffect(epw);
+    }
+    
+    bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+    
+    bhEne02_CheckWall(epw);
+    
+    bhCalcModel(epw);
+    
+    if ((epw->flg & 0x100000)) 
+    {
+        epw->car = 0;
+    } 
+    else 
+    {
+        epw->car += (EXP0_F(120) - epw->car) / 16.0f;
+    }
+    
+    bhEne_SetWeponAtr(epw, 11, 3, 10.0f);
+    
+    bhEne02_PlayerControl(epw);
+    bhEne02_CameraControl(epw);
+    
+    bhEne02_CallSE(epw);
 }
 
 // 100% matching!
@@ -924,7 +936,7 @@ void bhEne02_Move(BH_PWORK* epw)
 	}
 }
 
-/*// 
+// 
 // Start address: 0x190130
 void bhEne02_MV00(BH_PWORK* epw)
 {
@@ -980,7 +992,7 @@ void bhEne02_MV00(BH_PWORK* epw)
 	// Line 1082, Address: 0x1904d0, Func Offset: 0x3a0
 	// Line 1085, Address: 0x1904e4, Func Offset: 0x3b4
 	// Func End, Address: 0x1904f8, Func Offset: 0x3c8
-}*/
+}
 
 // 
 // Start address: 0x190500
@@ -1418,16 +1430,16 @@ void bhEne02_MV03(BH_PWORK* epw)
 	scePrintf("bhEne02_MV03 - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x191810
 void bhEne02_MV04(BH_PWORK* epw)
 {
 	float dist;
 	NJS_POINT3 vec;
-	_anon42 ln;
+	//_anon42 ln;
 	NJS_POINT3 pos;
 	int i;
-	_anon1* owk;
+	//_anon1* owk;
 	// Line 1569, Address: 0x191810, Func Offset: 0
 	// Line 1570, Address: 0x191828, Func Offset: 0x18
 	// Line 1572, Address: 0x191848, Func Offset: 0x38
@@ -1554,7 +1566,7 @@ void bhEne02_MV04(BH_PWORK* epw)
 	// Line 1707, Address: 0x191ddc, Func Offset: 0x5cc
 	// Line 1712, Address: 0x191dec, Func Offset: 0x5dc
 	// Func End, Address: 0x191e04, Func Offset: 0x5f4
-}*/
+}
 
 // 100% matching!
 void bhEne02_MV05(BH_PWORK* epw)
@@ -1687,13 +1699,13 @@ void bhEne02_Die(BH_PWORK* epw)
 	bhEne02_DeadMode2[epw->mode2](epw);
 }
 
-/*// 
+// 
 // Start address: 0x192170
 void bhEne02_DD00(BH_PWORK* epw)
 {
 	int i;
-	_anon1* owk;
-	_anon1* owk;
+	//_anon1* owk;
+	//_anon1* owk;
 	NJS_POINT3 pos;
 	BH_PWORK dmy_ene;
 	// Line 1906, Address: 0x192170, Func Offset: 0
@@ -1958,7 +1970,7 @@ void bhEne02_DD01(BH_PWORK* epw)
 	// Line 2185, Address: 0x192cfc, Func Offset: 0x11c
 	// Line 2189, Address: 0x192d10, Func Offset: 0x130
 	// Func End, Address: 0x192d18, Func Offset: 0x138
-}*/
+}
 
 // 100% matching!
 void bhEne02_SetSandEffect(BH_PWORK* epw, NJS_POINT3* pos, int type)
@@ -2266,15 +2278,15 @@ void bhEne02_SetSandSpr(int type0, NJS_POINT3* pos, int type, int flip, float si
 	eff[eno].yn = 0.3f + (0.6f * (-rand() / -2147483648.0f));
 }
 
-/*// 
+// 
 // Start address: 0x194270
 void bhEne02_SandEffect(BH_PWORK* epw)
 {
 	int i;
 	NJS_POINT3 ofp;
 	unsigned int fno;
-	_anon11* wp;
-	_anon8* we;
+	//_anon11* wp;
+	//_anon8* we;
 	// Line 2444, Address: 0x194270, Func Offset: 0
 	// Line 2447, Address: 0x194294, Func Offset: 0x24
 	// Line 2446, Address: 0x19429c, Func Offset: 0x2c
@@ -2317,8 +2329,8 @@ void bhEne02_SandEffectP(BH_PWORK* epw)
 	NJS_POINT3 pos;
 	NJS_POINT3 ofp;
 	unsigned int fno;
-	_anon11* wp;
-	_anon8* we;
+	//_anon11* wp;
+	//_anon8* we;
 	// Line 2482, Address: 0x1943b0, Func Offset: 0
 	// Line 2484, Address: 0x1943d4, Func Offset: 0x24
 	// Line 2482, Address: 0x1943d8, Func Offset: 0x28
@@ -2374,7 +2386,7 @@ void bhEne02_SandEffectP(BH_PWORK* epw)
 	// Line 2528, Address: 0x1946f4, Func Offset: 0x344
 	// Line 2529, Address: 0x194708, Func Offset: 0x358
 	// Func End, Address: 0x194738, Func Offset: 0x388
-}*/
+}
 
 // 100% matching!
 void bhEne02_PlayerControl(BH_PWORK* epw)

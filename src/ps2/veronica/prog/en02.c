@@ -2827,51 +2827,57 @@ void bhEne02_PlayerControl(BH_PWORK* epw)
 
 #pragma divbyzerocheck off 
 
-// 
-// Start address: 0x1950b0
-void bhEne02_DamageInit(BH_PWORK* epw)
+// 100% matching!
+void bhEne02_DamageInit(BH_PWORK* epw) 
 {
-	// Line 2751, Address: 0x1950b0, Func Offset: 0
-	// Line 2749, Address: 0x1950b4, Func Offset: 0x4
-	// Line 2751, Address: 0x1950b8, Func Offset: 0x8
-	// Line 2749, Address: 0x1950bc, Func Offset: 0xc
-	// Line 2751, Address: 0x1950c0, Func Offset: 0x10
-	// Line 2749, Address: 0x1950c4, Func Offset: 0x14
-	// Line 2751, Address: 0x1950c8, Func Offset: 0x18
-	// Line 2754, Address: 0x1950d4, Func Offset: 0x24
-	// Line 2755, Address: 0x1950f4, Func Offset: 0x44
-	// Line 2759, Address: 0x195104, Func Offset: 0x54
-	// Line 2762, Address: 0x19510c, Func Offset: 0x5c
-	// Line 2759, Address: 0x195110, Func Offset: 0x60
-	// Line 2762, Address: 0x195118, Func Offset: 0x68
-	// Line 2767, Address: 0x195134, Func Offset: 0x84
-	// Line 2770, Address: 0x195140, Func Offset: 0x90
-	// Line 2775, Address: 0x195154, Func Offset: 0xa4
-	// Line 2777, Address: 0x195160, Func Offset: 0xb0
-	// Line 2778, Address: 0x195168, Func Offset: 0xb8
-	// Line 2779, Address: 0x195170, Func Offset: 0xc0
-	// Line 2778, Address: 0x195174, Func Offset: 0xc4
-	// Line 2779, Address: 0x19517c, Func Offset: 0xcc
-	// Line 2780, Address: 0x195180, Func Offset: 0xd0
-	// Line 2781, Address: 0x195184, Func Offset: 0xd4
-	// Line 2782, Address: 0x195188, Func Offset: 0xd8
-	// Line 2784, Address: 0x195194, Func Offset: 0xe4
-	// Line 2785, Address: 0x19519c, Func Offset: 0xec
-	// Line 2789, Address: 0x1951a4, Func Offset: 0xf4
-	// Line 2790, Address: 0x1951b4, Func Offset: 0x104
-	// Line 2791, Address: 0x1951b8, Func Offset: 0x108
-	// Line 2790, Address: 0x1951bc, Func Offset: 0x10c
-	// Line 2791, Address: 0x1951cc, Func Offset: 0x11c
-	// Line 2793, Address: 0x1951dc, Func Offset: 0x12c
-	// Line 2795, Address: 0x1951e4, Func Offset: 0x134
-	// Line 2796, Address: 0x1951f4, Func Offset: 0x144
-	// Line 2798, Address: 0x1951fc, Func Offset: 0x14c
-	// Line 2797, Address: 0x195200, Func Offset: 0x150
-	// Line 2798, Address: 0x195204, Func Offset: 0x154
-	// Line 2799, Address: 0x195208, Func Offset: 0x158
-	// Line 2802, Address: 0x19520c, Func Offset: 0x15c
-	// Func End, Address: 0x19521c, Func Offset: 0x16c
-	scePrintf("bhEne02_DamageInit - UNIMPLEMENTED!\n");
+    bhEne_CalcDamage(epw, CombWepTbl, CombJointTbl);
+    
+    if ((epw->wpnr_no != 16) || ((epw->flg2 & 0x4)) || (epw->comb_pnt == 1)) 
+    {
+        epw->hp -= epw->total_dam;
+        
+        if ((epw->wpnr_no != 17) || ((epw->flg2 & 0x4))) 
+        {
+            bhEne02_HitMark(epw);
+            
+            if ((epw->flg & 0x400000)) 
+            {
+                if (epw->hp < 0) 
+                {
+                    epw->flg |= 0x2;
+                    
+                    epw->flg &= ~0x20;
+                    
+                    epw->mode0 = 4;
+                    epw->mode1 = 0;
+                    epw->mode3 = 0;
+                    
+                    if (epw->type == 0) 
+                    {
+                        epw->mode2 = 0;
+                    } 
+                    else 
+                    {
+                        epw->mode2 = 1;
+                    }
+                    
+                    if (epw->type == 1)
+                    {
+                        (*(BH_PWORK**)&epw->exp0[40])->mdflg |= 0x1;
+                        
+                        (*(BH_PWORK**)&epw->exp0[40])->flg &= ~0x48;
+                    }
+                }
+                else if (epw->total_dam > 50)
+                {
+                    epw->mode0 = 3;
+                    epw->mode1 = 0;
+                    epw->mode2 = 1;
+                    epw->mode3 = 0;
+                }
+            } 
+        }
+    }
 }
 
 // 100% matching!

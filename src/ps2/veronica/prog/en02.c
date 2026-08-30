@@ -6,6 +6,7 @@
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
@@ -3051,68 +3052,98 @@ void bhEne02_CallSE(BH_PWORK* epw)
 	}
 }
 
-// 
-// Start address: 0x195d70
-void bhEne02_HitMark(BH_PWORK* epw)
+// 100% matching!
+void bhEne02_HitMark(BH_PWORK* epw) 
 {
-	int i;
-	int range;
-	//_anon39* blp;
-	NJS_POINT3 ofp;
-	// Line 3067, Address: 0x195d70, Func Offset: 0
-	// Line 3073, Address: 0x195d90, Func Offset: 0x20
-	// Line 3074, Address: 0x195d94, Func Offset: 0x24
-	// Line 3073, Address: 0x195d9c, Func Offset: 0x2c
-	// Line 3070, Address: 0x195da4, Func Offset: 0x34
-	// Line 3073, Address: 0x195da8, Func Offset: 0x38
-	// Line 3074, Address: 0x195db8, Func Offset: 0x48
-	// Line 3075, Address: 0x195dbc, Func Offset: 0x4c
-	// Line 3076, Address: 0x195dcc, Func Offset: 0x5c
-	// Line 3077, Address: 0x195ddc, Func Offset: 0x6c
-	// Line 3078, Address: 0x195e04, Func Offset: 0x94
-	// Line 3079, Address: 0x195e0c, Func Offset: 0x9c
-	// Line 3080, Address: 0x195e4c, Func Offset: 0xdc
-	// Line 3081, Address: 0x195e74, Func Offset: 0x104
-	// Line 3082, Address: 0x195e90, Func Offset: 0x120
-	// Line 3081, Address: 0x195e94, Func Offset: 0x124
-	// Line 3082, Address: 0x195eb8, Func Offset: 0x148
-	// Line 3083, Address: 0x195ec0, Func Offset: 0x150
-	// Line 3084, Address: 0x195edc, Func Offset: 0x16c
-	// Line 3083, Address: 0x195ee8, Func Offset: 0x178
-	// Line 3084, Address: 0x195ef8, Func Offset: 0x188
-	// Line 3083, Address: 0x195efc, Func Offset: 0x18c
-	// Line 3084, Address: 0x195f10, Func Offset: 0x1a0
-	// Line 3086, Address: 0x195f34, Func Offset: 0x1c4
-	// Line 3096, Address: 0x195f64, Func Offset: 0x1f4
-	// Line 3097, Address: 0x195f94, Func Offset: 0x224
-	// Line 3099, Address: 0x195f9c, Func Offset: 0x22c
-	// Line 3104, Address: 0x195fcc, Func Offset: 0x25c
-	// Line 3105, Address: 0x195ff4, Func Offset: 0x284
-	// Line 3109, Address: 0x196008, Func Offset: 0x298
-	// Line 3110, Address: 0x19603c, Func Offset: 0x2cc
-	// Line 3111, Address: 0x196040, Func Offset: 0x2d0
-	// Line 3112, Address: 0x196048, Func Offset: 0x2d8
-	// Line 3113, Address: 0x196088, Func Offset: 0x318
-	// Line 3114, Address: 0x1960b0, Func Offset: 0x340
-	// Line 3115, Address: 0x1960cc, Func Offset: 0x35c
-	// Line 3114, Address: 0x1960d0, Func Offset: 0x360
-	// Line 3115, Address: 0x1960f4, Func Offset: 0x384
-	// Line 3116, Address: 0x1960fc, Func Offset: 0x38c
-	// Line 3117, Address: 0x196138, Func Offset: 0x3c8
-	// Line 3118, Address: 0x1961c0, Func Offset: 0x450
-	// Line 3121, Address: 0x1961d0, Func Offset: 0x460
-	// Line 3122, Address: 0x1961f8, Func Offset: 0x488
-	// Line 3123, Address: 0x196200, Func Offset: 0x490
-	// Line 3124, Address: 0x196240, Func Offset: 0x4d0
-	// Line 3125, Address: 0x196268, Func Offset: 0x4f8
-	// Line 3126, Address: 0x196284, Func Offset: 0x514
-	// Line 3125, Address: 0x196288, Func Offset: 0x518
-	// Line 3126, Address: 0x1962ac, Func Offset: 0x53c
-	// Line 3127, Address: 0x1962b4, Func Offset: 0x544
-	// Line 3128, Address: 0x1962d0, Func Offset: 0x560
-	// Line 3127, Address: 0x1962d4, Func Offset: 0x564
-	// Line 3128, Address: 0x1962f8, Func Offset: 0x588
-	// Line 3130, Address: 0x196304, Func Offset: 0x594
-	// Func End, Address: 0x196328, Func Offset: 0x5b8
-	scePrintf("bhEne02_HitMark - UNIMPLEMENTED!\n");
+    NJS_POINT3 ofp; 
+    BLOOD_TBL* blp; 
+    int range;     
+    int i;         
+    
+    blp = &BloodTbl[epw->djnt_no];
+    
+    range = 0;
+    
+    if ((epw->comb_flg & 0x10)) 
+    {
+        range = 0;
+    }
+    
+    if ((epw->comb_flg & 0x20))
+    {
+        range = 1;
+    }
+    
+    if ((epw->comb_flg & 0x40)) 
+    {
+        range = 2;
+    }
+
+    if (DmgReact[epw->wpnr_no].type[range] >= 0) 
+    {
+        ofp.x = blp->ofp.x;
+        ofp.x += (blp->rx * (-rand() / -2147483648.0f)) - (blp->rx / 2.0f);
+
+        ofp.y = ((epw->comb_flg & 0x8)) ? blp->ofp.y : -blp->ofp.y;
+        ofp.y += (blp->ry * (-rand() / -2147483648.0f)) - (blp->ry / 2.0f);
+
+        ofp.z = blp->ofp.z;
+        ofp.z += (blp->rz * (-rand() / -2147483648.0f)) - (blp->rz / 2.0f);
+
+        bhEne_SetBloodEffectBurst(epw, DmgReact[epw->wpnr_no].type[range], epw->djnt_no, &ofp, 0);
+
+        switch (epw->wpnr_no) 
+        {
+        case 10:
+        case 13:
+        case 14:
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+            bhEne_SetBloodEffectBurst(epw, DmgReact[epw->wpnr_no].type[range], epw->djnt_no, (NJS_POINT3*)&epw->dpx, 1);
+            break;
+        default:
+            bhEne_SetBloodEffectBurst(epw, DmgReact[epw->wpnr_no].type[range], epw->djnt_no, &ofp, 0);
+            break;
+        }
+
+        if (DmgReact[epw->wpnr_no].bloodstain[range] != 0) 
+        {
+            bhEne_SetBloodstain(epw, 0, epw->djnt_no, &ofp);
+        }
+    }
+
+    if (((DmgReact[epw->wpnr_no].exef & 0x1)) && (blp->flg == 0)) 
+    {
+        for (i = 0; i < 4; i++) 
+        {
+            ofp.x = blp->ofp.x;
+            ofp.x += (blp->rx * (-rand() / -2147483648.0f)) - (blp->rx / 2.0f);
+
+            ofp.y = ((epw->comb_flg & 0x8)) ? blp->ofp.y : -blp->ofp.y;
+            ofp.y += (blp->ry * (-rand() / -2147483648.0f)) - (blp->ry / 2.0f);
+
+            ofp.z = blp->ofp.z;
+            ofp.z += (blp->rz * (-rand() / -2147483648.0f)) - (blp->rz / 2.0f);
+
+            bhEne_SetFireEffect(epw, epw->djnt_no, &ofp, 1.0f + (-rand() / -2147483648.0f), (int)(40.0f * (-rand() / -2147483648.0f)) + 20);
+        }
+    }
+
+    if ((DmgReact[epw->wpnr_no].exef & 0x2))
+    {
+        ofp.x = blp->ofp.x;
+        ofp.x += (blp->rx * (-rand() / -2147483648.0f)) - (blp->rx / 2.0f);
+
+        ofp.y = ((epw->comb_flg & 0x8)) ? blp->ofp.y : -blp->ofp.y;
+        ofp.y += (blp->ry * (-rand() / -2147483648.0f)) - (blp->ry / 2.0f);
+
+        ofp.z = blp->ofp.z;
+        ofp.z += (blp->rz * (-rand() / -2147483648.0f)) - (blp->rz / 2.0f);
+
+        bhEne_SetAcidEffect(epw, epw->djnt_no, &ofp, 2.0f);
+    }
 }

@@ -1931,45 +1931,54 @@ void bhEne02_DD00(BH_PWORK* epw)
 	// Func End, Address: 0x192be0, Func Offset: 0xa70
 }
 
-// 
-// Start address: 0x192be0
-void bhEne02_DD01(BH_PWORK* epw)
+// 100% matching!
+void bhEne02_DD01(BH_PWORK* epw) 
 {
-	// Line 2156, Address: 0x192be0, Func Offset: 0
-	// Line 2158, Address: 0x192c00, Func Offset: 0x20
-	// Line 2159, Address: 0x192c08, Func Offset: 0x28
-	// Line 2161, Address: 0x192c0c, Func Offset: 0x2c
-	// Line 2158, Address: 0x192c10, Func Offset: 0x30
-	// Line 2159, Address: 0x192c18, Func Offset: 0x38
-	// Line 2160, Address: 0x192c1c, Func Offset: 0x3c
-	// Line 2161, Address: 0x192c20, Func Offset: 0x40
-	// Line 2162, Address: 0x192c24, Func Offset: 0x44
-	// Line 2163, Address: 0x192c28, Func Offset: 0x48
-	// Line 2166, Address: 0x192c30, Func Offset: 0x50
-	// Line 2163, Address: 0x192c34, Func Offset: 0x54
-	// Line 2166, Address: 0x192c50, Func Offset: 0x70
-	// Line 2167, Address: 0x192c5c, Func Offset: 0x7c
-	// Line 2169, Address: 0x192c68, Func Offset: 0x88
-	// Line 2170, Address: 0x192c70, Func Offset: 0x90
-	// Line 2172, Address: 0x192c78, Func Offset: 0x98
-	// Line 2173, Address: 0x192c88, Func Offset: 0xa8
-	// Line 2174, Address: 0x192c8c, Func Offset: 0xac
-	// Line 2178, Address: 0x192c98, Func Offset: 0xb8
-	// Line 2179, Address: 0x192cac, Func Offset: 0xcc
-	// Line 2180, Address: 0x192cb4, Func Offset: 0xd4
-	// Line 2179, Address: 0x192cb8, Func Offset: 0xd8
-	// Line 2180, Address: 0x192cc0, Func Offset: 0xe0
-	// Line 2181, Address: 0x192cc4, Func Offset: 0xe4
-	// Line 2182, Address: 0x192cd8, Func Offset: 0xf8
-	// Line 2183, Address: 0x192cdc, Func Offset: 0xfc
-	// Line 2182, Address: 0x192ce0, Func Offset: 0x100
-	// Line 2183, Address: 0x192ce4, Func Offset: 0x104
-	// Line 2182, Address: 0x192ce8, Func Offset: 0x108
-	// Line 2183, Address: 0x192cf0, Func Offset: 0x110
-	// Line 2184, Address: 0x192cf4, Func Offset: 0x114
-	// Line 2185, Address: 0x192cfc, Func Offset: 0x11c
-	// Line 2189, Address: 0x192d10, Func Offset: 0x130
-	// Func End, Address: 0x192d18, Func Offset: 0x138
+    switch (epw->mode3)
+    {                   
+    case 0:
+        epw->flg &= ~0x10;
+        
+        epw->mtn_no = 8;
+        epw->frm_no = 0;
+        
+        epw->hokan_count = 20;
+        epw->hokan_rate  = 0;
+        
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 2;
+        
+        (*(BH_PWORK**)(epw->exp0 + 40))->mode2 = 2;
+        (*(BH_PWORK**)(epw->exp0 + 40))->mode3 = 0;
+        
+        epw->mode3++;
+        break;
+    case 1:
+        if (epw->ct0-- == 0) 
+        {
+            epw->mtn_add = 0;
+            
+            epw->mode3++;
+        }
+        
+        if ((epw->frm_no / 65536) == 86)
+        {
+            epw->flg |= 0x80000;
+            
+            EXP0_F(36) = 5.0f;
+            break;
+        }
+        
+        if ((epw->frm_no / 65536) == 117) 
+        {
+            epw->flg |= 0x80000;
+            
+            EXP0_F(36) = 4.2f;
+            break;
+        }
+        
+        epw->flg &= ~0x80000;
+        break;
+    }
 }
 
 // 100% matching!

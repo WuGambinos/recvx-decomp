@@ -4,22 +4,210 @@
 
 // ENEMY: Tyrant T-078 
 
-static void (*bhEne19_Mode0[6])(BH_PWORK*) = { 0 };
-static void (*bhEne19_BrainType[3])(BH_PWORK*) = { 0 };
-static TY_DMG_MODE(*bhEne19_CheckDmgLvl[3])(BH_PWORK*, FW_WORK*) = { 0 };
-EA_WORK En19ActTbl[50] = { 0 };
-COMBWEP_WORK En19CombWepTbl[21] = { 0 };
-static COMBJOINT_WORK En19CombJointTbl[26] = { 0 };
-static PMA_WORK* Eff30aTbl[3] = { 0 };
+static void (*bhEne19_Mode0[6])(BH_PWORK*) = 
+{ 
+	bhEne19_Init,
+	bhEne19_Move,
+	bhEne19_Damage,
+	bhEne19_Die,
+	NULL,
+	bhEne19_Event
+};
+static void (*bhEne19_BrainType[3])(BH_PWORK*) = 
+{ 
+	bhEne19_Br00,
+	bhEne19_Br01,
+	bhEne19_Br02
+};
+static TY_DMG_MODE(*bhEne19_CheckDmgLvl[3])(BH_PWORK*, FW_WORK*) = 
+{ 
+	bhEne19_CheckDmgLvl0,
+	bhEne19_CheckDmgLvl1,
+	bhEne19_CheckDmgLvl2
+};
 
-static const char FlpTbl[26] = { 0 };
-static const CPCL Ene19CapColTbl[28] = { 0 };
-static const ACT_TBL_WORK En19PlyActTbl[17] = { 0 };
-static const float En19OvlTbl[3] = { 0 };
-static const int En19HpTbl[4][3] = { 0 };
-static const float En19AtkRng[3][4] = { 0 };
-static const PMA_WORK Eff30aPrm1[3] = { 0 };
-static const PMA_WORK Eff30aPrm2[3] = { 0 };
+EA_WORK En19ActTbl[50] =
+{
+    {  1033,  8,  4, 0,  8,  1.0f, 0x00080020, bhEne19_Mv08  },
+    {  1034,  9,  4, 0,  8,  1.0f, 0x00080020, bhEne19_Mv09  },
+    {  2056,  7,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv07  },
+    {  2308,  4, 38, 0,  8,  1.0f, 0x00080020, bhEne19_Mv04a },
+    {  2309,  4, 38, 0,  8,  1.0f, 0x00080020, bhEne19_Mv04b },
+    {  2310,  5, 56, 0,  8,  1.0f, 0x00080020, bhEne19_Mv05  },
+    {  2564,  4,  4, 0,  8,  1.0f, 0x00080020, bhEne19_Mv04a },
+    {  2565,  4,  4, 0,  8,  1.0f, 0x00080020, bhEne19_Mv04b },
+    {  2566,  5, 22, 0,  8,  1.0f, 0x00080020, bhEne19_Mv05  },
+    {  2816,  0,  0, 0, 32,  1.0f, 0x00080020, bhEne19_Mv00  },
+    {  2827, 10,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv10  },
+    {  2832, 15,  0, 0,  8,  0.9f, 0x00080020, bhEne19_Mv15  },
+    {  3589,  4, 40, 0,  6,  1.0f, 0x00080020, bhEne19_Mv04b },
+    {  3599, 14,  4, 0,  8,  0.9f, 0x00080020, bhEne19_Mv14  },
+    {  3845,  4,  4, 0,  6,  1.0f, 0x00080020, bhEne19_Mv04b },
+    {  3854, 13,  4, 0,  8,  0.9f, 0x00080020, bhEne19_Mv13  },
+    {  4100,  4,  4, 0,  8,  1.0f, 0x00080020, bhEne19_Mv04a },
+    {  4101,  4,  4, 0,  8,  1.0f, 0x00080020, bhEne19_Mv04b },
+    {  4102,  5, 26, 0,  8,  1.0f, 0x00080020, bhEne19_Mv05  },
+    {  4356,  4, 40, 0,  8,  1.0f, 0x00080020, bhEne19_Mv04a },
+    {  4357,  4, 40, 0,  8,  1.0f, 0x00080020, bhEne19_Mv04b },
+    {  4358,  5, 58, 0, 10,  1.0f, 0x00080020, bhEne19_Mv05  },
+    {  5124,  4, 38, 0,  8,  1.0f, 0x00080020, bhEne19_Mv04a },
+    {  5125,  4, 38, 0,  8,  1.0f, 0x00080020, bhEne19_Mv04b },
+    { 65024,  0,  0, 0,  0,  1.0f, 0x00080000, bhEne19_Mv00  },
+    { 65028,  4,  0, 0,  0,  1.0f, 0x00080000, bhEne19_Mv04a },
+    { 65029,  4,  0, 0,  0,  1.0f, 0x00080000, bhEne19_Mv04b },
+    { 65030,  5,  0, 0,  0,  1.0f, 0x00080000, bhEne19_Mv04b },
+    { 65280,  0,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv00  },
+    { 65281,  1,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv01  },
+    { 65282,  2,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv02  },
+    { 65283,  3,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv03  },
+    { 65284,  4,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv04a },
+    { 65285,  4,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv04b },
+    { 65286,  5,  0, 0, 12,  1.0f, 0x00080020, bhEne19_Mv05  },
+    { 65287,  6,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv06  },
+    { 65288,  7,  0, 0, 16,  1.0f, 0x00080020, bhEne19_Mv07  },
+    { 65289,  8,  0, 0,  8, 0.95f, 0x00080020, bhEne19_Mv08  },
+    { 65290,  9,  0, 0,  8,  0.9f, 0x00080020, bhEne19_Mv09  },
+    { 65291, 10,  0, 0, 16,  1.0f, 0x00080020, bhEne19_Mv10  },
+    { 65292, 11,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv11  },
+    { 65293, 12,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv12  },
+    { 65294, 13,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv13  },
+    { 65295, 14,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv14  },
+    { 65296, 15,  0, 0,  8,  0.9f, 0x00080020, bhEne19_Mv15  },
+    { 65297, 16,  0, 0,  8,  0.9f, 0x00080020, bhEne19_Mv16  },
+    { 65298, 17,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv17  },
+    { 65299, 18,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv18  },
+    { 65300, 19,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv19  },
+    { 65301, 20,  0, 0,  8,  1.0f, 0x00080020, bhEne19_Mv20  }
+};
+COMBWEP_WORK En19CombWepTbl[21] =
+{
+    {   0, {  0,  0,  0 },   0,   0 },
+    {   0, {  0,  0,  0 },   0,   0 },
+    {  90, { 10,  0,  0 }, 999, 100 },
+    { 100, { 12, 10,  6 }, 210, 200 },
+    { 100, { 12, 10,  6 }, 210, 200 },
+    { 190, {  8,  6,  4 }, 300,   0 },
+    { 500, { 10, 10, 10 }, 600,   0 },
+    { 520, { 10, 10, 10 }, 600,   0 },
+    { 560, {  6,  3,  1 }, 600,   0 },
+    { 520, { 10, 10, 10 }, 600,   0 },
+    { 300, {  8,  6,  2 }, 400, 200 },
+    {  56, { 10,  8,  4 },  80,   0 },
+    { 560, {  6,  3,  1 }, 600,   0 },
+    {  10, { 10, 10, 10 },  60,   0 },
+    {  60, { 10, 10,  0 }, 120,   0 },
+    {  20, { 10, 10,  0 }, 120,   0 },
+    {  20, { 10, 10,  0 }, 120,   0 },
+    {  20, { 10, 10,  0 }, 120,   0 },
+    {   0, {  0,  0,  0 },   0,   0 },
+    {  40, { 10, 10, 10 },  60,   0 },
+    {   0, {  0,  0,  0 },   0,   0 }
+};
+
+static const char FlpTbl[26] =
+{
+    0, 1, 2, 3, 4, 5, 14, 15, 16, 17, 10, 11, 12, 13, 6, 7, 8, 9, 22, 23, 24, 25, 18, 19, 20, 21
+};
+static const CPCL Ene19CapColTbl[28] =
+{
+    {   1,  1, 20 },
+    {   0, -8,  0 },
+    {   1,  2, 10 },
+    {   2,  3, 16 },
+    {   3,  3, 12 },
+    {   0, 15,  0 },
+    {  14, 14, 20 },
+    {  -6, 18,  8 },
+    {   6,  6, 20 },
+    {   6, 18,  8 },
+    {   4,  5,  9 },
+    {   5,  5, 12 },
+    {   0,  9,  0 },
+    {   7,  8,  9 },
+    {   8,  9,  9 },
+    {   9,  9, 15 },
+    {  14,  0,  0 },
+    {  15, 16,  9 },
+    {  16, 17,  9 },
+    {  17, 17, 15 },
+    { -14,  0,  0 },
+    {  18, 19, 10 },
+    {  19, 20,  8 },
+    {  20, 21,  8 },
+    {  22, 23, 10 },
+    {  23, 24,  8 },
+    {  24, 25,  8 },
+    {   0,  0,  0 }
+};
+static const ACT_TBL_WORK En19PlyActTbl[17] = 
+{
+    { 35, 0, 0, 16, 255, -1, 0x20, bhEne19_PlyDmgFal     },
+    { 30, 0, 0,  8, 255, -1, 0x20, bhEne19_PlyDmg042     },
+    { 31, 0, 0,  8, 255, -1, 0x20, bhEne19_PlyDmg043     },
+    { 32, 0, 0,  8, 255, -1, 0x20, bhEne19_PlyDmg044     },
+    { 33, 0, 0,  8, 255, -1, 0x20, bhEne19_PlyDmg045     },
+    { 34, 0, 0,  8, 255, -1, 0x20, bhEne19_PlyDmg046_047 },
+    { 35, 0, 0,  8, 255, -1, 0x20, bhEne19_PlyDmg046_047 },
+    { 36, 0, 0,  8, 255, -1, 0x20, NULL                  },
+    { 37, 0, 0,  8, 255, -1, 0x20, NULL                  },
+    { 38, 0, 0,  8, 255, -1, 0x20, bhEne19_PlyDmg050_051 },
+    { 39, 0, 0,  8, 255, -1, 0x20, bhEne19_PlyDmg050_051 },
+    { 40, 0, 0,  8, 255, -1, 0x20, bhEne19_PlyDmg052_053 },
+    { 41, 0, 0,  8, 255, -1, 0x20, bhEne19_PlyDmg052_053 },
+    { 42, 0, 0,  8, 255, -1, 0x20, bhEne19_PlyDmg117_118 },
+    { 43, 0, 0,  8, 255, -1, 0x20, bhEne19_PlyDmg117_118 },
+    { 44, 0, 0, 16, 255, -1, 0x20, bhEne19_PlyDmgFal     },
+    { 45, 0, 0, 16, 255, -1, 0x20, bhEne19_PlyDmgFal     }
+};
+static const float En19OvlTbl[3] = 
+{
+    2.5f, 1.5f, 1.5f    
+};
+static const int En19HpTbl[4][3] = 
+{
+    { 500, 700, 900 },
+    { 500, 700, 900 },
+    { 300, 420, 540 },
+    { 900, 900, 900 }
+};
+static const float En19AtkRng[3][4] = 
+{
+    { 13.0f, 11.0f, 15.0f, 13.0f },  
+    { 11.0f, 15.0f, 13.0f, 17.0f },  
+    { 12.0f, 13.0f, 14.0f, 15.0f }   
+};
+static const PMA_WORK Eff30aPrm1[3] = 
+{
+    {
+        1, 0, 0, 0.0f, 0.0f, 0, 0.0f, 0.0f        
+    },
+    {
+        2, 16384, 728, 2.0f, 0.98f, 1456, 4.0f, 0.99f       
+    },
+    {
+        2, 0, 1456, 4.0f, 0.99f, 728, 2.0f, 0.98f      
+    }
+};
+static const PMA_WORK Eff30aPrm2[3] = 
+{
+    {
+        1, 0, 0, 0.0f, 0.0f, 0, 0.0f, 0.0f        
+    },
+    {
+        2, 16384, 8192, 1.0f, 0.9f, 8192, 2.0f, 0.94f      
+    },
+    {
+        2, 0, 8192, 2.0f, 0.94f, 8192, 1.0f, 0.9f      
+    }
+};
+
+static COMBJOINT_WORK En19CombJointTbl[26] = { 0 };
+static PMA_WORK* Eff30aTbl[3] = 
+{ 
+	Eff30aPrm2,
+	Eff30aPrm1,
+	Eff30aPrm2
+};
 
 // 
 // Start address: 0x1f0450
@@ -841,15 +1029,17 @@ static void bhEne19_Mv01()
 
 }
 
-// 
-// Start address: 0x1f2510
-static void bhEne19_Mv02(FW_WORK* fwP, int count)
+// 100% matching!
+static void bhEne19_Mv02(BH_PWORK* ewP, FW_WORK* fwP, int count) // first parameter not present on DWARF
 {
 	int* stsP;
-	// Line 1949, Address: 0x1f2510, Func Offset: 0
-	// Line 1950, Address: 0x1f2528, Func Offset: 0x18
-	// Func End, Address: 0x1f2530, Func Offset: 0x20
-	scePrintf("bhEne19_Mv02 - UNIMPLEMENTED!\n");
+
+	stsP = &fwP->status;
+
+	if (count == 0)
+    {
+        *stsP &= ~0x4;
+    }
 }
 
 // 100% matching!

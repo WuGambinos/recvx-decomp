@@ -1018,13 +1018,13 @@ static void bhEne19_Br02(BH_PWORK* ewP)
 }
 
 // 100% matching!
-static void bhEne19_Mv00()
+static void bhEne19_Mv00(BH_PWORK* ewP, FW_WORK* fwP, int count) // parameters not present on DWARF
 {
 
 }
 
 // 100% matching!
-static void bhEne19_Mv01()
+static void bhEne19_Mv01(BH_PWORK* ewP, FW_WORK* fwP, int count) // parameters not present on DWARF
 {
 
 }
@@ -1043,7 +1043,7 @@ static void bhEne19_Mv02(BH_PWORK* ewP, FW_WORK* fwP, int count) // first parame
 }
 
 // 100% matching!
-static void bhEne19_Mv03()
+static void bhEne19_Mv03(BH_PWORK* ewP, FW_WORK* fwP, int count) // parameters not present on DWARF
 {
 
 }
@@ -1085,26 +1085,32 @@ static void bhEne19_Mv04b(BH_PWORK* ewP, FW_WORK* fwP, int count) // first param
 	}
 }
 
-// 
-// Start address: 0x1f25b0
-static void bhEne19_Mv05(FW_WORK* fwP, int count)
+// 100% matching!
+static void bhEne19_Mv05(BH_PWORK* ewP, FW_WORK* fwP, int count) // first parameter not present on DWARF
 {
-	int* flgP;
-	int* stsP;
-	// Line 2011, Address: 0x1f25b0, Func Offset: 0
-	// Line 2014, Address: 0x1f25b4, Func Offset: 0x4
-	// Line 2015, Address: 0x1f25bc, Func Offset: 0xc
-	// Line 2016, Address: 0x1f25c8, Func Offset: 0x18
-	// Line 2019, Address: 0x1f25d4, Func Offset: 0x24
-	// Line 2020, Address: 0x1f25e4, Func Offset: 0x34
-	// Line 2022, Address: 0x1f25f0, Func Offset: 0x40
-	// Line 2023, Address: 0x1f25f8, Func Offset: 0x48
-	// Func End, Address: 0x1f2600, Func Offset: 0x50
-	scePrintf("bhEne19_Mv05 - UNIMPLEMENTED!\n");
+	int* stsP, *flgP;
+
+	stsP = &fwP->status;
+	flgP = &fwP->act_flg;
+
+    if (count == 0)
+    {
+        *stsP |= 0x4;
+        *flgP |= 0x8;
+    }
+    
+    if (fwP->tgt_ang < 5461)
+    {
+        fwP->trn_spd = 182;
+    }
+	else 
+	{
+		fwP->trn_spd = 327;
+	}
 }
 
 // 100% matching!
-static void bhEne19_Mv06()
+static void bhEne19_Mv06(BH_PWORK* ewP, FW_WORK* fwP, int count) // parameters not present on DWARF
 {
 
 }
@@ -1147,7 +1153,7 @@ static void bhEne19_Mv07(BH_PWORK* ewP, FW_WORK* fwP, int count)
 
 // 
 // Start address: 0x1f27b0
-static void bhEne19_Mv08(BH_PWORK* ewP, FW_WORK* fwP)
+static void bhEne19_Mv08(BH_PWORK* ewP, FW_WORK* fwP, int count) // third parameter not present on DWARF
 {
 	NJS_MATRIX* mtxP;
 	NJS_POINT3 pos;
@@ -1191,7 +1197,7 @@ static void bhEne19_Mv08(BH_PWORK* ewP, FW_WORK* fwP)
 
 // 
 // Start address: 0x1f2960
-static void bhEne19_Mv09(BH_PWORK* ewP, FW_WORK* fwP)
+static void bhEne19_Mv09(BH_PWORK* ewP, FW_WORK* fwP, int count) // third parameter not present on DWARF
 {
 	NJS_MATRIX* mtxP;
 	NJS_POINT3 pos;
@@ -1292,7 +1298,7 @@ static void bhEne19_Mv10(BH_PWORK* ewP, FW_WORK* fwP, int count)
 
 // 
 // Start address: 0x1f2d60
-static void bhEne19_Mv11(BH_PWORK* ewP, FW_WORK* fwP)
+static void bhEne19_Mv11(BH_PWORK* ewP, FW_WORK* fwP, int count) // third parameter not present on DWARF
 {
 	// Line 2278, Address: 0x1f2d60, Func Offset: 0
 	// Line 2281, Address: 0x1f2d70, Func Offset: 0x10
@@ -1306,7 +1312,7 @@ static void bhEne19_Mv11(BH_PWORK* ewP, FW_WORK* fwP)
 
 // 
 // Start address: 0x1f2de0
-static void bhEne19_Mv12(BH_PWORK* ewP, FW_WORK* fwP)
+static void bhEne19_Mv12(BH_PWORK* ewP, FW_WORK* fwP, int count) // third parameter not present on DWARF
 {
 	// Line 2304, Address: 0x1f2de0, Func Offset: 0
 	// Line 2307, Address: 0x1f2df0, Func Offset: 0x10

@@ -1521,19 +1521,25 @@ static void bhEne19_Mv15(FW_WORK* fwP, int count)
 	scePrintf("bhEne19_Mv15 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f3600
-static void bhEne19_Mv16(FW_WORK* fwP, int count)
+// 100% matching!
+static void bhEne19_Mv16(BH_PWORK* ewP, FW_WORK* fwP, int count) // first parameter not present on DWARF
 {
-	int* bstP;
-	int* stsP;
-	// Line 2591, Address: 0x1f3600, Func Offset: 0
-	// Line 2594, Address: 0x1f3604, Func Offset: 0x4
-	// Line 2596, Address: 0x1f360c, Func Offset: 0xc
-	// Line 2597, Address: 0x1f3630, Func Offset: 0x30
-	// Line 2600, Address: 0x1f3640, Func Offset: 0x40
-	// Func End, Address: 0x1f3648, Func Offset: 0x48
-	scePrintf("bhEne19_Mv16 - UNIMPLEMENTED!\n");
+	int* stsP, *bstP;
+
+	stsP = &fwP->status;
+	bstP = &fwP->b_status;
+
+	if (count == 0)
+    {
+        if ((*bstP & 0x10000))
+        {
+            *stsP |=  0x8;
+        }
+        else
+        {
+            *stsP &= ~0x8;
+        }
+    }
 }
 
 // 100% matching!

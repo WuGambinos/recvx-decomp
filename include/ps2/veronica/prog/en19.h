@@ -269,7 +269,7 @@ static void bhEne19_Mv00();
 static void bhEne19_Mv01();
 static void bhEne19_Mv02(BH_PWORK* ewP, FW_WORK* fwP, int count);
 static void bhEne19_Mv03();
-static void bhEne19_Mv04a(FW_WORK* fwP, int count);
+static void bhEne19_Mv04a(BH_PWORK* ewP, FW_WORK* fwP, int count);
 static void bhEne19_Mv04b(BH_PWORK* ewP, FW_WORK* fwP, int count);
 static void bhEne19_Mv05(FW_WORK* fwP, int count);
 static void bhEne19_Mv06();

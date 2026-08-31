@@ -1554,19 +1554,16 @@ static void bhEne19_Mv17(FW_WORK* fwP, int count)
 	scePrintf("bhEne19_Mv17 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f36b0
+// 100% matching!
 static void bhEne19_Mv18(BH_PWORK* ewP, FW_WORK* fwP, int count)
 {
-	// Line 2637, Address: 0x1f36b0, Func Offset: 0
-	// Line 2638, Address: 0x1f36b8, Func Offset: 0x8
-	// Line 2640, Address: 0x1f36c0, Func Offset: 0x10
-	// Line 2638, Address: 0x1f36c4, Func Offset: 0x14
-	// Line 2640, Address: 0x1f36cc, Func Offset: 0x1c
-	// Line 2641, Address: 0x1f36d8, Func Offset: 0x28
-	// Line 2643, Address: 0x1f36e4, Func Offset: 0x34
-	// Func End, Address: 0x1f36ec, Func Offset: 0x3c
-	scePrintf("bhEne19_Mv18 - UNIMPLEMENTED!\n");
+	if (count == 0)
+    {
+        ewP->flg &= ~0x60;
+
+        fwP->status &= ~0x100;
+        fwP->status |=  0x200;
+    }
 }
 
 // 100% matching!

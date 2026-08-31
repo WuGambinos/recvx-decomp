@@ -1582,17 +1582,19 @@ static void bhEne19_Mv19(BH_PWORK* ewP, FW_WORK* fwP, int count) // first parame
     }
 }
 
-// 
-// Start address: 0x1f3710
+// 100% matching!
 static void bhEne19_Mv20(BH_PWORK* ewP, FW_WORK* fwP, int count)
 {
-	// Line 2675, Address: 0x1f3710, Func Offset: 0
-	// Line 2677, Address: 0x1f3724, Func Offset: 0x14
-	// Line 2678, Address: 0x1f3738, Func Offset: 0x28
-	// Line 2679, Address: 0x1f3748, Func Offset: 0x38
-	// Line 2681, Address: 0x1f3754, Func Offset: 0x44
-	// Func End, Address: 0x1f375c, Func Offset: 0x4c
-	scePrintf("bhEne19_Mv20 - UNIMPLEMENTED!\n");
+	if (count == 0)
+    {
+        ewP->flg |= 0x60;
+    }
+
+    if (fwP->mtn_rte >= 65536)
+    {
+        fwP->status &= ~0x200;
+        fwP->status |=  0x100;
+    }
 }
 
 // 

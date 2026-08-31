@@ -285,7 +285,7 @@ static void bhEne19_Mv15(FW_WORK* fwP, int count);
 static void bhEne19_Mv16(FW_WORK* fwP, int count);
 static void bhEne19_Mv17(FW_WORK* fwP, int count);
 static void bhEne19_Mv18(BH_PWORK* ewP, FW_WORK* fwP, int count);
-static void bhEne19_Mv19(FW_WORK* fwP, int count);
+static void bhEne19_Mv19(BH_PWORK* ewP, FW_WORK* fwP, int count);
 static void bhEne19_Mv20(BH_PWORK* ewP, FW_WORK* fwP, int count);
 static EA_WORK* bhEne19_ActionSearch(int act_nw, int act_no);
 static int bhEne19_ActionChange(BH_PWORK* ewP, FW_WORK* fwP, int act_dst);

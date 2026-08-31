@@ -2547,20 +2547,23 @@ static void bhEne19_PlyDmg043(BH_PWORK* plP, FW_WORK* fwP)
 	scePrintf("bhEne19_PlyDmg043 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f6240
+// 100% matching!
 static void bhEne19_PlyDmg044(BH_PWORK* plP, FW_WORK* fwP)
 {
-	// Line 4083, Address: 0x1f6240, Func Offset: 0
-	// Line 4084, Address: 0x1f6250, Func Offset: 0x10
-	// Line 4085, Address: 0x1f625c, Func Offset: 0x1c
-	// Line 4086, Address: 0x1f6264, Func Offset: 0x24
-	// Line 4087, Address: 0x1f6270, Func Offset: 0x30
-	// Line 4088, Address: 0x1f6280, Func Offset: 0x40
-	// Line 4089, Address: 0x1f6288, Func Offset: 0x48
-	// Line 4092, Address: 0x1f6298, Func Offset: 0x58
-	// Func End, Address: 0x1f62a0, Func Offset: 0x60
-	scePrintf("bhEne19_PlyDmg044 - UNIMPLEMENTED!\n");
+    if (fwP->ply_act.p_act_frm < 18)
+    {
+        plP->flg |=  0xC0000;
+    }
+    else if (fwP->ply_act.p_act_frm <= 40)
+    {
+        plP->flg &= ~0x80000;
+    }
+    else
+    {
+        plP->flg |=  0xC0000;
+    }
+	
+    bhEne19_PlyDmgRtn(plP, fwP);
 }
 
 // 100% matching!

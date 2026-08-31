@@ -1,6 +1,8 @@
 #include "../../../ps2/veronica/prog/en19.h"
+#include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/subpl.h"
 
 // ENEMY: Tyrant T-078 
 
@@ -459,22 +461,19 @@ static void bhEne19_Die(BH_PWORK* ewP)
     ewP->mtn_add = 0; 
 }
 
-// 
-// Start address: 0x1f0be0
+// 100% matching!
 static void bhEne19_Event(BH_PWORK* ewP)
 {
-	// Line 786, Address: 0x1f0be0, Func Offset: 0
-	// Line 800, Address: 0x1f0bec, Func Offset: 0xc
-	// Line 801, Address: 0x1f0bf4, Func Offset: 0x14
-	// Line 800, Address: 0x1f0bfc, Func Offset: 0x1c
-	// Line 801, Address: 0x1f0c08, Func Offset: 0x28
-	// Line 802, Address: 0x1f0c1c, Func Offset: 0x3c
-	// Line 805, Address: 0x1f0c2c, Func Offset: 0x4c
-	// Line 806, Address: 0x1f0c34, Func Offset: 0x54
-	// Line 807, Address: 0x1f0c48, Func Offset: 0x68
-	// Line 808, Address: 0x1f0c54, Func Offset: 0x74
-	// Func End, Address: 0x1f0c64, Func Offset: 0x84
-	scePrintf("bhEne19_Event - UNIMPLEMENTED!\n");
+    ((FW_WORK*)ewP->exp0)->status &= ~0x4;
+
+    ewP->mlwP->owP[4].flg &= ~0x2;
+    ewP->mlwP->owP[5].flg &= ~0x2;
+
+    bhEne_Event(ewP);
+
+    bhSetMotion(ewP, ewP->mtn_add, ewP->mtn_md, ewP->mtn_tp);
+
+    bhEne19_CalcEnemy(ewP, (FW_WORK*)ewP->exp0);
 }
 
 // 

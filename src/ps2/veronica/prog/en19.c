@@ -1296,28 +1296,19 @@ static void bhEne19_Mv10(BH_PWORK* ewP, FW_WORK* fwP, int count)
 	scePrintf("bhEne19_Mv10 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f2d60
+// 100% matching!
 static void bhEne19_Mv11(BH_PWORK* ewP, FW_WORK* fwP, int count) // third parameter not present on DWARF
 {
-	// Line 2278, Address: 0x1f2d60, Func Offset: 0
-	// Line 2281, Address: 0x1f2d70, Func Offset: 0x10
-	// Line 2286, Address: 0x1f2d80, Func Offset: 0x20
-	// Line 2288, Address: 0x1f2da8, Func Offset: 0x48
-	// Line 2289, Address: 0x1f2dc4, Func Offset: 0x64
-	// Line 2294, Address: 0x1f2dcc, Func Offset: 0x6c
-	// Func End, Address: 0x1f2ddc, Func Offset: 0x7c
-	scePrintf("bhEne19_Mv11 - UNIMPLEMENTED!\n");
+    if (((fwP->status & 0x40)) && ((bhEne19_AttackHitCheck(ewP, (!(fwP->status & 0x8)) ? TY_ARM_RIGHT : TY_ARM_LEFT, 4.0f, &fwP->trw_dir) != 0) && (bhEne19_PlySetDamage(plp, fwP, 1) != 0)))
+    {
+        fwP->trw_spd = 2.0f;
+    }
 }
 
 // 100% matching!
 static void bhEne19_Mv12(BH_PWORK* ewP, FW_WORK* fwP, int count) // third parameter not present on DWARF
 {
-	int sts; // not from DWARF
-
-    sts = fwP->status;
-
-    if (((sts & 0x40)) && ((bhEne19_AttackHitCheck(ewP, (!(sts & 0x8)) ? TY_ARM_LEFT : TY_ARM_RIGHT, 4.0f, &fwP->trw_dir) != 0) && (bhEne19_PlySetDamage(plp, fwP, 1) != 0)))
+    if (((fwP->status & 0x40)) && ((bhEne19_AttackHitCheck(ewP, (!(fwP->status & 0x8)) ? TY_ARM_LEFT : TY_ARM_RIGHT, 4.0f, &fwP->trw_dir) != 0) && (bhEne19_PlySetDamage(plp, fwP, 1) != 0)))
     {
         fwP->trw_spd = 2.0f;
     }

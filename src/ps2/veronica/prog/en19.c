@@ -2338,16 +2338,14 @@ static void bhEne19_SoundSet(BH_PWORK* ewP, FW_WORK* fwP)
 	scePrintf("bhEne19_SoundSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f5960
+// 100% matching!
 static int bhEne19_MtnAttrbuteGet(BH_PWORK* ewP)
 {
 	unsigned short* atrP;
-	// Line 3806, Address: 0x1f5960, Func Offset: 0
-	// Line 3809, Address: 0x1f597c, Func Offset: 0x1c
-	// Line 3810, Address: 0x1f59a0, Func Offset: 0x40
-	// Func End, Address: 0x1f59a8, Func Offset: 0x48
-	scePrintf("bhEne19_MtnAttrbuteGet - UNIMPLEMENTED!\n");
+
+    atrP = ewP->mnwP[ewP->mtn_no].atrP;
+  
+    return (atrP != NULL) ? atrP[ewP->frm_no / 65536] : 0;
 }
 
 // 

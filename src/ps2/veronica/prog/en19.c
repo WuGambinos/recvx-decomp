@@ -2584,16 +2584,15 @@ static void bhEne19_PlyDmg046_047(BH_PWORK* plP, FW_WORK* fwP)
 	bhEne19_PlyDmgDie(plP, fwP);
 }
 
-// 
-// Start address: 0x1f62f0
+// 100% matching!
 static void bhEne19_PlyDmg050_051(BH_PWORK* plP, FW_WORK* fwP)
 {
-	// Line 4135, Address: 0x1f62f0, Func Offset: 0
-	// Line 4137, Address: 0x1f6300, Func Offset: 0x10
-	// Line 4139, Address: 0x1f6318, Func Offset: 0x28
-	// Line 4140, Address: 0x1f6324, Func Offset: 0x34
-	// Func End, Address: 0x1f6338, Func Offset: 0x48
-	scePrintf("bhEne19_PlyDmg050_051 - UNIMPLEMENTED!\n");
+	if (fwP->ply_act.p_mtn_rte == 0)
+    {
+        CallPlayerVoice(1025);
+    }
+
+    bhEne19_PlyDmgDie(plP, fwP);
 }
 
 // 

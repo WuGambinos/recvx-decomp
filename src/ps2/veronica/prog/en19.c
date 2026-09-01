@@ -3156,28 +3156,28 @@ static R0_WK* bhEne19_SetLeftClaw(ML_WORK* mlwP, TY_OBJ_MODE tgt_bas, TY_OBJ_MOD
     return (R0_WK*)((bhSetRapEff(312, &prm, 9))->free4);
 }
 
-// 
-// Start address: 0x1f7430
+// 100% matching!
 static void bhEne19_SetClawPlane(BH_PWORK* ewP, NJS_MATRIX* mtxP, int col, int tim, float src_x, float dst_x)
 {
 	EFFPRM_WORK Dat307;
-	// Line 4768, Address: 0x1f7430, Func Offset: 0
-	// Line 4771, Address: 0x1f7438, Func Offset: 0x8
-	// Line 4772, Address: 0x1f743c, Func Offset: 0xc
-	// Line 4773, Address: 0x1f7444, Func Offset: 0x14
-	// Line 4774, Address: 0x1f7448, Func Offset: 0x18
-	// Line 4775, Address: 0x1f7450, Func Offset: 0x20
-	// Line 4776, Address: 0x1f7458, Func Offset: 0x28
-	// Line 4777, Address: 0x1f745c, Func Offset: 0x2c
-	// Line 4778, Address: 0x1f7460, Func Offset: 0x30
-	// Line 4777, Address: 0x1f7464, Func Offset: 0x34
-	// Line 4782, Address: 0x1f7468, Func Offset: 0x38
-	// Line 4777, Address: 0x1f746c, Func Offset: 0x3c
-	// Line 4778, Address: 0x1f7470, Func Offset: 0x40
-	// Line 4779, Address: 0x1f7474, Func Offset: 0x44
-	// Line 4780, Address: 0x1f7478, Func Offset: 0x48
-	// Line 4782, Address: 0x1f747c, Func Offset: 0x4c
-	// Line 4783, Address: 0x1f7488, Func Offset: 0x58
-	// Func End, Address: 0x1f7494, Func Offset: 0x64
-	scePrintf("bhEne19_SetClawPlane - UNIMPLEMENTED!\n");
+
+	Dat307.src.x = src_x;
+    Dat307.src.y = Dat307.src.z = 0;
+
+    Dat307.dst.x = dst_x;
+    Dat307.dst.y = Dat307.dst.z = 0;
+
+    Dat307.frm_inc = 0.125f;
+
+    Dat307.tim = tim;
+
+    Dat307.texP = ewP->mlwP->texP;
+
+    Dat307.tex_id = 4;
+
+    Dat307.col = col;
+
+    Dat307.mtxP = mtxP;
+	
+    bhSetRapEff(307, &Dat307, 12);
 }

@@ -2835,28 +2835,35 @@ static void bhEne19_PlyDmg117_118(BH_PWORK* plP, FW_WORK* fwP)
 	scePrintf("bhEne19_PlyDmg117_118 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f6a50
+// 100% matching!
 static void bhEne19_PlyDmgDie(BH_PWORK* plP, FW_WORK* fwP)
 {
 	PAW_WORK* pawP;
-	// Line 4328, Address: 0x1f6a50, Func Offset: 0
-	// Line 4329, Address: 0x1f6a74, Func Offset: 0x24
-	// Line 4331, Address: 0x1f6a7c, Func Offset: 0x2c
-	// Line 4332, Address: 0x1f6a88, Func Offset: 0x38
-	// Line 4333, Address: 0x1f6a8c, Func Offset: 0x3c
-	// Line 4331, Address: 0x1f6a90, Func Offset: 0x40
-	// Line 4332, Address: 0x1f6a98, Func Offset: 0x48
-	// Line 4333, Address: 0x1f6aa4, Func Offset: 0x54
-	// Line 4334, Address: 0x1f6aa8, Func Offset: 0x58
-	// Line 4335, Address: 0x1f6aac, Func Offset: 0x5c
-	// Line 4336, Address: 0x1f6ab0, Func Offset: 0x60
-	// Line 4340, Address: 0x1f6ab4, Func Offset: 0x64
-	// Line 4341, Address: 0x1f6ac8, Func Offset: 0x78
-	// Line 4342, Address: 0x1f6ad8, Func Offset: 0x88
-	// Line 4344, Address: 0x1f6adc, Func Offset: 0x8c
-	// Func End, Address: 0x1f6ae4, Func Offset: 0x94
-	scePrintf("bhEne19_PlyDmgDie - UNIMPLEMENTED!\n");
+
+	pawP = &fwP->ply_act;
+
+	if (pawP->p_mtn_rte > 32768)
+    {
+        if (!(plP->flg & 0x2))
+        {
+            plP->flg |= 0x2;
+
+            plP->flg   &= ~0x10004;
+            plP->stflg &= ~0x10000;
+
+            plP->mode0 = 6;
+            plP->mode1 = 0;
+            plP->mode2 = 0;
+            plP->mode3 = 0;
+        }
+    }
+
+    if (pawP->p_mtn_rte >= 65536)
+    {
+        fwP->ply_act.p_status &= ~0x1;
+
+        plP->mtn_add = 0;
+    }
 }
 
 // 

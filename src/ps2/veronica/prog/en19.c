@@ -3011,42 +3011,57 @@ static void bhEne_PlyActionMain(BH_PWORK* plP, PAW_WORK* pawP)
 
 #pragma divbyzerocheck off
 
-// 
-// Start address: 0x1f6f20
+// 100% matching!
 static int bhEne_PlyActionChange(BH_PWORK* plP, PAW_WORK* pawP, int act_no)
 {
-	ACT_TBL_WORK* paP;
-	// Line 4565, Address: 0x1f6f20, Func Offset: 0
-	// Line 4568, Address: 0x1f6f34, Func Offset: 0x14
-	// Line 4566, Address: 0x1f6f38, Func Offset: 0x18
-	// Line 4568, Address: 0x1f6f48, Func Offset: 0x28
-	// Line 4571, Address: 0x1f6f60, Func Offset: 0x40
-	// Line 4573, Address: 0x1f6f64, Func Offset: 0x44
-	// Line 4576, Address: 0x1f6f68, Func Offset: 0x48
-	// Line 4571, Address: 0x1f6f6c, Func Offset: 0x4c
-	// Line 4572, Address: 0x1f6f70, Func Offset: 0x50
-	// Line 4573, Address: 0x1f6f74, Func Offset: 0x54
-	// Line 4576, Address: 0x1f6f78, Func Offset: 0x58
-	// Line 4578, Address: 0x1f6f84, Func Offset: 0x64
-	// Line 4579, Address: 0x1f6f8c, Func Offset: 0x6c
-	// Line 4580, Address: 0x1f6f94, Func Offset: 0x74
-	// Line 4581, Address: 0x1f6fa0, Func Offset: 0x80
-	// Line 4582, Address: 0x1f6fa8, Func Offset: 0x88
-	// Line 4583, Address: 0x1f6fdc, Func Offset: 0xbc
-	// Line 4584, Address: 0x1f6fe4, Func Offset: 0xc4
-	// Line 4590, Address: 0x1f6fe8, Func Offset: 0xc8
-	// Line 4584, Address: 0x1f6fec, Func Offset: 0xcc
-	// Line 4587, Address: 0x1f6ff0, Func Offset: 0xd0
-	// Line 4588, Address: 0x1f7010, Func Offset: 0xf0
-	// Line 4589, Address: 0x1f7018, Func Offset: 0xf8
-	// Line 4590, Address: 0x1f7020, Func Offset: 0x100
-	// Line 4591, Address: 0x1f7038, Func Offset: 0x118
-	// Line 4592, Address: 0x1f7050, Func Offset: 0x130
-	// Line 4595, Address: 0x1f705c, Func Offset: 0x13c
-	// Line 4598, Address: 0x1f7068, Func Offset: 0x148
-	// Line 4599, Address: 0x1f706c, Func Offset: 0x14c
-	// Func End, Address: 0x1f7084, Func Offset: 0x164
-	scePrintf("bhEne_PlyActionChange - UNIMPLEMENTED!\n");
+    ACT_TBL_WORK* paP;
+    
+    paP = &pawP->act_tblP[act_no];
+    
+    if ((!(pawP->p_act_flg & 0x7)) && (pawP->p_act_now != act_no))
+    {
+        pawP->p_prgP = paP->prgP;
+        
+        pawP->p_act_now = act_no;
+        pawP->p_act_flg = 1;
+        
+        if (paP->mtn_no != -1)
+        {
+            plP->mnwP = pawP->ene_mnwP;
+            
+            plP->mtn_no = paP->mtn_no;
+            plP->frm_no = paP->frm_no * 65536;
+            
+            plP->hokan_count = paP->hkn_cnt;
+            plP->hokan_rate  = paP->hkn_lvl * (65536.0 / 255.0);
+            
+            plP->mtn_add = 65536;
+            plP->mtn_md = (unsigned short)paP->flag;
+                
+            pawP->p_frm_num = plP->mnwP[paP->mtn_no].frm_num;
+            
+            pawP->p_act_frm = paP->frm_no;
+            pawP->p_act_jmp = paP->act_jmp;
+            
+            if (pawP->p_act_jmp != -1)
+            {
+                pawP->p_act_flg |= 0x2;
+            }
+            
+            if (paP->chg_frm != 0xFF) 
+            {
+                pawP->p_chg_frm = paP->chg_frm;
+            } 
+            else 
+            {
+                pawP->p_chg_frm = pawP->p_frm_num - 1;
+            }
+        }
+        
+        return 1;
+    }
+    
+    return 0;
 }
 
 #pragma divbyzerocheck on

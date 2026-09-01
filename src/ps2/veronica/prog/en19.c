@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/en19.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
@@ -1909,30 +1910,33 @@ static int bhEne19_AttackHitCheck(BH_PWORK* ewP, TY_ARM_NO arm_no, float ar, int
 	scePrintf("bhEne19_AttackHitCheck - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f4370
+// 100% matching!
 static void bhEne19_CalcEnemy(BH_PWORK* ewP, FW_WORK* fwP)
 {
-	O_WORK* owP;
-	NJS_POINT3* dstP;
-	NJS_POINT3* srcP;
-	// Line 3186, Address: 0x1f4370, Func Offset: 0
-	// Line 3192, Address: 0x1f4384, Func Offset: 0x14
-	// Line 3195, Address: 0x1f438c, Func Offset: 0x1c
-	// Line 3204, Address: 0x1f4390, Func Offset: 0x20
-	// Line 3195, Address: 0x1f4398, Func Offset: 0x28
-	// Line 3198, Address: 0x1f439c, Func Offset: 0x2c
-	// Line 3195, Address: 0x1f43a0, Func Offset: 0x30
-	// Line 3196, Address: 0x1f43b4, Func Offset: 0x44
-	// Line 3198, Address: 0x1f43cc, Func Offset: 0x5c
-	// Line 3201, Address: 0x1f43e4, Func Offset: 0x74
-	// Line 3204, Address: 0x1f43fc, Func Offset: 0x8c
-	// Line 3205, Address: 0x1f4410, Func Offset: 0xa0
-	// Line 3206, Address: 0x1f4424, Func Offset: 0xb4
-	// Line 3208, Address: 0x1f4438, Func Offset: 0xc8
-	// Line 3210, Address: 0x1f4440, Func Offset: 0xd0
-	// Func End, Address: 0x1f4454, Func Offset: 0xe4
-	scePrintf("bhEne19_CalcEnemy - UNIMPLEMENTED!\n");
+    NJS_POINT3* srcP, *dstP;
+    O_WORK* owP;
+    
+    bhCalcModel(ewP);
+    
+    owP = &ewP->mlwP->owP[fwP->watr_top];
+    
+    srcP = &ewP->watr.c1;
+    dstP = (NJS_POINT3*)&owP->mtx[12];
+    
+    *srcP = *dstP;
+    
+    owP = &owP[19 - fwP->watr_top];
+    
+    srcP = &ewP->watr.c2;
+    dstP = (NJS_POINT3*)&owP->mtx[12];
+    
+    *srcP = *dstP;
+    
+    ewP->watr.c2.x = (ewP->watr.c2.x + owP[4].mtx[12]) / 2.0f;
+    ewP->watr.c2.y = (ewP->watr.c2.y + owP[4].mtx[13]) / 2.0f;
+    ewP->watr.c2.z = (ewP->watr.c2.z + owP[4].mtx[14]) / 2.0f;
+    
+    ewP->watr.r = fwP->watr_rad;
 }
 
 // 

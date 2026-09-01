@@ -3043,18 +3043,35 @@ static int bhEne_PlyActionChange(BH_PWORK* plP, PAW_WORK* pawP, int act_no)
 	scePrintf("bhEne_PlyActionChange - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f7090
+#pragma divbyzerocheck on
+
+// 100% matching!
 static int bhEne_CalcCombRate(BH_PWORK* ewP, COMBWEP_WORK* cwP)
 {
 	int cmb_lvl;
-	// Line 4617, Address: 0x1f7090, Func Offset: 0
-	// Line 4625, Address: 0x1f70a4, Func Offset: 0x14
-	// Line 4627, Address: 0x1f70d4, Func Offset: 0x44
-	// Line 4630, Address: 0x1f70e8, Func Offset: 0x58
-	// Func End, Address: 0x1f70f0, Func Offset: 0x60
-	scePrintf("bhEne_CalcCombRate - UNIMPLEMENTED!\n");
+
+    cmb_lvl = 0;
+    
+    cwP += ewP->wpnr_no;
+
+    if (cwP->crit != 0)
+    {
+        cmb_lvl = (ewP->comb_pnt * 16) / cwP->crit;
+    }
+    else
+    {
+        cmb_lvl = 0;
+    }
+
+    if ((cmb_lvl & ~0xF))
+    {
+        cmb_lvl = 15;
+    }
+
+    return cmb_lvl;
 }
+
+#pragma divbyzerocheck off
 
 // 
 // Start address: 0x1f70f0

@@ -1250,8 +1250,8 @@ static void bhEne19_Mv10(BH_PWORK* ewP, FW_WORK* fwP, int count)
 	float mtx0P[16];
 	int* stsP;
 	int* flgP;
-	NJS_POINT3 off;
-	NJS_POINT3 vct;
+	static NJS_POINT3 off = {  2.5f,    0,    0 };
+	static NJS_VECTOR vct = { -1.0f,    0,    0 };
 	// Line 2193, Address: 0x1f2b10, Func Offset: 0
 	// Line 2194, Address: 0x1f2b30, Func Offset: 0x20
 	// Line 2195, Address: 0x1f2b34, Func Offset: 0x24
@@ -1333,8 +1333,8 @@ static void bhEne19_Mv13(BH_PWORK* ewP, FW_WORK* fwP, int count)
 	float mtx0P[16];
 	int* flgP;
 	int* stsP;
-	NJS_POINT3 off;
-	NJS_POINT3 vct;
+	static NJS_POINT3 off = {  3.0f,     0,     0 };
+	static NJS_VECTOR vct = { -1.0f, -1.0f, -1.0f };
 	// Line 2330, Address: 0x1f2e60, Func Offset: 0
 	// Line 2331, Address: 0x1f2e80, Func Offset: 0x20
 	// Line 2332, Address: 0x1f2e84, Func Offset: 0x24
@@ -1431,8 +1431,8 @@ static void bhEne19_Mv14(BH_PWORK* ewP, FW_WORK* fwP, int count)
 	float mtx0P[16];
 	int* flgP;
 	int* stsP;
-	NJS_POINT3 off;
-	NJS_POINT3 vct;
+	static NJS_POINT3 off = {  3.0f,     0,     0 };
+	static NJS_VECTOR vct = {  1.0f, -1.0f,  1.0f };
 	// Line 2446, Address: 0x1f31f0, Func Offset: 0
 	// Line 2447, Address: 0x1f3210, Func Offset: 0x20
 	// Line 2448, Address: 0x1f3214, Func Offset: 0x24
@@ -1794,7 +1794,15 @@ static void bhEne19_PositonFix(BH_PWORK* ewP, FW_WORK* fwP)
 	char** tblP;
 	int sts;
 	NJS_POINT3* vaP;
-	char* FixDatTbl[2][4];
+	static const char FixDatLL[7] = { 0, 1, 22, 23, 24, 25, -1 };
+	static const char FixDatLR[7] = { 0, 1, 18, 19, 20, 21, -1 };
+	static const char FixDatAL[9] = { 0, 1,  2,  3, 14, 15, 16, 17, -1 };
+	static const char FixDatAR[9] = { 0, 1,  2,  3,  6,  7,  8,  9, -1 };
+	static char* FixDatTbl[2][4] = 
+	{
+		{ FixDatLL, FixDatLR, FixDatAL, FixDatAR },
+		{ FixDatLR, FixDatLL, FixDatAR, FixDatAL } 
+	};
 	// Line 2981, Address: 0x1f3f10, Func Offset: 0
 	// Line 3015, Address: 0x1f3f28, Func Offset: 0x18
 	// Line 3017, Address: 0x1f3f30, Func Offset: 0x20
@@ -1864,8 +1872,16 @@ static int bhEne19_AttackHitCheck(BH_PWORK* ewP, TY_ARM_NO arm_no, float ar, int
 	FW_WORK* fwP;
 	NJS_SPHERE spr;
 	int hit;
-	TY_OBJ_MODE AtkObj[2][2];
-	NJS_POINT3 AtkOff[2];
+	static const TY_OBJ_MODE AtkObj[2][2] =
+	{
+		{ TY_OBJ_ARM_L1, TY_OBJ_ARM_L2 }, 
+    	{ TY_OBJ_ARM_R1, TY_OBJ_ARM_R2 }  
+	};
+	static const NJS_POINT3 AtkOff[2] = 
+	{
+		{  1.0f, -1.0f,  1.0f },
+   	    {  1.0f,  1.0f,  1.0f }
+	};
 	// Line 3116, Address: 0x1f4200, Func Offset: 0
 	// Line 3134, Address: 0x1f4220, Func Offset: 0x20
 	// Line 3143, Address: 0x1f4224, Func Offset: 0x24
@@ -1929,7 +1945,30 @@ static void bhEne19_DmgCheck(BH_PWORK* ewP, FW_WORK* fwP)
 	int eff_typ;
 	DD_WORK* ddP;
 	int* stsP;
-	DD_WORK DmgDat[21];
+	static const DD_WORK DmgDat[21] =
+	{
+		{ { -1, -1, -1 }, { -1, -1, -1 },  0 },
+		{ { -1, -1, -1 }, { -1, -1, -1 },  0 },
+		{ {  0, -1, -1 }, { 10, -1, -1 }, 14 },
+		{ {  0,  0,  0 }, { 11, 10,  9 },  8 },
+		{ {  0,  0,  0 }, { 11, 10,  9 },  8 },
+		{ {  0,  0,  0 }, { 11, 10,  9 },  8 },
+		{ {  2,  2,  1 }, { -1, -1, -1 },  8 },
+		{ {  0,  0,  0 }, { 11, 10,  9 },  8 },
+		{ {  0,  0,  0 }, { 11, 10,  9 },  8 },
+		{ {  0,  0,  0 }, { 11, 10,  9 },  8 },
+		{ {  6,  6,  6 }, { 11, 10,  9 }, 14 },
+		{ {  1,  0,  0 }, { -1, -1, -1 },  8 },
+		{ {  0,  0,  0 }, { 11, 10,  9 },  8 },
+		{ {  8,  8,  8 }, { -1, -1, -1 }, 14 },
+		{ {  1,  1, -1 }, { -1, -1, -1 }, 14 },
+		{ {  5,  5,  5 }, { -1, -1, -1 }, 14 },
+		{ {  3,  3,  3 }, { -1, -1, -1 }, 14 },
+		{ {  1,  1, -1 }, { -1, -1, -1 }, 14 },
+		{ { 11, 11, 11 }, { -1, -1, -1 }, 14 },
+		{ {  7,  7,  1 }, { -1, -1, -1 }, 14 },
+		{ { 11, 11, 11 }, { -1, -1, -1 }, 14 }
+	};
 	// Line 3221, Address: 0x1f4460, Func Offset: 0
 	// Line 3250, Address: 0x1f4480, Func Offset: 0x20
 	// Line 3251, Address: 0x1f44a4, Func Offset: 0x44
@@ -2004,8 +2043,50 @@ static void bhEne19_SetDmgEffect(BH_PWORK* ewP, int set_obj, int eff_typ, NJS_PO
 	NJS_POINT3 off;
 	float off_z;
 	int* effP;
-	EO_WORK OffTbl[26];
-	int EffTbl[12][4];
+	static const EO_WORK OffTbl[26] =
+	{
+		{  0.0f,  0.0f,  0.0f,  0.0f },
+		{  0.0f,  1.0f,  5.0f,  5.0f },
+		{  0.0f,  0.0f,  5.0f,  5.0f },
+		{  0.0f,  0.0f,  5.0f,  5.0f },
+		{  0.0f,  0.0f,  6.0f,  3.0f },
+		{  0.0f,  0.0f,  2.0f,  2.0f },
+		{  0.0f,  0.0f,  4.0f,  4.0f },
+		{  1.5f,  0.0f,  3.0f,  3.0f },
+		{  1.5f,  0.0f,  3.0f,  3.0f },
+		{  1.0f,  0.0f,  2.0f,  2.0f },
+		{  0.0f,  0.0f,  0.0f,  0.0f },
+		{  0.0f,  0.0f,  0.0f,  0.0f },
+		{  0.0f,  0.0f,  0.0f,  0.0f },
+		{  0.0f,  0.0f,  0.0f,  0.0f },
+		{  0.0f,  0.0f,  4.0f,  4.0f },
+		{ -1.5f,  0.0f,  3.0f,  3.0f },
+		{ -1.5f,  0.0f,  3.0f,  3.0f },
+		{ -1.0f,  0.0f,  2.0f,  2.0f },
+		{  0.0f, -2.0f,  2.0f,  6.0f },
+		{  0.0f, -2.0f,  2.0f,  6.0f },
+		{  0.0f,  0.0f,  1.0f,  2.0f },
+		{  0.0f,  0.0f,  1.0f,  2.0f },
+		{  0.0f, -2.0f,  2.0f,  6.0f },
+		{  0.0f, -2.0f,  2.0f,  6.0f },
+		{  0.0f,  0.0f,  1.0f,  2.0f },
+		{  0.0f,  0.0f,  1.0f,  2.0f }
+	};
+	static const int EffTbl[12][4] = 
+	{
+		{ 0, 0xFF800000,    4198400,  14 },
+		{ 0, 0xFF800000,    4198400,  15 },
+		{ 0, 0xFF800000,    4198400,  16 },
+		{ 1,          1,          5, 306 },
+		{ 1,          0,          1, 305 },
+		{ 2,     131072,         32, 298 },
+		{ 3,          1,          0,   0 },
+		{ 3,          1,          1,   0 },
+		{ 3,          1,          2,   0 },
+		{ 4,          1, 0x80000000,   0 },
+		{ 4,          1, 0x80000001,   0 },
+		{ 4,          1, 0x80000002,   0 }
+	};
 	// Line 3347, Address: 0x1f4780, Func Offset: 0
 	// Line 3398, Address: 0x1f479c, Func Offset: 0x1c
 	// Line 3347, Address: 0x1f47a4, Func Offset: 0x24
@@ -2114,7 +2195,13 @@ static int bhEne19_CollisionCircle2Oval(NJS_MATRIX* basP, float ra, float rb, NJ
 	NJS_POINT3 dlt;
 	NJS_POINT3 vct;
 	float dst;
-	float UniMtx[16];
+	static const float UniMtx[16] = 
+	{
+		1.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 0.0f, 1.0f
+	};
 	// Line 3524, Address: 0x1f4e40, Func Offset: 0
 	// Line 3548, Address: 0x1f4e78, Func Offset: 0x38
 	// Line 3553, Address: 0x1f4e88, Func Offset: 0x48
@@ -2164,7 +2251,11 @@ static void bhEne19_TyBloodSet(EB_WORK* ebP)
 	int rnd;
 	FW_WORK* fwP;
 	BH_PWORK* ewP;
-	float SetPrm[2][3];
+	static const float SetPrm[2][3] = 
+	{
+		{ 18.0f,  0.5f,  1.0f },
+		{  4.0f,  1.0f,  2.0f }
+	};
 	// Line 3606, Address: 0x1f5000, Func Offset: 0
 	// Line 3607, Address: 0x1f5018, Func Offset: 0x18
 	// Line 3608, Address: 0x1f501c, Func Offset: 0x1c
@@ -2235,9 +2326,13 @@ static void bhEne19_SoundSet(BH_PWORK* ewP, FW_WORK* fwP)
 	int sts;
 	int obj;
 	int snd_no;
-	int SndTbl[20];
-	int EffTbl[15];
-	NJS_POINT3 WlkOff;
+	int SndTbl[20] = 
+	{
+		    0, 74496,  8961, 16786178, 16851715, 16851716, 74501, 74502, 74503, 74504, 
+		74505, 74506, 74507,    74508,    74509,    74510, 74511, 74512, 74513, 74514
+	};
+	static const NJS_POINT3 WlkOff = {  0.0f, -1.5f,  0.0f };
+	static const int EffTbl[15] = {  4, 17, 16, 15, 14, 23, 24,  1, 19, 20,  6,  7,  8,  9,  2 };
 	// Line 3670, Address: 0x1f53a0, Func Offset: 0
 	// Line 3672, Address: 0x1f53b0, Func Offset: 0x10
 	// Line 3670, Address: 0x1f53b4, Func Offset: 0x14
@@ -2352,7 +2447,7 @@ static int bhEne19_MtnAttrbuteGet(BH_PWORK* ewP)
 // Start address: 0x1f59b0
 static int bhEne19_PlySetDamage(BH_PWORK* plP, FW_WORK* fwP, int dmg_mod)
 {
-	int PlyDmgTbl[4];
+	static const int PlyDmgTbl[4] = { 30, 40, 40, 50 };
 	// Line 3821, Address: 0x1f59b0, Func Offset: 0
 	// Line 3833, Address: 0x1f59b8, Func Offset: 0x8
 	// Line 3835, Address: 0x1f59d8, Func Offset: 0x28
@@ -2469,7 +2564,7 @@ static void bhEne19_PlyDmg042(BH_PWORK* plP, FW_WORK* fwP)
 	int dlt;
 	float spd;
 	int dir;
-	int EffTbl[4];
+	static const int EffTbl[4] = { 20,  9, 16, 13 };
 	// Line 3991, Address: 0x1f5e40, Func Offset: 0
 	// Line 3993, Address: 0x1f5e58, Func Offset: 0x18
 	// Line 3996, Address: 0x1f5e6c, Func Offset: 0x2c
@@ -2605,8 +2700,10 @@ static void bhEne19_PlyDmg052_053(BH_PWORK* plP, FW_WORK* fwP)
 	ATR_WORK* htP;
 	float spd;
 	int dir;
-	//int EffTbl[4];
-	int EffTbl[4];
+	static const int EffTbl[4] = {  2,  1, 18, 14 };
+	{
+	static const int EffTbl[4] = { 20,  9, 16, 13 };
+	}
 	// Line 4151, Address: 0x1f6340, Func Offset: 0
 	// Line 4153, Address: 0x1f635c, Func Offset: 0x1c
 	// Line 4155, Address: 0x1f6370, Func Offset: 0x30
@@ -2687,7 +2784,7 @@ static void bhEne19_PlyDmg117_118(BH_PWORK* plP, FW_WORK* fwP)
 	int dlt;
 	float spd;
 	int dir;
-	int EffTbl[2];
+	static const int EffTbl[2] = { 20, 16 };
 	// Line 4261, Address: 0x1f67a0, Func Offset: 0
 	// Line 4263, Address: 0x1f67b8, Func Offset: 0x18
 	// Line 4266, Address: 0x1f67cc, Func Offset: 0x2c
@@ -2800,7 +2897,18 @@ static void bhEne19_PlyDmgFal(BH_PWORK* plP, FW_WORK* fwP)
 	int dlt;
 	PF_WORK* pfP;
 	PAW_WORK* pawP;
-	PF_WORK PlyFal[3];
+	static const PF_WORK PlyFal[3] = 
+	{
+		{
+			{ 0.0f, -1.0453334f, 0.0f }, { 0.0f, -0.065333336f, 0.0f }, 0.98f, 50.0f, 0                               
+		},
+		{
+			{ 0.0f, -1.0453334f, 0.0f }, { 0.3f,  0.065333337f, 0.0f }, 0.75f, 50.0f, 1                               
+		},
+		{
+			{ 0.0f, -1.0453334f, 0.0f }, { 0.0f, -0.065333336f, 0.0f }, 0.98f, 25.0f, 0                               
+		}
+	};
 	// Line 4387, Address: 0x1f6b90, Func Offset: 0
 	// Line 4405, Address: 0x1f6bb0, Func Offset: 0x20
 	// Line 4407, Address: 0x1f6bbc, Func Offset: 0x2c

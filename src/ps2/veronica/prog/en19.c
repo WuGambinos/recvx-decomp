@@ -2297,22 +2297,19 @@ static void bhEne19_TyBloodSet(EB_WORK* ebP)
 	scePrintf("bhEne19_TyBloodSet - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f5330
+// 100% matching!
 static void bhEne19_ClawReset(BH_PWORK* ewP, FW_WORK* fwP)
 {
-	NJS_POINT3* posP;
-	NJS_CNK_OBJECT* objP;
-	// Line 3653, Address: 0x1f5330, Func Offset: 0
-	// Line 3656, Address: 0x1f5334, Func Offset: 0x4
-	// Line 3653, Address: 0x1f5340, Func Offset: 0x10
-	// Line 3656, Address: 0x1f5344, Func Offset: 0x14
-	// Line 3657, Address: 0x1f5350, Func Offset: 0x20
-	// Line 3658, Address: 0x1f5368, Func Offset: 0x38
-	// Line 3659, Address: 0x1f5380, Func Offset: 0x50
-	// Line 3660, Address: 0x1f5394, Func Offset: 0x64
-	// Func End, Address: 0x1f539c, Func Offset: 0x6c
-	scePrintf("bhEne19_ClawReset - UNIMPLEMENTED!\n");
+    NJS_CNK_OBJECT* objP;
+    NJS_POINT3* posP;
+
+    objP = ewP->mlwP->objP;
+    posP = fwP->ClwPos;
+
+    *(NJS_POINT3*)objP[10].pos = *posP++;
+    *(NJS_POINT3*)objP[11].pos = *posP++;
+    *(NJS_POINT3*)objP[12].pos = *posP++;
+    *(NJS_POINT3*)objP[13].pos = *posP++;
 }
 
 // 

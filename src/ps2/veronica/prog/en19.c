@@ -3133,38 +3133,27 @@ static TY_DMG_MODE bhEne19_CheckDmgLvl2(BH_PWORK* ewP, FW_WORK* fwP)
 	scePrintf("bhEne19_CheckDmgLvl2 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f7380
+// 100% matching!
 static R0_WK* bhEne19_SetLeftClaw(ML_WORK* mlwP, TY_OBJ_MODE tgt_bas, TY_OBJ_MODE tgt_obj)
 {
-	NJS_CNK_OBJECT* objP;
 	PRM_WRK prm;
-	// Line 4750, Address: 0x1f7380, Func Offset: 0
-	// Line 4746, Address: 0x1f7388, Func Offset: 0x8
-	// Line 4750, Address: 0x1f738c, Func Offset: 0xc
-	// Line 4746, Address: 0x1f7394, Func Offset: 0x14
-	// Line 4750, Address: 0x1f7398, Func Offset: 0x18
-	// Line 4751, Address: 0x1f739c, Func Offset: 0x1c
-	// Line 4750, Address: 0x1f73a4, Func Offset: 0x24
-	// Line 4751, Address: 0x1f73a8, Func Offset: 0x28
-	// Line 4757, Address: 0x1f73b0, Func Offset: 0x30
-	// Line 4750, Address: 0x1f73b4, Func Offset: 0x34
-	// Line 4751, Address: 0x1f73b8, Func Offset: 0x38
-	// Line 4752, Address: 0x1f73c4, Func Offset: 0x44
-	// Line 4755, Address: 0x1f73c8, Func Offset: 0x48
-	// Line 4757, Address: 0x1f73cc, Func Offset: 0x4c
-	// Line 4752, Address: 0x1f73d0, Func Offset: 0x50
-	// Line 4753, Address: 0x1f73d4, Func Offset: 0x54
-	// Line 4757, Address: 0x1f73d8, Func Offset: 0x58
-	// Line 4753, Address: 0x1f73dc, Func Offset: 0x5c
-	// Line 4754, Address: 0x1f73e0, Func Offset: 0x60
-	// Line 4755, Address: 0x1f73fc, Func Offset: 0x7c
-	// Line 4757, Address: 0x1f7418, Func Offset: 0x98
-	// Line 4758, Address: 0x1f7420, Func Offset: 0xa0
-	// Line 4757, Address: 0x1f7424, Func Offset: 0xa4
-	// Line 4758, Address: 0x1f7428, Func Offset: 0xa8
-	// Func End, Address: 0x1f7430, Func Offset: 0xb0
-	scePrintf("bhEne19_SetLeftClaw - UNIMPLEMENTED!\n");
+	NJS_CNK_OBJECT* objP;
+
+    objP = &mlwP->objP[tgt_obj];
+
+    prm.mtxP = &mlwP->owP[tgt_bas].mtx;
+    prm.texP = mlwP->texP;
+    prm.mdlP = (NJS_MODEL*)objP->model;
+
+    prm.pos[0] = -objP->pos[0];
+    prm.pos[1] =  objP->pos[1];
+    prm.pos[2] =  objP->pos[2];
+
+    prm.ang[0] = objP->ang[0];
+    prm.ang[1] = 32768 - objP->ang[1];
+    prm.ang[2] = -objP->ang[2];
+
+    return (R0_WK*)((bhSetRapEff(312, &prm, 9))->free4);
 }
 
 // 

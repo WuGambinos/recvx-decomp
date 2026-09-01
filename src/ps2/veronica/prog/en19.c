@@ -3036,7 +3036,7 @@ static int bhEne_PlyActionChange(BH_PWORK* plP, PAW_WORK* pawP, int act_no)
             plP->hokan_rate  = paP->hkn_lvl * (65536.0 / 255.0);
             
             plP->mtn_add = 65536;
-            plP->mtn_md = (unsigned short)paP->flag;
+            plP->mtn_md  = (unsigned short)paP->flag;
                 
             pawP->p_frm_num = plP->mnwP[paP->mtn_no].frm_num;
             
@@ -3126,29 +3126,42 @@ static TY_DMG_MODE bhEne19_CheckDmgLvl0(BH_PWORK* ewP, FW_WORK* fwP)
 	scePrintf("bhEne19_CheckDmgLvl0 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f71d0
+// 100% matching!
 static TY_DMG_MODE bhEne19_CheckDmgLvl1(BH_PWORK* ewP, FW_WORK* fwP)
 {
 	TY_DMG_MODE dmg_lvl;
-	// Line 4678, Address: 0x1f71d0, Func Offset: 0
-	// Line 4682, Address: 0x1f71d8, Func Offset: 0x8
-	// Line 4678, Address: 0x1f71dc, Func Offset: 0xc
-	// Line 4682, Address: 0x1f71e0, Func Offset: 0x10
-	// Line 4684, Address: 0x1f71e8, Func Offset: 0x18
-	// Line 4685, Address: 0x1f7204, Func Offset: 0x34
-	// Line 4687, Address: 0x1f720c, Func Offset: 0x3c
-	// Line 4688, Address: 0x1f7214, Func Offset: 0x44
-	// Line 4689, Address: 0x1f726c, Func Offset: 0x9c
-	// Line 4691, Address: 0x1f7274, Func Offset: 0xa4
-	// Line 4692, Address: 0x1f727c, Func Offset: 0xac
-	// Line 4693, Address: 0x1f7294, Func Offset: 0xc4
-	// Line 4696, Address: 0x1f7298, Func Offset: 0xc8
-	// Line 4697, Address: 0x1f72b4, Func Offset: 0xe4
-	// Line 4698, Address: 0x1f72bc, Func Offset: 0xec
-	// Line 4702, Address: 0x1f72c0, Func Offset: 0xf0
-	// Func End, Address: 0x1f72cc, Func Offset: 0xfc
-	scePrintf("bhEne19_CheckDmgLvl1 - UNIMPLEMENTED!\n");
+
+    bhEne_CalcCombRate(ewP, En19CombWepTbl);
+
+    if ((ewP->hp < 0) && (!(fwP->dmg_flg & 0x20))) 
+	{
+        fwP->dmg_flg |= 0x20;
+
+        dmg_lvl = TY_DMG_LVL4;
+    } 
+	else if ((ewP->hp < ((fwP->hp_bak * 50) / 100)) && (!(fwP->dmg_flg & 0x8))) 
+	{
+        fwP->dmg_flg |= 0x8;
+
+        dmg_lvl = TY_DMG_LVL2;
+    } 
+	else if ((ewP->comb_flg & 0x1)) 
+	{
+        dmg_lvl = TY_DMG_LVL0;
+    } 
+	else 
+	{
+        dmg_lvl = TY_DMG_NON;
+    }
+
+    if ((fwP->ct_pinch == 0) && (!(fwP->dmg_flg & 0x40)))
+	{
+        fwP->dmg_flg |= 0x40;
+
+        dmg_lvl = TY_DMG_SPECIAL;
+    }
+
+    return dmg_lvl;
 }
 
 // 100% matching!

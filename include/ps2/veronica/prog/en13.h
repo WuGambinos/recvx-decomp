@@ -19,9 +19,9 @@ void bhEne13_DG00(BH_PWORK* epw);
 void bhEne13_Die(BH_PWORK* epw);
 void bhEne13_InitDamage(BH_PWORK* epw);
 void bhEne13_Finish(BH_PWORK* epw);
-/*void bhEne13_ScaleModel(npobj* pObj, float sx, float sy, float sz);
-int bhEne13_StoreObject(BH_PWORK* epw, _anon32* pos, _anon32** v, int no);
-int bhEne13_RestoreObject(BH_PWORK* epw, _anon32* pos, _anon32** v, int no);*/
+void bhEne13_ScaleModel(NJS_CNK_OBJECT* pObj, float sx, float sy, float sz);
+int bhEne13_StoreObject(BH_PWORK* epw, NJS_POINT3* pos, NJS_VECTOR** v, int no);
+int bhEne13_RestoreObject(BH_PWORK* epw, NJS_POINT3* pos, NJS_VECTOR** v, int no);
 void bhEne13_PutAttacker(BH_PWORK* epw, int no);
 void bhEne13_Tentacle(BH_PWORK* epw, int no);
 int bhEne13_GetHatchNo(BH_PWORK* epw);

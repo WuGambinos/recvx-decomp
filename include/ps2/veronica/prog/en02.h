@@ -54,4 +54,11 @@ void bhEne02_FallingRock(BH_PWORK* epw);
 void bhEne02_CallSE(BH_PWORK* epw);
 void bhEne02_HitMark(BH_PWORK* epw);
 
+extern NJS_POINT3 cler_042[20];
+extern NJS_POINT3 cler_043[20];
+extern NJS_POINT3 cler_045[51];
+extern NJS_POINT3 cher_060[20];
+extern NJS_POINT3 cher_061[20];
+extern NJS_POINT3 cher_063[50];
+
 #endif

@@ -3126,31 +3126,42 @@ static TY_DMG_MODE bhEne19_CheckDmgLvl1(BH_PWORK* ewP, FW_WORK* fwP)
 	scePrintf("bhEne19_CheckDmgLvl1 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f72d0
+// 100% matching!
 static TY_DMG_MODE bhEne19_CheckDmgLvl2(BH_PWORK* ewP, FW_WORK* fwP)
 {
-	int* flgP;
-	int cmb_lvl;
-	TY_DMG_MODE dmg_lvl;
-	// Line 4712, Address: 0x1f72d0, Func Offset: 0
-	// Line 4717, Address: 0x1f72d8, Func Offset: 0x8
-	// Line 4712, Address: 0x1f72e0, Func Offset: 0x10
-	// Line 4717, Address: 0x1f72e4, Func Offset: 0x14
-	// Line 4720, Address: 0x1f72ec, Func Offset: 0x1c
-	// Line 4722, Address: 0x1f7308, Func Offset: 0x38
-	// Line 4724, Address: 0x1f7314, Func Offset: 0x44
-	// Line 4725, Address: 0x1f731c, Func Offset: 0x4c
-	// Line 4727, Address: 0x1f732c, Func Offset: 0x5c
-	// Line 4728, Address: 0x1f7334, Func Offset: 0x64
-	// Line 4729, Address: 0x1f7350, Func Offset: 0x80
-	// Line 4730, Address: 0x1f7354, Func Offset: 0x84
-	// Line 4729, Address: 0x1f7358, Func Offset: 0x88
-	// Line 4731, Address: 0x1f735c, Func Offset: 0x8c
-	// Line 4732, Address: 0x1f7364, Func Offset: 0x94
-	// Line 4736, Address: 0x1f7368, Func Offset: 0x98
-	// Func End, Address: 0x1f7374, Func Offset: 0xa4
-	scePrintf("bhEne19_CheckDmgLvl2 - UNIMPLEMENTED!\n");
+    TY_DMG_MODE dmg_lvl; 
+    int cmb_lvl;         
+    int* flgP;          
+
+    flgP = &fwP->dmg_flg;
+    
+	cmb_lvl = bhEne_CalcCombRate(ewP, En19CombWepTbl);
+    
+	if (ewP->comb_pnt == 0) 
+	{
+        *flgP &= ~0x2;
+    }
+
+    if (ewP->hp < 0)
+	{
+        dmg_lvl = TY_DMG_LVL4;
+    }
+    else if ((ewP->comb_flg & 0x1)) 
+	{
+        dmg_lvl = TY_DMG_LVL1;
+    }
+    else if ((cmb_lvl >= 10) && (!(*flgP & 0x2))) 
+	{
+        fwP->dmg_flg |= 0x2;
+
+        dmg_lvl = TY_DMG_LVL0;
+    }
+    else 
+	{
+        dmg_lvl = TY_DMG_NON;
+    }
+
+    return dmg_lvl;
 }
 
 // 100% matching!

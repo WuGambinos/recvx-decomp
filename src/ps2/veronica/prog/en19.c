@@ -3094,36 +3094,48 @@ static int bhEne_CalcCombRate(BH_PWORK* ewP, COMBWEP_WORK* cwP)
 
 #pragma divbyzerocheck off
 
-// 
-// Start address: 0x1f70f0
+// 100% matching!
 static TY_DMG_MODE bhEne19_CheckDmgLvl0(BH_PWORK* ewP, FW_WORK* fwP)
 {
-	int* flgP;
-	int cmb_lvl;
-	TY_DMG_MODE dmg_lvl;
-	// Line 4640, Address: 0x1f70f0, Func Offset: 0
-	// Line 4645, Address: 0x1f70f8, Func Offset: 0x8
-	// Line 4640, Address: 0x1f7100, Func Offset: 0x10
-	// Line 4645, Address: 0x1f7104, Func Offset: 0x14
-	// Line 4648, Address: 0x1f710c, Func Offset: 0x1c
-	// Line 4650, Address: 0x1f7128, Func Offset: 0x38
-	// Line 4652, Address: 0x1f7134, Func Offset: 0x44
-	// Line 4653, Address: 0x1f713c, Func Offset: 0x4c
-	// Line 4655, Address: 0x1f714c, Func Offset: 0x5c
-	// Line 4656, Address: 0x1f7154, Func Offset: 0x64
-	// Line 4657, Address: 0x1f7170, Func Offset: 0x80
-	// Line 4658, Address: 0x1f7174, Func Offset: 0x84
-	// Line 4657, Address: 0x1f7178, Func Offset: 0x88
-	// Line 4659, Address: 0x1f717c, Func Offset: 0x8c
-	// Line 4660, Address: 0x1f7184, Func Offset: 0x94
-	// Line 4661, Address: 0x1f71a0, Func Offset: 0xb0
-	// Line 4662, Address: 0x1f71a4, Func Offset: 0xb4
-	// Line 4661, Address: 0x1f71a8, Func Offset: 0xb8
-	// Line 4663, Address: 0x1f71ac, Func Offset: 0xbc
-	// Line 4664, Address: 0x1f71b4, Func Offset: 0xc4
-	// Line 4668, Address: 0x1f71b8, Func Offset: 0xc8
-	// Func End, Address: 0x1f71c4, Func Offset: 0xd4
-	scePrintf("bhEne19_CheckDmgLvl0 - UNIMPLEMENTED!\n");
+	TY_DMG_MODE dmg_lvl; 
+    int cmb_lvl;         
+    int* flgP;          
+
+	flgP = &fwP->dmg_flg;
+
+    cmb_lvl = bhEne_CalcCombRate(ewP, En19CombWepTbl);
+    
+    if (ewP->comb_pnt == 0) 
+    {
+        *flgP &= ~0x6;
+    }
+
+    if (ewP->hp < 0)
+    {
+        dmg_lvl = TY_DMG_LVL4;
+    }
+    else if ((ewP->comb_flg & 0x1)) 
+    {
+        dmg_lvl = TY_DMG_LVL2;
+    }
+    else if ((cmb_lvl >= 12) && (!(*flgP & 0x4)))
+    {
+		fwP->dmg_flg |= 0x4;
+
+		dmg_lvl = TY_DMG_LVL1;
+    }
+    else if ((cmb_lvl >= 8) && (!(*flgP & 0x2))) 
+    {
+		fwP->dmg_flg |= 0x2;
+
+		dmg_lvl = TY_DMG_LVL0;
+    }
+	else 
+	{
+		dmg_lvl = TY_DMG_NON;
+	}
+
+    return dmg_lvl;
 }
 
 // 100% matching!

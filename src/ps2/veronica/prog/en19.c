@@ -2982,22 +2982,34 @@ static void bhEne_PlyActionInit(BH_PWORK* ewP, PAW_WORK* pawP, ACT_TBL_WORK* act
     pawP->p_paramP = ewP->exp0;
 }
 
-// 
-// Start address: 0x1f6e60
+#pragma divbyzerocheck on
+
+// 100% matching!
 static void bhEne_PlyActionMain(BH_PWORK* plP, PAW_WORK* pawP)
 {
-	// Line 4535, Address: 0x1f6e60, Func Offset: 0
-	// Line 4537, Address: 0x1f6e70, Func Offset: 0x10
-	// Line 4538, Address: 0x1f6e88, Func Offset: 0x28
-	// Line 4539, Address: 0x1f6e94, Func Offset: 0x34
-	// Line 4543, Address: 0x1f6e9c, Func Offset: 0x3c
-	// Line 4546, Address: 0x1f6ebc, Func Offset: 0x5c
-	// Line 4549, Address: 0x1f6ed4, Func Offset: 0x74
-	// Line 4552, Address: 0x1f6ee0, Func Offset: 0x80
-	// Line 4553, Address: 0x1f6f00, Func Offset: 0xa0
-	// Func End, Address: 0x1f6f14, Func Offset: 0xb4
-	scePrintf("bhEne_PlyActionMain - UNIMPLEMENTED!\n");
+    if ((pawP->p_act_flg & 0x7) == 2)
+    {
+        pawP->p_act_flg &= ~0x2;
+        
+        bhEne_PlyActionChange(plP, pawP, pawP->p_act_jmp);
+    }
+    
+    pawP->p_mtn_rte = plP->frm_no / (pawP->p_frm_num - 1);
+    
+    if (pawP->p_prgP != NULL) 
+    {
+        pawP->p_prgP(plP, pawP->p_paramP);
+    }
+    
+    pawP->p_act_frm = plP->frm_no / 65536;
+    
+    if (pawP->p_act_frm == pawP->p_chg_frm) 
+    {
+        pawP->p_act_flg &= ~0x1;
+    }
 }
+
+#pragma divbyzerocheck off
 
 // 
 // Start address: 0x1f6f20

@@ -2969,19 +2969,17 @@ static void bhEne19_PlyDmgFal(BH_PWORK* plP, FW_WORK* fwP)
 	scePrintf("bhEne19_PlyDmgFal - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f6e30
+// 100% matching!
 static void bhEne_PlyActionInit(BH_PWORK* ewP, PAW_WORK* pawP, ACT_TBL_WORK* act_tblP, int tbl_num)
 {
-	// Line 4519, Address: 0x1f6e30, Func Offset: 0
-	// Line 4521, Address: 0x1f6e34, Func Offset: 0x4
-	// Line 4520, Address: 0x1f6e38, Func Offset: 0x8
-	// Line 4521, Address: 0x1f6e3c, Func Offset: 0xc
-	// Line 4522, Address: 0x1f6e40, Func Offset: 0x10
-	// Line 4523, Address: 0x1f6e48, Func Offset: 0x18
-	// Line 4524, Address: 0x1f6e4c, Func Offset: 0x1c
-	// Func End, Address: 0x1f6e54, Func Offset: 0x24
-	scePrintf("bhEne_PlyActionInit - UNIMPLEMENTED!\n");
+    pawP->act_tblP = act_tblP;
+    
+    pawP->tbl_num = tbl_num;
+    
+    pawP->p_act_now = -1;
+    
+    pawP->ene_mnwP = ewP->mnwP;
+    pawP->p_paramP = ewP->exp0;
 }
 
 // 

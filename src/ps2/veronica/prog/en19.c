@@ -5,6 +5,7 @@
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/subpl.h"
+#include "../../../ps2/veronica/prog/sdfunc.h"
 
 // ENEMY: Tyrant T-078 
 
@@ -2478,44 +2479,49 @@ static int bhEne19_MtnAttrbuteGet(BH_PWORK* ewP)
     return (atrP != NULL) ? atrP[ewP->frm_no / 65536] : 0;
 }
 
-// 
-// Start address: 0x1f59b0
+// 100% matching!
 static int bhEne19_PlySetDamage(BH_PWORK* plP, FW_WORK* fwP, int dmg_mod)
 {
-	static const int PlyDmgTbl[4] = { 30, 40, 40, 50 };
-	// Line 3821, Address: 0x1f59b0, Func Offset: 0
-	// Line 3833, Address: 0x1f59b8, Func Offset: 0x8
-	// Line 3835, Address: 0x1f59d8, Func Offset: 0x28
-	// Line 3836, Address: 0x1f59e4, Func Offset: 0x34
-	// Line 3837, Address: 0x1f59ec, Func Offset: 0x3c
-	// Line 3835, Address: 0x1f59f0, Func Offset: 0x40
-	// Line 3843, Address: 0x1f59f8, Func Offset: 0x48
-	// Line 3836, Address: 0x1f59fc, Func Offset: 0x4c
-	// Line 3843, Address: 0x1f5a00, Func Offset: 0x50
-	// Line 3836, Address: 0x1f5a0c, Func Offset: 0x5c
-	// Line 3837, Address: 0x1f5a14, Func Offset: 0x64
-	// Line 3838, Address: 0x1f5a18, Func Offset: 0x68
-	// Line 3839, Address: 0x1f5a1c, Func Offset: 0x6c
-	// Line 3840, Address: 0x1f5a20, Func Offset: 0x70
-	// Line 3843, Address: 0x1f5a24, Func Offset: 0x74
-	// Line 3845, Address: 0x1f5a34, Func Offset: 0x84
-	// Line 3847, Address: 0x1f5a4c, Func Offset: 0x9c
-	// Line 3855, Address: 0x1f5a54, Func Offset: 0xa4
-	// Line 3856, Address: 0x1f5a58, Func Offset: 0xa8
-	// Line 3847, Address: 0x1f5a5c, Func Offset: 0xac
-	// Line 3848, Address: 0x1f5a64, Func Offset: 0xb4
-	// Line 3852, Address: 0x1f5a70, Func Offset: 0xc0
-	// Line 3855, Address: 0x1f5a74, Func Offset: 0xc4
-	// Line 3856, Address: 0x1f5a78, Func Offset: 0xc8
-	// Line 3857, Address: 0x1f5a7c, Func Offset: 0xcc
-	// Line 3860, Address: 0x1f5a80, Func Offset: 0xd0
-	// Line 3861, Address: 0x1f5a84, Func Offset: 0xd4
-	// Line 3863, Address: 0x1f5aa4, Func Offset: 0xf4
-	// Line 3865, Address: 0x1f5ab0, Func Offset: 0x100
-	// Line 3868, Address: 0x1f5ab8, Func Offset: 0x108
-	// Line 3869, Address: 0x1f5abc, Func Offset: 0x10c
-	// Func End, Address: 0x1f5ac8, Func Offset: 0x118
-	scePrintf("bhEne19_PlySetDamage - UNIMPLEMENTED!\n");
+    static const int PlyDmgTbl[4] = { 30, 40, 40, 50 };
+
+    if ((!(fwP->ply_act.p_status & 0x1)) && (!(fwP->status & 0x800)))
+    {
+        plP->flg |=  0x10004;
+        plP->flg &= ~0x40000;
+        
+        plP->mode0 = 5;
+        plP->mode1 = 0;
+        plP->mode2 = 0;
+        plP->mode3 = 0;
+        
+        plP->hp -= PlyDmgTbl[dmg_mod];
+        
+        if ((plP->hp < 0) && (dmg_mod == 0)) 
+        {
+            dmg_mod = 1;
+        }
+        
+        plP->stflg |= 0x40000;
+        plP->stflg |= 0x4000;
+        
+        fwP->ply_act.p_act_flg =  0;
+        fwP->ply_act.p_status  =  1;
+        fwP->ply_act.p_act_now = -1;
+        
+        fwP->ply_mde        = 0;
+        fwP->ply_act.p_mode = dmg_mod;
+        
+        if (((fwP->dir_dlt / 16384) & 0x1)) 
+        {
+            fwP->ply_act.p_status |= 0x2;
+        }
+        
+        StartVibrationEx(1, 11);
+        
+        return 1;
+    }
+    
+    return 0;
 }
 
 // 

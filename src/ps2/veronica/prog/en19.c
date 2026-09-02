@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/en19.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
@@ -406,70 +407,88 @@ static void bhEne19_Init(BH_PWORK* ewP)
 	scePrintf("bhEne19_Init - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f0970
-static void bhEne19_Move(BH_PWORK* ewP)
+// 100% matching!
+static void bhEne19_Move(BH_PWORK* ewP) 
 {
-	float ar_bak;
-	float ah_bak;
-	NJS_MATRIX* mtxP;
-	NJS_POINT3 pos;
-	NJS_CNK_OBJECT* objP;
-	int* stsP;
-	FW_WORK* fwP;
-	// Line 666, Address: 0x1f0970, Func Offset: 0
-	// Line 667, Address: 0x1f098c, Func Offset: 0x1c
-	// Line 668, Address: 0x1f0994, Func Offset: 0x24
-	// Line 685, Address: 0x1f0998, Func Offset: 0x28
-	// Line 688, Address: 0x1f09a0, Func Offset: 0x30
-	// Line 691, Address: 0x1f09c0, Func Offset: 0x50
-	// Line 694, Address: 0x1f09cc, Func Offset: 0x5c
-	// Line 695, Address: 0x1f09dc, Func Offset: 0x6c
-	// Line 702, Address: 0x1f09e0, Func Offset: 0x70
-	// Line 707, Address: 0x1f09e8, Func Offset: 0x78
-	// Line 695, Address: 0x1f09ec, Func Offset: 0x7c
-	// Line 697, Address: 0x1f09f0, Func Offset: 0x80
-	// Line 702, Address: 0x1f09fc, Func Offset: 0x8c
-	// Line 703, Address: 0x1f0a08, Func Offset: 0x98
-	// Line 707, Address: 0x1f0a14, Func Offset: 0xa4
-	// Line 712, Address: 0x1f0a20, Func Offset: 0xb0
-	// Line 715, Address: 0x1f0a3c, Func Offset: 0xcc
-	// Line 718, Address: 0x1f0a48, Func Offset: 0xd8
-	// Line 721, Address: 0x1f0a5c, Func Offset: 0xec
-	// Line 722, Address: 0x1f0a70, Func Offset: 0x100
-	// Line 723, Address: 0x1f0a7c, Func Offset: 0x10c
-	// Line 726, Address: 0x1f0a94, Func Offset: 0x124
-	// Line 730, Address: 0x1f0aa4, Func Offset: 0x134
-	// Line 728, Address: 0x1f0aac, Func Offset: 0x13c
-	// Line 730, Address: 0x1f0ab0, Func Offset: 0x140
-	// Line 728, Address: 0x1f0ab8, Func Offset: 0x148
-	// Line 730, Address: 0x1f0abc, Func Offset: 0x14c
-	// Line 728, Address: 0x1f0ac4, Func Offset: 0x154
-	// Line 730, Address: 0x1f0ac8, Func Offset: 0x158
-	// Line 732, Address: 0x1f0ad4, Func Offset: 0x164
-	// Line 735, Address: 0x1f0af0, Func Offset: 0x180
-	// Line 740, Address: 0x1f0afc, Func Offset: 0x18c
-	// Line 736, Address: 0x1f0b00, Func Offset: 0x190
-	// Line 735, Address: 0x1f0b04, Func Offset: 0x194
-	// Line 736, Address: 0x1f0b08, Func Offset: 0x198
-	// Line 738, Address: 0x1f0b10, Func Offset: 0x1a0
-	// Line 736, Address: 0x1f0b14, Func Offset: 0x1a4
-	// Line 738, Address: 0x1f0b18, Func Offset: 0x1a8
-	// Line 739, Address: 0x1f0b20, Func Offset: 0x1b0
-	// Line 741, Address: 0x1f0b24, Func Offset: 0x1b4
-	// Line 740, Address: 0x1f0b28, Func Offset: 0x1b8
-	// Line 741, Address: 0x1f0b2c, Func Offset: 0x1bc
-	// Line 742, Address: 0x1f0b34, Func Offset: 0x1c4
-	// Line 743, Address: 0x1f0b40, Func Offset: 0x1d0
-	// Line 745, Address: 0x1f0b4c, Func Offset: 0x1dc
-	// Line 746, Address: 0x1f0b58, Func Offset: 0x1e8
-	// Line 745, Address: 0x1f0b5c, Func Offset: 0x1ec
-	// Line 746, Address: 0x1f0b64, Func Offset: 0x1f4
-	// Line 751, Address: 0x1f0b74, Func Offset: 0x204
-	// Line 754, Address: 0x1f0b80, Func Offset: 0x210
-	// Line 756, Address: 0x1f0b90, Func Offset: 0x220
-	// Func End, Address: 0x1f0bb0, Func Offset: 0x240
-	scePrintf("bhEne19_Move - UNIMPLEMENTED!\n");
+    FW_WORK* fwP;        
+    int* stsP;           
+    NJS_CNK_OBJECT* objP; 
+    NJS_POINT3 pos;       
+    NJS_MATRIX* mtxP;   
+    float ah_bak, ar_bak;         
+
+    fwP = (FW_WORK*)ewP->exp0;
+
+    stsP = &fwP->status;
+
+    bhEne19_DmgCheck(ewP, fwP);
+
+    bhEne19_BrainType[ewP->type](ewP);
+
+    bhEne19_ActionMain(ewP, fwP);
+
+    if ((*stsP & 0x20))
+    {
+        objP = ewP->mlwP->objP;
+        
+        objP->ang[0] = objP->ang[1] = objP->ang[2] = 0;
+        
+        objP->pos[0] *= 0.25f;
+        objP->pos[2] *= 0.25f;
+        
+        *stsP &= ~0x20;
+    }
+
+    if ((*stsP & 0x8000))
+    {
+        bhEne19_PositonFix(ewP, fwP);
+    }
+
+    bhEne19_SoundSet(ewP, fwP);
+
+    bhEne19_HeadTurn(ewP, fwP, *stsP & 0x4);
+
+    if (ewP->type != 0)
+    {
+        bhCheckPlayer(ewP);
+    }
+
+    bhCheckEnemies(ewP);
+
+    if ((ewP->flg & 0x10))
+    {
+        bhCheckWall(ewP);
+    }
+
+    if ((ewP->flg & 0x40))
+    {
+        mtxP = &ewP->mlwP->owP->mtx;
+        
+        pos = *(NJS_POINT3*)&plp->px;
+
+        if (bhEne19_CollisionCircle2Oval(mtxP, ewP->car * fwP->ovl_rte, ewP->car, &pos, plp->car) != 0)
+        {
+            plp->px = pos.x;
+            plp->pz = pos.z;
+
+            ah_bak = plp->ah;
+            ar_bak = plp->ar;
+
+            plp->ah = 1.0f;
+            
+            bhCheckWall(plp);
+            
+            plp->ah = ah_bak;
+            plp->ar = ar_bak;
+
+            PEXP0_F(72) = plp->px;
+            PEXP0_F(80) = plp->pz;
+        }
+    }
+
+    bhEne19_CalcEnemy(ewP, fwP);
+    
+    bhEne19_PlyMoveMain(plp, fwP);
 }
 
 // 100% matching!

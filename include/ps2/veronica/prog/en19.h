@@ -2,6 +2,7 @@
 #define _EN19_H_
 
 #include "types.h"
+#include "macros.h"
 #include "../../../ps2/veronica/prog/effsub3.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
 

@@ -213,41 +213,63 @@ static PMA_WORK* Eff30aTbl[3] =
 	Eff30aPrm2
 };
 
-// 
-// Start address: 0x1f0450
+// 100% matching!
 void bhEne19(BH_PWORK* ewP)
 {
-	ML_WORK* mlwP;
-	EB_WORK* ebP;
-	R49_WORK* r49P;
-	int sts;
-	FW_WORK* fwP;
-	// Line 449, Address: 0x1f0450, Func Offset: 0
-	// Line 453, Address: 0x1f0464, Func Offset: 0x14
-	// Line 455, Address: 0x1f0470, Func Offset: 0x20
-	// Line 458, Address: 0x1f0474, Func Offset: 0x24
-	// Line 459, Address: 0x1f0498, Func Offset: 0x48
-	// Line 462, Address: 0x1f04a0, Func Offset: 0x50
-	// Line 463, Address: 0x1f04b0, Func Offset: 0x60
-	// Line 467, Address: 0x1f04c8, Func Offset: 0x78
-	// Line 471, Address: 0x1f04d8, Func Offset: 0x88
-	// Line 472, Address: 0x1f04e8, Func Offset: 0x98
-	// Line 474, Address: 0x1f04f4, Func Offset: 0xa4
-	// Line 475, Address: 0x1f04f8, Func Offset: 0xa8
-	// Line 476, Address: 0x1f04fc, Func Offset: 0xac
-	// Line 480, Address: 0x1f0500, Func Offset: 0xb0
-	// Line 481, Address: 0x1f0510, Func Offset: 0xc0
-	// Line 483, Address: 0x1f0514, Func Offset: 0xc4
-	// Line 484, Address: 0x1f0524, Func Offset: 0xd4
-	// Line 483, Address: 0x1f052c, Func Offset: 0xdc
-	// Line 484, Address: 0x1f0530, Func Offset: 0xe0
-	// Line 485, Address: 0x1f0538, Func Offset: 0xe8
-	// Line 508, Address: 0x1f054c, Func Offset: 0xfc
-	// Line 510, Address: 0x1f056c, Func Offset: 0x11c
-	// Line 514, Address: 0x1f0578, Func Offset: 0x128
-	// Line 516, Address: 0x1f0584, Func Offset: 0x134
-	// Func End, Address: 0x1f059c, Func Offset: 0x14c
-	scePrintf("bhEne19 - UNIMPLEMENTED!\n");
+    FW_WORK* fwP;   
+    int sts;        
+    R49_WORK* r49P; 
+    EB_WORK* ebP;   
+    ML_WORK* mlwP;  
+
+    if (ewP->mode0 != 0)
+    {
+        fwP = (FW_WORK*)ewP->exp0;
+        
+        sts = fwP->status;
+
+        if ((ewP->exp2 == NULL) && (!(sys->gm_flg & 0x1)))
+        {
+            ewP->exp2 = (unsigned char*)-1;
+
+            if ((sts & 0x20000000))
+            {
+                fwP->cam_clrP = (R0A_WORK*)bhSetRapEff(310, fwP->e0aP, 8)->free4;
+            }
+
+            if ((sts & 0x10000000))
+            {
+                r49P = (R49_WORK*)bhSetRapEff(349, NULL, 0)->free4;
+                
+                r49P->fnc_prcP = (void*)bhEne19_TyBloodSet;
+                
+                ebP = (EB_WORK*)r49P->free;
+                
+                ebP->ewP = ewP;
+                ebP->fwP = fwP;
+                
+                ebP->time = 0;
+            }
+
+            if ((sts & 0x80000000))
+            {
+                mlwP = ewP->mlwP;
+                
+                fwP->clw0P = bhEne19_SetLeftClaw(mlwP, TY_OBJ_ARM_L2, TY_OBJ_CLAW0);
+                
+                bhEne19_SetLeftClaw(mlwP, TY_OBJ_ARM_L2, TY_OBJ_CLAW1);
+                
+                fwP->clw2P = bhEne19_SetLeftClaw(mlwP, TY_OBJ_ARM_L2, TY_OBJ_CLAW2);
+            }
+        }
+    }
+
+    bhEne19_Mode0[ewP->mode0](ewP);
+
+    if (ewP->mode0)
+    {
+        ((FW_WORK*)ewP->exp0)->mode0_bak = ewP->mode0;
+    }
 }
 
 // 

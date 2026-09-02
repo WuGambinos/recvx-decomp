@@ -1139,40 +1139,65 @@ static void bhEne19_Mv06(BH_PWORK* ewP, FW_WORK* fwP, int count) // parameters n
 
 }
 
-// 
-// Start address: 0x1f2610
+// 100% matching!
 static void bhEne19_Mv07(BH_PWORK* ewP, FW_WORK* fwP, int count)
 {
-	int ang[3];
-	float pos[3];
-	int* stsP;
-	// Line 2045, Address: 0x1f2610, Func Offset: 0
-	// Line 2048, Address: 0x1f2624, Func Offset: 0x14
-	// Line 2046, Address: 0x1f262c, Func Offset: 0x1c
-	// Line 2048, Address: 0x1f2634, Func Offset: 0x24
-	// Line 2050, Address: 0x1f2638, Func Offset: 0x28
-	// Line 2051, Address: 0x1f2640, Func Offset: 0x30
-	// Line 2054, Address: 0x1f2650, Func Offset: 0x40
-	// Line 2056, Address: 0x1f266c, Func Offset: 0x5c
-	// Line 2059, Address: 0x1f2684, Func Offset: 0x74
-	// Line 2060, Address: 0x1f269c, Func Offset: 0x8c
-	// Line 2061, Address: 0x1f26b4, Func Offset: 0xa4
-	// Line 2070, Address: 0x1f26c0, Func Offset: 0xb0
-	// Line 2071, Address: 0x1f26f0, Func Offset: 0xe0
-	// Line 2072, Address: 0x1f2704, Func Offset: 0xf4
-	// Line 2076, Address: 0x1f2708, Func Offset: 0xf8
-	// Line 2072, Address: 0x1f2714, Func Offset: 0x104
-	// Line 2073, Address: 0x1f2718, Func Offset: 0x108
-	// Line 2074, Address: 0x1f2728, Func Offset: 0x118
-	// Line 2076, Address: 0x1f272c, Func Offset: 0x11c
-	// Line 2078, Address: 0x1f2734, Func Offset: 0x124
-	// Line 2082, Address: 0x1f2748, Func Offset: 0x138
-	// Line 2078, Address: 0x1f274c, Func Offset: 0x13c
-	// Line 2079, Address: 0x1f275c, Func Offset: 0x14c
-	// Line 2082, Address: 0x1f2774, Func Offset: 0x164
-	// Line 2084, Address: 0x1f2790, Func Offset: 0x180
-	// Func End, Address: 0x1f27a8, Func Offset: 0x198
-	scePrintf("bhEne19_Mv07 - UNIMPLEMENTED!\n");
+    int* stsP;    
+    float pos[3]; 
+    int ang[3];   
+
+    stsP = &fwP->status;
+
+    *stsP |= 0x20;  
+    
+    if (count == 0) 
+    {
+        *stsP &= ~0x4;
+        
+        if ((*stsP & 0x2000)) 
+        {
+            *stsP |= 0x8;
+        }
+        else if ((*stsP & 0x4000))
+        {
+            *stsP &= ~0x8;
+        }
+        
+        fwP->pos_tmp[0] = ewP->px;
+        fwP->pos_tmp[1] = ewP->py;
+        fwP->pos_tmp[2] = ewP->pz;
+        
+        fwP->ang_tmp[0] = ewP->ax;
+        fwP->ang_tmp[1] = ewP->ay;
+        fwP->ang_tmp[2] = ewP->az;
+        
+        njSetMatrix(&fwP->mtx_bak, ewP->mtx);
+    }
+    
+    if ((*stsP & 0x8)) 
+    {
+        ewP->mtn_md |= 0x2;
+    } 
+    else 
+    {
+        ewP->mtn_md &= ~0x2;
+    }
+    
+    bhGetObjMotion(ewP, 0, pos, ang);
+    
+    ewP->ax = ang[0];
+    ewP->ay = fwP->ang_tmp[1] + ang[1];
+    ewP->az = ang[2];
+    
+    njCalcPoint(&fwP->mtx_bak, (NJS_POINT3*)pos, (NJS_POINT3*)pos);
+    
+    ewP->px += 0.1f * (pos[0] - ewP->px);
+    ewP->pz += 0.1f * (pos[2] - ewP->pz);
+    
+    if (fwP->mtn_rte >= 52428) 
+    {
+        *stsP |= 0x4;
+    }
 }
 
 // 

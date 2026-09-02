@@ -3,6 +3,7 @@
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 
 // ENEMY: Tyrant T-078 
@@ -1833,36 +1834,47 @@ static void bhEne19_PositonFix(BH_PWORK* ewP, FW_WORK* fwP)
 	scePrintf("bhEne19_PositonFix - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f40f0
+// 99.55% matching
 static void bhEne19_HeadTurn(BH_PWORK* ewP, FW_WORK* fwP, int mode)
 {
-	int ang;
-	int dlt;
-	NJS_POINT3* posP;
-	NJS_CNK_OBJECT* objP;
-	O_WORK* owP;
-	// Line 3072, Address: 0x1f40f0, Func Offset: 0
-	// Line 3073, Address: 0x1f4108, Func Offset: 0x18
-	// Line 3075, Address: 0x1f4110, Func Offset: 0x20
-	// Line 3080, Address: 0x1f4118, Func Offset: 0x28
-	// Line 3084, Address: 0x1f411c, Func Offset: 0x2c
-	// Line 3083, Address: 0x1f412c, Func Offset: 0x3c
-	// Line 3080, Address: 0x1f4130, Func Offset: 0x40
-	// Line 3084, Address: 0x1f4134, Func Offset: 0x44
-	// Line 3085, Address: 0x1f4168, Func Offset: 0x78
-	// Line 3088, Address: 0x1f4170, Func Offset: 0x80
-	// Line 3090, Address: 0x1f418c, Func Offset: 0x9c
-	// Line 3093, Address: 0x1f419c, Func Offset: 0xac
-	// Line 3096, Address: 0x1f41a0, Func Offset: 0xb0
-	// Line 3098, Address: 0x1f41a4, Func Offset: 0xb4
-	// Line 3099, Address: 0x1f41b0, Func Offset: 0xc0
-	// Line 3100, Address: 0x1f41b8, Func Offset: 0xc8
-	// Line 3101, Address: 0x1f41c0, Func Offset: 0xd0
-	// Line 3102, Address: 0x1f41d0, Func Offset: 0xe0
-	// Line 3105, Address: 0x1f41dc, Func Offset: 0xec
-	// Func End, Address: 0x1f41f8, Func Offset: 0x108
-	scePrintf("bhEne19_HeadTurn - UNIMPLEMENTED!\n");
+    O_WORK* owP;        
+    NJS_CNK_OBJECT* objP; 
+    NJS_POINT3* posP;    
+    int dlt;              
+    int ang;              
+    
+    owP = ewP->mlwP->owP;    
+
+    if (mode != 0)
+    {
+        objP = &ewP->mlwP->objP[5];       
+        
+        ang = objP->ang[1]; 
+        
+        dlt = (short)(((int)(10430.381f * atan2f(owP[5].mtx[12] - fwP->tgt_pos.x, owP[5].mtx[14] - fwP->tgt_pos.z)) - ewP->ay) - ang);
+        
+        ang += dlt / 8;
+
+        if ((short)ang < -7281) 
+        {
+            ang = -7281;
+        }
+        else if ((short)ang > 7281) 
+        {
+            ang = 7281;
+        }
+
+        objP[0].ang[1] = ang;
+        objP[1].ang[1] = 0;         
+
+        owP[4].flg |= 0x2;
+        owP[5].flg |= 0x2;
+    }
+    else
+    {
+        owP[4].flg &= ~0x2;
+        owP[5].flg &= ~0x2;
+    }
 }
 
 // 

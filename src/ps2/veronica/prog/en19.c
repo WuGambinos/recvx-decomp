@@ -1219,48 +1219,47 @@ static void bhEne19_Mv07(BH_PWORK* ewP, FW_WORK* fwP, int count)
     }
 }
 
-// 
-// Start address: 0x1f27b0
+// 100% matching!
 static void bhEne19_Mv08(BH_PWORK* ewP, FW_WORK* fwP, int count) // third parameter not present on DWARF
 {
-	NJS_MATRIX* mtxP;
-	NJS_POINT3 pos;
-	NJS_POINT3 dir;
-	int* stsP;
-	// Line 2096, Address: 0x1f27b0, Func Offset: 0
-	// Line 2099, Address: 0x1f27c8, Func Offset: 0x18
-	// Line 2097, Address: 0x1f27cc, Func Offset: 0x1c
-	// Line 2099, Address: 0x1f27d0, Func Offset: 0x20
-	// Line 2104, Address: 0x1f27dc, Func Offset: 0x2c
-	// Line 2106, Address: 0x1f2804, Func Offset: 0x54
-	// Line 2107, Address: 0x1f2820, Func Offset: 0x70
-	// Line 2110, Address: 0x1f2828, Func Offset: 0x78
-	// Line 2113, Address: 0x1f285c, Func Offset: 0xac
-	// Line 2115, Address: 0x1f2864, Func Offset: 0xb4
-	// Line 2113, Address: 0x1f286c, Func Offset: 0xbc
-	// Line 2115, Address: 0x1f2870, Func Offset: 0xc0
-	// Line 2113, Address: 0x1f2874, Func Offset: 0xc4
-	// Line 2115, Address: 0x1f2878, Func Offset: 0xc8
-	// Line 2113, Address: 0x1f2884, Func Offset: 0xd4
-	// Line 2115, Address: 0x1f2888, Func Offset: 0xd8
-	// Line 2116, Address: 0x1f2894, Func Offset: 0xe4
-	// Line 2117, Address: 0x1f28a4, Func Offset: 0xf4
-	// Line 2119, Address: 0x1f28b0, Func Offset: 0x100
-	// Line 2120, Address: 0x1f28b4, Func Offset: 0x104
-	// Line 2117, Address: 0x1f28b8, Func Offset: 0x108
-	// Line 2122, Address: 0x1f28bc, Func Offset: 0x10c
-	// Line 2117, Address: 0x1f28c8, Func Offset: 0x118
-	// Line 2120, Address: 0x1f28d0, Func Offset: 0x120
-	// Line 2117, Address: 0x1f28d8, Func Offset: 0x128
-	// Line 2119, Address: 0x1f28ec, Func Offset: 0x13c
-	// Line 2120, Address: 0x1f290c, Func Offset: 0x15c
-	// Line 2122, Address: 0x1f292c, Func Offset: 0x17c
-	// Line 2124, Address: 0x1f2934, Func Offset: 0x184
-	// Line 2125, Address: 0x1f2938, Func Offset: 0x188
-	// Line 2126, Address: 0x1f2940, Func Offset: 0x190
-	// Line 2132, Address: 0x1f2948, Func Offset: 0x198
-	// Func End, Address: 0x1f2960, Func Offset: 0x1b0
-	scePrintf("bhEne19_Mv08 - UNIMPLEMENTED!\n");
+    int* stsP;       
+    NJS_POINT3 dir;   
+    NJS_POINT3 pos;  
+    NJS_MATRIX* mtxP; 
+
+    stsP = &fwP->status;
+
+    if (((*stsP & 0x40)) && ((bhEne19_AttackHitCheck(ewP, (!(*stsP & 0x8)) ? TY_ARM_RIGHT : TY_ARM_LEFT, 4.0f, &fwP->trw_dir) != 0) && (bhEne19_PlySetDamage(plp, fwP, 1) != 0))) 
+    {
+        fwP->trw_spd = 2.0f;
+
+        if (((!(*stsP & 0x8)) && ((*stsP & 0x40000000))) || (((*stsP & 0x8)) && ((*stsP & 0x80000000)))) 
+        {
+            mtxP = &plp->mlwP->owP[2].mtx;
+            
+            pos = *(NJS_POINT3*)&ewP->mlwP->owP[9].mtx[12];
+            
+            njAddVector(&pos, (NJS_VECTOR*)&plp->mlwP->owP[2].mtx[12]);
+            
+            pos.x *= 0.5f;
+            pos.y *= 0.5f;
+            pos.z *= 0.5f;
+            
+            dir = *(NJS_POINT3*)&ewP->mlwP->owP[9].mtx[4];
+            
+            dir.x *= -1.0f;
+            dir.y *= -1.0f;
+            dir.z *= -1.0f;
+            
+            rySetEffBlood(mtxP, &pos, &dir, 0);
+            
+            fwP->snd_no = 11;
+        } 
+        else 
+        {
+            fwP->snd_no = 9;
+        }
+    }
 }
 
 // 

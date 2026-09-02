@@ -14,7 +14,7 @@
 ## About
 
 > [!IMPORTANT]
-Issues and pull-requests that are clearly **AI-generated** will be automatically **turned down**. Click [here](https://github.com/AshfordFamily/recvx-decomp/pull/40#issuecomment-4861213243) to read up on our stance in regards to the use of LLMs for contributions.
+Issues and pull-requests that are clearly **AI-generated** will be automatically **turned down**.
 
 **recvx-decomp** is a reverse-engineering project for Resident Evil: Code Veronica X which has the goal of reconstructing the source code of the game by decompiling the MIPS in the PS2 ELF back to C. The project currently only works with the US release (**SLUS-20184**), with plans to add support for more regions in the future.
 

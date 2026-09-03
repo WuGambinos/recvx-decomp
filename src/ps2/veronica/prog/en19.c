@@ -520,179 +520,443 @@ static void bhEne19_Event(BH_PWORK* ewP)
     bhEne19_CalcEnemy(ewP, (FW_WORK*)ewP->exp0);
 }
 
-// 
-// Start address: 0x1f0c70
+// 100% matching!
 static void bhEne19_Br00(BH_PWORK* ewP)
 {
-	int lop;
-	int act;
-	int rte;
-	int* wt1P;
-	TY_BR_MODE2* br2P;
-	TY_BR_MODE1* br1P;
-	TY_BR_MODE0* br0P;
-	int sts;
-	int* pstP;
-	int* stsP;
-	FW_WORK* fwP;
-	// Line 820, Address: 0x1f0c70, Func Offset: 0
-	// Line 824, Address: 0x1f0c98, Func Offset: 0x28
-	// Line 826, Address: 0x1f0ca4, Func Offset: 0x34
-	// Line 834, Address: 0x1f0ca8, Func Offset: 0x38
-	// Line 828, Address: 0x1f0cac, Func Offset: 0x3c
-	// Line 834, Address: 0x1f0cb0, Func Offset: 0x40
-	// Line 835, Address: 0x1f0cbc, Func Offset: 0x4c
-	// Line 836, Address: 0x1f0cdc, Func Offset: 0x6c
-	// Line 840, Address: 0x1f0ce8, Func Offset: 0x78
-	// Line 844, Address: 0x1f0cf4, Func Offset: 0x84
-	// Line 846, Address: 0x1f0d14, Func Offset: 0xa4
-	// Line 847, Address: 0x1f0d18, Func Offset: 0xa8
-	// Line 849, Address: 0x1f0d1c, Func Offset: 0xac
-	// Line 850, Address: 0x1f0d20, Func Offset: 0xb0
-	// Line 856, Address: 0x1f0d24, Func Offset: 0xb4
-	// Line 861, Address: 0x1f0d2c, Func Offset: 0xbc
-	// Line 857, Address: 0x1f0d30, Func Offset: 0xc0
-	// Line 858, Address: 0x1f0d34, Func Offset: 0xc4
-	// Line 859, Address: 0x1f0d40, Func Offset: 0xd0
-	// Line 860, Address: 0x1f0d44, Func Offset: 0xd4
-	// Line 862, Address: 0x1f0d48, Func Offset: 0xd8
-	// Line 863, Address: 0x1f0d4c, Func Offset: 0xdc
-	// Line 866, Address: 0x1f0d6c, Func Offset: 0xfc
-	// Line 869, Address: 0x1f0da4, Func Offset: 0x134
-	// Line 872, Address: 0x1f0ddc, Func Offset: 0x16c
-	// Line 874, Address: 0x1f0de8, Func Offset: 0x178
-	// Line 875, Address: 0x1f0df0, Func Offset: 0x180
-	// Line 876, Address: 0x1f0df8, Func Offset: 0x188
-	// Line 877, Address: 0x1f0e00, Func Offset: 0x190
-	// Line 878, Address: 0x1f0e10, Func Offset: 0x1a0
-	// Line 879, Address: 0x1f0e14, Func Offset: 0x1a4
-	// Line 881, Address: 0x1f0e18, Func Offset: 0x1a8
-	// Line 882, Address: 0x1f0e20, Func Offset: 0x1b0
-	// Line 886, Address: 0x1f0e28, Func Offset: 0x1b8
-	// Line 887, Address: 0x1f0e30, Func Offset: 0x1c0
-	// Line 888, Address: 0x1f0e34, Func Offset: 0x1c4
-	// Line 891, Address: 0x1f0e38, Func Offset: 0x1c8
-	// Line 894, Address: 0x1f0e40, Func Offset: 0x1d0
-	// Line 897, Address: 0x1f0e5c, Func Offset: 0x1ec
-	// Line 898, Address: 0x1f0e74, Func Offset: 0x204
-	// Line 899, Address: 0x1f0e7c, Func Offset: 0x20c
-	// Line 900, Address: 0x1f0e8c, Func Offset: 0x21c
-	// Line 901, Address: 0x1f0e90, Func Offset: 0x220
-	// Line 902, Address: 0x1f0e98, Func Offset: 0x228
-	// Line 903, Address: 0x1f0ea8, Func Offset: 0x238
-	// Line 905, Address: 0x1f0eac, Func Offset: 0x23c
-	// Line 906, Address: 0x1f0eb4, Func Offset: 0x244
-	// Line 908, Address: 0x1f0eb8, Func Offset: 0x248
-	// Line 909, Address: 0x1f0ebc, Func Offset: 0x24c
-	// Line 912, Address: 0x1f0ec4, Func Offset: 0x254
-	// Line 917, Address: 0x1f0ed4, Func Offset: 0x264
-	// Line 920, Address: 0x1f0edc, Func Offset: 0x26c
-	// Line 923, Address: 0x1f0ef8, Func Offset: 0x288
-	// Line 925, Address: 0x1f0efc, Func Offset: 0x28c
-	// Line 928, Address: 0x1f0f04, Func Offset: 0x294
-	// Line 929, Address: 0x1f0f18, Func Offset: 0x2a8
-	// Line 933, Address: 0x1f0f28, Func Offset: 0x2b8
-	// Line 937, Address: 0x1f0f2c, Func Offset: 0x2bc
-	// Line 941, Address: 0x1f0f34, Func Offset: 0x2c4
-	// Line 944, Address: 0x1f0f50, Func Offset: 0x2e0
-	// Line 946, Address: 0x1f0f54, Func Offset: 0x2e4
-	// Line 949, Address: 0x1f0f5c, Func Offset: 0x2ec
-	// Line 952, Address: 0x1f0f80, Func Offset: 0x310
-	// Line 961, Address: 0x1f0f88, Func Offset: 0x318
-	// Line 964, Address: 0x1f0fac, Func Offset: 0x33c
-	// Line 965, Address: 0x1f0fbc, Func Offset: 0x34c
-	// Line 966, Address: 0x1f0fd0, Func Offset: 0x360
-	// Line 967, Address: 0x1f0fd8, Func Offset: 0x368
-	// Line 970, Address: 0x1f0fe0, Func Offset: 0x370
-	// Line 971, Address: 0x1f0fe8, Func Offset: 0x378
-	// Line 974, Address: 0x1f0fec, Func Offset: 0x37c
-	// Line 977, Address: 0x1f0ff4, Func Offset: 0x384
-	// Line 979, Address: 0x1f1004, Func Offset: 0x394
-	// Line 982, Address: 0x1f100c, Func Offset: 0x39c
-	// Line 984, Address: 0x1f1018, Func Offset: 0x3a8
-	// Line 987, Address: 0x1f1020, Func Offset: 0x3b0
-	// Line 989, Address: 0x1f1030, Func Offset: 0x3c0
-	// Line 990, Address: 0x1f1040, Func Offset: 0x3d0
-	// Line 991, Address: 0x1f1044, Func Offset: 0x3d4
-	// Line 994, Address: 0x1f1048, Func Offset: 0x3d8
-	// Line 995, Address: 0x1f1050, Func Offset: 0x3e0
-	// Line 996, Address: 0x1f1060, Func Offset: 0x3f0
-	// Line 997, Address: 0x1f1064, Func Offset: 0x3f4
-	// Line 999, Address: 0x1f1068, Func Offset: 0x3f8
-	// Line 998, Address: 0x1f106c, Func Offset: 0x3fc
-	// Line 1006, Address: 0x1f1070, Func Offset: 0x400
-	// Line 1010, Address: 0x1f1078, Func Offset: 0x408
-	// Line 1011, Address: 0x1f107c, Func Offset: 0x40c
-	// Line 1014, Address: 0x1f10b0, Func Offset: 0x440
-	// Line 1015, Address: 0x1f10bc, Func Offset: 0x44c
-	// Line 1017, Address: 0x1f10c0, Func Offset: 0x450
-	// Line 1018, Address: 0x1f10d0, Func Offset: 0x460
-	// Line 1019, Address: 0x1f10d4, Func Offset: 0x464
-	// Line 1021, Address: 0x1f10d8, Func Offset: 0x468
-	// Line 1022, Address: 0x1f10e0, Func Offset: 0x470
-	// Line 1023, Address: 0x1f10e4, Func Offset: 0x474
-	// Line 1024, Address: 0x1f10ec, Func Offset: 0x47c
-	// Line 1025, Address: 0x1f10f0, Func Offset: 0x480
-	// Line 1028, Address: 0x1f10f4, Func Offset: 0x484
-	// Line 1032, Address: 0x1f10fc, Func Offset: 0x48c
-	// Line 1035, Address: 0x1f1118, Func Offset: 0x4a8
-	// Line 1036, Address: 0x1f1130, Func Offset: 0x4c0
-	// Line 1037, Address: 0x1f1138, Func Offset: 0x4c8
-	// Line 1038, Address: 0x1f1148, Func Offset: 0x4d8
-	// Line 1039, Address: 0x1f114c, Func Offset: 0x4dc
-	// Line 1040, Address: 0x1f1154, Func Offset: 0x4e4
-	// Line 1041, Address: 0x1f1164, Func Offset: 0x4f4
-	// Line 1043, Address: 0x1f1168, Func Offset: 0x4f8
-	// Line 1044, Address: 0x1f1170, Func Offset: 0x500
-	// Line 1045, Address: 0x1f1174, Func Offset: 0x504
-	// Line 1046, Address: 0x1f1178, Func Offset: 0x508
-	// Line 1047, Address: 0x1f117c, Func Offset: 0x50c
-	// Line 1050, Address: 0x1f1184, Func Offset: 0x514
-	// Line 1055, Address: 0x1f1194, Func Offset: 0x524
-	// Line 1059, Address: 0x1f119c, Func Offset: 0x52c
-	// Line 1062, Address: 0x1f11b8, Func Offset: 0x548
-	// Line 1063, Address: 0x1f11c8, Func Offset: 0x558
-	// Line 1065, Address: 0x1f11cc, Func Offset: 0x55c
-	// Line 1066, Address: 0x1f11d4, Func Offset: 0x564
-	// Line 1067, Address: 0x1f11d8, Func Offset: 0x568
-	// Line 1068, Address: 0x1f11dc, Func Offset: 0x56c
-	// Line 1070, Address: 0x1f11e0, Func Offset: 0x570
-	// Line 1073, Address: 0x1f11e8, Func Offset: 0x578
-	// Line 1074, Address: 0x1f11f8, Func Offset: 0x588
-	// Line 1075, Address: 0x1f11fc, Func Offset: 0x58c
-	// Line 1080, Address: 0x1f1200, Func Offset: 0x590
-	// Line 1083, Address: 0x1f1208, Func Offset: 0x598
-	// Line 1086, Address: 0x1f1224, Func Offset: 0x5b4
-	// Line 1087, Address: 0x1f1228, Func Offset: 0x5b8
-	// Line 1090, Address: 0x1f122c, Func Offset: 0x5bc
-	// Line 1091, Address: 0x1f1230, Func Offset: 0x5c0
-	// Line 1092, Address: 0x1f1240, Func Offset: 0x5d0
-	// Line 1093, Address: 0x1f1244, Func Offset: 0x5d4
-	// Line 1100, Address: 0x1f1248, Func Offset: 0x5d8
-	// Line 1104, Address: 0x1f1250, Func Offset: 0x5e0
-	// Line 1109, Address: 0x1f1270, Func Offset: 0x600
-	// Line 1110, Address: 0x1f1274, Func Offset: 0x604
-	// Line 1107, Address: 0x1f1278, Func Offset: 0x608
-	// Line 1112, Address: 0x1f127c, Func Offset: 0x60c
-	// Line 1115, Address: 0x1f1284, Func Offset: 0x614
-	// Line 1118, Address: 0x1f1298, Func Offset: 0x628
-	// Line 1124, Address: 0x1f129c, Func Offset: 0x62c
-	// Line 1127, Address: 0x1f12a4, Func Offset: 0x634
-	// Line 1130, Address: 0x1f12c4, Func Offset: 0x654
-	// Line 1134, Address: 0x1f12e4, Func Offset: 0x674
-	// Line 1135, Address: 0x1f12e8, Func Offset: 0x678
-	// Line 1133, Address: 0x1f12ec, Func Offset: 0x67c
-	// Line 1135, Address: 0x1f12f0, Func Offset: 0x680
-	// Line 1143, Address: 0x1f12f8, Func Offset: 0x688
-	// Line 1146, Address: 0x1f1300, Func Offset: 0x690
-	// Line 1149, Address: 0x1f1314, Func Offset: 0x6a4
-	// Line 1150, Address: 0x1f1318, Func Offset: 0x6a8
-	// Line 1157, Address: 0x1f131c, Func Offset: 0x6ac
-	// Line 1158, Address: 0x1f1320, Func Offset: 0x6b0
-	// Line 1161, Address: 0x1f132c, Func Offset: 0x6bc
-	// Line 1164, Address: 0x1f1344, Func Offset: 0x6d4
-	// Func End, Address: 0x1f1370, Func Offset: 0x700
-	scePrintf("bhEne19_Br00 - UNIMPLEMENTED!\n");
+    FW_WORK* fwP;     
+    int* stsP, *pstP;         
+    int sts;           
+    TY_BR_MODE0* br0P; 
+    TY_BR_MODE1* br1P; 
+    TY_BR_MODE2* br2P; 
+    int* wt1P;         
+    int rte;           
+    int act;          
+    int lop;          
+
+    pdGetPeripheral(0);
+    
+    stsP =       &((FW_WORK*)ewP->exp0)->status;
+    pstP = (int*)&((FW_WORK*)ewP->exp0)->ply_act;
+
+    fwP = (FW_WORK*)ewP->exp0;
+
+    if (!(*stsP & 0x400)) 
+    {
+        fwP->tgt_pos = *(NJS_POINT3*)&plp->px;
+        
+        *stsP |= 0x1;
+    }
+
+    bhEne19_TargetAnalyze(ewP, fwP);
+
+    if ((fwP->dmg_dly >= 3) && (fwP->br_mde1 != TY_BR1_DAMAGE)) 
+    {
+        fwP->dmg_lvl = fwP->dmg_dly;
+        fwP->dmg_dly = 0;
+        
+        fwP->br_mde1 = TY_BR1_DAMAGE;
+        fwP->br_mde2 = TY_BR2_FIRST;
+    }
+
+    sts = *stsP;
+    
+    rte = fwP->mtn_rte;
+
+    br0P = &fwP->br_mde0;
+    br1P = &fwP->br_mde1;
+    br2P = &fwP->br_mde2;
+    
+    wt1P = &fwP->br_wait1;
+
+    act = -1;
+    
+    lop = 0;
+
+    do 
+    {
+        switch (*br0P) 
+        {
+        case TY_BR0_NORMAL:
+            switch (*br1P) 
+            {
+            case TY_BR1_NORMAL:
+                if (*wt1P > 0)
+                {
+                    (*wt1P)--;
+                    
+                    act = 0;
+                } 
+                else if (!(sts & 0x2000000))
+                {
+                    if (((sts & 0x1000)) && ((sts & 0x1))) 
+                    {
+                        *br1P = TY_BR1_ATTACK;
+                        *br2P = TY_BR2_FIRST;
+                        
+                        lop = 1;
+                    } 
+                    else 
+                    {
+                        lop = 1;
+                        
+                        *br1P = lop;
+                        *br2P = TY_BR2_FIRST;
+                    }
+                } 
+                else 
+                {
+                    *br1P = TY_BR1_ROTATE;
+                    *br2P = TY_BR2_FIRST;
+                    
+                    lop = 1;
+                }
+                
+                break;
+            case TY_BR1_ATTACK:
+                switch (*br2P) 
+                {
+                case TY_BR2_FIRST:
+                    if ((!(*pstP & 0x1)) && (!(sts & 0x800))) 
+                    {
+                        if (!(sts & 0x8)) 
+                        {
+                            if ((sts & 0x2000)) 
+                            { 
+                                act = 10; 
+                            }
+                            else 
+                            { 
+                                act = 9; 
+                            }
+                        } 
+                        else 
+                        {
+                            if ((sts & 0x4000)) 
+                            { 
+                                act = 10; 
+                            }
+                            else 
+                            { 
+                                act = 9; 
+                            }
+                        }
+                    } 
+                    else
+                    {
+                        act = 0;
+                    }
+                    
+                    *br2P = TY_BR2_LOOP0;
+                    break;
+                case TY_BR2_LOOP0:
+                    if (rte >= fwP->chg_rte) 
+                    { 
+                        *br1P = TY_BR1_NORMAL; 
+                    }
+                    
+                    break;
+                }
+                
+                break;
+            case TY_BR1_WALK:
+                switch (*br2P) 
+                {
+                case TY_BR2_FIRST:
+                    act = 4;
+                    
+                    *br2P = TY_BR2_LOOP0;
+                    break;
+                case TY_BR2_LOOP0:
+                    if ((((sts & 0x1000000)) || ((sts & 0x1000))) && (((sts & 0x2000000)) || ((sts & 0x1000))))
+                    {
+                        lop = 1;
+                        
+                        *br1P = TY_BR1_NORMAL;
+                    }
+                    
+                    break;
+                }
+                
+                break;
+            case TY_BR1_ROTATE:
+                switch (*br2P)
+                {
+                case TY_BR2_FIRST:
+                    act = 8;
+                    
+                    *br2P = TY_BR2_LOOP0;
+                    break;
+                case TY_BR2_LOOP0:
+                    if ((rte >= 65536) || (fwP->tgt_ang < 1820))
+                    {
+                        *br1P = TY_BR1_NORMAL;
+                    }
+                    
+                    break;
+                }
+                
+                break;
+            case TY_BR1_DAMAGE:
+                switch (*br2P) 
+                {
+                case TY_BR2_FIRST:
+                    if (fwP->dmg_lvl < 3) 
+                    {
+                        if (fwP->dmg_lvl < 2) 
+                        { 
+                            act = 16; 
+                        }
+                        else 
+                        { 
+                            act = 17; 
+                        }
+                        
+                        *br2P = TY_BR2_LOOP0;
+                        
+                        fwP->dmg_lvl = 0;
+                    }
+                    else 
+                    {
+                        act = 18;
+                        
+                        *br2P = TY_BR2_LOOP1;
+                    }
+                    
+                    break;
+                case TY_BR2_LOOP0:
+                    if (rte >= fwP->chg_rte)
+                    {
+                        *br1P = TY_BR1_NORMAL;
+                    } 
+                    else if (fwP->dmg_lvl != 0)
+                    {
+                        *br2P = TY_BR2_FIRST;
+                    }
+                    
+                    break;
+                case TY_BR2_LOOP1:
+                    if (fwP->dmg_lvl >= 5)
+                    {
+                        if (rte > 39321)
+                        {
+                            *br0P = TY_BR0_DOWN;
+                            *br1P = TY_BR1_DAMAGE;
+                            *br2P = TY_BR2_FIRST;
+                        }
+                    }
+                    else if (rte >= fwP->chg_rte) 
+                    {
+                        *br0P = TY_BR0_DOWN;
+                        *br1P = TY_BR1_NORMAL;
+                        *br2P = TY_BR2_FIRST;
+                        
+                        *wt1P = 120;
+                    }
+                    
+                    break;
+                }
+                
+                break;
+            }
+            
+            break;
+        case TY_BR0_DOWN:
+            ewP->comb_timeout = 0;
+            
+            switch (*br1P) 
+            {
+            case TY_BR1_NORMAL:
+                if (*wt1P > 0) 
+                {
+                    (*wt1P)--;
+                    
+                    if ((!(sts & 0x2000000)) && ((sts & 0x1000)))
+                    {
+                        *br1P = TY_BR1_ATTACK;
+                        *br2P = TY_BR2_FIRST;
+                        
+                        lop = 1;
+                    } 
+                    else 
+                    {
+                        act = 1;
+                    }
+                } 
+                else 
+                {
+                    *br1P = TY_BR1_CHANGE;
+                    *br2P = TY_BR2_FIRST;
+                    
+                    lop = 1;
+                }
+                
+                break;
+            case TY_BR1_ATTACK:
+                switch (*br2P) 
+                {
+                case TY_BR2_FIRST:
+                    if (((sts & 0x1)) && (!(*pstP & 0x1)))
+                    {
+                        if (!(sts & 0x8)) 
+                        {
+                            if ((sts & 0x4000)) 
+                            { 
+                                act = 12; 
+                            } 
+                            else 
+                            { 
+                                act = 13; 
+                            }
+                        } 
+                        else 
+                        {
+                            if ((sts & 0x4000)) 
+                            { 
+                                act = 13; 
+                            } 
+                            else 
+                            { 
+                                act = 12; 
+                            }
+                        }
+                    } 
+                    else 
+                    {
+                        act = 1;
+                    }
+                    
+                    *br2P = TY_BR2_LOOP0;
+                    break;
+                case TY_BR2_LOOP0:
+                    if (rte >= fwP->chg_rte) 
+                    { 
+                        *br1P = TY_BR1_NORMAL; 
+                    }
+                    
+                    break;
+                }
+                            
+                break;
+            case TY_BR1_DAMAGE:
+                switch (*br2P) 
+                {
+                case TY_BR2_FIRST:
+                    if (fwP->dmg_lvl >= 5) 
+                    {
+                        act = 19;
+                        
+                        *br2P = TY_BR2_LOOP0;
+                    } 
+                    else
+                    {
+                        *br1P = TY_BR1_NORMAL;
+                        
+                        lop = 1;
+                    }
+                    
+                    fwP->dmg_lvl = 0;
+                    break;
+                case TY_BR2_LOOP0:
+                    if (rte >= fwP->chg_rte) 
+                    {
+                        *br0P = TY_BR0_LAY;
+                        *br1P = TY_BR1_NORMAL;
+                        *br2P = TY_BR2_FIRST;
+                    }
+                    
+                    break;
+                }
+                
+                break;
+            case TY_BR1_CHANGE:
+                switch (*br2P) 
+                {
+                case TY_BR2_FIRST:
+                    act = 20;
+                    
+                    *br2P = TY_BR2_LOOP0;
+                case TY_BR2_LOOP0:
+                    if (rte >= fwP->chg_rte) 
+                    {
+                        *br0P = TY_BR0_NORMAL;
+                        *br1P = TY_BR1_NORMAL;
+                        *br2P = TY_BR2_FIRST;
+                    }
+                    
+                    break;
+                }
+                
+                break;
+            }
+            
+            break;
+        case TY_BR0_LAY:
+            switch (*br1P) 
+            {
+            case TY_BR1_NORMAL:
+                *br0P = TY_BR0_DIE;
+                *br1P = TY_BR1_NORMAL;
+                
+                act = 2;
+                
+                *br2P = TY_BR2_FIRST;
+                break;
+            case TY_BR1_DAMAGE:
+                switch (*br2P) 
+                {
+                case TY_BR2_FIRST:
+                    *br1P = TY_BR1_NORMAL;
+                    
+                    fwP->dmg_lvl = 0;
+                    break;
+                }
+                
+                break;
+            }
+            
+            break;
+        case TY_BR0_DIE:
+            switch (*br1P) 
+            {
+            case TY_BR1_NORMAL:
+                switch (*br2P) 
+                {
+                case TY_BR2_FIRST:
+                    ewP->mtn_add = 0;
+                    
+                    act = 2;
+                    
+                    ewP->flg |= 0x2;
+                    
+                    *br2P = TY_BR2_LOOP0;
+                    break;
+                case TY_BR2_LOOP0:
+                    break;
+                }
+                
+                break;
+            case TY_BR1_DAMAGE:
+                switch (*br2P) 
+                {
+                case TY_BR2_FIRST:
+                    *br1P = TY_BR1_NORMAL;
+                    
+                    fwP->dmg_lvl = 0;
+                    break;
+                }
+                
+                break;
+            }
+            
+            break;
+        }
+    } while (lop-- != 0);
+
+    if (act != -1) 
+    {
+        bhEne19_ActionChange(ewP, fwP, act);
+    }
 }
 
 // 

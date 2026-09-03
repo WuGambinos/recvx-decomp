@@ -1305,61 +1305,68 @@ static void bhEne19_Mv09(BH_PWORK* ewP, FW_WORK* fwP, int count) // third parame
     }
 }
 
-// 
-// Start address: 0x1f2b10
+// 100% matching!
 static void bhEne19_Mv10(BH_PWORK* ewP, FW_WORK* fwP, int count)
 {
-	NJS_MATRIX* mtxP;
-	//NJS_POINT3 dir;
-	NJS_POINT3 dir;
-	NJS_POINT3 pos;
-	float mtx2P[16];
-	float mtx0P[16];
-	int* stsP;
-	int* flgP;
+    int* flgP, *stsP;        
+    NJS_MATRIX* mtx0P, *mtx2P; 
+    NJS_POINT3 pos;    
+    NJS_POINT3 dir;   
 	static NJS_POINT3 off = {  2.5f,    0,    0 };
 	static NJS_VECTOR vct = { -1.0f,    0,    0 };
-	// Line 2193, Address: 0x1f2b10, Func Offset: 0
-	// Line 2194, Address: 0x1f2b30, Func Offset: 0x20
-	// Line 2195, Address: 0x1f2b34, Func Offset: 0x24
-	// Line 2197, Address: 0x1f2b38, Func Offset: 0x28
-	// Line 2199, Address: 0x1f2b40, Func Offset: 0x30
-	// Line 2201, Address: 0x1f2b48, Func Offset: 0x38
-	// Line 2199, Address: 0x1f2b4c, Func Offset: 0x3c
-	// Line 2200, Address: 0x1f2b54, Func Offset: 0x44
-	// Line 2201, Address: 0x1f2b60, Func Offset: 0x50
-	// Line 2208, Address: 0x1f2b64, Func Offset: 0x54
-	// Line 2212, Address: 0x1f2b68, Func Offset: 0x58
-	// Line 2208, Address: 0x1f2b70, Func Offset: 0x60
-	// Line 2212, Address: 0x1f2b78, Func Offset: 0x68
-	// Line 2213, Address: 0x1f2b80, Func Offset: 0x70
-	// Line 2214, Address: 0x1f2ba8, Func Offset: 0x98
-	// Line 2218, Address: 0x1f2bcc, Func Offset: 0xbc
-	// Line 2226, Address: 0x1f2bdc, Func Offset: 0xcc
-	// Line 2227, Address: 0x1f2bf0, Func Offset: 0xe0
-	// Line 2228, Address: 0x1f2c04, Func Offset: 0xf4
-	// Line 2229, Address: 0x1f2c20, Func Offset: 0x110
-	// Line 2232, Address: 0x1f2c3c, Func Offset: 0x12c
-	// Line 2233, Address: 0x1f2c58, Func Offset: 0x148
-	// Line 2236, Address: 0x1f2c74, Func Offset: 0x164
-	// Line 2238, Address: 0x1f2c88, Func Offset: 0x178
-	// Line 2243, Address: 0x1f2c90, Func Offset: 0x180
-	// Line 2246, Address: 0x1f2ca0, Func Offset: 0x190
-	// Line 2248, Address: 0x1f2cc0, Func Offset: 0x1b0
-	// Line 2249, Address: 0x1f2cdc, Func Offset: 0x1cc
-	// Line 2251, Address: 0x1f2ce4, Func Offset: 0x1d4
-	// Line 2255, Address: 0x1f2cec, Func Offset: 0x1dc
-	// Line 2257, Address: 0x1f2cf4, Func Offset: 0x1e4
-	// Line 2255, Address: 0x1f2cf8, Func Offset: 0x1e8
-	// Line 2257, Address: 0x1f2d00, Func Offset: 0x1f0
-	// Line 2255, Address: 0x1f2d0c, Func Offset: 0x1fc
-	// Line 2258, Address: 0x1f2d10, Func Offset: 0x200
-	// Line 2257, Address: 0x1f2d14, Func Offset: 0x204
-	// Line 2258, Address: 0x1f2d1c, Func Offset: 0x20c
-	// Line 2259, Address: 0x1f2d24, Func Offset: 0x214
-	// Line 2266, Address: 0x1f2d38, Func Offset: 0x228
-	// Func End, Address: 0x1f2d58, Func Offset: 0x248
-	scePrintf("bhEne19_Mv10 - UNIMPLEMENTED!\n");
+
+    flgP = &fwP->act_flg;
+    stsP = &fwP->status;
+    
+    if (count == 0) 
+    {
+        *stsP &= ~0x8;
+        *flgP |=  0x8;
+        
+        fwP->trn_spd = 182;
+    }
+    
+    mtx0P = &ewP->mlwP->owP[10].mtx;
+    mtx2P = &ewP->mlwP->owP[12].mtx;
+    
+    if (fwP->act_frm == 50) 
+    {
+        bhEne19_SetClawPlane(ewP, mtx0P, -0x0F7F7F80, 11, -2.0f, 3.0f);
+        bhEne19_SetClawPlane(ewP, mtx2P,          -1, 11, -2.0f, 3.0f);
+    }
+    
+    if (fwP->act_frm == 60)
+    {
+        njCalcVector(mtx0P, &vct, &dir);
+        njCalcPoint(mtx0P,  &off, &pos);
+        
+        bhSetEffSpark(&pos, &dir, -1, 0x40F08000, 0);
+        bhSetEffSpark(&pos, &dir, -1, 0x40F08000, 1);
+        bhSetEffSpark(&pos, &dir, -1, 0x40F04000, 0);
+        bhSetEffSpark(&pos, &dir, -1, 0x40F04000, 1);
+        
+        bhSetRapEff(310, &fwP->e0aP[1], 8);
+        
+        fwP->snd_no = 19;
+    }
+    
+    if (((*stsP & 0x40)) && ((bhEne19_AttackHitCheck(ewP, TY_ARM_RIGHT, 5.0f, &fwP->trw_dir) != 0) && (bhEne19_PlySetDamage(plp, fwP, 1) != 0))) 
+    {
+        NJS_POINT3 dir;
+        NJS_MATRIX* mtxP; 
+        
+        fwP->trw_spd = 0.5f;
+        
+        fwP->snd_no = 15;
+        
+        mtxP = &plp->mlwP->owP[2].mtx;
+        
+        dir = *(NJS_POINT3*)&(*mtxP)[4];
+        
+        njSubVector(&dir, (NJS_POINT3*)&(*mtxP)[8]);
+        
+        rySetEffBlood(mtxP, (NJS_POINT3*)&(*mtxP)[12], &dir, 2);
+    }
 }
 
 // 100% matching!

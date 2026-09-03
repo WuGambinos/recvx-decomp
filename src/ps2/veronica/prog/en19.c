@@ -1,11 +1,13 @@
 #include "../../../ps2/veronica/prog/en19.h"
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
+#include "../../../ps2/veronica/prog/hitchkl.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
@@ -1665,102 +1667,128 @@ static void bhEne19_Mv12(BH_PWORK* ewP, FW_WORK* fwP, int count) // third parame
     }
 }
 
-// 
-// Start address: 0x1f2e60
+// 100% matching!
 static void bhEne19_Mv13(BH_PWORK* ewP, FW_WORK* fwP, int count)
 {
-	NJS_POINT3* posP;
-	NJS_MATRIX* mtxP;
-	//NJS_POINT3 dir;
-	int ang;
-	float spd;
-	int dmg;
-	//NJS_POINT3 dir;
-	ATR_WORK* htP;
-	TY_ARM_NO arm_no;
-	TY_OBJ_MODE obj_no;
-	NJS_POINT3 dir;
-	NJS_POINT3 pos;
-	float mtx2P[16];
-	float mtx0P[16];
-	int* flgP;
-	int* stsP;
+    int* stsP, *flgP;          
+    NJS_MATRIX* mtx0P, *mtx2P; 
+    NJS_POINT3 pos;     
+    NJS_POINT3 dir;     
+    TY_OBJ_MODE obj_no;
+    TY_ARM_NO arm_no;   
+    ATR_WORK* htP;      
 	static NJS_POINT3 off = {  3.0f,     0,     0 };
 	static NJS_VECTOR vct = { -1.0f, -1.0f, -1.0f };
-	// Line 2330, Address: 0x1f2e60, Func Offset: 0
-	// Line 2331, Address: 0x1f2e80, Func Offset: 0x20
-	// Line 2332, Address: 0x1f2e84, Func Offset: 0x24
-	// Line 2330, Address: 0x1f2e88, Func Offset: 0x28
-	// Line 2334, Address: 0x1f2e8c, Func Offset: 0x2c
-	// Line 2335, Address: 0x1f2e94, Func Offset: 0x34
-	// Line 2336, Address: 0x1f2e98, Func Offset: 0x38
-	// Line 2335, Address: 0x1f2e9c, Func Offset: 0x3c
-	// Line 2336, Address: 0x1f2ea4, Func Offset: 0x44
-	// Line 2343, Address: 0x1f2ea8, Func Offset: 0x48
-	// Line 2344, Address: 0x1f2ec8, Func Offset: 0x68
-	// Line 2345, Address: 0x1f2ed0, Func Offset: 0x70
-	// Line 2347, Address: 0x1f2edc, Func Offset: 0x7c
-	// Line 2348, Address: 0x1f2ee4, Func Offset: 0x84
-	// Line 2349, Address: 0x1f2ee8, Func Offset: 0x88
-	// Line 2348, Address: 0x1f2eec, Func Offset: 0x8c
-	// Line 2349, Address: 0x1f2ef0, Func Offset: 0x90
-	// Line 2353, Address: 0x1f2ef8, Func Offset: 0x98
-	// Line 2354, Address: 0x1f2f08, Func Offset: 0xa8
-	// Line 2355, Address: 0x1f2f30, Func Offset: 0xd0
-	// Line 2359, Address: 0x1f2f54, Func Offset: 0xf4
-	// Line 2367, Address: 0x1f2f70, Func Offset: 0x110
-	// Line 2368, Address: 0x1f2f84, Func Offset: 0x124
-	// Line 2369, Address: 0x1f2f98, Func Offset: 0x138
-	// Line 2372, Address: 0x1f2fb4, Func Offset: 0x154
-	// Line 2373, Address: 0x1f2fd0, Func Offset: 0x170
-	// Line 2378, Address: 0x1f2fec, Func Offset: 0x18c
-	// Line 2382, Address: 0x1f2ffc, Func Offset: 0x19c
-	// Line 2384, Address: 0x1f3008, Func Offset: 0x1a8
-	// Line 2385, Address: 0x1f300c, Func Offset: 0x1ac
-	// Line 2386, Address: 0x1f3014, Func Offset: 0x1b4
-	// Line 2387, Address: 0x1f3018, Func Offset: 0x1b8
-	// Line 2390, Address: 0x1f301c, Func Offset: 0x1bc
-	// Line 2397, Address: 0x1f3038, Func Offset: 0x1d8
-	// Line 2399, Address: 0x1f303c, Func Offset: 0x1dc
-	// Line 2401, Address: 0x1f3058, Func Offset: 0x1f8
-	// Line 2399, Address: 0x1f305c, Func Offset: 0x1fc
-	// Line 2400, Address: 0x1f3068, Func Offset: 0x208
-	// Line 2401, Address: 0x1f306c, Func Offset: 0x20c
-	// Line 2405, Address: 0x1f3088, Func Offset: 0x228
-	// Line 2401, Address: 0x1f3090, Func Offset: 0x230
-	// Line 2405, Address: 0x1f309c, Func Offset: 0x23c
-	// Line 2406, Address: 0x1f30a8, Func Offset: 0x248
-	// Line 2408, Address: 0x1f30e0, Func Offset: 0x280
-	// Line 2409, Address: 0x1f30e8, Func Offset: 0x288
-	// Line 2411, Address: 0x1f30f0, Func Offset: 0x290
-	// Line 2410, Address: 0x1f30f4, Func Offset: 0x294
-	// Line 2411, Address: 0x1f30f8, Func Offset: 0x298
-	// Line 2414, Address: 0x1f30fc, Func Offset: 0x29c
-	// Line 2415, Address: 0x1f3114, Func Offset: 0x2b4
-	// Line 2418, Address: 0x1f3134, Func Offset: 0x2d4
-	// Line 2417, Address: 0x1f3138, Func Offset: 0x2d8
-	// Line 2418, Address: 0x1f3140, Func Offset: 0x2e0
-	// Line 2417, Address: 0x1f3150, Func Offset: 0x2f0
-	// Line 2421, Address: 0x1f3154, Func Offset: 0x2f4
-	// Line 2420, Address: 0x1f315c, Func Offset: 0x2fc
-	// Line 2418, Address: 0x1f3160, Func Offset: 0x300
-	// Line 2417, Address: 0x1f3164, Func Offset: 0x304
-	// Line 2420, Address: 0x1f3168, Func Offset: 0x308
-	// Line 2424, Address: 0x1f3174, Func Offset: 0x314
-	// Line 2418, Address: 0x1f3178, Func Offset: 0x318
-	// Line 2417, Address: 0x1f317c, Func Offset: 0x31c
-	// Line 2420, Address: 0x1f3180, Func Offset: 0x320
-	// Line 2421, Address: 0x1f318c, Func Offset: 0x32c
-	// Line 2422, Address: 0x1f3198, Func Offset: 0x338
-	// Line 2423, Address: 0x1f31a4, Func Offset: 0x344
-	// Line 2424, Address: 0x1f31ac, Func Offset: 0x34c
-	// Line 2426, Address: 0x1f31b4, Func Offset: 0x354
-	// Line 2427, Address: 0x1f31b8, Func Offset: 0x358
-	// Line 2428, Address: 0x1f31c0, Func Offset: 0x360
-	// Line 2431, Address: 0x1f31c8, Func Offset: 0x368
-	// Line 2436, Address: 0x1f31cc, Func Offset: 0x36c
-	// Func End, Address: 0x1f31f0, Func Offset: 0x390
-	scePrintf("bhEne19_Mv13 - UNIMPLEMENTED!\n");
+    
+    stsP = &fwP->status;
+    flgP = &fwP->act_flg;
+
+    if (count == 0) 
+    {
+        *flgP |= 0x8;
+        
+        fwP->trn_spd = 546;
+    }
+
+    if ((!(*stsP & 0x8)) || ((*stsP & 0x80000000))) 
+    {
+        if (!(*stsP & 0x8)) 
+        {
+            mtx0P = &ewP->mlwP->owP[10].mtx;
+            mtx2P = &ewP->mlwP->owP[12].mtx;
+        } 
+        else 
+        {
+            mtx0P = fwP->clw0P->mtxP;
+            mtx2P = fwP->clw2P->mtxP;
+        }
+
+        if (fwP->act_frm == 8)
+        {
+            bhEne19_SetClawPlane(ewP, mtx0P, -0xF7F7F80, 16, -2.0f, 3.0f);
+            bhEne19_SetClawPlane(ewP, mtx2P, -1,         16, -2.0f, 3.0f);
+        }
+
+        if ((fwP->act_frm >= 18) && (fwP->act_frm < 19)) 
+        {
+            njCalcVector(mtx0P, &vct, &dir);
+            njCalcPoint(mtx0P,  &off, &pos);
+            
+            bhSetEffSpark(&pos, &dir, -1, 0x80F02000, 0);
+            bhSetEffSpark(&pos, &dir, -1, 0x80F04000, 0);
+            bhSetEffSpark(&pos, &dir, -1, 0x80F05000, 0);
+        }
+    }
+
+    if ((*stsP & 0x40)) 
+    {
+        if ((*stsP & 0x8)) 
+        {
+            arm_no = TY_ARM_LEFT;
+            obj_no = TY_OBJ_ARM_L2;
+        } 
+        else 
+        {
+            arm_no = TY_ARM_RIGHT;
+            obj_no = TY_OBJ_ARM_R2;
+        }
+
+        if (bhEne19_AttackHitCheck(ewP, arm_no, 3.5f, &fwP->trw_dir) != 0) 
+        {
+            NJS_POINT3 dir; 
+            int dmg;       
+            float spd;     
+            int ang;       
+            
+            ang = fwP->trw_dir;
+
+            dir.x = plp->px - (25.0f * njSin(ang));
+            dir.y = plp->py;
+            dir.z = plp->pz - (25.0f * njCos(ang));
+
+            if ((bhCollisionCheckLine2((NJS_POINT3*)&plp->px, &dir, 0x4000, plp->flr_no) != NULL) && (njDistanceP2P((NJS_POINT3*)&plp->px, &dir) > 10.0f)) 
+            {
+                dmg = 3;
+                
+                spd = 2.5f;
+            } 
+            else 
+            {
+                dmg = 1;
+                
+                spd = 2.0f;
+            }
+
+            if (bhEne19_PlySetDamage(plp, fwP, dmg) != 0) 
+            {
+                if ((!(*stsP & 0x8)) || ((*stsP & 0x80000000))) 
+                {
+                    NJS_POINT3 dir;  
+                    NJS_MATRIX* mtxP;
+                    NJS_POINT3* posP; 
+
+                    mtxP = &plp->mlwP->owP[2].mtx;
+                    posP = (NJS_POINT3*)&ewP->mlwP->owP[obj_no].mtx[12];
+
+                    dir = *(NJS_POINT3*)&ewP->mlwP->owP[obj_no].mtx[4];
+                    
+                    dir.x *= -1.0f; 
+                    dir.y *= -1.0f;
+                    dir.z *= -1.0f;
+                    
+                    rySetEffBlood(mtxP, posP, &dir, 1);
+                    
+                    fwP->snd_no = 11;
+                } 
+                else 
+                {
+                    fwP->snd_no = 9;
+                }
+                
+                fwP->trw_spd = spd;
+            }
+        }
+    }
 }
 
 // 

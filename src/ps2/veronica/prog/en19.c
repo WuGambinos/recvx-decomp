@@ -3315,15 +3315,14 @@ static void bhEne19_PlyDmgRtn(BH_PWORK* plP, FW_WORK* fwP)
     }
 }
 
-// 
-// Start address: 0x1f6b90
+// 100% matching!
 static void bhEne19_PlyDmgFal(BH_PWORK* plP, FW_WORK* fwP)
 {
-	float spd;
-	int dir;
-	int dlt;
-	PF_WORK* pfP;
-	PAW_WORK* pawP;
+    PAW_WORK* pawP; 
+    PF_WORK* pfP;  
+    int dlt;        
+    int dir;       
+	float spd;     
 	static const PF_WORK PlyFal[3] = 
 	{
 		{
@@ -3336,61 +3335,87 @@ static void bhEne19_PlyDmgFal(BH_PWORK* plP, FW_WORK* fwP)
 			{ 0.0f, -1.0453334f, 0.0f }, { 0.0f, -0.065333336f, 0.0f }, 0.98f, 25.0f, 0                               
 		}
 	};
-	// Line 4387, Address: 0x1f6b90, Func Offset: 0
-	// Line 4405, Address: 0x1f6bb0, Func Offset: 0x20
-	// Line 4407, Address: 0x1f6bbc, Func Offset: 0x2c
-	// Line 4405, Address: 0x1f6bc0, Func Offset: 0x30
-	// Line 4404, Address: 0x1f6bc4, Func Offset: 0x34
-	// Line 4405, Address: 0x1f6bc8, Func Offset: 0x38
-	// Line 4407, Address: 0x1f6bd0, Func Offset: 0x40
-	// Line 4405, Address: 0x1f6bd4, Func Offset: 0x44
-	// Line 4407, Address: 0x1f6be0, Func Offset: 0x50
-	// Line 4410, Address: 0x1f6c04, Func Offset: 0x74
-	// Line 4411, Address: 0x1f6c08, Func Offset: 0x78
-	// Line 4410, Address: 0x1f6c0c, Func Offset: 0x7c
-	// Line 4411, Address: 0x1f6c14, Func Offset: 0x84
-	// Line 4412, Address: 0x1f6c20, Func Offset: 0x90
-	// Line 4414, Address: 0x1f6c2c, Func Offset: 0x9c
-	// Line 4415, Address: 0x1f6c44, Func Offset: 0xb4
-	// Line 4420, Address: 0x1f6c50, Func Offset: 0xc0
-	// Line 4421, Address: 0x1f6c70, Func Offset: 0xe0
-	// Line 4422, Address: 0x1f6c7c, Func Offset: 0xec
-	// Line 4423, Address: 0x1f6c80, Func Offset: 0xf0
-	// Line 4421, Address: 0x1f6c84, Func Offset: 0xf4
-	// Line 4422, Address: 0x1f6c8c, Func Offset: 0xfc
-	// Line 4423, Address: 0x1f6c98, Func Offset: 0x108
-	// Line 4424, Address: 0x1f6c9c, Func Offset: 0x10c
-	// Line 4425, Address: 0x1f6ca0, Func Offset: 0x110
-	// Line 4426, Address: 0x1f6ca4, Func Offset: 0x114
-	// Line 4427, Address: 0x1f6ca8, Func Offset: 0x118
-	// Line 4433, Address: 0x1f6cb4, Func Offset: 0x124
-	// Line 4434, Address: 0x1f6cc8, Func Offset: 0x138
-	// Line 4436, Address: 0x1f6cd4, Func Offset: 0x144
-	// Line 4438, Address: 0x1f6cfc, Func Offset: 0x16c
-	// Line 4442, Address: 0x1f6d14, Func Offset: 0x184
-	// Line 4443, Address: 0x1f6d20, Func Offset: 0x190
-	// Line 4444, Address: 0x1f6d40, Func Offset: 0x1b0
-	// Line 4448, Address: 0x1f6d4c, Func Offset: 0x1bc
-	// Line 4449, Address: 0x1f6d6c, Func Offset: 0x1dc
-	// Line 4450, Address: 0x1f6d70, Func Offset: 0x1e0
-	// Line 4453, Address: 0x1f6d74, Func Offset: 0x1e4
-	// Line 4454, Address: 0x1f6d84, Func Offset: 0x1f4
-	// Line 4453, Address: 0x1f6d88, Func Offset: 0x1f8
-	// Line 4454, Address: 0x1f6d90, Func Offset: 0x200
-	// Line 4456, Address: 0x1f6da8, Func Offset: 0x218
-	// Line 4454, Address: 0x1f6db0, Func Offset: 0x220
-	// Line 4456, Address: 0x1f6db8, Func Offset: 0x228
-	// Line 4459, Address: 0x1f6dc0, Func Offset: 0x230
-	// Line 4460, Address: 0x1f6dc4, Func Offset: 0x234
-	// Line 4459, Address: 0x1f6dcc, Func Offset: 0x23c
-	// Line 4460, Address: 0x1f6dd0, Func Offset: 0x240
-	// Line 4462, Address: 0x1f6dd8, Func Offset: 0x248
-	// Line 4464, Address: 0x1f6de0, Func Offset: 0x250
-	// Line 4465, Address: 0x1f6df0, Func Offset: 0x260
-	// Line 4470, Address: 0x1f6df4, Func Offset: 0x264
-	// Line 4471, Address: 0x1f6e0c, Func Offset: 0x27c
-	// Func End, Address: 0x1f6e30, Func Offset: 0x2a0
-	scePrintf("bhEne19_PlyDmgFal - UNIMPLEMENTED!\n");
+    
+    pfP  = &PlyFal[fwP->ewP->type];
+    pawP = &fwP->ply_act;
+
+    switch (fwP->ply_mde) 
+    {          
+    case 0:
+        plP->flg |=  0x2;
+        plP->flg &= ~0x118;
+        
+        plP->stflg |= 0x8;
+        
+        fwP->wnd_spd = pfP->vct_spd;
+        
+        fwP->ply_mde++;
+    case 1:
+        if (fwP->tgt_dst > 32.0f)
+        {
+            plP->flg   &= ~0x10004;
+            plP->stflg &= ~0x10000;
+            
+            plP->mode0 = 6;
+            plP->mode1 = 0;
+            plP->mode2 = 0;
+            plP->mode3 = 0;
+            
+            fwP->ply_mde++;
+        }
+    case 2:
+        if (pawP->p_mtn_rte <= 49152) 
+        {
+            dlt = fwP->trw_dir - plP->ay;
+            
+            if (njCos(dlt) < 0) 
+            {
+                dlt += 32768;
+            }
+            
+            plP->ay += (short)dlt / 16;
+        }
+        
+        if (pfP->mode != 0) 
+        {
+            if ((pawP->p_status & 0x2)) 
+            {
+                plP->ax += 1820;
+            } 
+            else 
+            {
+                plP->ax -= 910;
+            }
+        }
+        
+        if (fwP->tgt_dst < 500.0f) 
+        {
+            spd = fwP->trw_spd;
+            dir = fwP->trw_dir;
+            
+            plP->px += spd * -njSin(dir);
+            plp->pz += spd * -njCos(dir); 
+            
+            njAddVector((NJS_VECTOR*)&plP->px, &fwP->wnd_spd);
+            
+            fwP->trw_spd = spd * pfP->acl_rte;
+            
+            njAddVector(&fwP->wnd_spd, &pfP->vct_acl);
+        } 
+        else 
+        {
+            pawP->p_status &= ~0x1;
+            
+            plP->ax = 0;
+        }
+        
+        break;
+    }
+    
+    if (pawP->p_mtn_rte >= 65536)
+    {
+        plP->mtn_add = 0;
+    }
 }
 
 // 100% matching!

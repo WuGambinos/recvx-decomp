@@ -3200,63 +3200,68 @@ static void bhEne19_PlyDmg052_053(BH_PWORK* plP, FW_WORK* fwP)
 	scePrintf("bhEne19_PlyDmg052_053 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f67a0
+// 100% matching!
 static void bhEne19_PlyDmg117_118(BH_PWORK* plP, FW_WORK* fwP)
 {
-	int obj;
-	int dlt;
-	float spd;
-	int dir;
+    int dir;   
+    float spd; 
+    int dlt;   
+    int obj;  
 	static const int EffTbl[2] = { 20, 16 };
-	// Line 4261, Address: 0x1f67a0, Func Offset: 0
-	// Line 4263, Address: 0x1f67b8, Func Offset: 0x18
-	// Line 4266, Address: 0x1f67cc, Func Offset: 0x2c
-	// Line 4271, Address: 0x1f67e0, Func Offset: 0x40
-	// Line 4273, Address: 0x1f67e4, Func Offset: 0x44
-	// Line 4274, Address: 0x1f67fc, Func Offset: 0x5c
-	// Line 4276, Address: 0x1f680c, Func Offset: 0x6c
-	// Line 4274, Address: 0x1f6810, Func Offset: 0x70
-	// Line 4276, Address: 0x1f6818, Func Offset: 0x78
-	// Line 4278, Address: 0x1f682c, Func Offset: 0x8c
-	// Line 4276, Address: 0x1f6830, Func Offset: 0x90
-	// Line 4278, Address: 0x1f6834, Func Offset: 0x94
-	// Line 4276, Address: 0x1f6838, Func Offset: 0x98
-	// Line 4278, Address: 0x1f683c, Func Offset: 0x9c
-	// Line 4276, Address: 0x1f6844, Func Offset: 0xa4
-	// Line 4278, Address: 0x1f684c, Func Offset: 0xac
-	// Line 4283, Address: 0x1f6858, Func Offset: 0xb8
-	// Line 4284, Address: 0x1f686c, Func Offset: 0xcc
-	// Line 4286, Address: 0x1f6878, Func Offset: 0xd8
-	// Line 4288, Address: 0x1f68a0, Func Offset: 0x100
-	// Line 4293, Address: 0x1f68b8, Func Offset: 0x118
-	// Line 4298, Address: 0x1f68dc, Func Offset: 0x13c
-	// Line 4300, Address: 0x1f68f0, Func Offset: 0x150
-	// Line 4298, Address: 0x1f68f4, Func Offset: 0x154
-	// Line 4300, Address: 0x1f68f8, Func Offset: 0x158
-	// Line 4298, Address: 0x1f68fc, Func Offset: 0x15c
-	// Line 4300, Address: 0x1f6900, Func Offset: 0x160
-	// Line 4301, Address: 0x1f6904, Func Offset: 0x164
-	// Line 4300, Address: 0x1f6908, Func Offset: 0x168
-	// Line 4301, Address: 0x1f6914, Func Offset: 0x174
-	// Line 4308, Address: 0x1f691c, Func Offset: 0x17c
-	// Line 4304, Address: 0x1f6928, Func Offset: 0x188
-	// Line 4301, Address: 0x1f692c, Func Offset: 0x18c
-	// Line 4302, Address: 0x1f6938, Func Offset: 0x198
-	// Line 4309, Address: 0x1f6944, Func Offset: 0x1a4
-	// Line 4302, Address: 0x1f6950, Func Offset: 0x1b0
-	// Line 4303, Address: 0x1f6964, Func Offset: 0x1c4
-	// Line 4304, Address: 0x1f6978, Func Offset: 0x1d8
-	// Line 4305, Address: 0x1f69a0, Func Offset: 0x200
-	// Line 4306, Address: 0x1f69b4, Func Offset: 0x214
-	// Line 4308, Address: 0x1f69d0, Func Offset: 0x230
-	// Line 4309, Address: 0x1f69fc, Func Offset: 0x25c
-	// Line 4308, Address: 0x1f6a00, Func Offset: 0x260
-	// Line 4309, Address: 0x1f6a0c, Func Offset: 0x26c
-	// Line 4312, Address: 0x1f6a20, Func Offset: 0x280
-	// Line 4313, Address: 0x1f6a2c, Func Offset: 0x28c
-	// Func End, Address: 0x1f6a48, Func Offset: 0x2a8
-	scePrintf("bhEne19_PlyDmg117_118 - UNIMPLEMENTED!\n");
+
+    plP->flg |= 0x200000;
+    
+    if (fwP->ply_act.p_mtn_rte == 0)
+    {
+        CallPlayerVoice(1026);
+    }
+    
+    spd = fwP->trw_spd;
+    dir = fwP->trw_dir;
+    
+    if (spd > 0) 
+    {
+        plP->px += spd * -njSin(dir);
+        plp->pz += spd * -njCos(dir);
+        
+        fwP->trw_spd -= 0.1f;
+    }
+    
+    if (fwP->ply_act.p_mtn_rte <= 49152) 
+    {
+        dlt = fwP->trw_dir - plP->ay;
+        
+        if (njCos(dlt) < 0) 
+        {
+            dlt += 32768;
+        }
+        
+        plP->ay += (short)dlt / 32;
+    }
+    
+    if ((fwP->ply_act.p_mtn_rte < 32768) && ((fwP->ply_act.p_act_frm & 0x1)))
+    {
+        obj = EffTbl[(fwP->ply_act.p_act_frm & 0x2) / 2];
+        
+        sys->ef.flg = 1;
+        
+        sys->ef.id = 305;
+        
+        sys->ef.ay = fwP->ewP->ay + 10922;
+        sys->ef.ax = 0;
+        
+        sys->ef.sx = sys->ef.sy = 1.0f;
+        
+        sys->ef.mdlver = 0;
+        
+        sys->ef.type = fwP->ply_act.p_act_frm & 0x1;
+        
+        *(NJS_POINT3*)&sys->ef.px = *(NJS_POINT3*)&plP->mlwP->owP[obj].mtx[12];
+        
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    }
+    
+    bhEne19_PlyDmgRtn(plP, fwP);
 }
 
 // 100% matching!

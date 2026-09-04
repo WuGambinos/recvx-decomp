@@ -3038,32 +3038,30 @@ static void bhEne19_PlyDmg042(BH_PWORK* plP, FW_WORK* fwP)
 	scePrintf("bhEne19_PlyDmg042 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f60d0
+// 100% matching!
 static void bhEne19_PlyDmg043(BH_PWORK* plP, FW_WORK* fwP)
 {
-	// Line 4052, Address: 0x1f60d0, Func Offset: 0
-	// Line 4053, Address: 0x1f60e4, Func Offset: 0x14
-	// Line 4056, Address: 0x1f60ec, Func Offset: 0x1c
-	// Line 4059, Address: 0x1f610c, Func Offset: 0x3c
-	// Line 4060, Address: 0x1f6118, Func Offset: 0x48
-	// Line 4063, Address: 0x1f611c, Func Offset: 0x4c
-	// Line 4059, Address: 0x1f6120, Func Offset: 0x50
-	// Line 4060, Address: 0x1f612c, Func Offset: 0x5c
-	// Line 4068, Address: 0x1f6134, Func Offset: 0x64
-	// Line 4060, Address: 0x1f6140, Func Offset: 0x70
-	// Line 4061, Address: 0x1f614c, Func Offset: 0x7c
-	// Line 4062, Address: 0x1f616c, Func Offset: 0x9c
-	// Line 4063, Address: 0x1f6180, Func Offset: 0xb0
-	// Line 4064, Address: 0x1f61a8, Func Offset: 0xd8
-	// Line 4065, Address: 0x1f61bc, Func Offset: 0xec
-	// Line 4067, Address: 0x1f61d8, Func Offset: 0x108
-	// Line 4068, Address: 0x1f6200, Func Offset: 0x130
-	// Line 4067, Address: 0x1f6204, Func Offset: 0x134
-	// Line 4068, Address: 0x1f6210, Func Offset: 0x140
-	// Line 4071, Address: 0x1f6224, Func Offset: 0x154
-	// Func End, Address: 0x1f6238, Func Offset: 0x168
-	scePrintf("bhEne19_PlyDmg043 - UNIMPLEMENTED!\n");
+    bhEne19_PlyDmg042(plP, fwP);
+    
+    if ((fwP->ply_act.p_mtn_rte > 26214) && ((fwP->ply_act.p_act_frm & 0x1))) 
+    {
+        sys->ef.flg = 1;
+        
+        sys->ef.id = 305;
+        
+        sys->ef.ay = fwP->ewP->ay + 10922;
+        sys->ef.ax = 0;
+        
+        sys->ef.sx = sys->ef.sy = 1.0f;
+        
+        sys->ef.mdlver = 0;
+        
+        sys->ef.type = fwP->ply_act.p_act_frm & 0x1;
+        
+        *(NJS_POINT3*)&sys->ef.px = *(NJS_POINT3*)&plP->mlwP->owP[1].mtx[12];
+        
+        bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+    }
 }
 
 // 100% matching!

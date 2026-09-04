@@ -3112,90 +3112,114 @@ static void bhEne19_PlyDmg050_051(BH_PWORK* plP, FW_WORK* fwP)
     bhEne19_PlyDmgDie(plP, fwP);
 }
 
-// 
-// Start address: 0x1f6340
+// 100% matching!
 static void bhEne19_PlyDmg052_053(BH_PWORK* plP, FW_WORK* fwP)
 {
-	//int i;
-	int dlt;
-	int i;
-	ATR_WORK* htP;
-	float spd;
-	int dir;
-	static const int EffTbl[4] = {  2,  1, 18, 14 };
-	{
-	static const int EffTbl[4] = { 20,  9, 16, 13 };
-	}
-	// Line 4151, Address: 0x1f6340, Func Offset: 0
-	// Line 4153, Address: 0x1f635c, Func Offset: 0x1c
-	// Line 4155, Address: 0x1f6370, Func Offset: 0x30
-	// Line 4157, Address: 0x1f637c, Func Offset: 0x3c
-	// Line 4159, Address: 0x1f6384, Func Offset: 0x44
-	// Line 4166, Address: 0x1f6388, Func Offset: 0x48
-	// Line 4168, Address: 0x1f638c, Func Offset: 0x4c
-	// Line 4169, Address: 0x1f63a4, Func Offset: 0x64
-	// Line 4171, Address: 0x1f63b4, Func Offset: 0x74
-	// Line 4169, Address: 0x1f63b8, Func Offset: 0x78
-	// Line 4171, Address: 0x1f63c0, Func Offset: 0x80
-	// Line 4173, Address: 0x1f63d4, Func Offset: 0x94
-	// Line 4171, Address: 0x1f63d8, Func Offset: 0x98
-	// Line 4173, Address: 0x1f63dc, Func Offset: 0x9c
-	// Line 4171, Address: 0x1f63e0, Func Offset: 0xa0
-	// Line 4173, Address: 0x1f63e4, Func Offset: 0xa4
-	// Line 4171, Address: 0x1f63ec, Func Offset: 0xac
-	// Line 4173, Address: 0x1f63f4, Func Offset: 0xb4
-	// Line 4181, Address: 0x1f6400, Func Offset: 0xc0
-	// Line 4182, Address: 0x1f642c, Func Offset: 0xec
-	// Line 4184, Address: 0x1f6434, Func Offset: 0xf4
-	// Line 4193, Address: 0x1f6440, Func Offset: 0x100
-	// Line 4184, Address: 0x1f644c, Func Offset: 0x10c
-	// Line 4194, Address: 0x1f6450, Func Offset: 0x110
-	// Line 4197, Address: 0x1f6454, Func Offset: 0x114
-	// Line 4200, Address: 0x1f6458, Func Offset: 0x118
-	// Line 4184, Address: 0x1f645c, Func Offset: 0x11c
-	// Line 4193, Address: 0x1f6460, Func Offset: 0x120
-	// Line 4194, Address: 0x1f6470, Func Offset: 0x130
-	// Line 4195, Address: 0x1f6484, Func Offset: 0x144
-	// Line 4196, Address: 0x1f64a4, Func Offset: 0x164
-	// Line 4197, Address: 0x1f64b8, Func Offset: 0x178
-	// Line 4198, Address: 0x1f64e0, Func Offset: 0x1a0
-	// Line 4199, Address: 0x1f64f4, Func Offset: 0x1b4
-	// Line 4202, Address: 0x1f6510, Func Offset: 0x1d0
-	// Line 4203, Address: 0x1f6520, Func Offset: 0x1e0
-	// Line 4202, Address: 0x1f6528, Func Offset: 0x1e8
-	// Line 4203, Address: 0x1f6554, Func Offset: 0x214
-	// Line 4202, Address: 0x1f655c, Func Offset: 0x21c
-	// Line 4203, Address: 0x1f6568, Func Offset: 0x228
-	// Line 4204, Address: 0x1f657c, Func Offset: 0x23c
-	// Line 4207, Address: 0x1f658c, Func Offset: 0x24c
-	// Line 4209, Address: 0x1f65a0, Func Offset: 0x260
-	// Line 4212, Address: 0x1f65b4, Func Offset: 0x274
-	// Line 4218, Address: 0x1f65bc, Func Offset: 0x27c
-	// Line 4219, Address: 0x1f65d0, Func Offset: 0x290
-	// Line 4221, Address: 0x1f65dc, Func Offset: 0x29c
-	// Line 4223, Address: 0x1f6604, Func Offset: 0x2c4
-	// Line 4228, Address: 0x1f661c, Func Offset: 0x2dc
-	// Line 4235, Address: 0x1f662c, Func Offset: 0x2ec
-	// Line 4236, Address: 0x1f664c, Func Offset: 0x30c
-	// Line 4239, Address: 0x1f6658, Func Offset: 0x318
-	// Line 4243, Address: 0x1f665c, Func Offset: 0x31c
-	// Line 4236, Address: 0x1f6660, Func Offset: 0x320
-	// Line 4237, Address: 0x1f666c, Func Offset: 0x32c
-	// Line 4238, Address: 0x1f668c, Func Offset: 0x34c
-	// Line 4239, Address: 0x1f66a0, Func Offset: 0x360
-	// Line 4240, Address: 0x1f66c8, Func Offset: 0x388
-	// Line 4241, Address: 0x1f66dc, Func Offset: 0x39c
-	// Line 4245, Address: 0x1f66f8, Func Offset: 0x3b8
-	// Line 4246, Address: 0x1f6708, Func Offset: 0x3c8
-	// Line 4245, Address: 0x1f6710, Func Offset: 0x3d0
-	// Line 4246, Address: 0x1f673c, Func Offset: 0x3fc
-	// Line 4245, Address: 0x1f6744, Func Offset: 0x404
-	// Line 4246, Address: 0x1f6750, Func Offset: 0x410
-	// Line 4247, Address: 0x1f6764, Func Offset: 0x424
-	// Line 4248, Address: 0x1f6774, Func Offset: 0x434
-	// Line 4250, Address: 0x1f6778, Func Offset: 0x438
-	// Func End, Address: 0x1f6798, Func Offset: 0x458
-	scePrintf("bhEne19_PlyDmg052_053 - UNIMPLEMENTED!\n");
+    int dir;      
+    float spd;    
+    ATR_WORK* htP; 
+    int i;        
+    int dlt;      
+    
+    plP->flg |= 0x200000;
+    
+    if (fwP->ply_act.p_mtn_rte == 0)
+    {
+        CallPlayerVoice(1026);
+        
+        fwP->bnd_tim = 0;
+    }
+
+    dir = fwP->trw_dir;
+    
+    if (fwP->trw_spd > 0) 
+    {
+        spd = fwP->trw_spd;
+        
+        plP->px += spd * -njSin(dir);
+        plp->pz += spd * -njCos(dir);
+        
+        fwP->trw_spd -= 0.07f;
+    }
+    
+    if (fwP->bnd_tim == 0) 
+    {
+        htP = bhCheckWallRefAngle((NJS_POINT3*)&plP->px, 0, plP->ar, plP->ah, &fwP->trw_dir);
+        
+        if (htP != NULL) 
+        {
+            static const int EffTbl[4] = {  2,  1, 18, 14 };
+            
+            fwP->bnd_tim = 1;
+                
+            fwP->trw_spd *= 0.25f;
+                
+            sys->ef.flg = 1;
+                
+            sys->ef.id = 305;
+                
+            sys->ef.ay = fwP->ewP->ay + 10922;
+            sys->ef.ax = 0;
+                
+            sys->ef.sx = sys->ef.sy = 1.0f;
+                
+            sys->ef.mdlver = 0;
+                
+            sys->ef.type = fwP->ply_act.p_act_frm & 0x1;
+            
+            for (i = 0; (unsigned int)i < 4; i++) 
+            {
+                *(NJS_POINT3*)&sys->ef.px = *(NJS_POINT3*)&plP->mlwP->owP[EffTbl[i]].mtx[12];
+                
+                bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+            }
+            
+            if (fwP->ewP->type == 1)
+            {
+                bhSetRapEff(310, &fwP->e0aP[2], 8);
+            }
+                
+            fwP->snd_no = 9;
+        }
+    }
+    
+    if (fwP->ply_act.p_mtn_rte <= 58982) 
+    {
+        dlt = fwP->trw_dir - plP->ay;
+        
+        if (njCos(dlt) < 0) 
+        {
+            dlt += 32768;
+        }
+        
+        plP->ay += (short)dlt / 8;
+    }
+    
+    if (fwP->ply_act.p_act_frm == 18) 
+    {
+        static const int EffTbl[4] = { 20,  9, 16, 13 };
+        int i; 
+        
+        sys->ef.flg = 1;
+        
+        sys->ef.id = 305;
+        
+        sys->ef.ay = fwP->ewP->ay + 10922;
+        sys->ef.ax = 0;
+        
+        sys->ef.sx = sys->ef.sy = 1.0f;
+        
+        sys->ef.mdlver = 0;
+        
+        sys->ef.type = fwP->ply_act.p_act_frm & 0x1;
+        
+        for (i = 0; (unsigned int)i < 4; i++) 
+        {
+            *(NJS_POINT3*)&sys->ef.px = *(NJS_POINT3*)&plP->mlwP->owP[EffTbl[i]].mtx[12];
+            
+            bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        }
+    }
 }
 
 // 100% matching!

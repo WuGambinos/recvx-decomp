@@ -2133,64 +2133,123 @@ static int bhEne19_ActionMain(BH_PWORK* ewP, FW_WORK* fwP)
 	scePrintf("bhEne19_ActionMain - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1f3be0
+// 100% matching!
 static void bhEne19_TargetAnalyze(BH_PWORK* ewP, FW_WORK* fwP)
-{
-	NJS_MATRIX* mtxP;
-	NJS_POINT3 pos;
-	//int dlt;
-	int ang;
-	int dlt;
-	float dst;
-	int* stsP;
-	// Line 2888, Address: 0x1f3be0, Func Offset: 0
-	// Line 2893, Address: 0x1f3bf8, Func Offset: 0x18
-	// Line 2889, Address: 0x1f3c00, Func Offset: 0x20
-	// Line 2893, Address: 0x1f3c04, Func Offset: 0x24
-	// Line 2895, Address: 0x1f3c10, Func Offset: 0x30
-	// Line 2901, Address: 0x1f3c40, Func Offset: 0x60
-	// Line 2904, Address: 0x1f3c50, Func Offset: 0x70
-	// Line 2905, Address: 0x1f3c58, Func Offset: 0x78
-	// Line 2904, Address: 0x1f3c60, Func Offset: 0x80
-	// Line 2905, Address: 0x1f3c64, Func Offset: 0x84
-	// Line 2904, Address: 0x1f3c68, Func Offset: 0x88
-	// Line 2905, Address: 0x1f3c6c, Func Offset: 0x8c
-	// Line 2906, Address: 0x1f3c84, Func Offset: 0xa4
-	// Line 2907, Address: 0x1f3cb0, Func Offset: 0xd0
-	// Line 2908, Address: 0x1f3cdc, Func Offset: 0xfc
-	// Line 2913, Address: 0x1f3d08, Func Offset: 0x128
-	// Line 2920, Address: 0x1f3d20, Func Offset: 0x140
-	// Line 2922, Address: 0x1f3d34, Func Offset: 0x154
-	// Line 2923, Address: 0x1f3d40, Func Offset: 0x160
-	// Line 2924, Address: 0x1f3d48, Func Offset: 0x168
-	// Line 2926, Address: 0x1f3d50, Func Offset: 0x170
-	// Line 2931, Address: 0x1f3d54, Func Offset: 0x174
-	// Line 2933, Address: 0x1f3d94, Func Offset: 0x1b4
-	// Line 2936, Address: 0x1f3da0, Func Offset: 0x1c0
-	// Line 2938, Address: 0x1f3db0, Func Offset: 0x1d0
-	// Line 2939, Address: 0x1f3dc8, Func Offset: 0x1e8
-	// Line 2941, Address: 0x1f3dd4, Func Offset: 0x1f4
-	// Line 2942, Address: 0x1f3df0, Func Offset: 0x210
-	// Line 2943, Address: 0x1f3e0c, Func Offset: 0x22c
-	// Line 2944, Address: 0x1f3e28, Func Offset: 0x248
-	// Line 2949, Address: 0x1f3e44, Func Offset: 0x264
-	// Line 2951, Address: 0x1f3e48, Func Offset: 0x268
-	// Line 2949, Address: 0x1f3e58, Func Offset: 0x278
-	// Line 2953, Address: 0x1f3e5c, Func Offset: 0x27c
-	// Line 2951, Address: 0x1f3e60, Func Offset: 0x280
-	// Line 2949, Address: 0x1f3e68, Func Offset: 0x288
-	// Line 2951, Address: 0x1f3e6c, Func Offset: 0x28c
-	// Line 2953, Address: 0x1f3e70, Func Offset: 0x290
-	// Line 2955, Address: 0x1f3e7c, Func Offset: 0x29c
-	// Line 2956, Address: 0x1f3e8c, Func Offset: 0x2ac
-	// Line 2957, Address: 0x1f3ea4, Func Offset: 0x2c4
-	// Line 2959, Address: 0x1f3ec0, Func Offset: 0x2e0
-	// Line 2960, Address: 0x1f3ec8, Func Offset: 0x2e8
-	// Line 2961, Address: 0x1f3ee0, Func Offset: 0x300
-	// Line 2970, Address: 0x1f3eec, Func Offset: 0x30c
-	// Func End, Address: 0x1f3f08, Func Offset: 0x328
-	scePrintf("bhEne19_TargetAnalyze - UNIMPLEMENTED!\n");
+{    
+    int* stsP;        
+    float dst;        
+    int dlt;          
+    int ang;        
+
+    stsP = &fwP->status;
+
+    if (((*stsP & 0x1)) && ((plp->hp < 0) || ((plp->flg & 0x2)))) 
+    {
+        *stsP |= 0x800;
+    }
+
+    dst = njDistanceP2P((NJS_POINT3*)&ewP->px, &fwP->tgt_pos);
+    
+    fwP->tgt_dst = dst;
+
+    *stsP &= ~0xF00000;
+
+    if (dst >= 10.0f) 
+    {
+        *stsP |= 0x100000;
+    }
+    
+    if (dst >= 20.0f) 
+    {
+        *stsP |= 0x200000;
+    }
+    
+    if (dst >= 25.0f) 
+    {
+        *stsP |= 0x400000;
+    }
+    
+    if (dst >= 17.0f) 
+    {
+        *stsP |= 0x800000;
+    }
+
+    fwP->ply_dst = njDistanceP2P((NJS_POINT3*)&ewP->px, (NJS_POINT3*)&plp->px);
+
+    dlt = plp->ay - ewP->ay;
+    
+    if ((dlt & 0x8000)) 
+    {
+        dlt = (65536 - dlt) | 0x80000000;
+    }
+    
+    fwP->dir_dlt = dlt;
+
+    {
+    int dlt;         
+    NJS_POINT3 pos;   
+    NJS_MATRIX* mtxP; 
+        
+    dlt = (short)((int)(10430.381f * atan2f(ewP->px - fwP->tgt_pos.x, ewP->pz - fwP->tgt_pos.z)) - ewP->ay);
+        
+    fwP->tgt_ang = ang = abs(dlt);
+
+    *stsP &= ~0xF006000;
+        
+    if (dlt < 0) 
+    {
+        fwP->status |= 0x4000;
+    } 
+    else 
+    {
+        fwP->status |= 0x2000;
+    }
+
+    if (ang >= 5461) 
+    {
+        *stsP |= 0x1000000;
+    }
+        
+    if (ang >= 16384) 
+    {
+        *stsP |= 0x2000000;
+    }
+        
+    if (ang >= 21845) 
+    {
+        *stsP |= 0x4000000;
+    }
+        
+    if (ang >= 27306) 
+    {
+        *stsP |= 0x8000000;
+    }
+
+    mtxP = &ewP->mlwP->owP->mtx;
+
+    pos = fwP->tgt_pos;
+
+    *stsP &= ~0x1000;
+
+    if ((*stsP & 0x2)) 
+    {
+        if (bhEne19_CollisionCircle2Oval(mtxP, fwP->atk_rng_a_far, fwP->atk_rng_b_far, &pos, 0) != 0) 
+        {
+            *stsP |= 0x1000;
+        } 
+        else 
+        {
+            *stsP &= ~0x2;
+        }
+    } 
+    else 
+    {
+        if (bhEne19_CollisionCircle2Oval(mtxP, fwP->atk_rng_a_near, fwP->atk_rng_b_near, &pos, 0) != 0) 
+        {
+            *stsP |= 0x1002;
+        }
+    }
+    }
 }
 
 // 

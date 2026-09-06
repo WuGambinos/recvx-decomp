@@ -71,6 +71,11 @@ void(*bhEne12_Mode0[6])(BH_PWORK*) = {
     bhEne_Event,
 };
 
+void(*bhEne12_BrainType[2])(BH_PWORK*) = {
+    bhEne12_BR00,
+    bhEne12_MV00,
+};
+
 // 100% matching!
 void bhEne12(BH_PWORK* epw) 
 {
@@ -177,6 +182,11 @@ void bhEne12_Init(BH_PWORK* epw)
     EXP0_I(0x1C) = 0x10;
 
     sys->rm_flg &= ~1;
+}
+
+void bhEne12_Brain(BH_PWORK* epw)
+{
+    bhEne12_BrainType[epw->type](epw);
 }
 
 /*// 

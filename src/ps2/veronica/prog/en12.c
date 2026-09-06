@@ -1,6 +1,9 @@
 #include "../../../ps2/veronica/prog/en12.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/Motion.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
+#include "../../../ps2/veronica/prog/subpl.h"
 
 // ENEMY: First Form Alexia 
 
@@ -25,42 +28,50 @@ void(*bhEne12_NageMode2)(BH_PWORK*)[1];
 void(*bhEne12_DamageMode2)(BH_PWORK*)[1];
 void(*bhEne12_DieMode2)(BH_PWORK*)[1];*/
 
-// 
-// Start address: 0x1d5690
-void bhEne12(BH_PWORK* epw)
-{
-	// Line 507, Address: 0x1d5690, Func Offset: 0
-	// Line 509, Address: 0x1d569c, Func Offset: 0xc
-	// Line 510, Address: 0x1d56ac, Func Offset: 0x1c
-	// Line 512, Address: 0x1d56b4, Func Offset: 0x24
-	// Line 510, Address: 0x1d56b8, Func Offset: 0x28
-	// Line 511, Address: 0x1d56c0, Func Offset: 0x30
-	// Line 512, Address: 0x1d56cc, Func Offset: 0x3c
-	// Line 516, Address: 0x1d56d8, Func Offset: 0x48
-	// Line 517, Address: 0x1d56e8, Func Offset: 0x58
-	// Line 518, Address: 0x1d56f8, Func Offset: 0x68
-	// Line 519, Address: 0x1d5704, Func Offset: 0x74
-	// Line 520, Address: 0x1d570c, Func Offset: 0x7c
-	// Line 522, Address: 0x1d5714, Func Offset: 0x84
-	// Line 521, Address: 0x1d5718, Func Offset: 0x88
-	// Line 522, Address: 0x1d571c, Func Offset: 0x8c
-	// Line 523, Address: 0x1d5720, Func Offset: 0x90
-	// Line 526, Address: 0x1d5724, Func Offset: 0x94
-	// Line 531, Address: 0x1d5728, Func Offset: 0x98
-	// Line 534, Address: 0x1d5748, Func Offset: 0xb8
-	// Line 537, Address: 0x1d5750, Func Offset: 0xc0
-	// Line 540, Address: 0x1d5764, Func Offset: 0xd4
-	// Line 543, Address: 0x1d576c, Func Offset: 0xdc
-	// Line 545, Address: 0x1d5784, Func Offset: 0xf4
-	// Line 546, Address: 0x1d578c, Func Offset: 0xfc
-	// Line 547, Address: 0x1d579c, Func Offset: 0x10c
-	// Line 550, Address: 0x1d57a4, Func Offset: 0x114
-	// Line 553, Address: 0x1d57b0, Func Offset: 0x120
-	// Line 556, Address: 0x1d57bc, Func Offset: 0x12c
-	// Line 559, Address: 0x1d57c4, Func Offset: 0x134
-	// Line 560, Address: 0x1d57cc, Func Offset: 0x13c
-	// Func End, Address: 0x1d57dc, Func Offset: 0x14c
-	scePrintf("bhEne12 - UNIMPLEMENTED!\n");
+void(*bhEne12_Mode0[6])(BH_PWORK*) = {
+    bhEne12_Init,
+    bhEne12_Move,
+    bhEne12_Nage,
+    bhEne12_Damage,
+    bhEne12_Die,
+    bhEne_Event,
+};
+
+// 100% matching!
+void bhEne12(BH_PWORK* epw) {
+
+    if (epw->mode0 != 5) {
+        epw->flg &= ~0x100;
+        epw->mtn_md |= 0x10;
+        epw->mtn_md &= ~0x20;
+    }
+    if (epw->type == 1) {
+        if (epw->flg & 4) {
+            epw->flg &= ~4;
+            bhEne12_HitMark(epw);
+            epw->mode0 = 1;
+            epw->mode1 = 0;
+            epw->mode2 = 7;
+            epw->mode3 = 0;
+            epw->type = 0;
+        }
+    }
+    
+    bhEne12_Mode0[epw->mode0](epw);
+    bhEne12_CallSE(epw);
+    bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+    bhEne12_FixedLegPos(epw);
+    bhEne_SetWeponAtr(epw, 5, 0x15, 4.0f);
+    bhCheckPlayer(epw);
+    
+    if (epw->flg & 0x10) {
+        bhEne12_CheckWall(epw);
+    }
+    
+    bhEne12_LookPlayaer(epw);
+    bhEne12_SetFireBintaEffect(epw, 3);
+    bhCalcModel(epw);
+    bhEne12_PlayerControl(epw);
 }
 
 /*// 

@@ -4,6 +4,7 @@
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
@@ -1188,44 +1189,68 @@ static void CalcDmgEne(BH_PWORK* ewP, en29_freework* fwP)
 	} 
 }
 
-// 
-// Start address: 0x2134c0
+// 100% matching!
 static void CheckDmgEne(BH_PWORK* ewP, en29_freework* fwP)
 {
-	int num;
-	int* dstP;
-	int* srcP;
-	float d;
-	BH_PWORK* enP;
-	e19_dmg_typ* edP;
-	e19_dmg_typ* hedP;
-	BH_PWORK* dmgP;
-	// Line 2102, Address: 0x2134c0, Func Offset: 0
-	// Line 2114, Address: 0x2134dc, Func Offset: 0x1c
-	// Line 2115, Address: 0x2134e4, Func Offset: 0x24
-	// Line 2116, Address: 0x2134f0, Func Offset: 0x30
-	// Line 2117, Address: 0x2134f4, Func Offset: 0x34
-	// Line 2118, Address: 0x213504, Func Offset: 0x44
-	// Line 2120, Address: 0x213510, Func Offset: 0x50
-	// Line 2121, Address: 0x213524, Func Offset: 0x64
-	// Line 2123, Address: 0x213544, Func Offset: 0x84
-	// Line 2126, Address: 0x213548, Func Offset: 0x88
-	// Line 2129, Address: 0x213558, Func Offset: 0x98
-	// Line 2133, Address: 0x213570, Func Offset: 0xb0
-	// Line 2134, Address: 0x213578, Func Offset: 0xb8
-	// Line 2135, Address: 0x21357c, Func Offset: 0xbc
-	// Line 2134, Address: 0x213588, Func Offset: 0xc8
-	// Line 2135, Address: 0x21358c, Func Offset: 0xcc
-	// Line 2136, Address: 0x2135a8, Func Offset: 0xe8
-	// Line 2137, Address: 0x2135b0, Func Offset: 0xf0
-	// Line 2138, Address: 0x2135b8, Func Offset: 0xf8
-	// Line 2139, Address: 0x2135c0, Func Offset: 0x100
-	// Line 2140, Address: 0x2135c8, Func Offset: 0x108
-	// Line 2141, Address: 0x2135d0, Func Offset: 0x110
-	// Line 2142, Address: 0x2135d8, Func Offset: 0x118
-	// Line 2143, Address: 0x2135e0, Func Offset: 0x120
-	// Line 2144, Address: 0x2135e8, Func Offset: 0x128
-	// Line 2145, Address: 0x2135f0, Func Offset: 0x130
-	// Line 2147, Address: 0x213604, Func Offset: 0x144
-	// Func End, Address: 0x213624, Func Offset: 0x164
+    BH_PWORK* dmgP;    
+    e19_dmg_typ* hedP, *edP; 
+    BH_PWORK* enP;    
+    float d;          
+    int* srcP, *dstP;        
+    int num;          
+
+    hedP = fwP->dmg_eneP;
+    dmgP = NULL;
+    
+    for (edP = hedP->nextP; edP != hedP; edP = edP->nextP) 
+    {
+        enP = edP->ewP;
+        
+        if ((enP->flg & 0x4)) 
+        {
+            enP->flg &= ~0x4;
+            
+            d = 10000.0f;
+            
+            if (d > njDistanceP2P((NJS_POINT3*)&plp->px, (NJS_POINT3*)&enP->dpx)) 
+            {
+                dmgP = enP;
+            }
+        }
+    }
+    
+    if (dmgP != NULL) 
+    {
+        if (!(ewP->flg & 0x4)) 
+        {
+            ewP->flg |= 0x4;
+            
+            num = 64;
+            
+            srcP = dmgP->dam;
+            dstP = ewP->dam;
+            
+            ewP->djnt_no = dmgP->djnt_no;
+            
+            for (; num > 0; num--) 
+            {
+                *dstP++ = *srcP++;
+            } 
+            
+            ewP->dpx = dmgP->dpx;
+            ewP->dpy = dmgP->dpy;
+            ewP->dpz = dmgP->dpz;
+            
+            ewP->dvx = dmgP->dvx;
+            ewP->dvy = dmgP->dvy;
+            ewP->dvz = dmgP->dvz;
+            
+            ewP->dax = dmgP->dax;
+            ewP->day = dmgP->day;
+            
+            ewP->wpnr_no = dmgP->wpnr_no;
+            
+            ewP->comb_flg |= dmgP->comb_flg & 0x70;
+        }
+    }
 }

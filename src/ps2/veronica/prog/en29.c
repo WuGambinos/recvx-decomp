@@ -810,38 +810,58 @@ static int bhEne29_PlySetDamage(BH_PWORK* plP, en29_freework* fwP, int dmg_mde)
 	// Func End, Address: 0x21244c, Func Offset: 0x16c
 }
 
-// 
-// Start address: 0x212450
+// 99.35% matching
 static void bhEne29_PlyMoveMain(BH_PWORK* plP, en29_freework* fwP)
 {
-	int lop;
-	int act;
-	int* br1P;
-	int* br0P;
-	int* stsP;
-	// Line 1615, Address: 0x212450, Func Offset: 0
-	// Line 1618, Address: 0x212474, Func Offset: 0x24
-	// Line 1616, Address: 0x21247c, Func Offset: 0x2c
-	// Line 1618, Address: 0x212480, Func Offset: 0x30
-	// Line 1620, Address: 0x21248c, Func Offset: 0x3c
-	// Line 1621, Address: 0x212490, Func Offset: 0x40
-	// Line 1622, Address: 0x212494, Func Offset: 0x44
-	// Line 1623, Address: 0x212498, Func Offset: 0x48
-	// Line 1626, Address: 0x21249c, Func Offset: 0x4c
-	// Line 1628, Address: 0x2124c8, Func Offset: 0x78
-	// Line 1637, Address: 0x2124d4, Func Offset: 0x84
-	// Line 1646, Address: 0x2124e0, Func Offset: 0x90
-	// Line 1651, Address: 0x2124e8, Func Offset: 0x98
-	// Line 1646, Address: 0x2124f8, Func Offset: 0xa8
-	// Line 1647, Address: 0x212500, Func Offset: 0xb0
-	// Line 1651, Address: 0x212510, Func Offset: 0xc0
-	// Line 1652, Address: 0x21251c, Func Offset: 0xcc
-	// Line 1653, Address: 0x212528, Func Offset: 0xd8
-	// Line 1656, Address: 0x212568, Func Offset: 0x118
-	// Line 1658, Address: 0x212574, Func Offset: 0x124
-	// Line 1659, Address: 0x212590, Func Offset: 0x140
-	// Line 1661, Address: 0x21259c, Func Offset: 0x14c
-	// Func End, Address: 0x2125c4, Func Offset: 0x174
+    int* stsP;
+    int* br0P, *br1P;
+    int act;  
+    int lop;   
+
+    stsP = &fwP->p_status;
+    
+    if ((*stsP & 0x1))
+    {
+        br0P = &fwP->p_br_mde0;
+        br1P = &fwP->p_br_mde1;
+        
+        act = TC_ACT_ALL;
+        
+        lop = 0;
+        
+        do 
+        {
+            switch (*br0P) 
+            {                     
+            case TC_BR0_NORMAL:
+                act = (*br1P != TC_BR1_FIRST) ? act : TC_ACT_000;
+                break;
+            case TC_BR0_ATTACK:
+                act = (*br1P != TC_BR1_FIRST) ? act : TC_ACT_001;
+                break;
+            case TC_BR0_DAMAGE:
+                plP->px += fwP->ply_dmg.x;
+                plP->pz += fwP->ply_dmg.z;
+                
+                fwP->ply_dmg.x *= 0.8f;
+                fwP->ply_dmg.z *= 0.8f;
+                
+                if (fabsf(fwP->ply_dmg.x + fwP->ply_dmg.z) < 0.01f)
+                {
+                    *stsP &= ~0x1;
+                }
+                
+                break;
+            }
+        } while (lop-- != 0);
+        
+        if (act != TC_ACT_ALL) 
+        {
+            bhEne29_PlyActionChange(plP, &fwP->ply_act, act);
+        }
+        
+        bhEne29_PlyActionMain(plP, &fwP->ply_act);
+    }
 }
 
 // 100% matching!

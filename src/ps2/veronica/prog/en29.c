@@ -488,29 +488,45 @@ static void bhEne29_ActionInit(eaw_typ* eawP, EA_WORK* act_tblP, int tbl_num)
 	eawP->act_now = 30;
 }
 
-// 
-// Start address: 0x2119b0
+// 100% matching!
 static EA_WORK* bhEne29_ActionSearch(eaw_typ* eawP, int act_nw, int act_no)
 {
-	int val;
-	int middle;
-	int low;
-	int high;
-	int key;
-	EA_WORK* eaP;
-	// Line 1118, Address: 0x2119b0, Func Offset: 0
-	// Line 1117, Address: 0x2119c0, Func Offset: 0x10
-	// Line 1119, Address: 0x2119c4, Func Offset: 0x14
-	// Line 1122, Address: 0x2119c8, Func Offset: 0x18
-	// Line 1124, Address: 0x2119d4, Func Offset: 0x24
-	// Line 1125, Address: 0x2119dc, Func Offset: 0x2c
-	// Line 1127, Address: 0x2119f0, Func Offset: 0x40
-	// Line 1128, Address: 0x2119f8, Func Offset: 0x48
-	// Line 1130, Address: 0x211a08, Func Offset: 0x58
-	// Line 1135, Address: 0x211a14, Func Offset: 0x64
-	// Line 1138, Address: 0x211a20, Func Offset: 0x70
-	// Line 1139, Address: 0x211a24, Func Offset: 0x74
-	// Func End, Address: 0x211a2c, Func Offset: 0x7c
+    EA_WORK* eaP; 
+    int key;     
+    int high, low, middle;    
+	int val;      
+    
+    eaP = eawP->act_tblP;
+    
+    key = ((unsigned char)act_nw << 8) | ((unsigned char)act_no << 0);
+    
+    high = eawP->tbl_num;
+    low  = 0;
+
+    while (low <= high) 
+    {
+        middle = (low + high) / 2;
+         
+        val = eaP[middle].label;
+
+        if (key != val) 
+        {
+            if (key < val) 
+            { 
+                high = middle - 1;
+            }
+            else if (key > val) 
+            { 
+                low = middle + 1;
+            }
+        } 
+        else 
+        {
+            return &eaP[middle];
+        }
+    }
+    
+    return NULL;
 }
 
 // 100% matching!

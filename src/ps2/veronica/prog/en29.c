@@ -605,62 +605,91 @@ static int bhEne29_ActionMain(BH_PWORK* ewP, eaw_typ* eawP)
     return 0;
 }
 
-// 
-// Start address: 0x211c70
+// 100% matching!
 static void bhEne29_TargetAnalyze(BH_PWORK* ewP, en29_freework* fwP)
 {
-	float dst;
-	//NJS_POINT3 dlt;
-	//int dlt;
-	int ad;
-	NJS_POINT3 dlt;
-	NJS_POINT3* vP;
-	int* stsP;
-	// Line 1242, Address: 0x211c70, Func Offset: 0
-	// Line 1246, Address: 0x211c88, Func Offset: 0x18
-	// Line 1243, Address: 0x211c90, Func Offset: 0x20
-	// Line 1246, Address: 0x211c94, Func Offset: 0x24
-	// Line 1247, Address: 0x211ca0, Func Offset: 0x30
-	// Line 1253, Address: 0x211cd0, Func Offset: 0x60
-	// Line 1254, Address: 0x211cec, Func Offset: 0x7c
-	// Line 1255, Address: 0x211d10, Func Offset: 0xa0
-	// Line 1262, Address: 0x211d34, Func Offset: 0xc4
-	// Line 1263, Address: 0x211d40, Func Offset: 0xd0
-	// Line 1262, Address: 0x211d44, Func Offset: 0xd4
-	// Line 1263, Address: 0x211d6c, Func Offset: 0xfc
-	// Line 1266, Address: 0x211d74, Func Offset: 0x104
-	// Line 1268, Address: 0x211d98, Func Offset: 0x128
-	// Line 1266, Address: 0x211da0, Func Offset: 0x130
-	// Line 1268, Address: 0x211da4, Func Offset: 0x134
-	// Line 1266, Address: 0x211dac, Func Offset: 0x13c
-	// Line 1269, Address: 0x211db4, Func Offset: 0x144
-	// Line 1270, Address: 0x211dcc, Func Offset: 0x15c
-	// Line 1278, Address: 0x211dd8, Func Offset: 0x168
-	// Line 1280, Address: 0x211df0, Func Offset: 0x180
-	// Line 1281, Address: 0x211dfc, Func Offset: 0x18c
-	// Line 1282, Address: 0x211e04, Func Offset: 0x194
-	// Line 1284, Address: 0x211e0c, Func Offset: 0x19c
-	// Line 1292, Address: 0x211e10, Func Offset: 0x1a0
-	// Line 1294, Address: 0x211e18, Func Offset: 0x1a8
-	// Line 1295, Address: 0x211e1c, Func Offset: 0x1ac
-	// Line 1292, Address: 0x211e20, Func Offset: 0x1b0
-	// Line 1294, Address: 0x211e28, Func Offset: 0x1b8
-	// Line 1295, Address: 0x211e58, Func Offset: 0x1e8
-	// Line 1296, Address: 0x211e60, Func Offset: 0x1f0
-	// Line 1297, Address: 0x211e6c, Func Offset: 0x1fc
-	// Line 1296, Address: 0x211e70, Func Offset: 0x200
-	// Line 1297, Address: 0x211e78, Func Offset: 0x208
-	// Line 1299, Address: 0x211e9c, Func Offset: 0x22c
-	// Line 1300, Address: 0x211ea8, Func Offset: 0x238
-	// Line 1299, Address: 0x211eac, Func Offset: 0x23c
-	// Line 1300, Address: 0x211ed4, Func Offset: 0x264
-	// Line 1302, Address: 0x211edc, Func Offset: 0x26c
-	// Line 1301, Address: 0x211ee0, Func Offset: 0x270
-	// Line 1302, Address: 0x211ee8, Func Offset: 0x278
-	// Line 1301, Address: 0x211eec, Func Offset: 0x27c
-	// Line 1302, Address: 0x211ef4, Func Offset: 0x284
-	// Line 1307, Address: 0x211f10, Func Offset: 0x2a0
-	// Func End, Address: 0x211f2c, Func Offset: 0x2bc
+    int* stsP;       
+    NJS_POINT3* vP;  
+    
+    stsP = &fwP->status;
+
+    if (((*stsP & 0x1)) && ((plp->hp < 0) || ((plp->flg & 0x2)))) 
+    {
+        *stsP |= 0x20;
+    }
+
+    vP = (NJS_POINT3*)&ewP->mlwP->owP[fwP->bas_obj].mtx[8];
+    
+    fwP->bas_ax = 10430.381f * asinf(vP->y);
+    fwP->bas_ay = 10430.381f * atan2f(vP->x, vP->z);
+
+    {
+    NJS_POINT3 dlt; 
+    int ad;          
+    
+    dlt = *(NJS_POINT3*)&ewP->mlwP->owP[fwP->bas_obj].mtx[12];
+        
+    njSubVector(&dlt, &fwP->tgt_pos);
+
+    ad = (int)(10430.381f * atan2f(dlt.x, dlt.z)) - fwP->bas_ay;
+        
+    *stsP &= ~0xC00;
+        
+    if ((short)ad < 0) 
+    {
+        *stsP |= 0x800;
+    } 
+    else
+    {
+        *stsP |= 0x400;
+    }
+    }
+
+    {
+    int dlt;   
+        
+    dlt = (unsigned short)(plp->ay - fwP->bas_ay);
+        
+    if ((dlt & 0x8000)) 
+    {
+        dlt = (65536 - dlt) | 0x80000000;
+    }
+        
+    fwP->dir_dlt = dlt;
+    }
+
+    *stsP &= ~0x200;
+
+    {
+    NJS_POINT3 dlt;
+    float dst;      
+    
+    dlt = *(NJS_POINT3*)&ewP->mlwP->owP[fwP->atk_obj0].mtx[12];
+        
+    njSubVector(&dlt, &fwP->tgt_pos);
+
+    vP = (NJS_POINT3*)&dlt.z;
+        
+    dst = (dlt.x * dlt.x) + (vP->x * vP->x);
+
+    if (dst <= (fwP->atk_rng0 * fwP->atk_rng0)) 
+    {
+        *stsP |= 0x200;
+    } 
+    else 
+    {
+        dlt = *(NJS_POINT3*)&ewP->mlwP->owP[fwP->atk_obj1].mtx[12];
+        
+        njSubVector(&dlt, &fwP->tgt_pos);
+        
+        dst = (dlt.x * dlt.x) + (vP->x * vP->x);
+        
+        if (dst <= (fwP->atk_rng1 * fwP->atk_rng1))
+        {
+            *stsP |= 0x200;
+        }
+    }
+    }
 }
 
 // 100% matching!

@@ -10,6 +10,8 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 
+#pragma optimization_level 4
+
 // ENEMY: Tentacle 
 
 static void (*bhEne29_Mode0[6])(BH_PWORK*) = 

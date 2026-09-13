@@ -786,57 +786,72 @@ static int bhEne29_AttackHitCheck(BH_PWORK* ewP, en29_freework* fwP)
 	// Func End, Address: 0x2122d8, Func Offset: 0x138
 }
 
-// 
-// Start address: 0x2122e0
+// 100% matching!
 static int bhEne29_PlySetDamage(BH_PWORK* plP, en29_freework* fwP, int dmg_mde)
 {
-	int dir_mde;
 	static const int PlyDmgTbl[4] = { 5, 5, 5, 5 };
-	// Line 1533, Address: 0x2122e0, Func Offset: 0
-	// Line 1543, Address: 0x2122f0, Func Offset: 0x10
-	// Line 1533, Address: 0x2122f4, Func Offset: 0x14
-	// Line 1543, Address: 0x2122fc, Func Offset: 0x1c
-	// Line 1545, Address: 0x212308, Func Offset: 0x28
-	// Line 1549, Address: 0x212318, Func Offset: 0x38
-	// Line 1551, Address: 0x212338, Func Offset: 0x58
-	// Line 1552, Address: 0x21234c, Func Offset: 0x6c
-	// Line 1553, Address: 0x212358, Func Offset: 0x78
-	// Line 1554, Address: 0x212360, Func Offset: 0x80
-	// Line 1557, Address: 0x212370, Func Offset: 0x90
-	// Line 1558, Address: 0x21237c, Func Offset: 0x9c
-	// Line 1564, Address: 0x212384, Func Offset: 0xa4
-	// Line 1565, Address: 0x212390, Func Offset: 0xb0
-	// Line 1566, Address: 0x212398, Func Offset: 0xb8
-	// Line 1564, Address: 0x21239c, Func Offset: 0xbc
-	// Line 1565, Address: 0x2123a4, Func Offset: 0xc4
-	// Line 1572, Address: 0x2123a8, Func Offset: 0xc8
-	// Line 1565, Address: 0x2123ac, Func Offset: 0xcc
-	// Line 1566, Address: 0x2123b4, Func Offset: 0xd4
-	// Line 1567, Address: 0x2123b8, Func Offset: 0xd8
-	// Line 1568, Address: 0x2123bc, Func Offset: 0xdc
-	// Line 1569, Address: 0x2123c0, Func Offset: 0xe0
-	// Line 1572, Address: 0x2123c4, Func Offset: 0xe4
-	// Line 1574, Address: 0x2123c8, Func Offset: 0xe8
-	// Line 1577, Address: 0x2123cc, Func Offset: 0xec
-	// Line 1578, Address: 0x2123d4, Func Offset: 0xf4
-	// Line 1581, Address: 0x2123dc, Func Offset: 0xfc
-	// Line 1582, Address: 0x2123e8, Func Offset: 0x108
-	// Line 1583, Address: 0x2123f0, Func Offset: 0x110
-	// Line 1581, Address: 0x2123f4, Func Offset: 0x114
-	// Line 1582, Address: 0x2123fc, Func Offset: 0x11c
-	// Line 1592, Address: 0x212400, Func Offset: 0x120
-	// Line 1582, Address: 0x212404, Func Offset: 0x124
-	// Line 1583, Address: 0x21240c, Func Offset: 0x12c
-	// Line 1584, Address: 0x212410, Func Offset: 0x130
-	// Line 1585, Address: 0x212414, Func Offset: 0x134
-	// Line 1586, Address: 0x212418, Func Offset: 0x138
-	// Line 1589, Address: 0x21241c, Func Offset: 0x13c
-	// Line 1592, Address: 0x212420, Func Offset: 0x140
-	// Line 1595, Address: 0x212424, Func Offset: 0x144
-	// Line 1598, Address: 0x212428, Func Offset: 0x148
-	// Line 1603, Address: 0x212430, Func Offset: 0x150
-	// Line 1604, Address: 0x212434, Func Offset: 0x154
-	// Func End, Address: 0x21244c, Func Offset: 0x16c
+    int dir_mde;
+
+    if (dmg_mde > 3) 
+    {
+        dmg_mde = 3;
+    }
+    
+    if (!(plP->flg & 0x4)) 
+    {
+        plP->hp -= PlyDmgTbl[dmg_mde];
+        
+        if ((fwP->dir_dlt & 0x80000000))
+        {
+            dir_mde = ((fwP->status & 0x400)) ? 0 : (unsigned int)1;
+        } 
+        else
+        {
+            dir_mde = ((fwP->status & 0x400)) ? (unsigned int)1 : 0;
+        }
+        
+        if (plP->hp > 0) 
+        {
+            if (dmg_mde < 3) 
+            {
+                plP->flg |=  0x210004;
+                plP->flg &= ~0x40000;
+                
+                plP->mode0 = 2;
+                plP->mode1 = dir_mde;
+                plP->mode2 = dmg_mde;
+                plP->mode3 = 0;
+                
+                fwP->p_status = 1;
+                
+                fwP->p_br_mde0 = 2;
+                fwP->p_br_mde1 = 0;
+            }
+            else
+            {
+                CallPlayerVoice(1027);
+                
+                plP->flg |=  0x210004;
+                plP->flg &= ~0x40000;
+                
+                plP->mode0 = 5;
+                plP->mode1 = 0;
+                plP->mode2 = 0;
+                plP->mode3 = 0;
+                
+                fwP->ply_act.p_act_flg = 0;
+                
+                fwP->p_status = 1;
+                
+                fwP->p_br_mde0 = dir_mde;
+                fwP->p_br_mde1 = 0;
+                
+                return 1;
+            }
+        }
+    }
+    
+    return 0;
 }
 
 // 99.35% matching

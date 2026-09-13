@@ -2652,7 +2652,7 @@ static void bhEne19_Mv20(BH_PWORK* ewP, FW_WORK* fwP, int count)
     }
 }
 
-// 93.33% matching
+// 100% matching!
 static EA_WORK* bhEne19_ActionSearch(int act_nw, int act_no)
 {
 	int key;  
@@ -2660,38 +2660,35 @@ static EA_WORK* bhEne19_ActionSearch(int act_nw, int act_no)
 	int val;   
 	int middle; 
 
-    high = 50;
-    
     key = ((unsigned char)act_nw << 8) | ((unsigned char)act_no << 0);
-    
-    low = 0;
 
-    while (TRUE)
+    high = 50;
+    low  = 0;
+
+    while (low <= high)
     {
         middle = (low + high) / 2;
         
         val = En19ActTbl[middle].label;
 
-        if (key == val)
+        if (key != val)
         {
-            break;
+            if (key < val)
+            {
+                high = middle - 1;
+            }
+            else if (key > val)
+            {
+                low = middle + 1;
+            }
         }
-        else if (key < val)
+        else 
         {
-            high = middle - 1;
-        }
-        else if (key > val)
-        {
-            low  = middle + 1;
-        }
-
-        if (high < low)
-        {
-            return NULL;
+            return &En19ActTbl[middle];
         }
     }
 
-    return &En19ActTbl[middle];
+    return NULL;
 }
 
 // 100% matching!

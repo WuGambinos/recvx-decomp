@@ -2679,7 +2679,7 @@ static EA_WORK* bhEne19_ActionSearch(int act_nw, int act_no)
             }
             else if (key > val)
             {
-                low = middle + 1;
+                low  = middle + 1;
             }
         }
         else 

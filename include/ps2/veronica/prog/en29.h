@@ -229,7 +229,7 @@ static void bhEne29_PlyDmg117(BH_PWORK* plP, en29_freework* fwP);
 static void bhEne29_PlyDmg118(BH_PWORK* plP, en29_freework* fwP);
 static void bhEne29_PlyDmgRtn(BH_PWORK* plP, en29_freework* fwP);
 static void bhEne29_SetDmgEffect(BH_PWORK* ewP, int eff_typ);
-static void SetDmgEne(en29_freework* fwP, DS_WORK* dsP, int set_num);
+static void SetDmgEne(BH_PWORK* ewP, en29_freework* fwP, DS_WORK* dsP, int set_num);
 static void CalcDmgEne(BH_PWORK* ewP, en29_freework* fwP);
 static void CheckDmgEne(BH_PWORK* ewP, en29_freework* fwP);
 

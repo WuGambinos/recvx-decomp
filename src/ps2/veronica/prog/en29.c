@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/en19.h"
 #include "../../../ps2/veronica/prog/en29.h"
+#include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
@@ -517,7 +518,7 @@ static EA_WORK* bhEne29_ActionSearch(eaw_typ* eawP, int act_nw, int act_no)
             }
             else if (key > val) 
             { 
-                low = middle + 1;
+                low  = middle + 1;
             }
         } 
         else 
@@ -1129,33 +1130,36 @@ static void bhEne29_SetDmgEffect(BH_PWORK* ewP, int eff_typ)
 	// Func End, Address: 0x213368, Func Offset: 0x9d8
 }
 
-// 
-// Start address: 0x213370
-static void SetDmgEne(en29_freework* fwP, DS_WORK* dsP, int set_num)
+// 100% matching!
+static void SetDmgEne(BH_PWORK* ewP, en29_freework* fwP, DS_WORK* dsP, int set_num) // first parameter not present on DWARF
 {
-	BH_PWORK* ewP;
-	e19_dmg_typ* edP;
-	e19_dmg_typ* hedP;
-	// Line 2039, Address: 0x213370, Func Offset: 0
-	// Line 2044, Address: 0x213384, Func Offset: 0x14
-	// Line 2039, Address: 0x213388, Func Offset: 0x18
-	// Line 2047, Address: 0x21338c, Func Offset: 0x1c
-	// Line 2051, Address: 0x2133a0, Func Offset: 0x30
-	// Line 2054, Address: 0x2133a8, Func Offset: 0x38
-	// Line 2056, Address: 0x2133b8, Func Offset: 0x48
-	// Line 2064, Address: 0x2133c0, Func Offset: 0x50
-	// Line 2056, Address: 0x2133c4, Func Offset: 0x54
-	// Line 2057, Address: 0x2133cc, Func Offset: 0x5c
-	// Line 2058, Address: 0x2133d4, Func Offset: 0x64
-	// Line 2059, Address: 0x2133dc, Func Offset: 0x6c
-	// Line 2061, Address: 0x2133e4, Func Offset: 0x74
-	// Line 2062, Address: 0x2133e8, Func Offset: 0x78
-	// Line 2064, Address: 0x2133ec, Func Offset: 0x7c
-	// Line 2062, Address: 0x2133f0, Func Offset: 0x80
-	// Line 2063, Address: 0x2133f4, Func Offset: 0x84
-	// Line 2064, Address: 0x2133f8, Func Offset: 0x88
-	// Line 2065, Address: 0x213400, Func Offset: 0x90
-	// Func End, Address: 0x21341c, Func Offset: 0xac
+    e19_dmg_typ* hedP, *edP; 
+
+    edP = fwP->DmgWrk;
+    
+    fwP->dmg_eneP = edP;
+    
+    hedP = edP++;
+    
+    fwP->DmgWrk->nextP = fwP->DmgWrk;   
+    
+    for (; set_num > 0; set_num--, dsP++, edP++)
+    {
+        BH_PWORK* ewP;
+
+        ewP = bhSetEnemy((ETTY_WORK*)&En29DmgDat, 0);
+        
+        ewP->flg2 |= dsP->or_flg2;
+        
+        edP->atr_top = dsP->atr_top;
+        edP->atr_end = dsP->atr_end;
+        edP->atr_rad = dsP->atr_rad;
+        
+        edP->ewP = ewP;
+        
+        edP->nextP  = hedP->nextP;
+        hedP->nextP = edP;
+    }
 }
 
 // 100% matching!

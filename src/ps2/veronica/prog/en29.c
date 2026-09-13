@@ -119,11 +119,39 @@ int E29EffTbl[9][4] =
     { 4, 131072, 40, 298 }  
 };
 
-static const char En29FlpTbl[20];
-static const CPCL Ene29CapColTbl[15];
-static const ACT_TBL_WORK En29PlyActTbl[2];
-static const ETTY_WORK En29DmgDat;
-static const DS_WORK E29DmgSet[5];
+static const char En29FlpTbl[20] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
+static const CPCL Ene29CapColTbl[15] = 
+{
+    {  1,  4, 20 },
+    {  4,  6, 20 },
+    {  6,  8, 18 },
+    {  8, 10, 18 },
+    {  9, 10, 16 },
+    { 10, 11, 16 },
+    { 11, 12, 14 },
+    { 12, 13, 14 },
+    { 13, 14, 12 },
+    { 14, 15, 12 },
+    { 15, 16, 10 },
+    { 16, 17, 10 },
+    { 17, 18,  8 },
+    { 18, 19,  8 },
+    {  0,  0,  0 }
+};
+static const ACT_TBL_WORK En29PlyActTbl[2] = 
+{
+    { 30, 0, 0, 8, 255, -1, 0x20, (void*)bhEne29_PlyDmg117 },
+    { 31, 0, 0, 8, 255, -1, 0x20, (void*)bhEne29_PlyDmg118 }
+};
+static const ETTY_WORK En29DmgDat = { 0x8021, 29, 8, 0, 0, 0, 0, 0.0f, 0.0f, 0.0f, 0, 0, 0, 0, { 0, 0, 0, 0 } };
+static const DS_WORK E29DmgSet[5] = 
+{
+    { TC_OBJ_BODY00, TC_OBJ_BODY03, 2.0f, 16 },
+    { TC_OBJ_BODY04, TC_OBJ_BODY07, 2.0f,  0 },
+    { TC_OBJ_BODY08, TC_OBJ_BODY11, 2.0f, 16 },
+    { TC_OBJ_BODY12, TC_OBJ_BODY15, 2.0f, 16 },
+    { TC_OBJ_BODY16, TC_OBJ_BODY18, 2.0f, 16 }
+};
 /* unused below */
 /*OFF_TBL_WORK E29OffTbl[20];
 TC_BR_MODE0 InitBrnMde[4];*/
@@ -795,7 +823,15 @@ static void bhEne29_DmgCheck(BH_PWORK* ewP, en29_freework* fwP)
 {
 	DD_WRK* ddP;
 	int dmg_obj;
-	static const DD_WRK DmgDat[21];
+	static const DD_WRK DmgDat[21] = 
+	{
+		{ 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 3, 1, 4 }, { 0, 3, 1, 4 },
+		{ 0, 3, 1, 4 }, { 0, 3, 1, 4 }, { 1, 4, 2, 5 }, { 0, 3, 1, 4 },
+		{ 0, 3, 0, 4 }, { 0, 3, 1, 4 }, { 0, 3, 1, 4 }, { 1, 4, 2, 5 },
+		{ 0, 3, 1, 4 }, { 2, 4, 2, 5 }, { 2, 4, 2, 5 }, { 0, 8, 1, 8 },
+		{ 0, 6, 1, 6 }, { 2, 4, 2, 5 }, { 2, 5, 2, 5 }, { 1, 3, 2, 4 },
+		{ 2, 5, 2, 5 }
+	};
 	// Line 1349, Address: 0x211fc0, Func Offset: 0
 	// Line 1377, Address: 0x211fd8, Func Offset: 0x18
 	// Line 1379, Address: 0x211fe0, Func Offset: 0x20
@@ -844,7 +880,7 @@ static int bhEne29_AttackHitCheck(BH_PWORK* ewP, en29_freework* fwP)
 	int ang;
 	int i;
 	static NJS_SPHERE spr;
-	static const CLL_WORK E29Cll[6];
+	static const CLL_WORK E29Cll[6] = { { 18, 3.0f }, { 17, 3.0f }, { 15, 3.5f }, { 13, 4.0f }, { 11, 4.5f }, {  9, 4.5f } };
 	// Line 1478, Address: 0x2121a0, Func Offset: 0
 	// Line 1489, Address: 0x2121c8, Func Offset: 0x28
 	// Line 1494, Address: 0x2121cc, Func Offset: 0x2c

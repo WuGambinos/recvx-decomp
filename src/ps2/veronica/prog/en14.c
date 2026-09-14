@@ -160,12 +160,10 @@ void bhEne14_BR00()
 	
 }
 
-// 
-// Start address: 0x1ddf00
+// 100% matching!
 void bhEne14_BR01()
 {
-	// Line 635, Address: 0x1ddf00, Func Offset: 0
-	// Func End, Address: 0x1ddf08, Func Offset: 0x8
+	
 }
 
 // 

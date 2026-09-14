@@ -637,7 +637,7 @@ void bhCheckWall(BH_PWORK* pw)
     }
 }
 
-// 97.77% matching
+// 100% matching!
 int bhCheckWallEx(BH_PWORK* pw, NJS_POINT3* npos, NJS_POINT3* opos, float par, float pah)
 {
     NJS_POINT3 pd;     
@@ -1262,7 +1262,14 @@ int bhCheckWallEx(BH_PWORK* pw, NJS_POINT3* npos, NJS_POINT3* opos, float par, f
         sys->mwal_n -= sys->dla_n;
     }
     
-    return (hit != 0) ? 1 : 0;
+    if (hit != 0) 
+    {
+        return 1;
+    }
+    else 
+    { 
+        return 0; 
+    }
 }
 
 // 100% matching!

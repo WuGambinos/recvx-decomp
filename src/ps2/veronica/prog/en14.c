@@ -2,27 +2,171 @@
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
 
 // ENEMY: Third Form Alexia 
 
-static unsigned char flip_tree[22];
-static char SdwTab[5];
-static char joint_tree[1][6];
-static DMG_REACT DmgReact[21];
-static COMBWEP_WORK CombWepTbl[21];
-static COMBJOINT_WORK CombJointTbl[22];
-static BLOOD_TBL BloodTbl[22];
-static CPCL CapColTab[25];
-static P_WORK ShapeTbl_Acid_F[5];
-static P_WORK ShapeTbl_Acid_S[6];
-static P_WORK ShapeTbl_Acid_A[5];
+static unsigned char flip_tree[22] = { 0, 1, 2, 3, 4, 5, 6, 9, 10, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 };
+static char SdwTab[5] = { 1, 6, 11, 12, -1 };
+static DMG_REACT DmgReact[21] =
+{
+    { {  0,  1,  0 }, {  0,  0,  0 }, 0 },
+    { {  0,  1,  0 }, {  1,  0,  0 }, 0 },
+    { {  0,  1,  0 }, {  1,  0,  0 }, 0 },
+    { {  1,  1,  0 }, {  1,  0,  0 }, 0 },
+    { {  1,  1,  0 }, {  1,  0,  0 }, 0 },
+    { {  0,  0,  0 }, {  1,  0,  0 }, 0 },   
+    { {  1,  1,  0 }, {  1,  0,  0 }, 0 },
+    { {  0,  0,  0 }, {  1,  0,  0 }, 0 },
+    { {  0,  0,  0 }, {  0,  0,  0 }, 0 },
+    { {  0,  0,  0 }, {  0,  0,  0 }, 0 },
+    { {  0,  0,  0 }, {  1,  0,  0 }, 0 },   
+    { {  2,  1,  0 }, {  1,  0,  0 }, 0 },
+    { {  0,  0,  0 }, {  0,  0,  0 }, 0 },
+    { {  1,  1,  0 }, {  1,  0,  0 }, 0 },
+    { {  2,  1,  0 }, {  1,  1,  1 }, 1 },
+    { { -1, -1, -1 }, {  1,  0,  0 }, 2 },
+    { { -1, -1, -1 }, {  1,  0,  0 }, 1 },
+    { { -1, -1, -1 }, {  1,  0,  0 }, 0 },
+    { {  2,  2,  2 }, {  1,  1,  1 }, 0 },
+    { {  2,  2,  2 }, {  1,  0,  0 }, 1 },
+    { {  2,  2,  2 }, {  1,  1,  1 }, 0 }
+};
+static COMBWEP_WORK CombWepTbl[21] =
+{
+    {  0, { 0, 0, 0 },   0,   0 },
+    {  0, { 0, 0, 0 },   0,   0 },
+    {  4, { 1, 0, 0 }, 120, 800 },
+    { 20, { 6, 4, 2 },  60,   0 },
+    { 20, { 6, 4, 2 },  60,   0 },
+    { 20, { 6, 4, 2 },  60,   0 },
+    {  0, { 0, 0, 0 },  60,   0 },
+    {  0, { 0, 0, 0 },  60,   0 },
+    { 25, { 5, 3, 1 },  30,   0 },
+    {  0, { 0, 0, 0 },   0,   0 },
+    {  0, { 0, 0, 0 },  60,   0 },
+    {  1, { 1, 1, 1 },  60,   0 },
+    { 25, { 5, 4, 2 },  30,   0 },
+    {  0, { 0, 0, 0 },  60,   0 },
+    {  0, { 0, 0, 0 },   0,   0 },
+    {  0, { 0, 0, 0 },   0,   0 },
+    {  0, { 0, 0, 0 },   0,   0 },
+    {  0, { 0, 0, 0 },   0,   0 },
+    {  0, { 0, 0, 0 },   0,   0 },
+    {  0, { 0, 0, 0 },   0,   0 },
+    {  0, { 0, 0, 0 },   0,   0 }
+};
+static COMBJOINT_WORK CombJointTbl[22] = { 0 };
+static BLOOD_TBL BloodTbl[22] =
+{
+    { 1, {  0.0f,  0.0f,  0.0f }, 0.0f, 0.0f, 0.0f },
+    { 0, {  0.0f,  2.0f, -2.0f }, 5.0f, 3.0f, 1.0f },
+    { 0, {  0.0f,  2.0f, -2.0f }, 5.0f, 3.0f, 1.0f },
+    { 0, {  0.0f,  1.0f, -2.0f }, 5.0f, 3.0f, 1.0f },
+    { 1, {  0.0f,  0.0f, -1.0f }, 2.0f, 2.0f, 1.0f },
+    { 1, {  0.0f,  0.0f, -1.0f }, 2.0f, 1.0f, 1.0f },
+    { 1, {  0.0f,  0.0f, -1.0f }, 2.0f, 1.0f, 1.0f },
+    { 1, {  0.0f,  0.0f, -1.0f }, 1.0f, 1.0f, 1.0f },
+    { 1, {  0.0f,  0.0f, -1.0f }, 1.0f, 1.0f, 1.0f },
+    { 1, {  0.0f,  0.0f, -1.0f }, 1.0f, 1.0f, 1.0f },
+    { 1, {  0.0f,  0.0f, -1.0f }, 1.0f, 1.0f, 1.0f },
+    { 0, {  0.0f, -1.0f,  0.0f }, 1.0f, 2.0f, 1.0f },
+    { 0, {  0.0f, -1.0f,  0.0f }, 1.0f, 2.0f, 1.0f },
+    { 0, {  0.0f, -1.0f,  0.0f }, 1.0f, 2.0f, 1.0f },
+    { 0, {  0.0f, -1.0f,  0.0f }, 1.0f, 2.0f, 1.0f },
+    { 0, {  0.0f, -1.0f,  0.0f }, 1.0f, 2.0f, 1.0f },
+    { 0, {  0.0f, -1.0f,  0.0f }, 1.0f, 2.0f, 1.0f },
+    { 0, {  0.0f, -1.0f,  0.0f }, 1.0f, 2.0f, 1.0f },
+    { 0, {  0.0f, -1.0f,  0.0f }, 1.0f, 2.0f, 1.0f },
+    { 0, {  0.0f, -1.0f,  0.0f }, 1.0f, 2.0f, 1.0f },
+    { 0, {  0.0f, -1.0f,  0.0f }, 1.0f, 2.0f, 1.0f },
+    { 0, {  0.0f, -1.0f,  0.0f }, 1.0f, 2.0f, 1.0f }
+};
+static CPCL CapColTab[25] = 
+{
+    {   1,   2,  18 },
+    {   2,   3,  18 },
+    {   3,   3,  30 },
+    {   0,  25,   0 },
+    {   3,   3,  20 },
+    {  15,  40,   0 },
+    {   3,   3,  20 },
+    { -15,  40,   0 },
+    {   7,   7,  12 },
+    {   0,   0,   0 },
+    {   8,   8,  12 },
+    {   0,   0,   0 },
+    {   9,   9,  12 },
+    {   0,   0,   0 },
+    {  10,  10,  12 },
+    {   0,   0,   0 },
+    {   3,   4,  12 },
+    {   4,   5,   8 },
+    {   5,   6,   6 },
+    {   6,   6,  15 },
+    {   0,  15,   0 },
+    {   1,  11,  20 },
+    {   1,   1,  30 },
+    {   0, -20,   0 },
+    {   0,   0,   0 }
+};
+static P_WORK ShapeTbl_Acid_F[5] = 
+{
+    {   0,    0.0f },
+    {   5, 1000.0f },
+    {  12, 1000.0f },
+    {  20,    0.0f },
+    { 999,    0.0f }
+};
+static P_WORK ShapeTbl_Acid_S[6] = 
+{
+    {   0,    0.0f },
+    {   6, 1000.0f },
+    {  10,  300.0f },
+    {  16, 1000.0f },
+    {  25,    0.0f },
+    { 999,    0.0f }
+};
+/* unused below */
+/*static char joint_tree[1][6];
+static P_WORK ShapeTbl_Acid_A[5];*/
 
-void (*bhEne14_Mode0[6])(BH_PWORK*);
-void (*bhEne14_BrainType[2])(BH_PWORK*);
-void (*bhEne14_MoveMode2[12])(BH_PWORK*);
-void (*bhEne14_NageMode2[1])(BH_PWORK*);
-void (*bhEne14_DamageMode2[2])(BH_PWORK*);
+void (*bhEne14_Mode0[6])(BH_PWORK*) = 
+{
+	bhEne14_Init,
+	bhEne14_Move,
+	bhEne14_Nage,
+	bhEne14_Damage,
+	bhEne14_Die,
+	bhEne_Event
+};
+void (*bhEne14_BrainType[2])(BH_PWORK*) = 
+{
+	bhEne14_BR00,
+	bhEne14_BR01
+};
+void (*bhEne14_MoveMode2[12])(BH_PWORK*) = 
+{
+	bhEne14_MV00,
+	bhEne14_MV01,
+	bhEne14_MV02,
+	bhEne14_MV03,
+	bhEne14_MV04,
+	bhEne14_MV05,
+	bhEne14_MV06,
+	bhEne14_MV07,
+	bhEne14_MV08,
+	bhEne14_MV09,
+	bhEne14_MV10,
+	bhEne14_MV11
+};
+void (*bhEne14_NageMode2[1])(BH_PWORK*) = { bhEne14_NG00 };
+void (*bhEne14_DamageMode2[2])(BH_PWORK*) = 
+{
+	bhEne14_DG00,
+	bhEne14_DG01
+};
 
 // 
 // Start address: 0x1ddad0
@@ -870,8 +1014,8 @@ void bhEne14_TailSwing(BH_PWORK* epw)
 	O_WORK* owp;
 	int i;
 	NJS_VECTOR v;
-	float g[11];
-	float n[11];
+	static float g[11] = { 0.5f, 0.5f, 0.2f, 0.2f, 0.2f, 0.2f, 0.2f, 0.2f, 0.2f, 0.2f, 0.2f };
+	static float n[11] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
 	// Line 1569, Address: 0x1dfb20, Func Offset: 0
 	// Line 1604, Address: 0x1dfb3c, Func Offset: 0x1c
 	// Line 1606, Address: 0x1dfb44, Func Offset: 0x24
@@ -1125,11 +1269,12 @@ void bhEne14_Acid(BH_PWORK* epw, int se)
 // Start address: 0x1e0920
 void bhEne14_SetMotion(BH_PWORK* epw)
 {
-	int obj_list_f[4];
-	int obj_list[4];
-	int i;
-	NJS_CNK_OBJECT* objP;
+	// already reversed DWARF order
 	NJS_MKEY_A_MOD* mkaP;
+	NJS_CNK_OBJECT* objP;
+	int i;
+	int obj_list[4]   = {  7,  8,  9, 10 };
+	int obj_list_f[4] = {  9, 10,  7,  8 };
 	// Line 1893, Address: 0x1e0920, Func Offset: 0
 	// Line 1889, Address: 0x1e092c, Func Offset: 0xc
 	// Line 1893, Address: 0x1e0930, Func Offset: 0x10

@@ -702,15 +702,13 @@ void bhEne14_DG01(BH_PWORK* epw)
 // 100% matching!
 void bhEne14_Die()
 {
-	
+
 }
 
-// 
-// Start address: 0x1df510
+// 100% matching!
 void bhEne14_InitDamage(BH_PWORK* epw)
 {
-	// Line 1380, Address: 0x1df510, Func Offset: 0
-	// Func End, Address: 0x1df518, Func Offset: 0x8
+	bhEne14_HitMark(epw);
 }
 
 // 

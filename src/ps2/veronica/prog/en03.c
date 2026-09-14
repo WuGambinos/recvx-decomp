@@ -1158,29 +1158,39 @@ void bhEne03_MV03(BH_PWORK* epw)
 	// Func End, Address: 0x198600, Func Offset: 0x280
 }
 
-// 
-// Start address: 0x198600
+// 100% matching!
 void bhEne03_MV04(BH_PWORK* epw)
 {
 	int wang;
-	// Line 1705, Address: 0x198600, Func Offset: 0
-	// Line 1708, Address: 0x19860c, Func Offset: 0xc
-	// Line 1711, Address: 0x19862c, Func Offset: 0x2c
-	// Line 1712, Address: 0x198640, Func Offset: 0x40
-	// Line 1714, Address: 0x19864c, Func Offset: 0x4c
-	// Line 1713, Address: 0x198650, Func Offset: 0x50
-	// Line 1714, Address: 0x198654, Func Offset: 0x54
-	// Line 1715, Address: 0x198658, Func Offset: 0x58
-	// Line 1716, Address: 0x19865c, Func Offset: 0x5c
-	// Line 1717, Address: 0x19867c, Func Offset: 0x7c
-	// Line 1720, Address: 0x198688, Func Offset: 0x88
-	// Line 1721, Address: 0x1986a4, Func Offset: 0xa4
-	// Line 1723, Address: 0x1986b0, Func Offset: 0xb0
-	// Line 1724, Address: 0x1986d4, Func Offset: 0xd4
-	// Line 1725, Address: 0x1986dc, Func Offset: 0xdc
-	// Line 1726, Address: 0x1986e4, Func Offset: 0xe4
-	// Line 1730, Address: 0x1986e8, Func Offset: 0xe8
-	// Func End, Address: 0x1986f8, Func Offset: 0xf8
+	
+    switch (epw->mode3)                         
+    {
+    case 0:
+		wang = bhEne03_DirTarget(epw, (NJS_POINT3*)&plp->px, 32768) < 0;
+
+        epw->mtn_no = wang + 6;
+        epw->frm_no = 0;
+
+        epw->hokan_count = 10;
+        epw->hokan_rate  = 32768;
+
+        epw->ct0 = rand() % 31;
+
+        epw->mode3++;
+    case 1:
+        epw->ayp = bhEne03_DirTarget(epw, (NJS_POINT3*)&plp->px, 819);
+
+        njRotateY((NJS_MATRIX*)epw->exp0, epw->ayp);
+
+        if ((epw->ct0-- == 0) || (abs(epw->ayp) < 273))
+        {
+            epw->mode1 = 1;
+            epw->mode2 = 3;
+            epw->mode3 = 0;
+        }
+
+        break;
+    }
 }
 
 // 

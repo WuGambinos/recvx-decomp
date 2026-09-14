@@ -875,35 +875,49 @@ static void bhEne29_DmgCheck(BH_PWORK* ewP, en29_freework* fwP)
 	// Func End, Address: 0x212194, Func Offset: 0x1d4
 }
 
-// 
-// Start address: 0x2121a0
+// 100% matching!
 static int bhEne29_AttackHitCheck(BH_PWORK* ewP, en29_freework* fwP)
 {
-	int ang;
-	int i;
+    static const CLL_WORK E29Cll[6] = { { 18, 3.0f }, { 17, 3.0f }, { 15, 3.5f }, { 13, 4.0f }, { 11, 4.5f }, {  9, 4.5f } };
 	static NJS_SPHERE spr;
-	static const CLL_WORK E29Cll[6] = { { 18, 3.0f }, { 17, 3.0f }, { 15, 3.5f }, { 13, 4.0f }, { 11, 4.5f }, {  9, 4.5f } };
-	// Line 1478, Address: 0x2121a0, Func Offset: 0
-	// Line 1489, Address: 0x2121c8, Func Offset: 0x28
-	// Line 1494, Address: 0x2121cc, Func Offset: 0x2c
-	// Line 1502, Address: 0x2121dc, Func Offset: 0x3c
-	// Line 1494, Address: 0x2121e0, Func Offset: 0x40
-	// Line 1502, Address: 0x21220c, Func Offset: 0x6c
-	// Line 1495, Address: 0x212210, Func Offset: 0x70
-	// Line 1502, Address: 0x21221c, Func Offset: 0x7c
-	// Line 1507, Address: 0x212244, Func Offset: 0xa4
-	// Line 1508, Address: 0x21225c, Func Offset: 0xbc
-	// Line 1510, Address: 0x212260, Func Offset: 0xc0
-	// Line 1512, Address: 0x212274, Func Offset: 0xd4
-	// Line 1510, Address: 0x212278, Func Offset: 0xd8
-	// Line 1512, Address: 0x212280, Func Offset: 0xe0
-	// Line 1515, Address: 0x212294, Func Offset: 0xf4
-	// Line 1512, Address: 0x212298, Func Offset: 0xf8
-	// Line 1515, Address: 0x2122a0, Func Offset: 0x100
-	// Line 1518, Address: 0x2122a8, Func Offset: 0x108
-	// Line 1520, Address: 0x2122b8, Func Offset: 0x118
-	// Line 1522, Address: 0x2122bc, Func Offset: 0x11c
-	// Func End, Address: 0x2122d8, Func Offset: 0x138
+    int i;   
+    int ang; 
+    float px, py, pz; // not from DWARF
+    
+    for (i = 0; (unsigned int)i < 6; i++) 
+    {
+        spr.c = *(NJS_POINT3*)&ewP->mlwP->owP[E29Cll[i].obj_no].mtx[12];
+        spr.r = E29Cll[i].chk_siz;
+        
+        if ((!(plp->flg & 0x4)) && (njCollisionCheckSC(&spr, &plp->watr) != 0)) 
+        {
+            ang = fwP->bas_ay;
+            
+            if ((fwP->status & 0x400))
+            {
+                ang += 16384;
+            } 
+            else 
+            {
+                ang -= 16384;
+            }
+
+            px = 1.0f;
+            fwP->ply_dmg.x = px * -njSin(ang);
+            
+            py = 0;
+            fwP->ply_dmg.y = py;
+            
+            pz = 1.0f;
+            fwP->ply_dmg.z = pz * -njCos(ang);
+            
+            fwP->dmg_dir = ang;
+            
+            return i;
+        }
+    }
+    
+    return -1;
 }
 
 // 100% matching!

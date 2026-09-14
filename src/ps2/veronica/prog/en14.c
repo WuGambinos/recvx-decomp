@@ -163,7 +163,7 @@ void bhEne14_BR00()
 // 100% matching!
 void bhEne14_BR01()
 {
-	
+
 }
 
 // 
@@ -294,12 +294,10 @@ void bhEne14_MV02(BH_PWORK* epw)
 	// Func End, Address: 0x1de330, Func Offset: 0x250
 }
 
-// 
-// Start address: 0x1de330
+// 100% matching!
 void bhEne14_MV03()
 {
-	// Line 817, Address: 0x1de330, Func Offset: 0
-	// Func End, Address: 0x1de338, Func Offset: 0x8
+	
 }
 
 // 

@@ -620,15 +620,13 @@ void bhEne14_Nage(BH_PWORK* epw)
 // 100% matching!
 void bhEne14_NG00()
 {
-	
+
 }
 
-// 
-// Start address: 0x1df300
+// 100% matching!
 void bhEne14_Damage(BH_PWORK* epw)
 {
-	// Line 1283, Address: 0x1df300, Func Offset: 0
-	// Func End, Address: 0x1df320, Func Offset: 0x20
+	bhEne14_DamageMode2[epw->mode2](epw);
 }
 
 // 

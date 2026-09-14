@@ -1062,37 +1062,42 @@ void bhEne03_MV01(BH_PWORK* epw)
 	// Func End, Address: 0x198284, Func Offset: 0x2b4
 }
 
-// 
-// Start address: 0x198290
+// 100% matching!
 void bhEne03_MV02(BH_PWORK* epw)
 {
 	int dir;
-	// Line 1564, Address: 0x198290, Func Offset: 0
-	// Line 1565, Address: 0x1982a0, Func Offset: 0x10
-	// Line 1567, Address: 0x1982ac, Func Offset: 0x1c
-	// Line 1565, Address: 0x1982b0, Func Offset: 0x20
-	// Line 1567, Address: 0x1982c0, Func Offset: 0x30
-	// Line 1569, Address: 0x1982dc, Func Offset: 0x4c
-	// Line 1571, Address: 0x1982ec, Func Offset: 0x5c
-	// Line 1573, Address: 0x1982f0, Func Offset: 0x60
-	// Line 1572, Address: 0x1982f4, Func Offset: 0x64
-	// Line 1573, Address: 0x1982f8, Func Offset: 0x68
-	// Line 1574, Address: 0x1982fc, Func Offset: 0x6c
-	// Line 1577, Address: 0x198304, Func Offset: 0x74
-	// Line 1578, Address: 0x198314, Func Offset: 0x84
-	// Line 1577, Address: 0x198320, Func Offset: 0x90
-	// Line 1578, Address: 0x198324, Func Offset: 0x94
-	// Line 1577, Address: 0x19832c, Func Offset: 0x9c
-	// Line 1578, Address: 0x198330, Func Offset: 0xa0
-	// Line 1579, Address: 0x198334, Func Offset: 0xa4
-	// Line 1581, Address: 0x198340, Func Offset: 0xb0
-	// Line 1583, Address: 0x19834c, Func Offset: 0xbc
-	// Line 1585, Address: 0x19835c, Func Offset: 0xcc
-	// Line 1584, Address: 0x198360, Func Offset: 0xd0
-	// Line 1585, Address: 0x198364, Func Offset: 0xd4
-	// Line 1586, Address: 0x198368, Func Offset: 0xd8
-	// Line 1590, Address: 0x19836c, Func Offset: 0xdc
-	// Func End, Address: 0x198380, Func Offset: 0xf0
+	
+    dir = (rand() % 63) & 1;
+
+    switch (epw->mode3)                              
+    {
+    case 0:
+        if (epw->mtn_no != (dir + 6))
+        {
+            epw->mtn_no = dir + 6;
+            epw->frm_no = 0;
+
+            epw->hokan_count = 10;
+            epw->hokan_rate  = 32768;
+        }
+
+        epw->ct0 = rand() % 63;
+
+        epw->ayp = ((dir != 0) ? 1 : -1) * 819;
+
+        epw->mode3++;
+    case 1:
+        njRotateY((NJS_MATRIX*)epw->exp0, epw->ayp);
+
+        if (epw->ct0-- == 0)
+        {
+            epw->mode1 = 0;
+            epw->mode2 = 1;
+            epw->mode3 = 0;
+        }
+
+        break;
+    }
 }
 
 // 

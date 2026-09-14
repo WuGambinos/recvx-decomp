@@ -14,100 +14,48 @@
 // ENEMY: Nosferatu 
 
 static char dbgout_buf[256];
-/*_WPNDG_TBL WpnDamageTbl[21];
-_anon45 CombWepTbl[21];
-_anon47 CombJointTbl[24];
-_COMBO_EFF Combo_Eff[21];
-char SdwTab[3];
-_anon37 prt_blood_tbl[24];
-char rfoot_joint_tree[6];
-char lfoot_joint_tree[6];
-_LEGLOCK_LIST lrl_walk[2];
-_LEGLOCK_LIST lrl_a1[2];
-_LEGLOCK_LIST lrl_a2[2];
-_LEGLOCK_LIST lrl_fldmg[2];
-_LEGLOCK_LIST lrl_bldmg[2];
-_LEGLOCK_LIST lrl_crdmg[2];
-_LEGLOCK_LIST lrl_dummy[1];
-_LEGLOCK_TAB leglock_tab[11];*/
-static int attack1_col_joint[5] = 
-{
-	7,
-	8,
-	9,
-	10,
-	-1
-};
-static int attack2_col_joint[4] = 
-{
-	8,
-	9,
-	10,
-	-1
-};
-static int attack3_col_joint[6] = 
-{
-	6,
-	7,
-	8,
-	9,
-	10,
-	-1
-};
+static WPNDG_TBL WpnDamageTbl[21];
+static COMBWEP_WORK CombWepTbl[21];
+static COMBJOINT_WORK CombJointTbl[24];
+static COMBO_EFF Combo_Eff[21];
+static char SdwTab[3];
+static BT_WORK prt_blood_tbl[24];
+static char rfoot_joint_tree[6];
+static char lfoot_joint_tree[6];
+static LEGLOCK_LIST lrl_walk[2];
+static LEGLOCK_LIST lrl_a1[2];
+static LEGLOCK_LIST lrl_a2[2];
+static LEGLOCK_LIST lrl_fldmg[2];
+static LEGLOCK_LIST lrl_bldmg[2];
+static LEGLOCK_LIST lrl_crdmg[2];
+static LEGLOCK_LIST lrl_dummy[1];
+static LEGLOCK_TAB leglock_tab[11];
+static int attack1_col_joint[5] = { 7, 8, 9, 10, -1 };
+static int attack2_col_joint[4] = { 8, 9, 10, -1 };
+static int attack3_col_joint[6] = { 6, 7, 8, 9, 10, -1 };
 static ATTACK_COL_TBL attack_col_tab[3] =
 {
-    {
-        attack1_col_joint,
-        31,      
-        56,      
-        50,      
-        8192,  
-        6.05f,   
-        4.3f,    
-        41,      
-        52       
-    },
-    {
-        attack2_col_joint,
-        29,      
-        40,      
-        50,      
-        5461,  
-        4.0f,    
-        3.3f,    
-        0,
-        0
-    },
-    {
-        attack3_col_joint,
-        24,      
-        32,      
-        30,      
-        7281,  
-        4.5f,    
-        5.0f,    
-        24,      
-        30       
-    }
+    { attack1_col_joint, 31, 56, 50, 8192, 6.05f, 4.3f, 41, 52 },
+    { attack2_col_joint, 29, 40, 50, 5461,  4.0f, 3.3f,  0,  0 },
+    { attack3_col_joint, 24, 32, 30, 7281,  4.5f, 5.0f, 24, 30 }
 };
-/*_anon29 CapColTab[23];
-unsigned char flip_tree[24];
-void(*Mode_func)(BH_PWORK*)[6];
-void(*Move_func)(BH_PWORK*)[5];
-void(*Ply_func)(BH_PWORK*)[8];
-_JOINT_PARE jointTree[11];
-char joint_tree_buf[12];
-char poison_attack_wait;
-char poison_eff_wait;
-_MTN_RELAY mtn_relay[21];
-_MTN_RELAY_RELAY mtn_relay_relay[4];
-_UVINFO uvinfo1_1[5];
-_UVINFO uvinfo1_2[16];
-_UVINFO uvinfo1_3[23];
-_UVINFO uvinfo2_1[30];
-_UVINFO uvinfo2_2[16];
-_EFF_INFO eff_info[5];
-*/
+static CPCL CapColTab[23];
+static unsigned char flip_tree[24];
+static void (*Mode_func[6])(BH_PWORK*);
+static void (*Move_func[5])(BH_PWORK*);
+static void (*Ply_func[8])(BH_PWORK*);
+static JOINT_PARE jointTree[11];
+static char joint_tree_buf[12];
+static char poison_attack_wait;
+static char poison_eff_wait;
+static MTN_RELAY mtn_relay[21];
+static MTN_RELAY_RELAY mtn_relay_relay[4];
+static UVINFO uvinfo1_1[5];
+static UVINFO uvinfo1_2[16];
+static UVINFO uvinfo1_3[23];
+static UVINFO uvinfo2_1[30];
+static UVINFO uvinfo2_2[16];
+static EFF_INFO eff_info[5];
 
 // 99.80% matching
 static int target_direction(BH_PWORK* epw)
@@ -159,9 +107,9 @@ static int GetLocalEneNo(BH_PWORK* epw)
     return -1;
 }
 
-/*// 
+// 
 // Start address: 0x1e1040
-void SetMtnSE(BH_PWORK* epw)
+static void SetMtnSE(BH_PWORK* epw)
 {
 	int i;
 	MTN_SE_TBL mtn_se_tbl[30];
@@ -173,13 +121,14 @@ void SetMtnSE(BH_PWORK* epw)
 	// Line 1288, Address: 0x1e10c4, Func Offset: 0x84
 	// Line 1289, Address: 0x1e10d4, Func Offset: 0x94
 	// Func End, Address: 0x1e10e8, Func Offset: 0xa8
-}*/
+	scePrintf("SetMtnSE - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x1e10f0
 void bhEne15(BH_PWORK* epw)
 {
-	//_anon30* owk;
+	O_WORK* owk;
 	// Line 1351, Address: 0x1e10f0, Func Offset: 0
 	// Line 1352, Address: 0x1e10fc, Func Offset: 0xc
 	// Line 1353, Address: 0x1e1118, Func Offset: 0x28
@@ -223,9 +172,9 @@ void bhEne15(BH_PWORK* epw)
 	scePrintf("bhEne15 - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x1e1330
-void Init(BH_PWORK* epw)
+static void Init(BH_PWORK* epw)
 {
 	int i;
 	// Line 1461, Address: 0x1e1330, Func Offset: 0
@@ -302,11 +251,12 @@ void Init(BH_PWORK* epw)
 	// Line 1562, Address: 0x1e15d8, Func Offset: 0x2a8
 	// Line 1563, Address: 0x1e15e4, Func Offset: 0x2b4
 	// Func End, Address: 0x1e15f4, Func Offset: 0x2c4
+	scePrintf("Init - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e1600
-void Move(BH_PWORK* epw)
+static void Move(BH_PWORK* epw)
 {
 	// Line 1579, Address: 0x1e1600, Func Offset: 0
 	// Line 1580, Address: 0x1e1610, Func Offset: 0x10
@@ -315,11 +265,12 @@ void Move(BH_PWORK* epw)
 	// Line 1583, Address: 0x1e1658, Func Offset: 0x58
 	// Line 1584, Address: 0x1e166c, Func Offset: 0x6c
 	// Func End, Address: 0x1e167c, Func Offset: 0x7c
+	scePrintf("Move - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e1680
-void Stand(BH_PWORK* epw)
+static void Stand(BH_PWORK* epw)
 {
 	// Line 1587, Address: 0x1e1680, Func Offset: 0
 	// Line 1588, Address: 0x1e168c, Func Offset: 0xc
@@ -333,11 +284,12 @@ void Stand(BH_PWORK* epw)
 	// Line 1596, Address: 0x1e1800, Func Offset: 0x180
 	// Line 1598, Address: 0x1e1824, Func Offset: 0x1a4
 	// Func End, Address: 0x1e1834, Func Offset: 0x1b4
+	scePrintf("Stand - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e1840
-void __attack(BH_PWORK* epw)
+static void __attack(BH_PWORK* epw)
 {
 	int ang;
 	// Line 1681, Address: 0x1e1840, Func Offset: 0
@@ -359,11 +311,12 @@ void __attack(BH_PWORK* epw)
 	// Line 1712, Address: 0x1e1e64, Func Offset: 0x624
 	// Line 1714, Address: 0x1e1ed8, Func Offset: 0x698
 	// Func End, Address: 0x1e1eec, Func Offset: 0x6ac
+	scePrintf("__attack - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e1ef0
-void CloseTurn(BH_PWORK* epw)
+static void CloseTurn(BH_PWORK* epw)
 {
 	// Line 1717, Address: 0x1e1ef0, Func Offset: 0
 	// Line 1718, Address: 0x1e1efc, Func Offset: 0xc
@@ -376,11 +329,12 @@ void CloseTurn(BH_PWORK* epw)
 	// Line 1726, Address: 0x1e2020, Func Offset: 0x130
 	// Line 1727, Address: 0x1e2050, Func Offset: 0x160
 	// Func End, Address: 0x1e2060, Func Offset: 0x170
+	scePrintf("CloseTurn - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e2060
-void Chase(BH_PWORK* epw)
+static void Chase(BH_PWORK* epw)
 {
 	// Line 1730, Address: 0x1e2060, Func Offset: 0
 	// Line 1731, Address: 0x1e206c, Func Offset: 0xc
@@ -390,13 +344,14 @@ void Chase(BH_PWORK* epw)
 	// Line 1736, Address: 0x1e20d0, Func Offset: 0x70
 	// Line 1737, Address: 0x1e20dc, Func Offset: 0x7c
 	// Func End, Address: 0x1e20ec, Func Offset: 0x8c
+	scePrintf("Chase - UNIMPLEMENTED!\n");
 }
-*/
+
 // 
 // Start address: 0x1e20f0
-void __goalAng(BH_PWORK* epw, NJS_POINT3* vec, NJS_POINT3* ans)
+static void __goalAng(BH_PWORK* epw, NJS_VECTOR* vec, NJS_POINT3* ans)
 {
-	NJS_POINT3 v;
+	NJS_VECTOR v;
 	// Line 1740, Address: 0x1e20f0, Func Offset: 0
 	// Line 1741, Address: 0x1e2104, Func Offset: 0x14
 	// Line 1742, Address: 0x1e2118, Func Offset: 0x28
@@ -766,13 +721,13 @@ static void Attack(BH_PWORK* epw)
     }
 }
 
-/*// 
+// 
 // Start address: 0x1e3b90
-void Throw(BH_PWORK* epw)
+static void Throw(BH_PWORK* epw)
 {
-	NJS_POINT3 vec;
-	NJS_POINT3 attack_v;
-	float mat[16];
+	NJS_VECTOR vec;
+	NJS_VECTOR attack_v;
+	NJS_MATRIX mat; // NJS_MATRIX*?
 	NJS_POINT3 _p;
 	NJS_POINT3 pos;
 	// Line 1976, Address: 0x1e3b90, Func Offset: 0
@@ -824,11 +779,12 @@ void Throw(BH_PWORK* epw)
 	// Line 2052, Address: 0x1e420c, Func Offset: 0x67c
 	// Line 2055, Address: 0x1e4250, Func Offset: 0x6c0
 	// Func End, Address: 0x1e4264, Func Offset: 0x6d4
+	scePrintf("Throw - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e4270
-void Damage(BH_PWORK* epw)
+static void Damage(BH_PWORK* epw)
 {
 	// Line 2071, Address: 0x1e4270, Func Offset: 0
 	// Line 2072, Address: 0x1e4280, Func Offset: 0x10
@@ -841,13 +797,14 @@ void Damage(BH_PWORK* epw)
 	// Line 2084, Address: 0x1e4378, Func Offset: 0x108
 	// Line 2087, Address: 0x1e4380, Func Offset: 0x110
 	// Func End, Address: 0x1e4390, Func Offset: 0x120
+	scePrintf("Damage - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e4390
-void Die(BH_PWORK* epw)
+static void Die(BH_PWORK* epw)
 {
-	NJS_POINT3 vec;
+	NJS_VECTOR vec;
 	// Line 2104, Address: 0x1e4390, Func Offset: 0
 	// Line 2105, Address: 0x1e43a0, Func Offset: 0x10
 	// Line 2108, Address: 0x1e43b0, Func Offset: 0x20
@@ -879,17 +836,18 @@ void Die(BH_PWORK* epw)
 	// Line 2128, Address: 0x1e4538, Func Offset: 0x1a8
 	// Line 2134, Address: 0x1e4548, Func Offset: 0x1b8
 	// Func End, Address: 0x1e4558, Func Offset: 0x1c8
+	scePrintf("Die - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e4560
-int NearestCapsule(BH_PWORK* epw, NJS_POINT3* pos, NJS_CAPSULE* dest, short* jnt)
+static int NearestCapsule(BH_PWORK* epw, NJS_POINT3* pos, NJS_CAPSULE* dest, short* jnt)
 {
 	NJS_POINT3 p;
 	short _jnt;
 	float dis;
 	NJS_CAPSULE cap;
-	_anon29* ctab;
+	CPCL* ctab;
 	int notop;
 	float topdis;
 	short topjnt;
@@ -952,11 +910,12 @@ int NearestCapsule(BH_PWORK* epw, NJS_POINT3* pos, NJS_CAPSULE* dest, short* jnt
 	// Line 2180, Address: 0x1e4824, Func Offset: 0x2c4
 	// Line 2182, Address: 0x1e4850, Func Offset: 0x2f0
 	// Func End, Address: 0x1e4884, Func Offset: 0x324
+	scePrintf("NearestCapsule - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e4890
-void CheckDamage(BH_PWORK* epw)
+static void CheckDamage(BH_PWORK* epw)
 {
 	short jnt;
 	NJS_CAPSULE cap;
@@ -1062,11 +1021,12 @@ void CheckDamage(BH_PWORK* epw)
 	// Line 2478, Address: 0x1e513c, Func Offset: 0x8ac
 	// Line 2484, Address: 0x1e5144, Func Offset: 0x8b4
 	// Func End, Address: 0x1e5158, Func Offset: 0x8c8
+	scePrintf("CheckDamage - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e5160
-int GetRelay(BH_PWORK* epw, _MTN_RELAY** ret)
+static int GetRelay(BH_PWORK* epw, MTN_RELAY** ret)
 {
 	int found;
 	int i;
@@ -1091,13 +1051,14 @@ int GetRelay(BH_PWORK* epw, _MTN_RELAY** ret)
 	// Line 2570, Address: 0x1e52bc, Func Offset: 0x15c
 	// Line 2572, Address: 0x1e52cc, Func Offset: 0x16c
 	// Func End, Address: 0x1e52d4, Func Offset: 0x174
+	scePrintf("GetRelay - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e52e0
-void SetMtn(BH_PWORK* epw)
+static void SetMtn(BH_PWORK* epw)
 {
-	_MTN_RELAY* relay;
+	MTN_RELAY* relay;
 	// Line 2574, Address: 0x1e52e0, Func Offset: 0
 	// Line 2575, Address: 0x1e52ec, Func Offset: 0xc
 	// Line 2577, Address: 0x1e5300, Func Offset: 0x20
@@ -1128,7 +1089,8 @@ void SetMtn(BH_PWORK* epw)
 	// Line 2609, Address: 0x1e544c, Func Offset: 0x16c
 	// Line 2610, Address: 0x1e5460, Func Offset: 0x180
 	// Func End, Address: 0x1e5470, Func Offset: 0x190
-}*/
+	scePrintf("SetMtn - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 static void ReqMtn(BH_PWORK* epw, unsigned int mtn_no)
@@ -1165,11 +1127,11 @@ static void SetPlyMtn(unsigned int mtn_no)
     }
 }
 
-/*// 
+// 
 // Start address: 0x1e55a0
-int VacumeToPoint(BH_PWORK* pw, NJS_POINT3* pos)
+static int VacumeToPoint(BH_PWORK* pw, NJS_POINT3* pos)
 {
-	NJS_POINT3 v;
+	NJS_VECTOR v;
 	// Line 2652, Address: 0x1e55a0, Func Offset: 0
 	// Line 2654, Address: 0x1e55b0, Func Offset: 0x10
 	// Line 2655, Address: 0x1e55d0, Func Offset: 0x30
@@ -1185,11 +1147,12 @@ int VacumeToPoint(BH_PWORK* pw, NJS_POINT3* pos)
 	// Line 2662, Address: 0x1e5654, Func Offset: 0xb4
 	// Line 2665, Address: 0x1e5660, Func Offset: 0xc0
 	// Func End, Address: 0x1e5674, Func Offset: 0xd4
+	scePrintf("VacumeToPoint - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e5680
-void LockLeg(BH_PWORK* epw)
+static void LockLeg(BH_PWORK* epw)
 {
 	char lock_leg;
 	int j;
@@ -1214,7 +1177,8 @@ void LockLeg(BH_PWORK* epw)
 	// Line 2702, Address: 0x1e578c, Func Offset: 0x10c
 	// Line 2703, Address: 0x1e57c0, Func Offset: 0x140
 	// Func End, Address: 0x1e57cc, Func Offset: 0x14c
-}*/
+	scePrintf("LockLeg - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x1e57d0
@@ -1368,7 +1332,7 @@ int bhEne15_AttackPlayerSS(NJS_SPHERE* spr, NJS_VECTOR* attack_v, int damage)
 }
 
 // 100% matching!
-static void SetSmoke(NJS_VECTOR* pos)
+static void SetSmoke(NJS_POINT3* pos)
 {
     sys->ef.id = 257;
     sys->ef.flg = 1;
@@ -1385,7 +1349,7 @@ static void SetSmoke(NJS_VECTOR* pos)
 
 // 
 // Start address: 0x1e5f80
-void SpecialAttack(BH_PWORK* epw, NJS_VECTOR* splash_v)
+static void SpecialAttack(BH_PWORK* epw, NJS_VECTOR* splash_v)
 {
 	NJS_POINT3 _p;
 	int eno;
@@ -1437,9 +1401,9 @@ void SpecialAttack(BH_PWORK* epw, NJS_VECTOR* splash_v)
 	scePrintf("SpecialAttack - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x1e6160
-void _bhEne_SetPoison(BH_PWORK* epw, NJS_POINT3* ofp, short ry)
+static void _bhEne_SetPoison(BH_PWORK* epw, NJS_POINT3* ofp, short ry)
 {
 	int eno;
 	// Line 3021, Address: 0x1e6160, Func Offset: 0
@@ -1573,11 +1537,12 @@ void _bhEne_SetPoison(BH_PWORK* epw, NJS_POINT3* ofp, short ry)
 	// Line 3101, Address: 0x1e67ec, Func Offset: 0x68c
 	// Line 3103, Address: 0x1e680c, Func Offset: 0x6ac
 	// Func End, Address: 0x1e6824, Func Offset: 0x6c4
+	scePrintf("_bhEne_SetPoison - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e6830
-void _bhEne_SetPoison2(_anon1* op, int type, NJS_POINT3* ofp)
+static void _bhEne_SetPoison2(O_WRK* op, int type, NJS_POINT3* ofp)
 {
 	int eno;
 	// Line 3105, Address: 0x1e6830, Func Offset: 0
@@ -1612,16 +1577,17 @@ void _bhEne_SetPoison2(_anon1* op, int type, NJS_POINT3* ofp)
 	// Line 3132, Address: 0x1e6a30, Func Offset: 0x200
 	// Line 3134, Address: 0x1e6a54, Func Offset: 0x224
 	// Func End, Address: 0x1e6a68, Func Offset: 0x238
+	scePrintf("_bhEne_SetPoison2 - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e6a70
-void bhEne_SetPoison(BH_PWORK* epw, _anon37* bt)
+void bhEne_SetPoison(BH_PWORK* epw, BT_WORK* bt)
 {
 	int fhit;
 	NJS_POINT3 ps;
 	NJS_POINT3 ofp;
-	_anon30* owk;
+	O_WORK* owk;
 	// Line 3153, Address: 0x1e6a70, Func Offset: 0
 	// Line 3158, Address: 0x1e6a88, Func Offset: 0x18
 	// Line 3159, Address: 0x1e6aa0, Func Offset: 0x30
@@ -1650,13 +1616,14 @@ void bhEne_SetPoison(BH_PWORK* epw, _anon37* bt)
 	// Line 3188, Address: 0x1e6c18, Func Offset: 0x1a8
 	// Line 3189, Address: 0x1e6c30, Func Offset: 0x1c0
 	// Func End, Address: 0x1e6c4c, Func Offset: 0x1dc
+	scePrintf("bhEne_SetPoison - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e6c50
-void PoisonAttack(_anon1* op)
+static void PoisonAttack(O_WRK* op)
 {
-	NJS_POINT3 attack_v;
+	NJS_VECTOR attack_v;
 	NJS_SPHERE col;
 	// Line 3192, Address: 0x1e6c50, Func Offset: 0
 	// Line 3203, Address: 0x1e6c5c, Func Offset: 0xc
@@ -1689,14 +1656,15 @@ void PoisonAttack(_anon1* op)
 	// Line 3229, Address: 0x1e6e34, Func Offset: 0x1e4
 	// Line 3232, Address: 0x1e6e40, Func Offset: 0x1f0
 	// Func End, Address: 0x1e6e50, Func Offset: 0x200
+	scePrintf("PoisonAttack - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e6e50
-void AddWindForce(_anon1* op, float reg)
+static void AddWindForce(O_WRK* op, float reg)
 {
-	NJS_POINT3 vec2;
-	NJS_POINT3 vec1;
+	NJS_VECTOR vec2;
+	NJS_VECTOR vec1;
 	// Line 3242, Address: 0x1e6e50, Func Offset: 0
 	// Line 3245, Address: 0x1e6e60, Func Offset: 0x10
 	// Line 3247, Address: 0x1e6e9c, Func Offset: 0x4c
@@ -1717,7 +1685,8 @@ void AddWindForce(_anon1* op, float reg)
 	// Line 3255, Address: 0x1e6f60, Func Offset: 0x110
 	// Line 3256, Address: 0x1e6f6c, Func Offset: 0x11c
 	// Func End, Address: 0x1e6f80, Func Offset: 0x130
-}*/
+	scePrintf("AddWindForce - UNIMPLEMENTED!\n");
+}
 
 // 
 // Start address: 0x1e6f80
@@ -1725,8 +1694,8 @@ void bhEff_E15_Poison(O_WRK* op)
 {
 	//NJS_POINT3 pos;
 	//NJS_POINT3 pos;
-	//NJS_POINT3 pos;
-	//_UVINFO* uvp;
+	NJS_POINT3 pos;
+	UVINFO* uvp;
 	// Line 3271, Address: 0x1e6f80, Func Offset: 0
 	// Line 3272, Address: 0x1e6f90, Func Offset: 0x10
 	// Line 3274, Address: 0x1e6fc4, Func Offset: 0x44
@@ -1893,12 +1862,11 @@ void bhEne15_RotChar(BH_PWORK* pw, int goal, int add_ang)
     }
 }
 
-/*
 // 
 // Start address: 0x1e7b30
-int AbleToFall(BH_PWORK* pp)
+static int AbleToFall(BH_PWORK* pp)
 {
-	_anon30* owk;
+	O_WORK* owk;
 	// Line 3507, Address: 0x1e7b30, Func Offset: 0
 	// Line 3506, Address: 0x1e7b34, Func Offset: 0x4
 	// Line 3507, Address: 0x1e7b38, Func Offset: 0x8
@@ -1908,11 +1876,12 @@ int AbleToFall(BH_PWORK* pp)
 	// Line 3509, Address: 0x1e7ba8, Func Offset: 0x78
 	// Line 3510, Address: 0x1e7bac, Func Offset: 0x7c
 	// Func End, Address: 0x1e7bb4, Func Offset: 0x84
+	scePrintf("AbleToFall - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e7bc0
-int _DrivePlayer()
+static int _DrivePlayer()
 {
 	float FP;
 	float FP1;
@@ -1973,11 +1942,12 @@ int _DrivePlayer()
 	// Line 3552, Address: 0x1e7e50, Func Offset: 0x290
 	// Line 3555, Address: 0x1e7e60, Func Offset: 0x2a0
 	// Func End, Address: 0x1e7e7c, Func Offset: 0x2bc
+	scePrintf("_DrivePlayer - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e7e80
-void DrivePlayer(BH_PWORK* epw)
+static void DrivePlayer(BH_PWORK* epw)
 {
 	int _mtnno;
 	// Line 3558, Address: 0x1e7e80, Func Offset: 0
@@ -2007,8 +1977,8 @@ void DrivePlayer(BH_PWORK* epw)
 	// Line 3596, Address: 0x1e81e0, Func Offset: 0x360
 	// Line 3598, Address: 0x1e81e4, Func Offset: 0x364
 	// Func End, Address: 0x1e81f8, Func Offset: 0x378
+	scePrintf("DrivePlayer - UNIMPLEMENTED!\n");
 }
-*/
 
 // 100% matching!
 static void FallingPlayer(BH_PWORK* epw)
@@ -2043,6 +2013,40 @@ static void FallingPlayer(BH_PWORK* epw)
     }
 }
 
+// 
+// Start address: 0x1e83f0
+static void SlidePlayer(BH_PWORK* epw)
+{
+	//int _mtnno;
+	NJS_POINT3 delta;
+	int _mtnno;
+	// Line 3628, Address: 0x1e83f0, Func Offset: 0
+	// Line 3629, Address: 0x1e8404, Func Offset: 0x14
+	// Line 3630, Address: 0x1e8418, Func Offset: 0x28
+	// Line 3631, Address: 0x1e853c, Func Offset: 0x14c
+	// Line 3633, Address: 0x1e8544, Func Offset: 0x154
+	// Line 3634, Address: 0x1e8558, Func Offset: 0x168
+	// Line 3635, Address: 0x1e8568, Func Offset: 0x178
+	// Line 3636, Address: 0x1e85a8, Func Offset: 0x1b8
+	// Line 3638, Address: 0x1e85ac, Func Offset: 0x1bc
+	// Line 3639, Address: 0x1e864c, Func Offset: 0x25c
+	// Line 3642, Address: 0x1e8660, Func Offset: 0x270
+	// Line 3639, Address: 0x1e8664, Func Offset: 0x274
+	// Line 3642, Address: 0x1e8668, Func Offset: 0x278
+	// Line 3639, Address: 0x1e866c, Func Offset: 0x27c
+	// Line 3642, Address: 0x1e8674, Func Offset: 0x284
+	// Line 3643, Address: 0x1e8684, Func Offset: 0x294
+	// Line 3642, Address: 0x1e8688, Func Offset: 0x298
+	// Line 3643, Address: 0x1e8690, Func Offset: 0x2a0
+	// Line 3644, Address: 0x1e8698, Func Offset: 0x2a8
+	// Line 3645, Address: 0x1e86c0, Func Offset: 0x2d0
+	// Line 3646, Address: 0x1e86cc, Func Offset: 0x2dc
+	// Line 3648, Address: 0x1e888c, Func Offset: 0x49c
+	// Line 3649, Address: 0x1e88b8, Func Offset: 0x4c8
+	// Line 3652, Address: 0x1e88cc, Func Offset: 0x4dc
+	// Func End, Address: 0x1e88e0, Func Offset: 0x4f0
+	scePrintf("SlidePlayer - UNIMPLEMENTED!\n");
+}
 
 // 100% matching!
 static void StandupPlayer(BH_PWORK* epw)
@@ -2077,15 +2081,14 @@ static void StandupPlayer(BH_PWORK* epw)
         }
     }
 }
-/*
-// 
+
 // Start address: 0x1e8a50
-void HoldPlayer(BH_PWORK* epw)
+static void HoldPlayer(BH_PWORK* epw)
 {
-	_anon30* owk;
+	O_WORK* owk;
 	NJS_POINT3 pos;
-	NJS_POINT3 _v;
-	NJS_POINT3 _v;
+	//NJS_VECTOR _v;
+	NJS_VECTOR _v;
 	// Line 3682, Address: 0x1e8a50, Func Offset: 0
 	// Line 3683, Address: 0x1e8a64, Func Offset: 0x14
 	// Line 3684, Address: 0x1e8a7c, Func Offset: 0x2c
@@ -2109,14 +2112,15 @@ void HoldPlayer(BH_PWORK* epw)
 	// Line 3703, Address: 0x1e8b5c, Func Offset: 0x10c
 	// Line 3705, Address: 0x1e8b6c, Func Offset: 0x11c
 	// Func End, Address: 0x1e8b80, Func Offset: 0x130
+	scePrintf("HoldPlayer - UNIMPLEMENTED!\n");
 }
 
 // 
 // Start address: 0x1e8b80
-void FlyingPlayer(BH_PWORK* epw)
+static void FlyingPlayer(BH_PWORK* epw)
 {
 	NJS_POINT3 _p;
-	_anon30* owk;
+	O_WORK* owk;
 	NJS_POINT3 pos3;
 	NJS_POINT3 pos2;
 	NJS_POINT3 pos1;
@@ -2137,8 +2141,8 @@ void FlyingPlayer(BH_PWORK* epw)
 	// Line 3726, Address: 0x1e8c10, Func Offset: 0x90
 	// Line 3727, Address: 0x1e8c34, Func Offset: 0xb4
 	// Func End, Address: 0x1e8c40, Func Offset: 0xc0
+	scePrintf("FlyingPlayer - UNIMPLEMENTED!\n");
 }
-*/
 
 // 100% matching!
 static void FallDiePlayer(BH_PWORK* epw)
@@ -2247,10 +2251,9 @@ static void ChangeAmbient(short* plist, unsigned char add)
     }
 }
 
-/*
 // 
 // Start address: 0x1e8fd0
-void SetMince(BH_PWORK* epw, int type, int num)
+static void SetMince(BH_PWORK* epw, int type, int num)
 {
 	int eno;
 	int i;
@@ -2279,11 +2282,12 @@ void SetMince(BH_PWORK* epw, int type, int num)
 	// Line 3897, Address: 0x1e91f8, Func Offset: 0x228
 	// Line 3898, Address: 0x1e9208, Func Offset: 0x238
 	// Func End, Address: 0x1e9224, Func Offset: 0x254
+	scePrintf("SetMince - UNIMPLEMENTED!\n");
 }
-*/
+
 // 
 // Start address: 0x1e9230
-void CoreInit(BH_PWORK* epw)
+static void CoreInit(BH_PWORK* epw)
 {
 	// Line 3907, Address: 0x1e9230, Func Offset: 0
 	// Line 3910, Address: 0x1e923c, Func Offset: 0xc
@@ -2319,7 +2323,7 @@ void CoreInit(BH_PWORK* epw)
 
 // 
 // Start address: 0x1e9340
-void CoreMove(BH_PWORK* epw)
+static void CoreMove(BH_PWORK* epw)
 {
 	// Line 3952, Address: 0x1e9340, Func Offset: 0
 	// Line 3953, Address: 0x1e935c, Func Offset: 0x1c
@@ -2360,7 +2364,7 @@ void CoreMove(BH_PWORK* epw)
 
 // 
 // Start address: 0x1e9520
-void CoreDie(BH_PWORK* epw)
+static void CoreDie(BH_PWORK* epw)
 {
 	int i;
 	// Line 4009, Address: 0x1e9520, Func Offset: 0
@@ -2471,6 +2475,7 @@ void CoreDie(BH_PWORK* epw)
 	scePrintf("CoreDie - UNIMPLEMENTED!\n");
 }
 
+// 100% matching!
 void bhEne53(BH_PWORK* epw)
 {
     switch (epw->mode0)
@@ -2481,11 +2486,11 @@ void bhEne53(BH_PWORK* epw)
     case 1:
         CoreMove(epw);
         break;
-        
+		
     case 3:
         CoreDie(epw);
         break;
-        
+
     case 5:
         bhEne_Event(epw);
         break;

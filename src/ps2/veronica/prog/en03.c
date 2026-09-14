@@ -918,25 +918,31 @@ void bhEne03_BR01(BH_PWORK* epw)
 	// Func End, Address: 0x197d14, Func Offset: 0x434
 }
 
-// 
-// Start address: 0x197d20
+// 100% matching!
 void bhEne03_BR02(BH_PWORK* epw)
 {
-	// Line 1362, Address: 0x197d20, Func Offset: 0
-	// Line 1364, Address: 0x197d2c, Func Offset: 0xc
-	// Line 1365, Address: 0x197d48, Func Offset: 0x28
-	// Line 1368, Address: 0x197d58, Func Offset: 0x38
-	// Line 1371, Address: 0x197d64, Func Offset: 0x44
-	// Line 1372, Address: 0x197d74, Func Offset: 0x54
-	// Line 1374, Address: 0x197da8, Func Offset: 0x88
-	// Line 1376, Address: 0x197db0, Func Offset: 0x90
-	// Line 1375, Address: 0x197db4, Func Offset: 0x94
-	// Line 1376, Address: 0x197db8, Func Offset: 0x98
-	// Line 1379, Address: 0x197dbc, Func Offset: 0x9c
-	// Line 1381, Address: 0x197de0, Func Offset: 0xc0
-	// Line 1382, Address: 0x197de8, Func Offset: 0xc8
-	// Line 1384, Address: 0x197df4, Func Offset: 0xd4
-	// Func End, Address: 0x197e04, Func Offset: 0xe4
+    EXP0_F(64) = njDistanceP2P((NJS_POINT3*)&epw->px, (NJS_POINT3*)&plp->px);
+
+    bhEne03_SearchPlayer(epw, 21845);
+
+    EXP0_C(104) = 1;
+
+    if (EXP0_I(228) == 0)
+    {
+        if ((EXP0_F(64) < 25.0f) && (abs(EXP0_I(68)) < 3640))
+        {
+            epw->mode0 = 1;
+            epw->mode1 = 0;
+            epw->mode2 = 10;
+            epw->mode3 = 0;
+
+            EXP0_I(228) = (rand() % 90) + 60;
+        }
+    }
+    else
+    {
+        EXP0_I(228)--;
+    }
 }
 
 // 100% matching!

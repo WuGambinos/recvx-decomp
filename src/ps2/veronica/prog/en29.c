@@ -1,9 +1,11 @@
 #include "../../../ps2/veronica/prog/en19.h"
+#include "../../../ps2/veronica/prog/effsub3.h"
 #include "../../../ps2/veronica/prog/en29.h"
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
@@ -172,108 +174,135 @@ void bhEne29(BH_PWORK* ewP)
     }
 }
 
-// 
-// Start address: 0x210a70
+// 100% matching!
 static void bhEne29_Init(BH_PWORK* ewP)
 {
-	O_WRK* oP;
-	NJS_POINT3* szP;
-	//ATR_WORK* htP;
-	ET_WORK* etP;
-	ATR_WORK* htP;
-	en29_freework* fwP;
-	// Line 375, Address: 0x210a70, Func Offset: 0
-	// Line 379, Address: 0x210a80, Func Offset: 0x10
-	// Line 383, Address: 0x210aa4, Func Offset: 0x34
-	// Line 386, Address: 0x210ab4, Func Offset: 0x44
-	// Line 395, Address: 0x210abc, Func Offset: 0x4c
-	// Line 388, Address: 0x210ac4, Func Offset: 0x54
-	// Line 386, Address: 0x210ac8, Func Offset: 0x58
-	// Line 390, Address: 0x210ad4, Func Offset: 0x64
-	// Line 395, Address: 0x210ad8, Func Offset: 0x68
-	// Line 386, Address: 0x210adc, Func Offset: 0x6c
-	// Line 387, Address: 0x210b10, Func Offset: 0xa0
-	// Line 388, Address: 0x210b1c, Func Offset: 0xac
-	// Line 389, Address: 0x210b20, Func Offset: 0xb0
-	// Line 390, Address: 0x210b24, Func Offset: 0xb4
-	// Line 391, Address: 0x210b28, Func Offset: 0xb8
-	// Line 392, Address: 0x210b38, Func Offset: 0xc8
-	// Line 395, Address: 0x210b3c, Func Offset: 0xcc
-	// Line 398, Address: 0x210b48, Func Offset: 0xd8
-	// Line 401, Address: 0x210b4c, Func Offset: 0xdc
-	// Line 410, Address: 0x210b50, Func Offset: 0xe0
-	// Line 411, Address: 0x210b54, Func Offset: 0xe4
-	// Line 414, Address: 0x210b58, Func Offset: 0xe8
-	// Line 401, Address: 0x210b5c, Func Offset: 0xec
-	// Line 402, Address: 0x210b60, Func Offset: 0xf0
-	// Line 403, Address: 0x210b64, Func Offset: 0xf4
-	// Line 404, Address: 0x210b68, Func Offset: 0xf8
-	// Line 410, Address: 0x210b6c, Func Offset: 0xfc
-	// Line 411, Address: 0x210b70, Func Offset: 0x100
-	// Line 412, Address: 0x210b74, Func Offset: 0x104
-	// Line 413, Address: 0x210b78, Func Offset: 0x108
-	// Line 414, Address: 0x210b7c, Func Offset: 0x10c
-	// Line 416, Address: 0x210b80, Func Offset: 0x110
-	// Line 415, Address: 0x210b84, Func Offset: 0x114
-	// Line 416, Address: 0x210b88, Func Offset: 0x118
-	// Line 417, Address: 0x210b8c, Func Offset: 0x11c
-	// Line 420, Address: 0x210b98, Func Offset: 0x128
-	// Line 421, Address: 0x210b9c, Func Offset: 0x12c
-	// Line 422, Address: 0x210ba0, Func Offset: 0x130
-	// Line 423, Address: 0x210ba4, Func Offset: 0x134
-	// Line 426, Address: 0x210ba8, Func Offset: 0x138
-	// Line 424, Address: 0x210bac, Func Offset: 0x13c
-	// Line 426, Address: 0x210bb0, Func Offset: 0x140
-	// Line 425, Address: 0x210bb4, Func Offset: 0x144
-	// Line 426, Address: 0x210bb8, Func Offset: 0x148
-	// Line 429, Address: 0x210bbc, Func Offset: 0x14c
-	// Line 430, Address: 0x210bc0, Func Offset: 0x150
-	// Line 435, Address: 0x210bc4, Func Offset: 0x154
-	// Line 436, Address: 0x210bc8, Func Offset: 0x158
-	// Line 429, Address: 0x210bcc, Func Offset: 0x15c
-	// Line 430, Address: 0x210bd4, Func Offset: 0x164
-	// Line 437, Address: 0x210bd8, Func Offset: 0x168
-	// Line 438, Address: 0x210bdc, Func Offset: 0x16c
-	// Line 439, Address: 0x210be0, Func Offset: 0x170
-	// Line 430, Address: 0x210be4, Func Offset: 0x174
-	// Line 431, Address: 0x210bec, Func Offset: 0x17c
-	// Line 446, Address: 0x210bf0, Func Offset: 0x180
-	// Line 440, Address: 0x210bf4, Func Offset: 0x184
-	// Line 446, Address: 0x210bf8, Func Offset: 0x188
-	// Line 431, Address: 0x210bfc, Func Offset: 0x18c
-	// Line 435, Address: 0x210c04, Func Offset: 0x194
-	// Line 436, Address: 0x210c08, Func Offset: 0x198
-	// Line 437, Address: 0x210c0c, Func Offset: 0x19c
-	// Line 438, Address: 0x210c10, Func Offset: 0x1a0
-	// Line 439, Address: 0x210c14, Func Offset: 0x1a4
-	// Line 440, Address: 0x210c20, Func Offset: 0x1b0
-	// Line 443, Address: 0x210c24, Func Offset: 0x1b4
-	// Line 446, Address: 0x210c2c, Func Offset: 0x1bc
-	// Line 448, Address: 0x210c40, Func Offset: 0x1d0
-	// Line 449, Address: 0x210c48, Func Offset: 0x1d8
-	// Line 450, Address: 0x210c50, Func Offset: 0x1e0
-	// Line 451, Address: 0x210c58, Func Offset: 0x1e8
-	// Line 452, Address: 0x210c60, Func Offset: 0x1f0
-	// Line 453, Address: 0x210c68, Func Offset: 0x1f8
-	// Line 458, Address: 0x210c70, Func Offset: 0x200
-	// Line 461, Address: 0x210c74, Func Offset: 0x204
-	// Line 462, Address: 0x210c80, Func Offset: 0x210
-	// Line 463, Address: 0x210c88, Func Offset: 0x218
-	// Line 464, Address: 0x210c90, Func Offset: 0x220
-	// Line 465, Address: 0x210c98, Func Offset: 0x228
-	// Line 470, Address: 0x210cb0, Func Offset: 0x240
-	// Line 473, Address: 0x210cc0, Func Offset: 0x250
-	// Line 474, Address: 0x210cc8, Func Offset: 0x258
-	// Line 475, Address: 0x210ce4, Func Offset: 0x274
-	// Line 474, Address: 0x210ce8, Func Offset: 0x278
-	// Line 475, Address: 0x210cec, Func Offset: 0x27c
-	// Line 476, Address: 0x210cf0, Func Offset: 0x280
-	// Line 477, Address: 0x210cf4, Func Offset: 0x284
-	// Line 481, Address: 0x210cfc, Func Offset: 0x28c
-	// Line 482, Address: 0x210d10, Func Offset: 0x2a0
-	// Line 499, Address: 0x210d28, Func Offset: 0x2b8
-	// Line 500, Address: 0x210d40, Func Offset: 0x2d0
-	// Func End, Address: 0x210d54, Func Offset: 0x2e4
+    en29_freework* fwP; 
+    ATR_WORK* htP;      
+
+    fwP = (en29_freework*)ewP->exp0;
+    
+    if (fwP != NULL) 
+    {
+        npSetMemory((unsigned char*)&fwP->status, 252, 0);
+    }
+    else
+    {
+        ewP->exp0 = bhEne_CallocWork(sizeof(en29_freework), 32);
+        
+        htP = &sys->mwalp[sys->mwal_n++];
+        
+        htP->flg |= 0x81;   
+        
+        htP->type = 1;     
+        
+        htP->flr_no = 0;    
+        
+        htP->attr = 2;     
+        
+        htP->prm0 = htP->prm1 = htP->prm2 = htP->prm3 = 0;      
+        
+        ewP->exp1 = (unsigned char*)htP;
+
+        fwP = (en29_freework*)ewP->exp0;
+        
+        SetDmgEne(ewP, fwP, E29DmgSet, 5);
+    }
+    
+    fwP = (en29_freework*)ewP->exp0;
+    
+    ewP->mode0 = 1;
+    ewP->mode1 = 0;
+    ewP->mode2 = 0;
+    ewP->mode3 = 0;
+    
+    ewP->ar = 3.0f;
+    ewP->ah = 4.0f;
+    ewP->aw = 0.0f;
+    ewP->ad = 0.0f;
+    
+    ewP->car = 6.0f;
+    ewP->cah = 4.0f;
+    
+    ewP->hp = 160;
+    
+    ewP->cpcl = Ene29CapColTbl;
+    
+    ewP->mtn_no = 0;
+    ewP->frm_no = 0;
+    
+    ewP->hokan_count = 0;
+    ewP->hokan_rate  = 0;
+    
+    ewP->mtn_add = 0;
+    ewP->mtn_md  = 0;
+    ewP->mtn_tp  = (unsigned char*)En29FlpTbl;
+    
+    ewP->flg |=  0x158;
+    ewP->flg &= ~0x2;
+    
+    ewP->flg2 |= 0x1;
+    
+    ewP->clp_jno[0] =  9;
+    ewP->clp_jno[1] = 15;
+    ewP->clp_jno[2] = 19;
+    ewP->clp_jno[3] = -1;
+    
+    ewP->mdflg &= ~0x20;
+    
+    ewP->lok_jno = 16;
+    
+    fwP->hit_tabP = (ATR_WORK*)ewP->exp1;
+
+    {
+    ET_WORK* etP;
+    ATR_WORK* htP;  
+    NJS_POINT3* szP;    
+	O_WRK* oP;   
+    
+    etP = &TypPrm[ewP->type];
+        
+    fwP->bas_obj = etP->bas_obj;   
+    fwP->atr_obj = etP->atr_obj;  
+        
+    fwP->atk_obj0 = etP->atk_obj0; 
+    fwP->atk_obj1 = etP->atk_obj1; 
+        
+    fwP->atk_rng0 = etP->atk_rng0;            
+    fwP->atk_rng1 = etP->atk_rng1;         
+    
+    htP = fwP->hit_tabP;
+        
+    htP->flg |= 0x1;      
+        
+    szP = &etP->atr_siz;
+        
+    htP->w = szP->x;
+    htP->h = szP->y;
+    htP->d = szP->z; 
+    
+    *(NJS_POINT3*)&htP->px = *(NJS_POINT3*)&ewP->px;
+    
+    if (!(ewP->flg & 0x800)) 
+    {
+        ewP->flg |= 0x800;
+        
+        oP = rySetShadow(ewP, 1, 3, 5, 2.0f, 2.0f);
+        
+        fwP->sdw_owkP = oP;
+        
+        oP->mdlver = 1;
+        
+        oP->type = 1;
+        
+        oP->sy = 6.0f;
+    }
+    }
+    
+    bhEne29_ActionInit(&fwP->ene_act, En29ActTbl, 40);
+    bhEne29_PlyActionInit(ewP, &fwP->ply_act, En29PlyActTbl, 2);
+    
+    sys->rm_flg &= ~0x3;
 }
 
 // 100% matching!

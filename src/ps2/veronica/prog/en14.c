@@ -1,31 +1,34 @@
 #include "../../../ps2/veronica/prog/en14.h"
+#include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
 
 // ENEMY: Third Form Alexia 
 
-/*unsigned char flip_tree[22];
-char SdwTab[5];
-char joint_tree[6][1];
-_anon32 DmgReact[21];
-_anon35 CombWepTbl[21];
-_anon38 CombJointTbl[22];
-_anon11 BloodTbl[22];
-_anon16 CapColTab[25];
-_anon28 ShapeTbl_Acid_F[5];
-_anon28 ShapeTbl_Acid_S[6];
-_anon28 ShapeTbl_Acid_A[5];
-void(*bhEne14_Mode0)(BH_PWORK*)[6];
-void(*bhEne14_BrainType)(BH_PWORK*)[2];
-void(*bhEne14_MoveMode2)(BH_PWORK*)[12];
-void(*bhEne14_NageMode2)(BH_PWORK*)[1];
-void(*bhEne14_DamageMode2)(BH_PWORK*)[2];*/
+static unsigned char flip_tree[22];
+static char SdwTab[5];
+static char joint_tree[1][6];
+static DMG_REACT DmgReact[21];
+static COMBWEP_WORK CombWepTbl[21];
+static COMBJOINT_WORK CombJointTbl[22];
+static BLOOD_TBL BloodTbl[22];
+static CPCL CapColTab[25];
+static P_WORK ShapeTbl_Acid_F[5];
+static P_WORK ShapeTbl_Acid_S[6];
+static P_WORK ShapeTbl_Acid_A[5];
+
+void (*bhEne14_Mode0[6])(BH_PWORK*);
+void (*bhEne14_BrainType[2])(BH_PWORK*);
+void (*bhEne14_MoveMode2[12])(BH_PWORK*);
+void (*bhEne14_NageMode2[1])(BH_PWORK*);
+void (*bhEne14_DamageMode2[2])(BH_PWORK*);
 
 // 
 // Start address: 0x1ddad0
 void bhEne14(BH_PWORK* epw)
 {
-	//_anon0* op;
+	O_WRK* op;
 	int i;
 	// Line 429, Address: 0x1ddad0, Func Offset: 0
 	// Line 431, Address: 0x1ddae0, Func Offset: 0x10
@@ -57,7 +60,7 @@ void bhEne14(BH_PWORK* epw)
 	scePrintf("bhEne14 - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x1ddc30
 void bhEne14_Init(BH_PWORK* epw)
 {
@@ -309,14 +312,14 @@ void bhEne14_MV03()
 // Start address: 0x1de340
 void bhEne14_MV04(BH_PWORK* epw)
 {
-	float dist;
-	_anon31 ln;
-	_anon24 cp;
+	//float dist;
+	NJS_LINE ln;
+	NJS_POINT3 cp;
 	float spd;
-	_anon24 v;
-	_anon24 vec;
+	NJS_VECTOR v;
+	NJS_VECTOR vec;
 	int ang;
-	_anon30* hp;
+	ATR_WORK* hp;
 	float dist;
 	// Line 827, Address: 0x1de340, Func Offset: 0
 	// Line 830, Address: 0x1de358, Func Offset: 0x18
@@ -522,14 +525,14 @@ void bhEne14_MV10()
 // Start address: 0x1decf0
 void bhEne14_MV11(BH_PWORK* epw)
 {
-	float dist;
-	_anon31 ln;
-	_anon24 cp;
+	//float dist;
+	NJS_LINE ln;
+	NJS_POINT3 cp;
 	float spd;
-	_anon24 v;
-	_anon24 vec;
+	NJS_VECTOR v;
+	NJS_VECTOR vec;
 	int ang;
-	_anon30* hp;
+	ATR_WORK* hp;
 	float dist;
 	// Line 1107, Address: 0x1decf0, Func Offset: 0
 	// Line 1110, Address: 0x1ded08, Func Offset: 0x18
@@ -742,13 +745,13 @@ void bhEne14_InitDamage(BH_PWORK* epw)
 // Start address: 0x1df520
 void bhEne14_LookPlayaer(BH_PWORK* epw)
 {
-	npobj* objP;
-	_anon12* mkaP;
+	NJS_CNK_OBJECT* objP;
+	NJS_MKEY_A_MOD* mkaP;
 	int ang;
 	float out;
-	_anon24 ov;
-	_anon24 vec;
-	_anon24 view;
+	NJS_VECTOR ov;
+	NJS_VECTOR vec;
+	NJS_POINT3 view;
 	int rz2;
 	int rz1;
 	int rz;
@@ -865,7 +868,7 @@ void bhEne14_LookPlayaer(BH_PWORK* epw)
 // Start address: 0x1dfa80
 void bhEne14_TailInit(BH_PWORK* epw)
 {
-	_anon4* p;
+	O_WORK* p;
 	int i;
 	// Line 1527, Address: 0x1dfa80, Func Offset: 0
 	// Line 1528, Address: 0x1dfa84, Func Offset: 0x4
@@ -893,10 +896,10 @@ void bhEne14_TailInit(BH_PWORK* epw)
 // Start address: 0x1dfb20
 void bhEne14_TailSwing(BH_PWORK* epw)
 {
-	npobj* objp;
-	_anon4* owp;
+	NJS_CNK_OBJECT* objp;
+	O_WORK* owp;
 	int i;
-	_anon24 v;
+	NJS_VECTOR v;
 	float g[11];
 	float n[11];
 	// Line 1569, Address: 0x1dfb20, Func Offset: 0
@@ -983,8 +986,8 @@ void bhEne14_TailSwing(BH_PWORK* epw)
 // Start address: 0x1dff40
 int bhEne14_HitMark(BH_PWORK* epw)
 {
-	_anon11* blp;
-	_anon24 ofp;
+	BLOOD_TBL* blp;
+	NJS_POINT3 ofp;
 	int i;
 	int range;
 	// Line 1702, Address: 0x1dff40, Func Offset: 0
@@ -1063,7 +1066,7 @@ void bhEne14_Acid(BH_PWORK* epw, int se)
 {
 	float t;
 	float dt;
-	_anon4* owk;
+	O_WORK* owk;
 	int rapid;
 	int i;
 	int eno;
@@ -1155,8 +1158,8 @@ void bhEne14_SetMotion(BH_PWORK* epw)
 	int obj_list_f[4];
 	int obj_list[4];
 	int i;
-	npobj* objP;
-	_anon12* mkaP;
+	NJS_CNK_OBJECT* objP;
+	NJS_MKEY_A_MOD* mkaP;
 	// Line 1893, Address: 0x1e0920, Func Offset: 0
 	// Line 1889, Address: 0x1e092c, Func Offset: 0xc
 	// Line 1893, Address: 0x1e0930, Func Offset: 0x10
@@ -1335,4 +1338,4 @@ void bhEne14_CallSE(BH_PWORK* epw)
 	// Line 2074, Address: 0x1e0e88, Func Offset: 0xd8
 	// Line 2078, Address: 0x1e0e98, Func Offset: 0xe8
 	// Func End, Address: 0x1e0ea4, Func Offset: 0xf4
-}*/
+}

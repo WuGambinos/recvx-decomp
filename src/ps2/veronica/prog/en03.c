@@ -3600,31 +3600,39 @@ void bhEne03_DD04(BH_PWORK* epw)
 	// Func End, Address: 0x19e788, Func Offset: 0x448
 }
 
-// 
-// Start address: 0x19e790
+// 100% matching!
 void bhEne03_DD05(BH_PWORK* epw)
 {
-	// Line 4845, Address: 0x19e790, Func Offset: 0
-	// Line 4846, Address: 0x19e7a0, Func Offset: 0x10
-	// Line 4848, Address: 0x19e7c0, Func Offset: 0x30
-	// Line 4850, Address: 0x19e7c8, Func Offset: 0x38
-	// Line 4849, Address: 0x19e7cc, Func Offset: 0x3c
-	// Line 4850, Address: 0x19e7d0, Func Offset: 0x40
-	// Line 4851, Address: 0x19e7d4, Func Offset: 0x44
-	// Line 4853, Address: 0x19e7dc, Func Offset: 0x4c
-	// Line 4854, Address: 0x19e800, Func Offset: 0x70
-	// Line 4855, Address: 0x19e808, Func Offset: 0x78
-	// Line 4857, Address: 0x19e810, Func Offset: 0x80
-	// Line 4858, Address: 0x19e820, Func Offset: 0x90
-	// Line 4859, Address: 0x19e824, Func Offset: 0x94
-	// Line 4860, Address: 0x19e828, Func Offset: 0x98
-	// Line 4859, Address: 0x19e82c, Func Offset: 0x9c
-	// Line 4860, Address: 0x19e834, Func Offset: 0xa4
-	// Line 4861, Address: 0x19e840, Func Offset: 0xb0
-	// Line 4864, Address: 0x19e84c, Func Offset: 0xbc
-	// Line 4865, Address: 0x19e864, Func Offset: 0xd4
-	// Line 4869, Address: 0x19e87c, Func Offset: 0xec
-	// Func End, Address: 0x19e88c, Func Offset: 0xfc
+    switch (epw->mode3)                             
+    {
+    case 0:
+        epw->mtn_no = 27;
+        epw->frm_no = 0;
+
+        epw->hokan_count = 8;
+        epw->hokan_rate  = 32768;
+
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 2;
+
+        epw->mode3++;
+        break;
+    case 1:
+        if (epw->ct0-- == 0)
+        {
+            epw->mtn_add = 0;
+
+            epw->mode3++;
+
+            epw->flg  &= ~0x8;
+            epw->flg2 |= 0x1;
+
+            epw->ay = bhArcTan2(-EXP0_F(8), EXP0_F(0));
+
+            bhEne_BloodPool(epw, (NJS_POINT3*)&epw->px, epw->ay, &BloodParam);
+        }
+
+        break;
+    }
 }
 
 // 100% matching!

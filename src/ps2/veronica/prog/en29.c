@@ -388,95 +388,205 @@ static void bhEne29_Event(BH_PWORK* ewP)
     bhEne29_CalcEnemy(ewP, (en29_freework*)ewP->exp0);
 }
 
-// 
-// Start address: 0x210f50
+// 99.95% matching
 static void bhEne29_Br00(BH_PWORK* ewP)
 {
-	int lop;
-	int rte;
-	TC_ACT_NO act;
-	TC_BR_MODE1* br1P;
-	TC_BR_MODE0* br0P;
-	int sts;
-	int typ;
-	int* stsP;
-	eaw_typ* eawP;
-	en29_freework* fwP;
-	// Line 612, Address: 0x210f50, Func Offset: 0
-	// Line 624, Address: 0x210f6c, Func Offset: 0x1c
-	// Line 613, Address: 0x210f74, Func Offset: 0x24
-	// Line 620, Address: 0x210f78, Func Offset: 0x28
-	// Line 624, Address: 0x210f84, Func Offset: 0x34
-	// Line 614, Address: 0x210f90, Func Offset: 0x40
-	// Line 620, Address: 0x210f94, Func Offset: 0x44
-	// Line 616, Address: 0x210f98, Func Offset: 0x48
-	// Line 624, Address: 0x210f9c, Func Offset: 0x4c
-	// Line 625, Address: 0x210fa8, Func Offset: 0x58
-	// Line 628, Address: 0x210fac, Func Offset: 0x5c
-	// Line 625, Address: 0x210fb0, Func Offset: 0x60
-	// Line 628, Address: 0x210fb4, Func Offset: 0x64
-	// Line 632, Address: 0x210fbc, Func Offset: 0x6c
-	// Line 636, Address: 0x210fc4, Func Offset: 0x74
-	// Line 633, Address: 0x210fc8, Func Offset: 0x78
-	// Line 634, Address: 0x210fcc, Func Offset: 0x7c
-	// Line 635, Address: 0x210fd4, Func Offset: 0x84
-	// Line 637, Address: 0x210fd8, Func Offset: 0x88
-	// Line 641, Address: 0x210fe0, Func Offset: 0x90
-	// Line 651, Address: 0x210fec, Func Offset: 0x9c
-	// Line 652, Address: 0x210ffc, Func Offset: 0xac
-	// Line 653, Address: 0x211008, Func Offset: 0xb8
-	// Line 654, Address: 0x21101c, Func Offset: 0xcc
-	// Line 656, Address: 0x211020, Func Offset: 0xd0
-	// Line 657, Address: 0x211028, Func Offset: 0xd8
-	// Line 658, Address: 0x211034, Func Offset: 0xe4
-	// Line 659, Address: 0x211038, Func Offset: 0xe8
-	// Line 668, Address: 0x21103c, Func Offset: 0xec
-	// Line 670, Address: 0x211040, Func Offset: 0xf0
-	// Line 673, Address: 0x211078, Func Offset: 0x128
-	// Line 674, Address: 0x211084, Func Offset: 0x134
-	// Line 676, Address: 0x21108c, Func Offset: 0x13c
-	// Line 677, Address: 0x211094, Func Offset: 0x144
-	// Line 678, Address: 0x2110b4, Func Offset: 0x164
-	// Line 679, Address: 0x2110b8, Func Offset: 0x168
-	// Line 681, Address: 0x2110bc, Func Offset: 0x16c
-	// Line 682, Address: 0x2110c4, Func Offset: 0x174
-	// Line 684, Address: 0x2110c8, Func Offset: 0x178
-	// Line 686, Address: 0x2110dc, Func Offset: 0x18c
-	// Line 689, Address: 0x2110e4, Func Offset: 0x194
-	// Line 693, Address: 0x211108, Func Offset: 0x1b8
-	// Line 694, Address: 0x21110c, Func Offset: 0x1bc
-	// Line 697, Address: 0x211114, Func Offset: 0x1c4
-	// Line 699, Address: 0x21111c, Func Offset: 0x1cc
-	// Line 701, Address: 0x211120, Func Offset: 0x1d0
-	// Line 704, Address: 0x211128, Func Offset: 0x1d8
-	// Line 706, Address: 0x211138, Func Offset: 0x1e8
-	// Line 711, Address: 0x21113c, Func Offset: 0x1ec
-	// Line 714, Address: 0x211144, Func Offset: 0x1f4
-	// Line 717, Address: 0x21116c, Func Offset: 0x21c
-	// Line 719, Address: 0x211178, Func Offset: 0x228
-	// Line 720, Address: 0x21117c, Func Offset: 0x22c
-	// Line 721, Address: 0x211184, Func Offset: 0x234
-	// Line 722, Address: 0x2111a0, Func Offset: 0x250
-	// Line 724, Address: 0x2111a4, Func Offset: 0x254
-	// Line 730, Address: 0x2111ac, Func Offset: 0x25c
-	// Line 732, Address: 0x2111bc, Func Offset: 0x26c
-	// Line 738, Address: 0x2111c4, Func Offset: 0x274
-	// Line 744, Address: 0x2111d0, Func Offset: 0x280
-	// Line 747, Address: 0x2111d8, Func Offset: 0x288
-	// Line 750, Address: 0x211204, Func Offset: 0x2b4
-	// Line 752, Address: 0x211208, Func Offset: 0x2b8
-	// Line 755, Address: 0x211210, Func Offset: 0x2c0
-	// Line 756, Address: 0x211220, Func Offset: 0x2d0
-	// Line 757, Address: 0x21122c, Func Offset: 0x2dc
-	// Line 758, Address: 0x211230, Func Offset: 0x2e0
-	// Line 767, Address: 0x211234, Func Offset: 0x2e4
-	// Line 768, Address: 0x211238, Func Offset: 0x2e8
-	// Line 771, Address: 0x211244, Func Offset: 0x2f4
-	// Line 772, Address: 0x211250, Func Offset: 0x300
-	// Line 773, Address: 0x211264, Func Offset: 0x314
-	// Line 775, Address: 0x211268, Func Offset: 0x318
-	// Line 780, Address: 0x211274, Func Offset: 0x324
-	// Func End, Address: 0x211294, Func Offset: 0x344
+    en29_freework* fwP; 
+    eaw_typ* eawP;     
+    int* stsP;        
+    int typ;          
+    int sts;           
+    TC_BR_MODE0* br0P;  
+    TC_BR_MODE1* br1P; 
+    TC_ACT_NO act;    
+    int rte;          
+	int lop;          
+
+    fwP = (en29_freework*)ewP->exp0;
+    
+    eawP = &fwP->ene_act;
+    stsP = &fwP->status;
+    
+    typ = (ewP->type != 0) ? 1 : 0;
+
+    fwP->tgt_pos = *(NJS_POINT3*)&plp->px; 
+
+    *stsP |= 0x1;
+
+    bhEne29_TargetAnalyze(ewP, fwP);
+
+    sts = *stsP;
+    rte = eawP->mtn_rte;
+    
+    br0P = &fwP->br_mde0;
+    br1P = &fwP->br_mde1;
+
+    act = TC_ACT_ALL;
+    
+    lop = 0;
+    
+    do
+    {
+        if ((fwP->dmg_lvl != 0) && (*br0P != TC_BR0_DIE))
+        {
+            if (*br0P != TC_BR0_DAMAGE)
+            {
+                if (fwP->dmg_lvl < 3) 
+                {
+                    *br0P = TC_BR0_DAMAGE;
+                }
+                else 
+                {
+                    *br0P = TC_BR0_DIE;
+                }
+                
+                *br1P = TC_BR1_FIRST;
+            }
+            else if (fwP->dmg_lvl >= 3)
+            {
+                *br0P = TC_BR0_DIE;
+                *br1P = TC_BR1_FIRST;
+            }
+        }
+
+        switch (*br0P)
+        {
+        case TC_BR0_NORMAL:
+            if (fwP->br_tim > 0)
+            {
+                fwP->br_tim--;
+                
+                act = TC_ACT_000;
+            }
+            else if (((sts & 0x200)) && (!(plp->flg & 0x4)))
+            {
+                *br0P = TC_BR0_ATTACK;
+                *br1P = TC_BR1_FIRST;
+                
+                lop = 1;
+            }
+            else
+            {
+                act = TC_ACT_000;
+            }
+
+            if ((act == TC_ACT_000) && (eawP->act_now == (typ * 5)))
+            {
+                act = TC_ACT_ALL;
+            }
+            
+            break;
+        case TC_BR0_ATTACK:
+            switch (*br1P)
+            {
+            case TC_BR1_FIRST:
+                *br1P = TC_BR1_LOOP0;
+                
+                act = TC_ACT_001;
+                break;
+            case TC_BR1_LOOP0:
+                if (!(sts & 0x200))
+                {
+                    act = TC_ACT_022;
+                    
+                    *br1P = TC_BR1_LOOP1;
+                }
+                
+                break;
+            case TC_BR1_LOOP1:
+                if (rte >= eawP->chg_rte)
+                {
+                    *br0P = TC_BR0_NORMAL;
+                    
+                    fwP->br_tim  = 0;
+                }
+                
+                break;
+            }
+            
+            break;
+        case TC_BR0_DAMAGE:
+            switch (*br1P)
+            {
+            case TC_BR1_FIRST:
+                if (fwP->br_fir > 0)
+                {
+                    *br1P = TC_BR1_LOOP1;
+                    
+                    act = TC_ACT_003;
+                }
+                else
+                {
+                    if (fwP->dmg_lvl <= 1) 
+                    {
+                        act = TC_ACT_002;
+                    }
+                    else 
+                    {
+                        act = TC_ACT_003;
+                    }
+                    
+                    *br1P = TC_BR1_LOOP0;
+                }
+                
+                break;
+            case TC_BR1_LOOP0:
+                if (rte >= 32768)
+                {
+                    *br0P = TC_BR0_NORMAL;
+                }
+                
+                break;
+            case TC_BR1_LOOP1:
+                if (fwP->br_fir <= 0)
+                {
+                    *br0P = TC_BR0_NORMAL;
+                }
+                
+                break;
+            }
+            
+            break;
+        case TC_BR0_DIE:
+            switch (*br1P)
+            {
+            case TC_BR1_FIRST:
+                act = TC_ACT_004;
+                
+                *br1P = TC_BR1_LOOP0;
+                break;
+            case TC_BR1_LOOP0:
+                if (rte >= eawP->chg_rte)
+                {
+                    ewP->flg |= 0x2;
+                    
+                    ewP->mtn_add = 0;
+                    
+                    *br1P = TC_BR1_LOOP1;
+                }
+                
+                break;
+            case TC_BR1_LOOP1:
+                break;
+            }
+            
+            break;
+        }
+    } while (lop-- != 0);
+
+    if (act != TC_ACT_ALL)
+    {
+        if (act < TC_ACT_022) 
+        {
+            act += typ * 5;
+        }
+        else 
+        {
+            act += typ;
+        }
+        
+        bhEne29_ActionChange(ewP, eawP, act);
+    }
 }
 
 // 
@@ -1085,7 +1195,7 @@ static int bhEne29_PlySetDamage(BH_PWORK* plP, en29_freework* fwP, int dmg_mde)
     return 0;
 }
 
-// 99.35% matching
+// 99.35% matching (matches on NGC)
 static void bhEne29_PlyMoveMain(BH_PWORK* plP, en29_freework* fwP)
 {
     int* stsP;

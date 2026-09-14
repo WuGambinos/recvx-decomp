@@ -474,15 +474,13 @@ void bhEne14_MV05()
 // 100% matching!
 void bhEne14_MV06()
 {
-	
+
 }
 
-// 
-// Start address: 0x1decb0
+// 100% matching!
 void bhEne14_MV07()
 {
-	// Line 1064, Address: 0x1decb0, Func Offset: 0
-	// Func End, Address: 0x1decb8, Func Offset: 0x8
+	
 }
 
 // 

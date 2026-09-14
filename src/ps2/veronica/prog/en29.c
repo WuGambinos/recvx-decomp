@@ -276,31 +276,57 @@ static void bhEne29_Init(BH_PWORK* ewP)
 	// Func End, Address: 0x210d54, Func Offset: 0x2e4
 }
 
-// 
-// Start address: 0x210d60
+// 100% matching!
 static void bhEne29_Move(BH_PWORK* ewP)
 {
-	//en29_freework* fwP;
-	en29_freework* fwP;
-	// Line 510, Address: 0x210d60, Func Offset: 0
-	// Line 511, Address: 0x210d70, Func Offset: 0x10
-	// Line 521, Address: 0x210d78, Func Offset: 0x18
-	// Line 519, Address: 0x210d80, Func Offset: 0x20
-	// Line 521, Address: 0x210d90, Func Offset: 0x30
-	// Line 527, Address: 0x210da0, Func Offset: 0x40
-	// Line 528, Address: 0x210db0, Func Offset: 0x50
-	// Line 534, Address: 0x210db8, Func Offset: 0x58
-	// Line 535, Address: 0x210dbc, Func Offset: 0x5c
-	// Line 538, Address: 0x210dc0, Func Offset: 0x60
-	// Line 539, Address: 0x210df0, Func Offset: 0x90
-	// Line 545, Address: 0x210e20, Func Offset: 0xc0
-	// Line 548, Address: 0x210e2c, Func Offset: 0xcc
-	// Line 551, Address: 0x210e4c, Func Offset: 0xec
-	// Line 554, Address: 0x210e68, Func Offset: 0x108
-	// Line 557, Address: 0x210e74, Func Offset: 0x114
-	// Line 560, Address: 0x210e94, Func Offset: 0x134
-	// Line 562, Address: 0x210ea4, Func Offset: 0x144
-	// Func End, Address: 0x210eb8, Func Offset: 0x158
+    en29_freework* fwP;   
+    
+    fwP = (en29_freework*)ewP->exp0;
+
+    fwP->hit_tabP->flg   |=  0x1;
+    fwP->sdw_owkP->stflg &= ~0x1000000;
+
+    if (!(fwP->status & 0x40)) 
+    {
+        fwP->status |= 0x40;
+        
+        fwP->br_mde0 = TC_BR0_NORMAL;
+        fwP->br_mde1 = TC_BR1_FIRST;
+
+        if ((ewP->type == 2) && (!(sys->rm_flg & 0x1))) 
+        {
+            fwP->br_mde0 = TC_BR0_WAIT;
+        }
+        
+        if ((ewP->type == 3) && (!(sys->rm_flg & 0x2))) 
+        {
+            fwP->br_mde0 = TC_BR0_WAIT;
+        }
+    }
+
+    bhEne29_DmgCheck(ewP, fwP);
+    
+    bhEne29_BrainType[ewP->type](ewP);
+
+    if (!(fwP->status & 0x10)) 
+    {
+        bhEne29_ActionMain(ewP, &fwP->ene_act);
+    }
+    
+    { 
+    en29_freework* fwP; // no fucking clue
+
+    fwP = (en29_freework*)ewP->exp0;
+
+    bhEne29_CalcEnemy(ewP, fwP);
+    }
+
+    if ((fwP->status & 0x20)) 
+    {
+        fwP->hit_tabP->flg &= ~0x1;
+    }
+
+    bhEne29_PlyMoveMain(plp, fwP);
 }
 
 // 100% matching!

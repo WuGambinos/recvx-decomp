@@ -699,12 +699,10 @@ void bhEne14_DG01(BH_PWORK* epw)
 	// Func End, Address: 0x1df500, Func Offset: 0xf0
 }
 
-// 
-// Start address: 0x1df500
+// 100% matching!
 void bhEne14_Die()
 {
-	// Line 1369, Address: 0x1df500, Func Offset: 0
-	// Func End, Address: 0x1df508, Func Offset: 0x8
+	
 }
 
 // 

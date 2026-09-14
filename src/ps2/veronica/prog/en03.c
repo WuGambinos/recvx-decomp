@@ -3624,7 +3624,7 @@ void bhEne03_DD05(BH_PWORK* epw)
             epw->mode3++;
 
             epw->flg  &= ~0x8;
-            epw->flg2 |= 0x1;
+            epw->flg2 |=  0x1;
 
             epw->ay = bhArcTan2(-EXP0_F(8), EXP0_F(0));
 

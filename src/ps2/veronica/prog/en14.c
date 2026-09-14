@@ -148,12 +148,10 @@ void bhEne14_Init(BH_PWORK* epw)
 	// Func End, Address: 0x1dded0, Func Offset: 0x2a0
 }
 
-// 
-// Start address: 0x1dded0
+// 100% matching!
 void bhEne14_Brain(BH_PWORK* epw)
 {
-	// Line 612, Address: 0x1dded0, Func Offset: 0
-	// Func End, Address: 0x1ddef0, Func Offset: 0x20
+	bhEne14_BrainType[epw->type](epw);
 }
 
 // 

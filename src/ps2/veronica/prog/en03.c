@@ -2777,33 +2777,41 @@ void bhEne03_DG07(BH_PWORK* epw)
 	// Func End, Address: 0x19c72c, Func Offset: 0x29c
 }
 
-// 
-// Start address: 0x19c730
+// 100% matching!
 void bhEne03_DG08(BH_PWORK* epw)
 {
-	// Line 3802, Address: 0x19c730, Func Offset: 0
-	// Line 3803, Address: 0x19c740, Func Offset: 0x10
-	// Line 3805, Address: 0x19c760, Func Offset: 0x30
-	// Line 3807, Address: 0x19c768, Func Offset: 0x38
-	// Line 3806, Address: 0x19c76c, Func Offset: 0x3c
-	// Line 3807, Address: 0x19c770, Func Offset: 0x40
-	// Line 3808, Address: 0x19c774, Func Offset: 0x44
-	// Line 3809, Address: 0x19c77c, Func Offset: 0x4c
-	// Line 3811, Address: 0x19c784, Func Offset: 0x54
-	// Line 3812, Address: 0x19c7a8, Func Offset: 0x78
-	// Line 3814, Address: 0x19c7b4, Func Offset: 0x84
-	// Line 3816, Address: 0x19c7c4, Func Offset: 0x94
-	// Line 3817, Address: 0x19c7d4, Func Offset: 0xa4
-	// Line 3820, Address: 0x19c7dc, Func Offset: 0xac
-	// Line 3818, Address: 0x19c7e0, Func Offset: 0xb0
-	// Line 3820, Address: 0x19c7e4, Func Offset: 0xb4
-	// Line 3822, Address: 0x19c7e8, Func Offset: 0xb8
-	// Line 3821, Address: 0x19c7ec, Func Offset: 0xbc
-	// Line 3822, Address: 0x19c7f0, Func Offset: 0xc0
-	// Line 3823, Address: 0x19c7f4, Func Offset: 0xc4
-	// Line 3824, Address: 0x19c7f8, Func Offset: 0xc8
-	// Line 3827, Address: 0x19c808, Func Offset: 0xd8
-	// Func End, Address: 0x19c818, Func Offset: 0xe8
+    switch (epw->mode3)                             
+    {
+    case 0:
+        epw->mtn_no = 26;
+        epw->frm_no = 0;
+
+        epw->hokan_count = 8;
+        epw->hokan_rate  = 32768;
+
+        epw->mtn_add = 65536;
+
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
+
+        epw->mode3++;
+    case 1:
+        bhEne03_AddNullTrans(epw, spm_026);
+
+        if (epw->ct0-- == 0)
+        {
+            epw->mtn_no = 30;
+            epw->frm_no = 0;
+
+            epw->mode0 = 1;
+            epw->mode1 = 0;
+            epw->mode2 = 3;
+            epw->mode3 = 0;
+
+            epw->flg &= ~0x4;
+        }
+
+        break;
+    }
 }
 
 // 

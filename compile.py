@@ -510,7 +510,7 @@ def log_me(msg: str, extra: list[str] = list(), both: bool = False):
     
     with log_lock, LOG_FILE.open('a') as f:
         if both and msg: 
-            f.write(msg)
+            f.write(msg + "\n")
         if extra:
             f.write("\n".join(extra))
         f.flush()

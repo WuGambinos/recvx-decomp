@@ -1274,42 +1274,33 @@ void bhEne12_Die(BH_PWORK* epw)
     bhEne12_DieMode2[epw->mode2](epw);
 }
 
-/*// 
-// Start address: 0x1d7840
-void bhEne12_DD00(BH_PWORK* epw)
-{
-	// Line 1515, Address: 0x1d7840, Func Offset: 0
-	// Line 1516, Address: 0x1d7850, Func Offset: 0x10
-	// Line 1518, Address: 0x1d7870, Func Offset: 0x30
-	// Line 1519, Address: 0x1d787c, Func Offset: 0x3c
-	// Line 1520, Address: 0x1d7884, Func Offset: 0x44
-	// Line 1518, Address: 0x1d7888, Func Offset: 0x48
-	// Line 1520, Address: 0x1d7890, Func Offset: 0x50
-	// Line 1519, Address: 0x1d7894, Func Offset: 0x54
-	// Line 1521, Address: 0x1d7898, Func Offset: 0x58
-	// Line 1523, Address: 0x1d789c, Func Offset: 0x5c
-	// Line 1525, Address: 0x1d78a0, Func Offset: 0x60
-	// Line 1519, Address: 0x1d78a4, Func Offset: 0x64
-	// Line 1520, Address: 0x1d78ac, Func Offset: 0x6c
-	// Line 1526, Address: 0x1d78b0, Func Offset: 0x70
-	// Line 1520, Address: 0x1d78b4, Func Offset: 0x74
-	// Line 1521, Address: 0x1d78bc, Func Offset: 0x7c
-	// Line 1523, Address: 0x1d78c8, Func Offset: 0x88
-	// Line 1524, Address: 0x1d78cc, Func Offset: 0x8c
-	// Line 1525, Address: 0x1d78d0, Func Offset: 0x90
-	// Line 1526, Address: 0x1d78d4, Func Offset: 0x94
-	// Line 1527, Address: 0x1d78d8, Func Offset: 0x98
-	// Line 1528, Address: 0x1d78fc, Func Offset: 0xbc
-	// Line 1530, Address: 0x1d7908, Func Offset: 0xc8
-	// Line 1531, Address: 0x1d7918, Func Offset: 0xd8
-	// Line 1532, Address: 0x1d7928, Func Offset: 0xe8
-	// Line 1533, Address: 0x1d792c, Func Offset: 0xec
-	// Line 1534, Address: 0x1d7938, Func Offset: 0xf8
-	// Line 1538, Address: 0x1d7944, Func Offset: 0x104
-	// Func End, Address: 0x1d7954, Func Offset: 0x114
+// 100% matching!
+void bhEne12_DD00(BH_PWORK* epw) {
+    switch (epw->mode3) {                         
+    case 0:
+        epw->flg &= 0xFFFBFFFF;
+        epw->flg &= 0xFFF7FFFF;
+        epw->flg &=  0xFFEFFFFF;
+        epw->flg &= ~0x60;
+        epw->mtn_no = 0xE;
+        epw->frm_no = 0;
+        epw->mtn_add = 0x10000;
+        epw->hokan_count = 0xA;
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
+        epw->mode3 += 1;
+        /* fallthrough */
+    case 1:
+        bhEne_AddNullTrans(epw, vm1_014);
+        if (epw->ct0-- == 0) {
+            epw->mtn_add = 0;
+            epw->mode3 += 1;
+            epw->flg |= 2;
+        }
+        return;
+    }
 }
 
-// 
+/*// 
 // Start address: 0x1d7960
 void bhEne12_InitDamage(BH_PWORK* epw)
 {

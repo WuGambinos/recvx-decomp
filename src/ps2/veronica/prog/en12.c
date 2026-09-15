@@ -489,6 +489,11 @@ void(*bhEne12_DamageMode2[1])(BH_PWORK*) =
     bhEne12_DG00,
 };
 
+void(*bhEne12_DieMode2[1])(BH_PWORK*) =
+{
+    bhEne12_DD00,
+};
+
 // 100% matching!
 void bhEne12(BH_PWORK* epw) 
 {
@@ -1263,15 +1268,13 @@ void bhEne12_DG00(BH_PWORK* epw)
     }
 }
 
-/*// 
-// Start address: 0x1d7820
+// 100% matching!
 void bhEne12_Die(BH_PWORK* epw)
 {
-	// Line 1504, Address: 0x1d7820, Func Offset: 0
-	// Func End, Address: 0x1d7840, Func Offset: 0x20
+    bhEne12_DieMode2[epw->mode2](epw);
 }
 
-// 
+/*// 
 // Start address: 0x1d7840
 void bhEne12_DD00(BH_PWORK* epw)
 {

@@ -14,22 +14,160 @@
 // ENEMY: Nosferatu 
 
 static char dbgout_buf[256];
-static WPNDG_TBL WpnDamageTbl[21];
-static COMBWEP_WORK CombWepTbl[21];
-static COMBJOINT_WORK CombJointTbl[24];
-static COMBO_EFF Combo_Eff[21];
-static char SdwTab[3];
-static BT_WORK prt_blood_tbl[24];
-static char rfoot_joint_tree[6];
-static char lfoot_joint_tree[6];
-static LEGLOCK_LIST lrl_walk[2];
-static LEGLOCK_LIST lrl_a1[2];
-static LEGLOCK_LIST lrl_a2[2];
-static LEGLOCK_LIST lrl_fldmg[2];
-static LEGLOCK_LIST lrl_bldmg[2];
-static LEGLOCK_LIST lrl_crdmg[2];
-static LEGLOCK_LIST lrl_dummy[1];
-static LEGLOCK_TAB leglock_tab[11];
+static char poison_attack_wait;
+static char poison_eff_wait;
+
+static WPNDG_TBL WpnDamageTbl[21] = 
+{
+    { 0, 0, 0 },  
+    { 0, 0, 0 },  
+    { 0, 0, 0 },  
+    { 0, 0, 0 },  
+    { 0, 0, 0 },  
+    { 0, 2, 2 },  
+    { 2, 2, 2 },  
+    { 0, 0, 0 },  
+    { 0, 0, 0 },  
+    { 2, 1, 1 },  
+    { 0, 0, 0 },  
+    { 2, 1, 2 },  
+    { 0, 1, 1 },  
+    { 2, 0, 1 },  
+    { 2, 0, 0 },  
+    { 2, 0, 0 },  
+    { 1, 0, 0 },  
+    { 1, 0, 0 },  
+    { 2, 2, 2 },  
+    { 0, 0, 0 },  
+    { 2, 2, 2 }  
+};
+static COMBWEP_WORK CombWepTbl[21] = 
+{
+    {   0, {  0,  0,  0 },  0, 0 },
+    {   0, {  0,  0,  0 },  0, 0 },
+    {  40, { 10,  0,  0 }, 30, 0 },
+    {  70, { 10,  8,  0 }, 60, 0 },
+    {  70, { 10,  8,  0 }, 60, 0 },
+    {  40, { 10,  8,  0 }, 30, 0 },
+    {   0, {  0,  0,  0 },  0, 0 },
+    {  70, { 10,  8,  0 }, 30, 0 },
+    { 160, { 10,  8,  0 }, 40, 0 },
+    {   0, {  0,  0,  0 },  0, 0 },
+    {  80, { 10,  8,  0 }, 70, 0 },
+    {   0, {  0,  0,  0 },  0, 0 },
+    {  60, { 10,  8,  0 }, 60, 0 },
+    {   0, {  0,  0,  0 },  0, 0 },
+    {   0, {  0,  0,  0 },  0, 0 },
+    {   0, {  0,  0,  0 },  0, 0 },
+    {   0, {  0,  0,  0 },  0, 0 },
+    {   0, {  0,  0,  0 },  0, 0 },
+    {   0, {  0,  0,  0 },  0, 0 },
+    {   0, {  0,  0,  0 },  0, 0 },
+	{   0, {  0,  0,  0 },  0, 0 }
+};
+static COMBJOINT_WORK CombJointTbl[24] = { 0 };
+static COMBO_EFF Combo_Eff[21] = 
+{
+    { { 0, 0, 0 }, { -1, -1, -1 } },  
+    { { 0, 0, 0 }, { -1, -1, -1 } },  
+    { { 1, 0, 0 }, {  1,  0, -1 } },  
+    { { 1, 0, 0 }, {  1,  0, -1 } },  
+    { { 1, 0, 0 }, {  1,  0, -1 } },  
+    { { 1, 0, 0 }, {  1,  0, -1 } },  
+    { { 0, 0, 0 }, { -1, -1, -1 } },  
+    { { 1, 0, 0 }, {  1,  0, -1 } },  
+    { { 1, 0, 0 }, {  1,  0, -1 } },  
+    { { 0, 0, 0 }, { -1, -1, -1 } },  
+    { { 1, 0, 0 }, {  1,  0, -1 } },  
+    { { 0, 0, 0 }, { -1, -1, -1 } },  
+    { { 1, 0, 0 }, {  1,  0, -1 } },  
+    { { 0, 0, 0 }, { -1, -1, -1 } },  
+    { { 0, 0, 0 }, { -1, -1, -1 } },  
+    { { 0, 0, 0 }, { -1, -1, -1 } },  
+    { { 0, 0, 0 }, { -1, -1, -1 } },  
+    { { 0, 0, 0 }, { -1, -1, -1 } },  
+    { { 0, 0, 0 }, { -1, -1, -1 } },  
+    { { 0, 0, 0 }, { -1, -1, -1 } },  
+    { { 0, 0, 0 }, { -1, -1, -1 } }  
+};
+static char SdwTab[3]= { 20, 23, -1 };
+static BT_WORK prt_blood_tbl[24]= 
+{
+    {  0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+    {  1, 0.0f, 2.0f, 1.8f, 2.0f, 5.0f, 1.0f, 5.0f },
+    {  2, 0.0f, 2.0f, 1.8f, 2.0f, 5.0f, 1.0f, 5.0f },
+    {  3, 0.0f, 2.0f, 1.8f, 2.0f, 5.0f, 1.0f, 5.0f },
+    {  4, 0.0f, 2.0f, 1.8f, 2.0f, 3.0f, 1.0f, 3.0f },
+    {  5, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 4.0f },
+    {  6, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 4.0f },
+    {  7, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 3.0f },
+    {  8, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 4.0f },
+    {  9, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 4.0f },
+    { 10, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 3.0f },
+    { 11, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 4.0f },
+    { 12, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 4.0f },
+    { 13, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 3.0f },
+    { 14, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 4.0f },
+    { 15, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 4.0f },
+    { 16, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 3.0f },
+    { 17, 0.0f, 2.0f, 1.8f, 2.0f, 2.0f, 1.0f, 3.0f },
+    { 18, 0.0f, 0.0f, 1.8f, 2.0f, 4.0f, 1.0f, 4.0f },
+    { 19, 0.0f, 2.0f, 1.0f, 1.0f, 4.0f, 1.0f, 4.0f },
+    { 20, 0.0f, 2.0f, 1.0f, 1.0f, 3.0f, 1.0f, 3.0f },
+    { 21, 0.0f, 0.0f, 1.8f, 2.0f, 4.0f, 1.0f, 4.0f },
+    { 22, 0.0f, 2.0f, 1.0f, 1.0f, 4.0f, 1.0f, 4.0f },
+    { 23, 0.0f, 2.0f, 1.0f, 1.0f, 3.0f, 1.0f, 3.0f }
+};
+static char rfoot_joint_tree[6] = { 0, 1, 18, 19, 20, -1 };
+static char lfoot_joint_tree[6] = { 0, 1, 21, 22, 23, -1 };
+static LEGLOCK_LIST lrl_walk[2] = 
+{
+    { 40, 74 },
+    { -1, -1 }
+};
+static LEGLOCK_LIST lrl_a1[2] = 
+{
+    { 64, 93 },
+    { -1, -1 }
+};
+static LEGLOCK_LIST lrl_a2[2] = 
+{
+    { 25, 47 },
+    { -1, -1 }
+};
+static LEGLOCK_LIST lrl_fldmg[2] = 
+{
+    { 18, 58 },
+    { -1, -1 }
+};
+static LEGLOCK_LIST lrl_bldmg[2] = 
+{
+    { 27, 92 },
+    { -1, -1 }
+};
+static LEGLOCK_LIST lrl_crdmg[2] = 
+{
+    { 25, 118 },
+    { -1,  -1 }
+};
+static LEGLOCK_LIST lrl_dummy[1] = 
+{
+    { -1, -1 }
+};
+static LEGLOCK_TAB leglock_tab[11] = 
+{
+    {  1,  1, lrl_walk  },
+    {  2,  1, lrl_a1    },
+    {  3,  0, lrl_a2    },
+    {  6,  0, lrl_dummy },
+    {  7,  1, lrl_dummy },
+    {  8,  1, lrl_fldmg },
+    {  9,  1, lrl_bldmg },
+    { 10,  0, lrl_crdmg },
+    { 12,  0, lrl_dummy },
+    { 13,  1, lrl_dummy },
+    { -1, -1, NULL      }
+};
 static int attack1_col_joint[5] = { 7, 8, 9, 10, -1 };
 static int attack2_col_joint[4] = { 8, 9, 10, -1 };
 static int attack3_col_joint[6] = { 6, 7, 8, 9, 10, -1 };
@@ -39,23 +177,64 @@ static ATTACK_COL_TBL attack_col_tab[3] =
     { attack2_col_joint, 29, 40, 50, 5461,  4.0f, 3.3f,  0,  0 },
     { attack3_col_joint, 24, 32, 30, 7281,  4.5f, 5.0f, 24, 30 }
 };
-static CPCL CapColTab[23];
-static unsigned char flip_tree[24];
-static void (*Mode_func[6])(BH_PWORK*);
-static void (*Move_func[5])(BH_PWORK*);
-static void (*Ply_func[8])(BH_PWORK*);
-static JOINT_PARE jointTree[11];
-static char joint_tree_buf[12];
-static char poison_attack_wait;
-static char poison_eff_wait;
-static MTN_RELAY mtn_relay[21];
-static MTN_RELAY_RELAY mtn_relay_relay[4];
-static UVINFO uvinfo1_1[5];
-static UVINFO uvinfo1_2[16];
-static UVINFO uvinfo1_3[23];
-static UVINFO uvinfo2_1[30];
-static UVINFO uvinfo2_2[16];
-static EFF_INFO eff_info[5];
+static CPCL CapColTab[23] = 
+{
+    {   3,   3,   4 },
+    {   0,  12,  -8 },
+    {   4,   4,  12 },
+    {   0,   9,  -2 },
+    {   3,   3,  10 },
+    {  18,  14,   6 },
+    {   3,   3,  10 },
+    {  18,   5,   7 },
+    {   3,   3,  10 },
+    {  18,  -4,   8 },
+    {   3,   3,  10 },
+    { -18,  14,   6 },
+    {   3,   3,  10 },
+    { -18,   5,   7 },
+    {   3,   3,  10 },
+    { -18,  -4,   8 },
+    {   4,   3,  12 },
+    {   3,   2,  15 },
+    {  18,  19,  10 },
+    {  19,  20,  10 },
+    {  21,  22,  10 },
+    {  22,  23,  10 },
+    {   0,   0,   0 }
+};
+static unsigned char flip_tree[24] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 };
+static void (*Mode_func[6])(BH_PWORK*) = 
+{
+	Init,
+	Move,
+	Throw,
+	Damage,
+	Die,
+	bhEne_Event
+};
+static void (*Move_func[5])(BH_PWORK*) = 
+{
+	Stand,
+	CloseTurn,
+	KeepFar,
+	Chase,
+	Attack
+};
+static void (*Ply_func[8])(BH_PWORK*) = 
+{
+	DrivePlayer,
+	SlidePlayer,
+	StandupPlayer,
+	FallingPlayer,
+	FallDiePlayer,
+	HoldPlayer,
+	FlyingPlayer,
+	DiePlayer
+};
+/* unused below */
+/*static JOINT_PARE jointTree[11];
+static char joint_tree_buf[12];*/
 
 // 99.80% matching
 static int target_direction(BH_PWORK* epw)
@@ -112,7 +291,39 @@ static int GetLocalEneNo(BH_PWORK* epw)
 static void SetMtnSE(BH_PWORK* epw)
 {
 	int i;
-	MTN_SE_TBL mtn_se_tbl[30];
+	static MTN_SE_TBL mtn_se_tbl[30] = 
+	{
+		{   1,  38,    74496 },
+		{   1,  74,    74496 },
+		{   2,  33,    74498 },
+		{   2,  11,    74496 },
+		{   2,  57,    74496 },
+		{   2,  96,    74496 },
+		{   3,  32,    74500 },
+		{   3,  15,    74496 },
+		{   3,  47,    74496 },
+		{   3,  66,    74496 },
+		{   4,  24,    74498 },
+		{   4,  20,    74496 },
+		{   4,  20,    74496 },
+		{   6,   1, 16851722 },
+		{   7,   1, 16851722 },
+		{   8,   9, 16851723 },
+		{   8,  12,    74496 },
+		{   8,  47,    74496 },
+		{   9,  13, 16851723 },
+		{   9,  26,    74496 },
+		{   9,  58,    74496 },
+		{  10,  33, 16851724 },
+		{  10,  26,    74496 },
+		{  10,  49,    74496 },
+		{  10,  92,    74496 },
+		{  11,   8, 16851725 },
+		{  11,  91,     8974 },
+		{  11, 150,     8974 },
+		{  12,  21,    74496 },
+		{  -1,   0,        0 }
+	};
 	// Line 1246, Address: 0x1e1040, Func Offset: 0
 	// Line 1282, Address: 0x1e1058, Func Offset: 0x18
 	// Line 1283, Address: 0x1e1068, Func Offset: 0x28
@@ -351,7 +562,7 @@ static void Chase(BH_PWORK* epw)
 // Start address: 0x1e20f0
 static void __goalAng(BH_PWORK* epw, NJS_VECTOR* vec, NJS_POINT3* ans)
 {
-	NJS_VECTOR v;
+	NJS_VECTOR v = { 0, 1.0f, 0 };
 	// Line 1740, Address: 0x1e20f0, Func Offset: 0
 	// Line 1741, Address: 0x1e2104, Func Offset: 0x14
 	// Line 1742, Address: 0x1e2118, Func Offset: 0x28
@@ -424,7 +635,6 @@ static void KeepFar(BH_PWORK* epw)
 // 100% matching!
 static void Attack(BH_PWORK* epw) 
 {    
-    static char left_idx[4]  = { 0, 4, 5, 1 }, right_idx[4] = { 3, 7, 6, 2 }; 
     int i;                                                 
     NJS_VECTOR attack_v;                                
     ATTACK_COL col;                                        
@@ -478,6 +688,7 @@ static void Attack(BH_PWORK* epw)
                 } 
                 else
                 {
+					static char left_idx[4] = { 0, 4, 5, 1 }, right_idx[4] = { 3, 7, 6, 2 }; 
                     float vane_width; 
                     char* f_idx, *b_idx;      
 
@@ -728,8 +939,8 @@ static void Throw(BH_PWORK* epw)
 	NJS_VECTOR vec;
 	NJS_VECTOR attack_v;
 	NJS_MATRIX mat; // NJS_MATRIX*?
-	NJS_POINT3 _p;
-	NJS_POINT3 pos;
+	NJS_POINT3 _p  = {     0,  8.0f,     0 };
+	NJS_POINT3 pos = {     0,     0, -1.0f };
 	// Line 1976, Address: 0x1e3b90, Func Offset: 0
 	// Line 1977, Address: 0x1e3ba0, Func Offset: 0x10
 	// Line 1978, Address: 0x1e3bd0, Func Offset: 0x40
@@ -1023,6 +1234,38 @@ static void CheckDamage(BH_PWORK* epw)
 	// Func End, Address: 0x1e5158, Func Offset: 0x8c8
 	scePrintf("CheckDamage - UNIMPLEMENTED!\n");
 }
+
+static MTN_RELAY mtn_relay[21] = 
+{
+    {  1,  2, 55,  0 },
+    {  1,  3, 55,  0 },
+    {  1,  4, 55,  0 },
+    {  2,  1, -1,  0 },
+    {  3,  1, -1,  0 },
+    {  4,  1, -1, 23 },
+    {  1,  5, 55,  0 },
+    {  1,  6, 55,  0 },
+    {  1,  7, 29,  0 },
+    {  6,  1, -1, 31 },
+    {  7,  1, -1, 38 },
+    {  8,  1, -1, 23 },
+    {  9,  1, -1,  0 },
+    { 10,  1, -1, 64 },
+    {  1, 12, 55,  0 },
+    { 12,  0, -1,  0 },
+    {  0, 13,  1,  0 },
+    { 13,  1, -1, 23 },
+    {  5,  0, -1,  0 },
+    {  5,  1,  0, 56 },
+    { -1,  0,  0,  0 }
+};
+static MTN_RELAY_RELAY mtn_relay_relay[4] = 
+{
+    {  1,  0, &mtn_relay[14] },
+    {  0,  1, &mtn_relay[16] },
+    {  5,  1, &mtn_relay[18] },
+    { -1,  0, NULL           }
+};
 
 // 
 // Start address: 0x1e5160
@@ -1347,11 +1590,125 @@ static void SetSmoke(NJS_POINT3* pos)
     bhSetEffectTb(&sys->ef, NULL, NULL, 0);
 }
 
+static UVINFO uvinfo1_1[5] = 
+{
+    {  0,  0, 24, 24,  3, 20 },
+    {  0, 24, 24, 24,  2, 20 },
+    {  0, 48, 24, 24,  5, 20 },
+    {  0, 24, 24, 24,  3, 20 },
+    { -1,  0,  0,  0,  0,  0 }
+};
+static UVINFO uvinfo1_2[16] = 
+{
+    {  24,   0,  16,  16,   1,  10 },
+    {  40,   0,  24,  24,   2,  10 },
+    {  64,   0,  32,  32,   2,  10 },
+    {  96,   0,  40,  40,   2,  10 },
+    { 136,   0,  48,  48,   2,  10 },
+    { 184,   0,  48,  48,   2,  10 },
+    {  24,  40,  48,  48,   2,  10 },
+    {  72,  40,  48,  48,   3,  10 },
+    { 120,  48,  56,  56,   3,  10 },
+    { 176,  48,  56,  56,   4,  10 },
+    {   0,  88,  56,  56,   5,  10 },
+    {  56,  88,  56,  56,   5,  10 },
+    { 112, 104,  56,  56,   5,  10 },
+    { 168, 104,  56,  56,   5,  10 },
+    { 168, 160,  56,  56,   5,  10 },
+    {  -1,   0,   0,   0,   0,   0 }
+};
+static UVINFO uvinfo1_3[23] = 
+{
+    {  24,   0,  16,  16,   1,  10 },
+    {  40,   0,  24,  24,   2,  10 },
+    {  64,   0,  32,  32,   2,  10 },
+    {  96,   0,  40,  40,   2,  10 },
+    { 136,   0,  48,  48,   2,  10 },
+    { 184,   0,  48,  48,   2,  10 },
+    {  24,  40,  48,  48,   2,  10 },
+    {  72,  40,  48,  48,   3,  10 },
+    {  24,  40,  48,  48,   2,  10 },
+    { 184,   0,  48,  48,   2,  10 },
+    {  24,  40,  48,  48,   2,  10 },
+    {  72,  40,  48,  48,   3,  10 },
+    { 184,   0,  48,  48,   2,  10 },
+    {  24,  40,  48,  48,   2,  10 },
+    {  72,  40,  48,  48,   3,  10 },
+    { 120,  48,  56,  56,   3,  10 },
+    { 176,  48,  56,  56,   4,  10 },
+    {   0,  88,  56,  56,   5,  10 },
+    {  56,  88,  56,  56,   5,  10 },
+    { 112, 104,  56,  56,   5,  10 },
+    { 168, 104,  56,  56,   5,  10 },
+    { 168, 160,  56,  56,   5,  10 },
+    {  -1,   0,   0,   0,   0,   0 }
+};
+static UVINFO uvinfo2_1[30] = 
+{
+    {   0,   0,  16,  16,   1,  10 },
+    {  16,   0,  16,  16,   1,  11 },
+    {  32,   0,  24,  24,   1,  12 },
+    {  56,   0,  24,  24,   1,  13 },
+    {  80,   0,  24,  24,   1,  14 },
+    {   0,  16,  32,  32,   1,  15 },
+    {  80,   0,  24,  24,   1,  16 },
+    {  56,   0,  24,  24,   1,  17 },
+    {  32,   0,  24,  24,   1,  18 },
+    {  56,   0,  24,  24,   1,  19 },
+    {  80,   0,  24,  24,   1,  20 },
+    {   0,  16,  32,  32,   1,  21 },
+    {  80,   0,  24,  24,   1,  22 },
+    {  56,   0,  24,  24,   1,  23 },
+    {  32,   0,  24,  24,   1,  24 },
+    {  56,   0,  24,  24,   1,  25 },
+    {  80,   0,  24,  24,   1,  26 },
+    {   0,  16,  32,  32,   1,  27 },
+    {   0,  48,  32,  32,   1,  28 },
+    {   0,  80,  32,  32,   1,  29 },
+    {   0, 112,  32,  32,   1,  30 },
+    {   0, 144,  32,  32,   1,  31 },
+    {  32,  24,  40,  40,   1,  32 },
+    {  72,  24,  40,  40,   1,  33 },
+    {  32,  64,  40,  40,   1,  34 },
+    {  72,  64,  40,  40,   1,  35 },
+    {  32, 104,  40,  40,   1,  36 },
+    {  72, 104,  40,  40,   1,  37 },
+    {  32, 144,  40,  40,   1,  38 },
+    {  -1,   0,   0,   0,   0,   0 }
+};
+static UVINFO uvinfo2_2[16] = 
+{
+    { 104,   0,  16,  16,   1,  10 },
+    { 112,  16,  24,  24,   2,  10 },
+    { 136,   0,  32,  32,   2,  10 },
+    { 168,   0,  40,  40,   2,  10 },
+    { 208,   0,  48,  48,   2,  10 },
+    { 112,  40,  48,  48,   2,  10 },
+    { 160,  40,  48,  48,   2,  10 },
+    { 208,  48,  48,  48,   3,  10 },
+    { 112,  88,  56,  56,   3,  10 },
+    {  72, 144,  56,  56,   4,  10 },
+    { 128, 144,  56,  56,   5,  10 },
+    { 184, 144,  56,  56,   5,  10 },
+    {   0, 200,  56,  56,   5,  10 },
+    {  56, 200,  56,  56,   5,  10 },
+    { 112, 200,  56,  56,   5,  10 },
+    {  -1,   0,   0,   0,   0,   0 }
+};
+static EFF_INFO eff_info[5] = 
+{
+    { 7, uvinfo2_2 },
+    { 6, uvinfo1_2 },
+    { 6, uvinfo1_3 },
+    { 7, uvinfo2_1 },
+    { 6, uvinfo1_1 }
+};
+
 // 
 // Start address: 0x1e5f80
 static void SpecialAttack(BH_PWORK* epw, NJS_VECTOR* splash_v)
 {
-	NJS_POINT3 _p;
+	NJS_POINT3 _p = { 0, 8.0f, 0 };
 	int eno;
 	// Line 2992, Address: 0x1e5f80, Func Offset: 0
 	// Line 2995, Address: 0x1e5f90, Func Offset: 0x10
@@ -2119,7 +2476,7 @@ static void HoldPlayer(BH_PWORK* epw)
 // Start address: 0x1e8b80
 static void FlyingPlayer(BH_PWORK* epw)
 {
-	NJS_POINT3 _p;
+	NJS_POINT3 _p = { 0, 8.0f, 0 };
 	O_WORK* owk;
 	NJS_POINT3 pos3;
 	NJS_POINT3 pos2;

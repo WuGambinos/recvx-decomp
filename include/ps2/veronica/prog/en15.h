@@ -83,6 +83,7 @@ typedef struct _LEGLOCK_TAB
     LEGLOCK_LIST* list; // offset 0x4, size 0x4
 } LEGLOCK_TAB;
 
+/* unused */
 typedef struct _JOINT_PARE
 {
     // total size: 0x2

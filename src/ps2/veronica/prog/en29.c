@@ -388,7 +388,7 @@ static void bhEne29_Event(BH_PWORK* ewP)
     bhEne29_CalcEnemy(ewP, (en29_freework*)ewP->exp0);
 }
 
-// 99.95% matching
+// 100% matching!
 static void bhEne29_Br00(BH_PWORK* ewP)
 {
     en29_freework* fwP; 
@@ -416,10 +416,11 @@ static void bhEne29_Br00(BH_PWORK* ewP)
     bhEne29_TargetAnalyze(ewP, fwP);
 
     sts = *stsP;
-    rte = eawP->mtn_rte;
     
     br0P = &fwP->br_mde0;
     br1P = &fwP->br_mde1;
+
+    rte = eawP->mtn_rte;
 
     act = TC_ACT_ALL;
     

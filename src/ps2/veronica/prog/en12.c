@@ -1300,40 +1300,35 @@ void bhEne12_DD00(BH_PWORK* epw) {
     }
 }
 
-/*// 
-// Start address: 0x1d7960
-void bhEne12_InitDamage(BH_PWORK* epw)
-{
-	// Line 1548, Address: 0x1d7960, Func Offset: 0
-	// Line 1549, Address: 0x1d796c, Func Offset: 0xc
-	// Line 1551, Address: 0x1d7970, Func Offset: 0x10
-	// Line 1549, Address: 0x1d7974, Func Offset: 0x14
-	// Line 1551, Address: 0x1d7978, Func Offset: 0x18
-	// Line 1549, Address: 0x1d797c, Func Offset: 0x1c
-	// Line 1551, Address: 0x1d7984, Func Offset: 0x24
-	// Line 1554, Address: 0x1d7994, Func Offset: 0x34
-	// Line 1555, Address: 0x1d79b4, Func Offset: 0x54
-	// Line 1558, Address: 0x1d79c4, Func Offset: 0x64
-	// Line 1561, Address: 0x1d79cc, Func Offset: 0x6c
-	// Line 1558, Address: 0x1d79d0, Func Offset: 0x70
-	// Line 1561, Address: 0x1d79d8, Func Offset: 0x78
-	// Line 1566, Address: 0x1d79f4, Func Offset: 0x94
-	// Line 1568, Address: 0x1d7a00, Func Offset: 0xa0
-	// Line 1569, Address: 0x1d7a0c, Func Offset: 0xac
-	// Line 1570, Address: 0x1d7a14, Func Offset: 0xb4
-	// Line 1571, Address: 0x1d7a18, Func Offset: 0xb8
-	// Line 1573, Address: 0x1d7a1c, Func Offset: 0xbc
-	// Line 1574, Address: 0x1d7a24, Func Offset: 0xc4
-	// Line 1575, Address: 0x1d7a38, Func Offset: 0xd8
-	// Line 1576, Address: 0x1d7a58, Func Offset: 0xf8
-	// Line 1577, Address: 0x1d7a60, Func Offset: 0x100
-	// Line 1578, Address: 0x1d7a64, Func Offset: 0x104
-	// Line 1579, Address: 0x1d7a68, Func Offset: 0x108
-	// Line 1583, Address: 0x1d7a6c, Func Offset: 0x10c
-	// Func End, Address: 0x1d7a7c, Func Offset: 0x11c
+// 100% matching!
+void bhEne12_InitDamage(BH_PWORK* epw) {
+    epw->flg &= ~4;
+    bhEne_CalcDamage(epw, CombWepTbl, CombJointTbl);
+
+    if ((epw->wpnr_no != 0x10) || (epw->flg2 & 4) || (epw->comb_pnt == 1)) {
+        epw->hp -= epw->total_dam;
+
+        if (epw->wpnr_no != 0x11 || (epw->flg2 & 4)) {
+            bhEne12_HitMark(epw);
+
+            if (epw->hp < 0) {
+                epw->mode0 = 4;
+                epw->mode1 = 0;
+                epw->mode2 = 0;
+                epw->mode3 = 0;
+            } else if (!(epw->flg & 0x400000)) {
+                if ((epw->total_dam >= 0x15) || (epw->comb_flg & 1)) {
+                    epw->mode0 = 3;
+                    epw->mode1 = 0;
+                    epw->mode2 = 0;
+                    epw->mode3 = 0;
+                }
+            }
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x1d7a80
 void bhEne12_LookPlayaer(BH_PWORK* epw)
 {

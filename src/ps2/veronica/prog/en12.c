@@ -10,6 +10,7 @@
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/hitchkl.h"
 
 // ENEMY: First Form Alexia 
 
@@ -1743,75 +1744,59 @@ void bhEne12_PlayerControl(BH_PWORK* epw)
 	// Line 2002, Address: 0x1d8d98, Func Offset: 0x698
 	// Func End, Address: 0x1d8db0, Func Offset: 0x6b0
 }
+*/
 
-// 
-// Start address: 0x1d8db0
-void bhEne12_FlameLiquid(BH_PWORK* epw, _anon25* pos, int time)
+// 100% matching!
+void bhEne12_FlameLiquid(BH_PWORK* epw, NJS_VECTOR* pos, int time) 
 {
-	float scale;
-	_anon25 n;
-	_anon13* hp;
+    O_WORK* p;
+	NJS_POINT3 p1;
+	NJS_POINT3 p2;
 	int eno;
-	_anon25 p2;
-	_anon25 p1;
-	_anon1* p;
-	// Line 2012, Address: 0x1d8db0, Func Offset: 0
-	// Line 2021, Address: 0x1d8dd0, Func Offset: 0x20
-	// Line 2026, Address: 0x1d8ddc, Func Offset: 0x2c
-	// Line 2027, Address: 0x1d8de0, Func Offset: 0x30
-	// Line 2021, Address: 0x1d8de4, Func Offset: 0x34
-	// Line 2028, Address: 0x1d8de8, Func Offset: 0x38
-	// Line 2022, Address: 0x1d8df4, Func Offset: 0x44
-	// Line 2023, Address: 0x1d8dfc, Func Offset: 0x4c
-	// Line 2024, Address: 0x1d8e04, Func Offset: 0x54
-	// Line 2025, Address: 0x1d8e0c, Func Offset: 0x5c
-	// Line 2026, Address: 0x1d8e14, Func Offset: 0x64
-	// Line 2027, Address: 0x1d8e1c, Func Offset: 0x6c
-	// Line 2028, Address: 0x1d8e20, Func Offset: 0x70
-	// Line 2029, Address: 0x1d8e2c, Func Offset: 0x7c
-	// Line 2057, Address: 0x1d8e34, Func Offset: 0x84
-	// Line 2058, Address: 0x1d8e3c, Func Offset: 0x8c
-	// Line 2059, Address: 0x1d8e44, Func Offset: 0x94
-	// Line 2060, Address: 0x1d8e58, Func Offset: 0xa8
-	// Line 2059, Address: 0x1d8e5c, Func Offset: 0xac
-	// Line 2061, Address: 0x1d8e60, Func Offset: 0xb0
-	// Line 2063, Address: 0x1d8e64, Func Offset: 0xb4
-	// Line 2059, Address: 0x1d8e6c, Func Offset: 0xbc
-	// Line 2064, Address: 0x1d8e70, Func Offset: 0xc0
-	// Line 2059, Address: 0x1d8e74, Func Offset: 0xc4
-	// Line 2060, Address: 0x1d8e78, Func Offset: 0xc8
-	// Line 2061, Address: 0x1d8e8c, Func Offset: 0xdc
-	// Line 2063, Address: 0x1d8ea0, Func Offset: 0xf0
-	// Line 2064, Address: 0x1d8eb0, Func Offset: 0x100
-	// Line 2065, Address: 0x1d8ec4, Func Offset: 0x114
-	// Line 2066, Address: 0x1d8ed8, Func Offset: 0x128
-	// Line 2067, Address: 0x1d8ef0, Func Offset: 0x140
-	// Line 2068, Address: 0x1d8f08, Func Offset: 0x158
-	// Line 2069, Address: 0x1d8f1c, Func Offset: 0x16c
-	// Line 2070, Address: 0x1d8f44, Func Offset: 0x194
-	// Line 2069, Address: 0x1d8f48, Func Offset: 0x198
-	// Line 2070, Address: 0x1d8f58, Func Offset: 0x1a8
-	// Line 2071, Address: 0x1d8f5c, Func Offset: 0x1ac
-	// Line 2075, Address: 0x1d8f60, Func Offset: 0x1b0
-	// Line 2070, Address: 0x1d8f6c, Func Offset: 0x1bc
-	// Line 2069, Address: 0x1d8f74, Func Offset: 0x1c4
-	// Line 2070, Address: 0x1d8f84, Func Offset: 0x1d4
-	// Line 2071, Address: 0x1d8f88, Func Offset: 0x1d8
-	// Line 2072, Address: 0x1d8f9c, Func Offset: 0x1ec
-	// Line 2075, Address: 0x1d8fb0, Func Offset: 0x200
-	// Line 2076, Address: 0x1d8fc8, Func Offset: 0x218
-	// Line 2077, Address: 0x1d8fd4, Func Offset: 0x224
-	// Line 2078, Address: 0x1d8ffc, Func Offset: 0x24c
-	// Line 2079, Address: 0x1d9010, Func Offset: 0x260
-	// Line 2080, Address: 0x1d9024, Func Offset: 0x274
-	// Line 2083, Address: 0x1d9038, Func Offset: 0x288
-	// Line 2084, Address: 0x1d9064, Func Offset: 0x2b4
-	// Line 2087, Address: 0x1d9080, Func Offset: 0x2d0
-	// Line 2089, Address: 0x1d9090, Func Offset: 0x2e0
-	// Func End, Address: 0x1d90b4, Func Offset: 0x304
+	ATR_WORK* hp;
+	NJS_POINT3 n;
+    float scale;
+
+    p = epw->mlwP->owP;
+    p1.x = p[9].mtx[12];
+    p1.y = p[9].mtx[13];
+    p1.z = p[9].mtx[14];
+    p2.x = pos->x;
+    p2.y = pos->y;
+    p2.z = pos->z;
+    
+    if (bhCollisionCheckLine2(&p1,  &p2, 0x4400U, -1) != NULL) {
+        bhGetHitCollisionNormal(&n);
+        njUnitVector(&n);
+        p2.x += (0.2f * n.x);
+        p2.y += 0.2f * n.y;
+        p2.z += 0.2f * n.z;
+        sys->ef.id = 0x109;
+        sys->ef.flg = 1;
+        sys->ef.type = 1;
+        sys->ef.px = p2.x;
+        sys->ef.py = p2.y;
+        sys->ef.pz = p2.z;
+        scale = 0.2f + (0.8f * (-rand() / -2.1474836e9f));
+        sys->ef.sx = scale;
+        sys->ef.sy = 1.0f;
+        sys->ef.sz = scale;
+        eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        
+        if (eno != -1) {
+            eff[eno].aox = n.x;
+            eff[eno].aoy = n.y;
+            eff[eno].aoz = n.z;
+            eff[eno].exp1 = (unsigned char*)EXP0_I(0x20);
+            eff[eno].ax = (int)(10430.381f * acosf(n.y));
+            eff[eno].ay =  bhArcTan2(n.x, n.z);
+            eff[eno].ct0 = time;
+            
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x1d90c0
 void bhEne12_Acid(BH_PWORK* epw)
 {

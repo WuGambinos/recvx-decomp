@@ -36,7 +36,7 @@ void bhEne12_LookPlayaer(BH_PWORK* epw);
 void bhEne12_HitMark(BH_PWORK* epw);
 void bhEne12_FixedLegPos(BH_PWORK* epw);
 void bhEne12_PlayerControl(BH_PWORK* epw);
-/*void bhEne12_FlameLiquid(BH_PWORK* epw, _anon25* pos, int time);*/
+void bhEne12_FlameLiquid(BH_PWORK* epw, NJS_VECTOR* pos, int time);
 void bhEne12_Acid(BH_PWORK* epw);
 void bhEne12_CheckWall(BH_PWORK* epw);
 void bhEne12_Blood(BH_PWORK* epw, int num);

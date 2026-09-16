@@ -1854,38 +1854,30 @@ void bhEne12_Acid(BH_PWORK* epw)
     }
 }
 
-/*// 
-// Start address: 0x1d93d0
-void bhEne12_CheckWall(BH_PWORK* epw)
-{
-	_anon1* owk;
-	// Line 2161, Address: 0x1d93d0, Func Offset: 0
-	// Line 2165, Address: 0x1d93e8, Func Offset: 0x18
-	// Line 2166, Address: 0x1d93ec, Func Offset: 0x1c
-	// Line 2168, Address: 0x1d93f0, Func Offset: 0x20
-	// Line 2167, Address: 0x1d93f4, Func Offset: 0x24
-	// Line 2165, Address: 0x1d93fc, Func Offset: 0x2c
-	// Line 2166, Address: 0x1d9400, Func Offset: 0x30
-	// Line 2168, Address: 0x1d9404, Func Offset: 0x34
-	// Line 2167, Address: 0x1d9408, Func Offset: 0x38
-	// Line 2166, Address: 0x1d940c, Func Offset: 0x3c
-	// Line 2168, Address: 0x1d9410, Func Offset: 0x40
-	// Line 2171, Address: 0x1d9414, Func Offset: 0x44
-	// Line 2172, Address: 0x1d941c, Func Offset: 0x4c
-	// Line 2167, Address: 0x1d9420, Func Offset: 0x50
-	// Line 2172, Address: 0x1d9424, Func Offset: 0x54
-	// Line 2173, Address: 0x1d942c, Func Offset: 0x5c
-	// Line 2174, Address: 0x1d9434, Func Offset: 0x64
-	// Line 2175, Address: 0x1d943c, Func Offset: 0x6c
-	// Line 2180, Address: 0x1d9440, Func Offset: 0x70
-	// Line 2175, Address: 0x1d9444, Func Offset: 0x74
-	// Line 2176, Address: 0x1d944c, Func Offset: 0x7c
-	// Line 2177, Address: 0x1d9458, Func Offset: 0x88
-	// Line 2180, Address: 0x1d9460, Func Offset: 0x90
-	// Line 2181, Address: 0x1d9468, Func Offset: 0x98
-	// Func End, Address: 0x1d9484, Func Offset: 0xb4
+// 100% matching!
+void bhEne12_CheckWall(BH_PWORK* epw) {
+    O_WORK* owk;
+
+    // NOT IN DWARF
+    float x, y, z;
+
+    owk = epw->mlwP->owP;
+    x = owk[5].mtx[12] - epw->px;
+    y = owk[5].mtx[13] - epw->py;
+    z = owk[5].mtx[14] - epw->pz;
+    
+    epw->px += x;
+    epw->py += y;
+    epw->pz += z;
+    bhCheckWall(epw);
+    
+    epw->px -= x;
+    epw->py -= y;
+    epw->pz -= z;
+    bhCheckWall(epw);
 }
 
+/*// 
 // 
 // Start address: 0x1d9490
 void bhEne12_Blood(BH_PWORK* epw, int num)

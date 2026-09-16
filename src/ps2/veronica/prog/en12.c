@@ -1954,7 +1954,8 @@ int bhEne12_AvoidWall(BH_PWORK* epw)
 }
 
 // 100% matching!
-void bhEne12_CallSE(BH_PWORK* epw) {
+void bhEne12_CallSE(BH_PWORK* epw) 
+{
     if (epw->mnwP == epw->mnwPb) {
         switch (epw->mtn_no) {                         
         case 1:
@@ -2034,29 +2035,31 @@ void bhEne12_CallSE(BH_PWORK* epw) {
     }
 }
 
-/*// 
-// Start address: 0x1d9b60
-void bhEne12_CallFootSE(BH_PWORK* epw, int flg)
-{
-	_anon25 pos;
-	_anon13* hp;
-	// Line 2349, Address: 0x1d9b60, Func Offset: 0
-	// Line 2354, Address: 0x1d9b6c, Func Offset: 0xc
-	// Line 2355, Address: 0x1d9b7c, Func Offset: 0x1c
-	// Line 2358, Address: 0x1d9b84, Func Offset: 0x24
-	// Line 2360, Address: 0x1d9b8c, Func Offset: 0x2c
-	// Line 2361, Address: 0x1d9ba0, Func Offset: 0x40
-	// Line 2363, Address: 0x1d9ba8, Func Offset: 0x48
-	// Line 2366, Address: 0x1d9bbc, Func Offset: 0x5c
-	// Line 2367, Address: 0x1d9bcc, Func Offset: 0x6c
-	// Line 2369, Address: 0x1d9be4, Func Offset: 0x84
-	// Line 2370, Address: 0x1d9bf8, Func Offset: 0x98
-	// Line 2372, Address: 0x1d9c00, Func Offset: 0xa0
-	// Line 2374, Address: 0x1d9c14, Func Offset: 0xb4
-	// Func End, Address: 0x1d9c24, Func Offset: 0xc4
+// 100% matching!
+void bhEne12_CallFootSE(BH_PWORK* epw, int flg) {
+    ATR_WORK* hp;
+    NJS_POINT3 pos;
+
+    if (epw->mtn_md & 2) {
+        flg = !flg;
+    }
+    
+    if (flg != 0) {
+        bhEne_GetPartsPos(epw, &joint_tree[2][2], &pos);
+    } else {
+        bhEne_GetPartsPos(epw, &joint_tree[5][1], &pos);
+    }
+    
+    hp = bhCheckFloorEnemy(epw->flr_no, pos.x, pos.z);
+    if ((hp != NULL) && (hp->prm0 == 0xC)) {
+        bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x1230C);
+        return;
+    }
+    
+    bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x12300);
 }
 
-// 
+/*// 
 // Start address: 0x1d9c30
 void bhEne12_SetFireBintaEffect(BH_PWORK* epw, int act)
 {

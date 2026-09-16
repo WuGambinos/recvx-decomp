@@ -1877,62 +1877,45 @@ void bhEne12_CheckWall(BH_PWORK* epw) {
     bhCheckWall(epw);
 }
 
-/*// 
-// 
-// Start address: 0x1d9490
-void bhEne12_Blood(BH_PWORK* epw, int num)
-{
-	int i;
-	float dist;
-	int ang;
-	int base_ang;
-	float scale;
-	int eno;
-	// Line 2191, Address: 0x1d9490, Func Offset: 0
-	// Line 2198, Address: 0x1d94b0, Func Offset: 0x20
-	// Line 2199, Address: 0x1d94c0, Func Offset: 0x30
-	// Line 2198, Address: 0x1d94c4, Func Offset: 0x34
-	// Line 2199, Address: 0x1d94d0, Func Offset: 0x40
-	// Line 2200, Address: 0x1d94e8, Func Offset: 0x58
-	// Line 2201, Address: 0x1d94fc, Func Offset: 0x6c
-	// Line 2203, Address: 0x1d9520, Func Offset: 0x90
-	// Line 2201, Address: 0x1d9524, Func Offset: 0x94
-	// Line 2203, Address: 0x1d9528, Func Offset: 0x98
-	// Line 2204, Address: 0x1d9530, Func Offset: 0xa0
-	// Line 2205, Address: 0x1d9568, Func Offset: 0xd8
-	// Line 2206, Address: 0x1d95c4, Func Offset: 0x134
-	// Line 2207, Address: 0x1d95dc, Func Offset: 0x14c
-	// Line 2208, Address: 0x1d95e4, Func Offset: 0x154
-	// Line 2206, Address: 0x1d95e8, Func Offset: 0x158
-	// Line 2207, Address: 0x1d95f8, Func Offset: 0x168
-	// Line 2208, Address: 0x1d9614, Func Offset: 0x184
-	// Line 2209, Address: 0x1d9638, Func Offset: 0x1a8
-	// Line 2210, Address: 0x1d9660, Func Offset: 0x1d0
-	// Line 2209, Address: 0x1d9664, Func Offset: 0x1d4
-	// Line 2210, Address: 0x1d9674, Func Offset: 0x1e4
-	// Line 2211, Address: 0x1d9678, Func Offset: 0x1e8
-	// Line 2215, Address: 0x1d967c, Func Offset: 0x1ec
-	// Line 2210, Address: 0x1d9688, Func Offset: 0x1f8
-	// Line 2209, Address: 0x1d9690, Func Offset: 0x200
-	// Line 2210, Address: 0x1d96a0, Func Offset: 0x210
-	// Line 2211, Address: 0x1d96a4, Func Offset: 0x214
-	// Line 2212, Address: 0x1d96b8, Func Offset: 0x228
-	// Line 2215, Address: 0x1d96cc, Func Offset: 0x23c
-	// Line 2216, Address: 0x1d96e4, Func Offset: 0x254
-	// Line 2217, Address: 0x1d96f0, Func Offset: 0x260
-	// Line 2218, Address: 0x1d9714, Func Offset: 0x284
-	// Line 2219, Address: 0x1d971c, Func Offset: 0x28c
-	// Line 2220, Address: 0x1d9720, Func Offset: 0x290
-	// Line 2221, Address: 0x1d9724, Func Offset: 0x294
-	// Line 2220, Address: 0x1d9728, Func Offset: 0x298
-	// Line 2221, Address: 0x1d9730, Func Offset: 0x2a0
-	// Line 2222, Address: 0x1d9734, Func Offset: 0x2a4
-	// Line 2223, Address: 0x1d9738, Func Offset: 0x2a8
-	// Line 2224, Address: 0x1d9748, Func Offset: 0x2b8
-	// Func End, Address: 0x1d976c, Func Offset: 0x2dc
+// 100% macthing!
+void bhEne12_Blood(BH_PWORK* epw, int num) {
+
+	int eno; 
+	float scale; 
+	int base_ang; 
+	int ang; 
+	float dist; 
+    int i; 
+
+    sys->ef.id = 0x109;
+    sys->ef.flg = 1;
+    sys->ef.type = 1;
+    base_ang = bhArcTan2(epw->px - plp->px, epw->pz - plp->pz);
+    
+    for(i = 0;i < num; i++) {
+        
+        scale = 2.0f + (5.0f * (-rand() / -2.1474836e9f));
+        ang = (int)((base_ang + (21845.0f * (-rand() / -2.1474836e9f))) - 10922.0f);
+        sys->ef.px = epw->px - (scale * njSin(ang));
+        sys->ef.py = 0.01f + epw->py;
+        sys->ef.pz = epw->pz - (scale * njCos(ang));
+        dist = 0.2f + (0.8f * (-rand() / -2.1474836e9f));
+        sys->ef.sx = dist;
+        sys->ef.sy = 1.0f;
+        sys->ef.sz = dist;
+        eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        
+        if (eno != -1) {
+            eff[eno].aox = 0.0f;
+            eff[eno].aoy = 1.0f;
+            eff[eno].aoz = 0.0f;
+            eff[eno].exp1 = (unsigned char*)EXP0_I(0x20);
+            eff[eno].ct0 = 0x3C;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x1d9770
 int bhEne12_AvoidWall(BH_PWORK* epw)
 {

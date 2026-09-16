@@ -5,7 +5,6 @@
 #include "../../../ps2/veronica/prog/zonzon1.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/eneset.h"
-#include "../../../ps2/veronica/prog/macros.h"
 #include "../../../ps2/veronica/prog/effect.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/njplus.h"
@@ -1915,44 +1914,42 @@ void bhEne12_Blood(BH_PWORK* epw, int num) {
     }
 }
 
-/*// 
-// Start address: 0x1d9770
-int bhEne12_AvoidWall(BH_PWORK* epw)
-{
-	int i;
-	_anon25 p2;
-	_anon25 p1;
-	// Line 2234, Address: 0x1d9770, Func Offset: 0
-	// Line 2238, Address: 0x1d9788, Func Offset: 0x18
-	// Line 2240, Address: 0x1d978c, Func Offset: 0x1c
-	// Line 2242, Address: 0x1d9790, Func Offset: 0x20
-	// Line 2244, Address: 0x1d9798, Func Offset: 0x28
-	// Line 2238, Address: 0x1d979c, Func Offset: 0x2c
-	// Line 2239, Address: 0x1d97a0, Func Offset: 0x30
-	// Line 2246, Address: 0x1d97a4, Func Offset: 0x34
-	// Line 2239, Address: 0x1d97a8, Func Offset: 0x38
-	// Line 2240, Address: 0x1d97ac, Func Offset: 0x3c
-	// Line 2242, Address: 0x1d97b4, Func Offset: 0x44
-	// Line 2246, Address: 0x1d97b8, Func Offset: 0x48
-	// Line 2242, Address: 0x1d97bc, Func Offset: 0x4c
-	// Line 2243, Address: 0x1d97c4, Func Offset: 0x54
-	// Line 2244, Address: 0x1d97cc, Func Offset: 0x5c
-	// Line 2246, Address: 0x1d97d0, Func Offset: 0x60
-	// Line 2248, Address: 0x1d97e8, Func Offset: 0x78
-	// Line 2250, Address: 0x1d97f8, Func Offset: 0x88
-	// Line 2248, Address: 0x1d97fc, Func Offset: 0x8c
-	// Line 2249, Address: 0x1d9808, Func Offset: 0x98
-	// Line 2251, Address: 0x1d981c, Func Offset: 0xac
-	// Line 2253, Address: 0x1d9824, Func Offset: 0xb4
-	// Line 2251, Address: 0x1d9830, Func Offset: 0xc0
-	// Line 2252, Address: 0x1d9838, Func Offset: 0xc8
-	// Line 2253, Address: 0x1d9848, Func Offset: 0xd8
-	// Line 2254, Address: 0x1d9864, Func Offset: 0xf4
-	// Line 2255, Address: 0x1d9874, Func Offset: 0x104
-	// Func End, Address: 0x1d9890, Func Offset: 0x120
+int bhEne12_AvoidWall(BH_PWORK* epw) {
+    NJS_POINT3 p1;
+    NJS_POINT3 p2;
+    int i;
+
+    ATR_WORK* temp;
+
+    p1.x = epw->px;
+    p1.y = epw->py;
+    p1.z = epw->pz;
+    p2.x = plp->px;
+    p2.y = plp->py;
+    p2.z = plp->pz;
+    
+    if (bhCollisionCheckLine(&p1, &p2) != 0) {
+        return 1;
+    }
+    
+    p2.x = (p2.x - p1.x) / 10.0f;
+    p2.z = (p2.z - p1.z) / 10.0f;
+    
+    for (i = 0; i < 0xA; i++) {
+        p1.x += p2.x;
+        p1.z += p2.z;
+        
+        temp = bhCheckWallType(&p1, 0, epw->ar, 1.0f);
+        
+        if (temp != NULL) {
+            return 1;
+        }
+    }
+
+    return (int)temp;
 }
 
-// 
+/*// 
 // Start address: 0x1d9890
 void bhEne12_CallSE(BH_PWORK* epw)
 {

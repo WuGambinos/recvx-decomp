@@ -2,6 +2,7 @@
 #define _EN12_H_
 
 #include "types.h"
+#include "macros.h"
 
 typedef struct EN12_WORK
 {

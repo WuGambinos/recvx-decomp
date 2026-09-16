@@ -1546,35 +1546,46 @@ void bhEne12_HitMark(BH_PWORK* epw)
     }
 }
 
-/*// 
-// Start address: 0x1d8530
-void bhEne12_FixedLegPos(BH_PWORK* epw)
-{
-	_anon25 ret;
-	int fno;
-	// Line 1818, Address: 0x1d8530, Func Offset: 0
-	// Line 1822, Address: 0x1d8540, Func Offset: 0x10
-	// Line 1823, Address: 0x1d8554, Func Offset: 0x24
-	// Line 1825, Address: 0x1d8564, Func Offset: 0x34
-	// Line 1826, Address: 0x1d8568, Func Offset: 0x38
-	// Line 1831, Address: 0x1d85b0, Func Offset: 0x80
-	// Line 1832, Address: 0x1d85c0, Func Offset: 0x90
-	// Line 1833, Address: 0x1d85f8, Func Offset: 0xc8
-	// Line 1834, Address: 0x1d8600, Func Offset: 0xd0
-	// Line 1836, Address: 0x1d8638, Func Offset: 0x108
-	// Line 1838, Address: 0x1d8640, Func Offset: 0x110
-	// Line 1839, Address: 0x1d8650, Func Offset: 0x120
-	// Line 1840, Address: 0x1d8674, Func Offset: 0x144
-	// Line 1841, Address: 0x1d867c, Func Offset: 0x14c
-	// Line 1846, Address: 0x1d86a4, Func Offset: 0x174
-	// Line 1847, Address: 0x1d86b4, Func Offset: 0x184
-	// Line 1848, Address: 0x1d86c4, Func Offset: 0x194
-	// Line 1849, Address: 0x1d86d4, Func Offset: 0x1a4
-	// Line 1851, Address: 0x1d86e4, Func Offset: 0x1b4
-	// Func End, Address: 0x1d86f4, Func Offset: 0x1c4
+// 100% matching!
+void bhEne12_FixedLegPos(BH_PWORK* epw) {
+    int fno;
+    NJS_POINT3 ret;
+
+    if ((epw->flg & 0x40000) && (epw->mnwP == epw->mnwPb)) {
+        fno = epw->frm_no / 65536;
+
+        switch (epw->mtn_no) {
+        case 1:
+        case 4:
+        case 5:
+        case 6:
+            if (epw->mtn_md & 2) {
+                EXP0_I(24) = ((fno >= 17) && (fno <= 47)) ? (int)(&joint_tree[2][2]) : (int)(&joint_tree[5][1]);
+            } else {
+                EXP0_I(24) = ((fno >= 17) && (fno <= 47)) ? (int)(&joint_tree[5][1]) : (int)(&joint_tree[2][2]);
+            }
+            
+            break;
+
+        case 12:
+            if (epw->mtn_md & 2) {
+                EXP0_I(24) = (fno <= 12) ? (int)(&joint_tree[5][1]) : (int)(&joint_tree[2][2]);
+            } else {
+                EXP0_I(24) = (fno <= 12) ? (int)(&joint_tree[2][2]) : (int)(&joint_tree[5][1]);
+            }
+            
+            break;
+        }
+
+        if (EXP0_I(24) != 0) {
+            bhCalcFixOffset(epw, (char*)EXP0_I(24), 0, &ret);
+            epw->px -= ret.x;
+            epw->pz -= ret.z;
+        }
+    }
 }
 
-// 
+/*// 
 // Start address: 0x1d8700
 void bhEne12_PlayerControl(BH_PWORK* epw)
 {

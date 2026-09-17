@@ -3,6 +3,50 @@
 
 #include "types.h"
 
+typedef struct ATB_WORK
+{
+    // total size: 0x8
+    int frm;          // offset 0x0, size 0x4
+    unsigned int act; // offset 0x4, size 0x4
+} ATB_WORK;
+
+typedef struct FMTN_WORK 
+{
+    // total size: 0xC
+    int type;  // offset 0x0, size 0x4
+    int s_frm; // offset 0x4, size 0x4
+    int e_frm; // offset 0x8, size 0x4
+} FMTN_WORK;
+
+typedef struct SE_WORK 
+{
+    // total size: 0x8
+    unsigned int no; // offset 0x0, size 0x4
+    int frm;         // offset 0x4, size 0x4
+} SE_WORK;
+
+typedef struct MTBL_WORK
+{
+    // total size: 0x34
+    int no;          // offset 0x0, size 0x4
+    ATB_WORK atb[6]; // offset 0x4, size 0x30
+} MTBL_WORK;
+
+typedef struct MTBL_WRK
+{
+    // total size: 0x54
+    int no;            // offset 0x0, size 0x4
+    FMTN_WORK fmtn[4]; // offset 0x4, size 0x30
+    SE_WORK se[4];     // offset 0x34, size 0x20
+} MTBL_WRK;
+
+typedef struct POS_WORK
+{
+    // total size: 0x8
+    float px; // offset 0x0, size 0x4
+    float pz; // offset 0x4, size 0x4
+} POS_WORK;
+
 void bhEne17_DmmyBrain();
 void bhEne17(BH_PWORK* epw);
 void bhEne17_EneToPlyDist(BH_PWORK* epw);
@@ -39,10 +83,10 @@ void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw);
 int bhEne17_PlayerDGCheck(BH_PWORK* epw, BH_PWORK* pl);
 void bhEne17_SePlay(BH_PWORK* epw, int no);
 int bhEne17_CameraControl(BH_PWORK* epw);
-/*void bhEne17_AfterimageAxEffect(BH_PWORK* epw, float mtx[16], _anon15* ofs, unsigned int argb);
-void bhEne17_SetSmokeEffect(BH_PWORK* epw, int lnk_onj, _anon15* ofs);
-void bhEne17_SetSmokeEffect2(BH_PWORK* epw, _anon15* ofs, int rot);
-void bhEne17_SetSmokeEffect3(BH_PWORK* epw, _anon15* ofs, int rot);
-void bhEne17_SetLight(_anon15* ofs);*/
+void bhEne17_AfterimageAxEffect(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* ofs, unsigned int argb);
+void bhEne17_SetSmokeEffect(BH_PWORK* epw, int lnk_onj, NJS_POINT3* ofs);
+void bhEne17_SetSmokeEffect2(BH_PWORK* epw, NJS_POINT3* ofs, int rot);
+void bhEne17_SetSmokeEffect3(BH_PWORK* epw, NJS_POINT3* ofs, int rot);
+void bhEne17_SetLight(NJS_POINT3* ofs);
 
 #endif

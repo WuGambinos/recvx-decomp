@@ -1,36 +1,339 @@
 #include "../../../ps2/veronica/prog/en17.h"
+#include "../../../ps2/veronica/prog/en17sub.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/subpl.h"
+#include "../../../ps2/veronica/prog/zonzon.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
 
 // ENEMY: Monster Steve 
 
-/*char En17_SdwTab[7];
-char en17_flipTree[25];
-_anon5 En17_WpnDamageTbl[22];
-_anon50 CombWepTbl[21];
-_anon53 CombJointTbl[24];
-_anon34 Ene17CapColTab[25];
-_anon51 en17prt_blood_tbl[24];
-char en17_tree[8][2];
-_anon22 en17_mtn_tbl[10];
-_anon31 en17_mtn_tbl2[7];
-_anon4 ply_mtn42_pos[20];
-_anon4 ply_mtn43_pos[20];
-_anon4 ply_mtn44_pos[51];
-_anon4 ply_mtn45_pos[51];
-void(*bhEne17_Mode0)(BH_PWORK*)[6];
-void(*bhEne17_InitType)(BH_PWORK*)[1];
-void(*bhEne17_MoveType)(BH_PWORK*)[1];
-void(*bhEne17_BrainMode2)(BH_PWORK*)[7];
-void(*bhEne17_MoveMode2)(BH_PWORK*)[7];
-void(*bhEne17_NageType)(BH_PWORK*)[1];
-void(*bhEne17_NageMode2)(BH_PWORK*)[1];
-void(*bhEne17_DamageType)(BH_PWORK*)[1];
-void(*bhEne17_DamageMode2)(BH_PWORK*)[1];
-void(*bhEne17_DieType)(BH_PWORK*)[1];
-void(*bhEne17_DieMode2)(BH_PWORK*)[1];
-int eff_flg;
-void(*bhEne17RArm)(BH_PWORK*);
-void(*bhEne17LArm)(BH_PWORK*);
+char En17_SdwTab[7] = { 2, 5, 15, 20, 9, 13, 255 };
+WPNDAMAGE_WORK En17_WpnDamageTbl[22] = 
+{
+    {  0,  0,  0,  0,  0 },
+    {  0,  0,  0,  0,  0 },
+    {  0,  4,  3,  3,  3 },
+    {  0,  4, 10,  3, 10 },
+    {  0,  4, 10,  3, 10 },
+    {  0,  4, 10,  3, 10 },
+    {  0,  2, 10,  3, 10 },
+    {  0,  4, 10,  3, 10 },
+    {  0,  4, 10,  3, 10 },
+    {  0,  4, 10,  3, 10 },
+    {  0,  4,  7,  3,  7 },
+    {  0,  2,  5,  3,  5 },
+    {  0,  4, 10,  3, 10 },
+    {  0,  2,  3,  3,  3 },
+    {  0,  2, 10,  3, 10 },
+    { 12,  2,  1,  3,  3 },
+    {  5,  2,  1,  3,  3 },
+    {  0,  2,  1,  3,  3 },
+    {  6,  2,  1,  3,  3 },
+    {  0,  2,  1,  3,  3 },
+    {  6,  2,  1,  3,  3 },
+    {  0,  2,  1,  3,  3 }
+};
+
+static COMBWEP_WORK CombWepTbl[21] = 
+{
+    {  0, {  0,  0,  0 }, 0, 0 },
+    {  0, {  0,  0,  0 }, 0, 0 },
+    { 60, { 10,  0,  0 }, 0, 0 },
+    { 60, { 20, 20, 20 }, 0, 0 },
+    { 60, { 20, 20, 20 }, 0, 0 },
+    { 60, { 20, 20, 20 }, 0, 0 },
+    { 60, { 60, 60, 60 }, 0, 0 },
+    { 60, { 20, 20, 20 }, 0, 0 },
+    { 60, {  4,  4,  4 }, 0, 0 },
+    { 60, { 20, 20, 20 }, 0, 0 },
+    { 60, { 20, 10, 10 }, 0, 0 },
+    { 60, { 60, 60, 30 }, 0, 0 },
+    { 60, {  8,  8,  8 }, 0, 0 },
+    { 60, { 60, 60, 60 }, 0, 0 },
+    { 60, { 60, 60,  0 }, 0, 0 },
+    { 60, { 60, 60,  0 }, 0, 0 },
+    { 60, { 60, 60, 20 }, 0, 0 },
+    { 60, { 10, 10,  0 }, 0, 0 },
+    { 60, { 60, 60, 60 }, 0, 0 },
+    { 60, { 60, 60, 60 }, 0, 0 },
+    { 60, { 60, 60, 60 }, 0, 0 }
+};
+static COMBJOINT_WORK CombJointTbl[24] = { 0 };
+
+CPCL Ene17CapColTab[25] = 
+{
+    {   1,   2,  20 },
+    {   3,   3,  25 },
+    {   0,  10,   0 },
+    {   3,   3,  30 },
+    {   0,  40,  16 },
+    {   6,   6,  23 },
+    { -30,  24,   0 },
+    {  10,  10,  23 },
+    {  30,  24,   0 },
+    {   4,   5,   8 },
+    {   5,   5,  13 },
+    {   0,  10,  -5 },
+    {   7,   8,  10 },
+    {   8,   9,   7 },
+    {  11,  12,  10 },
+    {  12,  13,   7 },
+    {  14,  15,  14 },
+    {  15,  16,  10 },
+    {  16,  17,   7 },
+    {  17,  18,  10 },
+    {  19,  20,  14 },
+    {  20,  21,  10 },
+    {  21,  22,   7 },
+    {  22,  23,  10 },
+    {   0,   0,   0 }
+};
+BT_WORK en17prt_blood_tbl[24] = 
+{
+    {  0,  0.0f,  0.0f,  0.0f,  0.0f,  0.0f,  0.0f,  0.0f },
+    {  1,  0.0f, -1.0f,  1.0f,  1.5f,  1.0f,  3.0f,  1.0f },
+    {  2,  0.0f,  1.0f,  1.5f,  1.0f,  0.5f,  2.0f,  1.0f },
+    {  3,  0.0f,  2.5f,  2.5f,  1.0f,  1.0f,  3.0f,  1.0f },
+    {  4,  0.0f,  0.0f,  0.0f,  0.0f,  0.0f,  4.0f,  1.0f },
+    {  5,  0.0f,  1.0f,  2.0f,  0.5f,  0.5f,  2.0f,  0.5f },
+    {  6,  0.3f,  0.0f,  2.0f,  0.0f,  0.5f,  2.0f,  1.0f },
+    {  7,  0.0f,  0.0f,  1.5f,  0.5f,  0.5f,  4.0f,  0.5f },
+    {  8,  0.0f,  0.0f,  0.0f,  0.5f,  0.5f,  4.0f,  1.0f },
+    {  9,  0.0f,  0.0f,  0.0f,  0.5f,  0.5f,  3.0f,  0.5f },
+    { 10, -0.3f,  0.0f,  2.0f,  0.0f,  0.5f,  2.0f,  1.0f },
+    { 11,  0.0f,  0.0f,  1.5f,  0.5f,  0.5f,  4.0f,  0.5f },
+    { 12,  0.0f,  0.0f,  0.0f,  0.5f,  0.5f,  4.0f,  1.0f },
+    { 13,  0.0f,  0.0f,  0.0f,  0.5f,  0.5f,  3.0f,  0.5f },
+    { 14,  0.0f, -3.0f,  1.5f,  0.5f,  1.5f,  5.0f,  1.0f },
+    { 15,  0.0f,  0.0f,  0.5f,  0.5f,  0.0f,  3.0f,  1.0f },
+    { 16,  0.0f, -1.0f,  0.5f,  0.5f,  1.0f,  3.0f,  1.0f },
+    { 17,  0.0f,  0.0f,  0.5f,  0.5f,  0.0f,  2.0f,  1.0f },
+    { 18,  0.0f,  0.0f,  0.5f,  0.5f,  0.0f,  4.0f,  1.0f },
+    { 19,  0.0f, -3.0f,  1.5f,  0.5f,  1.5f,  5.0f,  1.0f },
+    { 20,  0.0f,  0.0f,  0.5f,  0.5f,  0.0f,  3.0f,  1.0f },
+    { 21,  0.0f, -1.0f,  0.5f,  0.5f,  1.0f,  3.0f,  1.0f },
+    { 22,  0.0f,  0.0f,  0.5f,  0.5f,  0.0f,  2.0f,  1.0f },
+    { 23,  0.0f,  0.0f,  0.5f,  0.5f,  0.0f,  4.0f,  1.0f }
+};
+MTBL_WRK en17_mtn_tbl[10] = 
+{
+    {  3, { {  1, 0,  11 }, {  0, 12, 24 }, {  1,  25,  35 }, {  0,  36,  49 } }, { { -1,  0 }, { -1, 0 }, { -1, 0 }, { -1, 0 } } },
+    { 15, { {  1, 0,  44 }, {  0, 48, 96 }, {  1, 100, 140 }, {  0, 144, 195 } }, { { -1,  0 }, { -1, 0 }, { -1, 0 }, { -1, 0 } } },
+    {  6, { {  0, 0,  45 }, { -1,  0,  0 }, { -1,   0,   0 }, { -1,   0,   0 } }, { { -1,  0 }, { -1, 0 }, { -1, 0 }, { -1, 0 } } },
+    {  1, { {  0, 0,  29 }, {  1, 30, 59 }, { -1,   0,   0 }, { -1,   0,   0 } }, { { -1,  0 }, { -1, 0 }, { -1, 0 }, { -1, 0 } } },
+    {  2, { {  0, 0,  59 }, { -1,  0,  0 }, { -1,   0,   0 }, { -1,   0,   0 } }, { { -1,  0 }, { -1, 0 }, { -1, 0 }, { -1, 0 } } },
+    {  5, { {  0, 0,  79 }, { -1,  0,  0 }, { -1,   0,   0 }, { -1,   0,   0 } }, { { -1,  0 }, { -1, 0 }, { -1, 0 }, { -1, 0 } } },
+    { 16, { {  2, 0, 319 }, { -1,  0,  0 }, { -1,   0,   0 }, { -1,   0,   0 } }, { { -1,  0 }, { -1, 0 }, { -1, 0 }, { -1, 0 } } },
+    { 11, { {  0, 0,  44 }, { -1,  0,  0 }, { -1,   0,   0 }, { -1,   0,   0 } }, { { -1,  0 }, { -1, 0 }, { -1, 0 }, { -1, 0 } } },
+    { 12, { {  1, 0,  21 }, {  0, 22, 70 }, { -1,   0,  -1 }, {  0,  -1,   0 } }, { { -1,  0 }, { -1, 0 }, { -1, 0 }, {  0, 0 } } },
+    { -1, { { -1, 0,   0 }, { -1,  0,  0 }, { -1,   0,   0 }, { -1,   0,  -1 } }, { {  0, -1 }, {  0, 0 }, {  0, 0 }, {  0, 0 } } }
+};
+MTBL_WORK en17_mtn_tbl2[7] = 
+{
+    { 15, { {   0, 74496 }, {  48,    74496 }, { 72, 74500 }, { 100, 74496 }, { 140, 74500 }, { 144, 74496 } } },
+    {  1, { {   0, 74496 }, {  30,    74496 }, { -1,     0 }, {  -1,     0 }, {  -1,     0 }, {  -1,     0 } } },
+    {  2, { {  32, 74499 }, {  35, 16786185 }, { -1,     0 }, {  -1,     0 }, {  -1,     0 }, {  -1,     0 } } },
+    { 16, { { 132, 74499 }, { 160, 16786185 }, { -1,     0 }, {  -1,     0 }, {  -1,     0 }, {  -1,     0 } } },
+    { 11, { {  19, 74503 }, {  22,    74499 }, { -1,     0 }, {  -1,     0 }, {  -1,     0 }, {  -1,     0 } } },
+    { 17, { {  25, 74499 }, {  -1,        0 }, { -1,     0 }, {  -1,     0 }, {  -1,     0 }, {  -1,     0 } } },
+    { -1, { {  -1,     0 }, {  -1,        0 }, { -1,     0 }, {  -1,     0 }, {  -1,     0 }, {  -1,     0 } } }
+};
+POS_WORK ply_mtn42_pos[20] = 
+{
+    { 0.0f,           0.0f },
+    { 0.0f,   -2.12480998f },
+    { 0.0f,   -2.18794179f },
+    { 0.0f,     -2.072721f },
+    { 0.0f,   -1.78017569f },
+    { 0.0f,   -1.31060696f },
+    { 0.0f,   -1.02873039f },
+    { 0.0f,   -1.01653862f },
+    { 0.0f,   -1.00815964f },
+    { 0.0f,    -1.0035944f },
+    { 0.0f,   -1.00283909f },
+    { 0.0f,   -1.00589752f },
+    { 0.0f,    -1.0127697f },
+    { 0.0f,  -0.807430267f },
+    { 0.0f,  -0.420703888f },
+    { 0.0f,  -0.267501831f },
+    { 0.0f,  -0.218467712f },
+    { 0.0f,  -0.169967651f },
+    { 0.0f,  -0.121238708f },
+    { 0.0f, -0.0722846985f }
+};
+POS_WORK ply_mtn43_pos[20] = 
+{
+    { 0.0f,  5.57899809f },
+    { 0.0f,  1.89403009f },
+    { 0.0f,  1.89615822f },
+    { 0.0f,  1.89056587f },
+    { 0.0f,  1.87725449f },
+    { 0.0f,  1.85622406f },
+    { 0.0f,  1.82747269f },
+    { 0.0f,  1.79100037f },
+    { 0.0f,  1.45895195f },
+    { 0.0f, 0.900272369f },
+    { 0.0f, 0.492113113f },
+    { 0.0f, 0.234746933f },
+    { 0.0f, 0.128166199f },
+    { 0.0f, 0.172372818f },
+    { 0.0f, 0.339530945f },
+    { 0.0f, 0.408201218f },
+    { 0.0f, 0.416120529f },
+    { 0.0f,  0.38740921f },
+    { 0.0f, 0.322071075f },
+    { 0.0f, 0.220104218f }
+};
+POS_WORK ply_mtn44_pos[51] = 
+{
+    {            0.0f,     -2.6063652f },
+    { -0.00109499996f,  -0.0548400879f },
+    { -0.00294700009f,  -0.0579090118f },
+    {  -0.0042940001f,  -0.0601291656f },
+    { -0.00513700023f,  -0.0614967346f },
+    { -0.00547399931f,  -0.0620174408f },
+    { -0.00530499965f,  -0.0616855621f },
+    {  -0.0046310015f,  -0.0605049133f },
+    { -0.00345199741f,   -0.058473587f },
+    { -0.00176900253f,  -0.0555915833f },
+    { 0.000421002507f,  -0.0518627167f },
+    {  0.00311599858f,  -0.0472793579f },
+    {  0.00631500036f,  -0.0418510437f },
+    {   0.0100209992f,  -0.0355682373f },
+    {   0.0142310001f,  -0.0284366608f },
+    {   0.0187749993f,  -0.0231723785f },
+    {   0.0229530018f,  -0.0203113556f },
+    {   0.0265810005f,  -0.0173988342f },
+    {   0.0296639949f,  -0.0144405365f },
+    {   0.0321990028f,  -0.0114307404f },
+    {   0.0341860056f,  -0.0083732605f },
+    {   0.0356269926f, -0.00526809692f },
+    {   0.0365200043f, -0.00211334229f },
+    {   0.0368660092f,  0.00109100342f },
+    {   0.0366629958f,  0.00434303284f },
+    {   0.0359149873f,  0.00764274597f },
+    {   0.0346190035f,   0.0109920502f },
+    {   0.0327759981f,   0.0143909454f },
+    {   0.0303840041f,   0.0178394318f },
+    {   0.0274469852f,   0.0213336945f },
+    {   0.0239610076f,   0.0248775482f },
+    {   0.0188489854f,   0.0315227509f },
+    {   0.0127390027f,   0.0407295227f },
+    {  0.00702399015f,   0.0491752625f },
+    {  0.00170201063f,   0.0568599701f },
+    { -0.00322598219f,   0.0637836456f },
+    { -0.00775802135f,   0.0699443817f },
+    {  -0.0118969679f,   0.0753479004f },
+    {  -0.0156410038f,   0.0799865723f },
+    {  -0.0189909935f,   0.0838661194f },
+    {   -0.021946013f,   0.0869846344f },
+    {  -0.0245069861f,   0.0893440247f },
+    {  -0.0266750157f,   0.0909385681f },
+    {  -0.0303269923f,    0.106515884f },
+    {  -0.0353450179f,    0.130146027f },
+    {  -0.0397799909f,    0.144119263f },
+    {  -0.0436370075f,    0.148435593f },
+    {  -0.0469129831f,    0.143100739f },
+    {  -0.0496090055f,    0.128105164f },
+    {  -0.0517240018f,    0.103460312f },
+    {  -0.0532590002f,   0.0691566467f }
+};
+POS_WORK ply_mtn45_pos[51] = 
+{
+    {            0.0f,    0.0815086365f },
+    { 0.000188999998f,    0.0247268677f },
+    { 0.000134999995f,    0.0163879395f },
+    { -0.00057199999f,   0.00716018677f },
+    { -0.00242500007f,  -0.00296020508f },
+    { -0.00393699994f,    -0.013967514f },
+    {  -0.0065960004f,   -0.0258655548f },
+    { -0.00990600046f,   -0.0386543274f },
+    {  -0.0138679985f,   -0.0523319244f },
+    {  -0.0184790008f,   -0.0669002533f },
+    {  -0.0237429962f,   -0.0823554993f },
+    {  -0.0296570063f,   -0.0987052917f },
+    {  -0.0419429988f,    -0.115940094f },
+    {  -0.0572379977f,    -0.134067535f },
+    {  -0.0681459904f,    -0.156576157f },
+    {    -0.07466501f,     -0.18034935f },
+    {  -0.0767939985f,    -0.200340271f },
+    {  -0.0745350122f,    -0.216550827f },
+    {  -0.0678870082f,    -0.228973389f },
+    {  -0.0568509698f,    -0.237615585f },
+    {   -0.041424036f,     -0.24247551f },
+    {  -0.0216109753f,    -0.243551254f },
+    { -0.00201100111f,    -0.240844727f },
+    {   0.0130140185f,    -0.234354019f },
+    {   0.0258889794f,    -0.224081039f },
+    {   0.0366160274f,     -0.21002388f },
+    {   0.0451929569f,    -0.200519562f },
+    {   0.0516210198f,     -0.19443512f },
+    {   0.0558989942f,     -0.18286705f },
+    {   0.0580269992f,    -0.165821075f },
+    {   0.0580070019f,    -0.143297195f },
+    {   0.0557470024f,    -0.115289688f },
+    {   0.0508189946f,   -0.0818042755f },
+    {   0.0454149991f,   -0.0428390503f },
+    {  0.04004999995f,   -0.0143680573f },
+    {   0.0347240046f, -0.000867843628f },
+    {   0.0294359997f,    0.0113964081f },
+    {   0.0241890028f,    0.0224246979f },
+    {   0.0189800002f,    0.0322189331f },
+    {   0.0138109997f,    0.0407733917f },
+    {  0.00868099928f,    0.0480957031f },
+    {  0.00565600023f,    0.0541801453f },
+    {  0.00475900061f,    0.0590305328f },
+    {  0.00393799972f,    0.0626430511f },
+    {  0.00319300033f,    0.0650215149f },
+    {  0.00252299989f,    0.0661621094f },
+    {  0.00192700000f,    0.0660686493f },
+    {  0.00140899990f,    0.0647392273f },
+    { 0.000964000006f,    0.0621738434f },
+    { 0.000594999990f,    0.0583705902f },
+    { 0.000302000000f,    0.0533351898f }
+};
+void (*bhEne17_Mode0[6])(BH_PWORK*) = 
+{
+	bhEne17_Init,
+	bhEne17_Move,
+	bhEne17_Nage,
+	bhEne17_Damage,
+	bhEne17_Die,
+	bhEne_Event
+};
+void (*bhEne17_InitType[1])(BH_PWORK*) = { bhEne17_InitType00 };
+void (*bhEne17_MoveType[1])(BH_PWORK*) = { bhEne17_MVType00 };
+void (*bhEne17_BrainMode2[7])(BH_PWORK*) = 
+{
+	bhEne17_Brain00,
+	bhEne17_DmmyBrain,
+	bhEne17_DmmyBrain,
+	bhEne17_DmmyBrain,
+	bhEne17_DmmyBrain,
+	bhEne17_DmmyBrain,
+	bhEne17_Brain00
+};
+void (*bhEne17_MoveMode2[7])(BH_PWORK*) = 
+{
+	bhEne17_MV00,
+	bhEne17_MV01,
+	bhEne17_MV02,
+	bhEne17_MV03,
+	bhEne17_MV04,
+	bhEne17_MV05,
+	bhEne17_MV06
+};
+void (*bhEne17_DamageType[1])(BH_PWORK*) = { bhEne17_DGType00 };
+void (*bhEne17_DamageMode2[1])(BH_PWORK*) = { bhEne17_DG00 };
+/* unused below */
+/*void (*bhEne17_NageType[1])(BH_PWORK*);
+void (*bhEne17_NageMode2[1])(BH_PWORK*);
+void (*bhEne17_DieType[1])(BH_PWORK*);
+void (*bhEne17_DieMode2[1])(BH_PWORK*);
+int eff_flg;*/
+
+const char en17_flipTree[25] = { 0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 6, 7, 8, 9, 19, 20, 21, 22, 23, 14, 15, 16, 17, 18, 255 };
+const char en17_tree[2][8] = { { 0, 1, 19, 20, 21, 22, 23, 255 }, { 0, 1, 14, 15, 16, 17, 18, 255 } };
 
 // 
 // Start address: 0x1eab30
@@ -38,15 +341,15 @@ void bhEne17_DmmyBrain()
 {
 	// Line 100, Address: 0x1eab30, Func Offset: 0
 	// Func End, Address: 0x1eab38, Func Offset: 0x8
-}*/
+}
 
 // 
 // Start address: 0x1eab40
 void bhEne17(BH_PWORK* epw)
 {
-	//_anon15 pd;
-	//_anon15 ps;
-	//_anon0* owk;
+	NJS_POINT3 pd;
+	NJS_POINT3 ps;
+	O_WORK* owk;
 	int i;
 	// Line 241, Address: 0x1eab40, Func Offset: 0
 	// Line 245, Address: 0x1eab50, Func Offset: 0x10
@@ -86,12 +389,12 @@ void bhEne17(BH_PWORK* epw)
 	scePrintf("bhEne17 - UNIMPLEMENTED!\n");
 }
 
-/*// 
+// 
 // Start address: 0x1ead40
 void bhEne17_EneToPlyDist(BH_PWORK* epw)
 {
-	_anon15 pos;
-	_anon0* owk;
+	NJS_POINT3 pos;
+	O_WORK* owk;
 	// Line 327, Address: 0x1ead40, Func Offset: 0
 	// Line 332, Address: 0x1ead4c, Func Offset: 0xc
 	// Line 336, Address: 0x1ead58, Func Offset: 0x18
@@ -145,7 +448,7 @@ int bhEne17_DmgChk(BH_PWORK* epw)
 void bhEne17_ChgDmgMode(BH_PWORK* epw)
 {
 	int act;
-	_anon5* wp_tbl;
+	WPNDAMAGE_WORK* wp_tbl;
 	// Line 729, Address: 0x1eaed0, Func Offset: 0
 	// Line 726, Address: 0x1eaed4, Func Offset: 0x4
 	// Line 735, Address: 0x1eaedc, Func Offset: 0xc
@@ -172,7 +475,7 @@ void bhEne17_DamageAdd(BH_PWORK* epw)
 {
 	int i;
 	int* d;
-	_anon5* wp_tbl;
+	WPNDAMAGE_WORK* wp_tbl;
 	// Line 784, Address: 0x1eaf80, Func Offset: 0
 	// Line 785, Address: 0x1eaf98, Func Offset: 0x18
 	// Line 790, Address: 0x1eafa0, Func Offset: 0x20
@@ -210,19 +513,19 @@ void bhEne17_DamageAdd(BH_PWORK* epw)
 // Start address: 0x1eb150
 int bhEne17_SetMtn(BH_PWORK* epw)
 {
-	_anon0* owk;
-	_anon15 ps;
-	int i;
-	_anon15 ofs;
+	//O_WORK* owk;
+	//NJS_POINT3 ps;
+	//int i;
+	NJS_POINT3 ofs;
 	int sfrm_no;
 	int i;
-	_anon15 ps;
-	_anon0* owk;
+	NJS_POINT3 ps;
+	O_WORK* owk;
 	BH_PWORK* armp;
 	int lnk_obj;
 	int frm;
 	int ret;
-	npobj* obj;
+	NJS_CNK_OBJECT* obj;
 	// Line 869, Address: 0x1eb150, Func Offset: 0
 	// Line 875, Address: 0x1eb174, Func Offset: 0x24
 	// Line 873, Address: 0x1eb178, Func Offset: 0x28
@@ -342,12 +645,13 @@ int bhEne17_SetMtn(BH_PWORK* epw)
 // Start address: 0x1eb650
 void bhEne17_MtnTblPlay(BH_PWORK* epw, int frm)
 {
+	// already reversed order from DWARF
+	MTBL_WRK* mtbl;
+	MTBL_WORK* mtbl2;
+	NJS_VECTOR vec = { 0 };
+	NJS_VECTOR vec1 = { 0 };
+	NJS_VECTOR vec2 = { 0, -0.8f, -2.5f };
 	int i;
-	_anon15 vec2;
-	_anon15 vec1;
-	_anon15 vec;
-	_anon31* mtbl2;
-	_anon22* mtbl;
 	// Line 1053, Address: 0x1eb650, Func Offset: 0
 	// Line 1054, Address: 0x1eb66c, Func Offset: 0x1c
 	// Line 1055, Address: 0x1eb674, Func Offset: 0x24
@@ -432,7 +736,7 @@ void bhEne17_CollCheckWall(BH_PWORK* epw)
 // Start address: 0x1eba20
 void bhEne17_CalcEnemy(BH_PWORK* epw)
 {
-	_anon0* owk;
+	O_WORK* owk;
 	// Line 1225, Address: 0x1eba20, Func Offset: 0
 	// Line 1229, Address: 0x1eba2c, Func Offset: 0xc
 	// Line 1232, Address: 0x1eba34, Func Offset: 0x14
@@ -553,7 +857,7 @@ void bhEne17_InitType00()
 // Start address: 0x1ebd80
 BH_PWORK* bhEne17_SetLinkWork(BH_PWORK* epw, int lnk_obj, int mdl_no, int id)
 {
-	_anon23 lnk_tbl;
+	ETTY_WORK lnk_tbl;
 	BH_PWORK* epp;
 	// Line 1409, Address: 0x1ebd80, Func Offset: 0
 	// Line 1413, Address: 0x1ebda4, Func Offset: 0x24
@@ -615,7 +919,7 @@ void bhEne17_Die()
 // Start address: 0x1ebea0
 void bhEne17_Brain(BH_PWORK* epw)
 {
-	_anon15 pos;
+	NJS_POINT3 pos;
 	// Line 1492, Address: 0x1ebea0, Func Offset: 0
 	// Line 1495, Address: 0x1ebeac, Func Offset: 0xc
 	// Line 1498, Address: 0x1ebeb8, Func Offset: 0x18
@@ -751,8 +1055,8 @@ void bhEne17_MV03(BH_PWORK* epw)
 {
 	int i;
 	int frm;
-	_anon15 ofs;
-	_anon0* owk;
+	NJS_POINT3 ofs;
+	O_WORK* owk;
 	// Line 1910, Address: 0x1ec480, Func Offset: 0
 	// Line 1916, Address: 0x1ec4a0, Func Offset: 0x20
 	// Line 1919, Address: 0x1ec4c0, Func Offset: 0x40
@@ -846,8 +1150,8 @@ void bhEne17_MV05(BH_PWORK* epw)
 {
 	int frm;
 	int i;
-	_anon15 ofs;
-	_anon0* owk;
+	NJS_POINT3 ofs;
+	O_WORK* owk;
 	// Line 2066, Address: 0x1ec8a0, Func Offset: 0
 	// Line 2072, Address: 0x1ec8c0, Func Offset: 0x20
 	// Line 2075, Address: 0x1ec8e0, Func Offset: 0x40
@@ -937,7 +1241,7 @@ void bhEne17_DG00(BH_PWORK* epw)
 {
 	int ang;
 	int frm;
-	int wcnt_tbl[4];
+	int wcnt_tbl[4] = { 0, 5, 20, 35 };
 	// Line 2230, Address: 0x1ecc60, Func Offset: 0
 	// Line 2231, Address: 0x1ecc6c, Func Offset: 0xc
 	// Line 2230, Address: 0x1ecc74, Func Offset: 0x14
@@ -999,9 +1303,9 @@ void bhEne17_DG00(BH_PWORK* epw)
 void bhEne17_PlyDG00(BH_PWORK* pl, BH_PWORK* epw)
 {
 	int ang;
-	_anon15 ps;
-	_anon15 dv;
-	_anon0* owk;
+	NJS_POINT3 ps;
+	NJS_VECTOR dv;
+	O_WORK* owk;
 	// Line 2340, Address: 0x1ecf40, Func Offset: 0
 	// Line 2348, Address: 0x1ecf58, Func Offset: 0x18
 	// Line 2351, Address: 0x1ecf78, Func Offset: 0x38
@@ -1089,12 +1393,18 @@ void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw)
 	int frm;
 	int i;
 	int rot;
-	_anon15 dv;
-	_anon15 key;
-	_anon0* owk;
-	npobj* obj;
-	_anon4* pos_p;
-	_anon4* mtn_pos[4];
+	NJS_VECTOR dv;
+	NJS_POINT3 key;
+	O_WORK* owk;
+	NJS_CNK_OBJECT* obj;
+	POS_WORK* pos_p;
+	POS_WORK* mtn_pos[4] = 
+	{
+		ply_mtn42_pos,
+		ply_mtn43_pos,
+		ply_mtn44_pos,
+		ply_mtn45_pos
+	};
 	// Line 2450, Address: 0x1ed250, Func Offset: 0
 	// Line 2451, Address: 0x1ed268, Func Offset: 0x18
 	// Line 2450, Address: 0x1ed270, Func Offset: 0x20
@@ -1199,12 +1509,12 @@ void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw)
 // Start address: 0x1ed640
 int bhEne17_PlayerDGCheck(BH_PWORK* epw, BH_PWORK* pl)
 {
-	_anon15 v;
-	_anon15 pd;
-	_anon15 ps;
-	_anon0* owk;
+	NJS_VECTOR v;
+	NJS_POINT3 pd;
+	NJS_POINT3 ps;
+	O_WORK* owk;
 	int i;
-	_anon49 cap;
+	NJS_CAPSULE cap;
 	// Line 2594, Address: 0x1ed640, Func Offset: 0
 	// Line 2600, Address: 0x1ed660, Func Offset: 0x20
 	// Line 2606, Address: 0x1ed6ac, Func Offset: 0x6c
@@ -1319,7 +1629,7 @@ int bhEne17_CameraControl(BH_PWORK* epw)
 
 // 
 // Start address: 0x1edaf0
-void bhEne17_AfterimageAxEffect(BH_PWORK* epw, float mtx[16], _anon15* ofs, unsigned int argb)
+void bhEne17_AfterimageAxEffect(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* ofs, unsigned int argb)
 {
 	int eno;
 	// Line 2842, Address: 0x1edaf0, Func Offset: 0
@@ -1359,13 +1669,13 @@ void bhEne17_AfterimageAxEffect(BH_PWORK* epw, float mtx[16], _anon15* ofs, unsi
 
 // 
 // Start address: 0x1edd60
-void bhEne17_SetSmokeEffect(BH_PWORK* epw, int lnk_onj, _anon15* ofs)
+void bhEne17_SetSmokeEffect(BH_PWORK* epw, int lnk_onj, NJS_POINT3* ofs)
 {
 	int j;
 	int i;
 	int eno;
-	_anon15 ps;
-	_anon0* owk;
+	NJS_POINT3 ps;
+	O_WORK* owk;
 	// Line 2877, Address: 0x1edd60, Func Offset: 0
 	// Line 2884, Address: 0x1edd80, Func Offset: 0x20
 	// Line 2894, Address: 0x1edd88, Func Offset: 0x28
@@ -1432,7 +1742,7 @@ void bhEne17_SetSmokeEffect(BH_PWORK* epw, int lnk_onj, _anon15* ofs)
 
 // 
 // Start address: 0x1ee0b0
-void bhEne17_SetSmokeEffect2(BH_PWORK* epw, _anon15* ofs, int rot)
+void bhEne17_SetSmokeEffect2(BH_PWORK* epw, NJS_POINT3* ofs, int rot)
 {
 	int i;
 	int eno;
@@ -1481,7 +1791,7 @@ void bhEne17_SetSmokeEffect2(BH_PWORK* epw, _anon15* ofs, int rot)
 
 // 
 // Start address: 0x1ee370
-void bhEne17_SetSmokeEffect3(BH_PWORK* epw, _anon15* ofs, int rot)
+void bhEne17_SetSmokeEffect3(BH_PWORK* epw, NJS_POINT3* ofs, int rot)
 {
 	int eno;
 	// Line 2965, Address: 0x1ee370, Func Offset: 0
@@ -1535,9 +1845,9 @@ void bhEne17_SetSmokeEffect3(BH_PWORK* epw, _anon15* ofs, int rot)
 
 // 
 // Start address: 0x1ee680
-void bhEne17_SetLight(_anon15* ofs)
+void bhEne17_SetLight(NJS_POINT3* ofs)
 {
-	_anon3* lp;
+	LGT_WORK* lp;
 	// Line 3017, Address: 0x1ee680, Func Offset: 0
 	// Line 3020, Address: 0x1ee688, Func Offset: 0x8
 	// Line 3021, Address: 0x1ee68c, Func Offset: 0xc
@@ -1566,4 +1876,4 @@ void bhEne17_SetLight(_anon15* ofs)
 	// Line 3038, Address: 0x1ee6f4, Func Offset: 0x74
 	// Line 3040, Address: 0x1ee6f8, Func Offset: 0x78
 	// Func End, Address: 0x1ee700, Func Offset: 0x80
-}*/
+}

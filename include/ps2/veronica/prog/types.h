@@ -1930,6 +1930,7 @@ typedef struct EnemySlot
 
 typedef struct WPNDAMAGE_WORK
 {
+    // total size: 0x14
 	int flg; // offset 0x0, size 0x4
 	int nm_act; // offset 0x4, size 0x4
 	int nm_blood; // offset 0x8, size 0x4

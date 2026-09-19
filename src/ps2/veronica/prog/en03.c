@@ -3911,45 +3911,58 @@ void bhEne03_GetPartsPos(BH_PWORK* epw, char* parts, NJS_POINT3* p)
     njPopMatrixEx();
 }
 
-// 
-// Start address: 0x19ecb0
+// 100% matching!
 void bhEne03_MakeMatrix(BH_PWORK* epw)
 {
-	int ang;
-	// Line 5020, Address: 0x19ecb0, Func Offset: 0
-	// Line 5024, Address: 0x19ecd0, Func Offset: 0x20
-	// Line 5025, Address: 0x19ecd8, Func Offset: 0x28
-	// Line 5026, Address: 0x19ecdc, Func Offset: 0x2c
-	// Line 5024, Address: 0x19ece0, Func Offset: 0x30
-	// Line 5025, Address: 0x19ece4, Func Offset: 0x34
-	// Line 5027, Address: 0x19ece8, Func Offset: 0x38
-	// Line 5028, Address: 0x19ecf0, Func Offset: 0x40
-	// Line 5030, Address: 0x19ed20, Func Offset: 0x70
-	// Line 5031, Address: 0x19ed2c, Func Offset: 0x7c
-	// Line 5032, Address: 0x19ed38, Func Offset: 0x88
-	// Line 5034, Address: 0x19ed40, Func Offset: 0x90
-	// Line 5035, Address: 0x19ed4c, Func Offset: 0x9c
-	// Line 5036, Address: 0x19ed58, Func Offset: 0xa8
-	// Line 5037, Address: 0x19ed64, Func Offset: 0xb4
-	// Line 5039, Address: 0x19ed6c, Func Offset: 0xbc
-	// Line 5040, Address: 0x19ed78, Func Offset: 0xc8
-	// Line 5041, Address: 0x19ed88, Func Offset: 0xd8
-	// Line 5042, Address: 0x19ed94, Func Offset: 0xe4
-	// Line 5043, Address: 0x19eda0, Func Offset: 0xf0
-	// Line 5045, Address: 0x19eda8, Func Offset: 0xf8
-	// Line 5046, Address: 0x19edb4, Func Offset: 0x104
-	// Line 5047, Address: 0x19edc4, Func Offset: 0x114
-	// Line 5048, Address: 0x19edd0, Func Offset: 0x120
-	// Line 5050, Address: 0x19edd8, Func Offset: 0x128
-	// Line 5051, Address: 0x19ede4, Func Offset: 0x134
-	// Line 5052, Address: 0x19edf4, Func Offset: 0x144
-	// Line 5053, Address: 0x19ee00, Func Offset: 0x150
-	// Line 5055, Address: 0x19ee08, Func Offset: 0x158
-	// Line 5056, Address: 0x19ee14, Func Offset: 0x164
-	// Line 5057, Address: 0x19ee24, Func Offset: 0x174
-	// Line 5058, Address: 0x19ee30, Func Offset: 0x180
-	// Line 5061, Address: 0x19ee3c, Func Offset: 0x18c
-	// Func End, Address: 0x19ee5c, Func Offset: 0x1ac
+    int ang; 
+    float px, py, pz; // not from DWARF
+
+    px = -EXP0_F(32);
+    py = -EXP0_F(36);
+    pz = -EXP0_F(40);
+    
+    njUnitMatrix((NJS_MATRIX*)epw->exp0);
+    
+    switch (EXP0_C(105)) 
+    {
+    case 0:
+        ang = bhArcTan2(-px, -pz);
+        
+        njRotateY((NJS_MATRIX*)epw->exp0, ang);
+        break;
+    case 1:
+        ang = bhArcTan2(-px, -pz);
+        
+        njRotateY((NJS_MATRIX*)epw->exp0, ang);
+        njRotateZ((NJS_MATRIX*)epw->exp0, 32768);
+        break;
+    case 3:
+        ang = bhArcTan2(-px, py);
+        
+        njRotateX((NJS_MATRIX*)epw->exp0, 16384);
+        njRotateY((NJS_MATRIX*)epw->exp0, ang);
+        njRotateZ((NJS_MATRIX*)epw->exp0, 32768);
+        break;
+    case 5:
+        ang = bhArcTan2(-px, py);
+        
+        njRotateX((NJS_MATRIX*)epw->exp0, 16384);
+        njRotateY((NJS_MATRIX*)epw->exp0, ang);
+        break;
+    case 2:
+        ang = bhArcTan2(py, -pz);
+        
+        njRotateZ((NJS_MATRIX*)epw->exp0, -16384);
+        njRotateY((NJS_MATRIX*)epw->exp0, ang);
+        break;
+    case 4:
+        ang = bhArcTan2(py, -pz);
+        
+        njRotateZ((NJS_MATRIX*)epw->exp0, -16384);
+        njRotateY((NJS_MATRIX*)epw->exp0, ang);
+        njRotateZ((NJS_MATRIX*)epw->exp0, 32768);
+        break;
+    }
 }
 
 // 100% matching!

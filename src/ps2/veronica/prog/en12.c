@@ -603,81 +603,112 @@ void bhEne12_Init(BH_PWORK* epw)
     sys->rm_flg &= ~1;
 }
 
+// 100% matching!
 void bhEne12_Brain(BH_PWORK* epw)
 {
     bhEne12_BrainType[epw->type](epw);
 }
 
-
-/*// 
-// Start address: 0x1d5a50
+// 100% matching!
 void bhEne12_BR00(BH_PWORK* epw)
 {
-	_anon25 pos;
-	int act_no;
-	int i;
-	int inter[4];
-	int act[16][2];
-	int mode[4];
-	float dist;
-	// Line 667, Address: 0x1d5a50, Func Offset: 0
-	// Line 669, Address: 0x1d5a5c, Func Offset: 0xc
-	// Line 667, Address: 0x1d5a64, Func Offset: 0x14
-	// Line 669, Address: 0x1d5a68, Func Offset: 0x18
-	// Line 675, Address: 0x1d5a74, Func Offset: 0x24
-	// Line 669, Address: 0x1d5a7c, Func Offset: 0x2c
-	// Line 675, Address: 0x1d5a80, Func Offset: 0x30
-	// Line 680, Address: 0x1d5aa8, Func Offset: 0x58
-	// Line 684, Address: 0x1d5ab8, Func Offset: 0x68
-	// Line 680, Address: 0x1d5ac0, Func Offset: 0x70
-	// Line 684, Address: 0x1d5ac4, Func Offset: 0x74
-	// Line 687, Address: 0x1d5ad4, Func Offset: 0x84
-	// Line 688, Address: 0x1d5adc, Func Offset: 0x8c
-	// Line 689, Address: 0x1d5b00, Func Offset: 0xb0
-	// Line 691, Address: 0x1d5b10, Func Offset: 0xc0
-	// Line 692, Address: 0x1d5b2c, Func Offset: 0xdc
-	// Line 696, Address: 0x1d5b3c, Func Offset: 0xec
-	// Line 697, Address: 0x1d5b88, Func Offset: 0x138
-	// Line 698, Address: 0x1d5b90, Func Offset: 0x140
-	// Line 699, Address: 0x1d5b94, Func Offset: 0x144
-	// Line 700, Address: 0x1d5b98, Func Offset: 0x148
-	// Line 703, Address: 0x1d5b9c, Func Offset: 0x14c
-	// Line 704, Address: 0x1d5bb0, Func Offset: 0x160
-	// Line 703, Address: 0x1d5bb4, Func Offset: 0x164
-	// Line 704, Address: 0x1d5bbc, Func Offset: 0x16c
-	// Line 706, Address: 0x1d5bc8, Func Offset: 0x178
-	// Line 711, Address: 0x1d5bd0, Func Offset: 0x180
-	// Line 714, Address: 0x1d5bf0, Func Offset: 0x1a0
-	// Line 718, Address: 0x1d5c00, Func Offset: 0x1b0
-	// Line 719, Address: 0x1d5c14, Func Offset: 0x1c4
-	// Line 721, Address: 0x1d5c1c, Func Offset: 0x1cc
-	// Line 720, Address: 0x1d5c20, Func Offset: 0x1d0
-	// Line 721, Address: 0x1d5c24, Func Offset: 0x1d4
-	// Line 723, Address: 0x1d5c28, Func Offset: 0x1d8
-	// Line 727, Address: 0x1d5c30, Func Offset: 0x1e0
-	// Line 728, Address: 0x1d5c50, Func Offset: 0x200
-	// Line 730, Address: 0x1d5c68, Func Offset: 0x218
-	// Line 728, Address: 0x1d5c74, Func Offset: 0x224
-	// Line 730, Address: 0x1d5c78, Func Offset: 0x228
-	// Line 728, Address: 0x1d5c7c, Func Offset: 0x22c
-	// Line 729, Address: 0x1d5c80, Func Offset: 0x230
-	// Line 730, Address: 0x1d5c84, Func Offset: 0x234
-	// Line 734, Address: 0x1d5c9c, Func Offset: 0x24c
-	// Line 736, Address: 0x1d5cac, Func Offset: 0x25c
-	// Line 741, Address: 0x1d5cec, Func Offset: 0x29c
-	// Line 745, Address: 0x1d5da8, Func Offset: 0x358
-	// Line 746, Address: 0x1d5dc4, Func Offset: 0x374
-	// Line 749, Address: 0x1d5de0, Func Offset: 0x390
-	// Line 750, Address: 0x1d5df4, Func Offset: 0x3a4
-	// Line 751, Address: 0x1d5dfc, Func Offset: 0x3ac
-	// Line 752, Address: 0x1d5e04, Func Offset: 0x3b4
-	// Line 753, Address: 0x1d5e20, Func Offset: 0x3d0
-	// Line 754, Address: 0x1d5e24, Func Offset: 0x3d4
-	// Line 756, Address: 0x1d5e2c, Func Offset: 0x3dc
-	// Line 759, Address: 0x1d5e34, Func Offset: 0x3e4
-	// Line 763, Address: 0x1d5e40, Func Offset: 0x3f0
-	// Func End, Address: 0x1d5e54, Func Offset: 0x404
-}*/
+    float dist;
+    int mode[4] = {1,2,3,4};
+    int act[2][16] = {
+        { 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3 },
+        { 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0 }
+    };
+    int inter[4] = {0, 60, 10, 30};
+    int i;
+    int act_no;
+    NJS_POINT3 pos;
+
+
+        dist = njDistanceP2P((NJS_VECTOR*)&epw->px, (NJS_VECTOR*)&plp->px);
+
+    for (i = 0; i < 5; i++) {
+        if (((int*)&EXP0_I(i*4))[1])  {
+            ((int*)&EXP0_I(i*4))[1]--;
+        }
+    }
+    
+
+    if (plp->stflg & 0x80000000) {
+        return;
+    }
+
+    if (epw->mtn_no == 0xF) {
+        return;
+    }
+
+    if (dist < 7.0f &&
+        bhEne_CheckDirTarget(epw, plp->px, plp->pz, 0x5555) != 0 &&
+        plp->hp >= 0) {
+        epw->mode0 = 2;
+        epw->mode1 = 0;
+        epw->mode2 = 0;
+        epw->mode3 = 0;
+        plp->flg   |= 0x10004;
+        plp->stflg |= 0x10000;
+        return;
+    }
+
+    if ((epw->mtn_no == 1 || (unsigned int)(epw->mtn_no - 2) < 2) &&
+        epw->frm_no != 0x3B0000) {
+        return;
+    }
+
+    if (plp->hp < 0) {
+        epw->mode0 = 1;
+        epw->mode1 = 0;
+        epw->mode2 = 6;
+        epw->mode3 = 0;
+        return;
+    }
+
+    pos.x = epw->px - 10.0f * njSin(epw->ay);
+    pos.z = epw->pz - 10.0f * njCos(epw->ay);
+    pos.y = epw->py;
+
+    if (bhCheckWallType(&pos, 0, 3.0f, 1.0f) != 0) {
+        return;
+    }
+    
+    if (EXP0_I(4) != 0) {
+        return;
+    }
+    
+    if (!(dist < 80.0f)) {
+        return;
+    }
+    
+    if (bhEne_CheckDirTarget(epw, plp->px, plp->pz, 0x5555) == 0) {
+        return;
+    }
+
+    if (bhEne_CheckDirTarget(epw, plp->px, plp->pz, 0x2000) != 0) {
+        act_no = act[0][(int)(16.0f * ((float)-rand() / -2147483648.0f))];
+    } else {
+        act_no = act[1][(int)(16.0f * ((float)-rand() / -2147483648.0f))];
+    }
+
+    if (mode[act_no] == 2 && dist < 15.0f) {
+        return;
+    }
+
+    if (((int*)(epw->exp0))[act_no + 1] == 0) {
+        EXP0_I(4) += 0x1E;
+    
+        if (act_no != 0) {
+            ((int*)(epw->exp0))[act_no + 1] += inter[act_no];
+            epw->mode1 = 0;
+            epw->mode2 = (unsigned char)mode[act_no];
+            epw->mode3 = 0;
+        }
+    } else {
+        EXP0_I(4) += 5;
+    }
+}
 
 // 100% matching!
 void bhEne12_Move(BH_PWORK* epw) 

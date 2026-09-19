@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/en03.h"
 #include "../../../ps2/veronica/prog/en03sub.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/hitchkl.h"
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
@@ -5238,47 +5239,61 @@ int bhEne03_AvoidWall()
 	return 0;
 }
 
-// 
-// Start address: 0x1a15d0
+// 99.83% matching
 int bhEne03_DiveSpace(BH_PWORK* epw)
 {
-	int i;
-	float dist;
-	NJS_MKEY* mkfP;
-	BH_PWORK* ep;
-	NJS_POINT3 pos;
-	// Line 6706, Address: 0x1a15d0, Func Offset: 0
-	// Line 6714, Address: 0x1a15e0, Func Offset: 0x10
-	// Line 6717, Address: 0x1a15fc, Func Offset: 0x2c
-	// Line 6719, Address: 0x1a1600, Func Offset: 0x30
-	// Line 6717, Address: 0x1a1608, Func Offset: 0x38
-	// Line 6718, Address: 0x1a160c, Func Offset: 0x3c
-	// Line 6717, Address: 0x1a1610, Func Offset: 0x40
-	// Line 6718, Address: 0x1a1614, Func Offset: 0x44
-	// Line 6719, Address: 0x1a1624, Func Offset: 0x54
-	// Line 6720, Address: 0x1a162c, Func Offset: 0x5c
-	// Line 6726, Address: 0x1a1634, Func Offset: 0x64
-	// Line 6721, Address: 0x1a1638, Func Offset: 0x68
-	// Line 6726, Address: 0x1a163c, Func Offset: 0x6c
-	// Line 6722, Address: 0x1a1640, Func Offset: 0x70
-	// Line 6720, Address: 0x1a1644, Func Offset: 0x74
-	// Line 6725, Address: 0x1a1648, Func Offset: 0x78
-	// Line 6720, Address: 0x1a164c, Func Offset: 0x7c
-	// Line 6721, Address: 0x1a1650, Func Offset: 0x80
-	// Line 6722, Address: 0x1a1660, Func Offset: 0x90
-	// Line 6725, Address: 0x1a1670, Func Offset: 0xa0
-	// Line 6726, Address: 0x1a1694, Func Offset: 0xc4
-	// Line 6730, Address: 0x1a16ac, Func Offset: 0xdc
-	// Line 6729, Address: 0x1a16b4, Func Offset: 0xe4
-	// Line 6730, Address: 0x1a16bc, Func Offset: 0xec
-	// Line 6731, Address: 0x1a16dc, Func Offset: 0x10c
-	// Line 6732, Address: 0x1a1700, Func Offset: 0x130
-	// Line 6733, Address: 0x1a1718, Func Offset: 0x148
-	// Line 6735, Address: 0x1a1730, Func Offset: 0x160
-	// Line 6738, Address: 0x1a1744, Func Offset: 0x174
-	// Line 6742, Address: 0x1a1750, Func Offset: 0x180
-	// Line 6745, Address: 0x1a178c, Func Offset: 0x1bc
-	// Func End, Address: 0x1a17a0, Func Offset: 0x1d0
+    NJS_POINT3 pos; 
+    BH_PWORK* ep;   
+    NJS_MKEY* mkfP;
+    float dist;    
+    int i;        
+
+    if ((EPW_EXP1_I(0) & 0x3)) 
+    {
+        return 0;
+    }
+
+    mkfP =  epw->mnwP[13].md2P->p[0];
+    mkfP += epw->mnwP[13].frm_num - 1;
+    
+    njCalcVector((NJS_MATRIX*)epw->exp0, (NJS_VECTOR*)&mkfP->key[0], &pos); 
+
+    pos.x += epw->px;
+    pos.y += epw->py;
+    pos.z += epw->pz;
+
+    dist = ((pos.x - plp->px) * (pos.x - plp->px)) + ((pos.z - plp->pz) * (pos.z - plp->pz));
+
+    if (dist < 25.0f)
+    {
+        return 0;
+    }
+
+    ep = ene;
+
+    for (i = 0; i < sys->ewk_n; i++, ep++)
+    {
+        if (((ep->flg & 0x1)) && (ep->id == 3) && (ep != epw))
+        {
+            dist = ((pos.x - ep->px) * (pos.x - ep->px)) + ((pos.z - ep->pz) * (pos.z - ep->pz));
+            
+            if (dist < 10.0f)
+            {
+                return 0;
+            }
+        }
+    }
+
+    pos.y = bhGetGroundPosition(&pos);
+
+    if (bhCheckWallType(&pos, 0, 5.0f, (epw->py - pos.y) - 10.0f) != NULL) 
+    {
+        return 0;
+    }
+    else 
+    {
+        return 1;
+    }
 }
 
 // 100% matching!

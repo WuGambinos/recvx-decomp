@@ -3805,48 +3805,50 @@ int bhEne03_DGDirCheck(BH_PWORK* epw)
     return 1;
 }
 
-// 
-// Start address: 0x19e910
+// 100% matching!
 void bhEne03_SearchPlayer(BH_PWORK* epw, int ang)
 {
-	NJS_POINT3 p2;
-	NJS_POINT3 p1;
-	NJS_POINT3 dist;
-	// Line 4899, Address: 0x19e910, Func Offset: 0
-	// Line 4903, Address: 0x19e924, Func Offset: 0x14
-	// Line 4905, Address: 0x19e930, Func Offset: 0x20
-	// Line 4903, Address: 0x19e93c, Func Offset: 0x2c
-	// Line 4904, Address: 0x19e948, Func Offset: 0x38
-	// Line 4905, Address: 0x19e958, Func Offset: 0x48
-	// Line 4908, Address: 0x19e968, Func Offset: 0x58
-	// Line 4909, Address: 0x19e974, Func Offset: 0x64
-	// Line 4910, Address: 0x19e97c, Func Offset: 0x6c
-	// Line 4912, Address: 0x19e98c, Func Offset: 0x7c
-	// Line 4913, Address: 0x19e9a0, Func Offset: 0x90
-	// Line 4916, Address: 0x19e9b8, Func Offset: 0xa8
-	// Line 4919, Address: 0x19e9c4, Func Offset: 0xb4
-	// Line 4920, Address: 0x19e9c8, Func Offset: 0xb8
-	// Line 4916, Address: 0x19e9cc, Func Offset: 0xbc
-	// Line 4920, Address: 0x19e9d4, Func Offset: 0xc4
-	// Line 4919, Address: 0x19e9d8, Func Offset: 0xc8
-	// Line 4923, Address: 0x19e9dc, Func Offset: 0xcc
-	// Line 4916, Address: 0x19e9e4, Func Offset: 0xd4
-	// Line 4923, Address: 0x19e9e8, Func Offset: 0xd8
-	// Line 4916, Address: 0x19e9f0, Func Offset: 0xe0
-	// Line 4917, Address: 0x19e9f8, Func Offset: 0xe8
-	// Line 4918, Address: 0x19ea10, Func Offset: 0x100
-	// Line 4919, Address: 0x19ea28, Func Offset: 0x118
-	// Line 4920, Address: 0x19ea30, Func Offset: 0x120
-	// Line 4921, Address: 0x19ea3c, Func Offset: 0x12c
-	// Line 4923, Address: 0x19ea40, Func Offset: 0x130
-	// Line 4924, Address: 0x19ea50, Func Offset: 0x140
-	// Line 4925, Address: 0x19ea58, Func Offset: 0x148
-	// Line 4929, Address: 0x19ea60, Func Offset: 0x150
-	// Line 4930, Address: 0x19ea74, Func Offset: 0x164
-	// Line 4931, Address: 0x19ea80, Func Offset: 0x170
-	// Line 4932, Address: 0x19ea98, Func Offset: 0x188
-	// Line 4934, Address: 0x19ea9c, Func Offset: 0x18c
-	// Func End, Address: 0x19eab4, Func Offset: 0x1a4
+    NJS_POINT3 dist;
+    NJS_POINT3 p1, p2;
+
+    dist.x = epw->px - plp->px;
+    dist.y = epw->py - plp->py;
+    dist.z = epw->pz - plp->pz;
+    
+    njSetMatrix(NULL, (NJS_MATRIX*)epw->exp0);
+    
+    njInvertMatrix(NULL);
+    
+    njCalcPoint(NULL, &dist, &dist);
+    
+    EXP0_I(68) = bhArcTan2(dist.x, dist.z);
+    
+    if (abs(EXP0_I(68)) < ang) 
+    {
+        p1.x = epw->px + (5.0f * EXP0_F(16));
+        p1.y = epw->py + (5.0f * EXP0_F(20));
+        p1.z = epw->pz + (5.0f * EXP0_F(24));
+        
+        p2.x = plp->px;
+        p2.y = 10.0f + plp->py;
+        p2.z = plp->pz;
+        
+        if (bhCollisionCheckLine2(&p1, &p2, 0x4400, -1) == NULL) 
+        {
+            EXP0_UC(104) = 1;
+            return;
+        }
+    }
+    
+    if (EXP0_UC(104) != 0) 
+    {
+        EXP0_UC(104)++;
+        
+        if (EXP0_UC(104) > 90) 
+        {
+            EXP0_UC(104) = 0;
+        }
+    }
 }
 
 // 100% matching!

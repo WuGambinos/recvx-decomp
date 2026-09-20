@@ -24,6 +24,9 @@ Groundwork has been made for decompiling the Dreamcast and GameCube releases of 
 
 ## Building
 
+> [!IMPORTANT] 
+You will have to provide your own files for the PS2 API, the project only works with the **2.0.0** and **3.0.3** versions of the SDK. **compile_config.json** outlines the paths where the build system expects the SCE stuff.
+
 First clone the repository: 
 ```
 git clone --recursive https://github.com/AshfordFamily/recvx-decomp.git

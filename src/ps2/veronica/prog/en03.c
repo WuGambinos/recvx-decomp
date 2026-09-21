@@ -5606,68 +5606,85 @@ void bhEne03_DamageInit(BH_PWORK* epw)
 	// Func End, Address: 0x1a20f4, Func Offset: 0x894
 }
 
-// 
-// Start address: 0x1a2100
+// 100% matching!
 int bhEne03_CheckJumpSpace(BH_PWORK* epw)
 {
-	int i;
-	BH_PWORK* ep;
-	float dist;
-	NJS_POINT3 p2;
-	NJS_POINT3 p1;
-	// Line 7118, Address: 0x1a2100, Func Offset: 0
-	// Line 7124, Address: 0x1a2114, Func Offset: 0x14
-	// Line 7127, Address: 0x1a2124, Func Offset: 0x24
-	// Line 7134, Address: 0x1a2134, Func Offset: 0x34
-	// Line 7127, Address: 0x1a2138, Func Offset: 0x38
-	// Line 7135, Address: 0x1a213c, Func Offset: 0x3c
-	// Line 7127, Address: 0x1a2140, Func Offset: 0x40
-	// Line 7128, Address: 0x1a2148, Func Offset: 0x48
-	// Line 7129, Address: 0x1a2160, Func Offset: 0x60
-	// Line 7132, Address: 0x1a2178, Func Offset: 0x78
-	// Line 7133, Address: 0x1a2180, Func Offset: 0x80
-	// Line 7134, Address: 0x1a2188, Func Offset: 0x88
-	// Line 7136, Address: 0x1a2190, Func Offset: 0x90
-	// Line 7140, Address: 0x1a21a0, Func Offset: 0xa0
-	// Line 7136, Address: 0x1a21a8, Func Offset: 0xa8
-	// Line 7140, Address: 0x1a21ac, Func Offset: 0xac
-	// Line 7136, Address: 0x1a21bc, Func Offset: 0xbc
-	// Line 7137, Address: 0x1a21c8, Func Offset: 0xc8
-	// Line 7140, Address: 0x1a21dc, Func Offset: 0xdc
-	// Line 7141, Address: 0x1a21ec, Func Offset: 0xec
-	// Line 7143, Address: 0x1a21f4, Func Offset: 0xf4
-	// Line 7144, Address: 0x1a2204, Func Offset: 0x104
-	// Line 7147, Address: 0x1a220c, Func Offset: 0x10c
-	// Line 7148, Address: 0x1a221c, Func Offset: 0x11c
-	// Line 7147, Address: 0x1a2220, Func Offset: 0x120
-	// Line 7150, Address: 0x1a2224, Func Offset: 0x124
-	// Line 7147, Address: 0x1a2228, Func Offset: 0x128
-	// Line 7148, Address: 0x1a2230, Func Offset: 0x130
-	// Line 7149, Address: 0x1a2248, Func Offset: 0x148
-	// Line 7150, Address: 0x1a225c, Func Offset: 0x15c
-	// Line 7153, Address: 0x1a2264, Func Offset: 0x164
-	// Line 7150, Address: 0x1a2278, Func Offset: 0x178
-	// Line 7153, Address: 0x1a227c, Func Offset: 0x17c
-	// Line 7154, Address: 0x1a228c, Func Offset: 0x18c
-	// Line 7158, Address: 0x1a2294, Func Offset: 0x194
-	// Line 7163, Address: 0x1a22a0, Func Offset: 0x1a0
-	// Line 7158, Address: 0x1a22a8, Func Offset: 0x1a8
-	// Line 7159, Address: 0x1a22b0, Func Offset: 0x1b0
-	// Line 7160, Address: 0x1a22b8, Func Offset: 0x1b8
-	// Line 7161, Address: 0x1a22c4, Func Offset: 0x1c4
-	// Line 7163, Address: 0x1a22c8, Func Offset: 0x1c8
-	// Line 7167, Address: 0x1a22e0, Func Offset: 0x1e0
-	// Line 7168, Address: 0x1a2328, Func Offset: 0x228
-	// Line 7169, Address: 0x1a234c, Func Offset: 0x24c
-	// Line 7171, Address: 0x1a2370, Func Offset: 0x270
-	// Line 7172, Address: 0x1a2378, Func Offset: 0x278
-	// Line 7173, Address: 0x1a2380, Func Offset: 0x280
-	// Line 7174, Address: 0x1a23a8, Func Offset: 0x2a8
-	// Line 7175, Address: 0x1a23b4, Func Offset: 0x2b4
-	// Line 7177, Address: 0x1a23d8, Func Offset: 0x2d8
-	// Line 7179, Address: 0x1a2400, Func Offset: 0x300
-	// Line 7180, Address: 0x1a2404, Func Offset: 0x304
-	// Func End, Address: 0x1a241c, Func Offset: 0x31c
+    NJS_POINT3 p1, p2; 
+    float dist;   
+    BH_PWORK* ep;  
+    int i;         
+
+    if (EXP0_C(105) == 0) 
+    {
+        dist = epw->px; // may be fake, but matches
+        
+        p1.x = dist    - (20.0f * EXP0_F(32));
+        p1.y = epw->py - (20.0f * EXP0_F(36));
+        p1.z = epw->pz - (20.0f * EXP0_F(40)); 
+        
+        p2.x = epw->px;
+        p2.y = epw->py;
+        p2.z = epw->pz;
+        
+        for (i = 0; i < 5; i++) 
+        {
+            p2.x -= 4.0f * EXP0_F(32);
+            p2.z -= 4.0f * EXP0_F(40);
+            
+            if (bhCheckWallType(&p2, 0, 5.0f, 15.0f) != 0) 
+            {
+                return 0;
+            }
+        }
+    }
+    else 
+    {
+        dist = epw->px;
+        
+        p1.x = dist    + (10.0f * EXP0_F(16));
+        p1.y = epw->py + (10.0f * EXP0_F(20));
+        p1.z = epw->pz + (10.0f * EXP0_F(24));
+        
+        p1.y = bhGetGroundPosition(&p1);
+        
+        if (bhCheckWallType(&p1, 0, 5.0f, 10.0f) != 0) 
+        {
+            return 0;
+        }
+        
+        p1.y += 1.0f;
+        
+        p2.x = epw->px;
+        p2.y = epw->py + 1.0f;
+        p2.z = epw->pz;
+        
+        if (bhCollisionCheckLine(&p2, &p1) != 0) 
+        {
+            return 0;
+        }
+    }
+
+    if ((((18.0f + plp->py) + epw->ar) > p1.y) && ((plp->py - epw->ar) < p1.y)) 
+    {
+        dist = njSqrt(((p1.x - plp->px) * (p1.x - plp->px)) + ((p1.z - plp->pz) * (p1.z - plp->pz)));
+        
+        if (dist < 10.0f) 
+        {
+            return 0;
+        }
+    }
+
+    ep = ene;
+    
+    for (i = 0; i < sys->ewk_n; i++, ep++) 
+    {
+        if ((((ep->flg & 0x1)) && (ep->id == 3) && (ep != epw)) && (njDistanceP2P(&p1, (NJS_POINT3*)&ep->px) < 10.0f))
+        {
+            return 0;
+        }
+    }
+
+    return 1;
 }
 
 // 

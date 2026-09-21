@@ -7,6 +7,7 @@
 #include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
@@ -6148,69 +6149,84 @@ void bhEne03_Acid(BH_PWORK* epw, int type)
 	// Func End, Address: 0x1a3768, Func Offset: 0x3a8
 }
 
-// 
-// Start address: 0x1a3770
+// 100% matching!
 void bhEne03_HitMark(BH_PWORK* epw)
 {
-	BLOOD_TBL* blp;
-	NJS_POINT3 ofp;
-	int range;
-	int i;
-	// Line 7610, Address: 0x1a3770, Func Offset: 0
-	// Line 7616, Address: 0x1a3790, Func Offset: 0x20
-	// Line 7617, Address: 0x1a3794, Func Offset: 0x24
-	// Line 7616, Address: 0x1a379c, Func Offset: 0x2c
-	// Line 7611, Address: 0x1a37a4, Func Offset: 0x34
-	// Line 7616, Address: 0x1a37a8, Func Offset: 0x38
-	// Line 7617, Address: 0x1a37b8, Func Offset: 0x48
-	// Line 7618, Address: 0x1a37bc, Func Offset: 0x4c
-	// Line 7619, Address: 0x1a37cc, Func Offset: 0x5c
-	// Line 7620, Address: 0x1a37dc, Func Offset: 0x6c
-	// Line 7621, Address: 0x1a3804, Func Offset: 0x94
-	// Line 7622, Address: 0x1a3808, Func Offset: 0x98
-	// Line 7623, Address: 0x1a380c, Func Offset: 0x9c
-	// Line 7621, Address: 0x1a3810, Func Offset: 0xa0
-	// Line 7622, Address: 0x1a3814, Func Offset: 0xa4
-	// Line 7623, Address: 0x1a381c, Func Offset: 0xac
-	// Line 7624, Address: 0x1a3824, Func Offset: 0xb4
-	// Line 7625, Address: 0x1a3864, Func Offset: 0xf4
-	// Line 7626, Address: 0x1a38a4, Func Offset: 0x134
-	// Line 7627, Address: 0x1a38c0, Func Offset: 0x150
-	// Line 7626, Address: 0x1a38cc, Func Offset: 0x15c
-	// Line 7627, Address: 0x1a38dc, Func Offset: 0x16c
-	// Line 7626, Address: 0x1a38e0, Func Offset: 0x170
-	// Line 7627, Address: 0x1a38f4, Func Offset: 0x184
-	// Line 7629, Address: 0x1a3918, Func Offset: 0x1a8
-	// Line 7630, Address: 0x1a3940, Func Offset: 0x1d0
-	// Line 7634, Address: 0x1a3954, Func Offset: 0x1e4
-	// Line 7635, Address: 0x1a3988, Func Offset: 0x218
-	// Line 7636, Address: 0x1a398c, Func Offset: 0x21c
-	// Line 7637, Address: 0x1a3990, Func Offset: 0x220
-	// Line 7638, Address: 0x1a3994, Func Offset: 0x224
-	// Line 7636, Address: 0x1a3998, Func Offset: 0x228
-	// Line 7637, Address: 0x1a399c, Func Offset: 0x22c
-	// Line 7638, Address: 0x1a39a4, Func Offset: 0x234
-	// Line 7639, Address: 0x1a39ac, Func Offset: 0x23c
-	// Line 7640, Address: 0x1a39ec, Func Offset: 0x27c
-	// Line 7641, Address: 0x1a3a2c, Func Offset: 0x2bc
-	// Line 7642, Address: 0x1a3a68, Func Offset: 0x2f8
-	// Line 7643, Address: 0x1a3ac8, Func Offset: 0x358
-	// Line 7646, Address: 0x1a3ad8, Func Offset: 0x368
-	// Line 7647, Address: 0x1a3b00, Func Offset: 0x390
-	// Line 7648, Address: 0x1a3b04, Func Offset: 0x394
-	// Line 7649, Address: 0x1a3b08, Func Offset: 0x398
-	// Line 7647, Address: 0x1a3b0c, Func Offset: 0x39c
-	// Line 7648, Address: 0x1a3b10, Func Offset: 0x3a0
-	// Line 7649, Address: 0x1a3b18, Func Offset: 0x3a8
-	// Line 7650, Address: 0x1a3b20, Func Offset: 0x3b0
-	// Line 7651, Address: 0x1a3b60, Func Offset: 0x3f0
-	// Line 7652, Address: 0x1a3ba0, Func Offset: 0x430
-	// Line 7653, Address: 0x1a3bbc, Func Offset: 0x44c
-	// Line 7652, Address: 0x1a3bc0, Func Offset: 0x450
-	// Line 7653, Address: 0x1a3be4, Func Offset: 0x474
-	// Line 7657, Address: 0x1a3bf0, Func Offset: 0x480
-	// Line 7658, Address: 0x1a3c18, Func Offset: 0x4a8
-	// Line 7659, Address: 0x1a3c30, Func Offset: 0x4c0
-	// Line 7661, Address: 0x1a3c3c, Func Offset: 0x4cc
-	// Func End, Address: 0x1a3c60, Func Offset: 0x4f0
+    int i;          
+    int range;      
+    NJS_POINT3 ofp; 
+    BLOOD_TBL* blp;
+
+    blp = &BloodTbl[epw->djnt_no];
+    
+    range = 0;
+    
+    if ((epw->comb_flg & 0x10)) 
+    {
+        range = 0;
+    }
+    
+    if ((epw->comb_flg & 0x20)) 
+    {
+        range = 1;
+    }
+    
+    if ((epw->comb_flg & 0x40)) 
+    {
+        range = 2;
+    }
+    
+    if (DmgReact[epw->wpnr_no].type[range] >= 0) 
+    {
+        ofp.x = blp->ofp.x;
+        ofp.y = blp->ofp.y;
+        ofp.z = blp->ofp.z;
+        
+        ofp.x += (blp->rx * (-rand() / -2.1474836E9f)) - (blp->rx / 2.0f);
+        ofp.y += (blp->ry * (-rand() / -2.1474836E9f)) - (blp->ry / 2.0f);
+        ofp.z += (blp->rz * (-rand() / -2.1474836E9f)) - (blp->rz / 2.0f);
+        
+        bhEne_SetBloodEffectBurst(epw, DmgReact[epw->wpnr_no].type[range], epw->djnt_no, &ofp, 0);
+        
+        if (DmgReact[epw->wpnr_no].bloodstain[range] != 0) 
+        {
+            bhEne_SetBloodstain(epw, 0, epw->djnt_no, &ofp);
+        }
+    }
+    
+    if (((DmgReact[epw->wpnr_no].exef & 0x1)) && (blp->flg == 0)) 
+    {
+        for (i = 0; i < 4; i++) 
+        {
+            ofp.x = blp->ofp.x;
+            ofp.y = blp->ofp.y;
+            ofp.z = blp->ofp.z;
+            
+            ofp.x += (blp->rx * (-rand() / -2.1474836E9f)) - (blp->rx / 2.0f);
+            ofp.y += (blp->ry * (-rand() / -2.1474836E9f)) - (blp->ry / 2.0f);
+            ofp.z += (blp->rz * (-rand() / -2.1474836E9f)) - (blp->rz / 2.0f);
+            
+            bhEne_SetFireEffect(epw, epw->djnt_no, &ofp, 0.5f + (0.5f * (-rand() / -2.1474836E9f)), (rand() % 40) + 20);
+        } 
+    }
+    
+    if ((DmgReact[epw->wpnr_no].exef & 0x2)) 
+    {
+        ofp.x = blp->ofp.x;
+        ofp.y = blp->ofp.y;
+        ofp.z = blp->ofp.z;
+        
+        ofp.x += (blp->rx * (-rand() / -2.1474836E9f)) - (blp->rx / 2.0f);
+        ofp.y += (blp->ry * (-rand() / -2.1474836E9f)) - (blp->ry / 2.0f);
+        ofp.z += (blp->rz * (-rand() / -2.1474836E9f)) - (blp->rz / 2.0f);
+        
+        bhEne_SetAcidEffect(epw, epw->djnt_no, &ofp, 2.0f);
+    }
+    
+    if ((DmgReact[epw->wpnr_no].exef & 0x4)) 
+    {
+        npSetAllMatColor(epw->mlwP->objP, epw->mlwP->obj_num, 0xFF201010);
+        
+        epw->mdflg |= 0x400;
+    }
 }

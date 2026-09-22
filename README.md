@@ -14,7 +14,7 @@
 ## About
 
 > [!IMPORTANT]
-Issues and pull-requests that are clearly **AI-generated** will be automatically **turned down**.
+**AI disclosure**: LLMs produced negligible decompilation results in 2024 and also a good deal of 2025. Since we're trying our best not to mess up a 2-year-old project, we ask that any AI-generated submission is disclosed to us and handled responsibly. 
 
 **recvx-decomp** is a reverse-engineering project for Resident Evil: Code Veronica X which has the goal of reconstructing the source code of the game by decompiling the MIPS in the PS2 ELF back to C. The project currently only works with the US release (**SLUS-20184**), with plans to add support for more regions in the future.
 
@@ -87,7 +87,7 @@ Related decomp projects:
 - [Fatal Frame](https://github.com/Mikompilation/Himuro)
 - [Legacy of Kain: Soul Reaver](https://github.com/fmil95/soul-re)
 
-AshfordFamily's org avatar fan art was designed by [fishiiarts_](https://www.instagram.com/fishiiarts_/).
+Also be sure to check out these [neat patches for PCSX2](https://github.com/fmil95/cvxpacchi). AshfordFamily's org avatar fan art was designed by [fishiiarts_](https://www.instagram.com/fishiiarts_/).
 
 ## Disclaimer
 

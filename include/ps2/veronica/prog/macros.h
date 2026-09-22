@@ -79,6 +79,9 @@
 #define EXP0_P3(n)  ((NJS_POINT3*)(epw->exp0 + (n) * 12 + 0x84))
 #define EXP0_P(i) (*(NJS_POINT3 *)((char *)epw->exp0 + 4 + ((i) * 12)))
 
+#define EXP0_BYTE(pno, off) (*(char*)(*(int*)((char*)epw->exp0 + (pno * 4) + 128) + (off)))
+#define EXP0_INT(pno, off) (*(int*) (*(int*)((char*)epw->exp0 + (pno * 4) + 128) + (off)))
+
 #define CEPW_EXP0_I(o) (*(int*)((char*)cepw->exp0 + (o)))
 
 #define MTN_NO_CHECK(epw) ((epw->mtn_no == 2) ? 0 : (epw->mtn_no == 3) ? 1 : 2) 

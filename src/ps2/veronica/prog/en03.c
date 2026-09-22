@@ -3442,39 +3442,56 @@ void bhEne03_Die(BH_PWORK* epw)
 	bhEne03_DeadMode2[epw->mode2](epw);
 }
 
-// 
-// Start address: 0x19d680
+// 98.20% matching
 void bhEne03_DD00(BH_PWORK* epw)
 {
-	// Line 4312, Address: 0x19d680, Func Offset: 0
-	// Line 4313, Address: 0x19d68c, Func Offset: 0xc
-	// Line 4316, Address: 0x19d6b8, Func Offset: 0x38
-	// Line 4318, Address: 0x19d6c0, Func Offset: 0x40
-	// Line 4317, Address: 0x19d6c4, Func Offset: 0x44
-	// Line 4318, Address: 0x19d6c8, Func Offset: 0x48
-	// Line 4319, Address: 0x19d6cc, Func Offset: 0x4c
-	// Line 4321, Address: 0x19d6d4, Func Offset: 0x54
-	// Line 4322, Address: 0x19d6f8, Func Offset: 0x78
-	// Line 4324, Address: 0x19d704, Func Offset: 0x84
-	// Line 4325, Address: 0x19d714, Func Offset: 0x94
-	// Line 4327, Address: 0x19d724, Func Offset: 0xa4
-	// Line 4328, Address: 0x19d72c, Func Offset: 0xac
-	// Line 4329, Address: 0x19d730, Func Offset: 0xb0
-	// Line 4331, Address: 0x19d734, Func Offset: 0xb4
-	// Line 4332, Address: 0x19d758, Func Offset: 0xd8
-	// Line 4334, Address: 0x19d760, Func Offset: 0xe0
-	// Line 4336, Address: 0x19d768, Func Offset: 0xe8
-	// Line 4337, Address: 0x19d778, Func Offset: 0xf8
-	// Line 4338, Address: 0x19d7dc, Func Offset: 0x15c
-	// Line 4339, Address: 0x19d7e0, Func Offset: 0x160
-	// Line 4340, Address: 0x19d7e4, Func Offset: 0x164
-	// Line 4339, Address: 0x19d7e8, Func Offset: 0x168
-	// Line 4340, Address: 0x19d7f0, Func Offset: 0x170
-	// Line 4341, Address: 0x19d7fc, Func Offset: 0x17c
-	// Line 4344, Address: 0x19d808, Func Offset: 0x188
-	// Line 4345, Address: 0x19d820, Func Offset: 0x1a0
-	// Line 4349, Address: 0x19d838, Func Offset: 0x1b8
-	// Func End, Address: 0x19d848, Func Offset: 0x1c8
+    switch (epw->mode3) 
+    {                        
+    case 0:
+        epw->mtn_no = 23;
+        epw->frm_no = 0;
+        
+        epw->hokan_count = 8;
+        epw->hokan_rate  = 32768;
+        
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
+        
+        epw->mode3++;
+    case 1:
+        bhEne03_AddNullTrans(epw, spm_023);
+        
+        if (epw->ct0-- == 0) 
+        {
+            epw->mtn_no = 24;
+            epw->frm_no = 0;
+            
+            epw->hokan_count = 0;
+            
+            epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
+            
+            epw->mode3++;
+        }
+        
+        break;
+    case 2:
+        if (epw->ct0-- == 0)
+        {
+            epw->frm_no = 65536.0f * (epw->mnwP[epw->mtn_no].frm_num - 1);
+            
+            epw->mtn_add = 0;
+            
+            epw->mode3++;
+            
+            epw->flg  &= ~0x8;
+            epw->flg2 |=  0x1;
+            
+            epw->ay = bhArcTan2(-EXP0_F(8), EXP0_F(0));
+            
+            bhEne_BloodPool(epw, (NJS_POINT3*)&epw->px, epw->ay, &BloodParam);
+        }
+        
+        break;
+    }
 }
 
 // 

@@ -6167,91 +6167,82 @@ void bhEne03_CallSE(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1a33c0
+// 99.96% matching
 void bhEne03_Acid(BH_PWORK* epw, int type)
 {
-	float dt;
-	O_WORK* owk;
-	int i;
-	int eno;
-	// Line 7537, Address: 0x1a33c0, Func Offset: 0
-	// Line 7545, Address: 0x1a33ec, Func Offset: 0x2c
-	// Line 7550, Address: 0x1a33f0, Func Offset: 0x30
-	// Line 7545, Address: 0x1a33fc, Func Offset: 0x3c
-	// Line 7546, Address: 0x1a3400, Func Offset: 0x40
-	// Line 7550, Address: 0x1a3404, Func Offset: 0x44
-	// Line 7547, Address: 0x1a3408, Func Offset: 0x48
-	// Line 7551, Address: 0x1a340c, Func Offset: 0x4c
-	// Line 7548, Address: 0x1a3410, Func Offset: 0x50
-	// Line 7552, Address: 0x1a3414, Func Offset: 0x54
-	// Line 7550, Address: 0x1a3418, Func Offset: 0x58
-	// Line 7551, Address: 0x1a341c, Func Offset: 0x5c
-	// Line 7552, Address: 0x1a3420, Func Offset: 0x60
-	// Line 7550, Address: 0x1a3424, Func Offset: 0x64
-	// Line 7551, Address: 0x1a3428, Func Offset: 0x68
-	// Line 7555, Address: 0x1a342c, Func Offset: 0x6c
-	// Line 7557, Address: 0x1a3434, Func Offset: 0x74
-	// Line 7558, Address: 0x1a3444, Func Offset: 0x84
-	// Line 7559, Address: 0x1a3448, Func Offset: 0x88
-	// Line 7557, Address: 0x1a344c, Func Offset: 0x8c
-	// Line 7559, Address: 0x1a3450, Func Offset: 0x90
-	// Line 7560, Address: 0x1a3464, Func Offset: 0xa4
-	// Line 7562, Address: 0x1a346c, Func Offset: 0xac
-	// Line 7564, Address: 0x1a3478, Func Offset: 0xb8
-	// Line 7562, Address: 0x1a3480, Func Offset: 0xc0
-	// Line 7563, Address: 0x1a3484, Func Offset: 0xc4
-	// Line 7562, Address: 0x1a3488, Func Offset: 0xc8
-	// Line 7563, Address: 0x1a348c, Func Offset: 0xcc
-	// Line 7567, Address: 0x1a3490, Func Offset: 0xd0
-	// Line 7568, Address: 0x1a34a4, Func Offset: 0xe4
-	// Line 7569, Address: 0x1a34c0, Func Offset: 0x100
-	// Line 7574, Address: 0x1a34c4, Func Offset: 0x104
-	// Line 7568, Address: 0x1a34c8, Func Offset: 0x108
-	// Line 7569, Address: 0x1a34d4, Func Offset: 0x114
-	// Line 7570, Address: 0x1a34e8, Func Offset: 0x128
-	// Line 7571, Address: 0x1a34fc, Func Offset: 0x13c
-	// Line 7572, Address: 0x1a3510, Func Offset: 0x150
-	// Line 7575, Address: 0x1a3524, Func Offset: 0x164
-	// Line 7576, Address: 0x1a353c, Func Offset: 0x17c
-	// Line 7575, Address: 0x1a3544, Func Offset: 0x184
-	// Line 7579, Address: 0x1a3548, Func Offset: 0x188
-	// Line 7575, Address: 0x1a3550, Func Offset: 0x190
-	// Line 7576, Address: 0x1a3560, Func Offset: 0x1a0
-	// Line 7579, Address: 0x1a3568, Func Offset: 0x1a8
-	// Line 7575, Address: 0x1a356c, Func Offset: 0x1ac
-	// Line 7576, Address: 0x1a3570, Func Offset: 0x1b0
-	// Line 7577, Address: 0x1a3574, Func Offset: 0x1b4
-	// Line 7578, Address: 0x1a3588, Func Offset: 0x1c8
-	// Line 7579, Address: 0x1a359c, Func Offset: 0x1dc
-	// Line 7580, Address: 0x1a35b4, Func Offset: 0x1f4
-	// Line 7581, Address: 0x1a35c0, Func Offset: 0x200
-	// Line 7583, Address: 0x1a35e4, Func Offset: 0x224
-	// Line 7584, Address: 0x1a35e8, Func Offset: 0x228
-	// Line 7585, Address: 0x1a35ec, Func Offset: 0x22c
-	// Line 7581, Address: 0x1a35f0, Func Offset: 0x230
-	// Line 7582, Address: 0x1a35f8, Func Offset: 0x238
-	// Line 7586, Address: 0x1a35fc, Func Offset: 0x23c
-	// Line 7589, Address: 0x1a3600, Func Offset: 0x240
-	// Line 7582, Address: 0x1a3604, Func Offset: 0x244
-	// Line 7583, Address: 0x1a3608, Func Offset: 0x248
-	// Line 7584, Address: 0x1a360c, Func Offset: 0x24c
-	// Line 7585, Address: 0x1a3610, Func Offset: 0x250
-	// Line 7589, Address: 0x1a3614, Func Offset: 0x254
-	// Line 7590, Address: 0x1a361c, Func Offset: 0x25c
-	// Line 7591, Address: 0x1a3670, Func Offset: 0x2b0
-	// Line 7592, Address: 0x1a36bc, Func Offset: 0x2fc
-	// Line 7594, Address: 0x1a36cc, Func Offset: 0x30c
-	// Line 7595, Address: 0x1a36dc, Func Offset: 0x31c
-	// Line 7594, Address: 0x1a36e0, Func Offset: 0x320
-	// Line 7595, Address: 0x1a36ec, Func Offset: 0x32c
-	// Line 7594, Address: 0x1a36f0, Func Offset: 0x330
-	// Line 7595, Address: 0x1a36f4, Func Offset: 0x334
-	// Line 7596, Address: 0x1a3700, Func Offset: 0x340
-	// Line 7597, Address: 0x1a3714, Func Offset: 0x354
-	// Line 7599, Address: 0x1a3728, Func Offset: 0x368
-	// Line 7600, Address: 0x1a3738, Func Offset: 0x378
-	// Func End, Address: 0x1a3768, Func Offset: 0x3a8
+    int eno;   
+    int i;      
+    O_WORK* owk; 
+    float dt;    
+    NJS_POINT3 pos1, pos2; // not from DWARF
+
+    owk = epw->mlwP->owP; 
+    
+    pos1.x = owk[36].mtx[12];
+    pos1.y = owk[36].mtx[13];
+    pos1.z = owk[36].mtx[14]; 
+    
+    pos1.x = (pos1.x + owk[35].mtx[12]) * 0.5f; 
+    pos1.y = (pos1.y + owk[35].mtx[13]) * 0.5f;
+    pos1.z = (pos1.z + owk[35].mtx[14]) * 0.5f; 
+
+    if (type == 0) 
+    {
+        pos2.x = -2.5f * EXP0_F(32);
+        pos2.y = -2.5f * EXP0_F(40); 
+        pos2.z = (EXP0_C(105) == 0) ? 0.5f : 0.0f; 
+    } 
+    else 
+    { 
+        pos2.x = -0.5f * EXP0_F(32);
+        pos2.y = -0.5f * EXP0_F(40);
+        pos2.z = 2.5f;
+    }
+
+    sys->ef.id   = 256;
+    sys->ef.type = (type != 0) ? 5 : 1;
+    
+    sys->ef.flg = 1;
+    
+    sys->ef.px = pos1.x;
+    sys->ef.py = pos1.y;
+    sys->ef.pz = pos1.z;
+    
+    for (i = 0; i < 8; i++) 
+    {
+        dt = 0.5f + (-rand() / -2.1474836E9f);
+        
+        sys->ef.sx = dt;
+        sys->ef.sy = dt;
+        sys->ef.sz = dt;
+        
+        eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+        
+        if (eno != -1) 
+        {
+            eff[eno].stflg |= 0x20; 
+            
+            eff[eno].txp[0] = epw->mdl[1].texP; 
+            eff[eno].tex_id = 1; 
+
+            eff[eno].xn = pos2.x; 
+            eff[eno].yn = pos2.z; 
+            eff[eno].zn = pos2.y;
+            
+            njUnitMatrix(NULL);
+            
+            njRotateY(NULL, (1820.0f * (-rand() / -2.1474836E9f)) - 910.0f);
+            njRotateX(NULL,  1820.0f * (-rand() / -2.1474836E9f));
+            
+            njCalcVector(NULL, (NJS_VECTOR*)&eff[eno].xn, (NJS_VECTOR*)&eff[eno].xn);
+            
+            dt = -rand() / -2.1474836E9f;
+            
+            eff[eno].px += dt * eff[eno].xn;
+            eff[eno].py += dt * eff[eno].yn;
+            eff[eno].pz += dt * eff[eno].zn;
+        }
+    }
 }
 
 // 100% matching!

@@ -2,6 +2,7 @@
 #include "../../../ps2/veronica/prog/en02.h"
 #include "../../../ps2/veronica/prog/en03.h"
 #include "../../../ps2/veronica/prog/en03sub.h"
+#include "../../../ps2/veronica/prog/hitchkl.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
@@ -2967,26 +2968,24 @@ void bhEne23_Acid(BH_PWORK* epw)
 	// Func End, Address: 0x206c90, Func Offset: 0x3a0
 }
 
-// 
-// Start address: 0x206c90
+// 100% matching!
 unsigned int bhEne23_SearchPlayer(BH_PWORK* epw, int ang)
 {
 	NJS_POINT3 dist;
-	// Line 3830, Address: 0x206c90, Func Offset: 0
-	// Line 3834, Address: 0x206ca4, Func Offset: 0x14
-	// Line 3836, Address: 0x206cb0, Func Offset: 0x20
-	// Line 3834, Address: 0x206cbc, Func Offset: 0x2c
-	// Line 3835, Address: 0x206cc8, Func Offset: 0x38
-	// Line 3836, Address: 0x206cd8, Func Offset: 0x48
-	// Line 3839, Address: 0x206ce8, Func Offset: 0x58
-	// Line 3840, Address: 0x206cf4, Func Offset: 0x64
-	// Line 3841, Address: 0x206cfc, Func Offset: 0x6c
-	// Line 3843, Address: 0x206d0c, Func Offset: 0x7c
-	// Line 3845, Address: 0x206d20, Func Offset: 0x90
-	// Line 3848, Address: 0x206d30, Func Offset: 0xa0
-	// Line 3845, Address: 0x206d40, Func Offset: 0xb0
-	// Line 3848, Address: 0x206d48, Func Offset: 0xb8
-	// Func End, Address: 0x206d50, Func Offset: 0xc0
+
+    dist.x = epw->px - plp->px;
+    dist.y = epw->py - plp->py;
+    dist.z = epw->pz - plp->pz;
+    
+    njSetMatrix(NULL, (NJS_MATRIX*)epw->exp0);
+    
+    njInvertMatrix(NULL);
+    
+    njCalcPoint(NULL, &dist, &dist);
+    
+    EXP0_I(68) = bhArcTan2(dist.x, dist.z);
+    
+	return (abs(EXP0_I(68)) < ang) ? 1 : 0;
 }
 
 // 

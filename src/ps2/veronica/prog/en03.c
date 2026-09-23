@@ -3000,7 +3000,6 @@ void bhEne03_DG04(BH_PWORK* epw)
         
         bhEne_SetBloodEffect4(&pos, &pos, 1, 9, 2);
         bhEne_SetBloodEffect4(&pos, &pos, 1, 9, 1);
-        
         bhEne_SetBloodstain(epw, 1, 2, NULL);
 
         for (i = 0; i < 6; i++) 
@@ -3092,71 +3091,101 @@ void bhEne03_DG06(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x19c490
-void bhEne03_DG07(BH_PWORK* epw)
+// 100% matching!
+void bhEne03_DG07(BH_PWORK* epw) 
 {
-	// Line 3713, Address: 0x19c490, Func Offset: 0
-	// Line 3714, Address: 0x19c4a0, Func Offset: 0x10
-	// Line 3717, Address: 0x19c4cc, Func Offset: 0x3c
-	// Line 3719, Address: 0x19c4d4, Func Offset: 0x44
-	// Line 3718, Address: 0x19c4d8, Func Offset: 0x48
-	// Line 3719, Address: 0x19c4dc, Func Offset: 0x4c
-	// Line 3720, Address: 0x19c4e0, Func Offset: 0x50
-	// Line 3721, Address: 0x19c4e8, Func Offset: 0x58
-	// Line 3724, Address: 0x19c4ec, Func Offset: 0x5c
-	// Line 3729, Address: 0x19c4f0, Func Offset: 0x60
-	// Line 3724, Address: 0x19c4f4, Func Offset: 0x64
-	// Line 3725, Address: 0x19c4fc, Func Offset: 0x6c
-	// Line 3726, Address: 0x19c508, Func Offset: 0x78
-	// Line 3727, Address: 0x19c514, Func Offset: 0x84
-	// Line 3729, Address: 0x19c51c, Func Offset: 0x8c
-	// Line 3730, Address: 0x19c520, Func Offset: 0x90
-	// Line 3733, Address: 0x19c52c, Func Offset: 0x9c
-	// Line 3734, Address: 0x19c538, Func Offset: 0xa8
-	// Line 3735, Address: 0x19c540, Func Offset: 0xb0
-	// Line 3736, Address: 0x19c548, Func Offset: 0xb8
-	// Line 3738, Address: 0x19c594, Func Offset: 0x104
-	// Line 3739, Address: 0x19c5a0, Func Offset: 0x110
-	// Line 3741, Address: 0x19c5a8, Func Offset: 0x118
-	// Line 3742, Address: 0x19c5b4, Func Offset: 0x124
-	// Line 3744, Address: 0x19c5bc, Func Offset: 0x12c
-	// Line 3745, Address: 0x19c5c8, Func Offset: 0x138
-	// Line 3747, Address: 0x19c5d0, Func Offset: 0x140
-	// Line 3748, Address: 0x19c5dc, Func Offset: 0x14c
-	// Line 3750, Address: 0x19c5e4, Func Offset: 0x154
-	// Line 3753, Address: 0x19c5f0, Func Offset: 0x160
-	// Line 3754, Address: 0x19c5fc, Func Offset: 0x16c
-	// Line 3758, Address: 0x19c604, Func Offset: 0x174
-	// Line 3759, Address: 0x19c614, Func Offset: 0x184
-	// Line 3760, Address: 0x19c618, Func Offset: 0x188
-	// Line 3763, Address: 0x19c620, Func Offset: 0x190
-	// Line 3765, Address: 0x19c628, Func Offset: 0x198
-	// Line 3764, Address: 0x19c62c, Func Offset: 0x19c
-	// Line 3765, Address: 0x19c630, Func Offset: 0x1a0
-	// Line 3766, Address: 0x19c634, Func Offset: 0x1a4
-	// Line 3767, Address: 0x19c63c, Func Offset: 0x1ac
-	// Line 3769, Address: 0x19c644, Func Offset: 0x1b4
-	// Line 3771, Address: 0x19c64c, Func Offset: 0x1bc
-	// Line 3769, Address: 0x19c650, Func Offset: 0x1c0
-	// Line 3771, Address: 0x19c66c, Func Offset: 0x1dc
-	// Line 3773, Address: 0x19c678, Func Offset: 0x1e8
-	// Line 3774, Address: 0x19c680, Func Offset: 0x1f0
-	// Line 3776, Address: 0x19c688, Func Offset: 0x1f8
-	// Line 3779, Address: 0x19c690, Func Offset: 0x200
-	// Line 3776, Address: 0x19c6a0, Func Offset: 0x210
-	// Line 3777, Address: 0x19c6a8, Func Offset: 0x218
-	// Line 3778, Address: 0x19c6bc, Func Offset: 0x22c
-	// Line 3779, Address: 0x19c6d0, Func Offset: 0x240
-	// Line 3781, Address: 0x19c6dc, Func Offset: 0x24c
-	// Line 3783, Address: 0x19c6e4, Func Offset: 0x254
-	// Line 3784, Address: 0x19c6f4, Func Offset: 0x264
-	// Line 3785, Address: 0x19c6fc, Func Offset: 0x26c
-	// Line 3786, Address: 0x19c700, Func Offset: 0x270
-	// Line 3787, Address: 0x19c708, Func Offset: 0x278
-	// Line 3788, Address: 0x19c70c, Func Offset: 0x27c
-	// Line 3792, Address: 0x19c71c, Func Offset: 0x28c
-	// Func End, Address: 0x19c72c, Func Offset: 0x29c
+    switch (epw->mode3) 
+    {                            
+    case 0:                                         
+        epw->mtn_no = 50;
+        epw->frm_no = 0;
+        
+        epw->hokan_count = 10;
+        epw->hokan_rate  = 32768;
+        
+        epw->mtn_add = 0;
+        
+        EXP0_F(84) = EXP0_F(16);
+        EXP0_F(88) = EXP0_F(20);
+        EXP0_F(92) = EXP0_F(24);
+        
+        *(ATR_WORK**)&EXP0_I(96) = NULL;
+        
+        epw->ct0 = 8;
+        
+        epw->mode3++;
+    case 1:                                         
+        if (epw->ct0 > 0) 
+        {
+            epw->ct0--;
+            
+            njUnitMatrix(NULL);
+            
+            switch (EXP0_C(105)) 
+            {                    
+            case 5:                                 
+                njRotateX(NULL, -2048);
+                break;
+            case 3:                                 
+                njRotateX(NULL,  2048);
+                break;
+            case 4:                                 
+                njRotateZ(NULL, -2048);
+                break;
+            case 2:                                 
+                njRotateZ(NULL,  2048);
+                break;
+            case 1:                                
+                njRotateX(NULL,  4096);
+                break;
+            }
+            
+            njMultiMatrix(NULL, (NJS_MATRIX*)epw->exp0);
+            
+            njGetMatrix((NJS_MATRIX*)epw->exp0);
+        }
+        
+        if ((ATR_WORK*)EXP0_I(96) != NULL) 
+        {
+            EXP0_C(105) = 0;
+            
+            bhEne03_MakeMatrix(epw);
+            
+            epw->mtn_no = 49;
+            epw->frm_no = 0;
+            
+            epw->hokan_count = 3;
+            epw->hokan_rate  = 32768;
+            
+            epw->mtn_add = 65536;
+            
+            epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 2;
+            
+            epw->flg2 &= ~0x1;
+            
+            epw->mode3++;
+            break;
+        }
+        
+        epw->px += EXP0_F(84);
+        epw->py += EXP0_F(88);
+        epw->pz += EXP0_F(92);
+        
+        EXP0_F(88) -= 0.33f;
+        break;
+    case 2:                                    
+        if (epw->ct0-- == 0) 
+        {
+            epw->mode0 = 1;
+            epw->mode1 = 1;
+            epw->mode2 = 3;
+            epw->mode3 = 0;
+            
+            epw->flg &= ~0x4;
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!

@@ -3723,83 +3723,106 @@ void bhEne03_DD01(BH_PWORK* epw)
 	// Func End, Address: 0x19dd44, Func Offset: 0x4f4
 }
 
-// 
-// Start address: 0x19dd50
+// 99% matching
 void bhEne03_DD02(BH_PWORK* epw)
 {
-	NJS_MKEY_A_MOD* mkaP;
-	NJS_POINT3 trans;
-	NJS_MKEY* mkfP;
-	// Line 4515, Address: 0x19dd50, Func Offset: 0
-	// Line 4516, Address: 0x19dd64, Func Offset: 0x14
-	// Line 4519, Address: 0x19dd9c, Func Offset: 0x4c
-	// Line 4521, Address: 0x19dda4, Func Offset: 0x54
-	// Line 4520, Address: 0x19dda8, Func Offset: 0x58
-	// Line 4521, Address: 0x19ddac, Func Offset: 0x5c
-	// Line 4522, Address: 0x19ddb0, Func Offset: 0x60
-	// Line 4525, Address: 0x19ddb8, Func Offset: 0x68
-	// Line 4527, Address: 0x19ddbc, Func Offset: 0x6c
-	// Line 4525, Address: 0x19ddc0, Func Offset: 0x70
-	// Line 4526, Address: 0x19ddc4, Func Offset: 0x74
-	// Line 4527, Address: 0x19ddcc, Func Offset: 0x7c
-	// Line 4530, Address: 0x19ddd4, Func Offset: 0x84
-	// Line 4537, Address: 0x19dde0, Func Offset: 0x90
-	// Line 4541, Address: 0x19dde4, Func Offset: 0x94
-	// Line 4537, Address: 0x19dde8, Func Offset: 0x98
-	// Line 4539, Address: 0x19ddec, Func Offset: 0x9c
-	// Line 4540, Address: 0x19ddf0, Func Offset: 0xa0
-	// Line 4537, Address: 0x19ddf4, Func Offset: 0xa4
-	// Line 4538, Address: 0x19de0c, Func Offset: 0xbc
-	// Line 4539, Address: 0x19de14, Func Offset: 0xc4
-	// Line 4540, Address: 0x19de1c, Func Offset: 0xcc
-	// Line 4541, Address: 0x19de24, Func Offset: 0xd4
-	// Line 4542, Address: 0x19de30, Func Offset: 0xe0
-	// Line 4566, Address: 0x19de38, Func Offset: 0xe8
-	// Line 4562, Address: 0x19de3c, Func Offset: 0xec
-	// Line 4566, Address: 0x19de40, Func Offset: 0xf0
-	// Line 4542, Address: 0x19de44, Func Offset: 0xf4
-	// Line 4543, Address: 0x19de4c, Func Offset: 0xfc
-	// Line 4544, Address: 0x19de5c, Func Offset: 0x10c
-	// Line 4548, Address: 0x19de6c, Func Offset: 0x11c
-	// Line 4554, Address: 0x19de78, Func Offset: 0x128
-	// Line 4555, Address: 0x19de80, Func Offset: 0x130
-	// Line 4554, Address: 0x19de84, Func Offset: 0x134
-	// Line 4555, Address: 0x19de8c, Func Offset: 0x13c
-	// Line 4554, Address: 0x19de90, Func Offset: 0x140
-	// Line 4555, Address: 0x19dea0, Func Offset: 0x150
-	// Line 4556, Address: 0x19dea8, Func Offset: 0x158
-	// Line 4557, Address: 0x19deb8, Func Offset: 0x168
-	// Line 4560, Address: 0x19dec8, Func Offset: 0x178
-	// Line 4562, Address: 0x19ded0, Func Offset: 0x180
-	// Line 4563, Address: 0x19dedc, Func Offset: 0x18c
-	// Line 4566, Address: 0x19dee8, Func Offset: 0x198
-	// Line 4568, Address: 0x19deec, Func Offset: 0x19c
-	// Line 4571, Address: 0x19def8, Func Offset: 0x1a8
-	// Line 4572, Address: 0x19df08, Func Offset: 0x1b8
-	// Line 4573, Address: 0x19df0c, Func Offset: 0x1bc
-	// Line 4576, Address: 0x19df14, Func Offset: 0x1c4
-	// Line 4577, Address: 0x19df1c, Func Offset: 0x1cc
-	// Line 4578, Address: 0x19df20, Func Offset: 0x1d0
-	// Line 4579, Address: 0x19df24, Func Offset: 0x1d4
-	// Line 4581, Address: 0x19df2c, Func Offset: 0x1dc
-	// Line 4583, Address: 0x19df3c, Func Offset: 0x1ec
-	// Line 4584, Address: 0x19df60, Func Offset: 0x210
-	// Line 4585, Address: 0x19df68, Func Offset: 0x218
-	// Line 4587, Address: 0x19df70, Func Offset: 0x220
-	// Line 4588, Address: 0x19df78, Func Offset: 0x228
-	// Line 4587, Address: 0x19df88, Func Offset: 0x238
-	// Line 4588, Address: 0x19df90, Func Offset: 0x240
-	// Line 4590, Address: 0x19df9c, Func Offset: 0x24c
-	// Line 4592, Address: 0x19dfa4, Func Offset: 0x254
-	// Line 4593, Address: 0x19dfb4, Func Offset: 0x264
-	// Line 4594, Address: 0x19e018, Func Offset: 0x2c8
-	// Line 4595, Address: 0x19e01c, Func Offset: 0x2cc
-	// Line 4596, Address: 0x19e020, Func Offset: 0x2d0
-	// Line 4599, Address: 0x19e02c, Func Offset: 0x2dc
-	// Line 4600, Address: 0x19e044, Func Offset: 0x2f4
-	// Line 4608, Address: 0x19e05c, Func Offset: 0x30c
-	// Line 4609, Address: 0x19e084, Func Offset: 0x334
-	// Func End, Address: 0x19e09c, Func Offset: 0x34c
+    NJS_MKEY* mkfP;    
+    NJS_POINT3 trans;    
+	NJS_MKEY_A_MOD* mkaP; 
+
+    switch (epw->mode3) 
+    {
+    case 0:
+        epw->mtn_no = 17;
+        epw->frm_no = 0;
+        
+        epw->hokan_count = 10;
+        epw->hokan_rate  = 45875;
+
+        EXP0_F(84) = 0;
+        EXP0_F(92) = 0;
+        EXP0_F(88) = -1.0f;
+
+        njRotateX((NJS_MATRIX*)epw->exp0, 32768);
+
+        mkfP = epw->mnwP[epw->mtn_no].md2P->p[0];
+        
+        trans.x = *mkfP->key++;
+        trans.y = *mkfP->key++;
+        trans.z = *mkfP->key++;
+
+        njCalcVector((NJS_MATRIX*)epw->exp0, &trans, &trans);
+
+        epw->px -= trans.x;
+        epw->py -= trans.y;
+        epw->pz -= trans.z;
+
+        epw->mtn_md |= 0x100;
+
+        mkaP = epw->mnwP[epw->mtn_no].md2P->p[1];
+        
+        epw->mlwP->objP->ang[0] = *mkaP->key++;
+        epw->mlwP->objP->ang[1] = *mkaP->key++;
+        epw->mlwP->objP->ang[2] = *mkaP->key++;
+
+        *(ATR_WORK**)&EXP0_I(96) = NULL;
+        
+        epw->flg  &= ~0x8;
+        epw->flg2 |=  0x1;
+        
+        epw->ar = 0.1f;
+        
+        epw->mode3++;
+    case 1:
+        if ((ATR_WORK*)EXP0_I(96) != NULL)
+        {
+            EXP0_C(105) = 0;
+            
+            bhEne03_MakeMatrix(epw);
+            
+            epw->mtn_no = 24;
+            epw->frm_no = 0;
+            
+            epw->hokan_count = 0;
+            
+            epw->mtn_add = 65536;
+            
+            epw->mtn_md &= ~0x100;
+            
+            epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
+            
+            epw->mode3++;
+        } 
+        else 
+        {
+            epw->py += EXP0_F(88);
+            
+            EXP0_F(88) -= 0.33f;
+        }
+        
+        break;
+    case 2:
+        if (epw->ct0-- == 0) 
+        {
+            epw->frm_no = (epw->mnwP[epw->mtn_no].frm_num - 1) * 65536.0f;
+            
+            epw->hokan_count = 0;
+            
+            epw->mtn_add = 0;
+            
+            epw->mode3++;
+
+            epw->ay = bhArcTan2(-EXP0_F(8), EXP0_F(0));
+            
+            bhEne_BloodPool(epw, (NJS_POINT3*)&epw->px, epw->ay, &BloodParam);
+        }
+        
+        break;
+    case 3:
+        break;
+    }
+
+    epw->ar += (6.0f - epw->ar) / 16.0f;
 }
 
 // 100% matching!

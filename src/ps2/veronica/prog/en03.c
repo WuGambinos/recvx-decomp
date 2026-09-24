@@ -11,6 +11,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
+#include "../../../ps2/veronica/prog/rutchk.h"
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
@@ -753,9 +754,10 @@ void bhEne03_Init(BH_PWORK* epw)
     EXP0_F(64) = 999.0f;
     
     EXP0_I(68) = 0;
-    EXP0_I(72) = 0;
-    EXP0_I(76) = 0;
-    EXP0_I(80) = 0;
+
+    EXP0_F(72) = 0;
+    EXP0_F(76) = 0;
+    EXP0_F(80) = 0;
     
     EXP0_I(228) = (rand() % 90) + 60;
     EXP0_I(232) = 0;
@@ -2088,59 +2090,80 @@ void bhEne03_MV16(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x199ea0
+// 100% matching!
 void bhEne03_MV17(BH_PWORK* epw)
 {
 	NJS_POINT3 pos;
-	// Line 2593, Address: 0x199ea0, Func Offset: 0
-	// Line 2596, Address: 0x199eb0, Func Offset: 0x10
-	// Line 2599, Address: 0x199ed0, Func Offset: 0x30
-	// Line 2601, Address: 0x199ed8, Func Offset: 0x38
-	// Line 2600, Address: 0x199edc, Func Offset: 0x3c
-	// Line 2601, Address: 0x199ee0, Func Offset: 0x40
-	// Line 2602, Address: 0x199ee4, Func Offset: 0x44
-	// Line 2603, Address: 0x199ee8, Func Offset: 0x48
-	// Line 2605, Address: 0x199f04, Func Offset: 0x64
-	// Line 2603, Address: 0x199f0c, Func Offset: 0x6c
-	// Line 2604, Address: 0x199f10, Func Offset: 0x70
-	// Line 2606, Address: 0x199f14, Func Offset: 0x74
-	// Line 2604, Address: 0x199f18, Func Offset: 0x78
-	// Line 2605, Address: 0x199f20, Func Offset: 0x80
-	// Line 2606, Address: 0x199f24, Func Offset: 0x84
-	// Line 2607, Address: 0x199f34, Func Offset: 0x94
-	// Line 2608, Address: 0x199f44, Func Offset: 0xa4
-	// Line 2609, Address: 0x199f4c, Func Offset: 0xac
-	// Line 2612, Address: 0x199fa0, Func Offset: 0x100
-	// Line 2615, Address: 0x199fac, Func Offset: 0x10c
-	// Line 2617, Address: 0x199fbc, Func Offset: 0x11c
-	// Line 2616, Address: 0x199fc0, Func Offset: 0x120
-	// Line 2617, Address: 0x199fc4, Func Offset: 0x124
-	// Line 2619, Address: 0x199fc8, Func Offset: 0x128
-	// Line 2622, Address: 0x199fd0, Func Offset: 0x130
-	// Line 2624, Address: 0x199fe4, Func Offset: 0x144
-	// Line 2623, Address: 0x199fe8, Func Offset: 0x148
-	// Line 2624, Address: 0x199fec, Func Offset: 0x14c
-	// Line 2626, Address: 0x199ff0, Func Offset: 0x150
-	// Line 2630, Address: 0x199ff8, Func Offset: 0x158
-	// Line 2631, Address: 0x19a020, Func Offset: 0x180
-	// Line 2632, Address: 0x19a02c, Func Offset: 0x18c
-	// Line 2633, Address: 0x19a034, Func Offset: 0x194
-	// Line 2635, Address: 0x19a03c, Func Offset: 0x19c
-	// Line 2636, Address: 0x19a04c, Func Offset: 0x1ac
-	// Line 2635, Address: 0x19a050, Func Offset: 0x1b0
-	// Line 2636, Address: 0x19a054, Func Offset: 0x1b4
-	// Line 2640, Address: 0x19a064, Func Offset: 0x1c4
-	// Line 2642, Address: 0x19a078, Func Offset: 0x1d8
-	// Line 2643, Address: 0x19a08c, Func Offset: 0x1ec
-	// Line 2644, Address: 0x19a0a0, Func Offset: 0x200
-	// Line 2648, Address: 0x19a0ac, Func Offset: 0x20c
-	// Line 2650, Address: 0x19a0bc, Func Offset: 0x21c
-	// Line 2649, Address: 0x19a0c0, Func Offset: 0x220
-	// Line 2650, Address: 0x19a0c4, Func Offset: 0x224
-	// Line 2651, Address: 0x19a0c8, Func Offset: 0x228
-	// Line 2654, Address: 0x19a0cc, Func Offset: 0x22c
-	// Func End, Address: 0x19a0dc, Func Offset: 0x23c
+
+    switch (epw->mode3)
+    {
+    case 0:
+        epw->mtn_no = 37;
+        epw->frm_no = 0;
+        
+        epw->hokan_count = 10;
+        epw->hokan_rate  = 32768;
+        
+        epw->ct0 = rand() % 47;
+        
+        epw->mode3++;
+        
+        epw->spd = 0.6f;
+
+        if (EXP0_UC(104) == 1) 
+        {  
+            epw->ct1 = (EXP0_I(68) < 0) ? -1 : 1;
+        }
+        else 
+        {
+            epw->ct1 = ((-rand() / -2.1474836E9f) < 0.5f) ? -1 : 1;
+        }
+    case 1:
+        bhEne03_GoAHead(epw);
+
+        if (bhEne03_CheckClimbWall(epw) != 0) 
+        {
+            epw->mode1 = 0;
+            epw->mode2 = 6;
+            epw->mode3 = 0;
+            break;
+        }
+        
+        if (bhEne03_CheckClimbDownWall(epw) != 0)
+        {
+            epw->mode1 = 0;
+            epw->mode2 = 8;
+            epw->mode3 = 0;
+            break;
+        }
+
+        if (bhCheckRoute((NJS_POINT3*)&epw->px, (NJS_POINT3*)&plp->px, &pos) != 0xFF) 
+        {
+            EXP0_F(72) = pos.x;
+            EXP0_F(80) = pos.z;
+        } 
+        else 
+        {
+            EXP0_F(72) = plp->px;
+            EXP0_F(80) = plp->pz;
+        }
+
+        if ((bhEne03_AvoidWall(epw, epw->ct1) == 0) && (EXP0_UC(104) == 1)) 
+        {
+            epw->ayp = bhEne03_DirTarget(epw, (NJS_POINT3*)&EXP0_F(72), 1547);
+            
+            njRotateY((NJS_MATRIX*)epw->exp0, epw->ayp);
+        }
+
+        if (epw->ct0-- == 0)
+        {
+            epw->mode1 = 0;
+            epw->mode2 = 1;
+            epw->mode3 = 0;
+        }
+        
+        break;
+    }
 }
 
 // 

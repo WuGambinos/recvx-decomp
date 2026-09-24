@@ -1679,88 +1679,137 @@ void bhEne03_MV06(BH_PWORK* epw)
 
 #pragma divbyzerocheck off
 
-// 
-// Start address: 0x198c20
-void bhEne03_MV07(BH_PWORK* epw)
+// 100% matching!
+void bhEne03_MV07(BH_PWORK* epw) 
 {
-	// Line 1916, Address: 0x198c20, Func Offset: 0
-	// Line 1919, Address: 0x198c30, Func Offset: 0x10
-	// Line 1922, Address: 0x198c50, Func Offset: 0x30
-	// Line 1923, Address: 0x198c5c, Func Offset: 0x3c
-	// Line 1924, Address: 0x198c60, Func Offset: 0x40
-	// Line 1925, Address: 0x198c68, Func Offset: 0x48
-	// Line 1928, Address: 0x198c70, Func Offset: 0x50
-	// Line 1927, Address: 0x198c74, Func Offset: 0x54
-	// Line 1928, Address: 0x198c78, Func Offset: 0x58
-	// Line 1929, Address: 0x198c7c, Func Offset: 0x5c
-	// Line 1932, Address: 0x198c84, Func Offset: 0x64
-	// Line 1933, Address: 0x198c8c, Func Offset: 0x6c
-	// Line 1934, Address: 0x198c90, Func Offset: 0x70
-	// Line 1932, Address: 0x198c94, Func Offset: 0x74
-	// Line 1933, Address: 0x198c9c, Func Offset: 0x7c
-	// Line 1934, Address: 0x198ca8, Func Offset: 0x88
-	// Line 1937, Address: 0x198cb4, Func Offset: 0x94
-	// Line 1939, Address: 0x198cc0, Func Offset: 0xa0
-	// Line 1940, Address: 0x198ce0, Func Offset: 0xc0
-	// Line 1942, Address: 0x198cec, Func Offset: 0xcc
-	// Line 1944, Address: 0x198cfc, Func Offset: 0xdc
-	// Line 1945, Address: 0x198d10, Func Offset: 0xf0
-	// Line 1948, Address: 0x198d1c, Func Offset: 0xfc
-	// Line 1950, Address: 0x198d4c, Func Offset: 0x12c
-	// Line 1958, Address: 0x198d5c, Func Offset: 0x13c
-	// Line 1959, Address: 0x198d90, Func Offset: 0x170
-	// Line 1960, Address: 0x198d98, Func Offset: 0x178
-	// Line 1962, Address: 0x198d9c, Func Offset: 0x17c
-	// Line 1964, Address: 0x198da4, Func Offset: 0x184
-	// Line 1965, Address: 0x198db4, Func Offset: 0x194
-	// Line 1966, Address: 0x198db8, Func Offset: 0x198
-	// Line 1967, Address: 0x198dc0, Func Offset: 0x1a0
-	// Line 1969, Address: 0x198dcc, Func Offset: 0x1ac
-	// Line 1971, Address: 0x198dd4, Func Offset: 0x1b4
-	// Line 1972, Address: 0x198de4, Func Offset: 0x1c4
-	// Line 1974, Address: 0x198dec, Func Offset: 0x1cc
-	// Line 1975, Address: 0x198df4, Func Offset: 0x1d4
-	// Line 1977, Address: 0x198dfc, Func Offset: 0x1dc
-	// Line 1978, Address: 0x198e04, Func Offset: 0x1e4
-	// Line 1980, Address: 0x198e0c, Func Offset: 0x1ec
-	// Line 1985, Address: 0x198e20, Func Offset: 0x200
-	// Line 1991, Address: 0x198e24, Func Offset: 0x204
-	// Line 1985, Address: 0x198e28, Func Offset: 0x208
-	// Line 1986, Address: 0x198e2c, Func Offset: 0x20c
-	// Line 1987, Address: 0x198e34, Func Offset: 0x214
-	// Line 1990, Address: 0x198e3c, Func Offset: 0x21c
-	// Line 1991, Address: 0x198e44, Func Offset: 0x224
-	// Line 1993, Address: 0x198e4c, Func Offset: 0x22c
-	// Line 1994, Address: 0x198e58, Func Offset: 0x238
-	// Line 1996, Address: 0x198e60, Func Offset: 0x240
-	// Line 1993, Address: 0x198e64, Func Offset: 0x244
-	// Line 1994, Address: 0x198e6c, Func Offset: 0x24c
-	// Line 2003, Address: 0x198e70, Func Offset: 0x250
-	// Line 2002, Address: 0x198e74, Func Offset: 0x254
-	// Line 2003, Address: 0x198e78, Func Offset: 0x258
-	// Line 2004, Address: 0x198e7c, Func Offset: 0x25c
-	// Line 1994, Address: 0x198e80, Func Offset: 0x260
-	// Line 1996, Address: 0x198e88, Func Offset: 0x268
-	// Line 1997, Address: 0x198e8c, Func Offset: 0x26c
-	// Line 1998, Address: 0x198e90, Func Offset: 0x270
-	// Line 2001, Address: 0x198e94, Func Offset: 0x274
-	// Line 2002, Address: 0x198e98, Func Offset: 0x278
-	// Line 2004, Address: 0x198e9c, Func Offset: 0x27c
-	// Line 2007, Address: 0x198ea4, Func Offset: 0x284
-	// Line 2009, Address: 0x198ea8, Func Offset: 0x288
-	// Line 2008, Address: 0x198eac, Func Offset: 0x28c
-	// Line 2009, Address: 0x198eb0, Func Offset: 0x290
-	// Line 2007, Address: 0x198eb4, Func Offset: 0x294
-	// Line 2008, Address: 0x198ebc, Func Offset: 0x29c
-	// Line 2009, Address: 0x198ecc, Func Offset: 0x2ac
-	// Line 2012, Address: 0x198ed8, Func Offset: 0x2b8
-	// Line 2015, Address: 0x198ee4, Func Offset: 0x2c4
-	// Line 2016, Address: 0x198ef4, Func Offset: 0x2d4
-	// Line 2017, Address: 0x198f00, Func Offset: 0x2e0
-	// Line 2018, Address: 0x198f08, Func Offset: 0x2e8
-	// Line 2022, Address: 0x198f14, Func Offset: 0x2f4
-	// Line 2026, Address: 0x198f20, Func Offset: 0x300
-	// Func End, Address: 0x198f30, Func Offset: 0x310
+    ATR_WORK* hp; // not from DWARF
+    float h;      // not from DWARF
+
+    switch (epw->mode3) 
+    {
+    case 0:
+        if (epw->type == 0)
+        {
+            epw->mtn_no = 3;
+        }
+        else 
+        {
+            epw->mtn_no = 33;
+        }
+        
+        epw->frm_no = 0;
+        
+        epw->hokan_count = 10;
+        epw->hokan_rate  = 32768;
+        
+        epw->flg &= ~0x10;
+        
+        epw->flg  |= 0x1800000;
+        epw->flg  |= 0x300000;
+        epw->flg2 |= 0x1;
+        
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num;
+        
+        epw->mode3++;
+    case 1:
+        if (epw->ct0-- == 0) 
+        {
+            bhEne03_GetPartsPos(epw, spider_tree[0], (NJS_POINT3*)&epw->px);
+            
+            njRotateX((NJS_MATRIX*)epw->exp0, -16384);
+
+            switch (EXP0_C(106)) 
+            {
+            case 0:
+                hp = (ATR_WORK*)EXP0_I(100);
+                
+                if (hp->type == 0) 
+                {
+                    h = hp->h;
+                    
+                    if (h == 0)
+                    {
+                        h = rom->h;
+                    }
+                    
+                    epw->py = hp->py + h;
+                } 
+                else 
+                {
+                    epw->py = hp->py;
+                }
+                
+                break;
+            case 1:
+                if (((ATR_WORK*)EXP0_I(100))->type == 0) 
+                {
+                    epw->py = ((ATR_WORK*)EXP0_I(100))->py;
+                } 
+                else 
+                {
+                    epw->py = ((ATR_WORK*)EXP0_I(100))->py + ((ATR_WORK*)EXP0_I(100))->h;
+                }
+                
+                break;
+            case 5:
+                epw->pz = ((ATR_WORK*)EXP0_I(100))->pz + ((ATR_WORK*)EXP0_I(100))->d;
+                break;
+            case 3:
+                epw->pz = ((ATR_WORK*)EXP0_I(100))->pz;
+                break;
+            case 4:
+                epw->px = ((ATR_WORK*)EXP0_I(100))->px;
+                break;
+            case 2:
+                epw->px = ((ATR_WORK*)EXP0_I(100))->px + ((ATR_WORK*)EXP0_I(100))->w;
+                break;
+            }
+
+            epw->pxb = epw->px;
+            epw->pyb = epw->py;
+            epw->pzb = epw->pz;
+
+            EXP0_C(105) = EXP0_C(106); 
+            
+            bhEne03_MakeMatrix(epw);
+            
+            epw->flg &= ~0x1800000;
+            epw->flg &= ~0x300000;
+            
+            epw->mode1 = 1;
+            epw->mode2 = 1;
+            epw->mode3 = 1;
+            
+            epw->mtn_no = 1;
+            
+            epw->ct0 = 10;
+            
+            epw->spd = 0.4f;
+            
+            bhEne03_GoAHead(epw);
+            
+            epw->flg |= 0x30;
+            
+            EPW_EXP1_I(0) &= ~0x2;
+            
+            epw->flg &= ~0x80000;
+            
+            EXP0_I(96) = EXP0_I(100);      
+
+            if (EXP0_C(105) == 0)
+            {        
+                epw->flg2 &= ~0x1;
+            } 
+            else 
+            {
+                epw->flg2 |=  0x1;
+            }
+            
+            EXP0_I(232) = 20;   
+        }
+        
+        break;
+    }
 }
 
 #pragma divbyzerocheck on 
@@ -2626,8 +2675,8 @@ void bhEne03_MV19(BH_PWORK* epw)
 
         if (epw->frm_no == 0)
         {
-            epw->mtn_no      = 0;
-            epw->frm_no      = 0;
+            epw->mtn_no = 0;
+            epw->frm_no = 0;
             
             epw->hokan_count = 10;
             epw->hokan_rate  = 32768;

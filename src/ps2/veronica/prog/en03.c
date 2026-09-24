@@ -1207,67 +1207,107 @@ void bhEne03_MV00(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x197fd0
+// 100% matching!
 void bhEne03_MV01(BH_PWORK* epw)
 {
 	NJS_POINT3 pos;
-	// Line 1470, Address: 0x197fd0, Func Offset: 0
-	// Line 1473, Address: 0x197fe0, Func Offset: 0x10
-	// Line 1476, Address: 0x198000, Func Offset: 0x30
-	// Line 1477, Address: 0x19800c, Func Offset: 0x3c
-	// Line 1478, Address: 0x198018, Func Offset: 0x48
-	// Line 1480, Address: 0x198030, Func Offset: 0x60
-	// Line 1482, Address: 0x198034, Func Offset: 0x64
-	// Line 1483, Address: 0x19803c, Func Offset: 0x6c
-	// Line 1484, Address: 0x198044, Func Offset: 0x74
-	// Line 1486, Address: 0x198048, Func Offset: 0x78
-	// Line 1487, Address: 0x198050, Func Offset: 0x80
-	// Line 1488, Address: 0x198060, Func Offset: 0x90
-	// Line 1490, Address: 0x198064, Func Offset: 0x94
-	// Line 1489, Address: 0x198068, Func Offset: 0x98
-	// Line 1490, Address: 0x19806c, Func Offset: 0x9c
-	// Line 1491, Address: 0x198070, Func Offset: 0xa0
-	// Line 1495, Address: 0x198078, Func Offset: 0xa8
-	// Line 1496, Address: 0x198094, Func Offset: 0xc4
-	// Line 1495, Address: 0x198098, Func Offset: 0xc8
-	// Line 1496, Address: 0x19809c, Func Offset: 0xcc
-	// Line 1497, Address: 0x1980ac, Func Offset: 0xdc
-	// Line 1498, Address: 0x1980bc, Func Offset: 0xec
-	// Line 1499, Address: 0x1980c4, Func Offset: 0xf4
-	// Line 1501, Address: 0x198118, Func Offset: 0x148
-	// Line 1502, Address: 0x198124, Func Offset: 0x154
-	// Line 1504, Address: 0x198130, Func Offset: 0x160
-	// Line 1506, Address: 0x19813c, Func Offset: 0x16c
-	// Line 1508, Address: 0x198150, Func Offset: 0x180
-	// Line 1510, Address: 0x198160, Func Offset: 0x190
-	// Line 1509, Address: 0x198164, Func Offset: 0x194
-	// Line 1510, Address: 0x198168, Func Offset: 0x198
-	// Line 1512, Address: 0x19816c, Func Offset: 0x19c
-	// Line 1515, Address: 0x198174, Func Offset: 0x1a4
-	// Line 1517, Address: 0x198188, Func Offset: 0x1b8
-	// Line 1516, Address: 0x19818c, Func Offset: 0x1bc
-	// Line 1517, Address: 0x198190, Func Offset: 0x1c0
-	// Line 1519, Address: 0x198194, Func Offset: 0x1c4
-	// Line 1522, Address: 0x19819c, Func Offset: 0x1cc
-	// Line 1526, Address: 0x1981a8, Func Offset: 0x1d8
-	// Line 1529, Address: 0x1981b4, Func Offset: 0x1e4
-	// Line 1530, Address: 0x1981dc, Func Offset: 0x20c
-	// Line 1531, Address: 0x1981e8, Func Offset: 0x218
-	// Line 1532, Address: 0x1981f0, Func Offset: 0x220
-	// Line 1534, Address: 0x1981f8, Func Offset: 0x228
-	// Line 1535, Address: 0x198208, Func Offset: 0x238
-	// Line 1534, Address: 0x19820c, Func Offset: 0x23c
-	// Line 1535, Address: 0x198210, Func Offset: 0x240
-	// Line 1538, Address: 0x198220, Func Offset: 0x250
-	// Line 1539, Address: 0x198234, Func Offset: 0x264
-	// Line 1540, Address: 0x198248, Func Offset: 0x278
-	// Line 1543, Address: 0x198254, Func Offset: 0x284
-	// Line 1544, Address: 0x198264, Func Offset: 0x294
-	// Line 1545, Address: 0x19826c, Func Offset: 0x29c
-	// Line 1546, Address: 0x198270, Func Offset: 0x2a0
-	// Line 1554, Address: 0x198274, Func Offset: 0x2a4
-	// Func End, Address: 0x198284, Func Offset: 0x2b4
+
+    switch (epw->mode3) 
+    {
+    case 0:
+        if (epw->type == 0)
+        {
+            if (epw->mtn_no != 1) 
+            {
+                if ((epw->mtn_no != 6) && (epw->mtn_no != 7))
+                {
+                    epw->frm_no = 0;
+                }
+                
+                epw->mtn_no = 1;
+                
+                epw->hokan_count = 10;
+                epw->hokan_rate  = 32768;
+            }
+        } 
+        else if (epw->mtn_no != 31) 
+        {
+            epw->mtn_no = 31;
+            epw->frm_no = 0;
+            
+            epw->hokan_count = 10;
+            epw->hokan_rate  = 32768;
+        }
+
+        epw->ct0 = rand() % 47;
+
+        if (EXP0_UC(104) == 1) 
+        {
+            epw->ct1 = (EXP0_I(68) < 0) ? -1 : 1;
+        } 
+        else
+        {
+            epw->ct1 = ((-rand() / -2.1474836E9f) < 0.5f) ? -1 : 1;
+        }
+
+        epw->spd = 0.4f;
+        
+        epw->mode3++;
+    case 1:
+        bhEne03_GoAHead(epw);
+
+        if (EXP0_I(232) == 0) 
+        {
+            if (bhEne03_CheckClimbWall(epw) != 0) 
+            {
+                epw->mode1 = 0;
+                epw->mode2 = 6;
+                epw->mode3 = 0;
+                break;
+            }
+            
+            if (bhEne03_CheckClimbDownWall(epw) != 0) 
+            {
+                epw->mode1 = 0;
+                epw->mode2 = 8;
+                epw->mode3 = 0;
+                break;
+            }
+        }
+        else 
+        {
+            EXP0_I(232)--;
+        }
+
+        bhEne03_AvoidWall(epw, epw->ct1);
+
+        if (bhCheckRoute((NJS_POINT3*)&epw->px, (NJS_POINT3*)&plp->px, &pos) != 0xFF) 
+        {
+            EXP0_F(72) = pos.x;
+            EXP0_F(80) = pos.z;
+        } 
+        else
+        {
+            EXP0_F(72) = plp->px;
+            EXP0_F(80) = plp->pz;
+        }
+
+        if (EXP0_UC(104) == 1)
+        {
+            epw->ayp = bhEne03_DirTarget(epw, (NJS_POINT3*)&EXP0_F(72), 819);
+            
+            njRotateY((NJS_MATRIX*)epw->exp0, epw->ayp);
+        }
+
+        if (epw->ct0-- == 0) 
+        {
+            epw->mode1 = 1;
+            epw->mode2 = 0;
+            epw->mode3 = 0;
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!

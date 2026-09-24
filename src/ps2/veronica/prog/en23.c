@@ -3005,44 +3005,102 @@ void bhEne23_Shape(BH_PWORK* epw)
 	// Func End, Address: 0x206df0, Func Offset: 0xa0
 }
 
-// 
-// Start address: 0x206df0
+// 100% matching!
 void bhEne23_CallSE(BH_PWORK* epw)
 {
-	int fno;
-	// Line 3880, Address: 0x206df0, Func Offset: 0
-	// Line 3883, Address: 0x206df8, Func Offset: 0x8
-	// Line 3885, Address: 0x206e08, Func Offset: 0x18
-	// Line 3886, Address: 0x206e0c, Func Offset: 0x1c
-	// Line 3888, Address: 0x206f5c, Func Offset: 0x16c
-	// Line 3889, Address: 0x206f84, Func Offset: 0x194
-	// Line 3890, Address: 0x206f94, Func Offset: 0x1a4
-	// Line 3892, Address: 0x206f9c, Func Offset: 0x1ac
-	// Line 3893, Address: 0x206fb0, Func Offset: 0x1c0
-	// Line 3894, Address: 0x206fc0, Func Offset: 0x1d0
-	// Line 3899, Address: 0x206fc8, Func Offset: 0x1d8
-	// Line 3900, Address: 0x206fdc, Func Offset: 0x1ec
-	// Line 3901, Address: 0x207008, Func Offset: 0x218
-	// Line 3902, Address: 0x207018, Func Offset: 0x228
-	// Line 3904, Address: 0x207020, Func Offset: 0x230
-	// Line 3905, Address: 0x207034, Func Offset: 0x244
-	// Line 3906, Address: 0x207044, Func Offset: 0x254
-	// Line 3919, Address: 0x20704c, Func Offset: 0x25c
-	// Line 3920, Address: 0x207054, Func Offset: 0x264
-	// Line 3921, Address: 0x207060, Func Offset: 0x270
-	// Line 3923, Address: 0x207068, Func Offset: 0x278
-	// Line 3924, Address: 0x207074, Func Offset: 0x284
-	// Line 3925, Address: 0x207084, Func Offset: 0x294
-	// Line 3927, Address: 0x20708c, Func Offset: 0x29c
-	// Line 3928, Address: 0x207098, Func Offset: 0x2a8
-	// Line 3929, Address: 0x2070a8, Func Offset: 0x2b8
-	// Line 3934, Address: 0x2070b0, Func Offset: 0x2c0
-	// Line 3935, Address: 0x2070bc, Func Offset: 0x2cc
-	// Line 3936, Address: 0x2070cc, Func Offset: 0x2dc
-	// Line 3939, Address: 0x2070d4, Func Offset: 0x2e4
-	// Line 3940, Address: 0x2070e0, Func Offset: 0x2f0
-	// Line 3943, Address: 0x2070ec, Func Offset: 0x2fc
-	// Func End, Address: 0x2070f8, Func Offset: 0x308
+    int fno;
+
+    if (epw->mnwP == epw->mnwPb) 
+    {
+        fno = epw->frm_no / 65536;
+        
+        switch (epw->mtn_no) 
+        {                    
+        case 2:
+            if ((fno == 0) || (fno == 9) || (fno == 14) || (fno == 23)) 
+            {
+                bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 74499);
+            }
+            
+            break;
+        case 22:
+            if ((fno == 0) || (fno == 6)) 
+            {
+                bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 74499);
+            }       
+            
+            break;
+        case 3:  
+        case 4:
+        case 24:
+        case 25:          
+            fno %= 34;
+            
+            if ((fno == 0) || (fno == 9) || (fno == 14) || (fno == 23)) 
+            {
+                bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 74499);
+            }
+            
+            break;
+        case 11:
+            if ((fno == 29) || (fno == 44)) 
+            {
+                bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 74503);
+            }      
+            
+            break;
+        case 14:
+        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 29:
+        case 30:
+        case 31:
+        case 32:
+        case 33:
+        case 34:
+            if (fno == 0) 
+            {
+                bhEne_CallSE(epw, (NJS_POINT3*)&epw->px,  8976);
+            }     
+            
+            break;
+        case 37:
+            if (fno == 13) 
+            {
+                bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 74510);
+            }    
+            
+            break;
+        case 42:
+            if (fno == 20) 
+            {
+                bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 74510);
+            }     
+            
+            break;
+        case 40:
+        case 45:
+        case 54:
+        case 55:
+            if (fno == 1) 
+            {
+                bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 74510);
+            }      
+            
+            break;
+        case 48:            
+        case 50:
+            if (fno == 26) 
+            {
+                bhEne_CallSE(epw, (NJS_POINT3*)&epw->px,  8978);
+            }           
+            
+            break;
+        }
+    }
 }
 
 // 100% matching!

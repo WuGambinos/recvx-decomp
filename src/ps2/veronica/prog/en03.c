@@ -1960,76 +1960,113 @@ void bhEne03_MV13()
 
 }
 
-// 
-// Start address: 0x1996e0
-void bhEne03_MV14(BH_PWORK* epw)
+// 100% matching!
+void bhEne03_MV14(BH_PWORK* epw) 
 {
-	NJS_VECTOR v = { 0.0f, 3.0f, -1.3f };
-	// not really sure what is going on here, according to DWARF there is just one instance of the v variable, but...
-	{
-	NJS_VECTOR v /* not from DWARF */ = { 0.0f, 0.8f, 0.0f };
-	}
-	// Line 2330, Address: 0x1996e0, Func Offset: 0
-	// Line 2332, Address: 0x1996e4, Func Offset: 0x4
-	// Line 2330, Address: 0x1996e8, Func Offset: 0x8
-	// Line 2332, Address: 0x1996f0, Func Offset: 0x10
-	// Line 2334, Address: 0x199708, Func Offset: 0x28
-	// Line 2337, Address: 0x199734, Func Offset: 0x54
-	// Line 2339, Address: 0x19973c, Func Offset: 0x5c
-	// Line 2338, Address: 0x199740, Func Offset: 0x60
-	// Line 2339, Address: 0x199744, Func Offset: 0x64
-	// Line 2340, Address: 0x199748, Func Offset: 0x68
-	// Line 2341, Address: 0x199750, Func Offset: 0x70
-	// Line 2342, Address: 0x199774, Func Offset: 0x94
-	// Line 2344, Address: 0x199780, Func Offset: 0xa0
-	// Line 2347, Address: 0x199784, Func Offset: 0xa4
-	// Line 2344, Address: 0x199788, Func Offset: 0xa8
-	// Line 2347, Address: 0x199790, Func Offset: 0xb0
-	// Line 2348, Address: 0x1997a0, Func Offset: 0xc0
-	// Line 2350, Address: 0x1997b0, Func Offset: 0xd0
-	// Line 2351, Address: 0x1997b8, Func Offset: 0xd8
-	// Line 2353, Address: 0x1997c0, Func Offset: 0xe0
-	// Line 2356, Address: 0x1997c8, Func Offset: 0xe8
-	// Line 2357, Address: 0x1997d8, Func Offset: 0xf8
-	// Line 2358, Address: 0x1997dc, Func Offset: 0xfc
-	// Line 2362, Address: 0x1997e8, Func Offset: 0x108
-	// Line 2363, Address: 0x199804, Func Offset: 0x124
-	// Line 2365, Address: 0x19980c, Func Offset: 0x12c
-	// Line 2364, Address: 0x199810, Func Offset: 0x130
-	// Line 2365, Address: 0x199814, Func Offset: 0x134
-	// Line 2366, Address: 0x199818, Func Offset: 0x138
-	// Line 2367, Address: 0x199820, Func Offset: 0x140
-	// Line 2368, Address: 0x199824, Func Offset: 0x144
-	// Line 2372, Address: 0x199830, Func Offset: 0x150
-	// Line 2373, Address: 0x199840, Func Offset: 0x160
-	// Line 2374, Address: 0x199844, Func Offset: 0x164
-	// Line 2376, Address: 0x19984c, Func Offset: 0x16c
-	// Line 2378, Address: 0x199854, Func Offset: 0x174
-	// Line 2377, Address: 0x199858, Func Offset: 0x178
-	// Line 2378, Address: 0x19985c, Func Offset: 0x17c
-	// Line 2379, Address: 0x199860, Func Offset: 0x180
-	// Line 2380, Address: 0x199868, Func Offset: 0x188
-	// Line 2383, Address: 0x199870, Func Offset: 0x190
-	// Line 2384, Address: 0x199888, Func Offset: 0x1a8
-	// Line 2385, Address: 0x19988c, Func Offset: 0x1ac
-	// Line 2393, Address: 0x199894, Func Offset: 0x1b4
-	// Line 2396, Address: 0x1998cc, Func Offset: 0x1ec
-	// Line 2397, Address: 0x1998d4, Func Offset: 0x1f4
-	// Line 2396, Address: 0x1998d8, Func Offset: 0x1f8
-	// Line 2398, Address: 0x1998f4, Func Offset: 0x214
-	// Line 2400, Address: 0x1998fc, Func Offset: 0x21c
-	// Line 2403, Address: 0x199904, Func Offset: 0x224
-	// Line 2400, Address: 0x199914, Func Offset: 0x234
-	// Line 2401, Address: 0x19991c, Func Offset: 0x23c
-	// Line 2402, Address: 0x199930, Func Offset: 0x250
-	// Line 2403, Address: 0x199944, Func Offset: 0x264
-	// Line 2405, Address: 0x199950, Func Offset: 0x270
-	// Line 2408, Address: 0x199958, Func Offset: 0x278
-	// Line 2409, Address: 0x199968, Func Offset: 0x288
-	// Line 2410, Address: 0x199970, Func Offset: 0x290
-	// Line 2411, Address: 0x199978, Func Offset: 0x298
-	// Line 2414, Address: 0x19997c, Func Offset: 0x29c
-	// Func End, Address: 0x19998c, Func Offset: 0x2ac
+    NJS_VECTOR v = { 0.0f, 3.0f, -1.3f };
+    ATR_WORK* hp; // not from DWARF
+    float h;      // not from DWARF
+
+    switch (epw->mode3) 
+    {
+    case 0:
+        epw->mtn_no = 41;
+        epw->frm_no = 0;
+        
+        epw->hokan_count = 10;
+        epw->hokan_rate  = 32768;
+        
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 2;
+        
+        epw->mode3++;
+    case 1:
+        epw->ct0--;
+        
+        if ((epw->frm_no / 65536) == 12) 
+        {
+            njCalcVector((NJS_MATRIX*)epw->exp0, &v, (NJS_VECTOR*)&EXP0_F(84));
+            
+            *(ATR_WORK**)&EXP0_I(96) = NULL;
+            
+            epw->mode3++;
+        }
+        
+        break;
+    case 2:
+        if (epw->ct0-- == 0) 
+        {
+            epw->mtn_add = 0;
+            
+            epw->mode3++;
+        }
+    case 3:
+        if (EXP0_F(88) < 0)
+        {
+            epw->mtn_no = 49;
+            epw->frm_no = 0;
+            
+            epw->hokan_count = 8;
+            epw->hokan_rate  = 45875;
+            
+            epw->mtn_add = 0;
+            
+            epw->mode3++;
+        }
+    case 4:
+        if ((ATR_WORK*)EXP0_I(96) != NULL) 
+        {
+            EXP0_C(105) = 0;
+            
+            bhEne03_MakeMatrix(epw);
+            
+            epw->mtn_no = 49;
+            epw->frm_no = 0;
+            
+            epw->hokan_count = 3;
+            epw->hokan_rate  = 32768;
+            
+            epw->mtn_add = 65536;
+
+            hp = (ATR_WORK*)EXP0_I(96);
+            
+            if (hp->type == 7) 
+            {
+                epw->py = hp->py;
+            } 
+            else 
+            {
+                h = hp->h;
+                
+                if (h == 0)
+                {
+                    h = rom->h;
+                }
+                
+                epw->py = hp->py + h;
+            }
+            
+            epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 2;
+            
+            epw->mode3 = 5;
+            break;
+        }
+        
+        epw->px += EXP0_F(84);
+        epw->py += EXP0_F(88);
+        epw->pz += EXP0_F(92);
+        
+        EXP0_F(88) -= 0.33f;
+        break;
+    case 5:
+        if (epw->ct0-- == 0) 
+        {
+            epw->mode1 = 1;
+            epw->mode2 = 3;
+            epw->mode3 = 0;
+        }
+        
+        break;
+    }
 }
 
 // 
@@ -2038,7 +2075,7 @@ void bhEne03_MV15(BH_PWORK* epw)
 {
 	float out;
 	NJS_VECTOR ov;
-	NJS_VECTOR vwork;
+	NJS_VECTOR vwork = { 0.0f, 0.8f, 0.0f };
 	// Line 2424, Address: 0x199990, Func Offset: 0
 	// Line 2425, Address: 0x19999c, Func Offset: 0xc
 	// Line 2424, Address: 0x1999a4, Func Offset: 0x14

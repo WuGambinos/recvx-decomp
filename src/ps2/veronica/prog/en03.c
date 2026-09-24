@@ -1158,39 +1158,51 @@ void bhEne03_Move(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x197ea0
-void bhEne03_MV00(BH_PWORK* epw)
+// 100% matching!
+void bhEne03_MV00(BH_PWORK* epw) 
 {
-	static unsigned char action_table[2][6] = 
+    static unsigned char action_table[2][6] = 
 	{
 		{ 1,  1,  2, 2, 0, 0 },
 		{ 1, 17, 17, 2, 0, 0 }
 	};
-	// Line 1416, Address: 0x197ea0, Func Offset: 0
-	// Line 1430, Address: 0x197eb0, Func Offset: 0x10
-	// Line 1433, Address: 0x197ed0, Func Offset: 0x30
-	// Line 1434, Address: 0x197edc, Func Offset: 0x3c
-	// Line 1435, Address: 0x197ee8, Func Offset: 0x48
-	// Line 1437, Address: 0x197eec, Func Offset: 0x4c
-	// Line 1436, Address: 0x197ef0, Func Offset: 0x50
-	// Line 1437, Address: 0x197ef4, Func Offset: 0x54
-	// Line 1438, Address: 0x197ef8, Func Offset: 0x58
-	// Line 1440, Address: 0x197efc, Func Offset: 0x5c
-	// Line 1441, Address: 0x197f04, Func Offset: 0x64
-	// Line 1442, Address: 0x197f14, Func Offset: 0x74
-	// Line 1444, Address: 0x197f18, Func Offset: 0x78
-	// Line 1443, Address: 0x197f1c, Func Offset: 0x7c
-	// Line 1444, Address: 0x197f20, Func Offset: 0x80
-	// Line 1445, Address: 0x197f24, Func Offset: 0x84
-	// Line 1450, Address: 0x197f2c, Func Offset: 0x8c
-	// Line 1451, Address: 0x197f50, Func Offset: 0xb0
-	// Line 1453, Address: 0x197f5c, Func Offset: 0xbc
-	// Line 1454, Address: 0x197f6c, Func Offset: 0xcc
-	// Line 1455, Address: 0x197f70, Func Offset: 0xd0
-	// Line 1456, Address: 0x197fb4, Func Offset: 0x114
-	// Line 1460, Address: 0x197fb8, Func Offset: 0x118
-	// Func End, Address: 0x197fc8, Func Offset: 0x128
+
+    switch (epw->mode3) 
+    {                     
+    case 0:
+        if (epw->type == 0)
+        {
+            if (epw->mtn_no != 0) 
+            {
+                epw->mtn_no = 0;
+                epw->frm_no = 0;
+                
+                epw->hokan_count = 10;
+                epw->hokan_rate  = 32768;
+            }
+        } 
+        else if (epw->mtn_no != 30) 
+        {
+            epw->mtn_no = 30;
+            epw->frm_no = 0;
+            
+            epw->hokan_count = 10;
+            epw->hokan_rate  = 32768;
+        }
+        
+        epw->ct0 = (rand() % 63) + 40;
+        
+        epw->mode3++;
+    case 1:
+        if (epw->ct0-- == 0) 
+        {
+            epw->mode1 = 1;
+            epw->mode2 = action_table[epw->type][rand() % 4];
+            epw->mode3 = 0;
+        }
+        
+        break;
+    }
 }
 
 // 

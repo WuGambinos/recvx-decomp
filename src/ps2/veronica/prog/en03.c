@@ -1635,53 +1635,69 @@ void bhEne03_MV07(BH_PWORK* epw)
 	// Func End, Address: 0x198f30, Func Offset: 0x310
 }
 
-// 
-// Start address: 0x198f30
+#pragma divbyzerocheck on 
+
+// 100% matching!
 void bhEne03_MV08(BH_PWORK* epw)
 {
-	float out;
-	NJS_VECTOR ov;
-	NJS_VECTOR vd;
-	// Line 2036, Address: 0x198f30, Func Offset: 0
-	// Line 2037, Address: 0x198f40, Func Offset: 0x10
-	// Line 2039, Address: 0x198f60, Func Offset: 0x30
-	// Line 2040, Address: 0x198f64, Func Offset: 0x34
-	// Line 2039, Address: 0x198f68, Func Offset: 0x38
-	// Line 2040, Address: 0x198f74, Func Offset: 0x44
-	// Line 2042, Address: 0x198f80, Func Offset: 0x50
-	// Line 2044, Address: 0x198f8c, Func Offset: 0x5c
-	// Line 2046, Address: 0x198f90, Func Offset: 0x60
-	// Line 2045, Address: 0x198f94, Func Offset: 0x64
-	// Line 2046, Address: 0x198f98, Func Offset: 0x68
-	// Line 2047, Address: 0x198f9c, Func Offset: 0x6c
-	// Line 2051, Address: 0x198fa4, Func Offset: 0x74
-	// Line 2052, Address: 0x198fac, Func Offset: 0x7c
-	// Line 2054, Address: 0x198fb8, Func Offset: 0x88
-	// Line 2059, Address: 0x198fc4, Func Offset: 0x94
-	// Line 2062, Address: 0x198fc8, Func Offset: 0x98
-	// Line 2059, Address: 0x198fd0, Func Offset: 0xa0
-	// Line 2060, Address: 0x198fdc, Func Offset: 0xac
-	// Line 2061, Address: 0x198fec, Func Offset: 0xbc
-	// Line 2062, Address: 0x198ffc, Func Offset: 0xcc
-	// Line 2063, Address: 0x199008, Func Offset: 0xd8
-	// Line 2062, Address: 0x199010, Func Offset: 0xe0
-	// Line 2063, Address: 0x199014, Func Offset: 0xe4
-	// Line 2064, Address: 0x199034, Func Offset: 0x104
-	// Line 2065, Address: 0x199064, Func Offset: 0x134
-	// Line 2066, Address: 0x19906c, Func Offset: 0x13c
-	// Line 2068, Address: 0x1990a8, Func Offset: 0x178
-	// Line 2071, Address: 0x1990b4, Func Offset: 0x184
-	// Line 2072, Address: 0x1990d8, Func Offset: 0x1a8
-	// Line 2073, Address: 0x1990fc, Func Offset: 0x1cc
-	// Line 2075, Address: 0x199120, Func Offset: 0x1f0
-	// Line 2076, Address: 0x199128, Func Offset: 0x1f8
-	// Line 2078, Address: 0x199130, Func Offset: 0x200
-	// Line 2077, Address: 0x199134, Func Offset: 0x204
-	// Line 2078, Address: 0x199138, Func Offset: 0x208
-	// Line 2079, Address: 0x19913c, Func Offset: 0x20c
-	// Line 2083, Address: 0x199140, Func Offset: 0x210
-	// Func End, Address: 0x199154, Func Offset: 0x224
+    NJS_VECTOR vd, ov; 
+	float out;     
+
+    switch (epw->mode3)
+    {
+    case 0:
+        EPW_EXP1_I(0) |= 0x2;
+        
+        epw->flg |= 0x80000;
+
+        if (epw->mtn_no != 1) 
+        {
+            epw->mtn_no = 1;
+            epw->frm_no = 0;
+            
+            epw->hokan_count = 10;
+            epw->hokan_rate  = 32768;
+        }
+        
+        epw->ct0 = 12;
+        
+        epw->mode3++;
+    case 1:
+        if (epw->ct0 != 0) 
+        {
+            vd.x = -EXP0_F(32);
+            vd.y = -EXP0_F(36);
+            vd.z = -EXP0_F(40);
+
+            out = njOuterProduct(&vd, (NJS_VECTOR*)&EXP0_I(108), &ov);
+
+            if (njInnerProduct((NJS_VECTOR*)&EXP0_I(16), &ov) > 0)
+            {
+                epw->ayp =  (int)(10430.381f * asinf(out)) / epw->ct0;
+            } 
+            else 
+            {
+                epw->ayp = -(int)(10430.381f * asinf(out)) / epw->ct0;
+            }
+            
+            njRotateY((NJS_MATRIX*)epw->exp0, epw->ayp);
+
+            epw->px += (EXP0_F(72) - epw->px) / epw->ct0;
+            epw->py += (EXP0_F(76) - epw->py) / epw->ct0;
+            epw->pz += (EXP0_F(80) - epw->pz) / epw->ct0;
+
+            epw->ct0--;
+            break;
+        }
+
+        epw->mode1 = 0;
+        epw->mode2 = 7;
+        epw->mode3 = 0;
+        break;
+    }
 }
+
+#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne03_MV09(BH_PWORK* epw) 

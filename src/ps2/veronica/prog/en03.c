@@ -5097,7 +5097,7 @@ int bhEne03_CollisionWalls(BH_PWORK* epw)
     trans.y = objP->pos[1];
     trans.z = objP->pos[2];
 
-    if (!(epw->flg & 0x00800000)) 
+    if (!(epw->flg & 0x800000)) 
     {
         trans.y = 0;
     }

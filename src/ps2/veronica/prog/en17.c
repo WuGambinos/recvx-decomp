@@ -715,17 +715,15 @@ void bhEne17_MtnTblPlay(BH_PWORK* epw, int frm)
     }
 }
 
-// 
-// Start address: 0x1eb940
-void bhEne17_CollCheck(BH_PWORK* epw)
-{
-	// Line 1167, Address: 0x1eb940, Func Offset: 0
-	// Line 1168, Address: 0x1eb94c, Func Offset: 0xc
-	// Line 1170, Address: 0x1eb95c, Func Offset: 0x1c
-	// Line 1173, Address: 0x1eb968, Func Offset: 0x28
-	// Line 1180, Address: 0x1eb984, Func Offset: 0x44
-	// Line 1182, Address: 0x1eb990, Func Offset: 0x50
-	// Func End, Address: 0x1eb9a0, Func Offset: 0x60
+// 100% matching!
+void bhEne17_CollCheck(BH_PWORK* epw) {
+    
+    if (!(epw->flg & 2)) {
+        if ((epw->flg & 8) && (((unsigned int*)epw->exp0)[2] & 0x10)) {
+            bhCheckPlayer(epw);
+        }
+        bhEne17_CollCheckWall(epw);
+    }
 }
 
 // 

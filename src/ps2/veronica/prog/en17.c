@@ -335,58 +335,65 @@ int eff_flg;*/
 const char en17_flipTree[25] = { 0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 6, 7, 8, 9, 19, 20, 21, 22, 23, 14, 15, 16, 17, 18, 255 };
 const char en17_tree[2][8] = { { 0, 1, 19, 20, 21, 22, 23, 255 }, { 0, 1, 14, 15, 16, 17, 18, 255 } };
 
-// 
-// Start address: 0x1eab30
+// 100% matching!
 void bhEne17_DmmyBrain()
 {
-	// Line 100, Address: 0x1eab30, Func Offset: 0
-	// Func End, Address: 0x1eab38, Func Offset: 0x8
 }
 
-// 
-// Start address: 0x1eab40
-void bhEne17(BH_PWORK* epw)
-{
-	NJS_POINT3 pd;
-	NJS_POINT3 ps;
-	O_WORK* owk;
-	int i;
-	// Line 241, Address: 0x1eab40, Func Offset: 0
-	// Line 245, Address: 0x1eab50, Func Offset: 0x10
-	// Line 248, Address: 0x1eab58, Func Offset: 0x18
-	// Line 250, Address: 0x1eab7c, Func Offset: 0x3c
-	// Line 251, Address: 0x1eab88, Func Offset: 0x48
-	// Line 253, Address: 0x1eab98, Func Offset: 0x58
-	// Line 257, Address: 0x1eaba4, Func Offset: 0x64
-	// Line 260, Address: 0x1eabb0, Func Offset: 0x70
-	// Line 262, Address: 0x1eabc0, Func Offset: 0x80
-	// Line 263, Address: 0x1eabe4, Func Offset: 0xa4
-	// Line 267, Address: 0x1eabf4, Func Offset: 0xb4
-	// Line 270, Address: 0x1eac00, Func Offset: 0xc0
-	// Line 273, Address: 0x1eac08, Func Offset: 0xc8
-	// Line 275, Address: 0x1eac18, Func Offset: 0xd8
-	// Line 279, Address: 0x1eac20, Func Offset: 0xe0
-	// Line 280, Address: 0x1eac40, Func Offset: 0x100
-	// Line 284, Address: 0x1eac60, Func Offset: 0x120
-	// Line 291, Address: 0x1eac78, Func Offset: 0x138
-	// Line 294, Address: 0x1eac7c, Func Offset: 0x13c
-	// Line 295, Address: 0x1eac84, Func Offset: 0x144
-	// Line 291, Address: 0x1eac8c, Func Offset: 0x14c
-	// Line 292, Address: 0x1eac98, Func Offset: 0x158
-	// Line 293, Address: 0x1eac9c, Func Offset: 0x15c
-	// Line 295, Address: 0x1eaca0, Func Offset: 0x160
-	// Line 297, Address: 0x1eacac, Func Offset: 0x16c
-	// Line 298, Address: 0x1eacbc, Func Offset: 0x17c
-	// Line 299, Address: 0x1eaccc, Func Offset: 0x18c
-	// Line 300, Address: 0x1eacdc, Func Offset: 0x19c
-	// Line 301, Address: 0x1eacec, Func Offset: 0x1ac
-	// Line 304, Address: 0x1eacf8, Func Offset: 0x1b8
-	// Line 301, Address: 0x1ead00, Func Offset: 0x1c0
-	// Line 304, Address: 0x1ead08, Func Offset: 0x1c8
-	// Line 307, Address: 0x1ead10, Func Offset: 0x1d0
-	// Line 309, Address: 0x1ead20, Func Offset: 0x1e0
-	// Func End, Address: 0x1ead34, Func Offset: 0x1f4
-	scePrintf("bhEne17 - UNIMPLEMENTED!\n");
+// 100% matching!
+void bhEne17(BH_PWORK* epw) {
+    int i;
+    O_WORK* owk;
+    NJS_POINT3 ps;
+    NJS_POINT3 pd;
+
+    bhEne17_MainLoop(epw);
+    if ((plp->mode0 == 4) || (plp->mode0 == 6)) {
+        if (plp->mode2 == 0) {
+            bhEne17_PlyDG00(plp, epw);
+        } else {
+            bhEne17_PlyDG01(plp, epw);
+        }
+    }
+
+    bhEne17_EneToPlyDist(epw);
+    if (epw->flg & 4) {
+        for (i = 0; i < 64; i++) {
+            epw->dam[i] = 0;
+        }
+        epw->flg = (epw->flg & ~4);
+    }
+
+    bhEne17_CollCheck(epw);
+    bhEne17_CalcEnemy(epw);
+    if (epw->mode0 < 5) {
+        bhEne17_CameraControl(epw);
+    }
+
+    if (((int*)epw->exp0)[3] > 0) {
+        ((int*)epw->exp0)[3] -= 1;
+    }
+
+    if (((int*)epw->exp0)[4] > 0) {
+        ((int*)epw->exp0)[4] -= 1;
+    }
+
+    if (((int*)epw->exp0)[2] & 0x20000000) {
+        owk = &((O_WRK*)epw->exp2)->mlwP->owP[1];
+        ps.x = 0;
+        ps.y = 0;
+        ps.z = -17.4f;
+
+        njCalcPoint(&owk->mtx, &ps, &pd);
+        bhEff_SetPtcl2(epw, &pd, owk->mtx);
+        bhEff_SetPtcl2(epw, &pd, owk->mtx);
+        bhEff_SetPtcl2(epw, &pd, owk->mtx);
+        bhEff_SetPtcl2(epw, &pd, owk->mtx);
+
+        ((int*)epw->exp0)[2] &= ~0x20000000;
+        bhEne17_SetLight(epw, &pd);
+        bhEne17_SePlay(epw, 0x01002309);
+    }
 }
 
 // 
@@ -1845,7 +1852,7 @@ void bhEne17_SetSmokeEffect3(BH_PWORK* epw, NJS_POINT3* ofs, int rot)
 
 // 
 // Start address: 0x1ee680
-void bhEne17_SetLight(NJS_POINT3* ofs)
+void bhEne17_SetLight(BH_PWORK* epw, NJS_POINT3 *ofs)
 {
 	LGT_WORK* lp;
 	// Line 3017, Address: 0x1ee680, Func Offset: 0

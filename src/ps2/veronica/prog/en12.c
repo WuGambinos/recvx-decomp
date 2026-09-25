@@ -242,7 +242,7 @@ static char joint_tree[8][3] =
     {17,    0xFF,      0},
 };
 
-DMG_REACT DmgReact[21] = {
+static DMG_REACT DmgReact[21] = {
 	{ { 0, 1, 0 },      { 0, 0, 0 }, 0 },
 	{ { 0, 1, 0 },      { 1, 1, 0 }, 0 },
 	{ { 0, 0, 0 },      { 1, 1, 0 }, 0 },
@@ -1129,7 +1129,10 @@ void bhEne12_Nage(BH_PWORK* epw)
 // 100% matching!
 void bhEne12_NG00(BH_PWORK* epw) 
 {
-    NJS_POINT3 pos[2] = {0, 1};
+    NJS_POINT3 pos[2] = {
+        { -0.000011f, -0.00069f,   -9.8f },
+        { -0.00001f,   0.108913f,  -9.8f }
+    };
     NJS_POINT3 wp;
     EN12_WORK* efp;
 

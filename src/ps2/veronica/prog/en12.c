@@ -499,7 +499,7 @@ void bhEne12(BH_PWORK* epw)
     bhEne12_CallSE(epw);
     bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
     bhEne12_FixedLegPos(epw);
-    bhEne_SetWeponAtr(epw, 5, 0x15, 4.0f);
+    bhEne_SetWeponAtr(epw, 5, 21, 4.0f);
     bhCheckPlayer(epw);
     
     if (epw->flg & 0x10) {
@@ -524,7 +524,7 @@ void bhEne12_Init(BH_PWORK* epw)
     epw->ah  = 1.0f;   
     epw->car = 3.0f;   
 
-    epw->hp = 0x12C;
+    epw->hp = 300;
 
     epw->mode0 = 1;
     epw->mode1 = 1;
@@ -535,24 +535,24 @@ void bhEne12_Init(BH_PWORK* epw)
     epw->mtn_md      = 0x20;
     epw->hokan_rate  = 0;
     epw->hokan_count = 0;
-    epw->mtn_add     = 0x10000;
+    epw->mtn_add     = 65536;
     epw->mtn_tp      = flip_tree;
     epw->frm_no      = 0;
 
     epw->clp_jno[0] = 5;
     epw->clp_jno[1] = 1;
     epw->clp_jno[2] = 7;
-    epw->clp_jno[3] = 0xB;
-    epw->clp_jno[4] = 0xD;
-    epw->clp_jno[5] = 0xD;
-    epw->clp_jno[6] = 0x11;
-    epw->clp_jno[7] = 0x15;
+    epw->clp_jno[3] = 11;
+    epw->clp_jno[4] = 13;
+    epw->clp_jno[5] = 13;
+    epw->clp_jno[6] = 17;
+    epw->clp_jno[7] = 21;
 
     epw->mdflg &= ~0x20;
 
     if (epw->exp0 == NULL) {
         epw->exp0 = bhEne_CallocWork(0xB0, 8);
-        sys->ef.id = 0x106;
+        sys->ef.id = 262;
         sys->ef.flg = 1;
 
         eno = bhSetEffectTb(&sys->ef, 0, 0, 0);
@@ -560,11 +560,11 @@ void bhEne12_Init(BH_PWORK* epw)
 
     }
 
-    EXP0_I(0x4)  = 0x1E;
-    EXP0_I(0x8)  = 0x78;
-    EXP0_I(0xC)  = 0;
-    EXP0_I(0x10) = 0;
-    EXP0_I(0x14) = 0x3C;
+    EXP0_I(4)  = 30;
+    EXP0_I(8)  = 120;
+    EXP0_I(12)  = 0;
+    EXP0_I(16) = 0;
+    EXP0_I(20) = 60;
 
     if (!(epw->flg & 0x800)) {
         bhSetShadow(SdwTab, (unsigned char*)epw, 2, 6.0f, 6.0f, 4.0f);
@@ -575,9 +575,9 @@ void bhEne12_Init(BH_PWORK* epw)
     epw->lok_jno = 5;
     epw->cpcl    = CapColTab;
 
-    epw->flg &= 0xFFEFFFFF;
+    epw->flg &= ~0x100000;
 
-    EXP0_I(0x1C) = 0x10;
+    EXP0_I(28) = 16;
 
     sys->rm_flg &= ~1;
 }
@@ -616,12 +616,12 @@ void bhEne12_BR00(BH_PWORK* epw)
         return;
     }
 
-    if (epw->mtn_no == 0xF) {
+    if (epw->mtn_no == 15) {
         return;
     }
 
     if (dist < 7.0f &&
-        bhEne_CheckDirTarget(epw, plp->px, plp->pz, 0x5555) != 0 &&
+        bhEne_CheckDirTarget(epw, plp->px, plp->pz, 21845) != 0 &&
         plp->hp >= 0) {
         epw->mode0 = 2;
         epw->mode1 = 0;
@@ -661,7 +661,7 @@ void bhEne12_BR00(BH_PWORK* epw)
         return;
     }
     
-    if (bhEne_CheckDirTarget(epw, plp->px, plp->pz, 0x5555) == 0) {
+    if (bhEne_CheckDirTarget(epw, plp->px, plp->pz, 21845) == 0) {
         return;
     }
 
@@ -676,7 +676,7 @@ void bhEne12_BR00(BH_PWORK* epw)
     }
 
     if (((int*)(epw->exp0))[act_no + 1] == 0) {
-        EXP0_I(4) += 0x1E;
+        EXP0_I(4) += 30;
     
         if (act_no != 0) {
             ((int*)(epw->exp0))[act_no + 1] += inter[act_no];
@@ -710,12 +710,12 @@ void bhEne12_MV00(BH_PWORK* epw)
     switch (epw->mode3) {
     case 0:
         epw->flg |= 0x100000;
-        epw->flg &= 0xFFF7FFFF;
+        epw->flg &= ~0x80000;
         epw->mtn_no = 0;
         epw->frm_no  = 0;
         epw->mtn_add = 0x10000;
         epw->mode3 += 1;
-        epw->ct0 = 0xA;
+        epw->ct0 = 10;
 
     case 1:
         if (epw->ct0 != 0) {
@@ -730,7 +730,7 @@ void bhEne12_MV00(BH_PWORK* epw)
             dist = njSqrt((px * px) + (pz * pz));
         }
 
-        if (dist > 9.0f || bhEne_CheckDirTarget(epw, plp->px, plp->pz, 0x1C71) == 0) {
+        if (dist > 9.0f || bhEne_CheckDirTarget(epw, plp->px, plp->pz, 7281) == 0) {
             epw->mode0 = 1;
             epw->mode1 = 1;
             epw->mode2 = 1;
@@ -755,7 +755,7 @@ void bhEne12_MV01(BH_PWORK* epw)
             epw->frm_no = 0;
         }
         
-        epw->mtn_add = 0x10000;
+        epw->mtn_add = 65536;
 
         epw->mode3 += 1;
         /* fallthrough */
@@ -774,17 +774,17 @@ void bhEne12_MV01(BH_PWORK* epw)
             dist = njSqrt((px *px) + (pz * pz));
         }
 
-        if (bhEne_CheckDirTarget(epw,  plp->px, plp->pz, 0x2AAA) != 0) {
-            epw->ayp = bhEne_DirTarget(epw, epw->xn, epw->zn, 0x111);
-        } else if (bhEne_CheckDirTarget(epw, plp->px, plp->pz, 0x5555) != 0) {
-            epw->ayp = bhEne_DirTarget(epw,  epw->xn, epw->zn, 0x1C7);
+        if (bhEne_CheckDirTarget(epw,  plp->px, plp->pz, 10922) != 0) {
+            epw->ayp = bhEne_DirTarget(epw, epw->xn, epw->zn, 273);
+        } else if (bhEne_CheckDirTarget(epw, plp->px, plp->pz, 21845) != 0) {
+            epw->ayp = bhEne_DirTarget(epw,  epw->xn, epw->zn, 455);
         } else {
-            epw->ayp = bhEne_DirTarget(epw,  epw->xn, epw->zn, 0x27D);
+            epw->ayp = bhEne_DirTarget(epw,  epw->xn, epw->zn, 637);
         }
         
         epw->ay += epw->ayp;
         
-        if ((dist < 5.0f) && (bhEne_CheckDirTarget(epw, plp->px, plp->pz, 0x1555) != 0)) {
+        if ((dist < 5.0f) && (bhEne_CheckDirTarget(epw, plp->px, plp->pz, 5461) != 0)) {
             epw->mode0 = 1;
             epw->mode1 = 1;
             epw->mode2 = 0;
@@ -798,11 +798,11 @@ void bhEne12_MV02(BH_PWORK* epw)
 {
     switch (epw->mode3) {
     case 0:
-        epw->flg &= 0xFFEFFFFF;
+        epw->flg &= ~0x100000;
         epw->flg |= 0x80000;
         epw->mtn_no = 6;
         epw->frm_no = 0;
-        epw->mtn_add = 0x10000;
+        epw->mtn_add = 65536;
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 2;
         epw->flg |= 0x40000;
         epw->mlwP = epw->mdl;
@@ -813,7 +813,7 @@ void bhEne12_MV02(BH_PWORK* epw)
         return;
 
     case 1:
-        epw->shp_ct = bhEne_GetShapeCnt(ShapeTbl_Acid, epw->frm_no >> 0x10);
+        epw->shp_ct = bhEne_GetShapeCnt(ShapeTbl_Acid, epw->frm_no / 65536);
 
         if (epw->frm_no == 0) {
             epw->mode1 = 1;
@@ -828,7 +828,7 @@ void bhEne12_MV02(BH_PWORK* epw)
         }
 
         if (epw->frm_no >= 0x280000) {
-            epw->flg &= 0xFFBFFFFF;
+            epw->flg &= ~0x400000;
         }
 
         epw->xn = plp->px;
@@ -838,12 +838,12 @@ void bhEne12_MV02(BH_PWORK* epw)
             bhCheckRoute((NJS_POINT3*)&epw->px, (NJS_POINT3*)&plp->px, (NJS_POINT3*)&epw->xn);
         }
 
-        if (bhEne_CheckDirTarget(epw,  plp->px, plp->pz, 0x2AAA) != 0) {
-            epw->ayp = bhEne_DirTarget(epw,  epw->xn, epw->zn, 0x111);
-        } else if (bhEne_CheckDirTarget(epw,  plp->px, plp->pz, 0x5555) != 0) {
-            epw->ayp = bhEne_DirTarget(epw,  epw->xn, epw->zn, 0x1C7);
+        if (bhEne_CheckDirTarget(epw,  plp->px, plp->pz, 10922) != 0) {
+            epw->ayp = bhEne_DirTarget(epw,  epw->xn, epw->zn, 273);
+        } else if (bhEne_CheckDirTarget(epw,  plp->px, plp->pz, 21845) != 0) {
+            epw->ayp = bhEne_DirTarget(epw,  epw->xn, epw->zn, 455);
         } else {
-            epw->ayp = bhEne_DirTarget(epw,  epw->xn, epw->zn, 0x27D);
+            epw->ayp = bhEne_DirTarget(epw,  epw->xn, epw->zn, 637);
         }
 
         epw->ay += epw->ayp;
@@ -862,7 +862,7 @@ void bhEne12_MV03(BH_PWORK* epw) {
         epw->flg |= 0x40000;
         epw->mtn_no = 4;
         epw->frm_no = 0;
-        epw->mtn_add = 0x10000;
+        epw->mtn_add = 65536;
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 2;
         epw->ct1 = 0;
         epw->mode3 += 1;
@@ -884,7 +884,7 @@ void bhEne12_MV03(BH_PWORK* epw) {
         }
         
         if (epw->frm_no >= 0x110000) {
-            epw->flg &= 0xFFBFFFFF;
+            epw->flg &= ~0x400000;
         }
         
         if (epw->frm_no == 0) {
@@ -901,17 +901,17 @@ void bhEne12_MV03(BH_PWORK* epw) {
             bhCheckRoute((NJS_POINT3*)&epw->px, (NJS_POINT3*)&plp->px, (NJS_POINT3*)&epw->xn);
         }
         
-        if (bhEne_CheckDirTarget(epw, plp->px, plp->pz, 0x2AAA) != 0) {
-            epw->ayp = bhEne_DirTarget(epw, epw->xn, epw->zn, 0x111);
-        } else if (bhEne_CheckDirTarget(epw, plp->px, plp->pz, 0x5555) != 0) {
-            epw->ayp = bhEne_DirTarget(epw, epw->xn, epw->zn, 0x1C7);
+        if (bhEne_CheckDirTarget(epw, plp->px, plp->pz, 10922) != 0) {
+            epw->ayp = bhEne_DirTarget(epw, epw->xn, epw->zn, 273);
+        } else if (bhEne_CheckDirTarget(epw, plp->px, plp->pz, 21845) != 0) {
+            epw->ayp = bhEne_DirTarget(epw, epw->xn, epw->zn, 455);
         } else {
-            epw->ayp = bhEne_DirTarget(epw, epw->xn, epw->zn, 0x27D);
+            epw->ayp = bhEne_DirTarget(epw, epw->xn, epw->zn, 637);
         }
         
         epw->ay += epw->ayp;
         
-        if (epw->frm_no == 0x50000) {
+        if (epw->frm_no == 327680) {
             bhEne12_SetFireBintaEffect(epw, 0);
         }
         
@@ -919,7 +919,7 @@ void bhEne12_MV03(BH_PWORK* epw) {
             bhEne12_SetFireBintaEffect(epw, 1);
         }
         
-        if ((epw->frm_no >= 0xA0000) && (epw->frm_no < 0x140001)) {
+        if ((epw->frm_no >= 655360) && (epw->frm_no < 1310721)) {
             bhEne12_SetFireBintaEffect(epw, 2);
         }
         
@@ -1020,7 +1020,7 @@ void bhEne12_MV04(BH_PWORK* epw) {
         }
 
         if (epw->frm_no >= 1114112) {
-            epw->flg &= 0xFFBFFFFF;
+            epw->flg &= ~0x400000;
         }
 
         if (epw->frm_no == 0) {
@@ -1073,9 +1073,9 @@ void bhEne12_MV06(BH_PWORK* epw)
     switch (epw->mode3) {
     case 0:
         epw->flg |= 0x100000;
-        epw->flg &= 0xFFF7FFFF;
+        epw->flg &= ~0x80000;
         epw->mtn_no = 0;
-        epw->hokan_count = 0x14;
+        epw->hokan_count = 20;
         epw->frm_no = 0;
         epw->mode3 += 1;
         break;
@@ -1099,21 +1099,21 @@ void bhEne12_MV07(BH_PWORK* epw)
     epw->py += 5.0f;
     epw->py = bhGetGroundPosition((NJS_POINT3*)&epw->px);
 
-    epw->mtn_md |= 0x100;
+    epw->mtn_md |= 256;
 
     mkaP = epw->mnwP[epw->mtn_no].md2P->p[1];
-    mkaP += (epw->frm_no >> 0x10);
+    mkaP += (epw->frm_no / 65536);
     epw->ay = mkaP->key[1];
 
     epw->flg |= 0x40000;
     epw->flg |= 0x100000;
-    epw->flg &= 0xFFF7FFFF;
+    epw->flg &= ~0x80000;
 
     epw->mnwP     = epw->mnwPb;
     epw->mtn_no   = 0;
     epw->frm_no   = 0;
-    epw->mtn_add  = 0x10000;
-    epw->hokan_count = 0xA;
+    epw->mtn_add  = 65536;
+    epw->hokan_count = 10;
 
     epw->mode3 = epw->mode3 + 1;
 
@@ -1135,18 +1135,18 @@ void bhEne12_NG00(BH_PWORK* epw)
 
     switch (epw->mode3) {                            
     case 0:
-        epw->flg &= 0xFFFBFFFF;
+        epw->flg &= ~0x40000;
         epw->flg |= 0x100000;
-        epw->flg = epw->flg & 0xFFF7FFFF;
-        epw->flg = epw->flg & ~0x40;
+        epw->flg &= ~0x80000;
+        epw->flg &=  ~0x40;
         epw->mtn_no = 8;
         epw->frm_no = 0;
-        epw->mtn_add = 0x10000;
+        epw->mtn_add = 65536;
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
         plp->mode0 = 6;
         plp->mode3 = 0;
         
-        if ((int)abs((short)(epw->ay - plp->ay)) > 0x4000) {
+        if ((int)abs((short)(epw->ay - plp->ay)) > 16384) {
             plp->mode2 = 0;
         } else {
             plp->mode2 = 1;
@@ -1171,7 +1171,7 @@ void bhEne12_NG00(BH_PWORK* epw)
             return;
         }
         
-        if (epw->frm_no < 0x640000) {
+        if (epw->frm_no < 6553600) {
             njUnitMatrix(NULL);
             njRotateY(NULL, epw->ayp + 0x7FFF + 1);
             njCalcPoint(NULL, &pos[plp->mode2], (NJS_VECTOR*)&epw->xn);
@@ -1187,18 +1187,18 @@ void bhEne12_NG00(BH_PWORK* epw)
             }
         }
         
-        if (epw->frm_no == 0x3C0000) {
+        if (epw->frm_no == 3932160) {
             plp->flg |= 2;
         }
         
-        if (epw->frm_no == 0x410000) {
+        if (epw->frm_no == 4259840) {
             npSetAllMatColor(plp->mlwP->objP, plp->mlwP->obj_num, 0xFF402020);
             npSetAllMatColor(sys->obwp->mlwP->objP, 1U, 0xFF402020);
             npSetAllMatColor(sys->obwp[1].mlwP->objP, 1U, 0xFF402020);
         }
 
         
-        if (epw->frm_no > 0x410000) {
+        if (epw->frm_no > 4259840) {
             efp = pc_eff_tab;
             while(efp->jno != 0) {
                 if (efp->delay == epw->ct2) {
@@ -1219,13 +1219,13 @@ void bhEne12_Damage(BH_PWORK* epw)
     if ((epw->flg & 4) &&
         ((epw->flg = (int)(epw->flg & ~4),
           bhEne_CalcDamage(epw, CombWepTbl, CombJointTbl),
-          (epw->wpnr_no != 0x10)) ||
+          (epw->wpnr_no != 16)) ||
          (epw->flg2 & 4) ||
          (epw->comb_pnt == 1))) {
 
         epw->hp -= (epw->total_dam);
 
-        if (epw->wpnr_no != 0x11 || (epw->flg2 & 4)) {
+        if (epw->wpnr_no != 17 || (epw->flg2 & 4)) {
             bhEne12_HitMark(epw);
         }
     }
@@ -1240,8 +1240,8 @@ void bhEne12_DG00(BH_PWORK* epw)
 
     switch (epw->mode3) {                             
     case 0:                                         
-        epw->flg = epw->flg & 0xFFEFFFFF;
-        epw->flg &= 0xFFF7FFFF;
+        epw->flg &= ~0x100000;
+        epw->flg &= ~0x80000;
         if (bhEne_DGDirCheck(epw) != 0) {
             epw->mtn_no = 0xD;
             epw->flg &= 0xFFFBFFFF;
@@ -1252,7 +1252,7 @@ void bhEne12_DG00(BH_PWORK* epw)
             case 4:
             case 5:
             case 6:
-                if ((epw->frm_no >= 0x60000) && (epw->frm_no < 0x230001)) {
+                if ((epw->frm_no >= 393216) && (epw->frm_no < 2293761)) {
                     epw->mtn_md = epw->mtn_md | 2;
                 } else {
                     epw->mtn_md = epw->mtn_md & ~2;
@@ -1262,14 +1262,14 @@ void bhEne12_DG00(BH_PWORK* epw)
         }
         
         epw->frm_no = 0;
-        epw->mtn_add = 0x10000;
-        epw->hokan_count = 0xA;
-        epw->hokan_rate = 0xB333;
+        epw->mtn_add = 65536;
+        epw->hokan_count = 10;
+        epw->hokan_rate = 45875;
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
         epw->mode3 += 1;
 
     case 1:                                         
-        if (epw->mtn_no == 0xD) {
+        if (epw->mtn_no == 13) {
             bhEne_AddNullTrans(epw, vm1_013);
         }
         
@@ -1304,13 +1304,13 @@ void bhEne12_DG00(BH_PWORK* epw)
                 break;
             }
             
-            epw->hokan_count = 0xF;
+            epw->hokan_count = 15;
             epw->mtn_md &= ~2;
             epw->flg &= ~4;
             EXP0_I(4) = 0;
             EXP0_I(8) = 0;
-            EXP0_I(0xC) = 0;
-            EXP0_I(0x10) = 0;
+            EXP0_I(12) = 0;
+            EXP0_I(16) = 0;
             epw->flg |= 0x400000;
         }
     }
@@ -1326,14 +1326,14 @@ void bhEne12_Die(BH_PWORK* epw)
 void bhEne12_DD00(BH_PWORK* epw) {
     switch (epw->mode3) {                         
     case 0:
-        epw->flg &= 0xFFFBFFFF;
-        epw->flg &= 0xFFF7FFFF;
-        epw->flg &=  0xFFEFFFFF;
+        epw->flg &= ~0x40000;
+        epw->flg &= ~0x80000;
+        epw->flg &= ~0x100000;
         epw->flg &= ~0x60;
-        epw->mtn_no = 0xE;
+        epw->mtn_no = 14;
         epw->frm_no = 0;
-        epw->mtn_add = 0x10000;
-        epw->hokan_count = 0xA;
+        epw->mtn_add = 65536;
+        epw->hokan_count = 10;
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
         epw->mode3 += 1;
         /* fallthrough */
@@ -1353,10 +1353,10 @@ void bhEne12_InitDamage(BH_PWORK* epw) {
     epw->flg &= ~4;
     bhEne_CalcDamage(epw, CombWepTbl, CombJointTbl);
 
-    if ((epw->wpnr_no != 0x10) || (epw->flg2 & 4) || (epw->comb_pnt == 1)) {
+    if ((epw->wpnr_no != 16) || (epw->flg2 & 4) || (epw->comb_pnt == 1)) {
         epw->hp -= epw->total_dam;
 
-        if (epw->wpnr_no != 0x11 || (epw->flg2 & 4)) {
+        if (epw->wpnr_no != 17 || (epw->flg2 & 4)) {
             bhEne12_HitMark(epw);
 
             if (epw->hp < 0) {
@@ -1365,7 +1365,7 @@ void bhEne12_InitDamage(BH_PWORK* epw) {
                 epw->mode2 = 0;
                 epw->mode3 = 0;
             } else if (!(epw->flg & 0x400000)) {
-                if ((epw->total_dam >= 0x15) || (epw->comb_flg & 1)) {
+                if ((epw->total_dam >= 21) || (epw->comb_flg & 1)) {
                     epw->mode0 = 3;
                     epw->mode1 = 0;
                     epw->mode2 = 0;
@@ -1399,17 +1399,17 @@ void bhEne12_LookPlayaer(BH_PWORK* epw)
     mat2 = (float*)&lcmat[1];
     
     if (epw->mnwP != epw->mnwPb) {
-        epw->flg &= 0xFFEFFFFF;
+        epw->flg &= ~0x100000;
         return;
     }
 
     if (!(epw->flg & 0x100000)) {
-        if (EXP0_I(0x1C) == 0) {
+        if (EXP0_I(28) == 0) {
             return;
         }
 
         mkaP = epw->mnwP[epw->mtn_no].md2P[5].p[1];
-        mkaP += (epw->frm_no >> 0x10);
+        mkaP += (epw->frm_no / 65536);
         if (epw->mtn_md & 2) {
             njUnitMatrix(lcmat);
             njRotateXYZ(lcmat,  mkaP->key[0], -mkaP->key[1], -mkaP->key[2]);
@@ -1463,7 +1463,7 @@ void bhEne12_LookPlayaer(BH_PWORK* epw)
         }
 
         njRotateZ(lcmat, -(int)(10430.381f * asinf(mat[1])));
-        EXP0_I(0x1C) = 0x10;
+        EXP0_I(28) = 16;
     }
 
     (void*)epw->mlwP;  // Hack
@@ -1476,13 +1476,13 @@ void bhEne12_LookPlayaer(BH_PWORK* epw)
     rz1 = (int)(10430.381f * asinf(mat2[1]));
     out = njOuterProduct((NJS_VECTOR*) &mat2[8], (NJS_VECTOR*) &mat[8], &ov);
     njUnitVector(&ov);
-    ang = (int)(10430.381f * asinf(out)) / EXP0_I(0x1C);
+    ang = (int)(10430.381f * asinf(out)) / EXP0_I(28);
     njUnitMatrix(NULL);
     njRotate(NULL, &ov, ang);
     njMultiMatrix(NULL, (NJS_MATRIX*)&(lcmat[1]));
     njGetMatrix(lcmat);
 
-    njRotateZ(lcmat, ((short)(rz2 - rz1)) / EXP0_I(0x1C));
+    njRotateZ(lcmat, ((short)(rz2 - rz1)) / EXP0_I(28));
     rx = bhArcTan2(mat[6], mat[5]);
     ry = bhArcTan2(-mat[2], mat[0]);
     rz = (int)(10430.381f * asinf(mat[1]));
@@ -1496,8 +1496,8 @@ void bhEne12_LookPlayaer(BH_PWORK* epw)
     njGetMatrix(&epw->mlwP->owP[5].mtx);
 
     if (!(epw->flg & 0x100000)) {
-        if (EXP0_I(0x1C) != 0) {
-            EXP0_I(0x1C) -= 1;
+        if (EXP0_I(28) != 0) {
+            EXP0_I(28) -= 1;
         }
         return;
     }
@@ -1641,7 +1641,7 @@ void bhEne12_PlayerControl(BH_PWORK* epw) {
         case 1:
             switch (plp->mode3) {
             case 0:
-                plp->flg &= 0xFFFBFFFF;
+                plp->flg &= ~0x40000;
                 plp->flg2 |= 1;
 
                 if (plp->mode2 == 0) {
@@ -1652,8 +1652,8 @@ void bhEne12_PlayerControl(BH_PWORK* epw) {
 
                 plp->frm_no = 0;
                 plp->hokan_count = 3;
-                plp->hokan_rate = 0x8000;
-                plp->mtn_add = 0x10000;
+                plp->hokan_rate = 32768;
+                plp->mtn_add = 65536;
                 plp->mode3++;
                 bhEne_CallPlayerVoice(2);
                 StartVibrationEx(1, 9);
@@ -1671,8 +1671,8 @@ void bhEne12_PlayerControl(BH_PWORK* epw) {
                     
                     plp->frm_no = 0;
                     plp->hokan_count = 3;
-                    plp->hokan_rate = 0x8000;
-                    plp->mtn_add = 0x10000;
+                    plp->hokan_rate = 32768;
+                    plp->mtn_add = 65536;
                     plp->mode3++;
                 }
                 break;
@@ -1680,11 +1680,11 @@ void bhEne12_PlayerControl(BH_PWORK* epw) {
             case 2:
                 if (plp->frm_no == 0) {
                     plp->mnwP= epw->mnwPb;
-                    plp->flg &= 0xFFFEFFFB;
-                    plp->flg2 &= 0xFFFFFFFE;
+                    plp->flg &= ~0x10004;
+                    plp->flg2 &= ~0x1;
                     plp->flg |= 8;
                     plp->at_flg = 0;
-                    plp->stflg &= 0xFFFEFFFF;
+                    plp->stflg &= ~0x10000;
                     *(unsigned int*)&plp->mode0 = 1;     
                 }
                 break;
@@ -1697,12 +1697,12 @@ void bhEne12_PlayerControl(BH_PWORK* epw) {
         case 1:
             switch (plp->mode3) {
             case 0:
-                plp->flg &= 0xFFFBFFFF;
-                plp->flg &= 0xFFF7FFFF;
+                plp->flg &= ~0x40000;
+                plp->flg &= ~0x80000;
                 plp->flg |= 0x10004;
                 plp->stflg |= 0x10000;
                 *(unsigned int*)plp->exp1 |= 0x1E0;
-                *(unsigned int*)plp->exp1 &= 0xFFFFFFFB;
+                *(unsigned int*)plp->exp1 &= ~0x4;
 
                 if (plp->mode2 == 0) {
                     plp->ct0 = 1;
@@ -1714,17 +1714,17 @@ void bhEne12_PlayerControl(BH_PWORK* epw) {
 
                 plp->ct1 = 8;
                 plp->mnwP = epw->mnwP;
-                plp->mtn_no = plp->mode2 + 0x14;
+                plp->mtn_no = plp->mode2 + 20;
                 plp->frm_no = 0;
                 plp->hokan_count = 5;
-                plp->hokan_rate = 0xCCCC;
+                plp->hokan_rate = 52428;
                 plp->mtn_add = 0;
                 plp->mode3++;
                 /* fallthrough */
 
             case 1:
                 if ((plp->ct0)-- == 0) {
-                    plp->mtn_add = 0x10000;
+                    plp->mtn_add = 65536;
                     plp->ct0 = plp->mnwP[plp->mtn_no].frm_num - 1;
                     plp->mode3++;
                 }
@@ -1741,8 +1741,8 @@ void bhEne12_PlayerControl(BH_PWORK* epw) {
                     plp->ct1--;
                 }
 
-                if (plp->frm_no == 0x3C0000) {
-                    StartVibrationEx(1, 0xB);
+                if (plp->frm_no == 3932160) {
+                    StartVibrationEx(1, 11);
                 }
 
                 if (plp->frm_no == 0) {
@@ -1789,7 +1789,7 @@ void bhEne12_FlameLiquid(BH_PWORK* epw, NJS_VECTOR* pos, int time)
     p2.y = pos->y;
     p2.z = pos->z;
     
-    if (bhCollisionCheckLine2(&p1,  &p2, 0x4400U, -1) != NULL) {
+    if (bhCollisionCheckLine2(&p1,  &p2, 17408, -1) != NULL) {
         bhGetHitCollisionNormal(&n);
         njUnitVector(&n);
         p2.x += (0.2f * n.x);
@@ -1811,7 +1811,7 @@ void bhEne12_FlameLiquid(BH_PWORK* epw, NJS_VECTOR* pos, int time)
             eff[eno].aox = n.x;
             eff[eno].aoy = n.y;
             eff[eno].aoz = n.z;
-            eff[eno].exp1 = (unsigned char*)EXP0_I(0x20);
+            eff[eno].exp1 = (unsigned char*)EXP0_I(32);
             eff[eno].ax = (int)(10430.381f * acosf(n.y));
             eff[eno].ay =  bhArcTan2(n.x, n.z);
             eff[eno].ct0 = time;
@@ -1845,7 +1845,7 @@ void bhEne12_Acid(BH_PWORK* epw)
     new_xn = -3.5f * njSin(epw->ay);
     new_zn = -3.5f * njCos(epw->ay);
     
-    sys->ef.id = 0x100;
+    sys->ef.id = 256;
     sys->ef.type = 3;
     sys->ef.flg = 1;
     sys->ef.px = x;
@@ -1913,12 +1913,12 @@ void bhEne12_Blood(BH_PWORK* epw, int num)
 	float dist; 
     int i; 
 
-    sys->ef.id = 0x109;
+    sys->ef.id = 265;
     sys->ef.flg = 1;
     sys->ef.type = 1;
     base_ang = bhArcTan2(epw->px - plp->px, epw->pz - plp->pz);
     
-    for(i = 0;i < num; i++) {
+    for(i = 0; i < num; i++) {
         
         scale = 2.0f + (5.0f * (-rand() / -2.1474836e9f));
         ang = (int)((base_ang + (21845.0f * (-rand() / -2.1474836e9f))) - 10922.0f);
@@ -1935,8 +1935,8 @@ void bhEne12_Blood(BH_PWORK* epw, int num)
             eff[eno].aox = 0.0f;
             eff[eno].aoy = 1.0f;
             eff[eno].aoz = 0.0f;
-            eff[eno].exp1 = (unsigned char*)EXP0_I(0x20);
-            eff[eno].ct0 = 0x3C;
+            eff[eno].exp1 = (unsigned char*)EXP0_I(32);
+            eff[eno].ct0 = 60;
         }
     }
 }
@@ -1964,7 +1964,7 @@ int bhEne12_AvoidWall(BH_PWORK* epw)
     p2.x = (p2.x - p1.x) / 10.0f;
     p2.z = (p2.z - p1.z) / 10.0f;
     
-    for (i = 0; i < 0xA; i++) {
+    for (i = 0; i < 10; i++) {
         p1.x += p2.x;
         p1.z += p2.z;
         
@@ -1984,42 +1984,42 @@ void bhEne12_CallSE(BH_PWORK* epw)
     if (epw->mnwP == epw->mnwPb) {
         switch (epw->mtn_no) {                         
         case 1:
-            if (epw->frm_no == 0x120000) {
+            if (epw->frm_no == 1179648) {
                 bhEne12_CallFootSE(epw, 0);
             }
-            if (epw->frm_no == 0x300000) {
+            if (epw->frm_no == 3145728) {
                 bhEne12_CallFootSE(epw, 1);
                 return;
             }
             break;
         case 4:
         case 5:
-            if (epw->frm_no == 0x120000) {
+            if (epw->frm_no == 1179648) {
                 bhEne12_CallFootSE(epw, 0);
             }
-            if (epw->frm_no == 0x300000) {
+            if (epw->frm_no == 3145728) {
                 bhEne12_CallFootSE(epw, 1);
             }
-            if (epw->frm_no == 0xF0000) {
+            if (epw->frm_no == 983040) {
                 bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x12301);
                 bhEne_CallEffectSE((NJS_POINT3*)&epw->px, 0x12302);
                 return;
             }
             break;
         case 6:
-            if (epw->frm_no == 0x120000) {
+            if (epw->frm_no == 1179648) {
                 bhEne12_CallFootSE(epw, 0);
             }
-            if (epw->frm_no == 0x1E0000) {
+            if (epw->frm_no == 1966080) {
                 bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x12304);
                 return;
             }
             break;
         case 8:
-            if (epw->frm_no == 0x80000) {
+            if (epw->frm_no == 524288) {
                 bhEne12_CallFootSE(epw, 1);
             }
-            if (epw->frm_no == 0x400000) {
+            if (epw->frm_no == 4194304) {
                 bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x12306);
                 return;
             }
@@ -2028,7 +2028,7 @@ void bhEne12_CallSE(BH_PWORK* epw)
             if (epw->frm_no == 0) {
                 bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x01002307);
             }
-            if (epw->frm_no == 0x90000) {
+            if (epw->frm_no == 589824) {
                 bhEne12_CallFootSE(epw, 0);
                 return;
             }
@@ -2037,10 +2037,10 @@ void bhEne12_CallSE(BH_PWORK* epw)
             if (epw->frm_no == 0) {
                 bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x01002308);
             }
-            if (epw->frm_no == 0xC0000) {
+            if (epw->frm_no == 786432) {
                 bhEne12_CallFootSE(epw, 0);
             }
-            if (epw->frm_no == 0x160000) {
+            if (epw->frm_no == 1441792) {
                 bhEne12_CallFootSE(epw, 1);
                 return;
             }
@@ -2049,10 +2049,10 @@ void bhEne12_CallSE(BH_PWORK* epw)
             if (epw->frm_no == 0) {
                 bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x01002309);
             }
-            if (epw->frm_no == 0x190000) {
+            if (epw->frm_no == 1638400) {
                 bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x230A);
             }
-            if (epw->frm_no == 0x800000) {
+            if (epw->frm_no == 8388608) {
                 bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x230B);
             }
             break;
@@ -2076,7 +2076,7 @@ void bhEne12_CallFootSE(BH_PWORK* epw, int flg) {
     }
     
     hp = bhCheckFloorEnemy(epw->flr_no, pos.x, pos.z);
-    if ((hp != NULL) && (hp->prm0 == 0xC)) {
+    if ((hp != NULL) && (hp->prm0 == 12)) {
         bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x1230C);
         return;
     }
@@ -2098,7 +2098,7 @@ void bhEne12_SetFireBintaEffect(BH_PWORK* epw, int act) {
 
     switch (act) {
     case 0:
-        sys->ef.id = 0x112;
+        sys->ef.id = 274;
         sys->ef.flg = 1;
         i = 0;
         sys->ef.type = 0;
@@ -2130,7 +2130,7 @@ void bhEne12_SetFireBintaEffect(BH_PWORK* epw, int act) {
         efp = alex_eff_tab;
         while (efp->jno != 0) {
             p = ((O_WRK**)(epw->exp0))[i + 10];
-            if (p != NULL && (p->flg & 1) != 0 && p->id == 0x112) {
+            if (p != NULL && (p->flg & 1) != 0 && p->id == 274) {
                 p->mode0 = 3;
             }
             i++;
@@ -2139,7 +2139,7 @@ void bhEne12_SetFireBintaEffect(BH_PWORK* epw, int act) {
         break;
 
     case 2:
-        sys->ef.id = 0x113;
+        sys->ef.id = 275;
         sys->ef.flg = 1;
         sys->ef.type = 0;
         sys->ef.ay = 0;
@@ -2151,9 +2151,9 @@ void bhEne12_SetFireBintaEffect(BH_PWORK* epw, int act) {
         ofp.z = 0.0f;
         njCalcPoint(&owk->mtx, &ofp, (NJS_POINT3*)&sys->ef.px);
 
-        vec.x = vec2.x = 0.25f * (((NJS_POINT3*)(epw->exp0 + 0xA0))->x - sys->ef.px);
-        vec.y = vec2.y = 0.25f * (((NJS_POINT3*)(epw->exp0 + 0xA0))->y - sys->ef.py);
-        vec.z = vec2.z = 0.25f * (((NJS_POINT3*)(epw->exp0 + 0xA0))->z - sys->ef.pz);
+        vec.x = vec2.x = 0.25f * (((NJS_POINT3*)(epw->exp0 + 160))->x - sys->ef.px);
+        vec.y = vec2.y = 0.25f * (((NJS_POINT3*)(epw->exp0 + 160))->y - sys->ef.py);
+        vec.z = vec2.z = 0.25f * (((NJS_POINT3*)(epw->exp0 + 160))->z - sys->ef.pz);
         njUnitVector(&vec2);
 
         scale = 0.8f + (0.4f * ((-rand() / -2.1474836e9f)));
@@ -2194,7 +2194,7 @@ void bhEne12_SetFireBintaEffect(BH_PWORK* epw, int act) {
         ofp.x = 0.0f;
         ofp.y = 0.5f;
         ofp.z = 0.0f;
-        njCalcPoint(&owk->mtx, &ofp, ((NJS_POINT3*)(epw->exp0 + 0xA0)));
+        njCalcPoint(&owk->mtx, &ofp, ((NJS_POINT3*)(epw->exp0 + 160)));
         break;
     }
 }

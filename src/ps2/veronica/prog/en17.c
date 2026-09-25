@@ -408,16 +408,11 @@ void bhEne17_EneToPlyDist(BH_PWORK* epw) {
     ((float*)epw->exp0)[5] = njDistanceP2P(&pos, (NJS_POINT3*)&epw->px);
 }
 
-// 
-// Start address: 0x1eada0
-void bhEne17_MainLoop(BH_PWORK* epw)
-{
-	// Line 354, Address: 0x1eada0, Func Offset: 0
-	// Line 360, Address: 0x1eadac, Func Offset: 0xc
-	// Line 363, Address: 0x1eadb4, Func Offset: 0x14
-	// Line 366, Address: 0x1eadd4, Func Offset: 0x34
-	// Line 465, Address: 0x1eaddc, Func Offset: 0x3c
-	// Func End, Address: 0x1eadec, Func Offset: 0x4c
+// 100% matching!
+void bhEne17_MainLoop(BH_PWORK* epw) {
+    bhEne17_DmgChk(epw);
+    bhEne17_Mode0[epw->mode0](epw);
+    bhEne17_SetMtn(epw);
 }
 
 // 

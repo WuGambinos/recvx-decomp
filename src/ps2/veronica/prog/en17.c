@@ -646,67 +646,73 @@ int bhEne17_SetMtn(BH_PWORK* epw)
 	// Func End, Address: 0x1eb644, Func Offset: 0x4f4
 }
 
-// 
-// Start address: 0x1eb650
+// 100% matching!
 void bhEne17_MtnTblPlay(BH_PWORK* epw, int frm)
 {
-	// already reversed order from DWARF
-	MTBL_WRK* mtbl;
-	MTBL_WORK* mtbl2;
-	NJS_VECTOR vec = { 0 };
-	NJS_VECTOR vec1 = { 0 };
-	NJS_VECTOR vec2 = { 0, -0.8f, -2.5f };
-	int i;
-	// Line 1053, Address: 0x1eb650, Func Offset: 0
-	// Line 1054, Address: 0x1eb66c, Func Offset: 0x1c
-	// Line 1055, Address: 0x1eb674, Func Offset: 0x24
-	// Line 1056, Address: 0x1eb67c, Func Offset: 0x2c
-	// Line 1057, Address: 0x1eb694, Func Offset: 0x44
-	// Line 1056, Address: 0x1eb6a0, Func Offset: 0x50
-	// Line 1058, Address: 0x1eb6a4, Func Offset: 0x54
-	// Line 1056, Address: 0x1eb6a8, Func Offset: 0x58
-	// Line 1058, Address: 0x1eb6ac, Func Offset: 0x5c
-	// Line 1057, Address: 0x1eb6b0, Func Offset: 0x60
-	// Line 1062, Address: 0x1eb6bc, Func Offset: 0x6c
-	// Line 1057, Address: 0x1eb6c0, Func Offset: 0x70
-	// Line 1058, Address: 0x1eb6c8, Func Offset: 0x78
-	// Line 1062, Address: 0x1eb6dc, Func Offset: 0x8c
-	// Line 1065, Address: 0x1eb6f8, Func Offset: 0xa8
-	// Line 1067, Address: 0x1eb70c, Func Offset: 0xbc
-	// Line 1069, Address: 0x1eb714, Func Offset: 0xc4
-	// Line 1071, Address: 0x1eb720, Func Offset: 0xd0
-	// Line 1073, Address: 0x1eb728, Func Offset: 0xd8
-	// Line 1077, Address: 0x1eb758, Func Offset: 0x108
-	// Line 1080, Address: 0x1eb7a0, Func Offset: 0x150
-	// Line 1081, Address: 0x1eb7b8, Func Offset: 0x168
-	// Line 1083, Address: 0x1eb7c0, Func Offset: 0x170
-	// Line 1084, Address: 0x1eb7d8, Func Offset: 0x188
-	// Line 1086, Address: 0x1eb7e0, Func Offset: 0x190
-	// Line 1087, Address: 0x1eb7f8, Func Offset: 0x1a8
-	// Line 1089, Address: 0x1eb800, Func Offset: 0x1b0
-	// Line 1092, Address: 0x1eb818, Func Offset: 0x1c8
-	// Line 1094, Address: 0x1eb828, Func Offset: 0x1d8
-	// Line 1095, Address: 0x1eb848, Func Offset: 0x1f8
-	// Line 1096, Address: 0x1eb858, Func Offset: 0x208
-	// Line 1099, Address: 0x1eb860, Func Offset: 0x210
-	// Line 1100, Address: 0x1eb870, Func Offset: 0x220
-	// Line 1102, Address: 0x1eb87c, Func Offset: 0x22c
-	// Line 1104, Address: 0x1eb884, Func Offset: 0x234
-	// Line 1105, Address: 0x1eb894, Func Offset: 0x244
-	// Line 1106, Address: 0x1eb898, Func Offset: 0x248
-	// Line 1107, Address: 0x1eb89c, Func Offset: 0x24c
-	// Line 1111, Address: 0x1eb8b0, Func Offset: 0x260
-	// Line 1113, Address: 0x1eb8b8, Func Offset: 0x268
-	// Line 1115, Address: 0x1eb8c4, Func Offset: 0x274
-	// Line 1117, Address: 0x1eb8d0, Func Offset: 0x280
-	// Line 1119, Address: 0x1eb8e0, Func Offset: 0x290
-	// Line 1121, Address: 0x1eb8e8, Func Offset: 0x298
-	// Line 1122, Address: 0x1eb8f4, Func Offset: 0x2a4
-	// Line 1123, Address: 0x1eb8f8, Func Offset: 0x2a8
-	// Line 1125, Address: 0x1eb908, Func Offset: 0x2b8
-	// Line 1126, Address: 0x1eb90c, Func Offset: 0x2bc
-	// Line 1150, Address: 0x1eb920, Func Offset: 0x2d0
-	// Func End, Address: 0x1eb940, Func Offset: 0x2f0
+    MTBL_WRK* mtbl = en17_mtn_tbl;
+    MTBL_WORK* mtbl2 = en17_mtn_tbl2;
+    NJS_VECTOR vec  = { 0 };
+    NJS_VECTOR vec1 = { 0 };
+    NJS_VECTOR vec2 = { 0, -0.8f, -2.5f };
+    int i;
+
+    if (sys->rmthp != epw->mnwP) {
+        if (epw->flg & 0x40000) {
+            while(mtbl->no != -1) {
+                if (mtbl->no == epw->mtn_no) {
+                    for (i = 0; i < 4; i++) {
+                        if (mtbl->fmtn[i].type != -1 &&
+                            frm >= mtbl->fmtn[i].s_frm &&
+                            frm <= mtbl->fmtn[i].e_frm) {
+
+                            switch (mtbl->fmtn[i].type) {
+                            case 0:
+                                bhCalcFixOffset(epw, en17_tree[0], &vec2, &vec);
+                                break;
+                            case 1:
+                                bhCalcFixOffset(epw, en17_tree[1], &vec2, &vec);
+                                break;
+                            case 2:
+                                bhCalcFixOffset(epw, en17_tree[0], &vec1, &vec);
+                                break;
+                            case 3:
+                                bhCalcFixOffset(epw, en17_tree[1], &vec1, &vec);
+                                break;
+                            }
+
+                            if (epw->mtn_no == 0xF) {
+                                epw->px -= 1.2f * vec.x;
+                                epw->pz -= 1.2f * vec.z;
+                            } else {
+                                epw->px -= vec.x;
+                                epw->pz -= vec.z;
+                            }
+
+                            break; 
+                        }
+                    }
+                }
+
+                mtbl++;
+            }
+        }
+
+        while (mtbl2->no != -1) {
+            if (mtbl2->no == epw->mtn_no) {
+                for (i = 0; i < 6; i++) {
+                    if (mtbl2->atb[i].frm == -1) {
+                        break;
+                    }
+                    
+                    if (mtbl2->atb[i].frm == frm) {
+                        bhEne17_SePlay(epw, mtbl2->atb[i].act);
+                    }
+                }
+            }
+            
+            mtbl2++;
+        }
+    }
 }
 
 // 

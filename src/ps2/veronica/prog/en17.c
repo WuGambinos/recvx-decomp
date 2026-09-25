@@ -415,28 +415,32 @@ void bhEne17_MainLoop(BH_PWORK* epw) {
     bhEne17_SetMtn(epw);
 }
 
-// 
-// Start address: 0x1eadf0
-int bhEne17_DmgChk(BH_PWORK* epw)
-{
-	// Line 681, Address: 0x1eadf0, Func Offset: 0
-	// Line 682, Address: 0x1eadfc, Func Offset: 0xc
-	// Line 685, Address: 0x1eae18, Func Offset: 0x28
-	// Line 687, Address: 0x1eae2c, Func Offset: 0x3c
-	// Line 690, Address: 0x1eae38, Func Offset: 0x48
-	// Line 692, Address: 0x1eae40, Func Offset: 0x50
-	// Line 694, Address: 0x1eae50, Func Offset: 0x60
-	// Line 695, Address: 0x1eae5c, Func Offset: 0x6c
-	// Line 696, Address: 0x1eae60, Func Offset: 0x70
-	// Line 699, Address: 0x1eae68, Func Offset: 0x78
-	// Line 702, Address: 0x1eae70, Func Offset: 0x80
-	// Line 708, Address: 0x1eae80, Func Offset: 0x90
-	// Line 711, Address: 0x1eae90, Func Offset: 0xa0
-	// Line 712, Address: 0x1eae9c, Func Offset: 0xac
-	// Line 715, Address: 0x1eaea4, Func Offset: 0xb4
-	// Line 718, Address: 0x1eaeb8, Func Offset: 0xc8
-	// Line 720, Address: 0x1eaec0, Func Offset: 0xd0
-	// Func End, Address: 0x1eaed0, Func Offset: 0xe0
+// 100% matching!
+int bhEne17_DmgChk(BH_PWORK* epw) {
+    if ((epw->flg & 4) && !(epw->flg & 2)) {
+        bhEne_CalcDamage(epw, CombWepTbl, CombJointTbl);
+        
+        if (epw->total_dam != 0) {
+            bhEne17_DamageAdd(epw);
+            
+            if (EXP0_UC(1) != 0) {
+                EXP0_I(8) |= 0x200;
+                EXP0_C(1) = 0;
+            } else {
+                EXP0_C(1) = 1;
+            }
+            
+            if (epw->mode0 == 1) {
+                if (epw->comb_flg & 4) {
+                    EXP0_I(8) |= 0x80;
+                } else {
+                    EXP0_I(8) &= ~0x80;
+                }
+                
+                bhEne17_ChgDmgMode(epw);
+            }
+        }
+    }
 }
 
 // 

@@ -2,6 +2,7 @@
 #define _EN17_H_
 
 #include "types.h"
+#include "macros.h"
 
 typedef struct ATB_WORK
 {

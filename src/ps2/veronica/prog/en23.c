@@ -2398,23 +2398,25 @@ void bhEne23_CollisionWalls(BH_PWORK* epw)
 	// Func End, Address: 0x2052fc, Func Offset: 0x42c
 }
 
-// 
-// Start address: 0x205300
+// 100% matching!
 void bhEne23_CollisionLine(BH_PWORK* epw)
 {
+	NJS_VECTOR n;
 	ATR_WORK* hp;
-	NJS_POINT3 n;
-	// Line 3187, Address: 0x205300, Func Offset: 0
-	// Line 3191, Address: 0x205310, Func Offset: 0x10
-	// Line 3192, Address: 0x205324, Func Offset: 0x24
-	// Line 3193, Address: 0x205350, Func Offset: 0x50
-	// Line 3194, Address: 0x205358, Func Offset: 0x58
-	// Line 3195, Address: 0x205374, Func Offset: 0x74
-	// Line 3197, Address: 0x20537c, Func Offset: 0x7c
-	// Line 3195, Address: 0x205380, Func Offset: 0x80
-	// Line 3197, Address: 0x205384, Func Offset: 0x84
-	// Line 3200, Address: 0x205394, Func Offset: 0x94
-	// Func End, Address: 0x2053a4, Func Offset: 0xa4
+
+    hp = bhCollisionCheckLine2((NJS_POINT3*)&epw->pxb, (NJS_POINT3*)&epw->px, 17408, -1);
+
+    if ((hp != NULL) && ((hp->type == 7) && (!(epw->flg & 0x4000000))))
+    {        
+		bhGetHitCollisionNormal(&n);
+
+		if (n.y > 0)
+		{
+			epw->flg |= 0x4000000;
+
+			*(ATR_WORK**)&EXP0_I(96) = bhEne03_GetWall(epw);
+		}
+    }
 }
 
 // 

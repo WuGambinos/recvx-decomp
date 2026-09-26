@@ -851,7 +851,8 @@ void bhEne17_InitType00()
 }
 
 // 100% matching!
-BH_PWORK* bhEne17_SetLinkWork(BH_PWORK* epw, int lnk_obj, int mdl_no, int id) {
+BH_PWORK* bhEne17_SetLinkWork(BH_PWORK* epw, int lnk_obj, int mdl_no, int id) 
+{
     BH_PWORK* epp;
     EGG_WORK  lnk_tbl;
 
@@ -876,32 +877,25 @@ BH_PWORK* bhEne17_SetLinkWork(BH_PWORK* epw, int lnk_obj, int mdl_no, int id) {
 }
 
 // 100% matching!
-void bhEne17_Move(BH_PWORK* epw) {
+void bhEne17_Move(BH_PWORK* epw) 
+{
     bhEne17_MoveType[0](epw);
 }
 
-// 
-// Start address: 0x1ebe70
-void bhEne17_Damage(BH_PWORK* epw)
+// 100% matching!
+void bhEne17_Damage(BH_PWORK* epw) 
 {
-	// Line 1466, Address: 0x1ebe70, Func Offset: 0
-	// Func End, Address: 0x1ebe80, Func Offset: 0x10
+    bhEne17_DamageType[0](epw);
 }
 
-// 
-// Start address: 0x1ebe80
+// 100% matching!
 void bhEne17_Nage()
 {
-	// Line 1471, Address: 0x1ebe80, Func Offset: 0
-	// Func End, Address: 0x1ebe88, Func Offset: 0x8
 }
 
-// 
-// Start address: 0x1ebe90
+// 100% matching!
 void bhEne17_Die()
 {
-	// Line 1475, Address: 0x1ebe90, Func Offset: 0
-	// Func End, Address: 0x1ebe98, Func Offset: 0x8
 }
 
 // 

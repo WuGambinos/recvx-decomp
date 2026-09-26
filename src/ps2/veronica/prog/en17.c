@@ -4,6 +4,7 @@
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
+#include "../../../ps2/veronica/prog/hitchk.h"
 
 // ENEMY: Monster Steve 
 
@@ -716,7 +717,8 @@ void bhEne17_MtnTblPlay(BH_PWORK* epw, int frm)
 }
 
 // 100% matching!
-void bhEne17_CollCheck(BH_PWORK* epw) {
+void bhEne17_CollCheck(BH_PWORK* epw) 
+{
     
     if (!(epw->flg & 2)) {
         if ((epw->flg & 8) && (((unsigned int*)epw->exp0)[2] & 0x10)) {
@@ -726,19 +728,14 @@ void bhEne17_CollCheck(BH_PWORK* epw) {
     }
 }
 
-// 
-// Start address: 0x1eb9a0
-void bhEne17_CollCheckWall(BH_PWORK* epw)
+void bhEne17_CollCheckWall(BH_PWORK* ewp) 
 {
-	// Line 1199, Address: 0x1eb9a0, Func Offset: 0
-	// Line 1201, Address: 0x1eb9b0, Func Offset: 0x10
-	// Line 1203, Address: 0x1eb9c8, Func Offset: 0x28
-	// Line 1201, Address: 0x1eb9cc, Func Offset: 0x2c
-	// Line 1203, Address: 0x1eb9d0, Func Offset: 0x30
-	// Line 1205, Address: 0x1eb9f4, Func Offset: 0x54
-	// Line 1206, Address: 0x1eb9fc, Func Offset: 0x5c
-	// Line 1208, Address: 0x1eba04, Func Offset: 0x64
-	// Func End, Address: 0x1eba14, Func Offset: 0x74
+    *(ATR_WORK**)((char*)ewp->exp0 + 0x40) = bhCheckWallType((NJS_POINT3*)&ewp->px, ewp->flg, ewp->ar, ewp->ah);
+    
+    if ((((unsigned int*)(ewp->exp0))[2] & 0xF) == 1 && (ewp->flg & 0x10)) {
+        bhCheckDansa(ewp);
+        bhCheckWall(ewp);
+    }
 }
 
 // 

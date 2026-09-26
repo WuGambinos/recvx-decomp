@@ -671,60 +671,101 @@ void bhEne23_Brain(BH_PWORK* epw)
 	bhEne23_BrainType[epw->type](epw);
 }
 
-// 
-// Start address: 0x200840
+// 100% matching!
 void bhEne23_BR00(BH_PWORK* epw)
 {
-	// Line 855, Address: 0x200840, Func Offset: 0
-	// Line 857, Address: 0x20084c, Func Offset: 0xc
-	// Line 858, Address: 0x200880, Func Offset: 0x40
-	// Line 861, Address: 0x200890, Func Offset: 0x50
-	// Line 866, Address: 0x2008a4, Func Offset: 0x64
-	// Line 868, Address: 0x2008c4, Func Offset: 0x84
-	// Line 870, Address: 0x2008d4, Func Offset: 0x94
-	// Line 871, Address: 0x2008fc, Func Offset: 0xbc
-	// Line 872, Address: 0x200900, Func Offset: 0xc0
-	// Line 874, Address: 0x200904, Func Offset: 0xc4
-	// Line 879, Address: 0x20090c, Func Offset: 0xcc
-	// Line 880, Address: 0x200930, Func Offset: 0xf0
-	// Line 883, Address: 0x200938, Func Offset: 0xf8
-	// Line 885, Address: 0x200944, Func Offset: 0x104
-	// Line 888, Address: 0x2009a4, Func Offset: 0x164
-	// Line 890, Address: 0x2009ac, Func Offset: 0x16c
-	// Line 889, Address: 0x2009b0, Func Offset: 0x170
-	// Line 890, Address: 0x2009b4, Func Offset: 0x174
-	// Line 892, Address: 0x2009b8, Func Offset: 0x178
-	// Line 893, Address: 0x2009fc, Func Offset: 0x1bc
-	// Line 897, Address: 0x200a04, Func Offset: 0x1c4
-	// Line 899, Address: 0x200a34, Func Offset: 0x1f4
-	// Line 901, Address: 0x200a3c, Func Offset: 0x1fc
-	// Line 900, Address: 0x200a40, Func Offset: 0x200
-	// Line 901, Address: 0x200a44, Func Offset: 0x204
-	// Line 903, Address: 0x200a48, Func Offset: 0x208
-	// Line 904, Address: 0x200a8c, Func Offset: 0x24c
-	// Line 908, Address: 0x200a94, Func Offset: 0x254
-	// Line 910, Address: 0x200a9c, Func Offset: 0x25c
-	// Line 911, Address: 0x200abc, Func Offset: 0x27c
-	// Line 913, Address: 0x200ac0, Func Offset: 0x280
-	// Line 912, Address: 0x200ac4, Func Offset: 0x284
-	// Line 913, Address: 0x200ac8, Func Offset: 0x288
-	// Line 916, Address: 0x200acc, Func Offset: 0x28c
-	// Line 920, Address: 0x200ad4, Func Offset: 0x294
-	// Line 922, Address: 0x200ae0, Func Offset: 0x2a0
-	// Line 925, Address: 0x200b3c, Func Offset: 0x2fc
-	// Line 927, Address: 0x200b44, Func Offset: 0x304
-	// Line 926, Address: 0x200b48, Func Offset: 0x308
-	// Line 927, Address: 0x200b4c, Func Offset: 0x30c
-	// Line 929, Address: 0x200b50, Func Offset: 0x310
-	// Line 930, Address: 0x200b94, Func Offset: 0x354
-	// Line 934, Address: 0x200b9c, Func Offset: 0x35c
-	// Line 936, Address: 0x200bcc, Func Offset: 0x38c
-	// Line 938, Address: 0x200bd4, Func Offset: 0x394
-	// Line 937, Address: 0x200bd8, Func Offset: 0x398
-	// Line 938, Address: 0x200bdc, Func Offset: 0x39c
-	// Line 940, Address: 0x200be0, Func Offset: 0x3a0
-	// Line 946, Address: 0x200c28, Func Offset: 0x3e8
-	// Func End, Address: 0x200c38, Func Offset: 0x3f8
+	EXP0_F(64) = njSqrt(((epw->px - plp->px) * (epw->px - plp->px)) + ((epw->pz - plp->pz) * (epw->pz - plp->pz)));
+
+    bhEne23_SearchPlayer(epw, 8192);
+
+    if ((epw->flg & 0x8000000))
+    {
+        return;
+    }
+
+    if (EXP0_I(272) != 0)
+    {
+        EXP0_I(272)--;
+    }
+
+    if (EXP0_C(105) == 0)
+    {
+        if ((epw->flr_no != plp->flr_no) && (!(plp->stflg & 0x20)))
+        {
+            epw->mode1 = 0;
+            epw->mode2 = 2;
+            epw->mode3 = 0;
+            return;
+        }
+
+        if (((plp->stflg & 0x80000000)) || ((epw->flg & 0x4)))
+        {
+            return;
+        }
+
+        if (EXP0_I(272) != 0)
+        {
+            return;
+        }
+
+        if ((EXP0_F(64) < 30.0f) && (bhEne23_SearchPlayer(epw, 5461) != 0) && (fabsf(epw->py - plp->py) < 5.0f))
+        {
+            epw->mode0 = 1;
+            epw->mode1 = 0;
+            epw->mode2 = 10;
+            epw->mode3 = 0;
+            
+            EXP0_I(272) = (int)(20.0f * (-rand() / -2147483648.0f)) + 10;
+            return;
+        }
+
+        if ((EXP0_F(64) > 35.0f) && (bhEne23_SearchPlayer(epw, 5461) != 0))
+        {
+            epw->mode0 = 1;
+            epw->mode1 = 0;
+            epw->mode2 = 9;
+            epw->mode3 = 0;
+            
+            EXP0_I(272) = (int)(20.0f * (-rand() / -2147483648.0f)) + 10;
+        }
+    }
+    else if (EXP0_C(105) == 1)
+    {
+        if ((plp->flr_no == 0) && (!(plp->stflg & 0x20)))
+        {
+            epw->mode0 = 1;
+            epw->mode1 = 0;
+            epw->mode2 = 3;
+            epw->mode3 = 0;
+            return;
+        }
+
+        if (EXP0_I(272) != 0)
+        {
+            return;
+        }
+
+        if ((EXP0_F(64) < 28.0f) && (fabsf(plp->py - epw->py) < 45.0f) && (bhEne23_SearchPlayer(epw, 3640) != 0))
+        {
+            epw->mode0 = 1;
+            epw->mode1 = 0;
+            epw->mode2 = 10;
+            epw->mode3 = 0;
+            
+            EXP0_I(272) = (int)(20.0f * (-rand() / -2147483648.0f)) + 40;
+            return;
+        }
+
+        if ((EXP0_F(64) < 35.0f) && (bhEne23_SearchPlayer(epw, 10922) != 0))
+        {
+            epw->mode0 = 1;
+            epw->mode1 = 0;
+            epw->mode2 = 9;
+            epw->mode3 = 0;
+            
+            EXP0_I(272) = (int)(20.0f * (-rand() / -2147483648.0f)) + 20;
+        }
+    }
 }
 
 // 

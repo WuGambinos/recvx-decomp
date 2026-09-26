@@ -949,16 +949,12 @@ void bhEne17_Brain00(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1ec080
-void bhEne17_MVType00(BH_PWORK* epw)
-{
-	// Line 1582, Address: 0x1ec080, Func Offset: 0
-	// Line 1584, Address: 0x1ec08c, Func Offset: 0xc
-	// Line 1585, Address: 0x1ec09c, Func Offset: 0x1c
-	// Line 1587, Address: 0x1ec0a4, Func Offset: 0x24
-	// Line 1588, Address: 0x1ec0c4, Func Offset: 0x44
-	// Func End, Address: 0x1ec0d4, Func Offset: 0x54
+// 100% matching!
+void bhEne17_MVType00(BH_PWORK* epw) {
+    if (epw->mode1 == 1) {
+        bhEne17_Brain(epw);
+    }
+    bhEne17_MoveMode2[epw->mode2](epw);
 }
 
 // 

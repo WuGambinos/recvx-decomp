@@ -4,9 +4,11 @@
 #include "../../../ps2/veronica/prog/en03sub.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
 #include "../../../ps2/veronica/prog/hitchkl.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
 
@@ -350,59 +352,90 @@ void (*bhEne23_DeadMode2[4])(BH_PWORK*) =
 NJS_POINT3 spl_016[20];
 NJS_POINT3 spl_023[25];*/
 
-// 
-// Start address: 0x1fff40
+// 100% matching!
 void bhEne23(BH_PWORK* epw)
 {
-	unsigned int flg;
-	NJS_POINT3 pos;
-	// Line 567, Address: 0x1fff40, Func Offset: 0
-	// Line 569, Address: 0x1fff50, Func Offset: 0x10
-	// Line 572, Address: 0x1fff58, Func Offset: 0x18
-	// Line 569, Address: 0x1fff64, Func Offset: 0x24
-	// Line 572, Address: 0x1fff6c, Func Offset: 0x2c
-	// Line 575, Address: 0x1fff84, Func Offset: 0x44
-	// Line 578, Address: 0x1fff98, Func Offset: 0x58
-	// Line 580, Address: 0x1fffa0, Func Offset: 0x60
-	// Line 584, Address: 0x1fffb4, Func Offset: 0x74
-	// Line 585, Address: 0x1fffc8, Func Offset: 0x88
-	// Line 588, Address: 0x1fffd0, Func Offset: 0x90
-	// Line 585, Address: 0x1fffd4, Func Offset: 0x94
-	// Line 586, Address: 0x1fffdc, Func Offset: 0x9c
-	// Line 587, Address: 0x1fffec, Func Offset: 0xac
-	// Line 588, Address: 0x1ffffc, Func Offset: 0xbc
-	// Line 590, Address: 0x20000c, Func Offset: 0xcc
-	// Line 591, Address: 0x200014, Func Offset: 0xd4
-	// Line 592, Address: 0x200018, Func Offset: 0xd8
-	// Line 593, Address: 0x20001c, Func Offset: 0xdc
-	// Line 596, Address: 0x200020, Func Offset: 0xe0
-	// Line 597, Address: 0x200034, Func Offset: 0xf4
-	// Line 598, Address: 0x20003c, Func Offset: 0xfc
-	// Line 599, Address: 0x200050, Func Offset: 0x110
-	// Line 600, Address: 0x200058, Func Offset: 0x118
-	// Line 601, Address: 0x200068, Func Offset: 0x128
-	// Line 604, Address: 0x200070, Func Offset: 0x130
-	// Line 605, Address: 0x200078, Func Offset: 0x138
-	// Line 606, Address: 0x20008c, Func Offset: 0x14c
-	// Line 609, Address: 0x200098, Func Offset: 0x158
-	// Line 610, Address: 0x2000a8, Func Offset: 0x168
-	// Line 613, Address: 0x2000ac, Func Offset: 0x16c
-	// Line 614, Address: 0x2000b0, Func Offset: 0x170
-	// Line 613, Address: 0x2000b4, Func Offset: 0x174
-	// Line 614, Address: 0x2000b8, Func Offset: 0x178
-	// Line 615, Address: 0x2000c0, Func Offset: 0x180
-	// Line 617, Address: 0x2000c4, Func Offset: 0x184
-	// Line 618, Address: 0x2000d0, Func Offset: 0x190
-	// Line 619, Address: 0x2000d8, Func Offset: 0x198
-	// Line 623, Address: 0x2000e4, Func Offset: 0x1a4
-	// Line 625, Address: 0x2000f4, Func Offset: 0x1b4
-	// Line 626, Address: 0x20010c, Func Offset: 0x1cc
-	// Line 628, Address: 0x200114, Func Offset: 0x1d4
-	// Line 632, Address: 0x20012c, Func Offset: 0x1ec
-	// Line 635, Address: 0x200138, Func Offset: 0x1f8
-	// Line 636, Address: 0x200140, Func Offset: 0x200
-	// Func End, Address: 0x200154, Func Offset: 0x214
-	scePrintf("bhEne23 - UNIMPLEMENTED!\n");
+    NJS_POINT3 pos;   
+    unsigned int flg;
+
+    epw->flg &= ~0x100;
+
+    bhEne23_Mode0[epw->mode0](epw);
+    
+    bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+
+    bhEne23_CallSE(epw);
+    
+    if ((epw->flg & 0x800000)) 
+    {
+        bhEne03_GetPartsPos(epw, joint_tree[0], &pos);
+        
+        epw->aox = pos.x - epw->px;
+        epw->aoy = pos.y - epw->py;
+        epw->aoz = pos.z - epw->pz;
+        
+        if (!(epw->flg & 0x1000000)) 
+        {
+            epw->aoy = 0;
+        }
+    }
+    else 
+    {
+        epw->aox = 0;
+        epw->aoy = 0;
+        epw->aoz = 0;
+    }
+    
+    if (!(epw->flg & 0x400000)) 
+    {
+        bhCheckPlayer(epw);
+    }
+
+    if (!(epw->flg & 0x4000000)) 
+    {
+        bhEne23_CollisionLine(epw);
+    }
+ 
+    if ((epw->flg & 0x10)) 
+    {
+        bhEne23_CollisionWalls(epw);
+    }
+    
+    njUnitMatrix(epw->mtx);
+    
+    njTranslate(epw->mtx, epw->px, epw->py, epw->pz);
+    
+    njMultiMatrix(epw->mtx, (NJS_MATRIX*)epw->exp0);
+    
+    if (epw->mnwP != epw->mnwPb) 
+    {
+        flg = epw->flg;
+        
+        epw->flg &= ~0x1000;
+        
+        bhCalcModel(epw);
+        
+        epw->flg = flg;
+        
+        epw->mdflg &= ~0x4;
+    } 
+    else 
+    {
+        epw->mdflg |=  0x4;
+    }
+    
+    if ((epw->type & 0x1)) 
+    {
+        bhEne_SetWeponAtr(epw, 22, 1,  8.0f);
+    }
+    else
+    {
+        bhEne_SetWeponAtr(epw, 22, 12, 8.0f);
+    }
+
+    bhEne23_Shape(epw);
+    
+    bhEne23_PlayerControl(epw);
 }
 
 // 

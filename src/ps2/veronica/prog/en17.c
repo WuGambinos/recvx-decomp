@@ -1128,31 +1128,34 @@ void bhEne17_MV03(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1ec790
-void bhEne17_MV04(BH_PWORK* epw)
+// 100% matching!
+void bhEne17_MV04(BH_PWORK* epw) 
 {
-	int frm;
-	// Line 2016, Address: 0x1ec790, Func Offset: 0
-	// Line 2019, Address: 0x1ec79c, Func Offset: 0xc
-	// Line 2022, Address: 0x1ec7bc, Func Offset: 0x2c
-	// Line 2023, Address: 0x1ec7cc, Func Offset: 0x3c
-	// Line 2024, Address: 0x1ec7dc, Func Offset: 0x4c
-	// Line 2025, Address: 0x1ec7e8, Func Offset: 0x58
-	// Line 2026, Address: 0x1ec7f0, Func Offset: 0x60
-	// Line 2029, Address: 0x1ec7fc, Func Offset: 0x6c
-	// Line 2032, Address: 0x1ec804, Func Offset: 0x74
-	// Line 2034, Address: 0x1ec81c, Func Offset: 0x8c
-	// Line 2037, Address: 0x1ec82c, Func Offset: 0x9c
-	// Line 2039, Address: 0x1ec85c, Func Offset: 0xcc
-	// Line 2040, Address: 0x1ec864, Func Offset: 0xd4
-	// Line 2041, Address: 0x1ec86c, Func Offset: 0xdc
-	// Line 2042, Address: 0x1ec870, Func Offset: 0xe0
-	// Line 2043, Address: 0x1ec874, Func Offset: 0xe4
-	// Line 2042, Address: 0x1ec878, Func Offset: 0xe8
-	// Line 2043, Address: 0x1ec87c, Func Offset: 0xec
-	// Line 2047, Address: 0x1ec888, Func Offset: 0xf8
-	// Func End, Address: 0x1ec898, Func Offset: 0x108
+    int frm;
+
+    switch (epw->mode3) {                          
+    case 0:
+        bhEne_ChgMtn(epw, 11, 0, 10);
+        epw->flg |= 0x40000;
+        epw->flg2 |= 1;
+        EXP0_C(1) = 0;
+        epw->mode3++;
+        
+    case 1:
+        frm = epw->frm_no / 65536;
+        
+        if ((frm >= 21) && (frm < 29)) {
+            bhEne17_PlayerDGCheck(epw, plp);
+        }
+        
+        if ((epw->frm_no / 65536) == (epw->mnwP[epw->mtn_no].frm_num) - 1) {
+            epw->mode1 = 1;
+            epw->mode2 = 6;
+            epw->mode3 = 0;
+            EXP0_I(4) = 0;
+            epw->flg2 &= ~1;
+        }
+    }
 }
 
 // 

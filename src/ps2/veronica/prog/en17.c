@@ -950,7 +950,8 @@ void bhEne17_Brain00(BH_PWORK* epw)
 }
 
 // 100% matching!
-void bhEne17_MVType00(BH_PWORK* epw) {
+void bhEne17_MVType00(BH_PWORK* epw) 
+{
     if (epw->mode1 == 1) {
         bhEne17_Brain(epw);
     }
@@ -959,7 +960,8 @@ void bhEne17_MVType00(BH_PWORK* epw) {
 
 
 // 100% matching!
-void bhEne17_MV00(BH_PWORK* epw) {
+void bhEne17_MV00(BH_PWORK* epw)
+{
     switch (epw->mode3) {                      
     case 0:
         bhEne_ChgMtn(epw, 0, 0, 7);
@@ -993,25 +995,28 @@ void bhEne17_MV00(BH_PWORK* epw) {
     }
 }
 
-// 
-// Start address: 0x1ec270
-void bhEne17_MV01(BH_PWORK* epw)
+// 100% matching!
+void bhEne17_MV01(BH_PWORK *epw)
 {
-	// Line 1715, Address: 0x1ec270, Func Offset: 0
-	// Line 1716, Address: 0x1ec27c, Func Offset: 0xc
-	// Line 1719, Address: 0x1ec29c, Func Offset: 0x2c
-	// Line 1720, Address: 0x1ec2a8, Func Offset: 0x38
-	// Line 1721, Address: 0x1ec2b8, Func Offset: 0x48
-	// Line 1722, Address: 0x1ec2bc, Func Offset: 0x4c
-	// Line 1725, Address: 0x1ec2c8, Func Offset: 0x58
-	// Line 1727, Address: 0x1ec2dc, Func Offset: 0x6c
-	// Line 1729, Address: 0x1ec300, Func Offset: 0x90
-	// Line 1733, Address: 0x1ec338, Func Offset: 0xc8
-	// Line 1732, Address: 0x1ec33c, Func Offset: 0xcc
-	// Line 1733, Address: 0x1ec340, Func Offset: 0xd0
-	// Line 1734, Address: 0x1ec344, Func Offset: 0xd4
-	// Line 1739, Address: 0x1ec348, Func Offset: 0xd8
-	// Func End, Address: 0x1ec358, Func Offset: 0xe8
+    switch (epw->mode3) {
+    case 0:
+        bhEne_ChgMtn(epw, 1, 1966080, 5);
+        epw->flg |= 0x40000;
+        epw->ct0 = 0;
+        epw->mode3++;
+        /* fallthrough */
+    case 1:
+        ikou(epw, (NJS_POINT3 *)&epw->exp0[28], 512);
+
+        if (!(plp->flg & 2) && !(plp->flg & 4) &&
+            EXP0_F(20) < 22.0f &&
+            !ikou3(epw, (NJS_VECTOR *)&plp->px, 8192)) {
+            epw->mode1 = 0;
+            epw->mode2 = 5;
+            epw->mode3 = 0;
+        }
+        break;
+    }
 }
 
 // 

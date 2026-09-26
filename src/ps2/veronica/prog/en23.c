@@ -2931,32 +2931,35 @@ void bhEne23_DamageInit(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x205da0
-void bhEne23_LegBreak(BH_PWORK* epw)
+// 100% matching!
+void bhEne23_LegBreak(BH_PWORK* epw) 
 {
-	O_WORK* owk;
-	int i;
-	// Line 3509, Address: 0x205da0, Func Offset: 0
-	// Line 3513, Address: 0x205dac, Func Offset: 0xc
-	// Line 3514, Address: 0x205de8, Func Offset: 0x48
-	// Line 3515, Address: 0x205e00, Func Offset: 0x60
-	// Line 3517, Address: 0x205e08, Func Offset: 0x68
-	// Line 3524, Address: 0x205e14, Func Offset: 0x74
-	// Line 3532, Address: 0x205e18, Func Offset: 0x78
-	// Line 3517, Address: 0x205e20, Func Offset: 0x80
-	// Line 3518, Address: 0x205e3c, Func Offset: 0x9c
-	// Line 3520, Address: 0x205e48, Func Offset: 0xa8
-	// Line 3522, Address: 0x205e54, Func Offset: 0xb4
-	// Line 3524, Address: 0x205e60, Func Offset: 0xc0
-	// Line 3525, Address: 0x205e70, Func Offset: 0xd0
-	// Line 3526, Address: 0x205e80, Func Offset: 0xe0
-	// Line 3529, Address: 0x205e90, Func Offset: 0xf0
-	// Line 3532, Address: 0x205e9c, Func Offset: 0xfc
-	// Line 3533, Address: 0x205eb0, Func Offset: 0x110
-	// Line 3534, Address: 0x205ec0, Func Offset: 0x120
-	// Line 3535, Address: 0x205ed0, Func Offset: 0x130
-	// Func End, Address: 0x205ee0, Func Offset: 0x140
+    int i;
+    O_WORK* owk;
+
+    i = (int)(2.0f * (-rand() / -2147483648.0f));  
+
+    if (((unsigned char*)epw->exp0)[i + 258] == 0)   
+    {
+        ((unsigned char*)epw->exp0)[i + 258] = 1;
+
+        owk = &epw->mlwP->owP[((unsigned char*)epw->exp0)[i + 256]];
+
+        owk[0].flg |= 0x3;
+        owk[1].flg |= 0x2;
+        owk[2].flg |= 0x2;
+
+        ((BH_PWORK**)epw->exp0)[62 + i]->mode0 = 1;
+        ((BH_PWORK**)epw->exp0)[62 + i]->mode2 = 0;
+        ((BH_PWORK**)epw->exp0)[62 + i]->mode3 = 0;
+
+        epw->mdflg |= 0x20;
+
+        bhEne_SetBloodstain(epw, 0, ((unsigned char*)epw->exp0)[i + 256], NULL);
+
+        bhEne_SetMinceEffect(epw, 2, 3);
+        bhEne_SetMinceEffect(epw, 3, 2);
+    }
 }
 
 // 

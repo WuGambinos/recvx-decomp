@@ -919,28 +919,34 @@ void bhEne17_Brain(BH_PWORK* epw)
 	// Func End, Address: 0x1ebf64, Func Offset: 0xc4
 }
 
-// 
-// Start address: 0x1ebf70
-void bhEne17_Brain00(BH_PWORK* epw)
+// 100% matching!
+void bhEne17_Brain00(BH_PWORK* epw) 
 {
-	// Line 1533, Address: 0x1ebf70, Func Offset: 0
-	// Line 1534, Address: 0x1ebf7c, Func Offset: 0xc
-	// Line 1536, Address: 0x1ebf88, Func Offset: 0x18
-	// Line 1540, Address: 0x1ebfc0, Func Offset: 0x50
-	// Line 1543, Address: 0x1ebff4, Func Offset: 0x84
-	// Line 1546, Address: 0x1ec02c, Func Offset: 0xbc
-	// Line 1545, Address: 0x1ec030, Func Offset: 0xc0
-	// Line 1546, Address: 0x1ec034, Func Offset: 0xc4
-	// Line 1548, Address: 0x1ec038, Func Offset: 0xc8
-	// Line 1552, Address: 0x1ec040, Func Offset: 0xd0
-	// Line 1551, Address: 0x1ec044, Func Offset: 0xd4
-	// Line 1552, Address: 0x1ec048, Func Offset: 0xd8
-	// Line 1555, Address: 0x1ec04c, Func Offset: 0xdc
-	// Line 1558, Address: 0x1ec054, Func Offset: 0xe4
-	// Line 1559, Address: 0x1ec05c, Func Offset: 0xec
-	// Line 1560, Address: 0x1ec064, Func Offset: 0xf4
-	// Line 1563, Address: 0x1ec068, Func Offset: 0xf8
-	// Func End, Address: 0x1ec078, Func Offset: 0x108
+    if (epw->mode3 != 0) {
+        if (!(plp->flg & 2) && !(plp->flg & 4)) {
+            
+            if (!(EXP0_I(8) & 0x400)) {
+                
+                if (EXP0_F(20) < 24.0f &&
+                    ikou3(epw, (NJS_POINT3*)&plp->px, 0x2000) == 0) {
+                    
+                    if (EXP0_F(20) < 15.5f && (plp->stflg & 0x400)) {
+                        epw->mode1 = 0;
+                        epw->mode2 = 4;
+                        epw->mode3 = 0;
+                    } else {
+                        epw->mode1 = 0;
+                        epw->mode2 = 3;
+                        epw->mode3 = 0;
+                    }
+                } else {
+                    epw->mode1 = 1;
+                    epw->mode2 = 2;
+                    epw->mode3 = 0;
+                }
+            }
+        }
+    }
 }
 
 // 

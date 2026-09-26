@@ -1020,7 +1020,8 @@ void bhEne17_MV01(BH_PWORK *epw)
 }
 
 // 100% matching!
-void bhEne17_MV02(BH_PWORK* epw) {
+void bhEne17_MV02(BH_PWORK* epw) 
+{
     int frm;
 
     switch (epw->mode3) {                             
@@ -1048,72 +1049,83 @@ void bhEne17_MV02(BH_PWORK* epw) {
     }
 }
 
-// 
-// Start address: 0x1ec480
+// 100% matching1
 void bhEne17_MV03(BH_PWORK* epw)
 {
-	int i;
-	int frm;
-	NJS_POINT3 ofs;
-	O_WORK* owk;
-	// Line 1910, Address: 0x1ec480, Func Offset: 0
-	// Line 1916, Address: 0x1ec4a0, Func Offset: 0x20
-	// Line 1919, Address: 0x1ec4c0, Func Offset: 0x40
-	// Line 1920, Address: 0x1ec4d0, Func Offset: 0x50
-	// Line 1921, Address: 0x1ec4d8, Func Offset: 0x58
-	// Line 1922, Address: 0x1ec4e4, Func Offset: 0x64
-	// Line 1923, Address: 0x1ec4f0, Func Offset: 0x70
-	// Line 1924, Address: 0x1ec4f8, Func Offset: 0x78
-	// Line 1927, Address: 0x1ec504, Func Offset: 0x84
-	// Line 1929, Address: 0x1ec50c, Func Offset: 0x8c
-	// Line 1931, Address: 0x1ec524, Func Offset: 0xa4
-	// Line 1934, Address: 0x1ec53c, Func Offset: 0xbc
-	// Line 1936, Address: 0x1ec548, Func Offset: 0xc8
-	// Line 1937, Address: 0x1ec550, Func Offset: 0xd0
-	// Line 1938, Address: 0x1ec554, Func Offset: 0xd4
-	// Line 1937, Address: 0x1ec558, Func Offset: 0xd8
-	// Line 1938, Address: 0x1ec55c, Func Offset: 0xdc
-	// Line 1939, Address: 0x1ec560, Func Offset: 0xe0
-	// Line 1938, Address: 0x1ec564, Func Offset: 0xe4
-	// Line 1939, Address: 0x1ec568, Func Offset: 0xe8
-	// Line 1941, Address: 0x1ec574, Func Offset: 0xf4
-	// Line 1944, Address: 0x1ec578, Func Offset: 0xf8
-	// Line 1945, Address: 0x1ec57c, Func Offset: 0xfc
-	// Line 1941, Address: 0x1ec584, Func Offset: 0x104
-	// Line 1942, Address: 0x1ec588, Func Offset: 0x108
-	// Line 1943, Address: 0x1ec590, Func Offset: 0x110
-	// Line 1944, Address: 0x1ec598, Func Offset: 0x118
-	// Line 1947, Address: 0x1ec59c, Func Offset: 0x11c
-	// Line 1948, Address: 0x1ec5b4, Func Offset: 0x134
-	// Line 1950, Address: 0x1ec5c4, Func Offset: 0x144
-	// Line 1952, Address: 0x1ec5c8, Func Offset: 0x148
-	// Line 1954, Address: 0x1ec5e0, Func Offset: 0x160
-	// Line 1956, Address: 0x1ec5e4, Func Offset: 0x164
-	// Line 1957, Address: 0x1ec604, Func Offset: 0x184
-	// Line 1956, Address: 0x1ec608, Func Offset: 0x188
-	// Line 1958, Address: 0x1ec630, Func Offset: 0x1b0
-	// Line 1959, Address: 0x1ec650, Func Offset: 0x1d0
-	// Line 1958, Address: 0x1ec658, Func Offset: 0x1d8
-	// Line 1959, Address: 0x1ec668, Func Offset: 0x1e8
-	// Line 1958, Address: 0x1ec66c, Func Offset: 0x1ec
-	// Line 1959, Address: 0x1ec680, Func Offset: 0x200
-	// Line 1960, Address: 0x1ec688, Func Offset: 0x208
-	// Line 1965, Address: 0x1ec698, Func Offset: 0x218
-	// Line 1967, Address: 0x1ec6b0, Func Offset: 0x230
-	// Line 1973, Address: 0x1ec6c0, Func Offset: 0x240
-	// Line 1975, Address: 0x1ec6f4, Func Offset: 0x274
-	// Line 1978, Address: 0x1ec70c, Func Offset: 0x28c
-	// Line 1979, Address: 0x1ec714, Func Offset: 0x294
-	// Line 1980, Address: 0x1ec71c, Func Offset: 0x29c
-	// Line 1981, Address: 0x1ec720, Func Offset: 0x2a0
-	// Line 1982, Address: 0x1ec72c, Func Offset: 0x2ac
-	// Line 1987, Address: 0x1ec734, Func Offset: 0x2b4
-	// Line 1989, Address: 0x1ec748, Func Offset: 0x2c8
-	// Line 1990, Address: 0x1ec74c, Func Offset: 0x2cc
-	// Line 1991, Address: 0x1ec750, Func Offset: 0x2d0
-	// Line 1992, Address: 0x1ec754, Func Offset: 0x2d4
-	// Line 1996, Address: 0x1ec764, Func Offset: 0x2e4
-	// Func End, Address: 0x1ec788, Func Offset: 0x308
+    NJS_VECTOR ofs;
+    O_WORK* owp;
+    int frm;
+    int i;
+
+    switch (epw->mode3) {                              
+    case 0:
+        bhEne_ChgMtn(epw, 16, 0, 80);
+        epw->mtn_add = 262144;
+        epw->flg  |= 0x40000;
+        epw->flg2 |= 1;
+        EXP0_UC(1) = 0;
+        epw->mode3 += 1;
+        
+    case 1:
+        frm = epw->frm_no / 65536;
+
+        if (frm >= 72) {
+            if (frm < 121) {
+                ikou(epw, (NJS_POINT3*)&plp->px, 728);
+            }
+        }
+
+        if (frm == 156) {
+            ofs.x = -4.5f;
+            ofs.y = 0.0f;
+            ofs.z = -15.0f;
+            bhEne17_SetSmokeEffect(epw, 0, &ofs);
+
+            owp = &epw->mlwP->owP[1];
+            ofs.x = owp->mtx[12];
+            ofs.z = owp->mtx[14];
+            
+            ofs.y = 1.0f;
+
+            for (i = 0; i < 4; i++) {
+                bhEne17_SetSmokeEffect2(epw, &ofs, epw->ay + 20480 + (i * 8192));
+            }
+        }
+
+        if (frm >= 156) {
+            if (frm < 169) {
+                for (i = 0; i < 2; i++) {
+                    ofs.x = epw->px + ((80.0f * ((float)-rand() / -2147483648.0f)) - 40.0f);
+                    ofs.y = 45.0f;
+                    ofs.z = epw->pz + ((40.0f * ((float)-rand() / -2147483648.0f)) - 20.0f);
+                    bhEff_SetPtcl(epw, &ofs, 8);
+                }
+            }
+        }
+
+        if (frm < 144) {
+            /* nothing */
+        } else if (frm < 169) {
+            bhEne17_PlayerDGCheck(epw, plp);
+        }
+
+        if (!(EXP0_F(0x14) < 24.0f) && (plp->hp > 0)) {
+            if (frm < 148 || frm > 220) {
+                epw->mode1 = 1;
+                epw->mode2 = 2;
+                epw->mode3 = 0;
+                epw->flg2 &= ~1;
+                return;
+            }
+        }
+
+        if ((epw->frm_no / 65536) >= 312) {
+            epw->mode1 = 0;
+            epw->mode2 = 0;
+            epw->mode3 = 0;
+            epw->flg2 &= ~1;
+        }
+    }
 }
 
 // 

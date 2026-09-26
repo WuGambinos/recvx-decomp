@@ -875,12 +875,9 @@ BH_PWORK* bhEne17_SetLinkWork(BH_PWORK* epw, int lnk_obj, int mdl_no, int id) {
     return epp;
 }
 
-// 
-// Start address: 0x1ebe60
-void bhEne17_Move(BH_PWORK* epw)
-{
-	// Line 1447, Address: 0x1ebe60, Func Offset: 0
-	// Func End, Address: 0x1ebe70, Func Offset: 0x10
+// 100% matching!
+void bhEne17_Move(BH_PWORK* epw) {
+    bhEne17_MoveType[0](epw);
 }
 
 // 

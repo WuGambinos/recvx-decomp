@@ -1214,33 +1214,40 @@ void bhEne17_MV05(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1ecaf0
+// 100% matching!
 void bhEne17_MV06(BH_PWORK* epw)
 {
-	// Line 2156, Address: 0x1ecaf0, Func Offset: 0
-	// Line 2157, Address: 0x1ecafc, Func Offset: 0xc
-	// Line 2160, Address: 0x1ecb1c, Func Offset: 0x2c
-	// Line 2161, Address: 0x1ecb2c, Func Offset: 0x3c
-	// Line 2164, Address: 0x1ecb38, Func Offset: 0x48
-	// Line 2162, Address: 0x1ecb40, Func Offset: 0x50
-	// Line 2161, Address: 0x1ecb44, Func Offset: 0x54
-	// Line 2162, Address: 0x1ecb50, Func Offset: 0x60
-	// Line 2164, Address: 0x1ecb54, Func Offset: 0x64
-	// Line 2165, Address: 0x1ecb6c, Func Offset: 0x7c
-	// Line 2167, Address: 0x1ecb78, Func Offset: 0x88
-	// Line 2169, Address: 0x1ecb7c, Func Offset: 0x8c
-	// Line 2170, Address: 0x1ecb8c, Func Offset: 0x9c
-	// Line 2171, Address: 0x1ecba0, Func Offset: 0xb0
-	// Line 2172, Address: 0x1ecba4, Func Offset: 0xb4
-	// Line 2173, Address: 0x1ecbac, Func Offset: 0xbc
-	// Line 2176, Address: 0x1ecbb8, Func Offset: 0xc8
-	// Line 2178, Address: 0x1ecbc8, Func Offset: 0xd8
-	// Line 2181, Address: 0x1ecbdc, Func Offset: 0xec
-	// Line 2184, Address: 0x1ecbf0, Func Offset: 0x100
-	// Line 2187, Address: 0x1ecc1c, Func Offset: 0x12c
-	// Line 2192, Address: 0x1ecc30, Func Offset: 0x140
-	// Func End, Address: 0x1ecc40, Func Offset: 0x150
+    switch (epw->mode3) {
+    case 0:
+        bhEne_ChgMtn(epw, 17, 0, 7);
+        EXP0_I(8) &= 0xBFFFFFFF;
+        epw->mode1 = 1;
+
+        if (EXP0_F(20) < 24.0f) {
+            epw->ct0 = 10;
+        } else {
+            epw->ct0 = 1;
+        }
+
+        EXP0_I(8) |= 0x400;
+        epw->ct0 += EXP0_I(4);
+        epw->ct1 = 0;
+        EXP0_I(4) = 0;
+        epw->mode3++;
+        /* fallthrough */
+
+    case 1:
+        if (--epw->ct0 < 0) {
+            EXP0_I(8) &= ~0x400;
+        }
+
+        if ((*(int*)&epw->exp0[8] & 0x400) && (plp->stflg & 0x400)) {
+            if (++epw->ct1 > 10) {
+                EXP0_I(8) &= ~0x400;
+            }
+        }
+        break;
+    }
 }
 
 // 

@@ -2725,41 +2725,46 @@ int bhEne23_CheckClimbWall(BH_PWORK* epw, int flg)
 	// Func End, Address: 0x2057f4, Func Offset: 0x444
 }
 
-// 
-// Start address: 0x205800
-int bhEne23_CheckDiving(BH_PWORK* epw)
+// 99.75% matching
+int bhEne23_CheckDiving(BH_PWORK* epw) 
 {
-	float dist;
-	NJS_POINT3 pos;
-	NJS_MKEY* mkfP;
-	// Line 3311, Address: 0x205800, Func Offset: 0
-	// Line 3317, Address: 0x205810, Func Offset: 0x10
-	// Line 3319, Address: 0x20582c, Func Offset: 0x2c
-	// Line 3322, Address: 0x205848, Func Offset: 0x48
-	// Line 3324, Address: 0x20584c, Func Offset: 0x4c
-	// Line 3322, Address: 0x205854, Func Offset: 0x54
-	// Line 3323, Address: 0x205858, Func Offset: 0x58
-	// Line 3322, Address: 0x20585c, Func Offset: 0x5c
-	// Line 3323, Address: 0x205860, Func Offset: 0x60
-	// Line 3324, Address: 0x205870, Func Offset: 0x70
-	// Line 3325, Address: 0x205878, Func Offset: 0x78
-	// Line 3334, Address: 0x205880, Func Offset: 0x80
-	// Line 3326, Address: 0x205888, Func Offset: 0x88
-	// Line 3334, Address: 0x20588c, Func Offset: 0x8c
-	// Line 3325, Address: 0x205890, Func Offset: 0x90
-	// Line 3327, Address: 0x205894, Func Offset: 0x94
-	// Line 3334, Address: 0x205898, Func Offset: 0x98
-	// Line 3325, Address: 0x20589c, Func Offset: 0x9c
-	// Line 3326, Address: 0x2058a0, Func Offset: 0xa0
-	// Line 3334, Address: 0x2058a8, Func Offset: 0xa8
-	// Line 3326, Address: 0x2058b0, Func Offset: 0xb0
-	// Line 3327, Address: 0x2058b8, Func Offset: 0xb8
-	// Line 3334, Address: 0x2058c0, Func Offset: 0xc0
-	// Line 3335, Address: 0x2058d0, Func Offset: 0xd0
-	// Line 3339, Address: 0x2058d8, Func Offset: 0xd8
-	// Line 3341, Address: 0x205904, Func Offset: 0x104
-	// Line 3345, Address: 0x20592c, Func Offset: 0x12c
-	// Func End, Address: 0x205940, Func Offset: 0x140
+    NJS_MKEY* mkfP;
+    NJS_POINT3 pos;
+    float dist;    
+
+    if (plp->flr_no != 0) 
+    {
+        return 0;
+    }
+
+    if ((epw->flg & 0x8000000)) 
+    {
+        return 0;
+    }
+
+    mkfP  = (NJS_MKEY*)epw->mnwP[37].md2P->p[0];
+    mkfP += epw->mnwP[37].frm_num - 1;
+
+    njCalcVector((NJS_MATRIX*)epw->exp0, (NJS_POINT3*)mkfP, &pos);
+
+    pos.x += epw->px;
+    pos.z += epw->pz;
+    
+    pos.y = plp->py;
+
+    if (bhCheckWallType(&pos, 0, 14.0f, 20.0f) != NULL) 
+    {
+        return 0;
+    }
+
+    dist = njSqrt(((pos.x - plp->px) * (pos.x - plp->px)) + ((pos.z - plp->pz) * (pos.z - plp->pz)));
+
+    if (dist < 15.0f) 
+    {
+        return 0;
+    }
+
+    return 1;
 }
 
 // 100% matching!

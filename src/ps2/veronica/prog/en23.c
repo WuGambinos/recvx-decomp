@@ -2967,65 +2967,56 @@ void bhEne23_LegBreak(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x205ee0
+// 100% matching!
 void bhEne23_InitChild(BH_PWORK* epw)
 {
-	float spd;
-	NJS_VECTOR v;
-	int ang;
-	BH_PWORK** epw2;
-	int i;
-	// Line 3545, Address: 0x205ee0, Func Offset: 0
-	// Line 3558, Address: 0x205f14, Func Offset: 0x34
-	// Line 3559, Address: 0x205f1c, Func Offset: 0x3c
-	// Line 3560, Address: 0x205f2c, Func Offset: 0x4c
-	// Line 3564, Address: 0x205f54, Func Offset: 0x74
-	// Line 3566, Address: 0x205f5c, Func Offset: 0x7c
-	// Line 3568, Address: 0x205f60, Func Offset: 0x80
-	// Line 3564, Address: 0x205f64, Func Offset: 0x84
-	// Line 3565, Address: 0x205f68, Func Offset: 0x88
-	// Line 3566, Address: 0x205f70, Func Offset: 0x90
-	// Line 3567, Address: 0x205f78, Func Offset: 0x98
-	// Line 3568, Address: 0x205f80, Func Offset: 0xa0
-	// Line 3570, Address: 0x205f8c, Func Offset: 0xac
-	// Line 3571, Address: 0x205fc8, Func Offset: 0xe8
-	// Line 3572, Address: 0x205fe8, Func Offset: 0x108
-	// Line 3571, Address: 0x205fec, Func Offset: 0x10c
-	// Line 3573, Address: 0x205ff0, Func Offset: 0x110
-	// Line 3571, Address: 0x205ff4, Func Offset: 0x114
-	// Line 3572, Address: 0x206004, Func Offset: 0x124
-	// Line 3571, Address: 0x206008, Func Offset: 0x128
-	// Line 3573, Address: 0x206010, Func Offset: 0x130
-	// Line 3574, Address: 0x206024, Func Offset: 0x144
-	// Line 3575, Address: 0x206048, Func Offset: 0x168
-	// Line 3574, Address: 0x20604c, Func Offset: 0x16c
-	// Line 3575, Address: 0x20606c, Func Offset: 0x18c
-	// Line 3579, Address: 0x206084, Func Offset: 0x1a4
-	// Line 3581, Address: 0x2060a0, Func Offset: 0x1c0
-	// Line 3579, Address: 0x2060a4, Func Offset: 0x1c4
-	// Line 3580, Address: 0x2060bc, Func Offset: 0x1dc
-	// Line 3579, Address: 0x2060c0, Func Offset: 0x1e0
-	// Line 3580, Address: 0x2060d4, Func Offset: 0x1f4
-	// Line 3581, Address: 0x2060d8, Func Offset: 0x1f8
-	// Line 3583, Address: 0x2060e4, Func Offset: 0x204
-	// Line 3584, Address: 0x2060ec, Func Offset: 0x20c
-	// Line 3582, Address: 0x2060f4, Func Offset: 0x214
-	// Line 3583, Address: 0x2060fc, Func Offset: 0x21c
-	// Line 3582, Address: 0x206100, Func Offset: 0x220
-	// Line 3586, Address: 0x206104, Func Offset: 0x224
-	// Line 3587, Address: 0x206120, Func Offset: 0x240
-	// Line 3586, Address: 0x206124, Func Offset: 0x244
-	// Line 3587, Address: 0x20613c, Func Offset: 0x25c
-	// Line 3589, Address: 0x20614c, Func Offset: 0x26c
-	// Line 3587, Address: 0x206150, Func Offset: 0x270
-	// Line 3588, Address: 0x206160, Func Offset: 0x280
-	// Line 3589, Address: 0x20616c, Func Offset: 0x28c
-	// Line 3590, Address: 0x20618c, Func Offset: 0x2ac
-	// Line 3589, Address: 0x206190, Func Offset: 0x2b0
-	// Line 3590, Address: 0x206194, Func Offset: 0x2b4
-	// Line 3591, Address: 0x2061b4, Func Offset: 0x2d4
-	// Func End, Address: 0x2061ec, Func Offset: 0x30c
+    int i;          
+    BH_PWORK** epw2; 
+    int ang;         
+    NJS_VECTOR v;    
+	float spd;      
+    float px, py, pz; // not from DWARF
+
+    epw2 = (BH_PWORK**)&EXP0_C(128);
+
+    for (i = 0; i < EXP0_I(268); i++, epw2++)
+    {
+        if (((((BH_PWORK**)epw->exp0)[32 + i]->flg & 0x1)) && (((BH_PWORK**)epw->exp0)[32 + i]->id == 24))
+        {
+            (*epw2)->mode0 = 1;
+            (*epw2)->mode1 = 1;
+            (*epw2)->mode2 = 5;
+            (*epw2)->mode3 = 0;
+
+            (*epw2)->mdflg &= ~0x1;
+
+            ang = 65536.0f * (-rand() / -2147483648.0f);
+
+            spd = 0.5f + (1.2f * (-rand() / -2147483648.0f));
+
+            (*epw2)->ay = ang;
+
+            (*epw2)->xn = spd * -njSin(ang);
+            (*epw2)->yn = 0.5f + (1.5f * (-rand() / -2147483648.0f));
+            (*epw2)->zn = spd * -njCos(ang);
+
+            v.x = 0;
+            v.y = 5.0f + (10.0f * (-rand() / -2147483648.0f));
+            v.z = 10.0f;
+
+            njCalcVector((NJS_MATRIX*)epw->exp0, &v, &v);
+
+            px = epw->px + v.x;
+            py = epw->py + v.y;
+            pz = epw->pz + v.z;
+
+            spd = 3.0f + (3.0f * (-rand() / -2147483648.0f));
+
+            (*epw2)->px = (*epw2)->pxb = px - (spd * njSin(ang));
+            (*epw2)->py = (*epw2)->pyb = py;
+            (*epw2)->pz = (*epw2)->pzb = pz - (spd * njCos(ang));
+        }
+    }
 }
 
 // 100% matching!

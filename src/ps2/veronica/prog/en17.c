@@ -728,6 +728,7 @@ void bhEne17_CollCheck(BH_PWORK* epw)
     }
 }
 
+// 100% matching!
 void bhEne17_CollCheckWall(BH_PWORK* ewp) 
 {
     *(ATR_WORK**)((char*)ewp->exp0 + 0x40) = bhCheckWallType((NJS_POINT3*)&ewp->px, ewp->flg, ewp->ar, ewp->ah);
@@ -738,37 +739,29 @@ void bhEne17_CollCheckWall(BH_PWORK* ewp)
     }
 }
 
-// 
-// Start address: 0x1eba20
-void bhEne17_CalcEnemy(BH_PWORK* epw)
-{
-	O_WORK* owk;
-	// Line 1225, Address: 0x1eba20, Func Offset: 0
-	// Line 1229, Address: 0x1eba2c, Func Offset: 0xc
-	// Line 1232, Address: 0x1eba34, Func Offset: 0x14
-	// Line 1238, Address: 0x1eba38, Func Offset: 0x18
-	// Line 1233, Address: 0x1eba40, Func Offset: 0x20
-	// Line 1246, Address: 0x1eba44, Func Offset: 0x24
-	// Line 1232, Address: 0x1eba4c, Func Offset: 0x2c
-	// Line 1249, Address: 0x1eba50, Func Offset: 0x30
-	// Line 1233, Address: 0x1eba54, Func Offset: 0x34
-	// Line 1236, Address: 0x1eba64, Func Offset: 0x44
-	// Line 1237, Address: 0x1eba6c, Func Offset: 0x4c
-	// Line 1238, Address: 0x1eba74, Func Offset: 0x54
-	// Line 1239, Address: 0x1eba80, Func Offset: 0x60
-	// Line 1241, Address: 0x1eba88, Func Offset: 0x68
-	// Line 1242, Address: 0x1eba90, Func Offset: 0x70
-	// Line 1243, Address: 0x1eba98, Func Offset: 0x78
-	// Line 1244, Address: 0x1ebaa0, Func Offset: 0x80
-	// Line 1245, Address: 0x1ebaa8, Func Offset: 0x88
-	// Line 1246, Address: 0x1ebaac, Func Offset: 0x8c
-	// Line 1245, Address: 0x1ebab0, Func Offset: 0x90
-	// Line 1246, Address: 0x1ebab4, Func Offset: 0x94
-	// Line 1247, Address: 0x1ebac4, Func Offset: 0xa4
-	// Line 1248, Address: 0x1ebad8, Func Offset: 0xb8
-	// Line 1249, Address: 0x1ebaec, Func Offset: 0xcc
-	// Line 1250, Address: 0x1ebaf0, Func Offset: 0xd0
-	// Func End, Address: 0x1ebb00, Func Offset: 0xe0
+// 100% matching!
+void bhEne17_CalcEnemy(BH_PWORK* epw) {
+    O_WORK* owk;
+    
+    bhCalcModel(epw);
+    owk = &epw->mlwP->owP[5];
+    epw->cah = epw->ah = owk->mtx[13] - epw->py;
+    owk = &epw->mlwP->owP[5];
+    
+    epw->watr.c1.x = owk->mtx[12];
+    epw->watr.c1.y = owk->mtx[13] - 5.0f;
+    epw->watr.c1.z = owk->mtx[14];
+    
+    owk = &epw->mlwP->owP[16];
+    epw->watr.c2.x = owk->mtx[12];
+    epw->watr.c2.y = owk->mtx[13];
+    epw->watr.c2.z = owk->mtx[14];
+    
+    owk = &epw->mlwP->owP[21];
+    epw->watr.c2.x = (epw->watr.c2.x + owk->mtx[12]) / 2.0f;
+    epw->watr.c2.y = (epw->watr.c2.y + owk->mtx[13]) / 2.0f;
+    epw->watr.c2.z = (epw->watr.c2.z + owk->mtx[14]) / 2.0f;
+    epw->watr.r = 4.0f;
 }
 
 // 

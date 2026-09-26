@@ -5,6 +5,7 @@
 #include "../../../ps2/veronica/prog/zonzon.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
 #include "../../../ps2/veronica/prog/hitchk.h"
+#include "../../../ps2/veronica/prog/eneset.h"
 
 // ENEMY: Monster Steve 
 
@@ -844,42 +845,34 @@ void bhEne17_Init(BH_PWORK* epw)
 	// Func End, Address: 0x1ebd70, Func Offset: 0x270
 }
 
-// 
-// Start address: 0x1ebd70
+// 100% matching!
 void bhEne17_InitType00()
 {
-	// Line 1387, Address: 0x1ebd70, Func Offset: 0
-	// Func End, Address: 0x1ebd78, Func Offset: 0x8
 }
 
-// 
-// Start address: 0x1ebd80
-BH_PWORK* bhEne17_SetLinkWork(BH_PWORK* epw, int lnk_obj, int mdl_no, int id)
-{
-	ETTY_WORK lnk_tbl;
-	BH_PWORK* epp;
-	// Line 1409, Address: 0x1ebd80, Func Offset: 0
-	// Line 1413, Address: 0x1ebda4, Func Offset: 0x24
-	// Line 1415, Address: 0x1ebdb8, Func Offset: 0x38
-	// Line 1417, Address: 0x1ebdc0, Func Offset: 0x40
-	// Line 1416, Address: 0x1ebdc8, Func Offset: 0x48
-	// Line 1417, Address: 0x1ebdcc, Func Offset: 0x4c
-	// Line 1423, Address: 0x1ebdd8, Func Offset: 0x58
-	// Line 1418, Address: 0x1ebddc, Func Offset: 0x5c
-	// Line 1423, Address: 0x1ebde0, Func Offset: 0x60
-	// Line 1419, Address: 0x1ebde4, Func Offset: 0x64
-	// Line 1420, Address: 0x1ebde8, Func Offset: 0x68
-	// Line 1423, Address: 0x1ebdec, Func Offset: 0x6c
-	// Line 1421, Address: 0x1ebdf0, Func Offset: 0x70
-	// Line 1423, Address: 0x1ebdf4, Func Offset: 0x74
-	// Line 1422, Address: 0x1ebdf8, Func Offset: 0x78
-	// Line 1423, Address: 0x1ebdfc, Func Offset: 0x7c
-	// Line 1424, Address: 0x1ebe0c, Func Offset: 0x8c
-	// Line 1423, Address: 0x1ebe10, Func Offset: 0x90
-	// Line 1424, Address: 0x1ebe30, Func Offset: 0xb0
-	// Line 1425, Address: 0x1ebe34, Func Offset: 0xb4
-	// Line 1427, Address: 0x1ebe3c, Func Offset: 0xbc
-	// Func End, Address: 0x1ebe58, Func Offset: 0xd8
+// 100% matching!
+BH_PWORK* bhEne17_SetLinkWork(BH_PWORK* epw, int lnk_obj, int mdl_no, int id) {
+    BH_PWORK* epp;
+    EGG_WORK  lnk_tbl;
+
+    npSetMemoryL((unsigned int*)&lnk_tbl, 9, 0);
+    lnk_tbl.flg = 0x80A1;
+    lnk_tbl.id  = (unsigned short)id;
+
+    epp = bhSetEnemy(&lnk_tbl, rom->ene_n);
+
+    epp->lkwkp = (unsigned char*)epw;
+    epp->lkono = lnk_obj;
+    epp->lox = 0.0f;
+    epp->loy = 0.0f;
+    epp->loz = 0.0f;
+
+    epp->mdl[0] = epw->mdl[mdl_no];
+    epp->mlwP   = &epp->mdl[0];
+
+    epp->mnwP = epw->mnwP;
+
+    return epp;
 }
 
 // 

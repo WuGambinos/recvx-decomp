@@ -1019,30 +1019,33 @@ void bhEne17_MV01(BH_PWORK *epw)
     }
 }
 
-// 
-// Start address: 0x1ec360
-void bhEne17_MV02(BH_PWORK* epw)
-{
-	int frm;
-	// Line 1759, Address: 0x1ec360, Func Offset: 0
-	// Line 1765, Address: 0x1ec370, Func Offset: 0x10
-	// Line 1768, Address: 0x1ec390, Func Offset: 0x30
-	// Line 1769, Address: 0x1ec3a0, Func Offset: 0x40
-	// Line 1770, Address: 0x1ec3a8, Func Offset: 0x48
-	// Line 1771, Address: 0x1ec3b4, Func Offset: 0x54
-	// Line 1773, Address: 0x1ec3bc, Func Offset: 0x5c
-	// Line 1774, Address: 0x1ec3c0, Func Offset: 0x60
-	// Line 1777, Address: 0x1ec3cc, Func Offset: 0x6c
-	// Line 1779, Address: 0x1ec3e4, Func Offset: 0x84
-	// Line 1872, Address: 0x1ec3ec, Func Offset: 0x8c
-	// Line 1874, Address: 0x1ec404, Func Offset: 0xa4
-	// Line 1876, Address: 0x1ec41c, Func Offset: 0xbc
-	// Line 1880, Address: 0x1ec424, Func Offset: 0xc4
-	// Line 1884, Address: 0x1ec454, Func Offset: 0xf4
-	// Line 1885, Address: 0x1ec458, Func Offset: 0xf8
-	// Line 1886, Address: 0x1ec45c, Func Offset: 0xfc
-	// Line 1890, Address: 0x1ec460, Func Offset: 0x100
-	// Func End, Address: 0x1ec474, Func Offset: 0x114
+// 100% matching!
+void bhEne17_MV02(BH_PWORK* epw) {
+    int frm;
+
+    switch (epw->mode3) {                             
+    case 0:
+        bhEne_ChgMtn(epw, 15, 12320768, 56);
+        epw->mtn_add = 262144;
+        epw->flg |= 0x40000;
+        EXP0_C(1) = 0;
+        epw->ct0 = 0;
+        epw->mode3 += 1;
+        
+    case 1:
+        ikou(epw, (NJS_VECTOR* ) &plp->px, 728);
+        frm = epw->frm_no / 65536;
+        
+        if ((frm >= 84) && (frm < 177) && (bhEne17_PlayerDGCheck(epw, plp) != 0)) {
+            epw->ct0 = 1;
+        }
+        
+        if ((epw->ct0 == 1) && ((epw->flg & 0x02000000) || (frm == 136))) {
+            epw->mode1 = 0;
+            epw->mode2 = 0;
+            epw->mode3 = 0;
+        }
+    }
 }
 
 // 

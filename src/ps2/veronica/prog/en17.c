@@ -957,34 +957,40 @@ void bhEne17_MVType00(BH_PWORK* epw) {
     bhEne17_MoveMode2[epw->mode2](epw);
 }
 
-// 
-// Start address: 0x1ec0e0
-void bhEne17_MV00(BH_PWORK* epw)
-{
-	// Line 1608, Address: 0x1ec0e0, Func Offset: 0
-	// Line 1609, Address: 0x1ec0ec, Func Offset: 0xc
-	// Line 1612, Address: 0x1ec10c, Func Offset: 0x2c
-	// Line 1613, Address: 0x1ec11c, Func Offset: 0x3c
-	// Line 1616, Address: 0x1ec128, Func Offset: 0x48
-	// Line 1614, Address: 0x1ec130, Func Offset: 0x50
-	// Line 1613, Address: 0x1ec134, Func Offset: 0x54
-	// Line 1614, Address: 0x1ec140, Func Offset: 0x60
-	// Line 1616, Address: 0x1ec144, Func Offset: 0x64
-	// Line 1617, Address: 0x1ec15c, Func Offset: 0x7c
-	// Line 1619, Address: 0x1ec168, Func Offset: 0x88
-	// Line 1621, Address: 0x1ec16c, Func Offset: 0x8c
-	// Line 1623, Address: 0x1ec17c, Func Offset: 0x9c
-	// Line 1624, Address: 0x1ec190, Func Offset: 0xb0
-	// Line 1625, Address: 0x1ec194, Func Offset: 0xb4
-	// Line 1626, Address: 0x1ec19c, Func Offset: 0xbc
-	// Line 1629, Address: 0x1ec1a8, Func Offset: 0xc8
-	// Line 1631, Address: 0x1ec1b8, Func Offset: 0xd8
-	// Line 1635, Address: 0x1ec1cc, Func Offset: 0xec
-	// Line 1640, Address: 0x1ec200, Func Offset: 0x120
-	// Line 1643, Address: 0x1ec214, Func Offset: 0x134
-	// Line 1646, Address: 0x1ec240, Func Offset: 0x160
-	// Line 1695, Address: 0x1ec254, Func Offset: 0x174
-	// Func End, Address: 0x1ec264, Func Offset: 0x184
+
+// 100% matching!
+void bhEne17_MV00(BH_PWORK* epw) {
+    switch (epw->mode3) {                      
+    case 0:
+        bhEne_ChgMtn(epw, 0, 0, 7);
+        EXP0_I(8) &= 0xBFFFFFFF;
+        epw->mode1 = 1;
+        
+        if (EXP0_F(20) < 24.0f) {
+            epw->ct0 = 10;
+        } else {
+            epw->ct0 = 1;
+        }
+        
+        EXP0_I(8) |= 0x400;
+        
+        epw->ct0 += EXP0_I(4);
+        epw->ct1 = 0;
+        EXP0_I(4) = 0;
+        epw->mode3 += 1;
+        /* fallthrough */
+        
+    case 1:
+        if (--epw->ct0 < 0) {
+            EXP0_I(8) &= ~0x400;
+        }
+        
+        if ((epw->wpnr_no != 14) && (epw->wpnr_no != 15) && (epw->wpnr_no != 16) && (epw->wpnr_no != 17) && (EXP0_I(8) & 0x400) && (plp->stflg & 0x400)) {
+            if (++epw->ct1 > 10) {
+                EXP0_I(8) &= ~0x400;
+            }
+        }
+    }
 }
 
 // 

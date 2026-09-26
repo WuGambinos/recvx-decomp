@@ -8,6 +8,8 @@
 #include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/ps2_NaColi.h"
+#include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
@@ -3203,21 +3205,27 @@ unsigned int bhEne23_SearchPlayer(BH_PWORK* epw, int ang)
 	return (abs(EXP0_I(68)) < ang) ? 1 : 0;
 }
 
-// 
-// Start address: 0x206d50
-void bhEne23_Shape(BH_PWORK* epw)
+// 100% matching!
+void bhEne23_Shape(BH_PWORK* epw) 
 {
-	// Line 3858, Address: 0x206d50, Func Offset: 0
-	// Line 3859, Address: 0x206d60, Func Offset: 0x10
-	// Line 3860, Address: 0x206d70, Func Offset: 0x20
-	// Line 3861, Address: 0x206d7c, Func Offset: 0x2c
-	// Line 3864, Address: 0x206d88, Func Offset: 0x38
-	// Line 3865, Address: 0x206d98, Func Offset: 0x48
-	// Line 3866, Address: 0x206da4, Func Offset: 0x54
-	// Line 3867, Address: 0x206dac, Func Offset: 0x5c
-	// Line 3869, Address: 0x206dbc, Func Offset: 0x6c
-	// Line 3870, Address: 0x206de0, Func Offset: 0x90
-	// Func End, Address: 0x206df0, Func Offset: 0xa0
+    if ((epw->mdflg & 0x2)) 
+    {
+        if (epw->type != 0)
+        {
+            epw->mdflg &= ~0x2;
+        }
+        
+        if ((epw->flg & 0x2)) 
+        {
+            EXP0_I(284) += 91;
+        } 
+        else 
+        {
+            EXP0_I(284) += 1456;
+        }
+        
+        epw->shp_ct = 500.0f + (500.0f * njSin(EXP0_I(284)));
+    }
 }
 
 // 100% matching!

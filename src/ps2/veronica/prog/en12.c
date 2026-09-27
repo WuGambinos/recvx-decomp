@@ -724,12 +724,8 @@ void bhEne12_MV00(BH_PWORK* epw)
         }
 
         epw->mode1 = 1;
-        {
-            float px = plp->px - epw->px;
-            float pz = plp->pz - epw->pz;
-            dist = njSqrt((px * px) + (pz * pz));
-        }
 
+        dist = njSqrt((plp->px - epw->px) * (plp->px - epw->px) + (plp->pz - epw->pz) * (plp->pz - epw->pz));
         if (dist > 9.0f || bhEne_CheckDirTarget(epw, plp->px, plp->pz, 7281) == 0) {
             epw->mode0 = 1;
             epw->mode1 = 1;
@@ -768,11 +764,7 @@ void bhEne12_MV01(BH_PWORK* epw)
             bhCheckRoute((NJS_POINT3*)&epw->px, (NJS_POINT3*)&plp->px, (NJS_POINT3*)&epw->xn);
         }
         
-        {
-            float px = plp->px - epw->px;
-            float pz = plp->pz - epw->pz;
-            dist = njSqrt((px *px) + (pz * pz));
-        }
+        dist = njSqrt((plp->px - epw->px) * (plp->px - epw->px) + (plp->pz - epw->pz) * (plp->pz - epw->pz));
 
         if (bhEne_CheckDirTarget(epw,  plp->px, plp->pz, 10922) != 0) {
             epw->ayp = bhEne_DirTarget(epw, epw->xn, epw->zn, 273);
@@ -810,7 +802,7 @@ void bhEne12_MV02(BH_PWORK* epw)
         epw->obj_b = epw->mdl[1].objP;
         epw->mdflg |= 2;
         epw->mode3 += 1;
-        return;
+        break;
 
     case 1:
         epw->shp_ct = bhEne_GetShapeCnt(ShapeTbl_Acid, epw->frm_no / 65536);
@@ -851,7 +843,8 @@ void bhEne12_MV02(BH_PWORK* epw)
 }
 
 // 100% matching!
-void bhEne12_MV03(BH_PWORK* epw) {
+void bhEne12_MV03(BH_PWORK* epw) 
+{
     int i;
     NJS_POINT3 v;
 
@@ -866,7 +859,7 @@ void bhEne12_MV03(BH_PWORK* epw) {
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 2;
         epw->ct1 = 0;
         epw->mode3 += 1;
-        return;
+        break;
         
     case 1:
         if ((epw->frm_no >= 0xF0000) && (epw->frm_no < 0x110001)) {
@@ -927,17 +920,18 @@ void bhEne12_MV03(BH_PWORK* epw) {
 }
 
 // 100% matching
-void bhEne12_MV04(BH_PWORK* epw) {
+void bhEne12_MV04(BH_PWORK* epw) 
+{
     static float dist;
     int i;
     int num;
     NJS_POINT3 v;
 
     // NOT IN DWARF
-    float ang;
-    float ang2;
-    float temp_f1;
-    float temp_f2;
+    float angx;
+    float angz;
+    float angy;
+    float angy2;
 
     switch (epw->mode3) {
     case 0:
@@ -956,23 +950,23 @@ void bhEne12_MV04(BH_PWORK* epw) {
         case 3:
         case 4:
         case 5:
-            ang = plp->px - 15.0f * njSin(plp->ay);
-            ang2 = plp->pz - 15.0f * njCos(plp->ay);
+            angx = plp->px - 15.0f * njSin(plp->ay);
+            angz = plp->pz - 15.0f * njCos(plp->ay);
             break;
 
         case 6:
         case 7:
         case 8:
-            ang = plp->px - 25.0f * njSin(plp->ay);
-            ang2 = plp->pz - 25.0f * njCos(plp->ay);
+            angx = plp->px - 25.0f * njSin(plp->ay);
+            angz = plp->pz - 25.0f * njCos(plp->ay);
             break;
 
         case 9:
         case 10:
         case 11:
         case 12:
-            ang = plp->px + 10.0f * njSin(plp->ay);
-            ang2 = plp->pz + 10.0f * njCos(plp->ay);
+            angx = plp->px + 10.0f * njSin(plp->ay);
+            angz = plp->pz + 10.0f * njCos(plp->ay);
             break;
 
         default:
@@ -980,7 +974,7 @@ void bhEne12_MV04(BH_PWORK* epw) {
             break;
         }
 
-        epw->ofx = njSqrt(((ang - epw->px) * (ang - epw->px)) + ((ang2 - epw->pz) * (ang2 - epw->pz)));
+        epw->ofx = njSqrt(((angx - epw->px) * (angx - epw->px)) + ((angz - epw->pz) * (angz - epw->pz)));
 
         if (!(epw->ofx <= 45.0f)) {
             epw->ofx = 45.0f;
@@ -996,7 +990,7 @@ void bhEne12_MV04(BH_PWORK* epw) {
         epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 2;
         epw->mtn_add = 65536;
         epw->mode3 += 1;
-        return;
+        break;
 
     case 2:
         if ((epw->frm_no >= 917504) && (epw->frm_no < 1114113)) {
@@ -1004,10 +998,10 @@ void bhEne12_MV04(BH_PWORK* epw) {
             for (i = 0; i < num; i++) {
                 njUnitMatrix(NULL);
 
-                temp_f1 = 182.04445f * (30 / num);
-                temp_f2 = (int)(temp_f1) * ((-rand() / -2147483648.0f));
+                angy = 182.04445f * (30 / num);
+                angy2 = (int)(angy) * ((-rand() / -2147483648.0f));
                 njRotateY(NULL, (int)(((epw->ay + 10922) -
-                                                (epw->ct1 * (int)(temp_f1))) - temp_f2));
+                                                (epw->ct1 * (int)(angy))) - angy2));
 
                 v.x = 0.0f;
                 v.y = -1.0f;
@@ -1171,7 +1165,7 @@ void bhEne12_NG00(BH_PWORK* epw)
             epw->mtn_no = 0;
             epw->frm_no = 0;
             epw->mode3 += 1;
-            return;
+            break;
         }
         
         if (epw->frm_no < 6553600) {
@@ -1326,7 +1320,8 @@ void bhEne12_Die(BH_PWORK* epw)
 }
 
 // 100% matching!
-void bhEne12_DD00(BH_PWORK* epw) {
+void bhEne12_DD00(BH_PWORK* epw) 
+{
     switch (epw->mode3) {                         
     case 0:
         epw->flg &= ~0x40000;
@@ -1347,12 +1342,13 @@ void bhEne12_DD00(BH_PWORK* epw) {
             epw->mode3 += 1;
             epw->flg |= 2;
         }
-        return;
+        break;
     }
 }
 
 // 100% matching!
-void bhEne12_InitDamage(BH_PWORK* epw) {
+void bhEne12_InitDamage(BH_PWORK* epw) 
+{
     epw->flg &= ~4;
     bhEne_CalcDamage(epw, CombWepTbl, CombJointTbl);
 
@@ -1509,10 +1505,10 @@ void bhEne12_LookPlayaer(BH_PWORK* epw)
 // 100% matching!
 void bhEne12_HitMark(BH_PWORK* epw)
 {
-    int i;
     int range;
-    BLOOD_TBL* blp;
+    int i;
     NJS_POINT3 ofp;
+    BLOOD_TBL* blp;
 
     blp = &BloodTbl[epw->djnt_no];
 
@@ -1597,7 +1593,8 @@ void bhEne12_HitMark(BH_PWORK* epw)
 }
 
 // 100% matching!
-void bhEne12_FixedLegPos(BH_PWORK* epw) {
+void bhEne12_FixedLegPos(BH_PWORK* epw) 
+{
     int fno;
     NJS_POINT3 ret;
 
@@ -1636,7 +1633,8 @@ void bhEne12_FixedLegPos(BH_PWORK* epw) {
 }
 
 // 99.99% matching 
-void bhEne12_PlayerControl(BH_PWORK* epw) {
+void bhEne12_PlayerControl(BH_PWORK* epw) 
+{
 
     if (plp->mode0 == 4) {
         switch (plp->mode2) {
@@ -1833,8 +1831,8 @@ void bhEne12_Acid(BH_PWORK* epw)
     float size;
 
     // NOT IN DWARF
-    float new_xn;
-    float new_zn;
+    float xn;
+    float zn;
     float x;
     float y;
     float z;
@@ -1845,8 +1843,8 @@ void bhEne12_Acid(BH_PWORK* epw)
     y = owk[5].mtx[13];
     z = owk[5].mtx[14];
 
-    new_xn = -3.5f * njSin(epw->ay);
-    new_zn = -3.5f * njCos(epw->ay);
+    xn = -3.5f * njSin(epw->ay);
+    zn = -3.5f * njCos(epw->ay);
     
     sys->ef.id = 256;
     sys->ef.type = 3;
@@ -1866,9 +1864,9 @@ void bhEne12_Acid(BH_PWORK* epw)
             eff[eno].stflg |= 0x20;
             eff[eno].txp[0] = epw->mdl[2].texP;
             eff[eno].tex_id = 0;
-            eff[eno].xn = new_xn;
+            eff[eno].xn = xn;
             eff[eno].yn = 0.15f;
-            eff[eno].zn = new_zn;
+            eff[eno].zn = zn;
             eff[eno].ofy = 0.4f;
             njUnitMatrix(NULL);
             njRotateX(NULL, (int)(910.0f * ( -rand() / -2.1474836e9f)));
@@ -1950,8 +1948,7 @@ int bhEne12_AvoidWall(BH_PWORK* epw)
     NJS_POINT3 p1;
     NJS_POINT3 p2;
     int i;
-
-    ATR_WORK* temp;
+    ATR_WORK* hp;
 
     p1.x = epw->px;
     p1.y = epw->py;
@@ -1971,14 +1968,14 @@ int bhEne12_AvoidWall(BH_PWORK* epw)
         p1.x += p2.x;
         p1.z += p2.z;
         
-        temp = bhCheckWallType(&p1, 0, epw->ar, 1.0f);
+        hp = bhCheckWallType(&p1, 0, epw->ar, 1.0f);
         
-        if (temp != NULL) {
+        if (hp != NULL) {
             return 1;
         }
     }
 
-    return (int)temp;
+    return (int)hp;
 }
 
 // 100% matching!
@@ -2064,7 +2061,8 @@ void bhEne12_CallSE(BH_PWORK* epw)
 }
 
 // 100% matching!
-void bhEne12_CallFootSE(BH_PWORK* epw, int flg) {
+void bhEne12_CallFootSE(BH_PWORK* epw, int flg) 
+{
     ATR_WORK* hp;
     NJS_POINT3 pos;
 
@@ -2088,16 +2086,19 @@ void bhEne12_CallFootSE(BH_PWORK* epw, int flg) {
 }
 
 // 99.88 matching (fuzzy)
-void bhEne12_SetFireBintaEffect(BH_PWORK* epw, int act) {
+void bhEne12_SetFireBintaEffect(BH_PWORK* epw, int act) 
+{
     EN12_WORK* efp;
     int i;
     int eno;
-    O_WRK* p;
+    O_WORK* owk; 
     NJS_POINT3 ofp;
     NJS_POINT3 vec;
     NJS_POINT3 vec2;
     float scale;
-    O_WORK* owk; // not from DWARF
+
+    // NOT FROM DWARF
+    O_WRK* op;
 
     switch (act) {
     case 0:
@@ -2132,9 +2133,9 @@ void bhEne12_SetFireBintaEffect(BH_PWORK* epw, int act) {
         i = 0; 
         efp = alex_eff_tab;
         while (efp->jno != 0) {
-            p = ((O_WRK**)(epw->exp0))[i + 10];
-            if (p != NULL && (p->flg & 1) != 0 && p->id == 274) {
-                p->mode0 = 3;
+            op = ((O_WRK**)(epw->exp0))[i + 10];
+            if (op != NULL && (op->flg & 1) != 0 && op->id == 274) {
+                op->mode0 = 3;
             }
             i++;
             efp++;

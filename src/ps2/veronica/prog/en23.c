@@ -2634,95 +2634,113 @@ void bhEne23_CollisionLine(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x2053b0
+// 100% matching!
 int bhEne23_CheckClimbWall(BH_PWORK* epw, int flg)
 {
-	NJS_MKEY* mkfP;
-	int mtn[2] = { 3, 24 };
-	int root;
-	int i;
-	int ang2;
-	int ang;
-	NJS_POINT3 pos2;
-	NJS_POINT3 pos;
-	ATR_WORK* hp;
-	// Line 3211, Address: 0x2053b0, Func Offset: 0
-	// Line 3216, Address: 0x2053d0, Func Offset: 0x20
-	// Line 3211, Address: 0x2053d4, Func Offset: 0x24
-	// Line 3216, Address: 0x2053d8, Func Offset: 0x28
-	// Line 3218, Address: 0x2053ec, Func Offset: 0x3c
-	// Line 3219, Address: 0x2053fc, Func Offset: 0x4c
-	// Line 3223, Address: 0x205404, Func Offset: 0x54
-	// Line 3224, Address: 0x205418, Func Offset: 0x68
-	// Line 3225, Address: 0x205428, Func Offset: 0x78
-	// Line 3226, Address: 0x20543c, Func Offset: 0x8c
-	// Line 3227, Address: 0x205450, Func Offset: 0xa0
-	// Line 3228, Address: 0x205460, Func Offset: 0xb0
-	// Line 3229, Address: 0x205468, Func Offset: 0xb8
-	// Line 3233, Address: 0x205480, Func Offset: 0xd0
-	// Line 3234, Address: 0x205490, Func Offset: 0xe0
-	// Line 3235, Address: 0x2054a8, Func Offset: 0xf8
-	// Line 3237, Address: 0x2054b4, Func Offset: 0x104
-	// Line 3238, Address: 0x2054d0, Func Offset: 0x120
-	// Line 3237, Address: 0x2054d4, Func Offset: 0x124
-	// Line 3238, Address: 0x2054d8, Func Offset: 0x128
-	// Line 3239, Address: 0x2054fc, Func Offset: 0x14c
-	// Line 3240, Address: 0x20550c, Func Offset: 0x15c
-	// Line 3242, Address: 0x205534, Func Offset: 0x184
-	// Line 3243, Address: 0x205550, Func Offset: 0x1a0
-	// Line 3247, Address: 0x205554, Func Offset: 0x1a4
-	// Line 3243, Address: 0x205558, Func Offset: 0x1a8
-	// Line 3244, Address: 0x20555c, Func Offset: 0x1ac
-	// Line 3245, Address: 0x205564, Func Offset: 0x1b4
-	// Line 3246, Address: 0x20556c, Func Offset: 0x1bc
-	// Line 3247, Address: 0x205574, Func Offset: 0x1c4
-	// Line 3249, Address: 0x2055a8, Func Offset: 0x1f8
-	// Line 3250, Address: 0x2055c8, Func Offset: 0x218
-	// Line 3252, Address: 0x2055d0, Func Offset: 0x220
-	// Line 3253, Address: 0x2055e8, Func Offset: 0x238
-	// Line 3255, Address: 0x2055f0, Func Offset: 0x240
-	// Line 3256, Address: 0x205608, Func Offset: 0x258
-	// Line 3258, Address: 0x205610, Func Offset: 0x260
-	// Line 3263, Address: 0x205634, Func Offset: 0x284
-	// Line 3264, Address: 0x205674, Func Offset: 0x2c4
-	// Line 3268, Address: 0x205678, Func Offset: 0x2c8
-	// Line 3270, Address: 0x205680, Func Offset: 0x2d0
-	// Line 3268, Address: 0x205684, Func Offset: 0x2d4
-	// Line 3269, Address: 0x2056a8, Func Offset: 0x2f8
-	// Line 3268, Address: 0x2056ac, Func Offset: 0x2fc
-	// Line 3269, Address: 0x2056b0, Func Offset: 0x300
-	// Line 3270, Address: 0x2056c0, Func Offset: 0x310
-	// Line 3271, Address: 0x2056c8, Func Offset: 0x318
-	// Line 3272, Address: 0x2056d4, Func Offset: 0x324
-	// Line 3273, Address: 0x2056d8, Func Offset: 0x328
-	// Line 3272, Address: 0x2056dc, Func Offset: 0x32c
-	// Line 3273, Address: 0x2056e8, Func Offset: 0x338
-	// Line 3274, Address: 0x2056ec, Func Offset: 0x33c
-	// Line 3272, Address: 0x2056f4, Func Offset: 0x344
-	// Line 3273, Address: 0x205700, Func Offset: 0x350
-	// Line 3274, Address: 0x205708, Func Offset: 0x358
-	// Line 3276, Address: 0x205710, Func Offset: 0x360
-	// Line 3277, Address: 0x20571c, Func Offset: 0x36c
-	// Line 3284, Address: 0x20572c, Func Offset: 0x37c
-	// Line 3277, Address: 0x20573c, Func Offset: 0x38c
-	// Line 3284, Address: 0x205740, Func Offset: 0x390
-	// Line 3285, Address: 0x20575c, Func Offset: 0x3ac
-	// Line 3286, Address: 0x205760, Func Offset: 0x3b0
-	// Line 3289, Address: 0x20576c, Func Offset: 0x3bc
-	// Line 3285, Address: 0x205770, Func Offset: 0x3c0
-	// Line 3286, Address: 0x205774, Func Offset: 0x3c4
-	// Line 3289, Address: 0x205778, Func Offset: 0x3c8
-	// Line 3286, Address: 0x20577c, Func Offset: 0x3cc
-	// Line 3287, Address: 0x205784, Func Offset: 0x3d4
-	// Line 3289, Address: 0x205788, Func Offset: 0x3d8
-	// Line 3290, Address: 0x205798, Func Offset: 0x3e8
-	// Line 3294, Address: 0x2057a0, Func Offset: 0x3f0
-	// Line 3295, Address: 0x2057a4, Func Offset: 0x3f4
-	// Line 3296, Address: 0x2057b8, Func Offset: 0x408
-	// Line 3300, Address: 0x2057c8, Func Offset: 0x418
-	// Line 3301, Address: 0x2057cc, Func Offset: 0x41c
-	// Func End, Address: 0x2057f4, Func Offset: 0x444
+    ATR_WORK* hp;          
+    NJS_POINT3 pos, pos2;       
+    int ang, ang2;             
+    int i;               
+    int root;              
+    int mtn[2] = { 3, 24 }; 
+	NJS_MKEY* mkfP;        
+
+    if (EXP0_C(105) != 0)
+    {
+        return 0;
+    }
+
+    epw->ay = bhArcTan2(-EXP0_F(8), EXP0_F(0));
+
+    if (epw->way > 910)
+    {
+        ang = (short)((epw->ay + 16384) & ~0x3FFF);
+    }
+    else if (epw->way < -910)
+    {
+        ang = (short)(epw->ay & ~0x3FFF);
+    }
+    else
+    {
+        ang = (short)((epw->ay + 8192) & ~0x3FFF);
+    }
+
+    ang2 = (short)(ang - epw->ay);
+
+    if ((ang2 < -5461) || (ang2 > 5461))
+    {
+        return 0;
+    }
+
+    pos.x = epw->px - (27.0f * njSin(ang));
+    pos.z = epw->pz - (27.0f * njCos(ang));
+
+    hp = bhCheckFloorEnemy(epw->flr_no, pos.x, pos.z);
+
+    if (((hp != NULL) && (hp->prm0 == 23) && (hp->prm1 < 4)) && (ang == (short)((-(hp->prm1 & 0x3)) * 16384)))
+    {
+        *(ATR_WORK**)&EXP0_I(260) = hp;
+    
+        epw->xn = epw->px;
+        epw->yn = epw->py;
+        epw->zn = epw->pz;
+    
+        switch (hp->prm1)
+        {
+        case 0:
+            epw->zn = (hp->pz + hp->d) + 22.4f;
+            break;
+        case 1:
+            epw->xn = hp->px - 22.4f;
+            break;
+        case 2:
+            epw->zn = hp->pz - 22.4f;
+            break;
+        case 3:
+            epw->xn = (hp->px + hp->w) + 22.4f;
+            break;
+        }
+    
+        root = 2.0f * (-rand() / -2147483648.0f);
+    
+        for (i = 0; i < 2; i++)
+        {
+            mkfP  = epw->mnwP[root + mtn[epw->type]].md2P->p[0];
+            mkfP += epw->mnwP[root + mtn[epw->type]].frm_num - 1;
+            
+            njUnitMatrix(NULL);
+            
+            njRotateY(NULL, ang);
+    
+            pos = *(NJS_POINT3*)&mkfP->key[0];
+            
+            pos.x *= flg;
+    
+            njCalcVector(NULL, &pos, &pos);
+            
+            njAddVector(&pos, (NJS_POINT3*)&epw->xn);
+    
+            pos.y -= 23.0f;
+    
+            if (bhCheckWallType(&pos, 0, 18.199999f, 20.0f) == NULL)
+            {
+                pos2.x = pos.x;
+                pos2.y = pos.y + 999.0f;
+                pos2.z = pos.z;
+    
+                *(ATR_WORK**)&EXP0_I(100) = bhCollisionCheckLine(&pos, &pos2);
+    
+                return root + 1;
+            }
+    
+            if (++root > 1)
+            {
+                root = 0;
+            }
+        }
+    }
+
+    return 0;
 }
 
 // 99.75% matching

@@ -1746,53 +1746,50 @@ void bhEne17_SetSmokeEffect(BH_PWORK* epw, int lnk_onj, NJS_POINT3* ofs)
 	// Func End, Address: 0x1ee0ac, Func Offset: 0x34c
 }
 
-// 
-// Start address: 0x1ee0b0
+// 100% matching!
 void bhEne17_SetSmokeEffect2(BH_PWORK* epw, NJS_POINT3* ofs, int rot)
 {
-	int i;
-	int eno;
-	// Line 2927, Address: 0x1ee0b0, Func Offset: 0
-	// Line 2932, Address: 0x1ee0cc, Func Offset: 0x1c
-	// Line 2933, Address: 0x1ee0dc, Func Offset: 0x2c
-	// Line 2932, Address: 0x1ee0e0, Func Offset: 0x30
-	// Line 2933, Address: 0x1ee0ec, Func Offset: 0x3c
-	// Line 2935, Address: 0x1ee0f4, Func Offset: 0x44
-	// Line 2944, Address: 0x1ee0fc, Func Offset: 0x4c
-	// Line 2933, Address: 0x1ee104, Func Offset: 0x54
-	// Line 2934, Address: 0x1ee110, Func Offset: 0x60
-	// Line 2935, Address: 0x1ee124, Func Offset: 0x74
-	// Line 2936, Address: 0x1ee138, Func Offset: 0x88
-	// Line 2937, Address: 0x1ee14c, Func Offset: 0x9c
-	// Line 2938, Address: 0x1ee160, Func Offset: 0xb0
-	// Line 2939, Address: 0x1ee174, Func Offset: 0xc4
-	// Line 2940, Address: 0x1ee188, Func Offset: 0xd8
-	// Line 2942, Address: 0x1ee19c, Func Offset: 0xec
-	// Line 2946, Address: 0x1ee1b4, Func Offset: 0x104
-	// Line 2947, Address: 0x1ee208, Func Offset: 0x158
-	// Line 2949, Address: 0x1ee230, Func Offset: 0x180
-	// Line 2947, Address: 0x1ee234, Func Offset: 0x184
-	// Line 2949, Address: 0x1ee24c, Func Offset: 0x19c
-	// Line 2947, Address: 0x1ee254, Func Offset: 0x1a4
-	// Line 2949, Address: 0x1ee26c, Func Offset: 0x1bc
-	// Line 2950, Address: 0x1ee284, Func Offset: 0x1d4
-	// Line 2952, Address: 0x1ee290, Func Offset: 0x1e0
-	// Line 2954, Address: 0x1ee2b4, Func Offset: 0x204
-	// Line 2952, Address: 0x1ee2b8, Func Offset: 0x208
-	// Line 2953, Address: 0x1ee2c0, Func Offset: 0x210
-	// Line 2955, Address: 0x1ee2cc, Func Offset: 0x21c
-	// Line 2956, Address: 0x1ee2f4, Func Offset: 0x244
-	// Line 2955, Address: 0x1ee2f8, Func Offset: 0x248
-	// Line 2956, Address: 0x1ee308, Func Offset: 0x258
-	// Line 2957, Address: 0x1ee30c, Func Offset: 0x25c
-	// Line 2955, Address: 0x1ee314, Func Offset: 0x264
-	// Line 2956, Address: 0x1ee328, Func Offset: 0x278
-	// Line 2957, Address: 0x1ee32c, Func Offset: 0x27c
-	// Line 2958, Address: 0x1ee330, Func Offset: 0x280
-	// Line 2959, Address: 0x1ee334, Func Offset: 0x284
-	// Line 2960, Address: 0x1ee338, Func Offset: 0x288
-	// Line 2961, Address: 0x1ee348, Func Offset: 0x298
-	// Func End, Address: 0x1ee368, Func Offset: 0x2b8
+    int i;
+    int eno;
+
+    // NOT IN DWARF
+    int j; 
+    O_WRK* owk; 
+
+    i = 0;
+    j = 0;
+
+    sys->ef.id = 369;
+    sys->ef.flg = 1;
+    sys->ef.type = 1;
+    sys->ef.sx = 2.0f;
+    sys->ef.sy = 2.0f;
+    sys->ef.sz = 2.0f;
+    sys->ef.ax = 0;
+    sys->ef.ay = rot;
+    sys->ef.mdlver = 0;
+    sys->ef.py = ofs->y;
+
+    while (i < 4) {
+        sys->ef.px = (ofs->x + (2.0f * (-rand() / -2147483648.0f))) - 1.0f;
+        sys->ef.pz = (ofs->z + (2.0f * (-rand() / -2147483648.0f))) - 1.0f;
+
+        eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+
+        if (eno != -1) {
+            owk = &eff[eno];
+            owk->stflg |= 0x20;
+            owk->txp[0] = epw->mlwP->texP;
+            owk->tex_id = 7;
+            owk->xn = 1.2f + (0.2f * (-rand() / -2147483648.0f));
+            owk->yn = 0.05f;
+            owk->zn = 0.9f;
+            owk->ct3 = j;
+        }
+
+        i++;
+        j += 2;
+    }
 }
 
 // 

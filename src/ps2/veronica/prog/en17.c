@@ -1639,45 +1639,38 @@ int bhEne17_CameraControl(BH_PWORK* epw) {
     }
 }
 
+// 100% matching!
+void bhEne17_AfterimageAxEffect(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* ofs, unsigned int argb) {
+    int eno;
 
-// 
-// Start address: 0x1edaf0
-void bhEne17_AfterimageAxEffect(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* ofs, unsigned int argb)
-{
-	int eno;
-	// Line 2842, Address: 0x1edaf0, Func Offset: 0
-	// Line 2845, Address: 0x1edb04, Func Offset: 0x14
-	// Line 2847, Address: 0x1edb30, Func Offset: 0x40
-	// Line 2849, Address: 0x1edb3c, Func Offset: 0x4c
-	// Line 2850, Address: 0x1edb40, Func Offset: 0x50
-	// Line 2847, Address: 0x1edb44, Func Offset: 0x54
-	// Line 2848, Address: 0x1edb50, Func Offset: 0x60
-	// Line 2857, Address: 0x1edb58, Func Offset: 0x68
-	// Line 2848, Address: 0x1edb64, Func Offset: 0x74
-	// Line 2849, Address: 0x1edb70, Func Offset: 0x80
-	// Line 2850, Address: 0x1edb84, Func Offset: 0x94
-	// Line 2851, Address: 0x1edb98, Func Offset: 0xa8
-	// Line 2852, Address: 0x1edbac, Func Offset: 0xbc
-	// Line 2853, Address: 0x1edbc0, Func Offset: 0xd0
-	// Line 2854, Address: 0x1edbd4, Func Offset: 0xe4
-	// Line 2855, Address: 0x1edbe8, Func Offset: 0xf8
-	// Line 2857, Address: 0x1edbfc, Func Offset: 0x10c
-	// Line 2858, Address: 0x1edc14, Func Offset: 0x124
-	// Line 2860, Address: 0x1edc2c, Func Offset: 0x13c
-	// Line 2863, Address: 0x1edc38, Func Offset: 0x148
-	// Line 2860, Address: 0x1edc3c, Func Offset: 0x14c
-	// Line 2861, Address: 0x1edc54, Func Offset: 0x164
-	// Line 2860, Address: 0x1edc60, Func Offset: 0x170
-	// Line 2861, Address: 0x1edc68, Func Offset: 0x178
-	// Line 2863, Address: 0x1edc6c, Func Offset: 0x17c
-	// Line 2864, Address: 0x1edc7c, Func Offset: 0x18c
-	// Line 2865, Address: 0x1edc94, Func Offset: 0x1a4
-	// Line 2866, Address: 0x1edcc4, Func Offset: 0x1d4
-	// Line 2867, Address: 0x1edcf4, Func Offset: 0x204
-	// Line 2868, Address: 0x1edd24, Func Offset: 0x234
-	// Line 2869, Address: 0x1edd38, Func Offset: 0x248
-	// Line 2871, Address: 0x1edd48, Func Offset: 0x258
-	// Func End, Address: 0x1edd60, Func Offset: 0x270
+    njCalcPoint(mtx, ofs, (NJS_VECTOR*) &sys->ef.px);
+    sys->ef.id = 364;
+    sys->ef.type = 0;
+    sys->ef.flg = 1;
+    sys->ef.sx = 1.0f;
+    sys->ef.sy = 1.0f;
+    sys->ef.sz = 1.0f;
+    sys->ef.ax = 0;
+    sys->ef.ay = 0;
+    sys->ef.mdlver = 1;
+
+    eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+
+    if (eno == -1) {
+        if (eno >= 512) {
+            return;
+        }
+    }
+
+    eff[eno].stflg |= 0x20;
+    eff[eno].tex_id = 0;
+    eff[eno].mlwP = &epw->mdl[5];
+    eff[eno].txp[0] = eff[eno].mlwP->texP;
+    eff[eno].ax = (int)(10430.381f * atan2f(mtx[0][6], mtx[0][10]));
+    eff[eno].ay = (int)(10430.381f * asinf(-mtx[0][2]));
+    eff[eno].az = (int)(10430.381f * atan2f(mtx[0][1], mtx[0][0]));
+    eff[eno].flr_no = 1;
+    eff[eno].tv[0].col = argb;
 }
 
 // 

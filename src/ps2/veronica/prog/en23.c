@@ -1680,39 +1680,57 @@ void bhEne23_DG00()
 
 }
 
-// 
-// Start address: 0x202e30
+// 100% matching!
 void bhEne23_DG01(BH_PWORK* epw)
 {
 	int mtn[2][2] = { { 14, 18 }, { 29, 33 } };
-	// Line 2059, Address: 0x202e30, Func Offset: 0
-	// Line 2060, Address: 0x202e38, Func Offset: 0x8
-	// Line 2059, Address: 0x202e3c, Func Offset: 0xc
-	// Line 2060, Address: 0x202e44, Func Offset: 0x14
-	// Line 2065, Address: 0x202e54, Func Offset: 0x24
-	// Line 2067, Address: 0x202e74, Func Offset: 0x44
-	// Line 2068, Address: 0x202e84, Func Offset: 0x54
-	// Line 2069, Address: 0x202e9c, Func Offset: 0x6c
-	// Line 2070, Address: 0x202ea4, Func Offset: 0x74
-	// Line 2073, Address: 0x202ec0, Func Offset: 0x90
-	// Line 2072, Address: 0x202ec4, Func Offset: 0x94
-	// Line 2073, Address: 0x202ec8, Func Offset: 0x98
-	// Line 2074, Address: 0x202ecc, Func Offset: 0x9c
-	// Line 2075, Address: 0x202ed4, Func Offset: 0xa4
-	// Line 2077, Address: 0x202edc, Func Offset: 0xac
-	// Line 2079, Address: 0x202eec, Func Offset: 0xbc
-	// Line 2080, Address: 0x202f10, Func Offset: 0xe0
-	// Line 2082, Address: 0x202f1c, Func Offset: 0xec
-	// Line 2083, Address: 0x202f2c, Func Offset: 0xfc
-	// Line 2084, Address: 0x202f34, Func Offset: 0x104
-	// Line 2085, Address: 0x202f38, Func Offset: 0x108
-	// Line 2086, Address: 0x202f3c, Func Offset: 0x10c
-	// Line 2087, Address: 0x202f40, Func Offset: 0x110
-	// Line 2090, Address: 0x202f50, Func Offset: 0x120
-	// Line 2091, Address: 0x202f60, Func Offset: 0x130
-	// Line 2097, Address: 0x202f78, Func Offset: 0x148
-	// Line 2098, Address: 0x202f80, Func Offset: 0x150
-	// Func End, Address: 0x202f94, Func Offset: 0x164
+    
+    switch (epw->mode3)
+    {
+    case 0:
+        if (EXP0_C(105) == 0)
+        {
+            epw->mtn_no = mtn[epw->type][0] + bhEne03_DGDirCheck(epw);
+        }
+        else
+        {
+            epw->mtn_no = mtn[epw->type][1] + bhEne03_DGDirCheck(epw);
+        }
+
+        epw->frm_no = 0;
+
+        epw->hokan_count = 10;
+        epw->hokan_rate  = 32768;
+
+        epw->mtn_add = 65536;
+
+        epw->flg |= 0x10000000;
+
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
+
+        epw->mode3++;
+    case 1:
+        if (epw->ct0-- == 0)
+        {
+            epw->mode0 = 1;
+            epw->mode1 = 1;
+            epw->mode2 = 1;
+            epw->mode3 = 0;
+
+            epw->flg &= ~0x4;
+
+            EXP0_I(272) -= 20;
+
+            if (EXP0_I(272) < 0)
+            {
+                EXP0_I(272) = 0;
+            }
+        }
+
+        break;
+    }
+
+    EXP0_I(280) = 0;
 }
 
 // 100% matching!

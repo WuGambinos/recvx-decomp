@@ -1615,16 +1615,13 @@ int bhEne17_PlayerDGCheck(BH_PWORK* epw, BH_PWORK* pl)
 	// Func End, Address: 0x1ed9a8, Func Offset: 0x368
 }
 
-// 
-// Start address: 0x1ed9b0
-void bhEne17_SePlay(BH_PWORK* epw, int no)
-{
-	// Line 2794, Address: 0x1ed9b0, Func Offset: 0
-	// Line 2795, Address: 0x1ed9bc, Func Offset: 0xc
-	// Line 2797, Address: 0x1ed9d0, Func Offset: 0x20
-	// Line 2798, Address: 0x1ed9ec, Func Offset: 0x3c
-	// Func End, Address: 0x1ed9f8, Func Offset: 0x48
+// 100% matching!
+void bhEne17_SePlay(BH_PWORK* epw, int no) {
+    if (!(epw->flg & 0x10000)) {
+        RequestEnemySe(sys->enow, (NJS_POINT3*)&epw->px, no);
+    }
 }
+
 
 // 
 // Start address: 0x1eda00

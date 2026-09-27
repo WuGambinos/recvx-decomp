@@ -2157,41 +2157,46 @@ void bhEne23_Die(BH_PWORK* epw)
 	bhEne23_DeadMode2[epw->mode2](epw);
 }
 
-// 
-// Start address: 0x2041c0
+// 100% matching!
 void bhEne23_DD00(BH_PWORK* epw)
 {
-	int mtn[2] = { 48, 50 };
-	// Line 2648, Address: 0x2041c0, Func Offset: 0
-	// Line 2649, Address: 0x2041c4, Func Offset: 0x4
-	// Line 2648, Address: 0x2041c8, Func Offset: 0x8
-	// Line 2649, Address: 0x2041d0, Func Offset: 0x10
-	// Line 2651, Address: 0x2041e4, Func Offset: 0x24
-	// Line 2653, Address: 0x204204, Func Offset: 0x44
-	// Line 2655, Address: 0x204208, Func Offset: 0x48
-	// Line 2656, Address: 0x20420c, Func Offset: 0x4c
-	// Line 2657, Address: 0x204210, Func Offset: 0x50
-	// Line 2659, Address: 0x204214, Func Offset: 0x54
-	// Line 2653, Address: 0x204218, Func Offset: 0x58
-	// Line 2654, Address: 0x204228, Func Offset: 0x68
-	// Line 2655, Address: 0x20422c, Func Offset: 0x6c
-	// Line 2656, Address: 0x204230, Func Offset: 0x70
-	// Line 2657, Address: 0x204234, Func Offset: 0x74
-	// Line 2659, Address: 0x204238, Func Offset: 0x78
-	// Line 2661, Address: 0x204244, Func Offset: 0x84
-	// Line 2662, Address: 0x204268, Func Offset: 0xa8
-	// Line 2664, Address: 0x204274, Func Offset: 0xb4
-	// Line 2665, Address: 0x204284, Func Offset: 0xc4
-	// Line 2666, Address: 0x204288, Func Offset: 0xc8
-	// Line 2668, Address: 0x20428c, Func Offset: 0xcc
-	// Line 2666, Address: 0x204290, Func Offset: 0xd0
-	// Line 2668, Address: 0x204298, Func Offset: 0xd8
-	// Line 2669, Address: 0x2042a4, Func Offset: 0xe4
-	// Line 2672, Address: 0x2042b0, Func Offset: 0xf0
-	// Line 2673, Address: 0x2042c8, Func Offset: 0x108
-	// Line 2679, Address: 0x2042e0, Func Offset: 0x120
-	// Line 2680, Address: 0x2042e8, Func Offset: 0x128
-	// Func End, Address: 0x2042f8, Func Offset: 0x138
+    int mtn[2] = { 48, 50 }; 
+    
+    switch (epw->mode3)
+    {
+    case 0:
+        epw->mtn_no = mtn[epw->type];
+        epw->frm_no = 0;
+
+        epw->hokan_count = 10;
+        epw->hokan_rate  = 32768;
+
+        epw->mtn_add = 65536;
+
+        epw->flg |= 0x10000000;
+
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
+
+        epw->mode3++;
+    case 1:
+        if (epw->ct0-- == 0)
+        {
+            epw->mtn_add = 0;
+
+            epw->mode3++;
+
+            epw->flg  &= ~0x8;
+            epw->flg2 |=  0x1;
+
+            epw->ay = bhArcTan2(-EXP0_F(8), EXP0_F(0));
+
+            bhEne_BloodPool(epw, (NJS_POINT3*)&epw->px, epw->ay, &BloodParam);
+        }
+
+        break;
+    }
+
+    EXP0_I(280) = 0;
 }
 
 // 

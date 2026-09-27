@@ -1721,40 +1721,49 @@ void bhEne23_DG02()
 
 }
 
-// 
-// Start address: 0x202fb0
+// 100% matching!
 void bhEne23_DG03(BH_PWORK* epw)
 {
 	int mtn[2] = { 16, 31 };
-	// Line 2119, Address: 0x202fb0, Func Offset: 0
-	// Line 2120, Address: 0x202fb8, Func Offset: 0x8
-	// Line 2119, Address: 0x202fbc, Func Offset: 0xc
-	// Line 2120, Address: 0x202fc4, Func Offset: 0x14
-	// Line 2122, Address: 0x202fd4, Func Offset: 0x24
-	// Line 2124, Address: 0x202ff4, Func Offset: 0x44
-	// Line 2126, Address: 0x203008, Func Offset: 0x58
-	// Line 2127, Address: 0x20300c, Func Offset: 0x5c
-	// Line 2128, Address: 0x203010, Func Offset: 0x60
-	// Line 2130, Address: 0x203014, Func Offset: 0x64
-	// Line 2124, Address: 0x203018, Func Offset: 0x68
-	// Line 2125, Address: 0x203020, Func Offset: 0x70
-	// Line 2126, Address: 0x203024, Func Offset: 0x74
-	// Line 2127, Address: 0x203028, Func Offset: 0x78
-	// Line 2128, Address: 0x20302c, Func Offset: 0x7c
-	// Line 2130, Address: 0x203030, Func Offset: 0x80
-	// Line 2132, Address: 0x20303c, Func Offset: 0x8c
-	// Line 2133, Address: 0x203060, Func Offset: 0xb0
-	// Line 2135, Address: 0x20306c, Func Offset: 0xbc
-	// Line 2136, Address: 0x20307c, Func Offset: 0xcc
-	// Line 2137, Address: 0x203084, Func Offset: 0xd4
-	// Line 2138, Address: 0x203088, Func Offset: 0xd8
-	// Line 2139, Address: 0x20308c, Func Offset: 0xdc
-	// Line 2140, Address: 0x203090, Func Offset: 0xe0
-	// Line 2143, Address: 0x2030a0, Func Offset: 0xf0
-	// Line 2144, Address: 0x2030b0, Func Offset: 0x100
-	// Line 2150, Address: 0x2030c8, Func Offset: 0x118
-	// Line 2151, Address: 0x2030d0, Func Offset: 0x120
-	// Func End, Address: 0x2030e4, Func Offset: 0x134
+    
+    switch (epw->mode3)
+    {
+    case 0:
+        epw->mtn_no = mtn[epw->type] + bhEne03_DGDirCheck(epw);
+        epw->frm_no = 0;
+
+        epw->hokan_count = 10;
+        epw->hokan_rate  = 32768;
+
+        epw->mtn_add = 65536;
+
+        epw->flg |= 0x10000000;
+
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
+
+        epw->mode3++;
+    case 1:
+        if (epw->ct0-- == 0)
+        {
+            epw->mode0 = 1;
+            epw->mode1 = 1;
+            epw->mode2 = 1;
+            epw->mode3 = 0;
+
+            epw->flg &= ~0x4;
+
+            EXP0_I(272) -= 20;
+
+            if (EXP0_I(272) < 0)
+            {
+                EXP0_I(272) = 0;
+            }
+        }
+
+        break;
+    }
+
+    EXP0_I(280) = 0;
 }
 
 // 

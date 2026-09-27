@@ -1622,28 +1622,23 @@ void bhEne17_SePlay(BH_PWORK* epw, int no) {
     }
 }
 
+// 100% matching!
+int bhEne17_CameraControl(BH_PWORK* epw) {
 
-// 
-// Start address: 0x1eda00
-int bhEne17_CameraControl(BH_PWORK* epw)
-{
-	// Line 2819, Address: 0x1eda00, Func Offset: 0
-	// Line 2820, Address: 0x1eda14, Func Offset: 0x14
-	// Line 2822, Address: 0x1eda28, Func Offset: 0x28
-	// Line 2825, Address: 0x1eda4c, Func Offset: 0x4c
-	// Line 2827, Address: 0x1eda68, Func Offset: 0x68
-	// Line 2825, Address: 0x1eda6c, Func Offset: 0x6c
-	// Line 2827, Address: 0x1eda70, Func Offset: 0x70
-	// Line 2825, Address: 0x1eda74, Func Offset: 0x74
-	// Line 2827, Address: 0x1eda94, Func Offset: 0x94
-	// Line 2828, Address: 0x1edaa4, Func Offset: 0xa4
-	// Line 2831, Address: 0x1edaac, Func Offset: 0xac
-	// Line 2832, Address: 0x1edab4, Func Offset: 0xb4
-	// Line 2833, Address: 0x1edabc, Func Offset: 0xbc
-	// Line 2834, Address: 0x1edac4, Func Offset: 0xc4
-	// Line 2837, Address: 0x1edad8, Func Offset: 0xd8
-	// Func End, Address: 0x1edaec, Func Offset: 0xec
+    if (((unsigned int*)(epw->exp0))[2] & 0x800) {
+        if (!(EXP0_F(24) <= 0.01f)) {
+            cam.ofy = (EXP0_F(24) * (-rand() / -2.1474836e9f)) - (EXP0_F(24) / 2.0f);
+            EXP0_F(24) *= 0.8f;
+            return;
+        }
+        
+        cam.ofx = 0.0f;
+        cam.ofy = 0.0f;
+        cam.ofz = 0.0f;
+        ((unsigned int*)epw->exp0)[2] &= ~0x800;
+    }
 }
+
 
 // 
 // Start address: 0x1edaf0

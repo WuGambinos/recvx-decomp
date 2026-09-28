@@ -1608,76 +1608,91 @@ void bhEne23_MV11(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x202a20
+// 100% matching!
 void bhEne23_MV12(BH_PWORK* epw)
 {
-	NJS_POINT3 trans;
 	int mtn[2] = { 0, 53 };
-	// Line 1877, Address: 0x202a20, Func Offset: 0
-	// Line 1878, Address: 0x202a24, Func Offset: 0x4
-	// Line 1877, Address: 0x202a28, Func Offset: 0x8
-	// Line 1878, Address: 0x202a30, Func Offset: 0x10
-	// Line 1882, Address: 0x202a3c, Func Offset: 0x1c
-	// Line 1878, Address: 0x202a44, Func Offset: 0x24
-	// Line 1881, Address: 0x202a48, Func Offset: 0x28
-	// Line 1883, Address: 0x202a4c, Func Offset: 0x2c
-	// Line 1884, Address: 0x202a54, Func Offset: 0x34
-	// Line 1886, Address: 0x202a58, Func Offset: 0x38
-	// Line 1881, Address: 0x202a5c, Func Offset: 0x3c
-	// Line 1882, Address: 0x202a64, Func Offset: 0x44
-	// Line 1883, Address: 0x202a70, Func Offset: 0x50
-	// Line 1884, Address: 0x202a7c, Func Offset: 0x5c
-	// Line 1885, Address: 0x202a88, Func Offset: 0x68
-	// Line 1886, Address: 0x202a94, Func Offset: 0x74
-	// Line 1889, Address: 0x202aa0, Func Offset: 0x80
-	// Line 1890, Address: 0x202aa8, Func Offset: 0x88
-	// Line 1893, Address: 0x202abc, Func Offset: 0x9c
-	// Line 1898, Address: 0x202ac0, Func Offset: 0xa0
-	// Line 1899, Address: 0x202ac4, Func Offset: 0xa4
-	// Line 1893, Address: 0x202ac8, Func Offset: 0xa8
-	// Line 1896, Address: 0x202ad0, Func Offset: 0xb0
-	// Line 1897, Address: 0x202ae4, Func Offset: 0xc4
-	// Line 1898, Address: 0x202ae8, Func Offset: 0xc8
-	// Line 1899, Address: 0x202aec, Func Offset: 0xcc
-	// Line 1907, Address: 0x202af8, Func Offset: 0xd8
-	// Line 1908, Address: 0x202b24, Func Offset: 0x104
-	// Line 1910, Address: 0x202b30, Func Offset: 0x110
-	// Line 1918, Address: 0x202b34, Func Offset: 0x114
-	// Line 1910, Address: 0x202b3c, Func Offset: 0x11c
-	// Line 1911, Address: 0x202b40, Func Offset: 0x120
-	// Line 1912, Address: 0x202b48, Func Offset: 0x128
-	// Line 1918, Address: 0x202b50, Func Offset: 0x130
-	// Line 1919, Address: 0x202b6c, Func Offset: 0x14c
-	// Line 1920, Address: 0x202b70, Func Offset: 0x150
-	// Line 1921, Address: 0x202b78, Func Offset: 0x158
-	// Line 1926, Address: 0x202b84, Func Offset: 0x164
-	// Line 1929, Address: 0x202b8c, Func Offset: 0x16c
-	// Line 1932, Address: 0x202b98, Func Offset: 0x178
-	// Line 1929, Address: 0x202b9c, Func Offset: 0x17c
-	// Line 1932, Address: 0x202ba0, Func Offset: 0x180
-	// Line 1933, Address: 0x202ba4, Func Offset: 0x184
-	// Line 1934, Address: 0x202ba8, Func Offset: 0x188
-	// Line 1935, Address: 0x202bac, Func Offset: 0x18c
-	// Line 1938, Address: 0x202bb0, Func Offset: 0x190
-	// Line 1939, Address: 0x202bc0, Func Offset: 0x1a0
-	// Line 1940, Address: 0x202bc8, Func Offset: 0x1a8
-	// Line 1941, Address: 0x202bd0, Func Offset: 0x1b0
-	// Line 1943, Address: 0x202bd4, Func Offset: 0x1b4
-	// Line 1940, Address: 0x202bd8, Func Offset: 0x1b8
-	// Line 1941, Address: 0x202be0, Func Offset: 0x1c0
-	// Line 1942, Address: 0x202bec, Func Offset: 0x1cc
-	// Line 1944, Address: 0x202bf8, Func Offset: 0x1d8
-	// Line 1945, Address: 0x202c00, Func Offset: 0x1e0
-	// Line 1949, Address: 0x202c14, Func Offset: 0x1f4
-	// Line 1950, Address: 0x202c24, Func Offset: 0x204
-	// Line 1951, Address: 0x202c2c, Func Offset: 0x20c
-	// Line 1952, Address: 0x202c34, Func Offset: 0x214
-	// Line 1956, Address: 0x202c40, Func Offset: 0x220
-	// Line 1957, Address: 0x202c50, Func Offset: 0x230
-	// Line 1958, Address: 0x202c60, Func Offset: 0x240
-	// Line 1960, Address: 0x202c70, Func Offset: 0x250
-	// Func End, Address: 0x202c80, Func Offset: 0x260
+    NJS_POINT3 trans;
+
+    epw->flg |=  0x1078;
+    
+    epw->flg &= ~0x6;
+    epw->flg &= ~0x8000000;
+
+    epw->stflg &= ~0x8;
+    epw->mdflg |=  0x4;
+
+    epw->flg |= 0x4000000;
+
+    njUnitMatrix((NJS_MATRIX*)epw->exp0);
+
+    bhEne03_GetPartsPos(epw, joint_tree[0], (NJS_POINT3*)&epw->px);
+
+    epw->type &= 0x1;
+
+    epw->mtn_no = mtn[epw->type];
+    epw->frm_no = 0;
+    
+    epw->mtn_add = 65536;
+
+    epw->mtn_md &= ~0x20;
+
+    njCalcVector((NJS_MATRIX*)epw->exp0, epw->mnwP[epw->mtn_no].md2P->p[0], &trans);
+    njSubVector((NJS_VECTOR*)&epw->px, &trans);
+
+    epw->pxb = epw->px;
+    epw->pyb = epw->py;
+    epw->pzb = epw->pz;
+
+    if (epw->mlwP->owP->mtx[5] > 0)
+    {
+        EXP0_C(105) = 0;
+    }
+    else
+    {
+        EXP0_C(105) = 1;
+    }
+
+    bhEne03_MakeMatrix(epw);
+
+    *(ATR_WORK**)&EXP0_I(96) = bhEne03_GetWall(epw);
+
+    epw->mode0 = 1;
+    epw->mode1 = 1;
+    epw->mode2 = 1;
+    epw->mode3 = 0;
+
+    if ((epw->type & 0x4))
+    {
+        epw->type &= ~0x4;
+
+        epw->flg |=  0x8000000;
+        epw->flg &= ~0x60;
+
+        epw->stflg |= 0x8;
+
+        epw->ar = 13.0f;
+    }
+    else
+    {
+        epw->flg &= ~0x8000000;
+    }
+
+    if ((epw->type & 0x1))
+    {
+        epw->cpcl = CapColTabB;
+    }
+    else
+    {
+        epw->cpcl = CapColTabA;
+    }
+
+    bhEne03_HideParts(epw, 1, 0);
+
+    if ((epw->type & 0x1))
+    {
+        bhEne03_HideParts(epw, 8, 1);
+    }
 }
 
 // 100% matching!

@@ -1310,48 +1310,63 @@ void bhEne23_MV05(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x2020f0
-void bhEne23_MV06(BH_PWORK* epw)
+#pragma divbyzerocheck on 
+
+// 100% matching!
+void bhEne23_MV06(BH_PWORK* epw) 
 {
-	int mtn[2] = { 2, 22 };
-	int mno;
-	// Line 1555, Address: 0x2020f0, Func Offset: 0
-	// Line 1556, Address: 0x2020f4, Func Offset: 0x4
-	// Line 1555, Address: 0x2020f8, Func Offset: 0x8
-	// Line 1556, Address: 0x202100, Func Offset: 0x10
-	// Line 1558, Address: 0x202114, Func Offset: 0x24
-	// Line 1561, Address: 0x202134, Func Offset: 0x44
-	// Line 1562, Address: 0x202138, Func Offset: 0x48
-	// Line 1561, Address: 0x20213c, Func Offset: 0x4c
-	// Line 1562, Address: 0x202148, Func Offset: 0x58
-	// Line 1563, Address: 0x202150, Func Offset: 0x60
-	// Line 1565, Address: 0x202154, Func Offset: 0x64
-	// Line 1564, Address: 0x202158, Func Offset: 0x68
-	// Line 1565, Address: 0x20215c, Func Offset: 0x6c
-	// Line 1566, Address: 0x202160, Func Offset: 0x70
-	// Line 1568, Address: 0x202168, Func Offset: 0x78
-	// Line 1570, Address: 0x202170, Func Offset: 0x80
-	// Line 1572, Address: 0x202174, Func Offset: 0x84
-	// Line 1568, Address: 0x202178, Func Offset: 0x88
-	// Line 1570, Address: 0x202180, Func Offset: 0x90
-	// Line 1571, Address: 0x202184, Func Offset: 0x94
-	// Line 1572, Address: 0x2021a8, Func Offset: 0xb8
-	// Line 1573, Address: 0x2021ac, Func Offset: 0xbc
-	// Line 1575, Address: 0x2021b8, Func Offset: 0xc8
-	// Line 1579, Address: 0x2021c4, Func Offset: 0xd4
-	// Line 1581, Address: 0x2021dc, Func Offset: 0xec
-	// Line 1584, Address: 0x202210, Func Offset: 0x120
-	// Line 1585, Address: 0x202230, Func Offset: 0x140
-	// Line 1587, Address: 0x202250, Func Offset: 0x160
-	// Line 1588, Address: 0x202258, Func Offset: 0x168
-	// Line 1590, Address: 0x202260, Func Offset: 0x170
-	// Line 1589, Address: 0x202264, Func Offset: 0x174
-	// Line 1590, Address: 0x202268, Func Offset: 0x178
-	// Line 1591, Address: 0x20226c, Func Offset: 0x17c
-	// Line 1595, Address: 0x202270, Func Offset: 0x180
-	// Func End, Address: 0x202280, Func Offset: 0x190
+    int mno;                
+    int mtn[2] = { 2, 22 };
+
+    switch (epw->mode3)
+    {
+    case 0:
+    {
+        mno = mtn[epw->type];
+
+        if (epw->mtn_no != mno)
+        {
+            epw->frm_no = 0;
+            epw->mtn_no = mno;
+
+            epw->hokan_count = 10;
+            epw->hokan_rate  = 32768;
+        }
+
+        epw->flg |= 0x10000000;
+        
+        epw->mtn_add = 65536;
+
+        epw->ayp = (short)((((ATR_WORK*)EXP0_I(260))->prm1 & 0x3) * -16384);
+
+        epw->ct0 = 8;
+
+        epw->mode3++;
+    }
+    case 1:
+        if (epw->ct0 > 0)
+        {
+            epw->ay = bhArcTan2(-EXP0_F(8), EXP0_F(0));
+
+            njRotateY((NJS_MATRIX*)epw->exp0, (short)(epw->ayp - epw->ay) / epw->ct0);
+
+            epw->px += (epw->xn - epw->px) / epw->ct0;
+            epw->pz += (epw->zn - epw->pz) / epw->ct0;
+
+            epw->ct0--;
+        }
+        else
+        {
+            epw->mode1 = 0;
+            epw->mode2 = 5;
+            epw->mode3 = 0;
+        }
+
+        break;
+    }
 }
+
+#pragma divbyzerocheck off
 
 // 100% matching!
 void bhEne23_MV07()

@@ -898,25 +898,23 @@ void bhEne17_Die()
 {
 }
 
-// 
-// Start address: 0x1ebea0
+// 100% matching!
 void bhEne17_Brain(BH_PWORK* epw)
 {
-	NJS_POINT3 pos;
-	// Line 1492, Address: 0x1ebea0, Func Offset: 0
-	// Line 1495, Address: 0x1ebeac, Func Offset: 0xc
-	// Line 1498, Address: 0x1ebeb8, Func Offset: 0x18
-	// Line 1501, Address: 0x1ebecc, Func Offset: 0x2c
-	// Line 1503, Address: 0x1ebef0, Func Offset: 0x50
-	// Line 1504, Address: 0x1ebefc, Func Offset: 0x5c
-	// Line 1505, Address: 0x1ebf04, Func Offset: 0x64
-	// Line 1509, Address: 0x1ebf0c, Func Offset: 0x6c
-	// Line 1510, Address: 0x1ebf1c, Func Offset: 0x7c
-	// Line 1509, Address: 0x1ebf20, Func Offset: 0x80
-	// Line 1510, Address: 0x1ebf24, Func Offset: 0x84
-	// Line 1514, Address: 0x1ebf34, Func Offset: 0x94
-	// Line 1516, Address: 0x1ebf54, Func Offset: 0xb4
-	// Func End, Address: 0x1ebf64, Func Offset: 0xc4
+    NJS_POINT3 pos;
+
+    EXP0_UC(0) = 64;
+    if (EXP0_UC(0) & 0x40) {
+        if ((bhCheckRoute((NJS_POINT3*)&epw->px, (NJS_POINT3*)&plp->px, &pos)) != 255) {
+            EXP0_F(28) = pos.x;
+            EXP0_F(36) = pos.z;
+        } else {
+            EXP0_F(28) = plp->px;
+            EXP0_F(36) = plp->pz;
+        }
+        
+        bhEne17_BrainMode2[epw->mode2](epw);
+    }
 }
 
 // 100% matching!

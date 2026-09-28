@@ -1440,105 +1440,143 @@ void bhEne23_MV09(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x202390
-void bhEne23_MV10(BH_PWORK* epw)
+// 100% matching!
+void bhEne23_MV10(BH_PWORK* epw) 
 {
-	int mtn[2][2] = { { 10, 12 }, { 27, 28 } };
-	NJS_POINT3 pos;
-	// Line 1665, Address: 0x202390, Func Offset: 0
-	// Line 1667, Address: 0x20239c, Func Offset: 0xc
-	// Line 1665, Address: 0x2023a0, Func Offset: 0x10
-	// Line 1667, Address: 0x2023a4, Func Offset: 0x14
-	// Line 1665, Address: 0x2023a8, Func Offset: 0x18
-	// Line 1667, Address: 0x2023ac, Func Offset: 0x1c
-	// Line 1672, Address: 0x2023bc, Func Offset: 0x2c
-	// Line 1674, Address: 0x2023dc, Func Offset: 0x4c
-	// Line 1675, Address: 0x2023ec, Func Offset: 0x5c
-	// Line 1676, Address: 0x2023fc, Func Offset: 0x6c
-	// Line 1677, Address: 0x202404, Func Offset: 0x74
-	// Line 1680, Address: 0x202418, Func Offset: 0x88
-	// Line 1679, Address: 0x20241c, Func Offset: 0x8c
-	// Line 1680, Address: 0x202420, Func Offset: 0x90
-	// Line 1681, Address: 0x202424, Func Offset: 0x94
-	// Line 1682, Address: 0x20242c, Func Offset: 0x9c
-	// Line 1684, Address: 0x202434, Func Offset: 0xa4
-	// Line 1686, Address: 0x202448, Func Offset: 0xb8
-	// Line 1687, Address: 0x20246c, Func Offset: 0xdc
-	// Line 1689, Address: 0x202478, Func Offset: 0xe8
-	// Line 1690, Address: 0x202488, Func Offset: 0xf8
-	// Line 1692, Address: 0x202494, Func Offset: 0x104
-	// Line 1693, Address: 0x20249c, Func Offset: 0x10c
-	// Line 1694, Address: 0x2024a0, Func Offset: 0x110
-	// Line 1696, Address: 0x2024a4, Func Offset: 0x114
-	// Line 1698, Address: 0x2024ac, Func Offset: 0x11c
-	// Line 1699, Address: 0x2024b0, Func Offset: 0x120
-	// Line 1700, Address: 0x2024b4, Func Offset: 0x124
-	// Line 1701, Address: 0x2024b8, Func Offset: 0x128
-	// Line 1708, Address: 0x2024bc, Func Offset: 0x12c
-	// Line 1711, Address: 0x2024c0, Func Offset: 0x130
-	// Line 1708, Address: 0x2024c4, Func Offset: 0x134
-	// Line 1711, Address: 0x2024c8, Func Offset: 0x138
-	// Line 1714, Address: 0x2024f8, Func Offset: 0x168
-	// Line 1716, Address: 0x202500, Func Offset: 0x170
-	// Line 1719, Address: 0x202564, Func Offset: 0x1d4
-	// Line 1720, Address: 0x202568, Func Offset: 0x1d8
-	// Line 1719, Address: 0x20256c, Func Offset: 0x1dc
-	// Line 1721, Address: 0x202570, Func Offset: 0x1e0
-	// Line 1720, Address: 0x202574, Func Offset: 0x1e4
-	// Line 1721, Address: 0x202578, Func Offset: 0x1e8
-	// Line 1722, Address: 0x20257c, Func Offset: 0x1ec
-	// Line 1723, Address: 0x202594, Func Offset: 0x204
-	// Line 1729, Address: 0x2025b4, Func Offset: 0x224
-	// Line 1730, Address: 0x2025c8, Func Offset: 0x238
-	// Line 1740, Address: 0x2025e8, Func Offset: 0x258
-	// Line 1737, Address: 0x2025ec, Func Offset: 0x25c
-	// Line 1740, Address: 0x2025f0, Func Offset: 0x260
-	// Line 1730, Address: 0x2025f4, Func Offset: 0x264
-	// Line 1737, Address: 0x2025fc, Func Offset: 0x26c
-	// Line 1738, Address: 0x202600, Func Offset: 0x270
-	// Line 1739, Address: 0x202604, Func Offset: 0x274
-	// Line 1740, Address: 0x202608, Func Offset: 0x278
-	// Line 1741, Address: 0x202618, Func Offset: 0x288
-	// Line 1747, Address: 0x202638, Func Offset: 0x2a8
-	// Line 1741, Address: 0x202644, Func Offset: 0x2b4
-	// Line 1747, Address: 0x202648, Func Offset: 0x2b8
-	// Line 1748, Address: 0x202654, Func Offset: 0x2c4
-	// Line 1754, Address: 0x20267c, Func Offset: 0x2ec
-	// Line 1756, Address: 0x202688, Func Offset: 0x2f8
-	// Line 1759, Address: 0x20268c, Func Offset: 0x2fc
-	// Line 1756, Address: 0x202694, Func Offset: 0x304
-	// Line 1759, Address: 0x2026a0, Func Offset: 0x310
-	// Line 1761, Address: 0x2026ac, Func Offset: 0x31c
-	// Line 1762, Address: 0x2026c8, Func Offset: 0x338
-	// Line 1765, Address: 0x2026d4, Func Offset: 0x344
-	// Line 1766, Address: 0x2026e4, Func Offset: 0x354
-	// Line 1765, Address: 0x2026e8, Func Offset: 0x358
-	// Line 1766, Address: 0x2026f0, Func Offset: 0x360
-	// Line 1768, Address: 0x2026f8, Func Offset: 0x368
-	// Line 1766, Address: 0x2026fc, Func Offset: 0x36c
-	// Line 1768, Address: 0x202704, Func Offset: 0x374
-	// Line 1769, Address: 0x202714, Func Offset: 0x384
-	// Line 1770, Address: 0x20272c, Func Offset: 0x39c
-	// Line 1772, Address: 0x20273c, Func Offset: 0x3ac
-	// Line 1773, Address: 0x202748, Func Offset: 0x3b8
-	// Line 1772, Address: 0x20274c, Func Offset: 0x3bc
-	// Line 1773, Address: 0x202750, Func Offset: 0x3c0
-	// Line 1774, Address: 0x20275c, Func Offset: 0x3cc
-	// Line 1775, Address: 0x202768, Func Offset: 0x3d8
-	// Line 1776, Address: 0x202794, Func Offset: 0x404
-	// Line 1777, Address: 0x20279c, Func Offset: 0x40c
-	// Line 1778, Address: 0x2027a4, Func Offset: 0x414
-	// Line 1780, Address: 0x2027ac, Func Offset: 0x41c
-	// Line 1782, Address: 0x2027b4, Func Offset: 0x424
-	// Line 1783, Address: 0x2027c0, Func Offset: 0x430
-	// Line 1784, Address: 0x2027cc, Func Offset: 0x43c
-	// Line 1785, Address: 0x2027d8, Func Offset: 0x448
-	// Line 1786, Address: 0x202804, Func Offset: 0x474
-	// Line 1787, Address: 0x20280c, Func Offset: 0x47c
-	// Line 1788, Address: 0x202814, Func Offset: 0x484
-	// Line 1794, Address: 0x202820, Func Offset: 0x490
-	// Func End, Address: 0x202838, Func Offset: 0x4a8
+    NJS_POINT3 pos; 
+    int mtn[2][2] = { { 10, 12 }, { 27, 28 } };
+    
+    switch (epw->mode3) 
+    {
+    case 0:
+        if (EXP0_C(105) == 0)
+        {
+            epw->mtn_no = mtn[epw->type][0];
+        } 
+        else 
+        {
+            epw->mtn_no = mtn[epw->type][1];
+        }
+        
+        epw->frm_no = 0;
+        
+        epw->hokan_count = 10;
+        epw->hokan_rate  = 32768;
+        
+        epw->mtn_add = 65536;
+        
+        epw->flg &= ~0x10000000;
+        
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
+        
+        epw->mode3++;
+    case 1:
+        if (epw->ct0-- == 0)
+        {
+            if (epw->ct1 != 0) 
+            {
+                epw->mode0 = 1;
+                epw->mode1 = 1;
+                epw->mode2 = 0;
+                epw->mode3 = 0;
+            } 
+            else 
+            {
+                epw->mode0 = 1;
+                epw->mode1 = 1;
+                epw->mode2 = 1;
+                epw->mode3 = 0;
+            }
+        }
+        
+        break;
+    }
+
+    EXP0_I(280) = 0;
+
+    if ((!(plp->flg & 0x4)) && (!(plp->stflg & 0x80000000)))
+    {
+        switch ((plp->stflg & 0x30)) 
+        {
+        case 0:
+            if (((EXP0_C(105) == 0) && ((epw->frm_no >= 589824) && (epw->frm_no <= 720896))) || ((EXP0_C(105) == 1) && ((epw->frm_no >= 327680) && (epw->frm_no <= 589824)))) 
+            {
+                pos.x = -7.0f;
+                pos.y = 0;
+                pos.z = 0;
+                
+                njCalcPoint(&epw->mlwP->owP[6].mtx, &pos, &pos);
+                epw->ct1 = bhEne_AttackHitCheck(plp, &pos, 5.0f);
+
+                bhEne03_GetPartsPos(epw, joint_tree[1], &pos);
+                epw->ct1 |= bhEne_AttackHitCheck(plp, &pos, 5.0f);
+
+                pos.x = 7.0f;
+                pos.y = 0;
+                pos.z = 0;
+                
+                njCalcPoint(&epw->mlwP->owP[27].mtx, &pos, &pos);
+                epw->ct1 |= bhEne_AttackHitCheck(plp, &pos, 5.0f);
+
+                bhEne03_GetPartsPos(epw, joint_tree[3], &pos);
+                epw->ct1 |= bhEne_AttackHitCheck(plp, &pos, 5.0f);
+
+                if (epw->ct1 != 0)
+                {
+                    EXP0_I(272) += 20;
+                    
+                    bhEne_SetBloodEffect5(plp, 9, 2);
+
+                    if (!(plp->flg & 0x80000000))
+                    {
+                        plp->hp -= 40;
+                    }
+
+                    plp->flg   |= 0x10004;
+                    plp->stflg |= 0x10000;
+
+                    if (plp->hp >= 0)
+                    {
+                        epw->ay = bhArcTan2(-EXP0_F(8), EXP0_F(0));
+
+                        if (EXP0_C(105) == 0) 
+                        {
+                            plp->mode0 = 2;
+                            plp->mode2 = 1;
+                            plp->mode3 = 0;
+
+                            if (abs((short)(epw->ay - plp->ay)) > 16384) 
+                            {
+                                plp->mode1 = 0;
+                            } 
+                            else 
+                            {
+                                plp->mode1 = 1;
+                            }
+                        } 
+                        else
+                        {
+                            plp->mode0 = 4;
+                            plp->mode1 = 0;
+                            plp->mode3 = 0;
+
+                            if (abs((short)(epw->ay - plp->ay)) > 16384) 
+                            {
+                                plp->mode2 = 0;
+                            } 
+                            else 
+                            {
+                                plp->mode2 = 1;
+                                return; 
+                            }
+                        }
+                    }
+                }
+            }
+            
+            break;
+        }
+    }
 }
 
 // 100% matching!

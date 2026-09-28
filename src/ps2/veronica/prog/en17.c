@@ -1673,7 +1673,7 @@ void bhEne17_AfterimageAxEffect(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* ofs,
     eff[eno].tv[0].col = argb;
 }
 
-// 99.67% matching!
+// 100% matching!
 void bhEne17_SetSmokeEffect(BH_PWORK* epw, int lnk_onj, NJS_POINT3* ofs) {
     O_WORK* owk;
     NJS_POINT3 ps;
@@ -1765,58 +1765,38 @@ void bhEne17_SetSmokeEffect2(BH_PWORK* epw, NJS_POINT3* ofs, int rot)
     }
 }
 
-// 
-// Start address: 0x1ee370
-void bhEne17_SetSmokeEffect3(BH_PWORK* epw, NJS_POINT3* ofs, int rot)
-{
-	int eno;
-	// Line 2965, Address: 0x1ee370, Func Offset: 0
-	// Line 2968, Address: 0x1ee380, Func Offset: 0x10
-	// Line 2969, Address: 0x1ee390, Func Offset: 0x20
-	// Line 2968, Address: 0x1ee394, Func Offset: 0x24
-	// Line 2969, Address: 0x1ee3a0, Func Offset: 0x30
-	// Line 2971, Address: 0x1ee3a8, Func Offset: 0x38
-	// Line 2969, Address: 0x1ee3ac, Func Offset: 0x3c
-	// Line 2970, Address: 0x1ee3b8, Func Offset: 0x48
-	// Line 2971, Address: 0x1ee3cc, Func Offset: 0x5c
-	// Line 2972, Address: 0x1ee3e0, Func Offset: 0x70
-	// Line 2973, Address: 0x1ee3f4, Func Offset: 0x84
-	// Line 2974, Address: 0x1ee408, Func Offset: 0x98
-	// Line 2975, Address: 0x1ee41c, Func Offset: 0xac
-	// Line 2976, Address: 0x1ee430, Func Offset: 0xc0
-	// Line 2978, Address: 0x1ee444, Func Offset: 0xd4
-	// Line 2979, Address: 0x1ee45c, Func Offset: 0xec
-	// Line 2980, Address: 0x1ee474, Func Offset: 0x104
-	// Line 2982, Address: 0x1ee488, Func Offset: 0x118
-	// Line 2983, Address: 0x1ee4e8, Func Offset: 0x178
-	// Line 2985, Address: 0x1ee510, Func Offset: 0x1a0
-	// Line 2983, Address: 0x1ee514, Func Offset: 0x1a4
-	// Line 2985, Address: 0x1ee52c, Func Offset: 0x1bc
-	// Line 2983, Address: 0x1ee534, Func Offset: 0x1c4
-	// Line 2985, Address: 0x1ee558, Func Offset: 0x1e8
-	// Line 2986, Address: 0x1ee570, Func Offset: 0x200
-	// Line 2988, Address: 0x1ee57c, Func Offset: 0x20c
-	// Line 2989, Address: 0x1ee5a0, Func Offset: 0x230
-	// Line 2988, Address: 0x1ee5ac, Func Offset: 0x23c
-	// Line 2989, Address: 0x1ee5b4, Func Offset: 0x244
-	// Line 2990, Address: 0x1ee5b8, Func Offset: 0x248
-	// Line 2989, Address: 0x1ee5c4, Func Offset: 0x254
-	// Line 2990, Address: 0x1ee5c8, Func Offset: 0x258
-	// Line 2989, Address: 0x1ee5cc, Func Offset: 0x25c
-	// Line 2991, Address: 0x1ee5d0, Func Offset: 0x260
-	// Line 2992, Address: 0x1ee60c, Func Offset: 0x29c
-	// Line 2993, Address: 0x1ee620, Func Offset: 0x2b0
-	// Line 2991, Address: 0x1ee630, Func Offset: 0x2c0
-	// Line 2993, Address: 0x1ee63c, Func Offset: 0x2cc
-	// Line 2994, Address: 0x1ee640, Func Offset: 0x2d0
-	// Line 2991, Address: 0x1ee648, Func Offset: 0x2d8
-	// Line 2994, Address: 0x1ee64c, Func Offset: 0x2dc
-	// Line 2991, Address: 0x1ee650, Func Offset: 0x2e0
-	// Line 2992, Address: 0x1ee658, Func Offset: 0x2e8
-	// Line 2993, Address: 0x1ee65c, Func Offset: 0x2ec
-	// Line 2994, Address: 0x1ee660, Func Offset: 0x2f0
-	// Line 2996, Address: 0x1ee664, Func Offset: 0x2f4
-	// Func End, Address: 0x1ee678, Func Offset: 0x308
+// 100% matching!
+void bhEne17_SetSmokeEffect3(BH_PWORK* epw, NJS_POINT3* ofs, int rot) {
+    int eno;
+
+    sys->ef.id = 369;
+    sys->ef.flg = 1;
+    sys->ef.type = 0;
+    sys->ef.sx = 2.0f;
+    sys->ef.sy = 2.0f;
+    sys->ef.sz = 2.0f;
+    sys->ef.ax = 0;
+    sys->ef.ay = rot;
+    sys->ef.mdlver = 0;
+
+    sys->ef.px = ofs->x;
+    sys->ef.py = ofs->y;
+    sys->ef.pz = ofs->z;
+
+    sys->ef.px += (2.0f * (-rand() / -2147483648.0f)) - 1.0f;
+    sys->ef.pz += (2.0f * (-rand() / -2147483648.0f)) - 1.0f;
+
+    eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
+
+    if (eno != -1) {
+        eff[eno].stflg |= 0x20;
+        eff[eno].txp[0] = epw->mlwP->texP;
+        eff[eno].tex_id = 7;
+        eff[eno].xn = 0.1f + (0.2f * (-rand() / -2147483648.0f));
+        eff[eno].yn = 0.05f;
+        eff[eno].zn = 0.9f;
+        eff[eno].ct3 = 0;
+    }
 }
 
 // 

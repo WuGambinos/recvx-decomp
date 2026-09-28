@@ -1541,66 +1541,71 @@ void bhEne23_MV10(BH_PWORK* epw)
 	// Func End, Address: 0x202838, Func Offset: 0x4a8
 }
 
-// 
-// Start address: 0x202840
-void bhEne23_MV11(BH_PWORK* epw)
+// 100% matching!
+void bhEne23_MV11(BH_PWORK* epw) 
 {
-	NJS_POINT3 trans;
-	int mtn[2][2] = { { 37, 0 }, { 42, 53 } };
-	// Line 1804, Address: 0x202840, Func Offset: 0
-	// Line 1805, Address: 0x202844, Func Offset: 0x4
-	// Line 1804, Address: 0x202848, Func Offset: 0x8
-	// Line 1805, Address: 0x202850, Func Offset: 0x10
-	// Line 1810, Address: 0x20285c, Func Offset: 0x1c
-	// Line 1805, Address: 0x202860, Func Offset: 0x20
-	// Line 1810, Address: 0x202864, Func Offset: 0x24
-	// Line 1812, Address: 0x202880, Func Offset: 0x40
-	// Line 1814, Address: 0x202884, Func Offset: 0x44
-	// Line 1817, Address: 0x202888, Func Offset: 0x48
-	// Line 1820, Address: 0x20288c, Func Offset: 0x4c
-	// Line 1821, Address: 0x202890, Func Offset: 0x50
-	// Line 1812, Address: 0x202894, Func Offset: 0x54
-	// Line 1813, Address: 0x2028a4, Func Offset: 0x64
-	// Line 1814, Address: 0x2028a8, Func Offset: 0x68
-	// Line 1817, Address: 0x2028ac, Func Offset: 0x6c
-	// Line 1821, Address: 0x2028b0, Func Offset: 0x70
-	// Line 1822, Address: 0x2028b4, Func Offset: 0x74
-	// Line 1817, Address: 0x2028b8, Func Offset: 0x78
-	// Line 1818, Address: 0x2028bc, Func Offset: 0x7c
-	// Line 1820, Address: 0x2028c0, Func Offset: 0x80
-	// Line 1821, Address: 0x2028cc, Func Offset: 0x8c
-	// Line 1822, Address: 0x2028d8, Func Offset: 0x98
-	// Line 1824, Address: 0x2028e4, Func Offset: 0xa4
-	// Line 1825, Address: 0x2028ec, Func Offset: 0xac
-	// Line 1827, Address: 0x2028f4, Func Offset: 0xb4
-	// Line 1828, Address: 0x202900, Func Offset: 0xc0
-	// Line 1829, Address: 0x202904, Func Offset: 0xc4
-	// Line 1833, Address: 0x202908, Func Offset: 0xc8
-	// Line 1830, Address: 0x20290c, Func Offset: 0xcc
-	// Line 1833, Address: 0x202910, Func Offset: 0xd0
-	// Line 1835, Address: 0x202920, Func Offset: 0xe0
-	// Line 1836, Address: 0x202934, Func Offset: 0xf4
-	// Line 1843, Address: 0x202938, Func Offset: 0xf8
-	// Line 1844, Address: 0x202964, Func Offset: 0x124
-	// Line 1847, Address: 0x202970, Func Offset: 0x130
-	// Line 1848, Address: 0x202978, Func Offset: 0x138
-	// Line 1849, Address: 0x202988, Func Offset: 0x148
-	// Line 1851, Address: 0x202994, Func Offset: 0x154
-	// Line 1854, Address: 0x2029a0, Func Offset: 0x160
-	// Line 1857, Address: 0x2029a4, Func Offset: 0x164
-	// Line 1858, Address: 0x2029ac, Func Offset: 0x16c
-	// Line 1854, Address: 0x2029b0, Func Offset: 0x170
-	// Line 1857, Address: 0x2029b4, Func Offset: 0x174
-	// Line 1858, Address: 0x2029bc, Func Offset: 0x17c
-	// Line 1861, Address: 0x2029c8, Func Offset: 0x188
-	// Line 1863, Address: 0x2029cc, Func Offset: 0x18c
-	// Line 1858, Address: 0x2029d0, Func Offset: 0x190
-	// Line 1859, Address: 0x2029d4, Func Offset: 0x194
-	// Line 1860, Address: 0x2029e4, Func Offset: 0x1a4
-	// Line 1861, Address: 0x2029f0, Func Offset: 0x1b0
-	// Line 1863, Address: 0x2029fc, Func Offset: 0x1bc
-	// Line 1867, Address: 0x202a08, Func Offset: 0x1c8
-	// Func End, Address: 0x202a18, Func Offset: 0x1d8
+    int mtn[2][2] = { { 37, 0 }, { 42, 53 } };
+    NJS_POINT3 trans;                         
+
+    switch (epw->mode3)
+    {
+    case 0:
+        epw->mtn_no = mtn[epw->type][0];
+        epw->frm_no = 0;
+        
+        epw->mtn_add = 65536;
+
+        EXP0_F(108) = 14.0f;
+        epw->ar     = 14.0f;
+
+        epw->flg &= ~0x20;
+        epw->flg &= ~0x4100000;
+        
+        epw->flg |=  0x10000000;
+
+        epw->mode3++;
+        break;
+    case 1:
+        if (epw->frm_no == 0)
+        {
+            epw->mode0 = 1;
+            epw->mode1 = 1;
+            epw->mode2 = 0;
+            epw->mode3 = 0;
+
+            bhEne03_GetPartsPos(epw, joint_tree[0], (NJS_POINT3*)&epw->px);
+
+            epw->mtn_no = mtn[epw->type][1];
+            epw->frm_no = 0;
+
+            njCalcVector((NJS_MATRIX*)epw->exp0, epw->mnwP[epw->mtn_no].md2P->p[0], &trans);
+            njSubVector((NJS_VECTOR*)&epw->px, &trans);
+
+            EXP0_C(105) = 0;
+
+            if (!(epw->type & 0x1))
+            {
+                njRotateY((NJS_MATRIX*)epw->exp0, 32768);
+            }
+
+            bhEne03_MakeMatrix(epw);
+
+            EXP0_I(280) = 0;
+
+            epw->py += 1.0f;
+
+            *(ATR_WORK**)&EXP0_I(96) = bhEne03_GetWall(epw);
+            
+            epw->py = ((ATR_WORK*)EXP0_I(96))->py;
+
+            epw->flg  |=  0x20;
+            epw->flg  |=  0x4000000;
+
+            epw->flg2 &= ~0x1;
+        }
+
+        break;
+    }
 }
 
 // 

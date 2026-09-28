@@ -13,6 +13,7 @@
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
 #include "../../../ps2/veronica/prog/ps2_NaMath.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
+#include "../../../ps2/veronica/prog/rutchk.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
 
@@ -920,109 +921,153 @@ void bhEne23_MV00(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x201160
-void bhEne23_MV01(BH_PWORK* epw)
+// 100% matching!
+void bhEne23_MV01(BH_PWORK* epw) 
 {
-	// already reversed DWARF order
-	NJS_POINT3 pos;
-	int mno;
-	int mtn[2] = { 2, 22 };
-	float dist;
-	float spd[2] = { 0.7f, 1.0f };
-	NJS_POINT3 dp;
-	NJS_POINT3 sp;
-	// Line 1104, Address: 0x201160, Func Offset: 0
-	// Line 1106, Address: 0x201164, Func Offset: 0x4
-	// Line 1104, Address: 0x201168, Func Offset: 0x8
-	// Line 1106, Address: 0x201170, Func Offset: 0x10
-	// Line 1107, Address: 0x20117c, Func Offset: 0x1c
-	// Line 1106, Address: 0x20118c, Func Offset: 0x2c
-	// Line 1107, Address: 0x201190, Func Offset: 0x30
-	// Line 1109, Address: 0x201198, Func Offset: 0x38
-	// Line 1112, Address: 0x2011b8, Func Offset: 0x58
-	// Line 1113, Address: 0x2011bc, Func Offset: 0x5c
-	// Line 1112, Address: 0x2011c0, Func Offset: 0x60
-	// Line 1113, Address: 0x2011cc, Func Offset: 0x6c
-	// Line 1114, Address: 0x2011d4, Func Offset: 0x74
-	// Line 1116, Address: 0x2011d8, Func Offset: 0x78
-	// Line 1115, Address: 0x2011dc, Func Offset: 0x7c
-	// Line 1116, Address: 0x2011e0, Func Offset: 0x80
-	// Line 1117, Address: 0x2011e4, Func Offset: 0x84
-	// Line 1119, Address: 0x2011ec, Func Offset: 0x8c
-	// Line 1120, Address: 0x2011fc, Func Offset: 0x9c
-	// Line 1121, Address: 0x201204, Func Offset: 0xa4
-	// Line 1124, Address: 0x201214, Func Offset: 0xb4
-	// Line 1126, Address: 0x20121c, Func Offset: 0xbc
-	// Line 1128, Address: 0x201228, Func Offset: 0xc8
-	// Line 1129, Address: 0x201264, Func Offset: 0x104
-	// Line 1130, Address: 0x2012b8, Func Offset: 0x158
-	// Line 1132, Address: 0x2012cc, Func Offset: 0x16c
-	// Line 1133, Address: 0x2012dc, Func Offset: 0x17c
-	// Line 1134, Address: 0x2012e0, Func Offset: 0x180
-	// Line 1135, Address: 0x2012e8, Func Offset: 0x188
-	// Line 1139, Address: 0x2012f0, Func Offset: 0x190
-	// Line 1140, Address: 0x201304, Func Offset: 0x1a4
-	// Line 1142, Address: 0x20130c, Func Offset: 0x1ac
-	// Line 1141, Address: 0x201310, Func Offset: 0x1b0
-	// Line 1142, Address: 0x201314, Func Offset: 0x1b4
-	// Line 1143, Address: 0x201318, Func Offset: 0x1b8
-	// Line 1144, Address: 0x201320, Func Offset: 0x1c0
-	// Line 1148, Address: 0x20132c, Func Offset: 0x1cc
-	// Line 1149, Address: 0x201370, Func Offset: 0x210
-	// Line 1152, Address: 0x20137c, Func Offset: 0x21c
-	// Line 1155, Address: 0x201388, Func Offset: 0x228
-	// Line 1157, Address: 0x20138c, Func Offset: 0x22c
-	// Line 1155, Address: 0x201390, Func Offset: 0x230
-	// Line 1157, Address: 0x201394, Func Offset: 0x234
-	// Line 1161, Address: 0x2013a4, Func Offset: 0x244
-	// Line 1164, Address: 0x2013a8, Func Offset: 0x248
-	// Line 1169, Address: 0x2013b0, Func Offset: 0x250
-	// Line 1161, Address: 0x2013b8, Func Offset: 0x258
-	// Line 1162, Address: 0x2013bc, Func Offset: 0x25c
-	// Line 1163, Address: 0x2013c0, Func Offset: 0x260
-	// Line 1169, Address: 0x2013c4, Func Offset: 0x264
-	// Line 1163, Address: 0x2013c8, Func Offset: 0x268
-	// Line 1164, Address: 0x2013cc, Func Offset: 0x26c
-	// Line 1165, Address: 0x2013d4, Func Offset: 0x274
-	// Line 1166, Address: 0x2013d8, Func Offset: 0x278
-	// Line 1169, Address: 0x2013dc, Func Offset: 0x27c
-	// Line 1170, Address: 0x2013f4, Func Offset: 0x294
-	// Line 1171, Address: 0x201414, Func Offset: 0x2b4
-	// Line 1172, Address: 0x20142c, Func Offset: 0x2cc
-	// Line 1174, Address: 0x201434, Func Offset: 0x2d4
-	// Line 1175, Address: 0x201440, Func Offset: 0x2e0
-	// Line 1174, Address: 0x201444, Func Offset: 0x2e4
-	// Line 1175, Address: 0x201448, Func Offset: 0x2e8
-	// Line 1179, Address: 0x201454, Func Offset: 0x2f4
-	// Line 1180, Address: 0x201464, Func Offset: 0x304
-	// Line 1182, Address: 0x20146c, Func Offset: 0x30c
-	// Line 1183, Address: 0x201494, Func Offset: 0x334
-	// Line 1184, Address: 0x2014b4, Func Offset: 0x354
-	// Line 1185, Address: 0x2014cc, Func Offset: 0x36c
-	// Line 1187, Address: 0x2014d4, Func Offset: 0x374
-	// Line 1188, Address: 0x2014e0, Func Offset: 0x380
-	// Line 1187, Address: 0x2014e4, Func Offset: 0x384
-	// Line 1188, Address: 0x2014e8, Func Offset: 0x388
-	// Line 1192, Address: 0x2014f4, Func Offset: 0x394
-	// Line 1194, Address: 0x201518, Func Offset: 0x3b8
-	// Line 1195, Address: 0x201534, Func Offset: 0x3d4
-	// Line 1196, Address: 0x201544, Func Offset: 0x3e4
-	// Line 1197, Address: 0x20154c, Func Offset: 0x3ec
-	// Line 1201, Address: 0x201560, Func Offset: 0x400
-	// Line 1208, Address: 0x20156c, Func Offset: 0x40c
-	// Line 1209, Address: 0x201578, Func Offset: 0x418
-	// Line 1210, Address: 0x20157c, Func Offset: 0x41c
-	// Line 1211, Address: 0x201584, Func Offset: 0x424
-	// Line 1214, Address: 0x20158c, Func Offset: 0x42c
-	// Line 1215, Address: 0x2015b8, Func Offset: 0x458
-	// Line 1216, Address: 0x2015d8, Func Offset: 0x478
-	// Line 1217, Address: 0x2015f4, Func Offset: 0x494
-	// Line 1218, Address: 0x201620, Func Offset: 0x4c0
-	// Line 1219, Address: 0x201628, Func Offset: 0x4c8
-	// Line 1220, Address: 0x20162c, Func Offset: 0x4cc
-	// Line 1224, Address: 0x201630, Func Offset: 0x4d0
-	// Func End, Address: 0x201640, Func Offset: 0x4e0
+    NJS_POINT3 pos;                
+	int mno;                     
+	int mtn[2] = { 2, 22 };       
+	float dist;                   
+	float spd[2] = { 0.7f, 1.0f }; 
+	NJS_POINT3 dp, sp;               
+
+    switch (epw->mode3) 
+    {
+    case 0:
+        mno = mtn[epw->type];
+        
+        if (epw->mtn_no != mno) 
+        {
+            epw->frm_no = 0;
+            epw->mtn_no = mno;
+            
+            epw->hokan_count = 10;
+            epw->hokan_rate  = 32768;
+            
+            if ((epw->mtn_md & 0x2)) 
+            {
+                epw->frm_no = 589824;
+                
+                epw->mtn_md &= ~0x2;
+            }
+        }
+        
+        epw->mtn_add = 65536;
+        
+        epw->flg |= 0x10000000;
+        
+        epw->ct0 = 47.0f * (-rand() / -2147483648.0f);
+        epw->ct1 =  ((-rand() / -2147483648.0f) < 0.5f) ? -1 : 1;
+        
+        epw->spd = spd[epw->type];
+        
+        if (EXP0_C(105) == 0) 
+        {
+            EXP0_F(108) = 14.0f;
+        } 
+        else 
+        {
+            EXP0_F(108) = 20.0f;
+        }
+        
+        if ((epw->flg & 0x8000000)) 
+        {
+            epw->mtn_no = 56;
+            epw->frm_no = 0;
+            
+            epw->hokan_count = 10;
+            epw->hokan_rate  = 32768;
+            
+            epw->spd = 0.35f;
+        }
+        
+        epw->ct0 = (int)(30.0f * (-rand() / -2147483648.0f)) + 20;
+        
+        epw->mode3++;
+    case 1:
+        bhEne03_GoAHead(epw);
+        
+        EXP0_I(280) = 0;
+        
+        if ((epw->flg & 0x8000000)) 
+        {
+            sp.x = epw->px;
+            sp.y = 0;
+            sp.z = epw->pz;
+            
+            dp.x = plp->px;
+            dp.y = 0;
+            dp.z = plp->pz;
+            
+            if (bhCheckRoute(&sp, &dp, &pos) != 0xFF) 
+            {
+                epw->xn += (pos.x - epw->xn) / 32.0f;
+                epw->zn += (pos.z - epw->zn) / 32.0f;
+            } 
+            else 
+            {
+                epw->xn = plp->px;
+                epw->zn = plp->pz;
+            }
+            
+            epw->way = bhEne03_DirTarget(epw, (NJS_POINT3*)&epw->xn, 227);
+        } 
+        else 
+        {
+            if (bhCheckRoute((NJS_POINT3*)&epw->px, (NJS_POINT3*)&plp->px, &pos) != 0xFF) 
+            {
+                epw->xn += (pos.x - epw->xn) / 16.0f;
+                epw->zn += (pos.z - epw->zn) / 16.0f;
+            } 
+            else
+            {
+                epw->xn = plp->px;
+                epw->zn = plp->pz; 
+            }
+
+            dist = njSqrt(((epw->xn - epw->px) * (epw->xn - epw->px)) + ((epw->zn - epw->pz) * (epw->zn - epw->pz)));
+            
+            if (dist > 30.0f) 
+            {
+                epw->way = bhEne03_DirTarget(epw, (NJS_POINT3*)&epw->xn, 455);
+            }
+            else 
+            {
+                epw->way = bhEne03_DirTarget(epw, (NJS_POINT3*)&epw->xn, 728);
+            }
+        }
+        
+        njRotateY((NJS_MATRIX*)epw->exp0, epw->way);
+        
+        if (epw->ct0 != 0) 
+        {
+            epw->ct0--; 
+            return;
+        }
+        
+        epw->mode1 = 1;
+        
+        dist = njSqrt(((plp->px - epw->px) * (plp->px - epw->px)) + ((plp->pz - epw->pz) * (plp->pz - epw->pz)));
+        
+        if (EXP0_C(105) == 0) 
+        {
+            dist -= 32.0f;
+        } 
+        
+        if (EXP0_C(105) == 1) 
+        {
+            dist -= 30.0f;
+        }
+        
+        if ((dist < 0) && (bhEne23_SearchPlayer(epw, 3640) != 0)) 
+        {
+            epw->mode1 = 1;
+            epw->mode2 = 0;
+            epw->mode3 = 0;
+        }
+        
+        break;
+    }
 }
 
 // 

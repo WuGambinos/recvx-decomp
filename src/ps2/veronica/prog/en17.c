@@ -1799,37 +1799,32 @@ void bhEne17_SetSmokeEffect3(BH_PWORK* epw, NJS_POINT3* ofs, int rot) {
     }
 }
 
-// 
-// Start address: 0x1ee680
-void bhEne17_SetLight(BH_PWORK* epw, NJS_POINT3 *ofs)
-{
-	LGT_WORK* lp;
-	// Line 3017, Address: 0x1ee680, Func Offset: 0
-	// Line 3020, Address: 0x1ee688, Func Offset: 0x8
-	// Line 3021, Address: 0x1ee68c, Func Offset: 0xc
-	// Line 3022, Address: 0x1ee690, Func Offset: 0x10
-	// Line 3017, Address: 0x1ee694, Func Offset: 0x14
-	// Line 3023, Address: 0x1ee698, Func Offset: 0x18
-	// Line 3024, Address: 0x1ee69c, Func Offset: 0x1c
-	// Line 3027, Address: 0x1ee6a0, Func Offset: 0x20
-	// Line 3020, Address: 0x1ee6a4, Func Offset: 0x24
-	// Line 3021, Address: 0x1ee6a8, Func Offset: 0x28
-	// Line 3022, Address: 0x1ee6ac, Func Offset: 0x2c
-	// Line 3023, Address: 0x1ee6b0, Func Offset: 0x30
-	// Line 3024, Address: 0x1ee6b4, Func Offset: 0x34
-	// Line 3025, Address: 0x1ee6b8, Func Offset: 0x38
-	// Line 3026, Address: 0x1ee6bc, Func Offset: 0x3c
-	// Line 3028, Address: 0x1ee6c0, Func Offset: 0x40
-	// Line 3027, Address: 0x1ee6c4, Func Offset: 0x44
-	// Line 3028, Address: 0x1ee6c8, Func Offset: 0x48
-	// Line 3029, Address: 0x1ee6cc, Func Offset: 0x4c
-	// Line 3031, Address: 0x1ee6d0, Func Offset: 0x50
-	// Line 3032, Address: 0x1ee6d4, Func Offset: 0x54
-	// Line 3033, Address: 0x1ee6d8, Func Offset: 0x58
-	// Line 3034, Address: 0x1ee6dc, Func Offset: 0x5c
-	// Line 3035, Address: 0x1ee6e4, Func Offset: 0x64
-	// Line 3036, Address: 0x1ee6ec, Func Offset: 0x6c
-	// Line 3038, Address: 0x1ee6f4, Func Offset: 0x74
-	// Line 3040, Address: 0x1ee6f8, Func Offset: 0x78
-	// Func End, Address: 0x1ee700, Func Offset: 0x80
+// 100% matching!
+void bhEne17_SetLight(BH_PWORK* epw, NJS_POINT3 *ofs) {
+    LGT_WORK* lp = &(rom->lgtp[2]);
+
+    lp->flg   = 3;
+    lp->aspd  = 8;
+    lp->lsrc  = 4;
+    lp->type  = 101;
+
+    lp->r  = 6.0f;
+    lp->g  = 6.0f;
+    lp->b  = 6.0f;
+    lp->nr = 10.0f;
+    lp->fr = 80.0f;
+
+    lp->light = NULL;
+
+    lp->lkflg = 0;
+    lp->lkno  = 0;
+    lp->lkono = 0;
+
+    lp->px = ofs->x;
+    lp->py = ofs->y;
+    lp->pz = ofs->z;
+
+    lp->ct0  = 0;
+    lp->mode = 0;
 }
+

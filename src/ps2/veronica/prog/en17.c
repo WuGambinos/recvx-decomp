@@ -1254,67 +1254,81 @@ void bhEne17_DGType00(BH_PWORK* epw)
     bhEne17_DamageMode2[epw->mode2](epw);
 }
 
-// 
-// Start address: 0x1ecc60
+// 100% matching!
 void bhEne17_DG00(BH_PWORK* epw)
 {
-	int ang;
-	int frm;
-	int wcnt_tbl[4] = { 0, 5, 20, 35 };
-	// Line 2230, Address: 0x1ecc60, Func Offset: 0
-	// Line 2231, Address: 0x1ecc6c, Func Offset: 0xc
-	// Line 2230, Address: 0x1ecc74, Func Offset: 0x14
-	// Line 2231, Address: 0x1ecc78, Func Offset: 0x18
-	// Line 2235, Address: 0x1ecc84, Func Offset: 0x24
-	// Line 2238, Address: 0x1ecca4, Func Offset: 0x44
-	// Line 2240, Address: 0x1eccb4, Func Offset: 0x54
-	// Line 2241, Address: 0x1eccbc, Func Offset: 0x5c
-	// Line 2243, Address: 0x1ecce8, Func Offset: 0x88
-	// Line 2244, Address: 0x1eccfc, Func Offset: 0x9c
-	// Line 2247, Address: 0x1ecd04, Func Offset: 0xa4
-	// Line 2249, Address: 0x1ecd18, Func Offset: 0xb8
-	// Line 2252, Address: 0x1ecd20, Func Offset: 0xc0
-	// Line 2255, Address: 0x1ecd30, Func Offset: 0xd0
-	// Line 2257, Address: 0x1ecd54, Func Offset: 0xf4
-	// Line 2258, Address: 0x1ecd5c, Func Offset: 0xfc
-	// Line 2259, Address: 0x1ecd60, Func Offset: 0x100
-	// Line 2257, Address: 0x1ecd64, Func Offset: 0x104
-	// Line 2258, Address: 0x1ecd70, Func Offset: 0x110
-	// Line 2259, Address: 0x1ecd7c, Func Offset: 0x11c
-	// Line 2260, Address: 0x1ecd88, Func Offset: 0x128
-	// Line 2263, Address: 0x1ecd94, Func Offset: 0x134
-	// Line 2265, Address: 0x1ecd9c, Func Offset: 0x13c
-	// Line 2267, Address: 0x1ecda8, Func Offset: 0x148
-	// Line 2268, Address: 0x1ecdb0, Func Offset: 0x150
-	// Line 2267, Address: 0x1ecdb4, Func Offset: 0x154
-	// Line 2268, Address: 0x1ecdbc, Func Offset: 0x15c
-	// Line 2269, Address: 0x1ecdd0, Func Offset: 0x170
-	// Line 2273, Address: 0x1ecde0, Func Offset: 0x180
-	// Line 2275, Address: 0x1ece04, Func Offset: 0x1a4
-	// Line 2278, Address: 0x1ece1c, Func Offset: 0x1bc
-	// Line 2280, Address: 0x1ece40, Func Offset: 0x1e0
-	// Line 2283, Address: 0x1ece78, Func Offset: 0x218
-	// Line 2285, Address: 0x1ece80, Func Offset: 0x220
-	// Line 2284, Address: 0x1ece84, Func Offset: 0x224
-	// Line 2285, Address: 0x1ece88, Func Offset: 0x228
-	// Line 2286, Address: 0x1ece8c, Func Offset: 0x22c
-	// Line 2292, Address: 0x1ece90, Func Offset: 0x230
-	// Line 2294, Address: 0x1ece9c, Func Offset: 0x23c
-	// Line 2295, Address: 0x1ecea4, Func Offset: 0x244
-	// Line 2296, Address: 0x1ecea8, Func Offset: 0x248
-	// Line 2297, Address: 0x1eceac, Func Offset: 0x24c
-	// Line 2300, Address: 0x1eceb0, Func Offset: 0x250
-	// Line 2302, Address: 0x1ecec0, Func Offset: 0x260
-	// Line 2303, Address: 0x1ecec8, Func Offset: 0x268
-	// Line 2304, Address: 0x1eced0, Func Offset: 0x270
-	// Line 2306, Address: 0x1ecee8, Func Offset: 0x288
-	// Line 2307, Address: 0x1ecef0, Func Offset: 0x290
-	// Line 2308, Address: 0x1ecef8, Func Offset: 0x298
-	// Line 2310, Address: 0x1ecf08, Func Offset: 0x2a8
-	// Line 2311, Address: 0x1ecf10, Func Offset: 0x2b0
-	// Line 2314, Address: 0x1ecf18, Func Offset: 0x2b8
-	// Line 2319, Address: 0x1ecf24, Func Offset: 0x2c4
-	// Func End, Address: 0x1ecf38, Func Offset: 0x2d8
+    int wcnt_tbl[4] = {0, 5, 20, 35};
+    int frm;
+    int ang;
+    
+    switch (epw->mode3) {                             
+    case 0:
+        if (epw->mtn_no == 15) {
+            frm = epw->frm_no / 65536;
+
+            if ((frm >= 0 && frm <= 11)
+                || (frm >= 27 && frm <= 37))
+            {
+                bhEne_ChgMtn(epw, 6, 0, 6);
+            } else {
+                bhEne_ChgMtn(epw, 12, 0, 6);
+            }
+        }else {
+            bhEne_ChgMtn(epw, 6, 0, 6);
+        }
+
+        epw->ayp = 10430.381f * atan2f(epw->dvx, epw->dvz);
+        EXP0_I(8) &= ~0x100;
+        epw->flg  |= 0x40000;
+        epw->flg2 &= ~1;
+        epw->mode3 += 1;
+        /* fallthrough */
+
+    case 1:
+        frm = epw->frm_no  / 65536;
+
+        if (frm < 10) {
+            ang = (epw->ayp - epw->ay) & 0xFFFF;
+            if (32768 < ang) {
+                ang -= NJM_DEG_ANG(360.0f);
+            }
+
+            epw->ay += (ang / 2);
+        }
+
+        if (epw->wpnr_no != 14) {
+            if ((EXP0_I(8) & 0x200) &&
+                (frm >= 20) && (frm < 31) &&
+                !(plp->flg & 2) && !(plp->flg & 4) &&
+                (EXP0_F(20) < 24.0f) &&
+                (ikou3(epw, (NJS_POINT3*)&plp->px, 0x2000) == 0))
+            {
+                epw->mode0 = 1;
+                epw->mode1 = 0;
+                epw->mode2 = 3;
+                epw->mode3 = 0;
+            }
+        }
+
+        if (frm != 31) {
+            return;
+        }
+
+        epw->mode0 = 1;
+        epw->mode1 = 1;
+        epw->mode2 = 0;
+        epw->mode3 = 0;
+        
+        if (epw->wpnr_no == 19) {
+            EXP0_I(4) = wcnt_tbl[0];                   
+        } else if (epw->wpnr_no >= 14 && epw->wpnr_no < 18) {
+            EXP0_I(4) = wcnt_tbl[3];                    
+        } else if ((unsigned int)(epw->wpnr_no - 5) < 2) {
+            EXP0_I(4) = wcnt_tbl[1];                     
+        } else {
+            EXP0_I(4) = wcnt_tbl[2];                       
+        }
+    }
 }
 
 // 100% matching!

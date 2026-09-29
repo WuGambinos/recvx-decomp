@@ -344,7 +344,8 @@ void bhEne17_DmmyBrain()
 }
 
 // 100% matching!
-void bhEne17(BH_PWORK* epw) {
+void bhEne17(BH_PWORK* epw) 
+{
     int i;
     O_WORK* owk;
     NJS_POINT3 ps;
@@ -400,7 +401,8 @@ void bhEne17(BH_PWORK* epw) {
 }
 
 // 100% matching!
-void bhEne17_EneToPlyDist(BH_PWORK* epw) {
+void bhEne17_EneToPlyDist(BH_PWORK* epw) 
+{
     O_WORK* owk;
     NJS_POINT3 pos;
     
@@ -408,18 +410,20 @@ void bhEne17_EneToPlyDist(BH_PWORK* epw) {
     pos.x = owk->mtx[12];
     pos.y = epw->py;
     pos.z = owk->mtx[14];
-    ((float*)epw->exp0)[5] = njDistanceP2P(&pos, (NJS_POINT3*)&epw->px);
+    EXP0_F(20) = njDistanceP2P(&pos, (NJS_POINT3*)&epw->px);
 }
 
 // 100% matching!
-void bhEne17_MainLoop(BH_PWORK* epw) {
+void bhEne17_MainLoop(BH_PWORK* epw) 
+{
     bhEne17_DmgChk(epw);
     bhEne17_Mode0[epw->mode0](epw);
     bhEne17_SetMtn(epw);
 }
 
 // 100% matching!
-int bhEne17_DmgChk(BH_PWORK* epw) {
+int bhEne17_DmgChk(BH_PWORK* epw) 
+{
     if ((epw->flg & 4) && !(epw->flg & 2)) {
         bhEne_CalcDamage(epw, CombWepTbl, CombJointTbl);
         
@@ -447,7 +451,8 @@ int bhEne17_DmgChk(BH_PWORK* epw) {
 }
 
 // 100% matching
-void bhEne17_ChgDmgMode(BH_PWORK* epw) {
+void bhEne17_ChgDmgMode(BH_PWORK* epw) 
+{
     WPNDAMAGE_WORK* wp_tbl = En17_WpnDamageTbl;
     int act;
     
@@ -524,7 +529,8 @@ void bhEne17_DamageAdd(BH_PWORK *epw)
 }
 
 // 100% matching!
-int bhEne17_SetMtn(BH_PWORK* epw) {
+int bhEne17_SetMtn(BH_PWORK* epw) 
+{
 	NJS_POINT3 ofs;
 	int sfrm_no;
 	NJS_POINT3 ps;
@@ -532,7 +538,7 @@ int bhEne17_SetMtn(BH_PWORK* epw) {
 	BH_PWORK* armp;
 	int lnk_obj;
 	int frm;
-    int i;
+    int i; // Moved in DWARF
 	int ret; 
 	NJS_CNK_OBJECT* obj;
 
@@ -745,7 +751,7 @@ void bhEne17_CollCheck(BH_PWORK* epw)
 // 100% matching!
 void bhEne17_CollCheckWall(BH_PWORK* ewp) 
 {
-    *(ATR_WORK**)((char*)ewp->exp0 + 0x40) = bhCheckWallType((NJS_POINT3*)&ewp->px, ewp->flg, ewp->ar, ewp->ah);
+    *(ATR_WORK**)((char*)ewp->exp0 + 64) = bhCheckWallType((NJS_POINT3*)&ewp->px, ewp->flg, ewp->ar, ewp->ah);
     
     if ((((unsigned int*)(ewp->exp0))[2] & 0xF) == 1 && (ewp->flg & 0x10)) {
         bhCheckDansa(ewp);
@@ -754,7 +760,8 @@ void bhEne17_CollCheckWall(BH_PWORK* ewp)
 }
 
 // 100% matching!
-void bhEne17_CalcEnemy(BH_PWORK* epw) {
+void bhEne17_CalcEnemy(BH_PWORK* epw) 
+{
     O_WORK* owk;
     
     bhCalcModel(epw);
@@ -1125,7 +1132,7 @@ void bhEne17_MV03(BH_PWORK* epw)
             bhEne17_PlayerDGCheck(epw, plp);
         }
 
-        if (!(EXP0_F(0x14) < 24.0f) && (plp->hp > 0)) {
+        if (!(EXP0_F(20) < 24.0f) && (plp->hp > 0)) {
             if (frm < 148 || frm > 220) {
                 epw->mode1 = 1;
                 epw->mode2 = 2;
@@ -1425,20 +1432,20 @@ void bhEne17_PlyDG00(BH_PWORK* pl, BH_PWORK* epw) {
 
 // 100% matching!
 void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw) {
-    int frm;
-    int i;
-    int rot;
-    NJS_POINT3 dv;
-    NJS_POINT3 key;
-    O_WORK* owk;
-    NJS_CNK_OBJECT* obj;
-    POS_WORK* pos_p;
     POS_WORK* mtn_pos[4] = {
         ply_mtn42_pos,
         ply_mtn43_pos,
         ply_mtn44_pos,
         ply_mtn45_pos,
     };
+    POS_WORK* pos_p;
+    NJS_CNK_OBJECT* obj;
+    O_WORK* owk;
+    NJS_POINT3 key;
+    NJS_POINT3 dv;
+    int i;
+    int rot;
+    int frm;
 
     switch (pl->mode3) {
     case 0:
@@ -1447,7 +1454,7 @@ void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw) {
         pl->flg |= 0x200000;
 
         pl->mnwP = epw->mnwP;
-        pl->frm_no = 0x10000;
+        pl->frm_no = 65536;
         pl->hokan_count = 0;
         pl->hokan_rate = 49152;
         pl->mtn_add = 65536;
@@ -1455,15 +1462,15 @@ void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw) {
         pl->ct0 = 0;
         pl->ct1 = 0;
 
-        key.x = epw->px - pl->px;
-        key.y = epw->py - pl->py;
-        key.z = epw->pz - pl->pz;
+        dv.x = epw->px - pl->px;
+        dv.y = epw->py - pl->py;
+        dv.z = epw->pz - pl->pz;
 
-        if (bhDGCdirCheck(&key, pl->ay) != 0) {
+        if (bhDGCdirCheck(&dv, pl->ay) != 0) {
             pl->mtn_no = 0x15;
-            pl->ayp = (int)(10430.381f * atan2f(-key.x, -key.z));
+            pl->ayp = (int)(10430.381f * atan2f(-dv.x, -dv.z));
         } else {
-            pl->ayp = (int)(10430.381f * atan2f(key.x, key.z));
+            pl->ayp = (int)(10430.381f * atan2f(dv.x, dv.z));
             pl->mtn_no = 20;
             pl->ct0 = 1;
         }
@@ -1487,9 +1494,9 @@ void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw) {
 
         if (frm == 7) {
             owk = &pl->mlwP->owP[1];
-            dv.x = owk->mtx[12];
-            dv.z = owk->mtx[14];
-            dv.y = 1.0f;
+            key.x = owk->mtx[12];
+            key.z = owk->mtx[14];
+            key.y = 1.0f;
 
             if (pl->ct0 == 0) {
                 rot = pl->ay + 16384;
@@ -1497,12 +1504,10 @@ void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw) {
                 rot = pl->ay - 16384;
             }
 
-            i = 0;
-            do {
-                bhEne17_SetSmokeEffect2(epw, &dv, rot);
-                i += 1;
+            for(i = 0; i < 5; i++) {
+                bhEne17_SetSmokeEffect2(epw, &key, rot);
                 rot += 8192;
-            } while (i < 5);
+            }
         }
 
         if (frm == 0) {
@@ -1537,26 +1542,26 @@ void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw) {
         pos_p = mtn_pos[pl->mtn_no - 20];
         pos_p += pl->frm_no / 65536;
 
-        dv.x = pos_p->px;
-        dv.y = 0.0f;
-        dv.z = pos_p->pz;
+        key.x = pos_p->px;
+        key.y = 0.0f;
+        key.z = pos_p->pz;
 
         njUnitMatrix(NULL);
         njTranslate(NULL, pl->px, pl->py, pl->pz);
         njRotateXYZ(NULL, pl->ax, pl->ay, pl->az);
-        njCalcPoint(NULL, &dv, (NJS_POINT3*)&pl->px);
+        njCalcPoint(NULL, &key, (NJS_POINT3*)&pl->px);
     }
 }
 
 
 // 100% matching!
 int bhEne17_PlayerDGCheck(BH_PWORK* epw, BH_PWORK* pl) {
-    NJS_VECTOR v;
-	NJS_POINT3 pd;
-	NJS_POINT3 ps;
-	O_WORK* owk;
-	int i;
 	NJS_CAPSULE cap;
+	int i;
+	O_WORK* owk;
+	NJS_POINT3 ps;
+	NJS_POINT3 pd;
+    NJS_VECTOR v;
 
     // NOT IN DWARF
     int j;
@@ -1617,27 +1622,28 @@ int bhEne17_PlayerDGCheck(BH_PWORK* epw, BH_PWORK* pl) {
     
             
             owk = &plp->mlwP->owP[3];
-            v.x = 0.0f;
-            v.y = 0.0f;
-            v.z = 0.0f;
-            njCalcPoint(&owk->mtx, &v, &pd);
+            ps.x = 0.0f;
+            ps.y = 0.0f;
+            ps.z = 0.0f;
+            njCalcPoint(&owk->mtx, &ps, &pd);
+
             
             
-            ps.x = epw->px - plp->px;
-            ps.y = 15.0f;
-            ps.z = epw->pz - plp->pz;
+            v.x = epw->px - plp->px;
+            v.y = 15.0f;
+            v.z = epw->pz - plp->pz;
             
-            bhEff_SetPtcl2V(plp, &pd, &ps, 0);
-            bhEff_SetPtcl2V(plp, &pd, &ps, 0);
-            bhEff_SetPtcl2V(plp, &pd, &ps, 1);
-            bhEff_SetPtcl2V(plp, &pd, &ps, 1);
-            bhEff_SetPtcl2V(plp, &pd, &ps, 2);
-            bhEff_SetPtcl2V(plp, &pd, &ps, 2);
-            bhEff_SetPtcl2V(plp, &pd, &ps, 3);
-            bhEff_SetPtcl2V(plp, &pd, &ps, 3);
+            bhEff_SetPtcl2V(plp, &pd, &v, 0);
+            bhEff_SetPtcl2V(plp, &pd, &v, 0);
+            bhEff_SetPtcl2V(plp, &pd, &v, 1);
+            bhEff_SetPtcl2V(plp, &pd, &v, 1);
+            bhEff_SetPtcl2V(plp, &pd, &v, 2);
+            bhEff_SetPtcl2V(plp, &pd, &v, 2);
+            bhEff_SetPtcl2V(plp, &pd, &v, 3);
+            bhEff_SetPtcl2V(plp, &pd, &v, 3);
             
             pl->djnt_no = 3;
-            bhEne_SetBlood2(pl, 2U,  &v, 0);
+            bhEne_SetBlood2(pl, 2U,  &ps, 0);
             return 1;
         }
     
@@ -1655,7 +1661,6 @@ void bhEne17_SePlay(BH_PWORK* epw, int no) {
 
 // 100% matching!
 int bhEne17_CameraControl(BH_PWORK* epw) {
-
     if (((unsigned int*)(epw->exp0))[2] & 0x800) {
         if (!(EXP0_F(24) <= 0.01f)) {
             cam.ofy = (EXP0_F(24) * (-rand() / -2.1474836e9f)) - (EXP0_F(24) / 2.0f);
@@ -1753,8 +1758,8 @@ void bhEne17_SetSmokeEffect(BH_PWORK* epw, int lnk_onj, NJS_POINT3* ofs) {
 // 100% matching!
 void bhEne17_SetSmokeEffect2(BH_PWORK* epw, NJS_POINT3* ofs, int rot)
 {
-    int i;
     int eno;
+    int i;
 
     // NOT IN DWARF
     int j; 

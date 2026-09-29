@@ -778,7 +778,7 @@ void bhEne17_CalcEnemy(BH_PWORK* epw) {
     epw->watr.r = 4.0f;
 }
 
-// 99.94% matching!
+// 100% matching!
 void bhEne17_Init(BH_PWORK* epw) 
 {	
     int size;
@@ -836,7 +836,7 @@ void bhEne17_Init(BH_PWORK* epw)
     
     if (!(epw->flg & 0x800)) 
     {
-        bhSetShadow(En17_SdwTab, (unsigned char *)epw, 1, 5.0f, 10.0f, 10.0f);
+        bhSetShadow(En17_SdwTab, (unsigned char *)epw, 1, 10.0f, 5.0f, 10.0f);
         epw->flg |= 0x800;
     }
     

@@ -445,30 +445,36 @@ int bhEne17_DmgChk(BH_PWORK* epw) {
     }
 }
 
-// 
-// Start address: 0x1eaed0
-void bhEne17_ChgDmgMode(BH_PWORK* epw)
-{
-	int act;
-	WPNDAMAGE_WORK* wp_tbl;
-	// Line 729, Address: 0x1eaed0, Func Offset: 0
-	// Line 726, Address: 0x1eaed4, Func Offset: 0x4
-	// Line 735, Address: 0x1eaedc, Func Offset: 0xc
-	// Line 729, Address: 0x1eaee0, Func Offset: 0x10
-	// Line 735, Address: 0x1eaef0, Func Offset: 0x20
-	// Line 737, Address: 0x1eaef8, Func Offset: 0x28
-	// Line 738, Address: 0x1eaf04, Func Offset: 0x34
-	// Line 739, Address: 0x1eaf08, Func Offset: 0x38
-	// Line 742, Address: 0x1eaf0c, Func Offset: 0x3c
-	// Line 745, Address: 0x1eaf1c, Func Offset: 0x4c
-	// Line 750, Address: 0x1eaf24, Func Offset: 0x54
-	// Line 755, Address: 0x1eaf30, Func Offset: 0x60
-	// Line 762, Address: 0x1eaf5c, Func Offset: 0x8c
-	// Line 763, Address: 0x1eaf64, Func Offset: 0x94
-	// Line 764, Address: 0x1eaf68, Func Offset: 0x98
-	// Line 765, Address: 0x1eaf6c, Func Offset: 0x9c
-	// Line 767, Address: 0x1eaf70, Func Offset: 0xa0
-	// Func End, Address: 0x1eaf78, Func Offset: 0xa8
+// 100% matching
+void bhEne17_ChgDmgMode(BH_PWORK* epw) {
+    WPNDAMAGE_WORK* wp_tbl = En17_WpnDamageTbl;
+    int act;
+    
+    wp_tbl += epw->wpnr_no;
+    act = wp_tbl->nm_act;
+    
+    if (epw->hp < 0) {
+        epw->comb_flg |= 1;
+        epw->comb_timeout = 0;
+        epw->comb_pnt = 0;
+    }
+
+    if (epw->comb_flg & 1) {
+        act = wp_tbl->cb_act;
+    }
+
+    if (act >= 4U) {
+        return;
+    }
+    
+    if ((epw->wpnr_no == 17 || epw->wpnr_no == 16) && !(epw->flg2 & 4)) {
+        return;
+    }
+    
+    epw->mode0 = 3;
+    epw->mode1 = 0;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
 }
 
 // 100% matching!

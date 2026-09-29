@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 95.54575,
+    "fuzzy_match_percent": 96.41001,
     "total_code": "1904472",
-    "matched_code": "1514552",
-    "matched_code_percent": 79.526085,
+    "matched_code": "1527040",
+    "matched_code_percent": 80.1818,
     "total_data": "28428164",
     "matched_data": "28396164",
     "matched_data_percent": 99.887436,
     "total_functions": 4529,
-    "matched_functions": 4146,
-    "matched_functions_percent": 91.54339,
+    "matched_functions": 4162,
+    "matched_functions_percent": 91.89667,
     "total_units": 200
   },
   "units": [
@@ -13159,16 +13159,16 @@
     {
       "name": "ps2/veronica/prog/en23",
       "measures": {
-        "fuzzy_match_percent": 45.252224,
+        "fuzzy_match_percent": 99.84795,
         "total_code": "30148",
-        "matched_code": "10604",
-        "matched_code_percent": 35.173145,
+        "matched_code": "23092",
+        "matched_code_percent": 76.59546,
         "total_data": "4432",
         "matched_data": "4432",
         "matched_data_percent": 100.0,
         "total_functions": 48,
-        "matched_functions": 26,
-        "matched_functions_percent": 54.166668,
+        "matched_functions": 42,
+        "matched_functions_percent": 87.5,
         "total_units": 1
       },
       "sections": [
@@ -13195,7 +13195,7 @@
         {
           "name": ".text",
           "size": "30432",
-          "fuzzy_match_percent": 45.252224,
+          "fuzzy_match_percent": 99.84795,
           "metadata": {}
         },
         {
@@ -13249,28 +13249,28 @@
         {
           "name": "bhEne23_MV00",
           "size": "432",
-          "fuzzy_match_percent": 1.2962962,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "4208"
         },
         {
           "name": "bhEne23_MV01",
           "size": "1248",
-          "fuzzy_match_percent": 0.44871795,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "4640"
         },
         {
           "name": "bhEne23_MV02",
           "size": "1028",
-          "fuzzy_match_percent": 0.54474705,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5888"
         },
         {
           "name": "bhEne23_MV03",
           "size": "1028",
-          "fuzzy_match_percent": 0.54474705,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "6928"
         },
@@ -13284,14 +13284,14 @@
         {
           "name": "bhEne23_MV05",
           "size": "632",
-          "fuzzy_match_percent": 0.886076,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "7984"
         },
         {
           "name": "bhEne23_MV06",
           "size": "400",
-          "fuzzy_match_percent": 1.4,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "8624"
         },
@@ -13312,28 +13312,28 @@
         {
           "name": "bhEne23_MV09",
           "size": "236",
-          "fuzzy_match_percent": 2.3728814,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "9056"
         },
         {
           "name": "bhEne23_MV10",
           "size": "1192",
-          "fuzzy_match_percent": 0.46979865,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "9296"
         },
         {
           "name": "bhEne23_MV11",
           "size": "472",
-          "fuzzy_match_percent": 1.1864407,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "10496"
         },
         {
           "name": "bhEne23_MV12",
           "size": "608",
-          "fuzzy_match_percent": 0.92105263,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "10976"
         },
@@ -13368,7 +13368,7 @@
         {
           "name": "bhEne23_DG01",
           "size": "356",
-          "fuzzy_match_percent": 1.5730337,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "12016"
         },
@@ -13382,14 +13382,14 @@
         {
           "name": "bhEne23_DG03",
           "size": "308",
-          "fuzzy_match_percent": 1.8181819,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "12400"
         },
         {
           "name": "bhEne23_DG04",
           "size": "1396",
-          "fuzzy_match_percent": 0.40114614,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "12720"
         },
@@ -13403,14 +13403,14 @@
         {
           "name": "bhEne23_DG06",
           "size": "1612",
-          "fuzzy_match_percent": 0.34739456,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "14144"
         },
         {
           "name": "bhEne23_DG07",
           "size": "1228",
-          "fuzzy_match_percent": 0.45602605,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "15760"
         },
@@ -13424,14 +13424,14 @@
         {
           "name": "bhEne23_DD00",
           "size": "312",
-          "fuzzy_match_percent": 1.7948718,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "17024"
         },
         {
           "name": "bhEne23_DD01",
           "size": "1536",
-          "fuzzy_match_percent": 0.36458334,
+          "fuzzy_match_percent": 99.81771,
           "metadata": {},
           "address": "17344"
         },
@@ -13445,7 +13445,7 @@
         {
           "name": "bhEne23_DD03",
           "size": "1464",
-          "fuzzy_match_percent": 0.38251367,
+          "fuzzy_match_percent": 99.80875,
           "metadata": {},
           "address": "18896"
         },
@@ -13466,7 +13466,7 @@
         {
           "name": "bhEne23_CheckClimbWall",
           "size": "1092",
-          "fuzzy_match_percent": 0.51282054,
+          "fuzzy_match_percent": 99.22344,
           "metadata": {},
           "address": "21616"
         },
@@ -42245,16 +42245,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 95.340195,
+        "fuzzy_match_percent": 96.24433,
         "total_code": "1820460",
-        "matched_code": "1430540",
-        "matched_code_percent": 78.58124,
+        "matched_code": "1443028",
+        "matched_code_percent": 79.26721,
         "total_data": "28336764",
         "matched_data": "28329876",
         "matched_data_percent": 99.97569,
         "total_functions": 3834,
-        "matched_functions": 3451,
-        "matched_functions_percent": 90.01044,
+        "matched_functions": 3467,
+        "matched_functions_percent": 90.42775,
         "total_units": 152
       }
     },

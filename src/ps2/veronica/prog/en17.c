@@ -1357,7 +1357,8 @@ void bhEne17_DG00(BH_PWORK* epw)
 }
 
 // 100% matching!
-void bhEne17_PlyDG00(BH_PWORK* pl, BH_PWORK* epw) {
+void bhEne17_PlyDG00(BH_PWORK* pl, BH_PWORK* epw) 
+{
     O_WORK* owk;
     NJS_POINT3 dv;
     NJS_POINT3 ps;
@@ -1431,7 +1432,8 @@ void bhEne17_PlyDG00(BH_PWORK* pl, BH_PWORK* epw) {
 }
 
 // 100% matching!
-void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw) {
+void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw) 
+{
     POS_WORK* mtn_pos[4] = {
         ply_mtn42_pos,
         ply_mtn43_pos,
@@ -1555,7 +1557,8 @@ void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw) {
 
 
 // 100% matching!
-int bhEne17_PlayerDGCheck(BH_PWORK* epw, BH_PWORK* pl) {
+int bhEne17_PlayerDGCheck(BH_PWORK* epw, BH_PWORK* pl) 
+{
 	NJS_CAPSULE cap;
 	int i;
 	O_WORK* owk;
@@ -1653,14 +1656,16 @@ int bhEne17_PlayerDGCheck(BH_PWORK* epw, BH_PWORK* pl) {
 }
 
 // 100% matching!
-void bhEne17_SePlay(BH_PWORK* epw, int no) {
+void bhEne17_SePlay(BH_PWORK* epw, int no) 
+{
     if (!(epw->flg & 0x10000)) {
         RequestEnemySe(sys->enow, (NJS_POINT3*)&epw->px, no);
     }
 }
 
 // 100% matching!
-int bhEne17_CameraControl(BH_PWORK* epw) {
+int bhEne17_CameraControl(BH_PWORK* epw) 
+{
     if (((unsigned int*)(epw->exp0))[2] & 0x800) {
         if (!(EXP0_F(24) <= 0.01f)) {
             cam.ofy = (EXP0_F(24) * (-rand() / -2.1474836e9f)) - (EXP0_F(24) / 2.0f);
@@ -1676,7 +1681,8 @@ int bhEne17_CameraControl(BH_PWORK* epw) {
 }
 
 // 100% matching!
-void bhEne17_AfterimageAxEffect(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* ofs, unsigned int argb) {
+void bhEne17_AfterimageAxEffect(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* ofs, unsigned int argb) 
+{
     int eno;
 
     njCalcPoint(mtx, ofs, (NJS_VECTOR*) &sys->ef.px);
@@ -1710,7 +1716,8 @@ void bhEne17_AfterimageAxEffect(BH_PWORK* epw, NJS_MATRIX* mtx, NJS_POINT3* ofs,
 }
 
 // 100% matching!
-void bhEne17_SetSmokeEffect(BH_PWORK* epw, int lnk_onj, NJS_POINT3* ofs) {
+void bhEne17_SetSmokeEffect(BH_PWORK* epw, int lnk_onj, NJS_POINT3* ofs) 
+{
     O_WORK* owk;
     NJS_POINT3 ps;
     int eno;
@@ -1802,7 +1809,8 @@ void bhEne17_SetSmokeEffect2(BH_PWORK* epw, NJS_POINT3* ofs, int rot)
 }
 
 // 100% matching!
-void bhEne17_SetSmokeEffect3(BH_PWORK* epw, NJS_POINT3* ofs, int rot) {
+void bhEne17_SetSmokeEffect3(BH_PWORK* epw, NJS_POINT3* ofs, int rot) 
+{
     int eno;
 
     sys->ef.id = 369;
@@ -1836,7 +1844,8 @@ void bhEne17_SetSmokeEffect3(BH_PWORK* epw, NJS_POINT3* ofs, int rot) {
 }
 
 // 100% matching!
-void bhEne17_SetLight(BH_PWORK* epw, NJS_POINT3 *ofs) {
+void bhEne17_SetLight(BH_PWORK* epw, NJS_POINT3 *ofs) 
+{
     LGT_WORK* lp = &(rom->lgtp[2]);
 
     lp->flg   = 3;

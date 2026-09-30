@@ -354,20 +354,21 @@ void bhEne13_Move(BH_PWORK* epw)
 	scePrintf("bhEne13_Move - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1db190
+// 100% matching!
 void bhEne13_MV00(BH_PWORK* epw)
 {
-	// Line 602, Address: 0x1db190, Func Offset: 0
-	// Line 604, Address: 0x1db1a4, Func Offset: 0x14
-	// Line 606, Address: 0x1db1a8, Func Offset: 0x18
-	// Line 605, Address: 0x1db1ac, Func Offset: 0x1c
-	// Line 606, Address: 0x1db1b0, Func Offset: 0x20
-	// Line 607, Address: 0x1db1b4, Func Offset: 0x24
-	// Line 608, Address: 0x1db1bc, Func Offset: 0x2c
-	// Line 610, Address: 0x1db1c8, Func Offset: 0x38
-	// Func End, Address: 0x1db1d0, Func Offset: 0x40
-	scePrintf("bhEne13_MV00 - UNIMPLEMENTED!\n");
+    switch (epw->mode3)
+    {
+    case 0:
+        epw->mtn_no = 0;
+        epw->frm_no = 0;
+        
+        epw->hokan_count = 8;
+        epw->hokan_rate  = 45875;
+        
+        epw->mode3++;
+        break;
+    }
 }
 
 // 

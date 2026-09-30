@@ -869,14 +869,10 @@ int bhEne13_GetHatchNo(BH_PWORK* epw)
     return EXP0_I(128);
 }
 
-// 
-// Start address: 0x1dc1c0
+// 100% matching!
 int bhEne13_GetTentaNo(BH_PWORK* epw)
 {
-	// Line 1418, Address: 0x1dc1c0, Func Offset: 0
-	// Line 1419, Address: 0x1dc1c4, Func Offset: 0x4
-	// Func End, Address: 0x1dc1cc, Func Offset: 0xc
-	scePrintf("bhEne13_GetTentaNo - UNIMPLEMENTED!\n");
+    return EXP0_I(984);
 }
 
 // 

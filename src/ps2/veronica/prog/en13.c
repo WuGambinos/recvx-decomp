@@ -863,14 +863,10 @@ void bhEne13_Tentacle(BH_PWORK* epw, int no)
 	scePrintf("bhEne13_Tentacle - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1dc1b0
+// 100% matching!
 int bhEne13_GetHatchNo(BH_PWORK* epw)
 {
-	// Line 1406, Address: 0x1dc1b0, Func Offset: 0
-	// Line 1407, Address: 0x1dc1b4, Func Offset: 0x4
-	// Func End, Address: 0x1dc1bc, Func Offset: 0xc
-	scePrintf("bhEne13_GetHatchNo - UNIMPLEMENTED!\n");
+    return EXP0_I(128);
 }
 
 // 

@@ -2,6 +2,7 @@
 #define _EN13_H_
 
 #include "types.h"
+#include "macros.h"
 
 void bhEne13(BH_PWORK* epw);
 void bhEne13_Init(BH_PWORK* epw);

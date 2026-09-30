@@ -2,6 +2,8 @@
 #include "../../../ps2/veronica/prog/en02.h"
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/njplus.h"
+#include "../../../ps2/veronica/prog/MdlPut.h"
+#include "../../../ps2/veronica/prog/Motion.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/subpl.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
@@ -42,19 +44,17 @@ void (*bhEne13_DamageMode2[1])(BH_PWORK*) =
 	bhEne13_DG00
 }; 
 
-// 
-// Start address: 0x1da340
-void bhEne13(BH_PWORK* epw)
+// 100% matching!
+void bhEne13(BH_PWORK* epw) 
 {
-	// Line 204, Address: 0x1da340, Func Offset: 0
-	// Line 206, Address: 0x1da350, Func Offset: 0x10
-	// Line 209, Address: 0x1da370, Func Offset: 0x30
-	// Line 212, Address: 0x1da384, Func Offset: 0x44
-	// Line 215, Address: 0x1da38c, Func Offset: 0x4c
-	// Line 218, Address: 0x1da394, Func Offset: 0x54
-	// Line 219, Address: 0x1da39c, Func Offset: 0x5c
-	// Func End, Address: 0x1da3ac, Func Offset: 0x6c
-	scePrintf("bhEne13 - UNIMPLEMENTED!\n");
+    bhEne13_Mode0[epw->mode0](epw);
+    
+    bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
+    
+    bhCalcModel(epw);
+    
+    bhEne13_CameraControl(epw);
+    bhEne13_PlayerControl(epw);
 }
 
 // 

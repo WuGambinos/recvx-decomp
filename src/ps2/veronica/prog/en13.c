@@ -405,29 +405,38 @@ void bhEne13_MV01(BH_PWORK* epw)
 	scePrintf("bhEne13_MV01 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1db2b0
+// 100% matching!
 void bhEne13_MV02(BH_PWORK* epw)
 {
-	// Line 666, Address: 0x1db2b0, Func Offset: 0
-	// Line 668, Address: 0x1db2d0, Func Offset: 0x20
-	// Line 670, Address: 0x1db2d8, Func Offset: 0x28
-	// Line 669, Address: 0x1db2dc, Func Offset: 0x2c
-	// Line 670, Address: 0x1db2e0, Func Offset: 0x30
-	// Line 671, Address: 0x1db2e4, Func Offset: 0x34
-	// Line 674, Address: 0x1db2ec, Func Offset: 0x3c
-	// Line 675, Address: 0x1db300, Func Offset: 0x50
-	// Line 676, Address: 0x1db304, Func Offset: 0x54
-	// Line 679, Address: 0x1db310, Func Offset: 0x60
-	// Line 680, Address: 0x1db334, Func Offset: 0x84
-	// Line 681, Address: 0x1db33c, Func Offset: 0x8c
-	// Line 683, Address: 0x1db344, Func Offset: 0x94
-	// Line 685, Address: 0x1db354, Func Offset: 0xa4
-	// Line 686, Address: 0x1db358, Func Offset: 0xa8
-	// Line 687, Address: 0x1db35c, Func Offset: 0xac
-	// Line 692, Address: 0x1db360, Func Offset: 0xb0
-	// Func End, Address: 0x1db368, Func Offset: 0xb8
-	scePrintf("bhEne13_MV02 - UNIMPLEMENTED!\n");
+    switch (epw->mode3)
+    {
+    case 0:
+        epw->mtn_no = 2;
+        epw->frm_no = 0;
+        
+        epw->hokan_count = 8;
+        epw->hokan_rate  = 45875;
+        
+        if ((*(BH_PWORK**)&epw->exp0[112])->type == 0)
+        { 
+            (*(BH_PWORK**)&epw->exp0[112])->mode2 = 2;
+            (*(BH_PWORK**)&epw->exp0[112])->mode3 = 0; 
+        }
+        
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
+        
+        epw->mode3++;
+        break;
+    case 1:
+        if (epw->ct0-- == 0)
+        {
+            epw->mode1 = 1;
+            epw->mode2 = 0;
+            epw->mode3 = 0;
+        }
+        
+        break;
+    }
 }
 
 // 

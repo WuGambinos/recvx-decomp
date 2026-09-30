@@ -1,5 +1,6 @@
 #include "../../../ps2/veronica/prog/en13.h"
 #include "../../../ps2/veronica/prog/en02.h"
+#include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/subpl.h"
@@ -714,52 +715,57 @@ void bhEne13_ScaleModel(NJS_CNK_OBJECT* pObj, float sx, float sy, float sz)
     }
 }
 
-// 
-// Start address: 0x1dbdb0
+// 100% matching!
 int bhEne13_StoreObject(BH_PWORK* epw, NJS_POINT3* pos, NJS_VECTOR** v, int no)
 {
-	HDR_PS* pHdr;
-	NJS_POINT4* pd;
-	NJS_POINT4* ps;
-	int nVtx;
-	NJS_CNK_MODEL* pModel;
-	int i;
-	int obj_n;
-	int ono;
 	NJS_CNK_OBJECT* pObj;
-	// Line 1142, Address: 0x1dbdb0, Func Offset: 0
-	// Line 1152, Address: 0x1dbdd8, Func Offset: 0x28
-	// Line 1153, Address: 0x1dbde0, Func Offset: 0x30
-	// Line 1152, Address: 0x1dbde4, Func Offset: 0x34
-	// Line 1154, Address: 0x1dbde8, Func Offset: 0x38
-	// Line 1155, Address: 0x1dbe0c, Func Offset: 0x5c
-	// Line 1156, Address: 0x1dbe14, Func Offset: 0x64
-	// Line 1157, Address: 0x1dbe1c, Func Offset: 0x6c
-	// Line 1160, Address: 0x1dbe24, Func Offset: 0x74
-	// Line 1161, Address: 0x1dbe28, Func Offset: 0x78
-	// Line 1162, Address: 0x1dbe30, Func Offset: 0x80
-	// Line 1165, Address: 0x1dbe34, Func Offset: 0x84
-	// Line 1164, Address: 0x1dbe38, Func Offset: 0x88
-	// Line 1165, Address: 0x1dbe3c, Func Offset: 0x8c
-	// Line 1168, Address: 0x1dbe48, Func Offset: 0x98
-	// Line 1167, Address: 0x1dbe4c, Func Offset: 0x9c
-	// Line 1169, Address: 0x1dbe50, Func Offset: 0xa0
-	// Line 1170, Address: 0x1dbe60, Func Offset: 0xb0
-	// Line 1180, Address: 0x1dbe64, Func Offset: 0xb4
-	// Line 1170, Address: 0x1dbe6c, Func Offset: 0xbc
-	// Line 1171, Address: 0x1dbe70, Func Offset: 0xc0
-	// Line 1172, Address: 0x1dbe78, Func Offset: 0xc8
-	// Line 1175, Address: 0x1dbe80, Func Offset: 0xd0
-	// Line 1176, Address: 0x1dbe88, Func Offset: 0xd8
-	// Line 1177, Address: 0x1dbe90, Func Offset: 0xe0
-	// Line 1178, Address: 0x1dbe98, Func Offset: 0xe8
-	// Line 1180, Address: 0x1dbe9c, Func Offset: 0xec
-	// Line 1181, Address: 0x1dbea4, Func Offset: 0xf4
-	// Line 1182, Address: 0x1dbea8, Func Offset: 0xf8
-	// Line 1184, Address: 0x1dbec8, Func Offset: 0x118
-	// Line 1185, Address: 0x1dbecc, Func Offset: 0x11c
-	// Func End, Address: 0x1dbef8, Func Offset: 0x148
-	scePrintf("bhEne13_StoreObject - UNIMPLEMENTED!\n");
+	int ono, obj_n; 
+	int i; 
+	NJS_CNK_MODEL* pModel;
+ 	int nVtx;
+	NJS_POINT4* ps, *pd; 
+	HDR_PS* pHdr; 
+
+    pObj = epw->mlwP->objP;
+    
+    obj_n = epw->mlwP->obj_num;
+
+    for (ono = 0; ono < obj_n; ono++, pObj++, no++)
+    {
+        pos[no].x = pObj->pos[0];
+        pos[no].y = pObj->pos[1];
+        pos[no].z = pObj->pos[2];
+
+        pModel = pObj->model;
+        
+        if (pModel != NULL)
+        {
+            pHdr = (HDR_PS*)pModel->vlist;
+            
+            nVtx = pHdr->usIndexMax;
+            
+            v[no] = bhEne_CallocWork(nVtx * 32, 64);
+            
+            pd = (NJS_POINT4*)v[no];
+            ps = (NJS_POINT4*)&pHdr[1];
+
+            for (i = 0; i < nVtx; i++)
+            {
+                pd[0].x = ps[0].x;
+                pd[0].y = ps[0].y;
+                pd[0].z = ps[0].z;
+                
+                pd[1].x = ps[1].x;
+                pd[1].y = ps[1].y;
+                pd[1].z = ps[1].z;
+                
+                ps += 2;
+                pd += 2;
+            }
+        }
+    }
+    
+    return no;
 }
 
 // 100% matching!

@@ -918,14 +918,10 @@ void bhEne13_CameraControl(BH_PWORK* epw)
 	scePrintf("bhEne13_CameraControl - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1dc430
+// 100% matching!
 void bhEne13_SetCamera(BH_PWORK* epw, float f)
 {
-	// Line 1472, Address: 0x1dc430, Func Offset: 0
-	// Line 1473, Address: 0x1dc434, Func Offset: 0x4
-	// Func End, Address: 0x1dc43c, Func Offset: 0xc
-	scePrintf("bhEne13_SetCamera - UNIMPLEMENTED!\n");
+    EXP0_F(980) = f;
 }
 
 // 

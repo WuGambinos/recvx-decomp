@@ -531,12 +531,12 @@ void bhEne17_DamageAdd(BH_PWORK *epw)
 // 100% matching!
 int bhEne17_SetMtn(BH_PWORK* epw) 
 {
+    O_WORK* owk;
+	NJS_POINT3 ps;
 	NJS_POINT3 ofs;
 	int sfrm_no;
-	NJS_POINT3 ps;
-	O_WORK* owk;
 	BH_PWORK* armp;
-	int lnk_obj;
+	int lnk_obj;    
 	int frm;
     int i; // Moved in DWARF
 	int ret; 
@@ -571,11 +571,11 @@ int bhEne17_SetMtn(BH_PWORK* epw)
                 
                 owk = &armp->mlwP->owP[1];
                 
-                ofs.x = 0.0f;                       
-                ofs.y = 0.0f;                       
-                ofs.z = -16.15572f;
+                ps.x = 0.0f;                       
+                ps.y = 0.0f;                       
+                ps.z = -16.15572f;
 
-                bhEne17_AfterimageAxEffect(epw, &owk->mtx, &ofs, argb);
+                bhEne17_AfterimageAxEffect(epw, &owk->mtx, &ps, argb);
             } 
 
             epw->frm_no = sfrm_no + 0xFFFC0000;
@@ -621,10 +621,10 @@ int bhEne17_SetMtn(BH_PWORK* epw)
 
             if (frm == 0 || frm == 25){
                 for(i = 0; i < 4; i++) {
-                    ps.x = epw->px + ((80.0f * njRandom()) - 40.0f);
-                    ps.y = 45.0f;
-                    ps.z = epw->pz + ((40.0f * njRandom()) - 20.0f);
-                    bhEff_SetPtcl(epw, &ps, 8);
+                    ofs.x = epw->px + ((80.0f * njRandom()) - 40.0f);
+                    ofs.y = 45.0f;
+                    ofs.z = epw->pz + ((40.0f * njRandom()) - 20.0f);
+                    bhEff_SetPtcl(epw, &ofs, 8);
                 }
             }
         } else if (epw->mtn_no == 1) {
@@ -661,7 +661,7 @@ int bhEne17_SetMtn(BH_PWORK* epw)
     if (ret != 0) {
         epw->flg |= 0x2000000;
     } else {
-        epw->flg &= 0xFDFFFFFF;
+        epw->flg &= ~0x2000000;
     }
     
     return ret;
@@ -788,9 +788,9 @@ void bhEne17_CalcEnemy(BH_PWORK* epw)
 // 100% matching!
 void bhEne17_Init(BH_PWORK* epw) 
 {	
-    int size;
-    unsigned char *addr;
     int i;
+    unsigned char *addr;
+    int size;
 
     epw->ar = 8.0f;
     epw->ah = 25.0f;
@@ -801,9 +801,9 @@ void bhEne17_Init(BH_PWORK* epw)
     epw->hp = 250;
     epw->stflg = 0;
     
-    for(i = 0; i < 64; i++) 
+    for(size = 0; size < 64; size++) 
     {
-        epw->dam[i] = 0;
+        epw->dam[size] = 0;
     }
     
     epw->hokan_rate = 0;
@@ -829,8 +829,8 @@ void bhEne17_Init(BH_PWORK* epw)
             bhEne_SetCallFunc(bhEne17RArm, 0x20);
         }
     } else {
-        size = 84;
-        while (size--) {
+        i = 84;
+        while (i--) {
             *addr = 0;
             addr++;
         }
@@ -879,7 +879,7 @@ void bhEne17_InitType00()
 BH_PWORK* bhEne17_SetLinkWork(BH_PWORK* epw, int lnk_obj, int mdl_no, int id) 
 {
     BH_PWORK* epp;
-    EGG_WORK  lnk_tbl;
+    ETTY_WORK  lnk_tbl;
 
     npSetMemoryL((unsigned int*)&lnk_tbl, 9, 0);
     lnk_tbl.flg = 0x80A1;
@@ -988,7 +988,7 @@ void bhEne17_MV00(BH_PWORK* epw)
     switch (epw->mode3) {                      
     case 0:
         bhEne_ChgMtn(epw, 0, 0, 7);
-        EXP0_I(8) &= 0xBFFFFFFF;
+        EXP0_I(8) &= ~0x40000000;
         epw->mode1 = 1;
         
         if (EXP0_F(20) < 24.0f) {
@@ -1003,7 +1003,6 @@ void bhEne17_MV00(BH_PWORK* epw)
         epw->ct1 = 0;
         EXP0_I(4) = 0;
         epw->mode3 += 1;
-        /* fallthrough */
         
     case 1:
         if (--epw->ct0 < 0) {
@@ -1015,6 +1014,8 @@ void bhEne17_MV00(BH_PWORK* epw)
                 EXP0_I(8) &= ~0x400;
             }
         }
+
+        break;
     }
 }
 
@@ -1027,7 +1028,7 @@ void bhEne17_MV01(BH_PWORK *epw)
         epw->flg |= 0x40000;
         epw->ct0 = 0;
         epw->mode3++;
-        /* fallthrough */
+
     case 1:
         ikou(epw, (NJS_POINT3 *)&epw->exp0[28], 512);
 
@@ -1069,6 +1070,7 @@ void bhEne17_MV02(BH_PWORK* epw)
             epw->mode2 = 0;
             epw->mode3 = 0;
         }
+        break;
     }
 }
 
@@ -1076,7 +1078,7 @@ void bhEne17_MV02(BH_PWORK* epw)
 void bhEne17_MV03(BH_PWORK* epw)
 {
     NJS_VECTOR ofs;
-    O_WORK* owp;
+    O_WORK* owk;
     int frm;
     int i;
 
@@ -1104,9 +1106,9 @@ void bhEne17_MV03(BH_PWORK* epw)
             ofs.z = -15.0f;
             bhEne17_SetSmokeEffect(epw, 0, &ofs);
 
-            owp = &epw->mlwP->owP[1];
-            ofs.x = owp->mtx[12];
-            ofs.z = owp->mtx[14];
+            owk = &epw->mlwP->owP[1];
+            ofs.x = owk->mtx[12];
+            ofs.z = owk->mtx[14];
             
             ofs.y = 1.0f;
 
@@ -1148,6 +1150,7 @@ void bhEne17_MV03(BH_PWORK* epw)
             epw->mode3 = 0;
             epw->flg2 &= ~1;
         }
+        break;
     }
 }
 
@@ -1178,6 +1181,7 @@ void bhEne17_MV04(BH_PWORK* epw)
             EXP0_I(4) = 0;
             epw->flg2 &= ~1;
         }
+        break;
     }
 }
 
@@ -1234,6 +1238,7 @@ void bhEne17_MV05(BH_PWORK* epw)
                 }
             }
         }
+        break;
     }
 }
 
@@ -1243,7 +1248,7 @@ void bhEne17_MV06(BH_PWORK* epw)
     switch (epw->mode3) {
     case 0:
         bhEne_ChgMtn(epw, 17, 0, 7);
-        EXP0_I(8) &= 0xBFFFFFFF;
+        EXP0_I(8) &= ~0x40000000;
         epw->mode1 = 1;
 
         if (EXP0_F(20) < 24.0f) {
@@ -1257,7 +1262,6 @@ void bhEne17_MV06(BH_PWORK* epw)
         epw->ct1 = 0;
         EXP0_I(4) = 0;
         epw->mode3++;
-        /* fallthrough */
 
     case 1:
         if (--epw->ct0 < 0) {
@@ -1307,13 +1311,12 @@ void bhEne17_DG00(BH_PWORK* epw)
         epw->flg  |= 0x40000;
         epw->flg2 &= ~1;
         epw->mode3 += 1;
-        /* fallthrough */
 
     case 1:
         frm = epw->frm_no  / 65536;
 
         if (frm < 10) {
-            ang = (epw->ayp - epw->ay) & 0xFFFF;
+            ang = (unsigned short)(epw->ayp - epw->ay);
             if (32768 < ang) {
                 ang -= NJM_DEG_ANG(360.0f);
             }
@@ -1353,6 +1356,7 @@ void bhEne17_DG00(BH_PWORK* epw)
         } else {
             EXP0_I(4) = wcnt_tbl[2];                       
         }
+        break;
     }
 }
 
@@ -1396,7 +1400,7 @@ void bhEne17_PlyDG00(BH_PWORK* pl, BH_PWORK* epw)
         
     case 1:
         if ((pl->frm_no / 65536) < 10) {
-            ang = ((pl->ayp - pl->ay) & 0xFFFF);
+            ang = (unsigned short)(pl->ayp - pl->ay);
             if (32768 < ang) {
                 ang -= NJM_DEG_ANG(360.0f);
             } 
@@ -1428,6 +1432,7 @@ void bhEne17_PlyDG00(BH_PWORK* pl, BH_PWORK* epw)
             pl->mnwP = pl->mnwPb;
             *(int*)&plp->mode0 = 1;
         }
+        break;
     }
 }
 
@@ -1446,7 +1451,7 @@ void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw)
     NJS_POINT3 key;
     NJS_POINT3 dv;
     int i;
-    int rot;
+    int rot; // Moved in DWARF
     int frm;
 
     switch (pl->mode3) {
@@ -1469,7 +1474,7 @@ void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw)
         dv.z = epw->pz - pl->pz;
 
         if (bhDGCdirCheck(&dv, pl->ay) != 0) {
-            pl->mtn_no = 0x15;
+            pl->mtn_no = 21;
             pl->ayp = (int)(10430.381f * atan2f(-dv.x, -dv.z));
         } else {
             pl->ayp = (int)(10430.381f * atan2f(dv.x, dv.z));
@@ -1485,7 +1490,7 @@ void bhEne17_PlyDG01(BH_PWORK* pl, BH_PWORK* epw)
 
         if (frm < 10) {
             {
-                int delta = (pl->ayp - pl->ay) &  0xFFFF;
+                int delta = (unsigned short)(pl->ayp - pl->ay);
                 if (32768 < delta) {
                     delta -= NJM_DEG_ANG(360.0f);
                 }

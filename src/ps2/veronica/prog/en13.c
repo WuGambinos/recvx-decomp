@@ -1,4 +1,5 @@
 #include "../../../ps2/veronica/prog/en13.h"
+#include "../../../ps2/veronica/prog/en13sub.h"
 #include "../../../ps2/veronica/prog/en02.h"
 #include "../../../ps2/veronica/prog/eneset.h"
 #include "../../../ps2/veronica/prog/njplus.h"
@@ -57,176 +58,187 @@ void bhEne13(BH_PWORK* epw)
     bhEne13_PlayerControl(epw);
 }
 
-// 
-// Start address: 0x1da3b0
+// 100% matching!
 void bhEne13_Init(BH_PWORK* epw)
 {
-	int i;
-	BH_PWORK* ep;
-	// Line 229, Address: 0x1da3b0, Func Offset: 0
-	// Line 234, Address: 0x1da3c4, Func Offset: 0x14
-	// Line 235, Address: 0x1da3c8, Func Offset: 0x18
-	// Line 238, Address: 0x1da3cc, Func Offset: 0x1c
-	// Line 239, Address: 0x1da3d0, Func Offset: 0x20
-	// Line 240, Address: 0x1da3d4, Func Offset: 0x24
-	// Line 234, Address: 0x1da3d8, Func Offset: 0x28
-	// Line 235, Address: 0x1da3e0, Func Offset: 0x30
-	// Line 241, Address: 0x1da3e4, Func Offset: 0x34
-	// Line 235, Address: 0x1da3ec, Func Offset: 0x3c
-	// Line 236, Address: 0x1da3f4, Func Offset: 0x44
-	// Line 237, Address: 0x1da400, Func Offset: 0x50
-	// Line 238, Address: 0x1da40c, Func Offset: 0x5c
-	// Line 239, Address: 0x1da410, Func Offset: 0x60
-	// Line 240, Address: 0x1da414, Func Offset: 0x64
-	// Line 241, Address: 0x1da418, Func Offset: 0x68
-	// Line 244, Address: 0x1da438, Func Offset: 0x88
-	// Line 245, Address: 0x1da440, Func Offset: 0x90
-	// Line 246, Address: 0x1da444, Func Offset: 0x94
-	// Line 247, Address: 0x1da448, Func Offset: 0x98
-	// Line 250, Address: 0x1da44c, Func Offset: 0x9c
-	// Line 251, Address: 0x1da454, Func Offset: 0xa4
-	// Line 252, Address: 0x1da458, Func Offset: 0xa8
-	// Line 253, Address: 0x1da45c, Func Offset: 0xac
-	// Line 254, Address: 0x1da460, Func Offset: 0xb0
-	// Line 255, Address: 0x1da464, Func Offset: 0xb4
-	// Line 258, Address: 0x1da468, Func Offset: 0xb8
-	// Line 259, Address: 0x1da474, Func Offset: 0xc4
-	// Line 262, Address: 0x1da484, Func Offset: 0xd4
-	// Line 263, Address: 0x1da4a0, Func Offset: 0xf0
-	// Line 269, Address: 0x1da4a4, Func Offset: 0xf4
-	// Line 272, Address: 0x1da4a8, Func Offset: 0xf8
-	// Line 262, Address: 0x1da4ac, Func Offset: 0xfc
-	// Line 263, Address: 0x1da4b0, Func Offset: 0x100
-	// Line 272, Address: 0x1da4b4, Func Offset: 0x104
-	// Line 263, Address: 0x1da4b8, Func Offset: 0x108
-	// Line 264, Address: 0x1da4c0, Func Offset: 0x110
-	// Line 265, Address: 0x1da4cc, Func Offset: 0x11c
-	// Line 266, Address: 0x1da4d8, Func Offset: 0x128
-	// Line 267, Address: 0x1da4e4, Func Offset: 0x134
-	// Line 268, Address: 0x1da4f0, Func Offset: 0x140
-	// Line 269, Address: 0x1da4fc, Func Offset: 0x14c
-	// Line 272, Address: 0x1da508, Func Offset: 0x158
-	// Line 273, Address: 0x1da51c, Func Offset: 0x16c
-	// Line 279, Address: 0x1da520, Func Offset: 0x170
-	// Line 282, Address: 0x1da524, Func Offset: 0x174
-	// Line 272, Address: 0x1da528, Func Offset: 0x178
-	// Line 273, Address: 0x1da52c, Func Offset: 0x17c
-	// Line 282, Address: 0x1da530, Func Offset: 0x180
-	// Line 273, Address: 0x1da534, Func Offset: 0x184
-	// Line 274, Address: 0x1da53c, Func Offset: 0x18c
-	// Line 275, Address: 0x1da548, Func Offset: 0x198
-	// Line 276, Address: 0x1da554, Func Offset: 0x1a4
-	// Line 277, Address: 0x1da560, Func Offset: 0x1b0
-	// Line 278, Address: 0x1da56c, Func Offset: 0x1bc
-	// Line 279, Address: 0x1da578, Func Offset: 0x1c8
-	// Line 282, Address: 0x1da584, Func Offset: 0x1d4
-	// Line 283, Address: 0x1da598, Func Offset: 0x1e8
-	// Line 289, Address: 0x1da59c, Func Offset: 0x1ec
-	// Line 292, Address: 0x1da5a0, Func Offset: 0x1f0
-	// Line 282, Address: 0x1da5a4, Func Offset: 0x1f4
-	// Line 283, Address: 0x1da5a8, Func Offset: 0x1f8
-	// Line 292, Address: 0x1da5ac, Func Offset: 0x1fc
-	// Line 283, Address: 0x1da5b0, Func Offset: 0x200
-	// Line 284, Address: 0x1da5b8, Func Offset: 0x208
-	// Line 285, Address: 0x1da5c4, Func Offset: 0x214
-	// Line 286, Address: 0x1da5d0, Func Offset: 0x220
-	// Line 287, Address: 0x1da5dc, Func Offset: 0x22c
-	// Line 288, Address: 0x1da5e8, Func Offset: 0x238
-	// Line 289, Address: 0x1da5f4, Func Offset: 0x244
-	// Line 292, Address: 0x1da600, Func Offset: 0x250
-	// Line 299, Address: 0x1da614, Func Offset: 0x264
-	// Line 308, Address: 0x1da618, Func Offset: 0x268
-	// Line 292, Address: 0x1da620, Func Offset: 0x270
-	// Line 293, Address: 0x1da624, Func Offset: 0x274
-	// Line 294, Address: 0x1da630, Func Offset: 0x280
-	// Line 295, Address: 0x1da63c, Func Offset: 0x28c
-	// Line 296, Address: 0x1da648, Func Offset: 0x298
-	// Line 297, Address: 0x1da654, Func Offset: 0x2a4
-	// Line 298, Address: 0x1da660, Func Offset: 0x2b0
-	// Line 299, Address: 0x1da66c, Func Offset: 0x2bc
-	// Line 302, Address: 0x1da678, Func Offset: 0x2c8
-	// Line 303, Address: 0x1da68c, Func Offset: 0x2dc
-	// Line 304, Address: 0x1da6a0, Func Offset: 0x2f0
-	// Line 305, Address: 0x1da6b4, Func Offset: 0x304
-	// Line 309, Address: 0x1da6c8, Func Offset: 0x318
-	// Line 310, Address: 0x1da6e4, Func Offset: 0x334
-	// Line 317, Address: 0x1da6e8, Func Offset: 0x338
-	// Line 316, Address: 0x1da6ec, Func Offset: 0x33c
-	// Line 309, Address: 0x1da6f0, Func Offset: 0x340
-	// Line 310, Address: 0x1da6f8, Func Offset: 0x348
-	// Line 317, Address: 0x1da6fc, Func Offset: 0x34c
-	// Line 310, Address: 0x1da700, Func Offset: 0x350
-	// Line 311, Address: 0x1da70c, Func Offset: 0x35c
-	// Line 312, Address: 0x1da71c, Func Offset: 0x36c
-	// Line 313, Address: 0x1da72c, Func Offset: 0x37c
-	// Line 314, Address: 0x1da73c, Func Offset: 0x38c
-	// Line 315, Address: 0x1da74c, Func Offset: 0x39c
-	// Line 316, Address: 0x1da75c, Func Offset: 0x3ac
-	// Line 317, Address: 0x1da76c, Func Offset: 0x3bc
-	// Line 321, Address: 0x1da774, Func Offset: 0x3c4
-	// Line 335, Address: 0x1da790, Func Offset: 0x3e0
-	// Line 328, Address: 0x1da794, Func Offset: 0x3e4
-	// Line 335, Address: 0x1da798, Func Offset: 0x3e8
-	// Line 321, Address: 0x1da79c, Func Offset: 0x3ec
-	// Line 322, Address: 0x1da7a0, Func Offset: 0x3f0
-	// Line 335, Address: 0x1da7a4, Func Offset: 0x3f4
-	// Line 322, Address: 0x1da7a8, Func Offset: 0x3f8
-	// Line 323, Address: 0x1da7b0, Func Offset: 0x400
-	// Line 324, Address: 0x1da7bc, Func Offset: 0x40c
-	// Line 325, Address: 0x1da7c8, Func Offset: 0x418
-	// Line 326, Address: 0x1da7d4, Func Offset: 0x424
-	// Line 327, Address: 0x1da7e0, Func Offset: 0x430
-	// Line 328, Address: 0x1da7ec, Func Offset: 0x43c
-	// Line 329, Address: 0x1da7f8, Func Offset: 0x448
-	// Line 330, Address: 0x1da808, Func Offset: 0x458
-	// Line 331, Address: 0x1da814, Func Offset: 0x464
-	// Line 332, Address: 0x1da824, Func Offset: 0x474
-	// Line 335, Address: 0x1da830, Func Offset: 0x480
-	// Line 339, Address: 0x1da838, Func Offset: 0x488
-	// Line 340, Address: 0x1da83c, Func Offset: 0x48c
-	// Line 339, Address: 0x1da840, Func Offset: 0x490
-	// Line 340, Address: 0x1da844, Func Offset: 0x494
-	// Line 341, Address: 0x1da860, Func Offset: 0x4b0
-	// Line 342, Address: 0x1da880, Func Offset: 0x4d0
-	// Line 343, Address: 0x1da8a0, Func Offset: 0x4f0
-	// Line 344, Address: 0x1da8c0, Func Offset: 0x510
-	// Line 350, Address: 0x1da8d8, Func Offset: 0x528
-	// Line 354, Address: 0x1da8dc, Func Offset: 0x52c
-	// Line 350, Address: 0x1da8e0, Func Offset: 0x530
-	// Line 351, Address: 0x1da8f0, Func Offset: 0x540
-	// Line 352, Address: 0x1da904, Func Offset: 0x554
-	// Line 353, Address: 0x1da918, Func Offset: 0x568
-	// Line 354, Address: 0x1da92c, Func Offset: 0x57c
-	// Line 355, Address: 0x1da940, Func Offset: 0x590
-	// Line 356, Address: 0x1da958, Func Offset: 0x5a8
-	// Line 357, Address: 0x1da970, Func Offset: 0x5c0
-	// Line 358, Address: 0x1da988, Func Offset: 0x5d8
-	// Line 360, Address: 0x1da9a0, Func Offset: 0x5f0
-	// Line 361, Address: 0x1da9a4, Func Offset: 0x5f4
-	// Line 362, Address: 0x1da9ac, Func Offset: 0x5fc
-	// Line 360, Address: 0x1da9b0, Func Offset: 0x600
-	// Line 362, Address: 0x1da9b4, Func Offset: 0x604
-	// Line 364, Address: 0x1da9c0, Func Offset: 0x610
-	// Line 365, Address: 0x1da9dc, Func Offset: 0x62c
-	// Line 366, Address: 0x1da9f0, Func Offset: 0x640
-	// Line 368, Address: 0x1daa00, Func Offset: 0x650
-	// Line 369, Address: 0x1daa04, Func Offset: 0x654
-	// Line 372, Address: 0x1daa08, Func Offset: 0x658
-	// Line 373, Address: 0x1daa24, Func Offset: 0x674
-	// Line 374, Address: 0x1daa2c, Func Offset: 0x67c
-	// Line 376, Address: 0x1daa30, Func Offset: 0x680
-	// Line 379, Address: 0x1daa58, Func Offset: 0x6a8
-	// Line 380, Address: 0x1daa60, Func Offset: 0x6b0
-	// Line 381, Address: 0x1daa64, Func Offset: 0x6b4
-	// Line 379, Address: 0x1daa68, Func Offset: 0x6b8
-	// Line 380, Address: 0x1daa6c, Func Offset: 0x6bc
-	// Line 382, Address: 0x1daa70, Func Offset: 0x6c0
-	// Line 380, Address: 0x1daa74, Func Offset: 0x6c4
-	// Line 381, Address: 0x1daa78, Func Offset: 0x6c8
-	// Line 382, Address: 0x1daa80, Func Offset: 0x6d0
-	// Line 383, Address: 0x1daa98, Func Offset: 0x6e8
-	// Func End, Address: 0x1daab0, Func Offset: 0x700
-	scePrintf("bhEne13_Init - UNIMPLEMENTED!\n");
+    BH_PWORK* ep;
+    int i;
+
+    epw->flg   |=  0x8018;
+    epw->flg   &= ~0x6;
+    
+    epw->flg2  |=  0x1;
+    
+    epw->mdflg |=  0x20;
+    
+    epw->ar = 5.0f;
+    epw->ah = 1.0f;
+    
+    epw->car = 3.0f;
+    
+    epw->hp = (sys->gm_mode != 2) ? 700 : 400;
+    
+    epw->mode0 = 1;
+    epw->mode1 = 1;
+    epw->mode2 = 0;
+    epw->mode3 = 0;
+    
+    epw->hokan_rate  = 65536;
+    epw->hokan_count = 0;
+    
+    epw->mtn_no  = 0;
+    epw->mtn_md  = 0;
+    epw->mtn_add = 65536;
+    
+    epw->frm_no = 0;
+    
+    if (epw->exp0 == NULL) 
+    {
+        epw->exp0 = bhEne_CallocWork(992, 8);
+
+        *(BH_PWORK**)&epw->exp0[8] = bhSetEnemy(&ene18, rom->ene_n);
+        
+        (*(BH_PWORK**)&epw->exp0[8])->type = 1;
+        
+        (*(BH_PWORK**)&epw->exp0[8])->lkwkp = (unsigned char*)epw;
+        (*(BH_PWORK**)&epw->exp0[8])->lkono = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[8])->lox = 0;
+        (*(BH_PWORK**)&epw->exp0[8])->loy = 0;
+        (*(BH_PWORK**)&epw->exp0[8])->loz = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[8])->mlwP = &epw->mdl[1];
+
+        *(BH_PWORK**)&epw->exp0[12] = bhSetEnemy(&ene18, rom->ene_n);
+        
+        (*(BH_PWORK**)&epw->exp0[12])->type = 2;
+        
+        (*(BH_PWORK**)&epw->exp0[12])->lkwkp = (unsigned char*)epw;
+        (*(BH_PWORK**)&epw->exp0[12])->lkono = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[12])->lox = 0;
+        (*(BH_PWORK**)&epw->exp0[12])->loy = 0;
+        (*(BH_PWORK**)&epw->exp0[12])->loz = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[12])->mlwP = &epw->mdl[4];
+
+        *(BH_PWORK**)&epw->exp0[16] = bhSetEnemy(&ene18, rom->ene_n);
+        
+        (*(BH_PWORK**)&epw->exp0[16])->type = 3;
+        
+        (*(BH_PWORK**)&epw->exp0[16])->lkwkp = (unsigned char*)epw;
+        (*(BH_PWORK**)&epw->exp0[16])->lkono = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[16])->lox = 0;
+        (*(BH_PWORK**)&epw->exp0[16])->loy = 0;
+        (*(BH_PWORK**)&epw->exp0[16])->loz = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[16])->mlwP = &epw->mdl[7];
+
+        *(BH_PWORK**)&epw->exp0[4] = bhSetEnemy(&ene18, rom->ene_n);
+        
+        (*(BH_PWORK**)&epw->exp0[4])->type = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[4])->lkwkp = (unsigned char*)epw;
+        (*(BH_PWORK**)&epw->exp0[4])->lkono = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[4])->lox = 0;
+        (*(BH_PWORK**)&epw->exp0[4])->loy = 0;
+        (*(BH_PWORK**)&epw->exp0[4])->loz = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[4])->mlwP = &epw->mdl[10];
+
+        *(NJS_CNK_OBJECT**)&epw->exp0[92]  = (*(BH_PWORK**)&epw->exp0[4])->mlwP->objP;
+        *(NJS_CNK_OBJECT**)&epw->exp0[96]  = (*(BH_PWORK**)&epw->exp0[8])->mlwP->objP;
+        *(NJS_CNK_OBJECT**)&epw->exp0[100] = (*(BH_PWORK**)&epw->exp0[12])->mlwP->objP;
+        *(NJS_CNK_OBJECT**)&epw->exp0[104] = (*(BH_PWORK**)&epw->exp0[16])->mlwP->objP;
+
+        for (i = 0; i < 6; i++)
+        {
+            ((BH_PWORK**)epw->exp0)[i + 5] = bhSetEnemy(&ene18, rom->ene_n);
+            
+            ((BH_PWORK**)epw->exp0)[i + 5]->type = i + 4;
+            
+            ((BH_PWORK**)epw->exp0)[i + 5]->lkwkp = (unsigned char*)epw;
+            ((BH_PWORK**)epw->exp0)[i + 5]->lkono = 0;
+            
+            ((BH_PWORK**)epw->exp0)[i + 5]->lox = 0;
+            ((BH_PWORK**)epw->exp0)[i + 5]->loy = 0;
+            ((BH_PWORK**)epw->exp0)[i + 5]->loz = 0;
+            
+            ((BH_PWORK**)epw->exp0)[i + 5]->mlwP = &epw->mdl[10];
+        }
+
+        *(BH_PWORK**)&epw->exp0[976] = bhSetEnemy(&ene13B, rom->ene_n);
+
+        (*(BH_PWORK**)&epw->exp0[976])->type = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[976])->lkwkp = (unsigned char*)epw;
+        (*(BH_PWORK**)&epw->exp0[976])->lkono = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[976])->lox = 0;
+        (*(BH_PWORK**)&epw->exp0[976])->loy = 0;
+        (*(BH_PWORK**)&epw->exp0[976])->loz = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[976])->mlwP = &epw->mdl[13];
+        
+        (*(BH_PWORK**)&epw->exp0[976])->skp[0] = epw->skp[13];
+        
+        (*(BH_PWORK**)&epw->exp0[976])->mdl_no = 0;
+        
+        (*(BH_PWORK**)&epw->exp0[976])->mnwP  = epw->mnwP;
+        (*(BH_PWORK**)&epw->exp0[976])->mnwPb = epw->mnwPb;
+        
+        bhEne_SetCallFunc(bhEne13B, 31);
+        
+        EXP0_I(932) = 0;
+        EXP0_I(936) = bhEne13_StoreObject(                        epw, (NJS_POINT3*)&epw->exp0[132], (NJS_VECTOR**)&epw->exp0[732], EXP0_I(932));
+        EXP0_I(940) = bhEne13_StoreObject( *(BH_PWORK**)&epw->exp0[4], (NJS_POINT3*)&epw->exp0[132], (NJS_VECTOR**)&epw->exp0[732], EXP0_I(936));
+        EXP0_I(944) = bhEne13_StoreObject( *(BH_PWORK**)&epw->exp0[8], (NJS_POINT3*)&epw->exp0[132], (NJS_VECTOR**)&epw->exp0[732], EXP0_I(940));
+        EXP0_I(948) = bhEne13_StoreObject(*(BH_PWORK**)&epw->exp0[12], (NJS_POINT3*)&epw->exp0[132], (NJS_VECTOR**)&epw->exp0[732], EXP0_I(944));
+        
+        bhEne13_StoreObject(*(BH_PWORK**)&epw->exp0[16], (NJS_POINT3*)&epw->exp0[132], (NJS_VECTOR**)&epw->exp0[732], EXP0_I(948));
+    }
+
+    (*(BH_PWORK**)&epw->exp0[4])->mlwP->objP  = *(NJS_CNK_OBJECT**)&epw->exp0[92];
+    (*(BH_PWORK**)&epw->exp0[8])->mlwP->objP  = *(NJS_CNK_OBJECT**)&epw->exp0[96];
+    (*(BH_PWORK**)&epw->exp0[12])->mlwP->objP = *(NJS_CNK_OBJECT**)&epw->exp0[100];
+    (*(BH_PWORK**)&epw->exp0[16])->mlwP->objP = *(NJS_CNK_OBJECT**)&epw->exp0[104];
+
+    bhEne13_RestoreObject(                        epw, (NJS_POINT3*)&epw->exp0[132], (NJS_VECTOR**)&epw->exp0[732], EXP0_I(932));
+    bhEne13_RestoreObject( *(BH_PWORK**)&epw->exp0[4], (NJS_POINT3*)&epw->exp0[132], (NJS_VECTOR**)&epw->exp0[732], EXP0_I(936));
+    bhEne13_RestoreObject( *(BH_PWORK**)&epw->exp0[8], (NJS_POINT3*)&epw->exp0[132], (NJS_VECTOR**)&epw->exp0[732], EXP0_I(940));
+    bhEne13_RestoreObject(*(BH_PWORK**)&epw->exp0[12], (NJS_POINT3*)&epw->exp0[132], (NJS_VECTOR**)&epw->exp0[732], EXP0_I(944));
+    bhEne13_RestoreObject(*(BH_PWORK**)&epw->exp0[16], (NJS_POINT3*)&epw->exp0[132], (NJS_VECTOR**)&epw->exp0[732], EXP0_I(948));
+    
+    EXP0_I(108) = 0;
+
+    ep = ene;
+    
+    for (i = 0; i < sys->ewk_n; i++, ep++)
+    {
+        if (((ep->flg & 0x1)) && (ep->id == 30))
+        {
+            *((BH_PWORK**)epw->exp0 + (EXP0_I(108) + 11)) = ep;
+            
+            EXP0_I(108)++;
+            
+            ep->lkwkp = (unsigned char*)epw;
+        }
+        
+        if (((ep->flg & 0x1)) && (ep->id == 14)) 
+        {
+            *(BH_PWORK**)&epw->exp0[112] = ep;
+            
+            ep->lkwkp = (unsigned char*)epw;
+        }
+    }
+    
+    EXP0_I(964) = 15;
+    EXP0_I(968) = 30;
+    EXP0_I(972) = 45;
+    
+    EXP0_I(116) = EXP0_I(120) = EXP0_I(124) = 100;
 }
 
 // 100% matching!

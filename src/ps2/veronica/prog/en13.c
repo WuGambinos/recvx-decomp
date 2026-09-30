@@ -303,42 +303,73 @@ void bhEne13_BR00(BH_PWORK* epw)
 	scePrintf("bhEne13_BR00 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1dae80
-void bhEne13_BR01(BH_PWORK* epw)
+// 100% matching!
+void bhEne13_BR01(BH_PWORK* epw) 
 {
-	float dist;
-	int j;
-	// Line 507, Address: 0x1dae80, Func Offset: 0
-	// Line 513, Address: 0x1dae8c, Func Offset: 0xc
-	// Line 516, Address: 0x1dae98, Func Offset: 0x18
-	// Line 519, Address: 0x1daec4, Func Offset: 0x44
-	// Line 520, Address: 0x1daee4, Func Offset: 0x64
-	// Line 523, Address: 0x1daf04, Func Offset: 0x84
-	// Line 524, Address: 0x1daf2c, Func Offset: 0xac
-	// Line 525, Address: 0x1daf30, Func Offset: 0xb0
-	// Line 526, Address: 0x1daf34, Func Offset: 0xb4
-	// Line 528, Address: 0x1daf38, Func Offset: 0xb8
-	// Line 529, Address: 0x1daf40, Func Offset: 0xc0
-	// Line 533, Address: 0x1daf48, Func Offset: 0xc8
-	// Line 539, Address: 0x1dafa0, Func Offset: 0x120
-	// Line 540, Address: 0x1dafa8, Func Offset: 0x128
-	// Line 542, Address: 0x1dafc4, Func Offset: 0x144
-	// Line 544, Address: 0x1db00c, Func Offset: 0x18c
-	// Line 545, Address: 0x1db014, Func Offset: 0x194
-	// Line 547, Address: 0x1db01c, Func Offset: 0x19c
-	// Line 550, Address: 0x1db02c, Func Offset: 0x1ac
-	// Line 549, Address: 0x1db030, Func Offset: 0x1b0
-	// Line 550, Address: 0x1db034, Func Offset: 0x1b4
-	// Line 551, Address: 0x1db038, Func Offset: 0x1b8
-	// Line 552, Address: 0x1db03c, Func Offset: 0x1bc
-	// Line 554, Address: 0x1db048, Func Offset: 0x1c8
-	// Line 555, Address: 0x1db05c, Func Offset: 0x1dc
-	// Line 556, Address: 0x1db064, Func Offset: 0x1e4
-	// Line 557, Address: 0x1db06c, Func Offset: 0x1ec
-	// Line 562, Address: 0x1db070, Func Offset: 0x1f0
-	// Func End, Address: 0x1db080, Func Offset: 0x200
-	scePrintf("bhEne13_BR01 - UNIMPLEMENTED!\n");
+    int j;
+    float dist;
+
+    if (epw->hp < 0) 
+    {
+        return;
+    }
+
+    dist = njSqrt(((epw->px - plp->px) * (epw->px - plp->px)) + ((epw->pz - plp->pz) * (epw->pz - plp->pz)));
+
+    if (EXP0_I(968) != 0)
+    {
+        EXP0_I(968)--;
+    }
+    
+    if (EXP0_I(972) != 0)
+    {
+        EXP0_I(972)--;
+    }
+    
+    if ((EXP0_I(972) == 0) && (dist > 60.0f))
+    {
+        epw->mode1 = 0;
+        epw->mode2 = 2;
+        epw->mode3 = 0;
+        
+        EXP0_I(972) = 45;
+        return;
+    }
+    
+    if ((EXP0_I(968) == 0) && (((*(BH_PWORK**)(&epw->exp0[8]))->mode2 != 4) && ((*(BH_PWORK**)(&epw->exp0[8]))->mode2 != 5) && ((*(BH_PWORK**)(&epw->exp0[12]))->mode2 != 4) && ((*(BH_PWORK**)(&epw->exp0[12]))->mode2 != 5) && ((*(BH_PWORK**)(&epw->exp0[16]))->mode2 != 4) && ((*(BH_PWORK**)(&epw->exp0[16]))->mode2 != 5)))
+    {
+        j = bhEne13_SelectTentacle(epw);
+        
+        if ((*(BH_PWORK**)(&epw->exp0[8] + (4 * j)))->mode2 == 0) 
+        {
+            EXP0_I(128) = j;
+
+            if (njRandom() > 0.7f)
+            {
+                EXP0_I(984) = EXP0_I(128);
+            }
+            else 
+            {
+                EXP0_I(984) = EXP0_I(128) + 3;
+            }
+            
+            epw->mode1 = 0;
+            epw->mode2 = 3;
+            epw->mode3 = 0;
+    
+            EXP0_I(968) = 30;
+            
+            if (EXP0_I(964) != 0)
+            {
+                EXP0_I(964)--;
+            }
+            else
+            {
+                epw->type = 0;
+                return;
+            }
+        }
+    }
 }
 
 // 100% matching!

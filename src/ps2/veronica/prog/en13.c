@@ -532,41 +532,43 @@ void bhEne13_DG00(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1db710
+// 100% matching!
 void bhEne13_Die(BH_PWORK* epw)
 {
-	int i;
-	// Line 855, Address: 0x1db710, Func Offset: 0
-	// Line 858, Address: 0x1db718, Func Offset: 0x8
-	// Line 861, Address: 0x1db738, Func Offset: 0x28
-	// Line 867, Address: 0x1db740, Func Offset: 0x30
-	// Line 861, Address: 0x1db748, Func Offset: 0x38
-	// Line 862, Address: 0x1db750, Func Offset: 0x40
-	// Line 863, Address: 0x1db75c, Func Offset: 0x4c
-	// Line 864, Address: 0x1db768, Func Offset: 0x58
-	// Line 868, Address: 0x1db774, Func Offset: 0x64
-	// Line 872, Address: 0x1db778, Func Offset: 0x68
-	// Line 868, Address: 0x1db780, Func Offset: 0x70
-	// Line 869, Address: 0x1db78c, Func Offset: 0x7c
-	// Line 870, Address: 0x1db79c, Func Offset: 0x8c
-	// Line 871, Address: 0x1db7ac, Func Offset: 0x9c
-	// Line 872, Address: 0x1db7bc, Func Offset: 0xac
-	// Line 875, Address: 0x1db7c4, Func Offset: 0xb4
-	// Line 876, Address: 0x1db7cc, Func Offset: 0xbc
-	// Line 880, Address: 0x1db7d4, Func Offset: 0xc4
-	// Line 876, Address: 0x1db7dc, Func Offset: 0xcc
-	// Line 877, Address: 0x1db7e8, Func Offset: 0xd8
-	// Line 878, Address: 0x1db7f8, Func Offset: 0xe8
-	// Line 879, Address: 0x1db808, Func Offset: 0xf8
-	// Line 880, Address: 0x1db818, Func Offset: 0x108
-	// Line 881, Address: 0x1db820, Func Offset: 0x110
-	// Line 882, Address: 0x1db828, Func Offset: 0x118
-	// Line 884, Address: 0x1db830, Func Offset: 0x120
-	// Line 885, Address: 0x1db888, Func Offset: 0x178
-	// Line 887, Address: 0x1db890, Func Offset: 0x180
-	// Func End, Address: 0x1db89c, Func Offset: 0x18c
-	scePrintf("bhEne13_Die - UNIMPLEMENTED!\n");
+    int i;
+
+    switch (epw->mode3) 
+    {
+    case 0:
+        (*(unsigned char**)&epw->exp0[976])[12] = 4;
+        (*(unsigned char**)&epw->exp0[976])[13] = 0;
+        (*(unsigned char**)&epw->exp0[976])[14] = 0;
+        (*(unsigned char**)&epw->exp0[976])[15] = 0;
+
+        for(i = 0; i < 4; i++)
+        {
+            ((unsigned char**)epw->exp0)[1 + i][12] = 4;
+            ((unsigned char**)epw->exp0)[1 + i][13] = 0;
+            ((unsigned char**)epw->exp0)[1 + i][14] = 0;
+            ((unsigned char**)epw->exp0)[1 + i][15] = 0;
+        }
+
+        for (i = 0; i < 6; i++) 
+        {
+            ((unsigned char**)epw->exp0)[5 + i][12] = 4;
+            ((unsigned char**)epw->exp0)[5 + i][13] = 0;
+            ((unsigned char**)epw->exp0)[5 + i][14] = 0;
+            ((unsigned char**)epw->exp0)[5 + i][15] = 0;
+        }
+
+        epw->mode3++;
+        break;
+    case 1:
+        epw->spd = 0.97f + (epw->mode2 / 50.0f);
+        
+        bhEne13_Finish(epw);
+        break;
+    }
 }
 
 // 

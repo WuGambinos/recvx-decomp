@@ -762,48 +762,56 @@ int bhEne13_StoreObject(BH_PWORK* epw, NJS_POINT3* pos, NJS_VECTOR** v, int no)
 	scePrintf("bhEne13_StoreObject - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1dbf00
+// 100% matching!
 int bhEne13_RestoreObject(BH_PWORK* epw, NJS_POINT3* pos, NJS_VECTOR** v, int no)
 {
-	HDR_PS* pHdr;
-	NJS_POINT4* pd;
-	NJS_POINT4* ps;
-	int nVtx;
+	NJS_CNK_OBJECT* pObj; 
+	int ono, obj_n;
+	int i; 
 	NJS_CNK_MODEL* pModel;
-	int i;
-	int obj_n;
-	int ono;
-	NJS_CNK_OBJECT* pObj;
-	// Line 1250, Address: 0x1dbf00, Func Offset: 0
-	// Line 1251, Address: 0x1dbf04, Func Offset: 0x4
-	// Line 1250, Address: 0x1dbf08, Func Offset: 0x8
-	// Line 1252, Address: 0x1dbf0c, Func Offset: 0xc
-	// Line 1253, Address: 0x1dbf30, Func Offset: 0x30
-	// Line 1254, Address: 0x1dbf38, Func Offset: 0x38
-	// Line 1255, Address: 0x1dbf40, Func Offset: 0x40
-	// Line 1258, Address: 0x1dbf48, Func Offset: 0x48
-	// Line 1259, Address: 0x1dbf4c, Func Offset: 0x4c
-	// Line 1260, Address: 0x1dbf54, Func Offset: 0x54
-	// Line 1264, Address: 0x1dbf58, Func Offset: 0x58
-	// Line 1266, Address: 0x1dbf5c, Func Offset: 0x5c
-	// Line 1262, Address: 0x1dbf60, Func Offset: 0x60
-	// Line 1266, Address: 0x1dbf64, Func Offset: 0x64
-	// Line 1267, Address: 0x1dbf70, Func Offset: 0x70
-	// Line 1277, Address: 0x1dbf74, Func Offset: 0x74
-	// Line 1267, Address: 0x1dbf7c, Func Offset: 0x7c
-	// Line 1268, Address: 0x1dbf80, Func Offset: 0x80
-	// Line 1269, Address: 0x1dbf88, Func Offset: 0x88
-	// Line 1272, Address: 0x1dbf90, Func Offset: 0x90
-	// Line 1273, Address: 0x1dbf98, Func Offset: 0x98
-	// Line 1274, Address: 0x1dbfa0, Func Offset: 0xa0
-	// Line 1275, Address: 0x1dbfa8, Func Offset: 0xa8
-	// Line 1277, Address: 0x1dbfac, Func Offset: 0xac
-	// Line 1278, Address: 0x1dbfb4, Func Offset: 0xb4
-	// Line 1279, Address: 0x1dbfb8, Func Offset: 0xb8
-	// Line 1282, Address: 0x1dbfd8, Func Offset: 0xd8
-	// Func End, Address: 0x1dbfe0, Func Offset: 0xe0
-	scePrintf("bhEne13_RestoreObject - UNIMPLEMENTED!\n");
+	int nVtx; 
+	NJS_POINT4* ps, *pd;
+	HDR_PS* pHdr;
+
+    pObj = epw->mlwP->objP;
+    
+    obj_n = epw->mlwP->obj_num;
+
+    for (ono = 0; ono < obj_n; ono++, pObj++, no++)
+    {
+        pObj->pos[0] = pos[no].x;
+        pObj->pos[1] = pos[no].y;
+        pObj->pos[2] = pos[no].z;
+
+        pModel = pObj->model;
+        
+        if (pModel != NULL)
+        {
+            pHdr = (HDR_PS*)pModel->vlist;
+            
+            ps = (NJS_POINT4*)v[no];
+            
+            nVtx = pHdr->usIndexMax;
+            
+            pd = (NJS_POINT4*)&pHdr[1];
+
+            for (i = 0; i < nVtx; i++)
+            {
+                pd[0].x = ps[0].x;
+                pd[0].y = ps[0].y;
+                pd[0].z = ps[0].z;
+                
+                pd[1].x = ps[1].x;
+                pd[1].y = ps[1].y;
+                pd[1].z = ps[1].z;
+                
+                ps += 2;
+                pd += 2;
+            }
+        }
+    }
+    
+    return no;
 }
 
 // 

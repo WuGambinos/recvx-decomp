@@ -452,37 +452,56 @@ void bhEne13_MV02(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1db370
-void bhEne13_MV03(BH_PWORK* epw)
+// 100% matching!
+void bhEne13_MV03(BH_PWORK* epw) 
 {
-	BH_PWORK* ep;
-	// Line 705, Address: 0x1db370, Func Offset: 0
-	// Line 708, Address: 0x1db390, Func Offset: 0x20
-	// Line 710, Address: 0x1db394, Func Offset: 0x24
-	// Line 709, Address: 0x1db398, Func Offset: 0x28
-	// Line 710, Address: 0x1db39c, Func Offset: 0x2c
-	// Line 711, Address: 0x1db3a0, Func Offset: 0x30
-	// Line 714, Address: 0x1db3a8, Func Offset: 0x38
-	// Line 715, Address: 0x1db3bc, Func Offset: 0x4c
-	// Line 716, Address: 0x1db3c0, Func Offset: 0x50
-	// Line 719, Address: 0x1db3cc, Func Offset: 0x5c
-	// Line 720, Address: 0x1db3d4, Func Offset: 0x64
-	// Line 721, Address: 0x1db3dc, Func Offset: 0x6c
-	// Line 723, Address: 0x1db3e4, Func Offset: 0x74
-	// Line 725, Address: 0x1db3f0, Func Offset: 0x80
-	// Line 726, Address: 0x1db3f4, Func Offset: 0x84
-	// Line 727, Address: 0x1db3f8, Func Offset: 0x88
-	// Line 729, Address: 0x1db3fc, Func Offset: 0x8c
-	// Line 731, Address: 0x1db40c, Func Offset: 0x9c
-	// Line 732, Address: 0x1db430, Func Offset: 0xc0
-	// Line 733, Address: 0x1db434, Func Offset: 0xc4
-	// Line 735, Address: 0x1db448, Func Offset: 0xd8
-	// Line 736, Address: 0x1db44c, Func Offset: 0xdc
-	// Line 738, Address: 0x1db454, Func Offset: 0xe4
-	// Line 743, Address: 0x1db45c, Func Offset: 0xec
-	// Func End, Address: 0x1db464, Func Offset: 0xf4
-	scePrintf("bhEne13_MV03 - UNIMPLEMENTED!\n");
+    BH_PWORK* ep;
+
+    switch (epw->mode3)
+    {
+    case 0:
+        epw->mtn_no = 1;
+        epw->frm_no = 0;
+        
+        epw->hokan_count = 8;
+        epw->hokan_rate  = 45875;
+        
+        if ((*(BH_PWORK**)&epw->exp0[112])->type == 0)
+        {
+            (*(BH_PWORK**)&epw->exp0[112])->mode2 = 1;
+            (*(BH_PWORK**)&epw->exp0[112])->mode3 = 0;
+        }
+        
+        epw->ct0 = 10;
+        
+        epw->mode3++;
+        break;
+    case 1:
+        if (epw->frm_no == 0) 
+        {
+            epw->mode1 = 1;
+            epw->mode2 = 0;
+            epw->mode3 = 0;
+        }
+        
+        if (epw->ct0-- == 0)
+        {
+            ep = *(BH_PWORK**)&epw->exp0[8] + EXP0_I(128);
+            
+            ep->mode3 = 0;
+            
+            if (EXP0_I(984) >= 3)
+            {
+                ep->mode2 = 4;
+            }
+            else
+            {
+                ep->mode2 = 5;
+            }
+        }
+        
+        break;
+    }
 }
 
 // 100% matching!

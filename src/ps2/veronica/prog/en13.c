@@ -902,31 +902,30 @@ BH_PWORK** bhEne13_GetChild(BH_PWORK* epw, int* num)
     return (BH_PWORK**)&epw->exp0[44];
 }
 
-// 
-// Start address: 0x1dc1f0
+// 100% matching!
 void bhEne13_CameraControl(BH_PWORK* epw)
 {
-	// Line 1443, Address: 0x1dc1f0, Func Offset: 0
-	// Line 1445, Address: 0x1dc204, Func Offset: 0x14
-	// Line 1446, Address: 0x1dc214, Func Offset: 0x24
-	// Line 1447, Address: 0x1dc228, Func Offset: 0x38
-	// Line 1448, Address: 0x1dc26c, Func Offset: 0x7c
-	// Line 1449, Address: 0x1dc2b0, Func Offset: 0xc0
-	// Line 1450, Address: 0x1dc2f0, Func Offset: 0x100
-	// Line 1451, Address: 0x1dc2f8, Func Offset: 0x108
-	// Line 1452, Address: 0x1dc31c, Func Offset: 0x12c
-	// Line 1453, Address: 0x1dc35c, Func Offset: 0x16c
-	// Line 1454, Address: 0x1dc3a0, Func Offset: 0x1b0
-	// Line 1455, Address: 0x1dc3c0, Func Offset: 0x1d0
-	// Line 1454, Address: 0x1dc3c4, Func Offset: 0x1d4
-	// Line 1455, Address: 0x1dc3c8, Func Offset: 0x1d8
-	// Line 1454, Address: 0x1dc3cc, Func Offset: 0x1dc
-	// Line 1455, Address: 0x1dc3ec, Func Offset: 0x1fc
-	// Line 1456, Address: 0x1dc3fc, Func Offset: 0x20c
-	// Line 1457, Address: 0x1dc404, Func Offset: 0x214
-	// Line 1461, Address: 0x1dc41c, Func Offset: 0x22c
-	// Func End, Address: 0x1dc430, Func Offset: 0x240
-	scePrintf("bhEne13_CameraControl - UNIMPLEMENTED!\n");
+    if (epw->mode0 != 5)
+    {
+        if ((epw->flg & 0x80000))
+        {
+            cam.ofx = (EXP0_F(980) * njRandom()) - (EXP0_F(980) / 2.0f);
+            cam.ofy = (EXP0_F(980) * njRandom()) - (EXP0_F(980) / 2.0f);
+            cam.ofz = (EXP0_F(980) * njRandom()) - (EXP0_F(980) / 2.0f);
+        }
+        else if (EXP0_F(980) > 0.01f)
+        {
+            cam.ofx = (EXP0_F(980) * njRandom()) - (EXP0_F(980) / 2.0f);
+            cam.ofy = (EXP0_F(980) * njRandom()) - (EXP0_F(980) / 2.0f);
+            cam.ofz = (EXP0_F(980) * njRandom()) - (EXP0_F(980) / 2.0f);
+            
+            EXP0_F(980) *= 0.9f;
+        }
+        else
+        {
+            cam.ofx = cam.ofy = cam.ofz = 0;
+        }
+    }
 }
 
 // 100% matching!

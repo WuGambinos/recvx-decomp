@@ -341,19 +341,20 @@ void bhEne13_BR01(BH_PWORK* epw)
 	scePrintf("bhEne13_BR01 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1db080
+// 100% matching!
 void bhEne13_Move(BH_PWORK* epw)
 {
-	// Line 572, Address: 0x1db080, Func Offset: 0
-	// Line 574, Address: 0x1db08c, Func Offset: 0xc
-	// Line 575, Address: 0x1db09c, Func Offset: 0x1c
-	// Line 579, Address: 0x1db0a4, Func Offset: 0x24
-	// Line 582, Address: 0x1db0c4, Func Offset: 0x44
-	// Line 589, Address: 0x1db168, Func Offset: 0xe8
-	// Line 591, Address: 0x1db174, Func Offset: 0xf4
-	// Func End, Address: 0x1db184, Func Offset: 0x104
-	scePrintf("bhEne13_Move - UNIMPLEMENTED!\n");
+    if (epw->mode1 == 1) 
+    {
+        bhEne13_Brain(epw);
+    }
+    
+    bhEne13_MoveMode2[epw->mode2](epw);
+    
+    if (((((*(BH_PWORK**)&epw->exp0[20])->flg & 0x4)) || (((*(BH_PWORK**)&epw->exp0[24])->flg & 0x4)) || (((*(BH_PWORK**)&epw->exp0[28])->flg & 0x4)) || (((*(BH_PWORK**)&epw->exp0[32])->flg & 0x4)) || (((*(BH_PWORK**)&epw->exp0[36])->flg & 0x4)) || (((*(BH_PWORK**)&epw->exp0[40])->flg & 0x4))) || ((*(BH_PWORK**)&epw->exp0[112] != NULL) && ((*(BH_PWORK**)&epw->exp0[112])->type == 0) && (((*(BH_PWORK**)&epw->exp0[112])->flg & 0x4)))) 
+    {
+        bhEne13_InitDamage(epw);
+    }
 }
 
 // 100% matching!

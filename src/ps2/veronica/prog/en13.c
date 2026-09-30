@@ -499,29 +499,37 @@ void bhEne13_Damage(BH_PWORK* epw)
 	scePrintf("bhEne13_Damage - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1db640
+// 100% matching!
 void bhEne13_DG00(BH_PWORK* epw)
 {
-	// Line 821, Address: 0x1db640, Func Offset: 0
-	// Line 823, Address: 0x1db660, Func Offset: 0x20
-	// Line 825, Address: 0x1db668, Func Offset: 0x28
-	// Line 824, Address: 0x1db66c, Func Offset: 0x2c
-	// Line 825, Address: 0x1db670, Func Offset: 0x30
-	// Line 826, Address: 0x1db674, Func Offset: 0x34
-	// Line 827, Address: 0x1db67c, Func Offset: 0x3c
-	// Line 828, Address: 0x1db6a0, Func Offset: 0x60
-	// Line 830, Address: 0x1db6ac, Func Offset: 0x6c
-	// Line 831, Address: 0x1db6bc, Func Offset: 0x7c
-	// Line 832, Address: 0x1db6c4, Func Offset: 0x84
-	// Line 833, Address: 0x1db6c8, Func Offset: 0x88
-	// Line 834, Address: 0x1db6cc, Func Offset: 0x8c
-	// Line 836, Address: 0x1db6d0, Func Offset: 0x90
-	// Line 841, Address: 0x1db6e0, Func Offset: 0xa0
-	// Line 842, Address: 0x1db6fc, Func Offset: 0xbc
-	// Line 845, Address: 0x1db708, Func Offset: 0xc8
-	// Func End, Address: 0x1db710, Func Offset: 0xd0
-	scePrintf("bhEne13_DG00 - UNIMPLEMENTED!\n");
+    switch (epw->mode3)
+    { 
+    case 0:
+        epw->mtn_no = 3;
+        epw->frm_no = 0;
+        
+        epw->hokan_count = 8;
+        epw->hokan_rate  = 45875;
+        
+        epw->ct0 = epw->mnwP[epw->mtn_no].frm_num - 1;
+        
+        epw->mode3++;
+    case 1:
+        if (epw->ct0-- == 0) 
+        {
+            epw->mode0 = 1;
+            epw->mode1 = 1;
+            epw->mode2 = 0;
+            epw->mode3 = 0;
+            
+            epw->flg &= ~0x4;
+        }
+        
+        if ((epw->frm_no == 3932160) && (epw->hp < 0))
+        {
+            epw->flg |= 0x2;
+        }
+    }
 }
 
 // 

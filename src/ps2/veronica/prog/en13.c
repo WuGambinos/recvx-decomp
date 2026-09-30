@@ -4,6 +4,7 @@
 #include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/main.h"
 #include "../../../ps2/veronica/prog/subpl.h"
+#include "../../../ps2/veronica/prog/zonzon1.h"
 
 // ENEMY: Second Form Alexia 
 
@@ -934,20 +935,26 @@ void bhEne13_SetCamera(BH_PWORK* epw, float f)
     EXP0_F(980) = f;
 }
 
-// 
-// Start address: 0x1dc440
+// 100% matching!
 int bhEne13_SelectTentacle(BH_PWORK* epw)
 {
-	int ang;
-	// Line 1483, Address: 0x1dc440, Func Offset: 0
-	// Line 1486, Address: 0x1dc44c, Func Offset: 0xc
-	// Line 1488, Address: 0x1dc480, Func Offset: 0x40
-	// Line 1489, Address: 0x1dc4c8, Func Offset: 0x88
-	// Line 1490, Address: 0x1dc4dc, Func Offset: 0x9c
-	// Line 1492, Address: 0x1dc4f0, Func Offset: 0xb0
-	// Line 1493, Address: 0x1dc4f4, Func Offset: 0xb4
-	// Func End, Address: 0x1dc504, Func Offset: 0xc4
-	scePrintf("bhEne13_SelectTentacle - UNIMPLEMENTED!\n");
+    int ang;
+
+    ang = (short)(bhArcTan2(epw->px - plp->px, epw->pz - plp->pz) - epw->ay);
+	
+    if (njRandom() < 0.9f)
+    {
+        if (ang > NJM_DEG_ANG(30.0f))
+        {
+            return 1;
+        }
+        else if (ang < -NJM_DEG_ANG(30.0f))
+        {
+            return 2;
+        }
+    }
+
+    return 0;
 }
 
 // 

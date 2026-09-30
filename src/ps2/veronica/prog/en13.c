@@ -464,7 +464,7 @@ void bhEne13_MV03(BH_PWORK* epw)
 // 100% matching!
 void bhEne13_Nage()
 {
-	
+
 }
 
 // 
@@ -856,18 +856,15 @@ void bhEne13_PutAttacker(BH_PWORK* epw, int no)
 	scePrintf("bhEne13_PutAttacker - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1dc160
+// 100% matching!
 void bhEne13_Tentacle(BH_PWORK* epw, int no)
 {
-	// Line 1389, Address: 0x1dc160, Func Offset: 0
-	// Line 1390, Address: 0x1dc170, Func Offset: 0x10
-	// Line 1391, Address: 0x1dc17c, Func Offset: 0x1c
-	// Line 1392, Address: 0x1dc188, Func Offset: 0x28
-	// Line 1394, Address: 0x1dc194, Func Offset: 0x34
-	// Line 1395, Address: 0x1dc19c, Func Offset: 0x3c
-	// Func End, Address: 0x1dc1a4, Func Offset: 0x44
-	scePrintf("bhEne13_Tentacle - UNIMPLEMENTED!\n");
+    (*(unsigned char**)&epw->exp0[976])[12] = 1;
+    (*(unsigned char**)&epw->exp0[976])[13] = 0;
+    (*(unsigned char**)&epw->exp0[976])[14] = 1;
+    (*(unsigned char**)&epw->exp0[976])[15] = 0;
+    
+    (*(unsigned short**)&epw->exp0[976])[3] = no;
 }
 
 // 100% matching!

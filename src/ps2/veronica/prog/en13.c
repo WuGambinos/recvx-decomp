@@ -461,13 +461,10 @@ void bhEne13_MV03(BH_PWORK* epw)
 	scePrintf("bhEne13_MV03 - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1db470
+// 100% matching!
 void bhEne13_Nage()
 {
-	// Line 754, Address: 0x1db470, Func Offset: 0
-	// Func End, Address: 0x1db478, Func Offset: 0x8
-	scePrintf("bhEne13_Nage - UNIMPLEMENTED!\n");
+	
 }
 
 // 
@@ -545,7 +542,7 @@ void bhEne13_Die(BH_PWORK* epw)
         (*(unsigned char**)&epw->exp0[976])[14] = 0;
         (*(unsigned char**)&epw->exp0[976])[15] = 0;
 
-        for(i = 0; i < 4; i++)
+        for (i = 0; i < 4; i++)
         {
             ((unsigned char**)epw->exp0)[1 + i][12] = 4;
             ((unsigned char**)epw->exp0)[1 + i][13] = 0;

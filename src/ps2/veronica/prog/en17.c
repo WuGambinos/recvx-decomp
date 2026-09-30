@@ -531,16 +531,16 @@ void bhEne17_DamageAdd(BH_PWORK *epw)
 // 100% matching!
 int bhEne17_SetMtn(BH_PWORK* epw) 
 {
-    O_WORK* owk;
-	NJS_POINT3 ps;
-	NJS_POINT3 ofs;
-	int sfrm_no;
-	BH_PWORK* armp;
-	int lnk_obj;    
-	int frm;
-    int i; // Moved in DWARF
-	int ret; 
 	NJS_CNK_OBJECT* obj;
+	int ret; 
+	int frm;
+	int lnk_obj;    
+	BH_PWORK* armp;
+	int sfrm_no;
+	NJS_POINT3 ofs;
+    int i;
+	NJS_POINT3 ps;
+    O_WORK* owk;
 
     // NOT IN DWARF
     unsigned int argb = 0;
@@ -571,11 +571,11 @@ int bhEne17_SetMtn(BH_PWORK* epw)
                 
                 owk = &armp->mlwP->owP[1];
                 
-                ps.x = 0.0f;                       
-                ps.y = 0.0f;                       
-                ps.z = -16.15572f;
+                ofs.x = 0.0f;                       
+                ofs.y = 0.0f;                       
+                ofs.z = -16.15572f;
 
-                bhEne17_AfterimageAxEffect(epw, &owk->mtx, &ps, argb);
+                bhEne17_AfterimageAxEffect(epw, &owk->mtx, &ofs, argb);
             } 
 
             epw->frm_no = sfrm_no + 0xFFFC0000;
@@ -621,10 +621,10 @@ int bhEne17_SetMtn(BH_PWORK* epw)
 
             if (frm == 0 || frm == 25){
                 for(i = 0; i < 4; i++) {
-                    ofs.x = epw->px + ((80.0f * njRandom()) - 40.0f);
-                    ofs.y = 45.0f;
-                    ofs.z = epw->pz + ((40.0f * njRandom()) - 20.0f);
-                    bhEff_SetPtcl(epw, &ofs, 8);
+                    ps.x = epw->px + ((80.0f * njRandom()) - 40.0f);
+                    ps.y = 45.0f;
+                    ps.z = epw->pz + ((40.0f * njRandom()) - 20.0f);
+                    bhEff_SetPtcl(epw, &ps, 8);
                 }
             }
         } else if (epw->mtn_no == 1) {

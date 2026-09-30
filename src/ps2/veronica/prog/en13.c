@@ -227,11 +227,10 @@ void bhEne13_Init(BH_PWORK* epw)
 	scePrintf("bhEne13_Init - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1daab0
+// 100% matching!
 void bhEne13_Brain(BH_PWORK* epw)
 {
-	scePrintf("bhEne13_Brain - UNIMPLEMENTED!\n");
+    bhEne13_BrainType[epw->type](epw);
 }
 
 // 

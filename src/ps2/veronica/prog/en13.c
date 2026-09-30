@@ -676,32 +676,35 @@ void bhEne13_Finish(BH_PWORK* epw)
 	scePrintf("bhEne13_Finish - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1dbd20
+// 100% matching!
 void bhEne13_ScaleModel(NJS_CNK_OBJECT* pObj, float sx, float sy, float sz)
 {
-	HDR_PS* pHdr;
-	NJS_POINT4* p;
-	int i;
 	int nVtx;
-	// Line 1087, Address: 0x1dbd20, Func Offset: 0
-	// Line 1089, Address: 0x1dbd2c, Func Offset: 0xc
-	// Line 1093, Address: 0x1dbd30, Func Offset: 0x10
-	// Line 1091, Address: 0x1dbd34, Func Offset: 0x14
-	// Line 1093, Address: 0x1dbd38, Func Offset: 0x18
-	// Line 1094, Address: 0x1dbd44, Func Offset: 0x24
-	// Line 1102, Address: 0x1dbd48, Func Offset: 0x28
-	// Line 1094, Address: 0x1dbd50, Func Offset: 0x30
-	// Line 1095, Address: 0x1dbd58, Func Offset: 0x38
-	// Line 1096, Address: 0x1dbd64, Func Offset: 0x44
-	// Line 1098, Address: 0x1dbd70, Func Offset: 0x50
-	// Line 1099, Address: 0x1dbd7c, Func Offset: 0x5c
-	// Line 1100, Address: 0x1dbd88, Func Offset: 0x68
-	// Line 1102, Address: 0x1dbd94, Func Offset: 0x74
-	// Line 1103, Address: 0x1dbd9c, Func Offset: 0x7c
-	// Line 1104, Address: 0x1dbda0, Func Offset: 0x80
-	// Func End, Address: 0x1dbda8, Func Offset: 0x88
-	scePrintf("bhEne13_ScaleModel - UNIMPLEMENTED!\n");
+	int i; 
+ 	NJS_POINT4* p; 
+	HDR_PS* pHdr; 
+   
+    if (pObj->model != NULL)
+    {
+        pHdr = (HDR_PS*)pObj->model->vlist;
+        
+        nVtx = pHdr->usIndexMax;
+        
+        p = (NJS_POINT4*)&pHdr[1];
+    
+        for (i = 0; i < nVtx; i++)
+        {
+            p[0].x *= sx;
+            p[0].y *= sy;
+            p[0].z *= sz;
+            
+            p[1].x *= sx;
+            p[1].y *= sy;
+            p[1].z *= sz;
+            
+            p += 2;
+        }
+    }
 }
 
 // 

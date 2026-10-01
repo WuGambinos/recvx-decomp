@@ -242,6 +242,24 @@ static void (*Ply_func[8])(BH_PWORK*) =
 /*static JOINT_PARE jointTree[11];
 static char joint_tree_buf[12];*/
 
+// TODO: find a way to match LockLeg without using this
+static inline int LockLeg_CheckEnd(int prm0, char prm1)
+{
+    int temp; 
+
+    temp = 0;
+    
+    if (prm0 == prm1) 
+    {
+        if (prm0 == -1)
+        {
+            temp = 1;
+        }
+    }
+    
+    return (temp != 0) ? 1 : 0;
+}
+
 // 99.80% matching
 static int target_direction(BH_PWORK* epw)
 {
@@ -1536,35 +1554,46 @@ static int VacumeToPoint(BH_PWORK* pw, NJS_VECTOR* pos)
     return 1;
 }
 
-// 
-// Start address: 0x1e5680
+// 100% matching! 
 static void LockLeg(BH_PWORK* epw)
 {
+    int i, j;        
 	char lock_leg;
-	int j;
-	int i;
-	// Line 2680, Address: 0x1e5680, Func Offset: 0
-	// Line 2682, Address: 0x1e568c, Func Offset: 0xc
-	// Line 2680, Address: 0x1e5690, Func Offset: 0x10
-	// Line 2682, Address: 0x1e5694, Func Offset: 0x14
-	// Line 2683, Address: 0x1e569c, Func Offset: 0x1c
-	// Line 2684, Address: 0x1e56a8, Func Offset: 0x28
-	// Line 2685, Address: 0x1e56bc, Func Offset: 0x3c
-	// Line 2686, Address: 0x1e56dc, Func Offset: 0x5c
-	// Line 2688, Address: 0x1e56fc, Func Offset: 0x7c
-	// Line 2690, Address: 0x1e570c, Func Offset: 0x8c
-	// Line 2691, Address: 0x1e5714, Func Offset: 0x94
-	// Line 2694, Address: 0x1e571c, Func Offset: 0x9c
-	// Line 2695, Address: 0x1e5750, Func Offset: 0xd0
-	// Line 2696, Address: 0x1e5760, Func Offset: 0xe0
-	// Line 2697, Address: 0x1e576c, Func Offset: 0xec
-	// Line 2698, Address: 0x1e5774, Func Offset: 0xf4
-	// Line 2700, Address: 0x1e5780, Func Offset: 0x100
-	// Line 2702, Address: 0x1e578c, Func Offset: 0x10c
-	// Line 2703, Address: 0x1e57c0, Func Offset: 0x140
-	// Func End, Address: 0x1e57cc, Func Offset: 0x14c
-	scePrintf("LockLeg - UNIMPLEMENTED!\n");
-}
+
+    for (i = 0; LockLeg_CheckEnd(leglock_tab[i].mtn_no, leglock_tab[i].default_lr) == 0; i++)
+    {
+        if (epw->mtn_no == leglock_tab[i].mtn_no)
+        {
+            lock_leg = leglock_tab[i].default_lr;
+
+            for (j = 0; LockLeg_CheckEnd(leglock_tab[i].list[j].start, leglock_tab[i].list[j].end) == 0; j++)
+            {
+                if ((leglock_tab[i].list[j].start <= (epw->frm_no / 65536)) && (leglock_tab[i].list[j].end > (epw->frm_no / 65536)))
+                {
+                    if (lock_leg == 0)
+                    {
+                        lock_leg = 1;
+                    }
+                    else
+                    {
+                        lock_leg = 0;
+                    }
+                }
+            }
+
+            if (lock_leg == 0)
+            {
+                bhFixPosition(epw, rfoot_joint_tree);
+            }
+            else
+            {
+                bhFixPosition(epw, lfoot_joint_tree);
+            }
+            
+            return;
+        }
+    }
+} 
 
 // 100% decompiled
 int bhEne15_AttackPlayerCC(NJS_CAPSULE* cap, NJS_VECTOR* attack_v, int damage)

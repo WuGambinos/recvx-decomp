@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 98.7012,
+    "fuzzy_match_percent": 98.95645,
     "total_code": "1904472",
-    "matched_code": "1565712",
-    "matched_code_percent": 82.212395,
+    "matched_code": "1570624",
+    "matched_code_percent": 82.47031,
     "total_data": "28428164",
     "matched_data": "28396324",
     "matched_data_percent": 99.888,
     "total_functions": 4529,
-    "matched_functions": 4258,
-    "matched_functions_percent": 94.016335,
+    "matched_functions": 4264,
+    "matched_functions_percent": 94.14882,
     "total_units": 200
   },
   "units": [
@@ -9971,16 +9971,16 @@
     {
       "name": "ps2/veronica/prog/en13",
       "measures": {
-        "fuzzy_match_percent": 53.804184,
+        "fuzzy_match_percent": 100.0,
         "total_code": "10520",
-        "matched_code": "5608",
-        "matched_code_percent": 53.307987,
+        "matched_code": "10520",
+        "matched_code_percent": 100.0,
         "total_data": "368",
         "matched_data": "368",
         "matched_data_percent": 100.0,
         "total_functions": 28,
-        "matched_functions": 22,
-        "matched_functions_percent": 78.57143,
+        "matched_functions": 28,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
@@ -10001,7 +10001,7 @@
         {
           "name": ".text",
           "size": "10688",
-          "fuzzy_match_percent": 53.804184,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -10034,7 +10034,7 @@
         {
           "name": "bhEne13_BR00",
           "size": "936",
-          "fuzzy_match_percent": 0.96153843,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1936"
         },
@@ -10090,7 +10090,7 @@
         {
           "name": "bhEne13_Damage",
           "size": "436",
-          "fuzzy_match_percent": 2.1100917,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "4416"
         },
@@ -10111,14 +10111,14 @@
         {
           "name": "bhEne13_InitDamage",
           "size": "748",
-          "fuzzy_match_percent": 0.90909094,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5472"
         },
         {
           "name": "bhEne13_Finish",
           "size": "396",
-          "fuzzy_match_percent": 2.3232324,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "6224"
         },
@@ -10146,7 +10146,7 @@
         {
           "name": "bhEne13_PutAttacker",
           "size": "376",
-          "fuzzy_match_percent": 2.393617,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "7328"
         },
@@ -10202,7 +10202,7 @@
         {
           "name": "bhEne13_PlayerControl",
           "size": "2020",
-          "fuzzy_match_percent": 0.44554454,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "8656"
         }
@@ -10336,7 +10336,7 @@
     {
       "name": "ps2/veronica/prog/en14",
       "measures": {
-        "fuzzy_match_percent": 99.974075,
+        "fuzzy_match_percent": 99.98475,
         "total_code": "13116",
         "matched_code": "8172",
         "matched_code_percent": 62.30558,
@@ -10372,7 +10372,7 @@
         {
           "name": ".text",
           "size": "13280",
-          "fuzzy_match_percent": 99.974075,
+          "fuzzy_match_percent": 99.98475,
           "metadata": {}
         },
         {
@@ -10587,7 +10587,7 @@
         {
           "name": "bhEne14_Acid",
           "size": "1056",
-          "fuzzy_match_percent": 99.829544,
+          "fuzzy_match_percent": 99.96212,
           "metadata": {},
           "address": "10800"
         },
@@ -42251,16 +42251,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 98.641266,
+        "fuzzy_match_percent": 98.908295,
         "total_code": "1820460",
-        "matched_code": "1481700",
-        "matched_code_percent": 81.39152,
+        "matched_code": "1486612",
+        "matched_code_percent": 81.66134,
         "total_data": "28336764",
         "matched_data": "28330036",
         "matched_data_percent": 99.97626,
         "total_functions": 3834,
-        "matched_functions": 3563,
-        "matched_functions_percent": 92.93166,
+        "matched_functions": 3569,
+        "matched_functions_percent": 93.08816,
         "total_units": 152
       }
     },

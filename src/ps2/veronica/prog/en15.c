@@ -1401,42 +1401,67 @@ static int GetRelay(BH_PWORK* epw, MTN_RELAY** ret)
 	scePrintf("GetRelay - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1e52e0
+// 100% matching!
 static void SetMtn(BH_PWORK* epw)
 {
-	MTN_RELAY* relay;
-	// Line 2574, Address: 0x1e52e0, Func Offset: 0
-	// Line 2575, Address: 0x1e52ec, Func Offset: 0xc
-	// Line 2577, Address: 0x1e5300, Func Offset: 0x20
-	// Line 2578, Address: 0x1e5310, Func Offset: 0x30
-	// Line 2580, Address: 0x1e531c, Func Offset: 0x3c
-	// Line 2581, Address: 0x1e5320, Func Offset: 0x40
-	// Line 2582, Address: 0x1e5328, Func Offset: 0x48
-	// Line 2583, Address: 0x1e5350, Func Offset: 0x70
-	// Line 2584, Address: 0x1e5358, Func Offset: 0x78
-	// Line 2586, Address: 0x1e535c, Func Offset: 0x7c
-	// Line 2584, Address: 0x1e5360, Func Offset: 0x80
-	// Line 2586, Address: 0x1e5368, Func Offset: 0x88
-	// Line 2587, Address: 0x1e5380, Func Offset: 0xa0
-	// Line 2589, Address: 0x1e5394, Func Offset: 0xb4
-	// Line 2590, Address: 0x1e53a8, Func Offset: 0xc8
-	// Line 2591, Address: 0x1e53c0, Func Offset: 0xe0
-	// Line 2593, Address: 0x1e53c8, Func Offset: 0xe8
-	// Line 2595, Address: 0x1e53dc, Func Offset: 0xfc
-	// Line 2596, Address: 0x1e53e0, Func Offset: 0x100
-	// Line 2597, Address: 0x1e53e4, Func Offset: 0x104
-	// Line 2598, Address: 0x1e53e8, Func Offset: 0x108
-	// Line 2599, Address: 0x1e53f0, Func Offset: 0x110
-	// Line 2601, Address: 0x1e53fc, Func Offset: 0x11c
-	// Line 2602, Address: 0x1e5414, Func Offset: 0x134
-	// Line 2604, Address: 0x1e5428, Func Offset: 0x148
-	// Line 2605, Address: 0x1e543c, Func Offset: 0x15c
-	// Line 2606, Address: 0x1e5444, Func Offset: 0x164
-	// Line 2609, Address: 0x1e544c, Func Offset: 0x16c
-	// Line 2610, Address: 0x1e5460, Func Offset: 0x180
-	// Func End, Address: 0x1e5470, Func Offset: 0x190
-	scePrintf("SetMtn - UNIMPLEMENTED!\n");
+    MTN_RELAY* relay;
+
+    if (EXP0_S(88) != -1)
+    {
+        if (GetRelay(epw, &relay) != 0)
+        {
+            if (relay != NULL)
+            {
+                epw->hokan_rate  = 19660;
+                epw->hokan_count = 30;
+                
+                epw->frm_no = 65536.0f * relay->to;
+                
+                epw->mtn_add = 65536;
+                epw->mtn_no  = relay->next_mtn_no;
+
+                if (bhSetMotion(epw, 0, epw->mtn_md, epw->mtn_tp) != 0)
+                {
+                    epw->flg |=  0x2000000;
+                }
+                else
+                {
+                    epw->flg &= ~0x2000000;
+                }
+
+                if (EXP0_S(88) == epw->mtn_no)
+                {
+                    EXP0_S(88) = -1;
+                }
+
+                return;
+            }
+        }
+        else if (epw->mtn_no != EXP0_S(88))
+        {
+            epw->hokan_rate  = 6553;
+            epw->hokan_count = 0;
+            
+            epw->frm_no = 0;
+            
+            epw->mtn_add = 65536;
+            epw->mtn_no  = EXP0_S(88);
+
+            if (bhSetMotion(epw, 0, epw->mtn_md, epw->mtn_tp) != 0)
+            {
+                epw->flg |=  0x2000000;
+            }
+            else
+            {
+                epw->flg &= ~0x2000000;
+            }
+
+            EXP0_S(88) = -1;
+            return;
+        }
+    }
+
+    bhSetMotion(epw, epw->mtn_add, epw->mtn_md, epw->mtn_tp);
 }
 
 // 100% matching!

@@ -724,81 +724,132 @@ void bhEne13_Die(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1db8a0
-void bhEne13_InitDamage(BH_PWORK* epw)
+// 100% matching!
+void bhEne13_InitDamage(BH_PWORK* epw) 
 {
-	int flg;
-	int dflg;
-	int wep_no;
-	int i;
-	int max_dam;
-	int dam2;
-	int dam1;
-	int dam0;
-	int dam;
-	// Line 897, Address: 0x1db8a0, Func Offset: 0
-	// Line 901, Address: 0x1db8d0, Func Offset: 0x30
-	// Line 904, Address: 0x1db8e0, Func Offset: 0x40
-	// Line 905, Address: 0x1db8e8, Func Offset: 0x48
-	// Line 906, Address: 0x1db904, Func Offset: 0x64
-	// Line 914, Address: 0x1db910, Func Offset: 0x70
-	// Line 915, Address: 0x1db920, Func Offset: 0x80
-	// Line 917, Address: 0x1db92c, Func Offset: 0x8c
-	// Line 916, Address: 0x1db930, Func Offset: 0x90
-	// Line 917, Address: 0x1db934, Func Offset: 0x94
-	// Line 918, Address: 0x1db940, Func Offset: 0xa0
-	// Line 921, Address: 0x1db948, Func Offset: 0xa8
-	// Line 923, Address: 0x1db958, Func Offset: 0xb8
-	// Line 924, Address: 0x1db97c, Func Offset: 0xdc
-	// Line 925, Address: 0x1db988, Func Offset: 0xe8
-	// Line 926, Address: 0x1db994, Func Offset: 0xf4
-	// Line 928, Address: 0x1db9a0, Func Offset: 0x100
-	// Line 929, Address: 0x1db9a4, Func Offset: 0x104
-	// Line 927, Address: 0x1db9a8, Func Offset: 0x108
-	// Line 929, Address: 0x1db9ac, Func Offset: 0x10c
-	// Line 928, Address: 0x1db9b4, Func Offset: 0x114
-	// Line 929, Address: 0x1db9b8, Func Offset: 0x118
-	// Line 928, Address: 0x1db9bc, Func Offset: 0x11c
-	// Line 929, Address: 0x1db9c0, Func Offset: 0x120
-	// Line 933, Address: 0x1db9c4, Func Offset: 0x124
-	// Line 937, Address: 0x1db9e4, Func Offset: 0x144
-	// Line 941, Address: 0x1dba10, Func Offset: 0x170
-	// Line 943, Address: 0x1dba18, Func Offset: 0x178
-	// Line 981, Address: 0x1dba28, Func Offset: 0x188
-	// Line 982, Address: 0x1dba38, Func Offset: 0x198
-	// Line 983, Address: 0x1dba40, Func Offset: 0x1a0
-	// Line 986, Address: 0x1dba50, Func Offset: 0x1b0
-	// Line 987, Address: 0x1dba64, Func Offset: 0x1c4
-	// Line 988, Address: 0x1dba6c, Func Offset: 0x1cc
-	// Line 991, Address: 0x1dba7c, Func Offset: 0x1dc
-	// Line 992, Address: 0x1dba90, Func Offset: 0x1f0
-	// Line 993, Address: 0x1dba98, Func Offset: 0x1f8
-	// Line 996, Address: 0x1dbaa8, Func Offset: 0x208
-	// Line 997, Address: 0x1dbab0, Func Offset: 0x210
-	// Line 998, Address: 0x1dbab8, Func Offset: 0x218
-	// Line 999, Address: 0x1dbac4, Func Offset: 0x224
-	// Line 1004, Address: 0x1dbac8, Func Offset: 0x228
-	// Line 1005, Address: 0x1dbad0, Func Offset: 0x230
-	// Line 1006, Address: 0x1dbad8, Func Offset: 0x238
-	// Line 1007, Address: 0x1dbadc, Func Offset: 0x23c
-	// Line 1008, Address: 0x1dbae0, Func Offset: 0x240
-	// Line 1011, Address: 0x1dbae4, Func Offset: 0x244
-	// Line 1012, Address: 0x1dbaf8, Func Offset: 0x258
-	// Line 1014, Address: 0x1dbb04, Func Offset: 0x264
-	// Line 1015, Address: 0x1dbb08, Func Offset: 0x268
-	// Line 1016, Address: 0x1dbb0c, Func Offset: 0x26c
-	// Line 1015, Address: 0x1dbb10, Func Offset: 0x270
-	// Line 1016, Address: 0x1dbb18, Func Offset: 0x278
-	// Line 1017, Address: 0x1dbb24, Func Offset: 0x284
-	// Line 1018, Address: 0x1dbb2c, Func Offset: 0x28c
-	// Line 1020, Address: 0x1dbb34, Func Offset: 0x294
-	// Line 1021, Address: 0x1dbb38, Func Offset: 0x298
-	// Line 1022, Address: 0x1dbb44, Func Offset: 0x2a4
-	// Line 1023, Address: 0x1dbb50, Func Offset: 0x2b0
-	// Line 1028, Address: 0x1dbb5c, Func Offset: 0x2bc
-	// Func End, Address: 0x1dbb8c, Func Offset: 0x2ec
-	scePrintf("bhEne13_InitDamage - UNIMPLEMENTED!\n");
+    int dam, dam0, dam1, dam2, max_dam;    
+    int i;      
+    int wep_no;  
+    int dflg, flg;   
+    
+    dam0 = dam1 = dam2 = max_dam = 0;
+
+    for (i = 0; i < 6; i++)
+    {
+        if (((*(BH_PWORK**)(&epw->exp0[20] + (4 * i)))->flg & 0x4))
+        {
+            (*(BH_PWORK**)(&epw->exp0[20] + (4 * i)))->flg &= ~0x4;
+
+            dam = bhEne18_HitMark(*(BH_PWORK**)(&epw->exp0[20] + (4 * i)));
+
+            if (max_dam < dam)
+            {
+                max_dam = dam;
+
+                wep_no = (*(BH_PWORK**)(&epw->exp0[20] + (4 * i)))->wpnr_no;
+                
+                dflg = (*(BH_PWORK**)(&epw->exp0[20] + (4 * i)))->flg2 & 0x4;
+            }
+        }
+    }
+
+    if (((*(BH_PWORK**)&epw->exp0[112])->type == 0) && (((*(BH_PWORK**)&epw->exp0[112])->flg & 0x4)))
+    {
+        (*(BH_PWORK**)&epw->exp0[112])->flg &= ~0x4;
+
+        dam = bhEne14_HitMark(*(BH_PWORK**)&epw->exp0[112]);
+
+        if (max_dam < dam)
+        {
+            max_dam = dam;
+
+            wep_no = (*(BH_PWORK**)&epw->exp0[112])->wpnr_no;
+            
+            dflg = (*(BH_PWORK**)(&epw->exp0[20] + (4 * i)))->flg2 & 0x4;
+        }
+    }
+
+    if ((max_dam != 0) || (dam0 != 0) || (dam1 != 0) || (dam2 != 0))
+    {
+        flg = 0;
+
+        switch (wep_no) 
+        {
+        case 15:
+        case 16:
+        case 17:
+            if (dflg == 0) 
+            {
+                break;
+            }
+        default:
+            bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 8961);
+            break;
+        }
+        
+        if (epw->hp > 600)
+        {
+            epw->hp -= max_dam;
+
+            if (epw->hp < 600)
+            {
+                flg = 1;
+            }
+        }
+        else if (epw->hp > 400)
+        {
+            epw->hp -= max_dam;
+
+            if (epw->hp < 400)
+            {
+                flg = 1;
+            }
+        }
+        else if (epw->hp > 200)
+        {
+            epw->hp -= max_dam;
+
+            if (epw->hp < 200)
+            {
+                flg = 1;
+            }
+        }
+        else
+        {
+            epw->hp -= max_dam;
+
+            if (epw->hp < 0)
+            {
+                flg = 1;
+            }
+        }
+
+        if (flg != 0)
+        {
+            epw->mode0 = 3;
+            epw->mode1 = 0;
+            epw->mode2 = 0;
+            epw->mode3 = 0;
+
+            if ((*(BH_PWORK**)&epw->exp0[112])->type == 0)
+            {
+                if (epw->hp < 0)
+                {
+                    (*(BH_PWORK**)&epw->exp0[112])->mode0 = 3;
+                    (*(BH_PWORK**)&epw->exp0[112])->mode1 = 0;
+                    (*(BH_PWORK**)&epw->exp0[112])->mode2 = 1;
+                    (*(BH_PWORK**)&epw->exp0[112])->mode3 = 0;
+                }
+                else
+                {
+                    (*(BH_PWORK**)&epw->exp0[112])->mode0 = 3;
+                    (*(BH_PWORK**)&epw->exp0[112])->mode1 = 0;
+                    (*(BH_PWORK**)&epw->exp0[112])->mode2 = 0;
+                    (*(BH_PWORK**)&epw->exp0[112])->mode3 = 0;
+                }
+            }
+        }
+    }
 }
 
 // 100% matching!

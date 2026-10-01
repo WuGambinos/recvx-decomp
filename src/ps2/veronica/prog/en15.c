@@ -2563,39 +2563,146 @@ static void FallingPlayer(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1e83f0
+// 98.28% matching
 static void SlidePlayer(BH_PWORK* epw)
 {
-	//int _mtnno;
-	NJS_POINT3 delta;
-	int _mtnno;
-	// Line 3628, Address: 0x1e83f0, Func Offset: 0
-	// Line 3629, Address: 0x1e8404, Func Offset: 0x14
-	// Line 3630, Address: 0x1e8418, Func Offset: 0x28
-	// Line 3631, Address: 0x1e853c, Func Offset: 0x14c
-	// Line 3633, Address: 0x1e8544, Func Offset: 0x154
-	// Line 3634, Address: 0x1e8558, Func Offset: 0x168
-	// Line 3635, Address: 0x1e8568, Func Offset: 0x178
-	// Line 3636, Address: 0x1e85a8, Func Offset: 0x1b8
-	// Line 3638, Address: 0x1e85ac, Func Offset: 0x1bc
-	// Line 3639, Address: 0x1e864c, Func Offset: 0x25c
-	// Line 3642, Address: 0x1e8660, Func Offset: 0x270
-	// Line 3639, Address: 0x1e8664, Func Offset: 0x274
-	// Line 3642, Address: 0x1e8668, Func Offset: 0x278
-	// Line 3639, Address: 0x1e866c, Func Offset: 0x27c
-	// Line 3642, Address: 0x1e8674, Func Offset: 0x284
-	// Line 3643, Address: 0x1e8684, Func Offset: 0x294
-	// Line 3642, Address: 0x1e8688, Func Offset: 0x298
-	// Line 3643, Address: 0x1e8690, Func Offset: 0x2a0
-	// Line 3644, Address: 0x1e8698, Func Offset: 0x2a8
-	// Line 3645, Address: 0x1e86c0, Func Offset: 0x2d0
-	// Line 3646, Address: 0x1e86cc, Func Offset: 0x2dc
-	// Line 3648, Address: 0x1e888c, Func Offset: 0x49c
-	// Line 3649, Address: 0x1e88b8, Func Offset: 0x4c8
-	// Line 3652, Address: 0x1e88cc, Func Offset: 0x4dc
-	// Func End, Address: 0x1e88e0, Func Offset: 0x4f0
-	scePrintf("SlidePlayer - UNIMPLEMENTED!\n");
+    int _mtnno;
+    NJS_POINT3 delta;
+
+    if (AbleToFall(plp) != 0)
+    {
+        switch (plp->mtn_no)
+        {
+        case 15:
+            _mtnno = 26;
+            break;
+        case 14:
+            _mtnno = 25;
+            break;
+        case 22:
+            _mtnno = 26;
+            break;
+        case 20:
+            _mtnno = 25;
+            break;
+        }
+        
+        plp->mnwP = epw->mnwP;
+        
+        EXP0_S(90) |= 0x1;
+        
+        epw->mode3 = 3;
+        
+        plp->spd = plp->spd;
+        
+        SetPlyMtn(_mtnno);
+        
+        plp->mode0 = 5;
+        plp->mode1 = 0;
+        plp->mode2 = 0;
+        plp->mode3 = 0;
+        
+        plp->flg |=  0x10004;
+        plp->flg &= ~0x40000;
+        
+        plp->stflg |= 0x50000;
+        return;
+    }
+
+    bhEne15_RotChar(plp, plp->day, NJM_DEG_ANG(90.0f));
+    
+    bhAddSpeed(plp, 0);
+
+    if ((plp->frm_no / 65536) == (plp->mnwP[plp->mtn_no].frm_num - 1))
+    {
+        plp->mtn_add = 0;
+    }
+
+    if ((plp->spd < 0.8f) && (njRandom() < 0.6)) 
+    {
+        SetSmoke((NJS_POINT3*)&plp->px, 2.0f);
+    }
+
+    plp->spd *= 0.94f;
+    
+    delta = *(NJS_POINT3*)&plp->px;
+    
+    njSubVector(&delta, (NJS_VECTOR*)&plp->pxb);
+
+    if (njScalor(&delta) < 0.33f)
+    {
+        int _mtnno;
+        
+        plp->spd = 0;
+        
+        plp->flg |= 0x100;
+
+        if (plp->hp < 0)
+        {
+            switch (plp->mtn_no)
+            {
+            case 15:
+            case 22:
+                _mtnno = 27;
+                break;
+            case 14:
+            case 20:
+                _mtnno = 28;
+                break;
+            }
+            
+            plp->mnwP = epw->mnwP;
+            
+            EXP0_S(90) |= 0x1;
+            
+            epw->mode3 = 7;
+            
+            plp->spd = 0;
+            
+            SetPlyMtn(_mtnno);
+            
+            plp->mode0 = 6;
+            plp->mode1 = 0;
+            plp->mode2 = 0;
+            plp->mode3 = 0;
+            
+            plp->flg |=  0x10004;
+            plp->flg &= ~0x40000;
+            
+            plp->stflg |= 0x50000;
+        } 
+        else 
+        {
+            switch (plp->mtn_no)
+            {
+            case 15:
+                _mtnno = 17;
+                break;
+            case 14:
+                _mtnno = 16;
+                break;
+            case 22:
+                _mtnno = 23;
+                break;
+            case 20:
+                _mtnno = 24;
+                break;
+            }
+            
+            EXP0_S(90) |= 0x1;
+            
+            epw->mode3 = 2;
+            
+            plp->spd = 0;
+            
+            SetPlyMtn(_mtnno);
+        }
+    }
+
+    if (njScalor(&delta) < 0.8f)
+    {
+        plp->flg |= 0x10;
+    }
 }
 
 // 100% matching!

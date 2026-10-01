@@ -139,7 +139,7 @@ int bhEne15_AttackPlayerSS(NJS_SPHERE* spr, NJS_VECTOR* attack_v, int damage);
 static void SetSmoke(NJS_POINT3* pos, float arg1);
 static void SpecialAttack(BH_PWORK* epw, NJS_VECTOR* splash_v);
 static void _bhEne_SetPoison(BH_PWORK* epw, NJS_POINT3* ofp, short ry);
-static void _bhEne_SetPoison2(O_WRK* op, int type, NJS_POINT3* ofp);
+static void _bhEne_SetPoison2(O_WRK* op, int type, NJS_POINT3* ofp, int param); 
 void bhEne_SetPoison(BH_PWORK* epw, BT_WORK* bt);
 static void PoisonAttack(O_WRK* op);
 static void AddWindForce(O_WRK* op, float reg);

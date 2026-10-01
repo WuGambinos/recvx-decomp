@@ -1371,34 +1371,47 @@ static MTN_RELAY_RELAY mtn_relay_relay[4] =
     { -1,  0, NULL           }
 };
 
-// 
-// Start address: 0x1e5160
+// 100% matching!
 static int GetRelay(BH_PWORK* epw, MTN_RELAY** ret)
 {
-	int found;
-	int i;
-	// Line 2540, Address: 0x1e5168, Func Offset: 0x8
-	// Line 2538, Address: 0x1e516c, Func Offset: 0xc
-	// Line 2537, Address: 0x1e5170, Func Offset: 0x10
-	// Line 2540, Address: 0x1e5174, Func Offset: 0x14
-	// Line 2541, Address: 0x1e517c, Func Offset: 0x1c
-	// Line 2544, Address: 0x1e519c, Func Offset: 0x3c
-	// Line 2547, Address: 0x1e51e0, Func Offset: 0x80
-	// Line 2548, Address: 0x1e51f4, Func Offset: 0x94
-	// Line 2551, Address: 0x1e51fc, Func Offset: 0x9c
-	// Line 2554, Address: 0x1e5204, Func Offset: 0xa4
-	// Line 2556, Address: 0x1e521c, Func Offset: 0xbc
-	// Line 2557, Address: 0x1e5228, Func Offset: 0xc8
-	// Line 2560, Address: 0x1e5248, Func Offset: 0xe8
-	// Line 2563, Address: 0x1e5290, Func Offset: 0x130
-	// Line 2564, Address: 0x1e52a4, Func Offset: 0x144
-	// Line 2567, Address: 0x1e52b0, Func Offset: 0x150
-	// Line 2569, Address: 0x1e52b4, Func Offset: 0x154
-	// Line 2567, Address: 0x1e52b8, Func Offset: 0x158
-	// Line 2570, Address: 0x1e52bc, Func Offset: 0x15c
-	// Line 2572, Address: 0x1e52cc, Func Offset: 0x16c
-	// Func End, Address: 0x1e52d4, Func Offset: 0x174
-	scePrintf("GetRelay - UNIMPLEMENTED!\n");
+    int i;    
+	int found; 
+
+    *ret = NULL;
+    
+    found = FALSE;
+    
+    for (i = 0; mtn_relay[i].old_mtn_no != -1; i++)
+    {
+        if ((epw->mtn_no == mtn_relay[i].old_mtn_no) && (EXP0_S(88) == mtn_relay[i].next_mtn_no))
+        { 
+            if (((epw->frm_no / 65536) == mtn_relay[i].from) || ((mtn_relay[i].from == -1) && ((epw->frm_no / 65536) == (epw->mnwP[epw->mtn_no].frm_num - 1))))
+            {
+                *ret = &mtn_relay[i];
+                
+                return 1;
+            }
+
+            found = TRUE;
+        }
+    }
+
+    for (i = 0; mtn_relay_relay[i].old_mtn_no != -1; i++)
+    {
+        if ((epw->mtn_no == mtn_relay_relay[i].old_mtn_no) && (EXP0_S(88) == mtn_relay_relay[i].next_mtn_no))
+        {
+            if (((epw->frm_no / 65536) == mtn_relay_relay[i].relay->from) || ((mtn_relay_relay[i].relay->from == -1) && ((epw->frm_no / 65536) >= (epw->mnwP[epw->mtn_no].frm_num - 1))))
+            {
+                *ret = mtn_relay_relay[i].relay;
+                
+                return 1;
+            }
+
+            found = TRUE;
+        }
+    }
+
+    return found;
 }
 
 // 100% matching!

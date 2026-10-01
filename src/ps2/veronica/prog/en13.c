@@ -905,54 +905,45 @@ int bhEne13_RestoreObject(BH_PWORK* epw, NJS_POINT3* pos, NJS_VECTOR** v, int no
     return no;
 }
 
-// 
-// Start address: 0x1dbfe0
+// 100% matching!
 void bhEne13_PutAttacker(BH_PWORK* epw, int no)
 {
-	// already inversed DWARF order
-	BH_PWORK* ep;
-	int i;
-	NJS_POINT3 wp;
-	NJS_POINT3 pos[3] = 
+    BH_PWORK* ep;       
+	int i;           
+	NJS_POINT3 wp;     
+	NJS_POINT3 pos[3] =
 	{
 		{   0.0f,   0.0f, -25.0f },
 		{ -20.0f,   0.0f, -13.0f },
 		{  20.0f,   0.0f, -13.0f }
 	};
-	int ang[3] = { 0, 8192, 0xFFFFE000 };
-	// Line 1337, Address: 0x1dbfe0, Func Offset: 0
-	// Line 1341, Address: 0x1dbff0, Func Offset: 0x10
-	// Line 1337, Address: 0x1dbff8, Func Offset: 0x18
-	// Line 1341, Address: 0x1dbffc, Func Offset: 0x1c
-	// Line 1346, Address: 0x1dc010, Func Offset: 0x30
-	// Line 1341, Address: 0x1dc018, Func Offset: 0x38
-	// Line 1346, Address: 0x1dc024, Func Offset: 0x44
-	// Line 1352, Address: 0x1dc034, Func Offset: 0x54
-	// Line 1346, Address: 0x1dc03c, Func Offset: 0x5c
-	// Line 1352, Address: 0x1dc044, Func Offset: 0x64
-	// Line 1353, Address: 0x1dc054, Func Offset: 0x74
-	// Line 1354, Address: 0x1dc05c, Func Offset: 0x7c
-	// Line 1357, Address: 0x1dc074, Func Offset: 0x94
-	// Line 1356, Address: 0x1dc078, Func Offset: 0x98
-	// Line 1357, Address: 0x1dc07c, Func Offset: 0x9c
-	// Line 1361, Address: 0x1dc080, Func Offset: 0xa0
-	// Line 1362, Address: 0x1dc08c, Func Offset: 0xac
-	// Line 1363, Address: 0x1dc098, Func Offset: 0xb8
-	// Line 1364, Address: 0x1dc0b8, Func Offset: 0xd8
-	// Line 1369, Address: 0x1dc0c0, Func Offset: 0xe0
-	// Line 1372, Address: 0x1dc0c8, Func Offset: 0xe8
-	// Line 1364, Address: 0x1dc0d0, Func Offset: 0xf0
-	// Line 1372, Address: 0x1dc0d4, Func Offset: 0xf4
-	// Line 1364, Address: 0x1dc0dc, Func Offset: 0xfc
-	// Line 1365, Address: 0x1dc0e4, Func Offset: 0x104
-	// Line 1366, Address: 0x1dc0f8, Func Offset: 0x118
-	// Line 1369, Address: 0x1dc10c, Func Offset: 0x12c
-	// Line 1372, Address: 0x1dc118, Func Offset: 0x138
-	// Line 1374, Address: 0x1dc120, Func Offset: 0x140
-	// Line 1376, Address: 0x1dc12c, Func Offset: 0x14c
-	// Line 1377, Address: 0x1dc140, Func Offset: 0x160
-	// Func End, Address: 0x1dc158, Func Offset: 0x178
-	scePrintf("bhEne13_PutAttacker - UNIMPLEMENTED!\n");
+	int ang[3] = { 0, 8192, 0xFFFFE000 }; 
+    
+    for (i = 0; i < EXP0_I(108); i++)
+    {
+        ep = *(BH_PWORK**)(&epw->exp0[44] + (4 * i));
+
+        if ((ep->mode0 == 1) && (ep->mode2 == 0))
+        {
+            ep->mode1 = 0;
+            ep->mode2 = 6;
+            ep->mode3 = 0;
+
+            njUnitMatrix(NULL);
+            
+            njRotateY(NULL, epw->ay);
+            njCalcVector(NULL, &pos[no], &wp);
+
+            ep->px = ep->pxb = epw->px + wp.x;
+            ep->py = ep->pyb = epw->py + wp.y;
+            ep->pz = ep->pzb = epw->pz + wp.z;
+
+            ep->ay = epw->ay + ang[no];
+
+            bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 74507);
+            break;
+        }
+    }
 }
 
 // 100% matching!

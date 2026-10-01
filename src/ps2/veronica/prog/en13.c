@@ -553,33 +553,48 @@ void bhEne13_Nage()
 
 }
 
-// 
-// Start address: 0x1db480
+// 100% matching!
 void bhEne13_Damage(BH_PWORK* epw)
 {
-	int max_dam;
-	int i;
-	int dam;
-	// Line 764, Address: 0x1db480, Func Offset: 0
-	// Line 768, Address: 0x1db498, Func Offset: 0x18
-	// Line 776, Address: 0x1db53c, Func Offset: 0xbc
-	// Line 779, Address: 0x1db540, Func Offset: 0xc0
-	// Line 780, Address: 0x1db548, Func Offset: 0xc8
-	// Line 781, Address: 0x1db564, Func Offset: 0xe4
-	// Line 787, Address: 0x1db570, Func Offset: 0xf0
-	// Line 788, Address: 0x1db580, Func Offset: 0x100
-	// Line 789, Address: 0x1db58c, Func Offset: 0x10c
-	// Line 792, Address: 0x1db590, Func Offset: 0x110
-	// Line 794, Address: 0x1db5a0, Func Offset: 0x120
-	// Line 795, Address: 0x1db5c4, Func Offset: 0x144
-	// Line 796, Address: 0x1db5d0, Func Offset: 0x150
-	// Line 797, Address: 0x1db5dc, Func Offset: 0x15c
-	// Line 798, Address: 0x1db5e8, Func Offset: 0x168
-	// Line 806, Address: 0x1db5ec, Func Offset: 0x16c
-	// Line 809, Address: 0x1db5f8, Func Offset: 0x178
-	// Line 810, Address: 0x1db618, Func Offset: 0x198
-	// Func End, Address: 0x1db634, Func Offset: 0x1b4
-	scePrintf("bhEne13_Damage - UNIMPLEMENTED!\n");
+    int dam;    
+    int i;      
+    int max_dam; 
+    
+    if ((((*(BH_PWORK**)&epw->exp0[20])->flg & 0x4)) || (((*(BH_PWORK**)&epw->exp0[24])->flg & 0x4)) || (((*(BH_PWORK**)&epw->exp0[28])->flg & 0x4)) || (((*(BH_PWORK**)&epw->exp0[32])->flg & 0x4)) || (((*(BH_PWORK**)&epw->exp0[36])->flg & 0x4)) || (((*(BH_PWORK**)&epw->exp0[40])->flg & 0x4)) || ((*(BH_PWORK**)&epw->exp0[112] != NULL) && ((*(BH_PWORK**)&epw->exp0[112])->type == 0) && (((*(BH_PWORK**)&epw->exp0[112])->flg & 0x4))))
+    {
+        max_dam = 0;
+
+        for (i = 0; i < 6; i++)
+        {
+            if (((*(BH_PWORK**)(&epw->exp0[20] + (4 * i)))->flg & 0x4))
+            {
+                (*(BH_PWORK**)(&epw->exp0[20] + (4 * i)))->flg &= ~0x4;
+
+                dam = bhEne18_HitMark(*(BH_PWORK**)(&epw->exp0[20] + (4 * i)));
+
+                if (max_dam < dam)
+                {
+                    max_dam = dam;
+                }
+            }
+        }
+
+        if (((*(BH_PWORK**)&epw->exp0[112])->type == 0) && (((*(BH_PWORK**)&epw->exp0[112])->flg & 0x4)))
+        {
+            (*(BH_PWORK**)&epw->exp0[112])->flg &= ~0x4;
+
+            dam = bhEne14_HitMark(*(BH_PWORK**)&epw->exp0[112]);
+
+            if (max_dam < dam)
+            {
+                max_dam = dam;
+            }
+        }
+
+        epw->hp -= max_dam;
+    }
+
+    bhEne13_DamageMode2[epw->mode2](epw);
 }
 
 // 100% matching!

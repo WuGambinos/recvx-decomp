@@ -1307,87 +1307,98 @@ int bhEne14_HitMark(BH_PWORK* epw)
     return epw->total_dam;
 }
 
-// 99.83% matching
+// 99.96% matching
 void bhEne14_Acid(BH_PWORK* epw, int se)
 {
-	int eno;
-	int i;
- 	int rapid;
+	int eno; 
+    int i; 
+    int rapid;
 	O_WORK* owk;
-    float x; // NOT FROM DWARF
-    float y; // NOT FROM DWARF
-    float z; // NOT FROM DWARF
-	float dt; 
-	float t;
-    // NOT FROM DWARF
-    float xn;
-    float zn;
-    float spd;
-    float size;
+	float dt; // needs use
+    float t;
+    float spd;       // not from DWARF
+    float size;      // not from DWARF
+    NJS_POINT3 p, v; // not from DWARF
 
     owk = epw->mlwP->owP;
-    x = owk[6].mtx[12];
-    y = owk[6].mtx[13];
-    z = owk[6].mtx[14];
+    
+    p.x = owk[6].mtx[12];
+    p.y = owk[6].mtx[13];
+    p.z = owk[6].mtx[14];
 
-    dt = njSqrt(0.0f);
-    t = njSqrt(dt * dt - 0.6f * (plp->py - y));
-    t = floorf((dt + t) / 0.3f);
-    if (t < 1.0f)
+    v.y = njSqrt(0);
+    
+    t = (v.y + njSqrt((v.y *  v.y) - (0.6f * (plp->py - p.y)))) / 0.3f;
+    t = floorf(t);
+    
+    if (t < 1.0f) 
     {
         t = 1.0f;
     }
         
-    xn = (plp->px - x) / t;
-    zn = (plp->pz - z) / t;
+    v.x = (plp->px - p.x) / t;
+    v.z = (plp->pz - p.z) / t;
 
     sys->ef.id = 256;
+    
     sys->ef.flg = 1;
-    sys->ef.px = x;
-    sys->ef.py = y;
-    sys->ef.pz = z;
+    
+    sys->ef.px = p.x;
+    sys->ef.py = p.y;
+    sys->ef.pz = p.z;
   
-    if (epw->type == 0)
+    if (epw->type == 0) 
     {
         rapid = 4;
+        
         sys->ef.type = 4;
     } 
-    else
+    else 
     {
+        rapid = 1;
         
         sys->ef.type = 6;
     }
-
-    for (i = 0; i < rapid; i++)
+    
+    for (i = 0; i < rapid; i++) 
     {
         size = 1.0f + (0.5f * njRandom());
+        
         sys->ef.sx = size;
         sys->ef.sy = size;
         sys->ef.sz = size;
-
+        
         eno = bhSetEffectTb(&sys->ef, NULL, NULL, 0);
-        if (eno != -1)
+        
+        if (eno != -1) 
         {
             eff[eno].stflg |= 0x20;
+            
             eff[eno].txp[0] = epw->mdl[2].texP;
             eff[eno].tex_id = 0;
-            eff[eno].xn = xn;
-            eff[eno].yn = dt;
-            eff[eno].zn = zn;
+            
+            eff[eno].xn = v.x;
+            eff[eno].yn = v.y;
+            eff[eno].zn = v.z;
 
             njUnitMatrix(NULL);
-            njRotateY(NULL, (1092.0f * njRandom() - 546.0f));
-            njRotateX(NULL, (910.0f * njRandom()));
+            
+            njRotateY(NULL, (1092.0f * njRandom()) - 546.0f);
+            njRotateX(NULL, 910.0f * njRandom());
+            
             njCalcVector(NULL, (NJS_VECTOR*)&eff[eno].xn, (NJS_VECTOR*)&eff[eno].xn);
 
             spd = njRandom();
+            
             eff[eno].px += spd * eff[eno].xn;
             eff[eno].py += spd * eff[eno].yn;
             eff[eno].pz += spd * eff[eno].zn;
+            
             eff[eno].mdlver = se;
         }
     }
 }
+
 // 100% matching!
 void bhEne14_SetMotion(BH_PWORK* epw)
 {

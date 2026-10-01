@@ -731,42 +731,44 @@ void bhEne13_InitDamage(BH_PWORK* epw)
 	scePrintf("bhEne13_InitDamage - UNIMPLEMENTED!\n");
 }
 
-// 
-// Start address: 0x1dbb90
-void bhEne13_Finish(BH_PWORK* epw)
+// 100% matching!
+void bhEne13_Finish(BH_PWORK* epw) 
 {
-	int i;
-	int obj_n;
-	int ono;
-	NJS_CNK_OBJECT* pObj;
-	// Line 1038, Address: 0x1dbb90, Func Offset: 0
-	// Line 1043, Address: 0x1dbbb4, Func Offset: 0x24
-	// Line 1044, Address: 0x1dbbbc, Func Offset: 0x2c
-	// Line 1045, Address: 0x1dbbcc, Func Offset: 0x3c
-	// Line 1044, Address: 0x1dbbd0, Func Offset: 0x40
-	// Line 1046, Address: 0x1dbbd4, Func Offset: 0x44
-	// Line 1047, Address: 0x1dbbe0, Func Offset: 0x50
-	// Line 1048, Address: 0x1dbbe8, Func Offset: 0x58
-	// Line 1047, Address: 0x1dbbf4, Func Offset: 0x64
-	// Line 1048, Address: 0x1dbbfc, Func Offset: 0x6c
-	// Line 1049, Address: 0x1dbc08, Func Offset: 0x78
-	// Line 1050, Address: 0x1dbc18, Func Offset: 0x88
-	// Line 1053, Address: 0x1dbc28, Func Offset: 0x98
-	// Line 1054, Address: 0x1dbc2c, Func Offset: 0x9c
-	// Line 1053, Address: 0x1dbc30, Func Offset: 0xa0
-	// Line 1055, Address: 0x1dbc34, Func Offset: 0xa4
-	// Line 1056, Address: 0x1dbc40, Func Offset: 0xb0
-	// Line 1059, Address: 0x1dbc88, Func Offset: 0xf8
-	// Line 1060, Address: 0x1dbc94, Func Offset: 0x104
-	// Line 1062, Address: 0x1dbc9c, Func Offset: 0x10c
-	// Line 1063, Address: 0x1dbcac, Func Offset: 0x11c
-	// Line 1064, Address: 0x1dbcbc, Func Offset: 0x12c
-	// Line 1065, Address: 0x1dbccc, Func Offset: 0x13c
-	// Line 1066, Address: 0x1dbcd0, Func Offset: 0x140
-	// Line 1067, Address: 0x1dbce4, Func Offset: 0x154
-	// Line 1068, Address: 0x1dbcf8, Func Offset: 0x168
-	// Func End, Address: 0x1dbd1c, Func Offset: 0x18c
-	scePrintf("bhEne13_Finish - UNIMPLEMENTED!\n");
+    NJS_CNK_OBJECT* pObj; 
+    int ono, obj_n;             
+    int i;               
+
+    for (i = 0; i < 4; i++)
+    {
+        pObj  = (*(BH_PWORK**)(&epw->exp0[4] + (4 * i)))->mlwP->objP;
+        obj_n = (*(BH_PWORK**)(&epw->exp0[4] + (4 * i)))->mlwP->obj_num;
+
+        for (ono = 0; ono < obj_n; ono++, pObj++)
+        {
+            pObj->pos[1] *= epw->spd;
+
+            bhEne13_ScaleModel(pObj, 1.0f, epw->spd, 1.0f);
+        }
+    }
+
+    pObj  = epw->mlwP->objP;
+    obj_n = epw->mlwP->obj_num;
+
+    for (ono = 0; ono < obj_n; ono++, pObj++)
+    {
+        if ((ono == 1) || (ono == 4) || (ono == 7) || (ono == 11) || (ono == 15) || (ono == 19))
+        {
+            pObj->pos[1] *= epw->spd;
+        }
+        else
+        {
+            pObj->pos[0] *= epw->spd;
+            pObj->pos[1] *= epw->spd;
+            pObj->pos[2] *= epw->spd;
+        }
+
+        bhEne13_ScaleModel(pObj, epw->spd, epw->spd, epw->spd);
+    }
 }
 
 // 100% matching!

@@ -591,31 +591,219 @@ static void Stand(BH_PWORK* epw)
     ReqMtn(epw, 1);
 }
 
-// 
-// Start address: 0x1e1840
+// 100% matching! 
 static void __attack(BH_PWORK* epw)
 {
-	int ang;
-	// Line 1681, Address: 0x1e1840, Func Offset: 0
-	// Line 1683, Address: 0x1e1850, Func Offset: 0x10
-	// Line 1684, Address: 0x1e1884, Func Offset: 0x44
-	// Line 1685, Address: 0x1e188c, Func Offset: 0x4c
-	// Line 1689, Address: 0x1e1920, Func Offset: 0xe0
-	// Line 1690, Address: 0x1e1994, Func Offset: 0x154
-	// Line 1694, Address: 0x1e1a30, Func Offset: 0x1f0
-	// Line 1695, Address: 0x1e1aa4, Func Offset: 0x264
-	// Line 1698, Address: 0x1e1b0c, Func Offset: 0x2cc
-	// Line 1699, Address: 0x1e1b80, Func Offset: 0x340
-	// Line 1702, Address: 0x1e1be8, Func Offset: 0x3a8
-	// Line 1703, Address: 0x1e1c58, Func Offset: 0x418
-	// Line 1706, Address: 0x1e1cdc, Func Offset: 0x49c
-	// Line 1707, Address: 0x1e1d48, Func Offset: 0x508
-	// Line 1709, Address: 0x1e1d8c, Func Offset: 0x54c
-	// Line 1710, Address: 0x1e1e04, Func Offset: 0x5c4
-	// Line 1712, Address: 0x1e1e64, Func Offset: 0x624
-	// Line 1714, Address: 0x1e1ed8, Func Offset: 0x698
-	// Func End, Address: 0x1e1eec, Func Offset: 0x6ac
-	scePrintf("__attack - UNIMPLEMENTED!\n");
+    int ang; 
+
+    if (epw->mtn_no == 1)
+    {
+        switch (epw->frm_no / 65536) 
+        {
+        case 47 ... 54:
+
+            ang = target_direction(epw);
+
+            if ((epw->mode0 == 1) && (epw->mode1 == 2))
+            {
+                if ((((ang >= -24576) && (ang < -8192)) || ((ang >= 8192) && (ang < 24576))) && ((21.0f <= target_distance(epw)) && (target_distance(epw) < 30.0f))) 
+                {
+                    if ((plp->flg & 0x2)) 
+                    {
+                        epw->ct2 = 30;
+                        
+                        epw->mode0 = 1;
+                        epw->mode1 = 0;
+                        
+                        epw->way = 0;
+                        
+                        ReqMtn(epw, 0);
+                    } 
+                    else if (epw->ct0 == 0) 
+                    {
+                        epw->mode2 = 0;
+                        epw->mode0 = 1;
+                        epw->mode1 = 4;
+                        
+                        epw->way = 3276;
+                        
+                        ReqMtn(epw, 3);
+                    }
+                    
+                    break;
+                }
+            }
+
+            if ((epw->mode0 == 1) && (epw->mode1 == 2)) 
+            {
+                if ((((ang >= -24576) && (ang < -8192)) || ((ang >= 8192) && (ang < 24576))) && ((17.0f <= target_distance(epw)) && (target_distance(epw) < 21.0f))) 
+                {
+                    if ((plp->flg & 0x2))
+                    {
+                        epw->ct2 = 30;
+                        
+                        epw->mode0 = 1;
+                        epw->mode1 = 0;
+                        
+                        epw->way = 0;
+                        
+                        ReqMtn(epw, 0);
+                    } 
+                    else if (epw->ct0 == 0) 
+                    {
+                        epw->mode2 = 0;
+                        epw->mode0 = 1;
+                        epw->mode1 = 4;
+                        
+                        epw->way = 3276;
+                        
+                        ReqMtn(epw, 2);
+                    }
+                    
+                    break;
+                }
+            }
+
+            if (((ang >= -2730) && (ang < 2730)) && ((21.0f <= target_distance(epw)) && (target_distance(epw) < 30.0f)))
+            {
+                if ((plp->flg & 0x2)) 
+                {
+                    epw->ct2 = 30;
+                    
+                    epw->mode0 = 1;
+                    epw->mode1 = 0;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 0);
+                }
+                else if (epw->ct0 == 0) 
+                {
+                    epw->mode2 = 0;
+                    epw->mode0 = 1;
+                    epw->mode1 = 4;
+                    
+                    epw->way = 3276;
+                    
+                    ReqMtn(epw, 3);
+                }
+                
+                break;
+            }
+
+            if (((ang >= -10922) && (ang < 10922)) && ((17.0f <= target_distance(epw)) && (target_distance(epw) < 22.0f)))
+            {
+                if ((plp->flg & 0x2)) 
+                {
+                    epw->ct2 = 30;
+                    
+                    epw->mode0 = 1;
+                    epw->mode1 = 0;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 0);
+                } 
+                else if (epw->ct0 == 0)
+                {
+                    epw->mode2 = 0;
+                    epw->mode0 = 1;
+                    epw->mode1 = 4;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 2);
+                }
+                
+                break;
+            }
+
+            if ((((ang <= -16384) && (ang >= -32768)) || ((ang <= 32768) && (ang >= 16384))) && ((0 <= target_distance(epw)) && (target_distance(epw) < 22.0f)))
+            {
+                if ((plp->flg & 0x2))
+                {
+                    epw->ct2 = 30;
+                    
+                    epw->mode0 = 1;
+                    epw->mode1 = 0;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 0);
+                } 
+                else if (epw->ct0 == 0) 
+                {
+                    epw->mode2 = 0;
+                    epw->mode0 = 1;
+                    epw->mode1 = 4;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 4);
+                }
+                
+                break;
+            }
+
+            if (((ang >= -16384) && (ang < 16384)) && (22.0f <= target_distance(epw)))
+            {
+                epw->ct3 = 0;
+                
+                if ((plp->flg & 0x2)) 
+                {
+                    epw->ct2 = 30;
+                    
+                    epw->mode0 = 1;
+                    epw->mode1 = 0;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 0);
+                } 
+                else if (epw->ct0 == 0) 
+                {
+                    epw->mode2 = 1;
+                    epw->mode0 = 1;
+                    epw->mode1 = 4;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 2);
+                }
+                
+                break;
+            }
+
+            if ((((ang <= -16384) && (ang >= -32768)) || ((ang <= 32768) && (ang >= 16384))) && (22.0f <= target_distance(epw)))
+            {
+                epw->ct3 = 0;
+                
+                if ((plp->flg & 0x2))
+                {
+                    epw->ct2 = 30;
+                    
+                    epw->mode0 = 1;
+                    epw->mode1 = 0;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 0);
+                } 
+                else if (epw->ct0 == 0) 
+                {
+                    epw->mode2 = 1;
+                    epw->mode0 = 1;
+                    epw->mode1 = 4;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 4);
+                }
+                
+                break;
+            }
+        }
+    }
 }
 
 // 100% matching!

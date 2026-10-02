@@ -4126,94 +4126,6 @@ void bhCPM2_act_hsu()
 }
 
 // 100% matching!
-void bhCPM1_act_atk()
-{
-    sys->st_flg |= 0x4;
-    plp->stflg |= 0x10000;
-    
-    if ((plp->flg2 & 0x400)) 
-    {
-        plp->flg &= ~0x2800000;
-        plp->flg2 &= ~0x400;
-    }
-    else 
-    {
-        plp->flg &= ~0x2A00000;
-    }
-    
-    plp->flg2 &= ~0x1;
-    
-    if (!(sys->gm_flg & 0x40)) 
-    {
-        ((EXP_WORK*)plp->exp0)->rtspd = 1.0f;
-    }
-    else 
-    {
-        if ((sys->pad_on & 0xC)) 
-        {
-            ((EXP_WORK*)plp->exp0)->rtspd = 0.0078125f * fabsf(sys->pad_dx);
-        }
-        else 
-        {
-            ((EXP_WORK*)plp->exp0)->rtspd = 0.0078125f * fabsf(sys->pad_ax);
-        }
-    }
-    
-    if ((WpnTab[plp->wpnr_no].flg & 0x800)) 
-    {
-        if (plp->mode2 == 64) 
-        {
-            plp->mode2 = 164;
-        }
-        
-        if (plp->mode2 == 69) 
-        {
-            plp->mode2 = 169;
-        }
-    }
-    
-    switch (plp->mode2)
-    {
-    case 64:
-        bhCPM2_act_suw();
-        break;
-    case 65:
-        bhCPM2_act_wpn();
-        break;
-    case 66:
-        bhCPM2_act_wpn();
-        break;
-    case 67:
-        bhCPM2_act_wpn();
-        break;
-    case 68:
-        bhCPM2_act_wre();
-        break;
-    case 69:
-        bhCPM2_act_atk();
-        break;
-    case 70:
-        bhCPM2_act_rld();
-        break;
-    case 71:
-        bhCPM2_act_scp();
-        break;
-    case 72:
-        bhCPM2_act_knf();
-        break;
-    case 164:
-        bhCPM2_act_suw_pch();
-        break;
-    case 169:
-        bhCPM2_act_atk_pch();
-        break;
-    case 197:
-        bhCPM2_act_wsc_pch();
-        break;
-    }
-}
-
-// 100% matching!
 void bhCPM2_act_hsd()
 {
 	ATR_WORK* htp;
@@ -4565,66 +4477,93 @@ void bhCPM2_act_rpsh()
     }
 }
 
-/*// 
-// Start address: 0x142f40
+// 100% matching!
 void bhCPM1_act_atk()
 {
-	// Line 3068, Address: 0x142f40, Func Offset: 0
-	// Line 3069, Address: 0x142f48, Func Offset: 0x8
-	// Line 3070, Address: 0x142f50, Func Offset: 0x10
-	// Line 3069, Address: 0x142f54, Func Offset: 0x14
-	// Line 3070, Address: 0x142f58, Func Offset: 0x18
-	// Line 3069, Address: 0x142f5c, Func Offset: 0x1c
-	// Line 3070, Address: 0x142f64, Func Offset: 0x24
-	// Line 3071, Address: 0x142f6c, Func Offset: 0x2c
-	// Line 3070, Address: 0x142f70, Func Offset: 0x30
-	// Line 3071, Address: 0x142f78, Func Offset: 0x38
-	// Line 3072, Address: 0x142f8c, Func Offset: 0x4c
-	// Line 3073, Address: 0x142f98, Func Offset: 0x58
-	// Line 3072, Address: 0x142fa0, Func Offset: 0x60
-	// Line 3073, Address: 0x142fa8, Func Offset: 0x68
-	// Line 3074, Address: 0x142fb4, Func Offset: 0x74
-	// Line 3075, Address: 0x142fbc, Func Offset: 0x7c
-	// Line 3077, Address: 0x142fd0, Func Offset: 0x90
-	// Line 3079, Address: 0x142fe0, Func Offset: 0xa0
-	// Line 3077, Address: 0x142fe4, Func Offset: 0xa4
-	// Line 3079, Address: 0x142fec, Func Offset: 0xac
-	// Line 3081, Address: 0x143000, Func Offset: 0xc0
-	// Line 3082, Address: 0x143010, Func Offset: 0xd0
-	// Line 3085, Address: 0x143018, Func Offset: 0xd8
-	// Line 3087, Address: 0x143030, Func Offset: 0xf0
-	// Line 3088, Address: 0x143060, Func Offset: 0x120
-	// Line 3090, Address: 0x143068, Func Offset: 0x128
-	// Line 3103, Address: 0x14309c, Func Offset: 0x15c
-	// Line 3104, Address: 0x1430d8, Func Offset: 0x198
-	// Line 3105, Address: 0x1430f0, Func Offset: 0x1b0
-	// Line 3108, Address: 0x143114, Func Offset: 0x1d4
-	// Line 3110, Address: 0x1431b8, Func Offset: 0x278
-	// Line 3111, Address: 0x1431c0, Func Offset: 0x280
-	// Line 3113, Address: 0x1431c8, Func Offset: 0x288
-	// Line 3114, Address: 0x1431d0, Func Offset: 0x290
-	// Line 3116, Address: 0x1431d8, Func Offset: 0x298
-	// Line 3117, Address: 0x1431e0, Func Offset: 0x2a0
-	// Line 3119, Address: 0x1431e8, Func Offset: 0x2a8
-	// Line 3120, Address: 0x1431f0, Func Offset: 0x2b0
-	// Line 3122, Address: 0x1431f8, Func Offset: 0x2b8
-	// Line 3123, Address: 0x143200, Func Offset: 0x2c0
-	// Line 3125, Address: 0x143208, Func Offset: 0x2c8
-	// Line 3126, Address: 0x143210, Func Offset: 0x2d0
-	// Line 3128, Address: 0x143218, Func Offset: 0x2d8
-	// Line 3129, Address: 0x143220, Func Offset: 0x2e0
-	// Line 3131, Address: 0x143228, Func Offset: 0x2e8
-	// Line 3132, Address: 0x143230, Func Offset: 0x2f0
-	// Line 3134, Address: 0x143238, Func Offset: 0x2f8
-	// Line 3135, Address: 0x143240, Func Offset: 0x300
-	// Line 3137, Address: 0x143248, Func Offset: 0x308
-	// Line 3138, Address: 0x143250, Func Offset: 0x310
-	// Line 3140, Address: 0x143258, Func Offset: 0x318
-	// Line 3141, Address: 0x143260, Func Offset: 0x320
-	// Line 3143, Address: 0x143268, Func Offset: 0x328
-	// Line 3146, Address: 0x143270, Func Offset: 0x330
-	// Func End, Address: 0x14327c, Func Offset: 0x33c
-}*/
+    sys->st_flg |= 0x4;
+    plp->stflg |= 0x10000;
+    
+    if ((plp->flg2 & 0x400)) 
+    {
+        plp->flg &= ~0x2800000;
+        plp->flg2 &= ~0x400;
+    }
+    else 
+    {
+        plp->flg &= ~0x2A00000;
+    }
+    
+    plp->flg2 &= ~0x1;
+    
+    if (!(sys->gm_flg & 0x40)) 
+    {
+        ((EXP_WORK*)plp->exp0)->rtspd = 1.0f;
+    }
+    else 
+    {
+        if ((sys->pad_on & 0xC)) 
+        {
+            ((EXP_WORK*)plp->exp0)->rtspd = 0.0078125f * fabsf(sys->pad_dx);
+        }
+        else 
+        {
+            ((EXP_WORK*)plp->exp0)->rtspd = 0.0078125f * fabsf(sys->pad_ax);
+        }
+    }
+    
+    if ((WpnTab[plp->wpnr_no].flg & 0x800)) 
+    {
+        if (plp->mode2 == 64) 
+        {
+            plp->mode2 = 164;
+        }
+        
+        if (plp->mode2 == 69) 
+        {
+            plp->mode2 = 169;
+        }
+    }
+    
+    switch (plp->mode2)
+    {
+    case 64:
+        bhCPM2_act_suw();
+        break;
+    case 65:
+        bhCPM2_act_wpn();
+        break;
+    case 66:
+        bhCPM2_act_wpn();
+        break;
+    case 67:
+        bhCPM2_act_wpn();
+        break;
+    case 68:
+        bhCPM2_act_wre();
+        break;
+    case 69:
+        bhCPM2_act_atk();
+        break;
+    case 70:
+        bhCPM2_act_rld();
+        break;
+    case 71:
+        bhCPM2_act_scp();
+        break;
+    case 72:
+        bhCPM2_act_knf();
+        break;
+    case 164:
+        bhCPM2_act_suw_pch();
+        break;
+    case 169:
+        bhCPM2_act_atk_pch();
+        break;
+    case 197:
+        bhCPM2_act_wsc_pch();
+        break;
+    }
+}
 
 // 100% matching!
 void bhCPM2_act_suw()

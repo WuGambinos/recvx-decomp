@@ -443,6 +443,54 @@ Int     njCollisionCheckCC(NJS_CAPSULE *h1, NJS_CAPSULE *h2)
 }
 
 // 100% matching!
+Int     njCollisionCheckSC(NJS_SPHERE *sphere, NJS_CAPSULE *capsule) 
+{
+    NJS_POINT3* pP2;  
+    NJS_LINE Line;    
+    float fLength;    
+    NJS_POINT3 Point; 
+
+    pP2 = &capsule->c2;
+    
+    Line.vx = capsule->c2.x - capsule->c1.x;
+    Line.vy = capsule->c2.y - capsule->c1.y;
+    Line.vz = capsule->c2.z - capsule->c1.z;
+    
+    Line.px = capsule->c1.x;
+    Line.py = capsule->c1.y;
+    Line.pz = capsule->c1.z;
+    
+    fLength = capsule->r + sphere->r;
+    
+    if (fLength <= njDistanceP2L(&sphere->c, &Line, &Point)) 
+    {
+        return 0;
+    }
+    
+    fLength = njDistanceP2P(&capsule->c1, pP2);
+    
+    if (fLength < njDistanceP2P(&Point, &capsule->c1)) 
+    {
+        Point.x = pP2->x;
+        Point.y = pP2->y;
+        Point.z = pP2->z;
+    }
+    else if (fLength < njDistanceP2P(&Point, pP2))
+    {
+        Point.x = capsule->c1.x;
+        Point.y = capsule->c1.y;
+        Point.z = capsule->c1.z;
+    }
+    
+    if (njDistanceP2P(&sphere->c, &Point) < (capsule->r + sphere->r)) 
+    {
+        return 1;
+    }
+    
+    return 0;
+}
+
+// 100% matching!
 Int     njCollisionCheckBS(NJS_BOX *box, NJS_SPHERE *sphere)
 {
     float fCx, fCy, fCz;          
@@ -593,162 +641,6 @@ Int     njCollisionCheckBS(NJS_BOX *box, NJS_SPHERE *sphere)
         return 0;
     }
 }
-
-// 100% matching!
-Int     njCollisionCheckSC(NJS_SPHERE *sphere, NJS_CAPSULE *capsule) 
-{
-    NJS_POINT3* pP2;  
-    NJS_LINE Line;    
-    float fLength;    
-    NJS_POINT3 Point; 
-
-    pP2 = &capsule->c2;
-    
-    Line.vx = capsule->c2.x - capsule->c1.x;
-    Line.vy = capsule->c2.y - capsule->c1.y;
-    Line.vz = capsule->c2.z - capsule->c1.z;
-    
-    Line.px = capsule->c1.x;
-    Line.py = capsule->c1.y;
-    Line.pz = capsule->c1.z;
-    
-    fLength = capsule->r + sphere->r;
-    
-    if (fLength <= njDistanceP2L(&sphere->c, &Line, &Point)) 
-    {
-        return 0;
-    }
-    
-    fLength = njDistanceP2P(&capsule->c1, pP2);
-    
-    if (fLength < njDistanceP2P(&Point, &capsule->c1)) 
-    {
-        Point.x = pP2->x;
-        Point.y = pP2->y;
-        Point.z = pP2->z;
-    }
-    else if (fLength < njDistanceP2P(&Point, pP2))
-    {
-        Point.x = capsule->c1.x;
-        Point.y = capsule->c1.y;
-        Point.z = capsule->c1.z;
-    }
-    
-    if (njDistanceP2P(&sphere->c, &Point) < (capsule->r + sphere->r)) 
-    {
-        return 1;
-    }
-    
-    return 0;
-}
-
-/*// 
-// Start address: 0x2e3fe0
-int njCollisionCheckBS(_anon3* pBox, _anon4* pSphere)
-{
-	_anon2 Capsule;
-	float fR;
-	float fCz;
-	float fCy;
-	float fCx;
-	// Line 750, Address: 0x2e3fe0, Func Offset: 0
-	// Line 763, Address: 0x2e4004, Func Offset: 0x24
-	// Line 760, Address: 0x2e4008, Func Offset: 0x28
-	// Line 757, Address: 0x2e400c, Func Offset: 0x2c
-	// Line 758, Address: 0x2e4010, Func Offset: 0x30
-	// Line 759, Address: 0x2e4014, Func Offset: 0x34
-	// Line 763, Address: 0x2e401c, Func Offset: 0x3c
-	// Line 770, Address: 0x2e40a8, Func Offset: 0xc8
-	// Line 774, Address: 0x2e40b4, Func Offset: 0xd4
-	// Line 775, Address: 0x2e40fc, Func Offset: 0x11c
-	// Line 776, Address: 0x2e4144, Func Offset: 0x164
-	// Line 779, Address: 0x2e418c, Func Offset: 0x1ac
-	// Line 781, Address: 0x2e4190, Func Offset: 0x1b0
-	// Line 782, Address: 0x2e4194, Func Offset: 0x1b4
-	// Line 783, Address: 0x2e4198, Func Offset: 0x1b8
-	// Line 784, Address: 0x2e419c, Func Offset: 0x1bc
-	// Line 781, Address: 0x2e41a0, Func Offset: 0x1c0
-	// Line 782, Address: 0x2e41a4, Func Offset: 0x1c4
-	// Line 785, Address: 0x2e41a8, Func Offset: 0x1c8
-	// Line 786, Address: 0x2e41ac, Func Offset: 0x1cc
-	// Line 787, Address: 0x2e41b0, Func Offset: 0x1d0
-	// Line 782, Address: 0x2e41b4, Func Offset: 0x1d4
-	// Line 783, Address: 0x2e41b8, Func Offset: 0x1d8
-	// Line 787, Address: 0x2e41bc, Func Offset: 0x1dc
-	// Line 783, Address: 0x2e41c0, Func Offset: 0x1e0
-	// Line 784, Address: 0x2e41c4, Func Offset: 0x1e4
-	// Line 785, Address: 0x2e41cc, Func Offset: 0x1ec
-	// Line 786, Address: 0x2e41d4, Func Offset: 0x1f4
-	// Line 787, Address: 0x2e41d8, Func Offset: 0x1f8
-	// Line 788, Address: 0x2e41f0, Func Offset: 0x210
-	// Line 791, Address: 0x2e41f4, Func Offset: 0x214
-	// Line 788, Address: 0x2e41fc, Func Offset: 0x21c
-	// Line 789, Address: 0x2e4200, Func Offset: 0x220
-	// Line 790, Address: 0x2e4208, Func Offset: 0x228
-	// Line 791, Address: 0x2e420c, Func Offset: 0x22c
-	// Line 792, Address: 0x2e4224, Func Offset: 0x244
-	// Line 795, Address: 0x2e4228, Func Offset: 0x248
-	// Line 792, Address: 0x2e4230, Func Offset: 0x250
-	// Line 793, Address: 0x2e4234, Func Offset: 0x254
-	// Line 794, Address: 0x2e423c, Func Offset: 0x25c
-	// Line 795, Address: 0x2e4240, Func Offset: 0x260
-	// Line 796, Address: 0x2e4258, Func Offset: 0x278
-	// Line 799, Address: 0x2e425c, Func Offset: 0x27c
-	// Line 796, Address: 0x2e4264, Func Offset: 0x284
-	// Line 797, Address: 0x2e4268, Func Offset: 0x288
-	// Line 798, Address: 0x2e4270, Func Offset: 0x290
-	// Line 799, Address: 0x2e4274, Func Offset: 0x294
-	// Line 800, Address: 0x2e428c, Func Offset: 0x2ac
-	// Line 803, Address: 0x2e4290, Func Offset: 0x2b0
-	// Line 800, Address: 0x2e4298, Func Offset: 0x2b8
-	// Line 801, Address: 0x2e429c, Func Offset: 0x2bc
-	// Line 802, Address: 0x2e42a4, Func Offset: 0x2c4
-	// Line 803, Address: 0x2e42a8, Func Offset: 0x2c8
-	// Line 804, Address: 0x2e42c0, Func Offset: 0x2e0
-	// Line 807, Address: 0x2e42c4, Func Offset: 0x2e4
-	// Line 804, Address: 0x2e42cc, Func Offset: 0x2ec
-	// Line 805, Address: 0x2e42d0, Func Offset: 0x2f0
-	// Line 806, Address: 0x2e42d8, Func Offset: 0x2f8
-	// Line 807, Address: 0x2e42dc, Func Offset: 0x2fc
-	// Line 808, Address: 0x2e42f4, Func Offset: 0x314
-	// Line 811, Address: 0x2e42f8, Func Offset: 0x318
-	// Line 808, Address: 0x2e4300, Func Offset: 0x320
-	// Line 809, Address: 0x2e4304, Func Offset: 0x324
-	// Line 810, Address: 0x2e430c, Func Offset: 0x32c
-	// Line 811, Address: 0x2e4310, Func Offset: 0x330
-	// Line 812, Address: 0x2e4328, Func Offset: 0x348
-	// Line 815, Address: 0x2e432c, Func Offset: 0x34c
-	// Line 812, Address: 0x2e4334, Func Offset: 0x354
-	// Line 813, Address: 0x2e4338, Func Offset: 0x358
-	// Line 814, Address: 0x2e4340, Func Offset: 0x360
-	// Line 815, Address: 0x2e4344, Func Offset: 0x364
-	// Line 816, Address: 0x2e435c, Func Offset: 0x37c
-	// Line 819, Address: 0x2e4360, Func Offset: 0x380
-	// Line 816, Address: 0x2e4368, Func Offset: 0x388
-	// Line 817, Address: 0x2e436c, Func Offset: 0x38c
-	// Line 818, Address: 0x2e4374, Func Offset: 0x394
-	// Line 819, Address: 0x2e4378, Func Offset: 0x398
-	// Line 820, Address: 0x2e4390, Func Offset: 0x3b0
-	// Line 823, Address: 0x2e4394, Func Offset: 0x3b4
-	// Line 820, Address: 0x2e439c, Func Offset: 0x3bc
-	// Line 821, Address: 0x2e43a0, Func Offset: 0x3c0
-	// Line 822, Address: 0x2e43a8, Func Offset: 0x3c8
-	// Line 823, Address: 0x2e43ac, Func Offset: 0x3cc
-	// Line 824, Address: 0x2e43c4, Func Offset: 0x3e4
-	// Line 827, Address: 0x2e43c8, Func Offset: 0x3e8
-	// Line 824, Address: 0x2e43d0, Func Offset: 0x3f0
-	// Line 825, Address: 0x2e43d4, Func Offset: 0x3f4
-	// Line 826, Address: 0x2e43dc, Func Offset: 0x3fc
-	// Line 827, Address: 0x2e43e0, Func Offset: 0x400
-	// Line 828, Address: 0x2e43f8, Func Offset: 0x418
-	// Line 831, Address: 0x2e43fc, Func Offset: 0x41c
-	// Line 828, Address: 0x2e4404, Func Offset: 0x424
-	// Line 829, Address: 0x2e4408, Func Offset: 0x428
-	// Line 830, Address: 0x2e4410, Func Offset: 0x430
-	// Line 831, Address: 0x2e4414, Func Offset: 0x434
-	// Line 834, Address: 0x2e4428, Func Offset: 0x448
-	// Func End, Address: 0x2e4450, Func Offset: 0x470
-}*/
 
 // 100% matching!
 Int     njCollisionCheckBC(NJS_BOX *box, NJS_CAPSULE *capsule)

@@ -1048,65 +1048,189 @@ static void Attack(BH_PWORK* epw)
     }
 }
 
-// 
-// Start address: 0x1e3b90
+// 100% matching! 
 static void Throw(BH_PWORK* epw)
 {
-	NJS_VECTOR vec;
-	NJS_VECTOR attack_v;
-	NJS_MATRIX mat; // NJS_MATRIX*?
-	NJS_POINT3 _p  = {     0,  8.0f,     0 };
-	NJS_POINT3 pos = {     0,     0, -1.0f };
-	// Line 1976, Address: 0x1e3b90, Func Offset: 0
-	// Line 1977, Address: 0x1e3ba0, Func Offset: 0x10
-	// Line 1978, Address: 0x1e3bd0, Func Offset: 0x40
-	// Line 1979, Address: 0x1e3be0, Func Offset: 0x50
-	// Line 1980, Address: 0x1e3bec, Func Offset: 0x5c
-	// Line 1981, Address: 0x1e3c18, Func Offset: 0x88
-	// Line 1983, Address: 0x1e3c20, Func Offset: 0x90
-	// Line 1988, Address: 0x1e3ca8, Func Offset: 0x118
-	// Line 1989, Address: 0x1e3cc8, Func Offset: 0x138
-	// Line 1991, Address: 0x1e3cd0, Func Offset: 0x140
-	// Line 1994, Address: 0x1e3ce4, Func Offset: 0x154
-	// Line 1997, Address: 0x1e3d5c, Func Offset: 0x1cc
-	// Line 1998, Address: 0x1e3efc, Func Offset: 0x36c
-	// Line 1999, Address: 0x1e3f18, Func Offset: 0x388
-	// Line 2002, Address: 0x1e3f24, Func Offset: 0x394
-	// Line 2003, Address: 0x1e3f30, Func Offset: 0x3a0
-	// Line 2005, Address: 0x1e3f38, Func Offset: 0x3a8
-	// Line 2006, Address: 0x1e3f40, Func Offset: 0x3b0
-	// Line 2007, Address: 0x1e3f44, Func Offset: 0x3b4
-	// Line 2012, Address: 0x1e3f4c, Func Offset: 0x3bc
-	// Line 2015, Address: 0x1e3f60, Func Offset: 0x3d0
-	// Line 2016, Address: 0x1e3f90, Func Offset: 0x400
-	// Line 2017, Address: 0x1e3fb0, Func Offset: 0x420
-	// Line 2019, Address: 0x1e3fc4, Func Offset: 0x434
-	// Line 2020, Address: 0x1e3fe4, Func Offset: 0x454
-	// Line 2022, Address: 0x1e4020, Func Offset: 0x490
-	// Line 2034, Address: 0x1e4034, Func Offset: 0x4a4
-	// Line 2035, Address: 0x1e404c, Func Offset: 0x4bc
-	// Line 2036, Address: 0x1e406c, Func Offset: 0x4dc
-	// Line 2037, Address: 0x1e407c, Func Offset: 0x4ec
-	// Line 2039, Address: 0x1e4084, Func Offset: 0x4f4
-	// Line 2041, Address: 0x1e4090, Func Offset: 0x500
-	// Line 2040, Address: 0x1e4094, Func Offset: 0x504
-	// Line 2039, Address: 0x1e4098, Func Offset: 0x508
-	// Line 2040, Address: 0x1e40a0, Func Offset: 0x510
-	// Line 2041, Address: 0x1e40ac, Func Offset: 0x51c
-	// Line 2042, Address: 0x1e40b8, Func Offset: 0x528
-	// Line 2043, Address: 0x1e40e4, Func Offset: 0x554
-	// Line 2044, Address: 0x1e410c, Func Offset: 0x57c
-	// Line 2045, Address: 0x1e4110, Func Offset: 0x580
-	// Line 2043, Address: 0x1e4114, Func Offset: 0x584
-	// Line 2044, Address: 0x1e4118, Func Offset: 0x588
-	// Line 2045, Address: 0x1e4134, Func Offset: 0x5a4
-	// Line 2046, Address: 0x1e4158, Func Offset: 0x5c8
-	// Line 2048, Address: 0x1e41d0, Func Offset: 0x640
-	// Line 2051, Address: 0x1e41dc, Func Offset: 0x64c
-	// Line 2052, Address: 0x1e420c, Func Offset: 0x67c
-	// Line 2055, Address: 0x1e4250, Func Offset: 0x6c0
-	// Func End, Address: 0x1e4264, Func Offset: 0x6d4
-	scePrintf("Throw - UNIMPLEMENTED!\n");
+    if ((epw->mode2 == 0) && ((epw->frm_no / 65536) < 22))
+    {
+        ikou(epw, (NJS_POINT3*)&plp->px, epw->way);
+    }
+    
+    if (epw->mtn_no == 5)
+    {
+        if (epw->mode2 != 0)
+        {
+            if ((epw->frm_no / 65536) == 0)
+            {
+                epw->mode0 = 1;
+                epw->mode1 = 3;
+                
+                epw->way = 145;
+                
+                ReqMtn(epw, 1);
+            }
+        } 
+        else
+        {
+            if ((epw->frm_no / 65536) == 0)
+            {
+                if ((((plp->mode0 == 3) || (plp->mode0 == 6)) || (plp->hp < 0)) || (((target_direction(epw) < -2730) || (target_direction(epw) >= 2730)) || (9.0f < target_distance(epw))))
+                {
+                    epw->mode0 = 1;
+                    epw->mode1 = 3;
+                    
+                    epw->way = 145;
+                    
+                    ReqMtn(epw, 1);
+                    return;
+                }
+            }
+
+            if ((epw->frm_no / 65536) == 22) 
+            {
+                if ((((plp->mode0 != 3) && (plp->mode0 != 6)) && (plp->hp >= 0)) && (((target_direction(epw) >= -2730) && (target_direction(epw) < 2730)) && (9.0f >= target_distance(epw))))
+                {
+                    if (bhCdirCheck(plp->ay, epw->ay) != 0)
+                    {
+                        plp->mnwP = epw->mnwP;
+                        
+                        EXP0_S(90) |= 0x1;
+                        
+                        epw->mode3 = 5;
+                        
+                        plp->spd = 1.0f;
+                        
+                        SetPlyMtn(21);
+                        
+                        plp->mode0 = 4;
+                        plp->mode1 = 0;
+                        plp->mode2 = 0;
+                        plp->mode3 = 0;
+                        
+                        plp->flg |=  0x10004;
+                        plp->flg &= ~0x40000;
+                        
+                        plp->stflg |= 0x50000;
+                    } 
+                    else
+                    {
+                        plp->mnwP = epw->mnwP;
+                        
+                        EXP0_S(90) |= 0x1;
+                        
+                        epw->mode3 = 5;
+                        
+                        plp->spd = 1.0f;
+                        
+                        SetPlyMtn(19);
+                        
+                        plp->mode0 = 4;
+                        plp->mode1 = 0;
+                        plp->mode2 = 0;
+                        plp->mode3 = 0;
+                        
+                        plp->flg |=  0x10004;
+                        plp->flg &= ~0x40000;
+                        
+                        plp->stflg |= 0x50000;
+                    }
+                    
+                    RequestEnemySe(GetLocalEneNo(epw), (NJS_POINT3*)&epw->px, 74502);
+                    
+                    StartVibrationEx(1, 9);
+                    
+                    epw->flg &= ~0x40;
+                }
+                else
+                {
+                    epw->mode2 = 1;
+                    
+                    epw->mtn_add = -65536;
+                    return;
+                }
+            }
+
+            if ((epw->frm_no / 65536) == 55)
+            {
+	            NJS_POINT3 pos, _p  = { 0.0f, 8.0f, 0.0f }; 
+
+                njCalcPoint(&epw->mlwP->owP[10].mtx, &_p, &pos);
+                
+                if (bhEne_AttackHitCheck(plp, &pos, 3.0f))
+                {
+                    bhEne_SetBloodEffect(plp, 1, -1);
+                }
+                
+                RequestEnemySe(GetLocalEneNo(epw), &pos, 74503);
+                
+                plp->flg &= ~0x118;
+                
+                EXP0_S(90) |= 0x1;
+                
+                epw->mode3 = 6;
+                
+                plp->spd = 0;
+            }
+            
+            if ((epw->frm_no / 65536) == 78)
+            {
+            	NJS_MATRIX mat;
+            	NJS_VECTOR attack_v, vec = { 0.0f, 0.0f, -1.0f }; 
+
+                njUnitMatrix(&mat);
+                
+                njRotateY(&mat, epw->ay + 32768);
+                njCalcVector(&mat, &vec, &attack_v);
+                
+                njUnitVector(&attack_v);
+                
+                attack_v.x *= 3.0f;
+                attack_v.y *= 3.0f;
+                attack_v.z *= 3.0f;
+                
+                plp->dax = njArcTan2(attack_v.y, attack_v.z);
+                plp->day = njArcTan2(attack_v.x, attack_v.z);
+                
+                *(NJS_VECTOR*)&plp->dvx = attack_v;
+                
+                RequestEnemySe(GetLocalEneNo(epw), (NJS_POINT3*)&plp->px, 74504);
+                
+                plp->flg &= ~0x100;
+                
+                if (bhDGCdirCheck((NJS_VECTOR*)&plp->dvx, plp->ay) != 0) 
+                {
+                    EXP0_S(90) |= 0x1;
+                    
+                    epw->mode3 = 0;
+                    
+                    plp->spd = 0;
+                } 
+                else
+                {
+                    EXP0_S(90) |= 0x1;
+                    
+                    epw->mode3 = 0;
+                    
+                    plp->spd = 0;
+                }             
+                
+                epw->flg |= 0x40;
+            }
+            
+            if ((epw->frm_no / 65536) == (epw->mnwP[epw->mtn_no].frm_num - 1))
+            {
+                epw->ct2 = ((rand() % 10) * 20) + 15;
+                
+                epw->mode0 = 1;
+                epw->mode1 = 0;
+                
+                epw->way = 0;
+                
+                ReqMtn(epw, 0);
+                return;
+            }
+        }
+    }
 }
 
 // 100% matching!

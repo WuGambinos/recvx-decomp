@@ -1,6 +1,7 @@
 #include "../../../ps2/veronica/prog/en15.h"
 #include "../../../ps2/veronica/prog/hitchkl.h"
 #include "../../../ps2/veronica/prog/main.h"
+#include "../../../ps2/veronica/prog/njplus.h"
 #include "../../../ps2/veronica/prog/ps2_dummy.h"
 #include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
 #include "../../../ps2/veronica/prog/ps2_NaColi.h"
@@ -1247,115 +1248,265 @@ static int NearestCapsule(BH_PWORK* epw, NJS_VECTOR* pos, NJS_CAPSULE* dest, sho
     return !notop;
 }
 
-// 
-// Start address: 0x1e4890
+// 100% matching! 
 static void CheckDamage(BH_PWORK* epw)
 {
-	short jnt;
-	NJS_CAPSULE cap;
-	NJS_POINT3 ofp;
-	NJS_POINT3 pos;
-	NJS_POINT3 ofs;
-	int is_core_damage;
-	// Line 2347, Address: 0x1e4890, Func Offset: 0
-	// Line 2348, Address: 0x1e48a0, Func Offset: 0x10
-	// Line 2358, Address: 0x1e48b0, Func Offset: 0x20
-	// Line 2361, Address: 0x1e48c8, Func Offset: 0x38
-	// Line 2363, Address: 0x1e48e8, Func Offset: 0x58
-	// Line 2366, Address: 0x1e48fc, Func Offset: 0x6c
-	// Line 2364, Address: 0x1e4900, Func Offset: 0x70
-	// Line 2363, Address: 0x1e4908, Func Offset: 0x78
-	// Line 2366, Address: 0x1e490c, Func Offset: 0x7c
-	// Line 2363, Address: 0x1e4910, Func Offset: 0x80
-	// Line 2365, Address: 0x1e4914, Func Offset: 0x84
-	// Line 2364, Address: 0x1e491c, Func Offset: 0x8c
-	// Line 2363, Address: 0x1e4920, Func Offset: 0x90
-	// Line 2364, Address: 0x1e4924, Func Offset: 0x94
-	// Line 2363, Address: 0x1e4928, Func Offset: 0x98
-	// Line 2365, Address: 0x1e492c, Func Offset: 0x9c
-	// Line 2364, Address: 0x1e4930, Func Offset: 0xa0
-	// Line 2365, Address: 0x1e4934, Func Offset: 0xa4
-	// Line 2364, Address: 0x1e4938, Func Offset: 0xa8
-	// Line 2365, Address: 0x1e493c, Func Offset: 0xac
-	// Line 2366, Address: 0x1e4940, Func Offset: 0xb0
-	// Line 2367, Address: 0x1e4950, Func Offset: 0xc0
-	// Line 2368, Address: 0x1e495c, Func Offset: 0xcc
-	// Line 2369, Address: 0x1e49a0, Func Offset: 0x110
-	// Line 2370, Address: 0x1e49a4, Func Offset: 0x114
-	// Line 2369, Address: 0x1e49a8, Func Offset: 0x118
-	// Line 2373, Address: 0x1e49b8, Func Offset: 0x128
-	// Line 2374, Address: 0x1e49e4, Func Offset: 0x154
-	// Line 2375, Address: 0x1e49e8, Func Offset: 0x158
-	// Line 2374, Address: 0x1e49ec, Func Offset: 0x15c
-	// Line 2380, Address: 0x1e49f8, Func Offset: 0x168
-	// Line 2384, Address: 0x1e4a04, Func Offset: 0x174
-	// Line 2385, Address: 0x1e4a0c, Func Offset: 0x17c
-	// Line 2391, Address: 0x1e4a18, Func Offset: 0x188
-	// Line 2393, Address: 0x1e4a28, Func Offset: 0x198
-	// Line 2395, Address: 0x1e4a30, Func Offset: 0x1a0
-	// Line 2396, Address: 0x1e4a50, Func Offset: 0x1c0
-	// Line 2398, Address: 0x1e4ab0, Func Offset: 0x220
-	// Line 2399, Address: 0x1e4ae4, Func Offset: 0x254
-	// Line 2401, Address: 0x1e4b10, Func Offset: 0x280
-	// Line 2405, Address: 0x1e4b1c, Func Offset: 0x28c
-	// Line 2406, Address: 0x1e4b3c, Func Offset: 0x2ac
-	// Line 2410, Address: 0x1e4b4c, Func Offset: 0x2bc
-	// Line 2416, Address: 0x1e4be4, Func Offset: 0x354
-	// Line 2417, Address: 0x1e4bf8, Func Offset: 0x368
-	// Line 2418, Address: 0x1e4c08, Func Offset: 0x378
-	// Line 2419, Address: 0x1e4c30, Func Offset: 0x3a0
-	// Line 2423, Address: 0x1e4c4c, Func Offset: 0x3bc
-	// Line 2425, Address: 0x1e4c58, Func Offset: 0x3c8
-	// Line 2426, Address: 0x1e4c60, Func Offset: 0x3d0
-	// Line 2427, Address: 0x1e4c80, Func Offset: 0x3f0
-	// Line 2428, Address: 0x1e4c98, Func Offset: 0x408
-	// Line 2430, Address: 0x1e4d00, Func Offset: 0x470
-	// Line 2431, Address: 0x1e4d30, Func Offset: 0x4a0
-	// Line 2432, Address: 0x1e4d4c, Func Offset: 0x4bc
-	// Line 2435, Address: 0x1e4d54, Func Offset: 0x4c4
-	// Line 2436, Address: 0x1e4d84, Func Offset: 0x4f4
-	// Line 2439, Address: 0x1e4da0, Func Offset: 0x510
-	// Line 2443, Address: 0x1e4e00, Func Offset: 0x570
-	// Line 2445, Address: 0x1e4e38, Func Offset: 0x5a8
-	// Line 2446, Address: 0x1e4ea0, Func Offset: 0x610
-	// Line 2447, Address: 0x1e4ef4, Func Offset: 0x664
-	// Line 2450, Address: 0x1e4efc, Func Offset: 0x66c
-	// Line 2451, Address: 0x1e4f68, Func Offset: 0x6d8
-	// Line 2455, Address: 0x1e4fc0, Func Offset: 0x730
-	// Line 2457, Address: 0x1e4fd8, Func Offset: 0x748
-	// Line 2458, Address: 0x1e4ff0, Func Offset: 0x760
-	// Line 2459, Address: 0x1e4ff8, Func Offset: 0x768
-	// Line 2460, Address: 0x1e4ffc, Func Offset: 0x76c
-	// Line 2459, Address: 0x1e5004, Func Offset: 0x774
-	// Line 2460, Address: 0x1e500c, Func Offset: 0x77c
-	// Line 2462, Address: 0x1e5018, Func Offset: 0x788
-	// Line 2463, Address: 0x1e5034, Func Offset: 0x7a4
-	// Line 2464, Address: 0x1e503c, Func Offset: 0x7ac
-	// Line 2463, Address: 0x1e5044, Func Offset: 0x7b4
-	// Line 2464, Address: 0x1e504c, Func Offset: 0x7bc
-	// Line 2465, Address: 0x1e5074, Func Offset: 0x7e4
-	// Line 2466, Address: 0x1e507c, Func Offset: 0x7ec
-	// Line 2465, Address: 0x1e5080, Func Offset: 0x7f0
-	// Line 2466, Address: 0x1e5084, Func Offset: 0x7f4
-	// Line 2465, Address: 0x1e5088, Func Offset: 0x7f8
-	// Line 2466, Address: 0x1e5090, Func Offset: 0x800
-	// Line 2467, Address: 0x1e50a8, Func Offset: 0x818
-	// Line 2468, Address: 0x1e50b4, Func Offset: 0x824
-	// Line 2467, Address: 0x1e50c0, Func Offset: 0x830
-	// Line 2468, Address: 0x1e50c8, Func Offset: 0x838
-	// Line 2469, Address: 0x1e50d0, Func Offset: 0x840
-	// Line 2468, Address: 0x1e50d4, Func Offset: 0x844
-	// Line 2469, Address: 0x1e50dc, Func Offset: 0x84c
-	// Line 2472, Address: 0x1e50e8, Func Offset: 0x858
-	// Line 2473, Address: 0x1e5108, Func Offset: 0x878
-	// Line 2474, Address: 0x1e5110, Func Offset: 0x880
-	// Line 2477, Address: 0x1e512c, Func Offset: 0x89c
-	// Line 2478, Address: 0x1e5134, Func Offset: 0x8a4
-	// Line 2477, Address: 0x1e5138, Func Offset: 0x8a8
-	// Line 2478, Address: 0x1e513c, Func Offset: 0x8ac
-	// Line 2484, Address: 0x1e5144, Func Offset: 0x8b4
-	// Func End, Address: 0x1e5158, Func Offset: 0x8c8
-	scePrintf("CheckDamage - UNIMPLEMENTED!\n");
+    int is_core_damage; 
+    NJS_POINT3 ofs, pos;    
+    NJS_POINT3 ofp;   
+    NJS_CAPSULE cap;   
+    short jnt;         
+    
+    if (!(epw->flg & 0x4))
+    {
+        return;
+    }
+
+    is_core_damage = FALSE;
+    
+    bhEne_CalcDamage(epw, CombWepTbl, CombJointTbl);
+
+    if ((!(epw->comb_flg & 0x8)) && (epw->wpnr_no == 2)) 
+    {
+        ofs.x = 0.1f * CapColTab[1].jnt_a;
+        ofs.y = 0.1f * CapColTab[1].jnt_b;
+        ofs.z = 0.1f * CapColTab[1].cap_r;
+        
+        njCalcPoint(&epw->mlwP->owP[3].mtx, &ofs, &pos);
+        njSubVector(&pos, (NJS_VECTOR*)&epw->dpx);
+        
+        if (njScalor(&pos) < (3.0f + (0.1f * CapColTab[0].cap_r))) 
+        {
+            is_core_damage = 1;
+            
+            epw->total_dam *= 20;
+        }
+    }
+
+    if ((!(epw->comb_flg & 0x8)) && ((epw->wpnr_no == 13) && (epw->cpcl_no == 0))) 
+    {
+        is_core_damage = TRUE;
+        
+        epw->total_dam *= 5;
+    }
+
+    epw->hp -= epw->total_dam;
+
+    if (is_core_damage != FALSE)
+    {
+        if (epw->hp >= 0) 
+        {
+            bhEne_SetBloodEffect5(epw, 0, 1);
+        }
+    }
+    else 
+    {
+        if ((epw->wpnr_no != 16) || ((epw->flg2 & 0x4))) 
+        {
+            if (((epw->comb_flg & 0x1)) && (Combo_Eff[epw->wpnr_no].blood_type[((epw->comb_flg & 0x10)) ? 0 : ((epw->comb_flg & 0x20)) ? 1 : 2] != -1)) 
+            {
+                bhEne_SetBloodEffect5(epw, 0, Combo_Eff[epw->wpnr_no].blood_type[((epw->comb_flg & 0x10)) ? 0 : ((epw->comb_flg & 0x20)) ? 1 : 2]);
+            } 
+            else if (WpnDamageTbl[epw->wpnr_no].blood_type != -1) 
+            {
+                bhEne_SetBloodEffect5(epw, 0, WpnDamageTbl[epw->wpnr_no].blood_type);
+            }
+        }
+
+        if ((epw->wpnr_no != 16) || ((epw->flg2 & 0x4))) 
+        {
+            bhEne_SetPoison(epw, prt_blood_tbl);
+        }
+    }
+
+    if ((epw->wpnr_no == 18) || ((epw->wpnr_no == 16) && ((epw->flg2 & 0x4))) || ((epw->wpnr_no == 16) && ((-rand() / -2147483648.0f) < 0.3))) 
+    {
+        NearestCapsule(epw, (NJS_POINT3*)&epw->dpx, &cap, &jnt);
+        
+        npDistanceP2C((NJS_POINT3*)&epw->dpx, &cap, &ofp);
+        
+        njSubVector(&ofp, (NJS_VECTOR*)&epw->mlwP->owP[jnt].mtx[12]);
+         
+        bhEne_SetFireEffect(epw, jnt, &ofp, 2.0f, 90);
+    }
+
+    if (epw->hp >= 0) 
+    {
+        if (is_core_damage != FALSE) 
+        {
+            epw->mode0 = 3;
+            epw->mode1 = 4;
+            
+            epw->way = 0;
+            
+            ReqMtn(epw, 10);
+        } 
+        else if ((epw->comb_flg & 0x1))
+        {
+            switch (Combo_Eff[epw->wpnr_no].dmg_type[((epw->comb_flg & 0x10)) ? 0 : ((epw->comb_flg & 0x20)) ? 1 : 2]) 
+            {
+            case 1:
+                if ((epw->comb_flg & 0x8)) 
+                {
+                    epw->mode0 = 3;
+                    epw->mode1 = 1;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 7);
+                } 
+                else 
+                {
+                    epw->mode0 = 3;
+                    epw->mode1 = 0;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 6);
+                }
+                
+                break;
+            case 2:
+                if ((epw->comb_flg & 0x8)) 
+                {
+                    epw->mode0 = 3;
+                    epw->mode1 = 3;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 9);
+                } 
+                else 
+                {
+                    epw->mode0 = 3;
+                    epw->mode1 = 2;
+                    
+                    epw->way = 0;
+                    
+                    ReqMtn(epw, 8);
+                }
+                
+                break;
+            }
+        } 
+        else if ((epw->mode0 != 2) && (epw->mode0 != 3) && ((epw->mode0 != 1) || (epw->mode1 != 4)))  
+        {
+            if ((epw->wpnr_no != 16) || ((epw->flg2 & 0x4))) 
+            {
+                switch (WpnDamageTbl[epw->wpnr_no].dmg_type) 
+                {
+                case 1:
+                    if ((epw->comb_flg & 0x8))
+                    {
+                        if (((epw->ct1 == 0) && (epw->mtn_no == 1)) && (((epw->frm_no / 65536) >= 21) && ((epw->frm_no / 65536) < 29)))
+                        {
+                            epw->mode0 = 3;
+                            epw->mode1 = 1;
+                            
+                            epw->way = 0;
+                            
+                            ReqMtn(epw, 7);
+                        }
+                    } 
+                    else 
+                    {
+                        if (((epw->ct1 == 0) && (epw->mtn_no == 1)) && (((epw->frm_no / 65536) >= 47) && ((epw->frm_no / 65536) < 55)))
+                        {
+                            epw->mode0 = 3;
+                            epw->mode1 = 0;
+                            
+                            epw->way = 0;
+                            
+                            ReqMtn(epw, 6);
+                        }
+                    }
+                    
+                    break;
+                case 2:
+                    if ((epw->comb_flg & 0x8)) 
+                    {
+                        if (((epw->ct1 == 0) && (epw->mtn_no == 1)) && (((epw->frm_no / 65536) >= 62) && ((epw->frm_no / 65536) < 74)))
+                        {
+                            epw->mode0 = 3;
+                            epw->mode1 = 3;
+                            
+                            epw->way = 0;
+                            
+                            ReqMtn(epw, 9);
+                        }
+                    } 
+                    else 
+                    {
+                        if (((epw->ct1 == 0) && (epw->mtn_no == 1)) && (((epw->frm_no / 65536) >= 13) && ((epw->frm_no / 65536) < 25)))
+                        {
+                            epw->mode0 = 3;
+                            epw->mode1 = 2;
+                            
+                            epw->way = 0;
+                            
+                            ReqMtn(epw, 8);
+                        }
+                    }
+                    
+                    break;
+                }
+            }
+        }
+    } 
+    else if (epw->mode0 != 4)
+    {
+        if (sys->gm_mode != 3) 
+        {
+            if (is_core_damage != FALSE) 
+            {
+                epw->flg |= 0x2;
+                
+                bhStFlg(sys->ev_flg, 57);
+                
+                if ((sys->gm_flg & 0x40))
+                {
+                    sys->gm_flg &= ~0x40;
+                    
+                    if (!(sys->gm_flg & 0x1000000))
+                    {
+                        sys->gm_flg &= ~0x80;
+                    }
+                    
+                    sys->gm_flg |= 0x800;
+                    
+                    if ((sys->st_flg & 0x800000)) 
+                    {
+                        sys->st_flg &= ~0x800000;
+                        sys->gm_flg &= ~0x80000;
+                        
+                        sys->pt_flg |=  0x1;
+                    }
+                }
+            } 
+            else 
+            {
+                epw->mode0 = 4;
+                epw->mode1 = 0;
+                
+                epw->way = 0;
+                
+                ReqMtn(epw, 11);
+            }
+        } 
+        else 
+        {
+            epw->mode0 = 4;
+            epw->mode1 = 1;
+            
+            epw->way = 0;
+            
+            ReqMtn(epw, 11);
+        }
+    }
+
+    epw->flg &= ~0x4;
+    
+    bhEne_InitDamage(epw);
 }
 
 static MTN_RELAY mtn_relay[21] = 

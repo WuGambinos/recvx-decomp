@@ -1,9 +1,10 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/dvci.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/dvci_sub.h"
+#include "cri/mwlib/ee/lib/libadxe/dvci.h"
+#include "cri/mwlib/ee/lib/libadxe/dvci_sub.h"
 
 #include <eetypes.h>
 #include <eekernel.h>
 #include <stdio.h>
+#include <string.h>
 //#include <string.h> /* ERROR: causes linker to fail */
 
 char const * const dvg_ci_build = "\ndvCi Ver.2.14 Build:Mar 14 2001 14:12:35\n";

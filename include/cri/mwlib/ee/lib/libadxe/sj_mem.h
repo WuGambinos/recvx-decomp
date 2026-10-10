@@ -1,8 +1,8 @@
 #ifndef _SJ_MEM_H_
 #define _SJ_MEM_H_
 
-#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
-#include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
+#include <recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <recvx-decomp-cri/cri/mwlib/include/sj.h>
 #include "macros.h"
 
 typedef void (*SJMEM_ERRFN)(void *obj, Sint32 errcode);

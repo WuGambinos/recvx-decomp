@@ -1,15 +1,15 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_tsvr.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_amp.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_inis.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_rnap.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_sjd.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_tsvr.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_amp.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_dcd.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_errs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_inis.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_rnap.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_sjd.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_stmc.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_tlk.h"
 
-//#include <string.h>
+#include <string.h>
 
 Sint32 adxt_dbg_nch = 0;
 Sint32 adxt_dbg_ndt = 0;

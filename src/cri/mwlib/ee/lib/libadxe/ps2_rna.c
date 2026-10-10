@@ -1,10 +1,11 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/ps2_rna.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/dtx.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/rna_crs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/sjr_clt.h"
+#include "cri/mwlib/ee/lib/libadxe/ps2_rna.h"
+#include "cri/mwlib/ee/lib/libadxe/dtx.h"
+#include "cri/mwlib/ee/lib/libadxe/rna_crs.h"
+#include "cri/mwlib/ee/lib/libadxe/sjr_clt.h"
 
 #include <stdio.h>
-//#include <string.h>
+#include <string.h>
+
 
 Char8* volatile ps2rna_build = "\nPS2RNA Ver 0.98 Build:Jan 26 2001 09:57:43\n";
 Uint32 ps2rna_dbtbl[1000] = 
@@ -80,7 +81,7 @@ void ps2rna_init_psj(void)
 
     if (ps2psj_iop_work0 == NULL) 
     {
-        ps2psj_iop_work0 = sceSifAllocIopHeap(ps2psj_iop_wksize + 64);
+        //ps2psj_iop_work0 = sceSifAllocIopHeap(ps2psj_iop_wksize + 64);
         
         ps2psj_iop_work = (void*)(((Sint32)ps2psj_iop_work0 + 64) & 0xFFFFFFC0);
         
@@ -180,7 +181,7 @@ void ps2rna_finish_psj(void)
 
     if (ps2psj_alloc_flag == 1)
     {
-        sceSifFreeIopHeap(ps2psj_iop_work0);
+        //sceSifFreeIopHeap(ps2psj_iop_work0);
         
         ps2psj_iop_work0 = NULL;
         
@@ -376,7 +377,7 @@ void PS2RNA_Init(void)
         
         if (ps2rna_iopwk == NULL) 
         {
-            ps2rna_iopwk = sceSifAllocIopHeap(2256);
+            //ps2rna_iopwk = sceSifAllocIopHeap(2256);
             
             if (ps2rna_iopwk == NULL) 
             {

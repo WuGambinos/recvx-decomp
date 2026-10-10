@@ -1,24 +1,30 @@
-#include "../../../ps2/veronica/prog/sub1.h"
-#include "../../../ps2/veronica/prog/event.h"
-#include "../../../ps2/veronica/prog/fileview.h"
-#include "../../../ps2/veronica/prog/main.h"
-#include "../../../ps2/veronica/prog/message.h"
-#include "../../../ps2/veronica/prog/padman.h"
-#include "../../../ps2/veronica/prog/item.h"
-#include "../../../ps2/veronica/prog/ps2_NaDraw.h"
-#include "../../../ps2/veronica/prog/ps2_NaDraw2D.h"
-#include "../../../ps2/veronica/prog/ps2_NaFog.h"
-#include "../../../ps2/veronica/prog/ps2_NaMem.h"
-#include "../../../ps2/veronica/prog/ps2_NaSprite.h"
-#include "../../../ps2/veronica/prog/ps2_NaView.h"
-#include "../../../ps2/veronica/prog/ps2_NaTextureFunction.h"
-#include "../../../ps2/veronica/prog/ps2_NinjaCnk.h"
-#include "../../../ps2/veronica/prog/ps2_dummy.h"
-#include "../../../ps2/veronica/prog/ps2_texture.h"
-#include "../../../ps2/veronica/prog/ps2_event.h"
-#include "../../../ps2/veronica/prog/pwksub.h"
-#include "../../../ps2/veronica/prog/screen.h"
-#include "../../../ps2/veronica/prog/sdfunc.h"
+#include "ps2/veronica/prog/sub1.h"
+#include "ps2/veronica/prog/event.h"
+#include "ps2/veronica/prog/fileview.h"
+#include "ps2/veronica/prog/flag.h"
+#include "ps2/veronica/prog/main.h"
+#include "ps2/veronica/prog/message.h"
+#include "ps2/veronica/prog/padman.h"
+#include "ps2/veronica/prog/item.h"
+#include "ps2/veronica/prog/itemview.h"
+#include "ps2/veronica/prog/player.h"
+#include "ps2/veronica/prog/ps2_NaDraw.h"
+#include "ps2/veronica/prog/ps2_NaDraw2D.h"
+#include "ps2/veronica/prog/ps2_NaFog.h"
+#include "ps2/veronica/prog/ps2_NaMem.h"
+#include "ps2/veronica/prog/ps2_NaSprite.h"
+#include "ps2/veronica/prog/ps2_NaView.h"
+#include "ps2/veronica/prog/ps2_NaTextureFunction.h"
+#include "ps2/veronica/prog/ps2_NinjaCnk.h"
+#include "ps2/veronica/prog/ps2_dummy.h"
+#include "ps2/veronica/prog/ps2_loadtim2.h"
+#include "ps2/veronica/prog/ps2_texture.h"
+#include "ps2/veronica/prog/ps2_event.h"
+#include "ps2/veronica/prog/pwksub.h"
+#include "ps2/veronica/prog/screen.h"
+#include "ps2/veronica/prog/sdfunc.h"
+
+#include <string.h>
 
 #pragma optimization_level 4
 
@@ -1218,29 +1224,29 @@ unsigned char menuanim[3][4] =
 
 NJS_TEXANIM* testset[23] = 
 {
-	&parts_00,
-	&parts_01,
-	&parts_02,
-	&parts_03,
-	&parts_04,
-	&parts_05,
-	&parts_11,
-	&parts_07,
-	&parts_08,
-	&parts_09,
-	&parts_10,
-	&parts_11,
-	&parts_12,
-	&parts_13,
-	&parts_14,
-	&parts_15,
-	&parts_16,
-	&parts_11,
-	&parts_18,
-	&parts_19,
-	&parts_20,
-	&parts_21,
-	&parts_22
+	parts_00,
+	parts_01,
+	parts_02,
+	parts_03,
+	parts_04,
+	parts_05,
+	parts_11,
+	parts_07,
+	parts_08,
+	parts_09,
+	parts_10,
+	parts_11,
+	parts_12,
+	parts_13,
+	parts_14,
+	parts_15,
+	parts_16,
+	parts_11,
+	parts_18,
+	parts_19,
+	parts_20,
+	parts_21,
+	parts_22
 };
 PARTS* sprset[15] = 
 {
@@ -1262,24 +1268,24 @@ PARTS* sprset[15] =
 };
 PARTS* itembox[14] = 
 {
-    &parts_04b,
-    &parts_05b,
-    &parts_07b,
-    &parts_09b,
-    &parts_11b,
-    &parts_15b,
-    &parts_16b,
-    &parts_17b,
-    &parts_18b,
-    &parts_21b,
-    &parts_03b,
-    &parts_14b,
-    &parts_19b,
-    &parts_20b
+    parts_04b,
+    parts_05b,
+    parts_07b,
+    parts_09b,
+    parts_11b,
+    parts_15b,
+    parts_16b,
+    parts_17b,
+    parts_18b,
+    parts_21b,
+    parts_03b,
+    parts_14b,
+    parts_19b,
+    parts_20b
 };
 PARTS* filescreen[1] = 
 {
-	&parts_22b
+	parts_22b
 };
 
 #pragma mpwc_relax off

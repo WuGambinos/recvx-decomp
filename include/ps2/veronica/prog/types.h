@@ -1,6 +1,7 @@
 #ifndef _TYPES_H_
 #define _TYPES_H_
 
+/*
 #include "override_katana.h"
 #include <ninja.h>
 #include <sg_gd.h>
@@ -30,6 +31,31 @@
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
 #include "../../../cri/mwlib/ee/lib/libadxe/override_adxt.h"
 #include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
+*/
+
+/*
+#include <recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
+#include "cri/mwlib/ee/lib/libadxe/override_adxt.h"
+#include <recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
+*/
+
+#include <ninja.h>
+#include <sg_gd.h>
+#include <sg_mw.h>
+#include <sg_pdvib.h>
+#include <sg_sycbl.h>
+#include <sg_sd2.h>
+
+#include <libcdvd.h>
+#include <libipu.h>
+#include <libmpeg.h>
+#include <libgraph.h>
+#include <libpad.h>
+#include <libmc.h>
+#include <sifrpc.h>
+
+#include <NJS_TYPES.h>
+#include <SCE_TYPEs.h>
 
 typedef struct {
 	// total size: 0x8

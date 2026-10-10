@@ -1,6 +1,6 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/cri_cvfs.h"
+#include "cri/mwlib/ee/lib/libadxe/cri_cvfs.h"
 
-//#include <string.h>
+#include <string.h>
 
 char* volatile cvfs_build = "\ncvFs Ver.2.11 Build:Jan 26 2001 09:55:14\n";
 static CVF_FS_ERRFN cvfs_errfn = NULL;

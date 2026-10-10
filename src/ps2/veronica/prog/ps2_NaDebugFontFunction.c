@@ -1,31 +1,26 @@
-#include "../../../ps2/veronica/prog/ps2_NaDebugFontFunction.h"
+#include "ps2/veronica/prog/ps2_NaDebugFontFunction.h"
 
 // 100% matching!
-void 	njInitPrint(Uint32 *texture,Uint32 size,Uint32 attr)
+void njInitPrint(Uint32* texture, Uint32 size, Uint32 attr)
 {
-
 }
 
 // 100% matching!
-void 	njExitPrint(void)
+void njExitPrint(void)
 {
-
 }
 
 // 100% matching!
-void	njPrintSize(Uint16 size)
+void njPrintSize(Uint16 size)
 {
-
 }
 
 // 100% matching!
-void	njPrintColor(Uint32 c)
+void njPrintColor(Uint32 c)
 {
-
 }
 
 // 100% matching!
-void	njPrintC(Int loc,const char *s)
+void njPrintC(Int loc, const char* s)
 {
-
 }

@@ -1,8 +1,8 @@
 #ifndef _DTR_H_
 #define _DTR_H_
 
-#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
-#include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
+#include <recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <recvx-decomp-cri/cri/mwlib/include/sj.h>
 #include <sif.h>
 #include "macros.h"
 

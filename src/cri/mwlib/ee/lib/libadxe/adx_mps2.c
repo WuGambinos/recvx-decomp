@@ -1,5 +1,5 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_mps2.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_fsvr.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_mps2.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_fsvr.h"
 
 #include <libgraph.h>
 

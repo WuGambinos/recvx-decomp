@@ -1,7 +1,7 @@
 #ifndef _ADX_DCD_H_
 #define _ADX_DCD_H_
 
-#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include "macros.h"
 
 #define PI 3.14159265

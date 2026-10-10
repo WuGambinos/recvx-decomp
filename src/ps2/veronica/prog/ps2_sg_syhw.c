@@ -1,19 +1,16 @@
-#include "../../../ps2/veronica/prog/ps2_sg_syhw.h"
+#include "ps2/veronica/prog/ps2_sg_syhw.h"
 
-// 100% matching! 
+// 100% matching!
 void syHwFinish(void)
 {
-
 }
 
 // 100% matching!
-void syHwInit(void) 
+void syHwInit(void)
 {
-
 }
 
 // 100% matching!
 void syHwInit2(void)
 {
-
 }

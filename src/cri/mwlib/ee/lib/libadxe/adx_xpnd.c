@@ -1,8 +1,8 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_xpnd.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd3.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_xpnd.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_dcd.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_dcd3.h"
 
-//#include <string.h>
+#include <string.h>
 
 Sint32 adxpd_internal_error = 0;
 ADX_XPDOBJ adxpd_obj[8] = { 0 };

@@ -1,10 +1,12 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk2.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/lsc.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_tlk2.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_errs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_fs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_stmc.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_tlk.h"
+#include "cri/mwlib/ee/lib/libadxe/lsc.h"
+
+#include <stdio.h>
 
 // 100% matching! 
 void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid)

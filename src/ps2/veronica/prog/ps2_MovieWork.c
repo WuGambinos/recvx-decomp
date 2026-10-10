@@ -1,4 +1,4 @@
-#include "../../../ps2/veronica/prog/ps2_MovieWork.h"
+#include "ps2/veronica/prog/ps2_MovieWork.h"
 
 unsigned char* mpegWork;
 VoTag* voBufTag __attribute__((aligned(64)));

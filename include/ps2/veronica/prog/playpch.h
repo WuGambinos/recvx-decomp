@@ -4,6 +4,8 @@
 #include "types.h"
 #include "macros.h"
 
+#include "ps2/veronica/prog/player.h"
+
 typedef struct _search
 {
     // total size: 0x14

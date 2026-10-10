@@ -1,7 +1,7 @@
 #ifndef _HTCI_H_
 #define _HTCI_H_
 
-#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <libcdvd.h>
 #include <sifdev.h>
 #include "cri_cvfs.h"

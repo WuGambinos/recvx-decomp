@@ -1,12 +1,12 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_inis.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_rnap.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_sjd.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/lsc_ini.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_inis.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_errs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_rnap.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_sjd.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_stmc.h"
+#include "cri/mwlib/ee/lib/libadxe/lsc_ini.h"
 
-//#include <string.h>
+#include <string.h>
 
 Sint8 adxt_obj_mark[16] = "MARK:adxt_obj"; /* unused */
 Sint32 adxt_init_cnt = 0;

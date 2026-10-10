@@ -1,8 +1,8 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/sjx.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/dtx.h"
+#include "cri/mwlib/ee/lib/libadxe/sjx.h"
+#include "cri/mwlib/ee/lib/libadxe/dtx.h"
 
 #include <stdio.h>
-//#include <string.h>
+#include <string.h>
 
 Char8* volatile sjx_build = "\nSJX Ver 1.00 Build:Jan 26 2001 09:59:55\n";
 Sint32 sjx_init_cnt = 0;
@@ -127,7 +127,7 @@ void SJX_Init(void)
 
         if (sjx_iopwk == NULL) 
         {
-            sjx_iopwk = sceSifAllocIopHeap(2256);
+            // sjx_iopwk = sceSifAllocIopHeap(2256);
 
             if (sjx_iopwk == NULL) 
             {

@@ -1,7 +1,7 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_baif.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_xpnd.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_baif.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_xpnd.h"
 
-//#include <string.h>
+#include <string.h>
 
 // 100% matching!
 static void* AIFF_GetInfo(void *hdr, Sint32 *sfreq, Sint32 *nch, Sint32 *bps, Sint32 *nsmpl)

@@ -1,12 +1,12 @@
-#include "../../../ps2/veronica/prog/sync.h"
-#include "../../../ps2/veronica/prog/flag.h"
-#include "../../../ps2/veronica/prog/padman.h"
-#include "../../../ps2/veronica/prog/ps2_dummy.h"
-#include "../../../ps2/veronica/prog/ps2_event.h"
-#include "../../../ps2/veronica/prog/ps2_NaFog.h"
-#include "../../../ps2/veronica/prog/sdfunc.h"
-#include "../../../ps2/veronica/prog/system.h"
-#include "../../../ps2/veronica/prog/main.h"
+#include "ps2/veronica/prog/sync.h"
+#include "ps2/veronica/prog/flag.h"
+#include "ps2/veronica/prog/padman.h"
+#include "ps2/veronica/prog/ps2_dummy.h"
+#include "ps2/veronica/prog/ps2_event.h"
+#include "ps2/veronica/prog/ps2_NaFog.h"
+#include "ps2/veronica/prog/sdfunc.h"
+#include "ps2/veronica/prog/system.h"
+#include "ps2/veronica/prog/main.h"
 
 // 100% matching! 
 void bhInitVSync()

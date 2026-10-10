@@ -1,8 +1,8 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/htci.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/htci_sub.h"
+#include "cri/mwlib/ee/lib/libadxe/htci.h"
+#include "cri/mwlib/ee/lib/libadxe/htci_sub.h"
 
 #include <stdio.h>
-//#include <string.h>
+#include <string.h>
 
 char* const htci_build = "\nhtCi Ver.2.16 Build:Jan 26 2001 09:56:20\n";
 CVF_FS_ERRFN htg_ci_err_func = NULL;

@@ -1,10 +1,10 @@
 #ifndef _ADX_TSVR_H_
 #define _ADX_TSVR_H_
 
-#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
-#include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
+#include <recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <recvx-decomp-cri/cri/mwlib/include/sj.h>
 #include "override_adxt.h"
-#include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
+#include <recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 
 void adxt_eos_entry(void *obj);
 void ADXT_ExecErrChk(ADXT adxt);

@@ -1,8 +1,8 @@
 #ifndef _SJR_CLT_H_
 #define _SJR_CLT_H_
 
-#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
-#include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
+#include <recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <recvx-decomp-cri/cri/mwlib/include/sj.h>
 
 typedef enum 
 {

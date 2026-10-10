@@ -1,8 +1,8 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/lsc_svr.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/lsc_err.h"
+#include "cri/mwlib/ee/lib/libadxe/lsc_svr.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_stmc.h"
+#include "cri/mwlib/ee/lib/libadxe/lsc_err.h"
 
-//#include <string.h>
+#include <string.h>
 
 // 100% matching!
 void lsc_StatWait(LSC lsc)

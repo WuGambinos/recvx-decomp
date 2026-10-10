@@ -1,6 +1,6 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_errs.h"
 
-//#include <string.h>
+#include <string.h>
 
 void (*adxerr_func)(void *obj, const Sint8 *msg) = NULL;
 void *adxerr_obj = NULL;

@@ -1,9 +1,9 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_sjd.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_bsc.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/sj_rbf.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_sjd.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_bsc.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "cri/mwlib/ee/lib/libadxe/sj_rbf.h"
 
-//#include <string.h>
+#include <string.h>
 
 ADX_SJDEC adxsjd_obj[8] = { 0 };
 

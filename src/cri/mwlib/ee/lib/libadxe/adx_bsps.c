@@ -1,7 +1,7 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_bsps.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_xpnd.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_bsps.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_xpnd.h"
 
-//#include <string.h>
+#include <string.h>
 
 // 100% matching!
 Sint32 ADX_DecodeInfoSpsd(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 *code, Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq, Sint32 *total_nsmpl, Sint32 *nsmpl_blk, Sint16 *cdc)

@@ -1,8 +1,8 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_sudv.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/cri_cvfs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/dvci.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/dvci_sub.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_sudv.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_errs.h"
+#include "cri/mwlib/ee/lib/libadxe/cri_cvfs.h"
+#include "cri/mwlib/ee/lib/libadxe/dvci.h"
+#include "cri/mwlib/ee/lib/libadxe/dvci_sub.h"
 
 // 100% matching!
 void adxt_err_dvd(void *obj, const char *msg, void *hndl)

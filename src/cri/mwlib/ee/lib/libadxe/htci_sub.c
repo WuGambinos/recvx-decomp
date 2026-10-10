@@ -1,8 +1,8 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/htci_sub.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/htci.h"
+#include "cri/mwlib/ee/lib/libadxe/htci_sub.h"
+#include "cri/mwlib/ee/lib/libadxe/htci.h"
 
 #include <stdio.h>
-//#include <string.h>
+#include <string.h>
 
 static Sint32 htg_found = FALSE;
 static HTCI_FLIST_TBL htg_flist_tbl = { 0 };

@@ -1,6 +1,8 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
+#include "types.h"
+
 extern CAM_WORK cam;
 extern ROM_WORK* rom;
 extern unsigned char* njpmemp;

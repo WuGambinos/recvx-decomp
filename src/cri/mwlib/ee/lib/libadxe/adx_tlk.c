@@ -1,19 +1,19 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_tlk.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_amp.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd3.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_inis.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_rnap.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_sjd.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/lsc.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/ps2_rna.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/sjr_clt.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_tlk.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_amp.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_dcd.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_dcd3.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_errs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_inis.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_rnap.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_sjd.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_stmc.h"
+#include "cri/mwlib/ee/lib/libadxe/lsc.h"
+#include "cri/mwlib/ee/lib/libadxe/ps2_rna.h"
+#include "cri/mwlib/ee/lib/libadxe/sjr_clt.h"
 
 #include <stdio.h>
-//#include <string.h>
+#include <string.h>
 
 #define	ADXT_OBUF_DIST	(0x2020)
 

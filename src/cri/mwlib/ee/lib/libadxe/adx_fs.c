@@ -1,11 +1,11 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_fs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_crs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_errs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_fcch.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_fini.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_fs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_crs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_errs.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_fcch.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_fini.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_stmc.h"
 
-//#include <string.h>
+#include <string.h>
 
 Uint32 adxf_tcnt[10] = { 0 };
 Uint32 adxf_chkp_tcnt[10] = { 0 };

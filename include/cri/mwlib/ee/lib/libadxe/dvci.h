@@ -1,7 +1,7 @@
 #ifndef _DVCI_H_
 #define _DVCI_H_
 
-#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
 #include <libcdvd.h>
 #include "cri_cvfs.h"
 #include "macros.h"
@@ -28,7 +28,7 @@ void dvci_call_errfn(DVCI dvci, const char *msg);
 void dvci_conv_fname(const Sint8 *spath, Sint8 *tpath);
 static void dvci_free(DVCI dvci);
 void dvci_to_large_to_yen(Sint8 *fname);
-void dvci_wait(void);
+static void dvci_wait(void);
 void dvCiClose(void *obj);
 void dvCiEntryErrFunc(CVF_FS_ERRFN errfn, void *obj);
 void dvCiExecHndl(DVCI dvci);

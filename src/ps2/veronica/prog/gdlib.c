@@ -1,6 +1,7 @@
-#include "../../../ps2/veronica/prog/gdlib.h"
-#include "../../../ps2/veronica/prog/ps2_sg_maloc.h"
-#include "../../../ps2/veronica/prog/main.h"
+#include "ps2/veronica/prog/gdlib.h"
+
+#include "ps2/veronica/prog/main.h"
+#include "ps2/veronica/prog/ps2_sg_maloc.h"
 
 unsigned char* pDirWork;
 unsigned char* pDirTbl;
@@ -14,153 +15,140 @@ unsigned int GdErrorFlag;
 unsigned int DiscOpenTrayFlag;
 unsigned int MaxDirectoryEntry = 512;
 /* unused below */
-/*unsigned int NewDiscCheckSw; 
-GDFS CurrentGdFs; 
-GDFS CurrentGdFsBuf; 
-GDFS LfGdFs;*/ 
+/*unsigned int NewDiscCheckSw;
+GDFS CurrentGdFs;
+GDFS CurrentGdFsBuf;
+GDFS LfGdFs;*/
 
 // 100% matching!
-void LfInitLib() 
+void LfInitLib()
 {
-    unsigned int i;
-    
-    for (i = 0; i < 14; i++) 
-    { 
-        LfOpenInfo[i].Flag = 0; 
-    } 
-} 
-
-// 100% matching! 
-void CallbackGdErrorFunc(int param, int err) // first parameter is not present on the debugging symbols
-{
-    if ((err == -23) || (err == -33)) 
-    { 
-        GdErrorFlag = 1; 
-    }
+// unsigned int i;
+    //
+    // for (i = 0; i < 14; i++) {
+    //     LfOpenInfo[i].Flag = 0;
+    // }
 }
 
-// 100% matching! 
-unsigned int InitGdSystem() 
-{ 
-    unsigned int i;
-    int GdErrorCode;
+// 100% matching!
+void CallbackGdErrorFunc(int param, int err)  // first parameter is not present on the debugging symbols
+{
+// if ((err == -23) || (err == -33)) {
+    //     GdErrorFlag = 1;
+    // }
+}
 
-    pDirWork = syMalloc(5484); 
-    pDirTbl = syMalloc((MaxDirectoryEntry * 44) + 16);
-
-    RequestReadFlag = 0; 
-    RequestReadBufferFlag = 0; 
-    RequestMultiReadFlag = 0; 
-
-    LfInitLib();
-
-    for (i = 0; i < 128; i++) 
-    { 
-        GdErrorCode = gdFsInit(14, (void*)pDirWork, MaxDirectoryEntry, pDirTbl); 
-
-        if ((GdErrorCode == -23) || (GdErrorCode == -33)) 
-        {
-            break;
-        }
-
-        if (GdErrorCode == 0) 
-        {
-            GdDirRec = gdFsCreateDirhn((void*)pDirTbl, MaxDirectoryEntry);
-            
-            gdFsLoadDir("\\", GdDirRec); 
-            gdFsSetDir(GdDirRec);
-
-            gdFsEntryErrFuncAll((GDFS_ERRFUNC)CallbackGdErrorFunc, NULL); 
-
-            return 0; 
-        }
-    } 
-
-    return 1; 
-} 
+// 100% matching!
+unsigned int InitGdSystem()
+{
+// unsigned int i;
+    // int GdErrorCode;
+    //
+    // pDirWork = syMalloc(5484);
+    // pDirTbl = syMalloc((MaxDirectoryEntry * 44) + 16);
+    //
+    // RequestReadFlag = 0;
+    // RequestReadBufferFlag = 0;
+    // RequestMultiReadFlag = 0;
+    //
+    // LfInitLib();
+    //
+    // for (i = 0; i < 128; i++) {
+    //     GdErrorCode = gdFsInit(14, (void*) pDirWork, MaxDirectoryEntry, pDirTbl);
+    //
+    //     if ((GdErrorCode == -23) || (GdErrorCode == -33)) {
+    //         break;
+    //     }
+    //
+    //     if (GdErrorCode == 0) {
+    //         GdDirRec = gdFsCreateDirhn((void*) pDirTbl, MaxDirectoryEntry);
+    //
+    //         gdFsLoadDir("\\", GdDirRec);
+    //         gdFsSetDir(GdDirRec);
+    //
+    //         gdFsEntryErrFuncAll((GDFS_ERRFUNC) CallbackGdErrorFunc, NULL);
+    //
+    //         return 0;
+    //     }
+    // }
+    //
+    // return 1;
+}
 
 // 100% matching!
 unsigned int InitGdSystemEx(unsigned int MaxDirNum)
 {
-    MaxDirectoryEntry = MaxDirNum; 
-    
-    return InitGdSystem(); 
+// MaxDirectoryEntry = MaxDirNum;
+    //
+    // return InitGdSystem();
 }
 
-// 100% matching! 
-void ExitGdSystem() 
-{ 
-    syFree(pDirTbl); 
-    syFree(pDirWork); 
+// 100% matching!
+void ExitGdSystem()
+{
+// syFree(pDirTbl);
+    // syFree(pDirWork);
+    //
+    // gdFsFinish();
+}
 
-    gdFsFinish(); 
-} 
-
-// 100% matching! 
+// 100% matching!
 int GetFileSize(char* FileName)
-{ 
-    GDFS_DIRINFO DirInfo;
+{
+// GDFS_DIRINFO DirInfo;
+    //
+    // if (gdFsGetDirInfo(FileName, &DirInfo) == 0) {
+    //     return DirInfo.fsize;
+    // } else {
+    //     return 0;
+    // }
+}
 
-    if (gdFsGetDirInfo(FileName, &DirInfo) == 0) 
-    {
-        return DirInfo.fsize;
-    }
-    else 
-    {
-        return 0;
-    }
-} 
-
-// 100% matching! 
+// 100% matching!
 int ReadFileEx(char* FileName, void* ReadAddress)
 {
-    GDFS GdFs;
-    int FileSize;
+// GDFS GdFs;
+    // int FileSize;
+    //
+    // if (DiscOpenTrayFlag == -1) {
+    //     return 1;
+    // }
+    //
+    // if ((GdFs = gdFsOpen(FileName, GdDirRec)) == NULL) {
+    //     return 1;
+    // }
+    //
+    // gdFsGetFileSize(GdFs, &FileSize);
+    //
+    // if (gdFsRead(GdFs, (FileSize + 2047) / 2048, ReadAddress) != 0) {
+    //     return 1;
+    // }
+    //
+    // gdFsClose(GdFs);
+    //
+    // return 0;
+}
 
-    if (DiscOpenTrayFlag == -1) 
-    { 
-        return 1; 
-    }
-
-    if ((GdFs = gdFsOpen(FileName, GdDirRec)) == NULL)
-    {
-        return 1; 
-    }
-
-    gdFsGetFileSize(GdFs, &FileSize);
-
-    if (gdFsRead(GdFs, (FileSize + 2047) / 2048, ReadAddress) != 0)
-    { 
-        return 1; 
-    }
-
-    gdFsClose(GdFs);
-
-    return 0; 
-} 
-
-// 100% matching! 
+// 100% matching!
 unsigned int CheckOpenTray()
-{ 
-    int Stat;
-
-    Stat = gdFsGetDrvStat(); 
-
-    if ((Stat == 6) || (Stat == 9))
-    {
-        DiscOpenTrayFlag = -1; 
-        
-        return -1; 
-    }
-
-    StatusUpdateCounter--; 
-    
-    if (!(StatusUpdateCounter & 0x1F)) 
-    { 
-        gdFsReqDrvStat(); 
-    }
-
-    DiscOpenTrayFlag = 0;
-    
-    return 0; 
-} 
+{
+// int Stat;
+    //
+    // Stat = gdFsGetDrvStat();
+    //
+    // if ((Stat == 6) || (Stat == 9)) {
+    //     DiscOpenTrayFlag = -1;
+    //
+    //     return -1;
+    // }
+    //
+    // StatusUpdateCounter--;
+    //
+    // if (!(StatusUpdateCounter & 0x1F)) {
+    //     gdFsReqDrvStat();
+    // }
+    //
+    // DiscOpenTrayFlag = 0;
+    //
+    // return 0;
+}

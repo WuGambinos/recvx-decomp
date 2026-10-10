@@ -3,6 +3,9 @@
 
 #include "types.h"
 
+#include <recvx-decomp-cri/cri/mwlib/include/cri_adxf.h>
+#include <recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
+
 typedef struct ADX_WORK
 {
 	// total size: 0x10

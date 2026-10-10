@@ -1,11 +1,11 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/dtx.h"
+#include "cri/mwlib/ee/lib/libadxe/dtx.h"
 
 #include <stdio.h>
-//#include <string.h>
+#include <string.h>
 
-#include <eetypes.h>
+// #include <eetypes.h>
 #include <eekernel.h>
-#include <sifrpc.h>
+// #include <sifrpc.h>
 
 Char8* volatile dtx_build = "\nDTX Ver.0.95 Build:Jan 26 2001 09:57:12\n";
 Sint32 dtx_rpc_id = 0x7D000000;

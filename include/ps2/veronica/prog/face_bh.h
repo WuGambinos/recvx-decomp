@@ -4,6 +4,8 @@
 #include "types.h"
 #include "macros.h"
 
+#include "face.h"
+
 void fmSetLipSyncParam(MASK_WORK* fm, PARAM_WORK* base, LIP_WORK* lip, unsigned int mask);
 void _fmSetObjP(ML_WORK* mlwP);
 NJS_CNK_OBJECT* _fmCnkSearchObject(MASK_WORK* fm, NJS_CNK_OBJECT* root, char id);

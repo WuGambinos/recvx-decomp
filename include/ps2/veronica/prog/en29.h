@@ -2,6 +2,7 @@
 #define _EN29_H_
 
 #include "types.h"
+#include "ps2/veronica/prog/en19.h"
 
 typedef enum TC_ACT_NO 
 {

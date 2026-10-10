@@ -1,11 +1,11 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/lsc.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_stmc.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/lsc_crs.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/lsc_err.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/lsc_ini.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/lsc_svr.h"
+#include "cri/mwlib/ee/lib/libadxe/lsc.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_stmc.h"
+#include "cri/mwlib/ee/lib/libadxe/lsc_crs.h"
+#include "cri/mwlib/ee/lib/libadxe/lsc_err.h"
+#include "cri/mwlib/ee/lib/libadxe/lsc_ini.h"
+#include "cri/mwlib/ee/lib/libadxe/lsc_svr.h"
 
-//#include <string.h>
+#include <string.h>
 
 /* The KATANA SDK has a header for this file, cri_lsc.h, while the PS2 CRIware headers don't. */
 

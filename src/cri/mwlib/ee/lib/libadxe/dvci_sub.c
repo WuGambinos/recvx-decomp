@@ -1,8 +1,8 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/dvci_sub.h"
-#include "../../../cri/mwlib/ee/lib/libadxe/dvci.h"
+#include "cri/mwlib/ee/lib/libadxe/dvci_sub.h"
+#include "cri/mwlib/ee/lib/libadxe/dvci.h"
 
 #include <stdio.h>
-//#include <string.h>
+#include <string.h>
 
 static DVCI_FLIST_TBL dvg_flist_tbl = { 0 };
 static Sint8 dvg_rbuf[4096] __attribute__((aligned(64)));

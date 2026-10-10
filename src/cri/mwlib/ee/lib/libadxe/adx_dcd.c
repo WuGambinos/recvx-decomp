@@ -1,4 +1,4 @@
-#include "../../../cri/mwlib/ee/lib/libadxe/adx_dcd.h"
+#include "cri/mwlib/ee/lib/libadxe/adx_dcd.h"
 
 #include <mathf.h>
 

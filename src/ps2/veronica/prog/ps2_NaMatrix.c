@@ -1,7 +1,8 @@
-#include "../../../ps2/veronica/prog/ps2_NaMatrix.h"
-#include "../../../ps2/veronica/prog/ps2_NaFog.h"
-#include "../../../ps2/veronica/prog/ps2_NaView.h"
-#include "../../../ps2/veronica/prog/main.h"
+#include "ps2/veronica/prog/ps2_NaMatrix.h"
+
+#include "ps2/veronica/prog/main.h"
+#include "ps2/veronica/prog/ps2_NaFog.h"
+#include "ps2/veronica/prog/ps2_NaView.h"
 
 int lNaMatIsUnitMatrix;
 int lNaMatMatrixStuckMax;
@@ -15,1964 +16,2134 @@ NJS_MATRIX TempMatrix1;*/
 extern void VU0_INIT_CALC_PROCESS() __attribute__((section(".vutext")));
 
 // 98.85% matching
-void	njInitMatrix(NJS_MATRIX *m, Sint32 n, Int flag)
+void njInitMatrix(NJS_MATRIX* m, Sint32 n, Int flag)
 {
-    register float pi;
-
-    pNaMatMatrixStuckTop = m;
-    pNaMatMatrixStuckPtr = m; 
-    
-    lNaMatMatrixStuckCnt = 0; 
-    lNaMatMatrixStuckMax = n; 
-    
-    lNaMatIsUnitMatrix = flag; 
-    
-    pi = 3.141592f;
-    
-    asm volatile 
-    {
-    .set noreorder
-    
-        vaddw.xyz  vf1, vf0, vf0w   
-        
-        vmul.w     vf1, vf0, vf0                     
-
-        sub        t5, t5, t5     
-        
-        addi       t0, t5, 0x80                       
-        addi       t1, t5, 0x100          
-        
-        mult       zero, t1, t1        
-        
-        mflo       t2               
-        
-        mfc1       t3, pi           
-        
-        qmtc2      t0, vf3                          
-        qmtc2      t1, vf9                               
-        qmtc2      t2, vf10                             
-        qmtc2      t3, vf11                              
-
-        vitof0.xyzw vf3, vf3                        
-        vitof0.xyzw vf9, vf9                 
-        vitof0.xyzw vf10, vf10         
-        
-        vaddx.y    vf3, vf0, vf9x                     
-        vaddx.z    vf3, vf0, vf10x       
-        
-        vmulx.w    vf3, vf0, vf11x        
-        
-        vaddw.xyzw vf2, vf0, vf0w        
-        
-        vdiv       Q, vf0w, vf2w        
-        
-        vaddw.xyzw vf2, vf2, vf0w                    
-        vaddw.xyzw vf2, vf2, vf0w                     
-        vaddw.yzw  vf2, vf2, vf0w                     
-        vaddw.zw   vf2, vf2, vf0w   
-        
-        vwaitq                     
-        
-        vmulq.w    vf2, vf0, Q                        
-        
-        addi       t0, zero, 0xFFF      
-        
-        qmtc2      t0, vf4                               
-        
-        vitof0.xyz vf4, vf4      
-        
-        vaddx.z    vf16, vf0, vf4x          
-        
-        vcallms    VU0_INIT_CALC_PROCESS                          
-        
-        nop       
-    
-    .set reorder
-    }
+// register float pi;
+    //
+    // pNaMatMatrixStuckTop = m;
+    // pNaMatMatrixStuckPtr = m;
+    //
+    // lNaMatMatrixStuckCnt = 0;
+    // lNaMatMatrixStuckMax = n;
+    //
+    // lNaMatIsUnitMatrix = flag;
+    //
+    // pi = 3.141592f;
+    //
+    // asm volatile
+    // {
+    //     .set noreorder
+    //
+    //         vaddw.xyz vf1,
+    //         vf0,
+    //         vf0w
+    //
+    //             vmul.w vf1,
+    //         vf0,
+    //         vf0
+    //
+    //             sub t5,
+    //         t5,
+    //         t5
+    //
+    //             addi t0,
+    //         t5, 0x80 addi t1, t5,
+    //         0x100
+    //
+    //         mult zero,
+    //         t1,
+    //         t1
+    //
+    //             mflo t2
+    //
+    //                 mfc1 t3,
+    //         pi
+    //
+    //             qmtc2 t0,
+    //         vf3 qmtc2 t1, vf9 qmtc2 t2, vf10 qmtc2 t3,
+    //         vf11
+    //
+    //             vitof0.xyzw vf3,
+    //         vf3 vitof0.xyzw vf9, vf9 vitof0.xyzw vf10,
+    //         vf10
+    //
+    //             vaddx.y vf3,
+    //         vf0, vf9x vaddx.z vf3, vf0,
+    //         vf10x
+    //
+    //             vmulx.w vf3,
+    //         vf0,
+    //         vf11x
+    //
+    //             vaddw.xyzw vf2,
+    //         vf0,
+    //         vf0w
+    //
+    //             vdiv Q,
+    //         vf0w,
+    //         vf2w
+    //
+    //             vaddw.xyzw vf2,
+    //         vf2, vf0w vaddw.xyzw vf2, vf2, vf0w vaddw.yzw vf2, vf2, vf0w vaddw.zw vf2, vf2,
+    //         vf0w
+    //
+    //             vwaitq
+    //
+    //                 vmulq.w vf2,
+    //         vf0,
+    //         Q
+    //
+    //             addi t0,
+    //         zero,
+    //         0xFFF
+    //
+    //         qmtc2 t0,
+    //         vf4
+    //
+    //             vitof0.xyz vf4,
+    //         vf4
+    //
+    //             vaddx.z vf16,
+    //         vf0,
+    //         vf4x
+    //
+    //             vcallms VU0_INIT_CALC_PROCESS
+    //
+    //                 nop
+    //
+    //                     .set reorder
+    // }
 }
 
 // 100% matching
-void	njCalcPoints(NJS_MATRIX *m, NJS_POINT3 *ps, NJS_POINT3 *pd, Int num)
+void njCalcPoints(NJS_MATRIX* m, NJS_POINT3* ps, NJS_POINT3* pd, Int num)
 {
-	if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        lw          a4,   0(%3)
-        
-        ldl         a6, 0x7(%1)
-        ldr         a6,   0(%1)
-
-        lw          a7, NJS_VECTOR.z(%1) 
-
-        pcpyld      a6, a7, a6
-
-        qmtc2.ni    a6, vf4
-
-        lqc2        vf5,    0(%0)
-        lqc2        vf6, 0x10(%0)
-        lqc2        vf7, 0x20(%0)
-        lqc2        vf8, 0x30(%0)
-
-        l_002D67C4:
-        addi        %1, %1, 12
-
-        vmulax.xyz  ACC,  vf5, vf4
-        
-        vmadday.xyz ACC,  vf6, vf4
-        vmaddaz.xyz ACC,  vf7, vf4
-        vmaddw.xyz  vf18, vf8, vf0
-
-        addi        a4, a4, -1
-
-        ldl         a6, 0x7(%1)
-        ldr         a6,   0(%1)
-
-        lw          a7, NJS_VECTOR.z(%1) 
-
-        pcpyld      a6, a7, a6
-
-        qmtc2.ni    a6, vf4
-        qmfc2.ni    t5, vf18
-
-        pcpyud      t6, t5, t5
-
-        sdl         t5, 0x7(%2)
-        sdr         t5,   0(%2)
-
-        sw          t6, NJS_VECTOR.z(%2) 
-
-        addi        %2, %2, 12
-
-        bgtz        a4, l_002D67C4
-        vnop
-    .set reorder
-    " : : "r"(m), "r"(ps), "r"(pd), "r"(&num) : 
-    );
-}
-
-// 100% matching! 
-void    njGetTranslation(NJS_MATRIX *m, NJS_POINT3 *p)
-{
-    if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile 
-    ("
-    .set noreorder
-        lw t0, 0x30(%0)
-        lw t1, 0x34(%0)
-        lw t2, 0x38(%0)
-        
-        sw t0, NJS_POINT3.x(%1)
-        sw t1, NJS_POINT3.y(%1)
-        sw t2, NJS_POINT3.z(%1)
-    .set reorder
-    " : : "r"(m), "r"(p) : 
-    );
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder lw a4,
+    //              0(% 3)
+    //
+    //                  ldl a6,
+    //              0x7(% 1) ldr a6,
+    //              0(% 1)
+    //
+    //                  lw a7,
+    //              NJS_VECTOR.z(% 1)
+    //
+    //                  pcpyld a6,
+    //              a7,
+    //              a6
+    //
+    //                  qmtc2.ni a6,
+    //              vf4
+    //
+    //                  lqc2 vf5,
+    //              0(% 0) lqc2 vf6, 0x10(% 0) lqc2 vf7, 0x20(% 0) lqc2 vf8,
+    //              0x30(% 0)
+    //
+    //                  l_002D67C4
+    //              : addi % 1, % 1,
+    //                12
+    //
+    //                vmulax.xyz ACC,
+    //                vf5,
+    //                vf4
+    //
+    //                    vmadday.xyz ACC,
+    //                vf6, vf4 vmaddaz.xyz ACC, vf7, vf4 vmaddw.xyz vf18, vf8,
+    //                vf0
+    //
+    //                    addi a4,
+    //                a4,
+    //                -1
+    //
+    //                ldl a6,
+    //                0x7(% 1) ldr a6,
+    //                0(% 1)
+    //
+    //                    lw a7,
+    //                NJS_VECTOR.z(% 1)
+    //
+    //                    pcpyld a6,
+    //                a7,
+    //                a6
+    //
+    //                    qmtc2.ni a6,
+    //                vf4 qmfc2.ni t5,
+    //                vf18
+    //
+    //                    pcpyud t6,
+    //                t5,
+    //                t5
+    //
+    //                    sdl t5,
+    //                0x7(% 2) sdr t5,
+    //                0(% 2)
+    //
+    //                    sw t6,
+    //                NJS_VECTOR.z(% 2)
+    //
+    //                        addi %
+    //                    2,
+    //                % 2,
+    //                12
+    //
+    //                bgtz a4,
+    //                l_002D67C4 vnop.set reorder " : : " r "(m), " r "(ps), " r "(pd), " r "(&num) : 
+    // );
 }
 
 // 100% matching!
-void    njUnitTransPortion(NJS_MATRIX *m)
+void njGetTranslation(NJS_MATRIX* m, NJS_POINT3* p)
 {
-	if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile 
-    ("
-    .set noreorder
-        sqc2 vf0, 0x30(%0)
-    .set reorder
-    " : : "r"(m) : 
-    );
-}
-
-// 100% matching! 
-void    njUnitRotPortion(NJS_MATRIX *m)
-{
-    if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile 
-    ("
-    .set noreorder
-        vmulw.xyzw vf4, vf0, vf0w
-        
-        vmr32.xyzw vf5, vf4
-        vmr32.xyzw vf6, vf5
-        vmr32.xyzw vf7, vf6
-        
-        sqc2       vf5, 0x20(%0)
-        sqc2       vf6, 0x10(%0)
-        sqc2       vf7,  0x0(%0)
-    .set reorder
-    " : : "r"(m) : 
-    );
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder lw t0,
+    //              0x30(% 0) lw t1, 0x34(% 0) lw t2,
+    //              0x38(% 0)
+    //
+    //                  sw t0,
+    //              NJS_POINT3.x(% 1) sw t1, NJS_POINT3.y(% 1) sw t2, NJS_POINT3.z(% 1).set reorder " : : " r "(m), " r "(p) : 
+    // );
 }
 
 // 100% matching!
-void    njClearMatrix()
+void njUnitTransPortion(NJS_MATRIX* m)
 {
-    lNaMatMatrixStuckCnt = 0;
-
-    pNaMatMatrixStuckPtr = pNaMatMatrixStuckTop;
-    
-    njSetMatrix(NULL, &NaViwViewMatrix);
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder sqc2 vf0,
+    //              0x30(% 0).set reorder " : : " r "(m) : 
+    // );
 }
 
 // 100% matching!
-Bool	njPushMatrix(NJS_MATRIX *m)
+void njUnitRotPortion(NJS_MATRIX* m)
 {
-	NJS_MATRIX* fpSrc;
-    NJS_MATRIX* fpDst;
-
-    if (lNaMatMatrixStuckMax <= lNaMatMatrixStuckCnt) 
-    {
-        return FALSE;
-    }
-    
-    lNaMatMatrixStuckCnt++;
-
-    if (m == NULL) 
-    {
-        fpSrc = pNaMatMatrixStuckPtr;
-    }
-    else 
-    {
-        fpSrc = m;
-    }
-
-    pNaMatMatrixStuckPtr++;
-    
-    fpDst = pNaMatMatrixStuckPtr;
-    
-    asm volatile
-    ("
-    .set noreorder
-        lqc2 vf4, 0(%0) 
-        lqc2 vf5, 0x10(%0) 
-        lqc2 vf6, 0x20(%0) 
-        lqc2 vf7, 0x30(%0) 
-    
-        sqc2 vf4, 0(%1) 
-        sqc2 vf5, 0x10(%1) 
-        sqc2 vf6, 0x20(%1) 
-        sqc2 vf7, 0x30(%1) 
-    .set reorder
-    " : : "r"(fpSrc), "r"(fpDst) : 
-    );
-
-    return TRUE;
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder vmulw.xyzw vf4,
+    //              vf0,
+    //              vf0w
+    //
+    //                  vmr32.xyzw vf5,
+    //              vf4 vmr32.xyzw vf6, vf5 vmr32.xyzw vf7,
+    //              vf6
+    //
+    //                  sqc2 vf5,
+    //              0x20(% 0) sqc2 vf6, 0x10(% 0) sqc2 vf7, 0x0(% 0).set reorder " : : " r "(m) : 
+    // );
 }
 
 // 100% matching!
-Bool	njPopMatrix(Uint32 n)
+void njClearMatrix()
 {
-    int lNumber;
-
-    lNumber = lNaMatMatrixStuckCnt - n;
-    
-    if (lNumber < 0) 
-    {
-        return FALSE;
-    }
-    
-    lNaMatMatrixStuckCnt = lNumber;
-    
-    pNaMatMatrixStuckPtr -= n;
-    
-    return TRUE;
+// lNaMatMatrixStuckCnt = 0;
+    //
+    // pNaMatMatrixStuckPtr = pNaMatMatrixStuckTop;
+    //
+    // njSetMatrix(NULL, &NaViwViewMatrix);
 }
 
 // 100% matching!
-void	njUnitMatrix(register NJS_MATRIX *m)
+Bool njPushMatrix(NJS_MATRIX* m)
 {
-    if (m == NULL) 
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-    
-    asm volatile 
-    {
-    .set noreorder
-
-        vmulw.xyzw $vf4xyzw, $vf0xyzw, $vf0w
-
-        vmr32.xyzw $vf5xyzw, $vf4xyzw
-        vmr32.xyzw $vf6xyzw, $vf5xyzw
-        vmr32.xyzw $vf7xyzw, $vf6xyzw
-    
-        sqc2       $vf4, 0x30(m)
-        sqc2       $vf5, 0x20(m)
-        sqc2       $vf6, 0x10(m) 
-        sqc2       $vf7,  0x0(m)
-        
-    .set reorder
-    }
+// NJS_MATRIX* fpSrc;
+    // NJS_MATRIX* fpDst;
+    //
+    // if (lNaMatMatrixStuckMax <= lNaMatMatrixStuckCnt) {
+    //     return FALSE;
+    // }
+    //
+    // lNaMatMatrixStuckCnt++;
+    //
+    // if (m == NULL) {
+    //     fpSrc = pNaMatMatrixStuckPtr;
+    // } else {
+    //     fpSrc = m;
+    // }
+    //
+    // pNaMatMatrixStuckPtr++;
+    //
+    // fpDst = pNaMatMatrixStuckPtr;
+    //
+    // asm volatile("
+    //                  .set noreorder lqc2 vf4,
+    //              0(% 0) lqc2 vf5, 0x10(% 0) lqc2 vf6, 0x20(% 0) lqc2 vf7,
+    //              0x30(% 0)
+    //
+    //                  sqc2 vf4,
+    //              0(% 1) sqc2 vf5, 0x10(% 1) sqc2 vf6, 0x20(% 1) sqc2 vf7, 0x30(% 1).set reorder " : : " r "(fpSrc), " r "(fpDst) : 
+    // );
+    //
+    // return TRUE;
 }
 
 // 100% matching!
-void	njSetMatrix(NJS_MATRIX *md, NJS_MATRIX *ms)
+Bool njPopMatrix(Uint32 n)
 {
-    register NJS_MATRIX* fpSrc; 
-    register NJS_MATRIX* fpDst; 
+// int lNumber;
+    //
+    // lNumber = lNaMatMatrixStuckCnt - n;
+    //
+    // if (lNumber < 0) {
+    //     return FALSE;
+    // }
+    //
+    // lNaMatMatrixStuckCnt = lNumber;
+    //
+    // pNaMatMatrixStuckPtr -= n;
+    //
+    // return TRUE;
+}
 
-    fpSrc = ms;
-    fpDst = md ? md : pNaMatMatrixStuckPtr;
+// 100% matching!
+void njUnitMatrix(register NJS_MATRIX* m)
+{
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile
+    // {
+    //     .set noreorder
+    //
+    //         vmulw.xyzw $vf4xyzw,
+    //         $vf0xyzw,
+    //         $vf0w
+    //
+    //             vmr32.xyzw $vf5xyzw,
+    //         $vf4xyzw vmr32.xyzw $vf6xyzw, $vf5xyzw vmr32.xyzw $vf7xyzw,
+    //         $vf6xyzw
+    //
+    //             sqc2 $vf4,
+    //         0x30(m) sqc2 $vf5, 0x20(m) sqc2 $vf6, 0x10(m) sqc2 $vf7,
+    //         0x0(m)
+    //
+    //             .set reorder
+    // }
+}
 
-    asm volatile 
-    {
-    .set noreorder
-        
-        lqc2       $vf4, 0x0(fpSrc) 
-        lqc2       $vf5, 0x10(fpSrc) 
-        lqc2       $vf6, 0x20(fpSrc) 
-        lqc2       $vf7, 0x30(fpSrc) 
-    
-        sqc2       $vf4, 0x0(fpDst) 
-        sqc2       $vf5, 0x10(fpDst) 
-        sqc2       $vf6, 0x20(fpDst) 
-        sqc2       $vf7, 0x30(fpDst) 
-        
-    .set reorder
-    }
+// 100% matching!
+void njSetMatrix(NJS_MATRIX* md, NJS_MATRIX* ms)
+{
+// register NJS_MATRIX* fpSrc;
+    // register NJS_MATRIX* fpDst;
+    //
+    // fpSrc = ms;
+    // fpDst = md ? md : pNaMatMatrixStuckPtr;
+    //
+    // asm volatile
+    // {
+    //     .set noreorder
+    //
+    //         lqc2 $vf4,
+    //         0x0(fpSrc) lqc2 $vf5, 0x10(fpSrc) lqc2 $vf6, 0x20(fpSrc) lqc2 $vf7,
+    //         0x30(fpSrc)
+    //
+    //             sqc2 $vf4,
+    //         0x0(fpDst) sqc2 $vf5, 0x10(fpDst) sqc2 $vf6, 0x20(fpDst) sqc2 $vf7,
+    //         0x30(fpDst)
+    //
+    //             .set reorder
+    // }
 }
 
 // 100% matching!
 void njSetMatrixCN(NJS_MATRIX* pMat)
 {
-    asm volatile
-    ("
-    .set noreorder
-        lqc2 vf28,  0x0(%0) 
-        lqc2 vf29, 0x10(%0) 
-        lqc2 vf30, 0x20(%0) 
-        lqc2 vf31, 0x30(%0) 
-    .set reorder 
-    " : : "r"(pMat) : 
-    );
+// asm volatile("
+    //                  .set noreorder lqc2 vf28,
+    //              0x0(% 0) lqc2 vf29, 0x10(% 0) lqc2 vf30, 0x20(% 0) lqc2 vf31, 0x30(% 0).set reorder " : : " r "(pMat) : 
+    // );
 }
 
 // 100% matching!
-void	njGetMatrix(NJS_MATRIX *m)
+void njGetMatrix(NJS_MATRIX* m)
 {
-    register NJS_MATRIX* fpSrc; 
-    register NJS_MATRIX* fpDst; 
-
-    fpSrc = pNaMatMatrixStuckPtr;
-    fpDst = m; 
-    
-    asm volatile 
-    {
-    .set noreorder
-        
-        lqc2       $vf4, 0x0(fpSrc)
-        lqc2       $vf5, 0x10(fpSrc)
-        lqc2       $vf6, 0x20(fpSrc)
-        lqc2       $vf7, 0x30(fpSrc)
-    
-        sqc2       $vf4, 0x0(fpDst)
-        sqc2       $vf5, 0x10(fpDst)
-        sqc2       $vf6, 0x20(fpDst)
-        sqc2       $vf7, 0x30(fpDst)
-        
-    .set reorder
-    }
+// register NJS_MATRIX* fpSrc;
+    // register NJS_MATRIX* fpDst;
+    //
+    // fpSrc = pNaMatMatrixStuckPtr;
+    // fpDst = m;
+    //
+    // asm volatile
+    // {
+    //     .set noreorder
+    //
+    //         lqc2 $vf4,
+    //         0x0(fpSrc) lqc2 $vf5, 0x10(fpSrc) lqc2 $vf6, 0x20(fpSrc) lqc2 $vf7,
+    //         0x30(fpSrc)
+    //
+    //             sqc2 $vf4,
+    //         0x0(fpDst) sqc2 $vf5, 0x10(fpDst) sqc2 $vf6, 0x20(fpDst) sqc2 $vf7,
+    //         0x30(fpDst)
+    //
+    //             .set reorder
+    // }
 }
 
 // 100% matching!
-void	njMultiMatrix(NJS_MATRIX *md, NJS_MATRIX *ms)
+void njMultiMatrix(NJS_MATRIX* md, NJS_MATRIX* ms)
 {
-    if (md == NULL)
-    {
-        md = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        lqc2        vf4,  0(%0)
-        lqc2        vf5,  0x10(%0)
-        lqc2        vf6,  0x20(%0)
-        lqc2        vf7,  0x30(%0)
-        lqc2        vf8,  0(%1)
-        lqc2        vf9,  0x10(%1)
-        lqc2        vf10, 0x20(%1)
-        lqc2        vf11, 0x30(%1)
-
-        vmulax.xyz  ACC,  vf4, vf8
-        
-        vmadday.xyz ACC,  vf5, vf8
-        vmaddz.xyz  vf8,  vf6, vf8
-        
-        vmulax.xyz  ACC,  vf4, vf9
-
-        vmadday.xyz ACC,  vf5, vf9
-        vmaddz.xyz  vf9,  vf6, vf9
-        
-        vmulax.xyz  ACC,  vf4, vf10
-
-        vmadday.xyz ACC,  vf5, vf10
-        vmaddz.xyz  vf10, vf6, vf10
-        
-        vmulax.xyz  ACC,  vf4, vf11
-
-        vmadday.xyz ACC,  vf5, vf11
-        vmaddaz.xyz ACC,  vf6, vf11
-        vmaddw.xyz  vf11, vf7, vf0
-
-        sqc2        vf8,  0x0(%0)
-        sqc2        vf9,  0x10(%0)
-        sqc2        vf10, 0x20(%0)
-        sqc2        vf11, 0x30(%0)
-    .set reorder
-    " : : "r"(md), "r"(ms) : 
-    );
+// if (md == NULL) {
+    //     md = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder lqc2 vf4,
+    //              0(% 0) lqc2 vf5, 0x10(% 0) lqc2 vf6, 0x20(% 0) lqc2 vf7, 0x30(% 0) lqc2 vf8, 0(% 1) lqc2 vf9, 0x10(% 1) lqc2 vf10,
+    //              0x20(% 1) lqc2 vf11,
+    //              0x30(% 1)
+    //
+    //                  vmulax.xyz ACC,
+    //              vf4,
+    //              vf8
+    //
+    //                  vmadday.xyz ACC,
+    //              vf5, vf8 vmaddz.xyz vf8, vf6,
+    //              vf8
+    //
+    //                  vmulax.xyz ACC,
+    //              vf4,
+    //              vf9
+    //
+    //                  vmadday.xyz ACC,
+    //              vf5, vf9 vmaddz.xyz vf9, vf6,
+    //              vf9
+    //
+    //                  vmulax.xyz ACC,
+    //              vf4,
+    //              vf10
+    //
+    //                  vmadday.xyz ACC,
+    //              vf5, vf10 vmaddz.xyz vf10, vf6,
+    //              vf10
+    //
+    //                  vmulax.xyz ACC,
+    //              vf4,
+    //              vf11
+    //
+    //                  vmadday.xyz ACC,
+    //              vf5, vf11 vmaddaz.xyz ACC, vf6, vf11 vmaddw.xyz vf11, vf7,
+    //              vf0
+    //
+    //                  sqc2 vf8,
+    //              0x0(% 0) sqc2 vf9, 0x10(% 0) sqc2 vf10, 0x20(% 0) sqc2 vf11, 0x30(% 0).set reorder " : : " r "(md), " r "(ms) : 
+    // );
 }
 
 // 100% matching!
-void	njTranslate(NJS_MATRIX *m, Float x, Float y, Float z)
+void njTranslate(NJS_MATRIX* m, Float x, Float y, Float z)
 {
-    if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        mfc1        t0, %1 
-        mfc1        t1, %2
-        mfc1        t2, %3
-        
-        qmtc2       t0, vf4
-        qmtc2       t1, vf5
-        qmtc2       t2, vf6
-    
-        lqc2        vf7,  0(%0)
-        lqc2        vf8,  0x10(%0)
-        lqc2        vf9,  0x20(%0)
-        lqc2        vf10, 0x30(%0)
-
-        vmulax.xyz  ACC,  vf7,  vf4
-        
-        vmaddax.xyz ACC,  vf8,  vf5
-        vmaddax.xyz ACC,  vf9,  vf6
-        vmaddw.xyz  vf11, vf10, vf0
-    
-        sqc2        vf11, 0x30(%0)
-    .set reorder
-    " : : "r"(m), "f"(x), "f"(y), "f"(z) : 
-    );
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder mfc1 t0,
+    //              % 1 mfc1 t1, % 2 mfc1 t2, % 3
+    //
+    //                                            qmtc2 t0,
+    //              vf4 qmtc2 t1, vf5 qmtc2 t2,
+    //              vf6
+    //
+    //                  lqc2 vf7,
+    //              0(% 0) lqc2 vf8, 0x10(% 0) lqc2 vf9, 0x20(% 0) lqc2 vf10,
+    //              0x30(% 0)
+    //
+    //                  vmulax.xyz ACC,
+    //              vf7,
+    //              vf4
+    //
+    //                  vmaddax.xyz ACC,
+    //              vf8, vf5 vmaddax.xyz ACC, vf9, vf6 vmaddw.xyz vf11, vf10,
+    //              vf0
+    //
+    //                  sqc2 vf11,
+    //              0x30(% 0).set reorder " : : " r "(m), " f "(x), " f "(y), " f "(z) : 
+    // );
 }
 
 // 100% matching!
-void	njTranslateV(NJS_MATRIX *m, NJS_VECTOR *v)
+void njTranslateV(NJS_MATRIX* m, NJS_VECTOR* v)
 {
-	if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        ldl         a4, 0x7(%1)
-        ldr         a4,   0(%1)
-
-        lw          a5, NJS_VECTOR.z(%1) 
-
-        pcpyld      a4, a5, a4
-
-        qmtc2.ni    a4, vf4
-
-        lqc2        vf5, 0(%0)
-        lqc2        vf6, 0x10(%0)
-        lqc2        vf7, 0x20(%0)
-        lqc2        vf8, 0x30(%0)
-
-        vmulax.xyz  ACC,  vf5, vf4x
-        
-        vmadday.xyz ACC,  vf6, vf4y
-        vmaddaz.xyz ACC,  vf7, vf4z
-        vmaddw.xyz  vf9,  vf8, vf0w
-    
-        sqc2        vf9,  0x30(%0)
-    .set reorder
-    " : : "r"(m), "r"(v) : 
-    );
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder ldl a4,
+    //              0x7(% 1) ldr a4,
+    //              0(% 1)
+    //
+    //                  lw a5,
+    //              NJS_VECTOR.z(% 1)
+    //
+    //                  pcpyld a4,
+    //              a5,
+    //              a4
+    //
+    //                  qmtc2.ni a4,
+    //              vf4
+    //
+    //                  lqc2 vf5,
+    //              0(% 0) lqc2 vf6, 0x10(% 0) lqc2 vf7, 0x20(% 0) lqc2 vf8,
+    //              0x30(% 0)
+    //
+    //                  vmulax.xyz ACC,
+    //              vf5,
+    //              vf4x
+    //
+    //                  vmadday.xyz ACC,
+    //              vf6, vf4y vmaddaz.xyz ACC, vf7, vf4z vmaddw.xyz vf9, vf8,
+    //              vf0w
+    //
+    //                  sqc2 vf9,
+    //              0x30(% 0).set reorder " : : " r "(m), " r "(v) : 
+    // );
 }
 
 // 100% matching!
-void	njRotateX(NJS_MATRIX *m, Angle ang)
+void njRotateX(NJS_MATRIX* m, Angle ang)
 {
-    float fSin;
-    float fCos;
-
-    ang &= 0xFFFF;
-    
-    njSinCos(ang, &fSin, &fCos);
-    
-    if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        mfc1      t6, %1 
-        mfc1      t7, %2
-        
-        qmtc2     t6, vf11
-        qmtc2     t7, vf12
-    
-        lqc2      vf4, 0x10(%0)
-        lqc2      vf5, 0x20(%0)
-
-        vsub.x    vf10, vf0, vf11
-        
-        vmulx.xyz vf6, vf4, vf12
-        vmulx.xyz vf7, vf5, vf11
-        vmulx.xyz vf4, vf4, vf10
-        vmulx.xyz vf5, vf5, vf12
-
-        vadd.xyz  vf8, vf6, vf7
-        vadd.xyz  vf9, vf4, vf5
-
-        sqc2      vf8, 0x10(%0)
-        sqc2      vf9, 0x20(%0)
-    .set reorder
-    " : : "r"(m), "f"(fSin), "f"(fCos) : 
-    );
+// float fSin;
+    // float fCos;
+    //
+    // ang &= 0xFFFF;
+    //
+    // njSinCos(ang, &fSin, &fCos);
+    //
+    // if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder mfc1 t6,
+    //              % 1 mfc1 t7, % 2
+    //
+    //                               qmtc2 t6,
+    //              vf11 qmtc2 t7,
+    //              vf12
+    //
+    //                  lqc2 vf4,
+    //              0x10(% 0) lqc2 vf5,
+    //              0x20(% 0)
+    //
+    //                  vsub.x vf10,
+    //              vf0,
+    //              vf11
+    //
+    //                  vmulx.xyz vf6,
+    //              vf4, vf12 vmulx.xyz vf7, vf5, vf11 vmulx.xyz vf4, vf4, vf10 vmulx.xyz vf5, vf5,
+    //              vf12
+    //
+    //                  vadd.xyz vf8,
+    //              vf6, vf7 vadd.xyz vf9, vf4,
+    //              vf5
+    //
+    //                  sqc2 vf8,
+    //              0x10(% 0) sqc2 vf9, 0x20(% 0).set reorder " : : " r "(m), " f "(fSin), " f "(fCos) : 
+    // );
 }
 
 // 100% matching!
-void	njRotateY(NJS_MATRIX *m, Angle ang)
+void njRotateY(NJS_MATRIX* m, Angle ang)
 {
-    float fSin;
-    float fCos;
-
-    ang &= 0xFFFF;
-    
-    njSinCos(ang, &fSin, &fCos);
-    
-    if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        mfc1      t6, %1 
-        mfc1      t7, %2
-        
-        qmtc2     t6, vf11
-        qmtc2     t7, vf12
-    
-        lqc2      vf4, 0x0(%0)
-        lqc2      vf5, 0x20(%0)
-
-        vsub.x    vf10, vf0, vf11
-        
-        vmulx.xyz vf6, vf4, vf12
-        vmulx.xyz vf7, vf5, vf10
-        vmulx.xyz vf4, vf4, vf11
-        vmulx.xyz vf5, vf5, vf12
-
-        vadd.xyz  vf8, vf6, vf7
-        vadd.xyz  vf9, vf4, vf5
-
-        sqc2      vf8, 0x0(%0)
-        sqc2      vf9, 0x20(%0)
-    .set reorder
-    " : : "r"(m), "f"(fSin), "f"(fCos) : 
-    );
+// float fSin;
+    // float fCos;
+    //
+    // ang &= 0xFFFF;
+    //
+    // njSinCos(ang, &fSin, &fCos);
+    //
+    // if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder mfc1 t6,
+    //              % 1 mfc1 t7, % 2
+    //
+    //                               qmtc2 t6,
+    //              vf11 qmtc2 t7,
+    //              vf12
+    //
+    //                  lqc2 vf4,
+    //              0x0(% 0) lqc2 vf5,
+    //              0x20(% 0)
+    //
+    //                  vsub.x vf10,
+    //              vf0,
+    //              vf11
+    //
+    //                  vmulx.xyz vf6,
+    //              vf4, vf12 vmulx.xyz vf7, vf5, vf10 vmulx.xyz vf4, vf4, vf11 vmulx.xyz vf5, vf5,
+    //              vf12
+    //
+    //                  vadd.xyz vf8,
+    //              vf6, vf7 vadd.xyz vf9, vf4,
+    //              vf5
+    //
+    //                  sqc2 vf8,
+    //              0x0(% 0) sqc2 vf9, 0x20(% 0).set reorder " : : " r "(m), " f "(fSin), " f "(fCos) : 
+    // );
 }
 
 // 100% matching!
-void	njRotateZ(NJS_MATRIX *m, Angle ang)
+void njRotateZ(NJS_MATRIX* m, Angle ang)
 {
-    float fSin;
-    float fCos;
-
-    ang &= 0xFFFF;
-    
-    njSinCos(ang, &fSin, &fCos);
-    
-    if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        mfc1      t6, %1 
-        mfc1      t7, %2
-        
-        qmtc2     t6, vf11
-        qmtc2     t7, vf12
-    
-        lqc2      vf4, 0x0(%0)
-        lqc2      vf5, 0x10(%0)
-
-        vsub.x    vf10, vf0, vf11
-        
-        vmulx.xyz vf6, vf4, vf12
-        vmulx.xyz vf7, vf5, vf11
-        vmulx.xyz vf4, vf4, vf10
-        vmulx.xyz vf5, vf5, vf12
-
-        vadd.xyz  vf8, vf6, vf7
-        vadd.xyz  vf9, vf4, vf5
-
-        sqc2      vf8, 0x0(%0)
-        sqc2      vf9, 0x10(%0)
-    .set reorder
-    " : : "r"(m), "f"(fSin), "f"(fCos) : 
-    );
+// float fSin;
+    // float fCos;
+    //
+    // ang &= 0xFFFF;
+    //
+    // njSinCos(ang, &fSin, &fCos);
+    //
+    // if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder mfc1 t6,
+    //              % 1 mfc1 t7, % 2
+    //
+    //                               qmtc2 t6,
+    //              vf11 qmtc2 t7,
+    //              vf12
+    //
+    //                  lqc2 vf4,
+    //              0x0(% 0) lqc2 vf5,
+    //              0x10(% 0)
+    //
+    //                  vsub.x vf10,
+    //              vf0,
+    //              vf11
+    //
+    //                  vmulx.xyz vf6,
+    //              vf4, vf12 vmulx.xyz vf7, vf5, vf11 vmulx.xyz vf4, vf4, vf10 vmulx.xyz vf5, vf5,
+    //              vf12
+    //
+    //                  vadd.xyz vf8,
+    //              vf6, vf7 vadd.xyz vf9, vf4,
+    //              vf5
+    //
+    //                  sqc2 vf8,
+    //              0x0(% 0) sqc2 vf9, 0x10(% 0).set reorder " : : " r "(m), " f "(fSin), " f "(fCos) : 
+    // );
 }
 
 // 100% matching!
-void	njRotateXYZ(NJS_MATRIX *m, Angle angx, Angle angy, Angle angz)
+void njRotateXYZ(NJS_MATRIX* m, Angle angx, Angle angy, Angle angz)
 {
-    if (m == NULL) 
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-    
-    njRotateZ(m, angz);
-    njRotateY(m, angy);
-    njRotateX(m, angx);
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // njRotateZ(m, angz);
+    // njRotateY(m, angy);
+    // njRotateX(m, angx);
 }
 
 // 100% matching!
 void njRotXYZ(NJS_MATRIX* pMatrix, int lAngleX, int lAngleY, int lAngleZ)
 {
-    float fSin;
-    float fCos;
-
-    lAngleX &= 0xFFFF;
-    
-    njSinCos(lAngleX, &fSin, &fCos);
-    
-    asm volatile
-    ("
-    .set noreorder
-        lqc2      vf4,  0x0(%0)
-        lqc2      vf5, 0x10(%0)
-        lqc2      vf6, 0x20(%0)
-
-        vsub.x    vf10, vf0, vf11
-        
-        vmulx.xyz vf7, vf5, vf12
-        vmulx.xyz vf8, vf6, vf11
-        vmulx.xyz vf5, vf5, vf10
-        vmulx.xyz vf6, vf6, vf12
-
-        vadd.xyz  vf6, vf5, vf6
-        vadd.xyz  vf5, vf7, vf8
-    .set reorder
-    " : : "r"(pMatrix) :  
-    );
-
-    lAngleY &= 0xFFFF;
-    
-    njSinCos(lAngleY, &fSin, &fCos);
-    
-    asm volatile
-    ("
-    .set noreorder
-        vsub.x    vf10, vf0, vf11
-        
-        vmulx.xyz vf7, vf4, vf12
-        vmulx.xyz vf8, vf6, vf10
-        vmulx.xyz vf4, vf4, vf11
-        vmulx.xyz vf6, vf6, vf12
-
-        vadd.xyz  vf6, vf4, vf6
-        vadd.xyz  vf4, vf7, vf8
-    .set reorder
-    " : : "r"(pMatrix) :  
-    );
-
-    lAngleZ &= 0xFFFF;
-    
-    njSinCos(lAngleZ, &fSin, &fCos);
-    
-    asm volatile
-    ("
-    .set noreorder
-        vsub.x    vf10, vf0, vf11
-        
-        vmulx.xyz vf7, vf4, vf12
-        vmulx.xyz vf8, vf5, vf11
-        vmulx.xyz vf4, vf4, vf10
-        vmulx.xyz vf5, vf5, vf12
-
-        vadd.xyz  vf8, vf7, vf8
-        vadd.xyz  vf9, vf4, vf5
-
-        sqc2      vf8,  0x0(%0)
-        sqc2      vf9, 0x10(%0)
-        sqc2      vf6, 0x20(%0)
-    .set reorder
-    " : : "r"(pMatrix) : 
-    );
+// float fSin;
+    // float fCos;
+    //
+    // lAngleX &= 0xFFFF;
+    //
+    // njSinCos(lAngleX, &fSin, &fCos);
+    //
+    // asm volatile("
+    //                  .set noreorder lqc2 vf4,
+    //              0x0(% 0) lqc2 vf5, 0x10(% 0) lqc2 vf6,
+    //              0x20(% 0)
+    //
+    //                  vsub.x vf10,
+    //              vf0,
+    //              vf11
+    //
+    //                  vmulx.xyz vf7,
+    //              vf5, vf12 vmulx.xyz vf8, vf6, vf11 vmulx.xyz vf5, vf5, vf10 vmulx.xyz vf6, vf6,
+    //              vf12
+    //
+    //                  vadd.xyz vf6,
+    //              vf5, vf6 vadd.xyz vf5, vf7, vf8.set reorder " : : " r "(pMatrix) :  
+    // );
+    //
+    // lAngleY &= 0xFFFF;
+    //
+    // njSinCos(lAngleY, &fSin, &fCos);
+    //
+    // asm volatile("
+    //                  .set noreorder vsub.x vf10,
+    //              vf0,
+    //              vf11
+    //
+    //                  vmulx.xyz vf7,
+    //              vf4, vf12 vmulx.xyz vf8, vf6, vf10 vmulx.xyz vf4, vf4, vf11 vmulx.xyz vf6, vf6,
+    //              vf12
+    //
+    //                  vadd.xyz vf6,
+    //              vf4, vf6 vadd.xyz vf4, vf7, vf8.set reorder " : : " r "(pMatrix) :  
+    // );
+    //
+    // lAngleZ &= 0xFFFF;
+    //
+    // njSinCos(lAngleZ, &fSin, &fCos);
+    //
+    // asm volatile("
+    //                  .set noreorder vsub.x vf10,
+    //              vf0,
+    //              vf11
+    //
+    //                  vmulx.xyz vf7,
+    //              vf4, vf12 vmulx.xyz vf8, vf5, vf11 vmulx.xyz vf4, vf4, vf10 vmulx.xyz vf5, vf5,
+    //              vf12
+    //
+    //                  vadd.xyz vf8,
+    //              vf7, vf8 vadd.xyz vf9, vf4,
+    //              vf5
+    //
+    //                  sqc2 vf8,
+    //              0x0(% 0) sqc2 vf9, 0x10(% 0) sqc2 vf6, 0x20(% 0).set reorder " : : " r "(pMatrix) : 
+    // );
 }
 
 // 100% matching!
-void	njRotate(NJS_MATRIX *m, NJS_VECTOR *v, Angle ang)
+void njRotate(NJS_MATRIX* m, NJS_VECTOR* v, Angle ang)
 {
-    float fSin;
-	float fCos;
-
-    if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    ang &= 0xFFFF;
-	ang /= 2;
-    
-    njSinCos(ang, &fSin, &fCos);
-
-    asm volatile
-    ("
-    .set noreorder
-        ldl       a4, 0x7(%1)
-        ldr       a4,   0(%1)
-
-        lw        a5, NJS_VECTOR.z(%1)
-
-        pcpyld    a4, a5, a4
-
-        qmtc2.ni  a4, vf4
-
-        vmul.xyz  vf5, vf4, vf4
-
-        vaddy.x   vf5, vf5, vf5
-        vaddz.x   vf5, vf5, vf5
-
-        vrsqrt    Q, vf0w, vf5
-
-        mfc1      t4, %2 
-        mfc1      t5, %3
-    
-        qmtc2     t4, vf11
-        qmtc2     t5, vf12
-
-        vwaitq
-
-        vmulq.x   vf11, vf11, Q
-        vmulx.xyz vf4,   vf4, vf11
-        vmul.x    vf5,  vf12, vf12
-
-        vaddx.yz  vf5,  vf0,  vf5
-
-        vmulx.xyz vf6,  vf4,  vf4
-        vmuly.xyz vf7,  vf4,  vf4
-        vmulz.xyz vf8,  vf4,  vf4
-        vmulx.xyz vf9,  vf4,  vf12
-
-        vadd.x    vf11, vf5,  vf6
-        vsuby.x   vf11, vf11, vf7
-        vsubz.x   vf11, vf11, vf8
-        vsubz.x   vf12, vf7,  vf9
-        vadd.x    vf12, vf12, vf12
-        vaddy.x   vf13, vf8,  vf9
-        vadd.x    vf13, vf13, vf13
-
-        vaddz.y   vf11, vf6,  vf9
-        vadd.y    vf11, vf11, vf11
-        vsubx.y   vf12, vf5,  vf6
-        vadd.y    vf12, vf12, vf7
-        vsubz.y   vf12, vf12, vf8
-        vsubx.y   vf13, vf8,  vf9
-        vadd.y    vf13, vf13, vf13
-
-        vsuby.z   vf11, vf6,  vf9
-        vadd.z    vf11, vf11, vf11
-        vaddx.z   vf12, vf7,  vf9
-        vadd.z    vf12, vf12, vf12
-        vsubx.z   vf13, vf5,  vf6
-        vsuby.z   vf13, vf13, vf7
-        vadd.z    vf13, vf13, vf8
-
-        lqc2      vf4,    0(%0)
-        lqc2      vf5, 0x10(%0)
-        lqc2      vf6, 0x20(%0)
-
-        vmulx.xyz vf7,  vf4, vf11
-        vmuly.xyz vf10, vf5, vf11
-        vmulz.xyz vf11, vf6, vf11
-
-        vadd.xyz  vf7,  vf7, vf10
-        vadd.xyz  vf7,  vf7, vf11
-
-        vmulx.xyz vf8,  vf4, vf12
-        vmuly.xyz vf10, vf5, vf12
-        vmulz.xyz vf12, vf6, vf12
-
-        vadd.xyz  vf8,  vf8, vf10
-        vadd.xyz  vf8,  vf8, vf12
-    
-        vmulx.xyz vf9,  vf4, vf13
-        vmuly.xyz vf10, vf5, vf13
-        vmulz.xyz vf13, vf6, vf13
-
-        vadd.xyz  vf9,  vf9, vf10
-        vadd.xyz  vf9,  vf9, vf13
-        
-        sqc2      vf7,    0(%0)
-        sqc2      vf8, 0x10(%0)
-        sqc2      vf9, 0x20(%0)
-    .set reorder
-    " : : "r"(m), "r"(v), "f"(fSin), "f"(fCos) : 
-    );
+// float fSin;
+    // float fCos;
+    //
+    // if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // ang &= 0xFFFF;
+    // ang /= 2;
+    //
+    // njSinCos(ang, &fSin, &fCos);
+    //
+    // asm volatile("
+    //                  .set noreorder ldl a4,
+    //              0x7(% 1) ldr a4,
+    //              0(% 1)
+    //
+    //                  lw a5,
+    //              NJS_VECTOR.z(% 1)
+    //
+    //                  pcpyld a4,
+    //              a5,
+    //              a4
+    //
+    //                  qmtc2.ni a4,
+    //              vf4
+    //
+    //                  vmul.xyz vf5,
+    //              vf4,
+    //              vf4
+    //
+    //                  vaddy.x vf5,
+    //              vf5, vf5 vaddz.x vf5, vf5,
+    //              vf5
+    //
+    //                  vrsqrt Q,
+    //              vf0w,
+    //              vf5
+    //
+    //                  mfc1 t4,
+    //              % 2 mfc1 t5, % 3
+    //
+    //                               qmtc2 t4,
+    //              vf11 qmtc2 t5,
+    //              vf12
+    //
+    //                  vwaitq
+    //
+    //                      vmulq.x vf11,
+    //              vf11, Q vmulx.xyz vf4, vf4, vf11 vmul.x vf5, vf12,
+    //              vf12
+    //
+    //                  vaddx.yz vf5,
+    //              vf0,
+    //              vf5
+    //
+    //                  vmulx.xyz vf6,
+    //              vf4, vf4 vmuly.xyz vf7, vf4, vf4 vmulz.xyz vf8, vf4, vf4 vmulx.xyz vf9, vf4,
+    //              vf12
+    //
+    //                  vadd.x vf11,
+    //              vf5, vf6 vsuby.x vf11, vf11, vf7 vsubz.x vf11, vf11, vf8 vsubz.x vf12, vf7, vf9 vadd.x vf12, vf12, vf12 vaddy.x vf13,
+    //              vf8, vf9 vadd.x vf13, vf13,
+    //              vf13
+    //
+    //                  vaddz.y vf11,
+    //              vf6, vf9 vadd.y vf11, vf11, vf11 vsubx.y vf12, vf5, vf6 vadd.y vf12, vf12, vf7 vsubz.y vf12, vf12, vf8 vsubx.y vf13,
+    //              vf8, vf9 vadd.y vf13, vf13,
+    //              vf13
+    //
+    //                  vsuby.z vf11,
+    //              vf6, vf9 vadd.z vf11, vf11, vf11 vaddx.z vf12, vf7, vf9 vadd.z vf12, vf12, vf12 vsubx.z vf13, vf5, vf6 vsuby.z vf13,
+    //              vf13, vf7 vadd.z vf13, vf13,
+    //              vf8
+    //
+    //                  lqc2 vf4,
+    //              0(% 0) lqc2 vf5, 0x10(% 0) lqc2 vf6,
+    //              0x20(% 0)
+    //
+    //                  vmulx.xyz vf7,
+    //              vf4, vf11 vmuly.xyz vf10, vf5, vf11 vmulz.xyz vf11, vf6,
+    //              vf11
+    //
+    //                  vadd.xyz vf7,
+    //              vf7, vf10 vadd.xyz vf7, vf7,
+    //              vf11
+    //
+    //                  vmulx.xyz vf8,
+    //              vf4, vf12 vmuly.xyz vf10, vf5, vf12 vmulz.xyz vf12, vf6,
+    //              vf12
+    //
+    //                  vadd.xyz vf8,
+    //              vf8, vf10 vadd.xyz vf8, vf8,
+    //              vf12
+    //
+    //                  vmulx.xyz vf9,
+    //              vf4, vf13 vmuly.xyz vf10, vf5, vf13 vmulz.xyz vf13, vf6,
+    //              vf13
+    //
+    //                  vadd.xyz vf9,
+    //              vf9, vf10 vadd.xyz vf9, vf9,
+    //              vf13
+    //
+    //                  sqc2 vf7,
+    //              0(% 0) sqc2 vf8, 0x10(% 0) sqc2 vf9, 0x20(% 0).set reorder " : : " r "(m), " r "(v), " f "(fSin), " f "(fCos) : 
+    // );
 }
 
 // 100% matching!
-void	njScale(NJS_MATRIX *m, Float sx, Float sy, Float sz)
+void njScale(NJS_MATRIX* m, Float sx, Float sy, Float sz)
 {
-    if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        mfc1      t2, %1 
-        mfc1      t3, %2
-        mfc1      t4, %3
-        
-        qmtc2     t2, vf4
-        qmtc2     t3, vf5
-        qmtc2     t4, vf6
-    
-        lqc2      vf7,  0x0(%0)
-        lqc2      vf8, 0x10(%0)
-        lqc2      vf9, 0x20(%0)
-
-        vmulx.xyz vf7, vf7, vf4
-        vmulx.xyz vf8, vf8, vf5
-        vmulx.xyz vf9, vf9, vf6
-    
-        sqc2      vf7,  0x0(%0)
-        sqc2      vf8, 0x10(%0)
-        sqc2      vf9, 0x20(%0)
-    .set reorder
-    " : : "r"(m), "f"(sx), "f"(sy), "f"(sz) : 
-    );
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder mfc1 t2,
+    //              % 1 mfc1 t3, % 2 mfc1 t4, % 3
+    //
+    //                                            qmtc2 t2,
+    //              vf4 qmtc2 t3, vf5 qmtc2 t4,
+    //              vf6
+    //
+    //                  lqc2 vf7,
+    //              0x0(% 0) lqc2 vf8, 0x10(% 0) lqc2 vf9,
+    //              0x20(% 0)
+    //
+    //                  vmulx.xyz vf7,
+    //              vf7, vf4 vmulx.xyz vf8, vf8, vf5 vmulx.xyz vf9, vf9,
+    //              vf6
+    //
+    //                  sqc2 vf7,
+    //              0x0(% 0) sqc2 vf8, 0x10(% 0) sqc2 vf9, 0x20(% 0).set reorder " : : " r "(m), " f "(sx), " f "(sy), " f "(sz) : 
+    // );
 }
 
 // 100% matching!
-void	njScaleV(NJS_MATRIX *m, NJS_VECTOR *v)
+void njScaleV(NJS_MATRIX* m, NJS_VECTOR* v)
 {
-	if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        ldl       a4, 0x7(%1)
-        ldr       a4,   0(%1)
-
-        lw        a5, NJS_VECTOR.z(%1) 
-
-        pcpyld    a4, a5, a4
-
-        qmtc2.ni  a4, vf4
-
-        lqc2      vf5,    0(%0)
-        lqc2      vf6, 0x10(%0)
-        lqc2      vf7, 0x20(%0)
-
-        vmulx.xyz vf5, vf5, vf4
-        vmuly.xyz vf6, vf6, vf4
-        vmulz.xyz vf7, vf7, vf4
-    
-        sqc2      vf5,     0(%0)
-        sqc2      vf6,  0x10(%0)
-        sqc2      vf7,  0x20(%0)
-    .set reorder
-    " : : "r"(m), "r"(v) : 
-    );
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder ldl a4,
+    //              0x7(% 1) ldr a4,
+    //              0(% 1)
+    //
+    //                  lw a5,
+    //              NJS_VECTOR.z(% 1)
+    //
+    //                  pcpyld a4,
+    //              a5,
+    //              a4
+    //
+    //                  qmtc2.ni a4,
+    //              vf4
+    //
+    //                  lqc2 vf5,
+    //              0(% 0) lqc2 vf6, 0x10(% 0) lqc2 vf7,
+    //              0x20(% 0)
+    //
+    //                  vmulx.xyz vf5,
+    //              vf5, vf4 vmuly.xyz vf6, vf6, vf4 vmulz.xyz vf7, vf7,
+    //              vf4
+    //
+    //                  sqc2 vf5,
+    //              0(% 0) sqc2 vf6, 0x10(% 0) sqc2 vf7, 0x20(% 0).set reorder " : : " r "(m), " r "(v) : 
+    // );
 }
 
 // 100% matching!
-Bool	njInvertMatrix(NJS_MATRIX *m)
+Bool njInvertMatrix(NJS_MATRIX* m)
 {
-	if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        lq          t0,     0(%0)
-        lq          t1,  0x10(%0)
-        lq          t2,  0x20(%0)
-        lqc2        vf4, 0x30(%0)
-
-        vmove       vf5, vf4
-
-        vsub.xyz    vf4, vf4, vf4
-
-        vmove       vf10, vf4
-
-        qmfc2.ni    t3, vf4
-
-        pextlw      t4, t1, t0
-        pextuw      t5, t1, t0
- 
-        pextlw      t6, t3, t2
-        pextuw      t7, t3, t2
- 
-        pcpyld      t0, t6, t4
-        pcpyud      t1, t4, t6
-        pcpyld      t2, t7, t5
- 
-        qmtc2.ni    t0, vf7
-        qmtc2.ni    t1, vf8
-        qmtc2.ni    t2, vf9
-
-        vmulax.xyz  ACC, vf7, vf5
-
-        vmadday.xyz ACC, vf8, vf5
-        vmaddz.xyz  vf4, vf9, vf5
-
-        vsub.xyz    vf4, vf10, vf4
-
-        sq          t0,     0(%0)
-        sq          t1,  0x10(%0)
-        sq          t2,  0x20(%0)
-        sqc2        vf4, 0x30(%0)
-    .set reorder
-    " : : "r"(m) : 
-    );
-
-    return TRUE;
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder lq t0,
+    //              0(% 0) lq t1, 0x10(% 0) lq t2, 0x20(% 0) lqc2 vf4,
+    //              0x30(% 0)
+    //
+    //                  vmove vf5,
+    //              vf4
+    //
+    //                  vsub.xyz vf4,
+    //              vf4,
+    //              vf4
+    //
+    //                  vmove vf10,
+    //              vf4
+    //
+    //                  qmfc2.ni t3,
+    //              vf4
+    //
+    //                  pextlw t4,
+    //              t1, t0 pextuw t5, t1,
+    //              t0
+    //
+    //                  pextlw t6,
+    //              t3, t2 pextuw t7, t3,
+    //              t2
+    //
+    //                  pcpyld t0,
+    //              t6, t4 pcpyud t1, t4, t6 pcpyld t2, t7,
+    //              t5
+    //
+    //                  qmtc2.ni t0,
+    //              vf7 qmtc2.ni t1, vf8 qmtc2.ni t2,
+    //              vf9
+    //
+    //                  vmulax.xyz ACC,
+    //              vf7,
+    //              vf5
+    //
+    //                  vmadday.xyz ACC,
+    //              vf8, vf5 vmaddz.xyz vf4, vf9,
+    //              vf5
+    //
+    //                  vsub.xyz vf4,
+    //              vf10,
+    //              vf4
+    //
+    //                  sq t0,
+    //              0(% 0) sq t1, 0x10(% 0) sq t2, 0x20(% 0) sqc2 vf4, 0x30(% 0).set reorder " : : " r "(m) : 
+    // );
+    //
+    // return TRUE;
 }
 
 // 100% matching!
-void	njTransposeMatrix(NJS_MATRIX *m)
+void njTransposeMatrix(NJS_MATRIX* m)
 {
-	if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        lqc2    vf4,    0(%0)
-        lqc2    vf5, 0x10(%0)
-        lqc2    vf6, 0x20(%0)
-
-        vaddx.x vf7, vf0, vf4
-        vaddx.y vf7, vf0, vf5
-        vaddx.z vf7, vf0, vf6
-
-        vaddy.x vf8, vf0, vf4
-        vaddy.y vf8, vf0, vf5
-        vaddy.z vf8, vf0, vf6
-
-        vaddz.x vf9, vf0, vf4
-        vaddz.y vf9, vf0, vf5
-        vaddz.z vf9, vf0, vf6
-
-        sqc2    vf7,    0(%0)
-        sqc2    vf8, 0x10(%0)
-        sqc2    vf9, 0x20(%0)
-    .set reorder
-    " : : "r"(m) : 
-    );
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder lqc2 vf4,
+    //              0(% 0) lqc2 vf5, 0x10(% 0) lqc2 vf6,
+    //              0x20(% 0)
+    //
+    //                  vaddx.x vf7,
+    //              vf0, vf4 vaddx.y vf7, vf0, vf5 vaddx.z vf7, vf0,
+    //              vf6
+    //
+    //                  vaddy.x vf8,
+    //              vf0, vf4 vaddy.y vf8, vf0, vf5 vaddy.z vf8, vf0,
+    //              vf6
+    //
+    //                  vaddz.x vf9,
+    //              vf0, vf4 vaddz.y vf9, vf0, vf5 vaddz.z vf9, vf0,
+    //              vf6
+    //
+    //                  sqc2 vf7,
+    //              0(% 0) sqc2 vf8, 0x10(% 0) sqc2 vf9, 0x20(% 0).set reorder " : : " r "(m) : 
+    // );
 }
 
 // 100% matching!
 static float njAtan2b(float a, float b)
 {
-    return atan2(a, b);
+// return atan2(a, b);
 }
 
 // 100% matching!
-void	njMirror(NJS_MATRIX *m,NJS_PLANE *pl)
+void njMirror(NJS_MATRIX* m, NJS_PLANE* pl)
 {
-    NJS_MATRIX mat; 
-    int lAngleX;   
-    int lAngleZ;   
-    
-    if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        move        a1, %0
-        move        a0, %1
-        move        s1, %2
-        move        s2, %3
-        
-        addiu       a0, sp, 0x40
-        
-        vaddz.x     vf4, vf0, vf3z
-        
-        ld          t0, NJS_PLANE.vx(a1)
-        ld          t2, NJS_PLANE.vz(a1)
-        
-        qmtc2       t0, vf5
-    
-        vmulw.x     vf4, vf4, vf2w
-        
-        qmtc2       t2, vf6
-    
-        vaddx.z     vf5, vf0, vf6x
-        
-        vmul.xyz    vf7, vf5, vf5
-        
-        vaddy.x     vf7, vf7, vf7y
-        vaddz.x     vf7, vf7, vf7z
-        
-        vrsqrt      Q, vf0w, vf7x
-    
-        ldl         t0, 0x7(a1)
-        ldr         t0, 0x0(a1)
-        
-        lw          t1, 0x8(a1)
-        
-        pcpyld      t0, t1, t0
-    
-        qmtc2       t0, vf12
-    
-        vwaitq
-    
-        vmulq.xyz   vf9, vf5, Q
-    
-        vaddq.x     vf6, vf0, Q
-        
-        vmul.xyz    vf8, vf9, vf12
-        
-        vsubx.x     vf10, vf0, vf8x
-        vsuby.x     vf10, vf10, vf8y
-        vsubz.x     vf10, vf10, vf8z
-        
-        vmulx.xyz   vf11, vf9, vf10x
-        
-        vsub.xyz    vf11, vf0, vf11
-        
-        qmfc2       t0, vf10
-    
-        bnez        t0, l_002D732C
-    
-        vadd.x      vf10, vf10, vf10
-        
-        vmulw.xyzw  vf4, vf0, vf0w
-        
-        vmr32.xyzw  vf5, vf4
-        vmr32.xyzw  vf6, vf5
-        vmr32.xyzw  vf7, vf6
-        
-        sqc2        vf4, 0x30(s1)
-        sqc2        vf5, 0x20(s1)
-        sqc2        vf6, 0x10(s1)
-
-        jr          ra
-		
-        sqc2        vf7, 0x0(s1)
-    
-        l_002D732C:
-        vmulx.xyz   vf14, vf5, vf10x
-        
-        vsub.xyz    vf12, vf0, vf14
-        
-        vaddy.x     vf11, vf0, vf5y
-        vaddz.x     vf11, vf11, vf5z
-        
-        qmfc2       t0, vf11
-    
-        bnez        t0, l_002D7374
-    
-        sqc2        vf12, 0x30(a0)
-        
-        addiu       t6, zero, 0x4008
-        addiu       t6, t6, 0x7FF8
-        addiu       t7, zero, 0x4000
-        
-        mfc1        s1, f0
-        
-        qmfc2       t2, vf5
-    
-        bgtz        t2, l_002D7450
-    
-        mfc1        s2, f14
-    
-        bgtz        t2, l_002D7450
-    
-        mfc1        s2, f15
-    
-        j           l_002D7450
-    
-        mfc1        s2, f0
-    
-        l_002D7374:
-        vaddz.x     vf6, vf0, vf5z
-        vaddy.x     vf7, vf0, vf5y
-        
-        qmfc2       a0, vf6
-        qmfc2       a1, vf7
-    
-        addi        sp, sp, -0x10 
-        
-        sw          v0, 0x0(sp)
-        sw          v1, 0x4(sp)
-        sw          a0, 0x8(sp)
-        sw          a1, 0xC(sp)
-        
-        lwc1        f12, 0x8(sp)
-        
-        jal         njAtan2b
-    
-        lwc1        f13, 0xC(sp)
-        
-        swc1        f0, 0xC(sp)
-        
-        lw          v0, 0x0(sp)
-        lw          v1, 0x4(sp)
-        lw          t2, 0xC(sp)
-        
-        addi        sp, sp, 0x10 
-    
-        qmtc2       t2, vf12
-        
-        vmulx.x     vf12, vf12, vf4x
-        
-        vdiv        Q, vf12x, vf3w
-    
-        vmul.xyz    vf6, vf5, vf5
-        
-        vaddy.x     vf7, vf0, vf5y
-        vaddz.x     vf7, vf7, vf5z
-        
-        vwaitq
-        
-        vaddq.x     vf12, vf0, Q
-        
-        vftoi0.xyzw vf12, vf12
-        
-        qmfc2       t3, vf12
-    
-        sw          t3, 0x0(s1)
-        
-        vsqrt       Q, vf7x          
-    
-        addi        sp, sp, -0x10 
-        
-        sw          v0, 0x0(sp)
-        sw          v1, 0x4(sp)
-        
-        vwaitq
-        
-        vaddq.x     vf6, vf0, Q
-        
-        qmfc2       a0, vf5
-        qmfc2       a1, vf6
-    
-        sw          a0, 0x8(sp)
-        sw          a1, 0xC(sp)
-        
-        lwc1        f12, 0x8(sp)
-        
-        jal         njAtan2b
-    
-        lwc1        f13, 0xC(sp)
-        
-        swc1        f0, 0xC(sp)
-        
-        lw          v0, 0x0(sp)
-        lw          v1, 0x4(sp)
-        lw          t2, 0xC(sp)
-        
-        addi        sp, sp, 0x10 
-    
-        qmtc2       t2, vf12
-        
-        vmulx.x     vf12, vf12, vf4x
-        
-        vdiv        Q, vf12x, vf3w
-    
-        vwaitq
-    
-        vaddq.x     vf12, vf0, Q
-        
-        vsubx.x     vf12, vf0, vf12x
-        
-        vftoi0.xyzw vf12, vf12
-        
-        qmfc2       t3, vf12
-    
-        sw          t3, 0x0(s2)
-    .set reorder
-    " : : "r"(pl), "f"(&mat), "r"(&lAngleX), "r"(&lAngleZ) : 
-    );
-
-    l_002D7450:
-    njUnitRotPortion(&mat);
-    
-    njRotateX(&mat, lAngleX);
-    njRotateZ(&mat, lAngleZ);
-    
-    njScale(&mat, 1.0f, -1.0f, 1.0f);
-    
-    njRotateZ(&mat, -lAngleZ);
-    njRotateX(&mat, -lAngleX);
-    
-    njMultiMatrix(m, &mat);
+//     NJS_MATRIX mat;
+//     int lAngleX;
+//     int lAngleZ;
+//
+//     if (m == NULL) {
+//         m = pNaMatMatrixStuckPtr;
+//     }
+//
+//     asm volatile("
+//                      .set noreorder move a1,
+//                  % 0 move a0, % 1 move s1, % 2 move s2, % 3
+//
+//                                                             addiu a0,
+//                  sp,
+//                  0x40
+//
+//                  vaddz.x vf4,
+//                  vf0,
+//                  vf3z
+//
+//                      ld t0,
+//                  NJS_PLANE.vx(a1) ld t2,
+//                  NJS_PLANE.vz(a1)
+//
+//                      qmtc2 t0,
+//                  vf5
+//
+//                      vmulw.x vf4,
+//                  vf4,
+//                  vf2w
+//
+//                      qmtc2 t2,
+//                  vf6
+//
+//                      vaddx.z vf5,
+//                  vf0,
+//                  vf6x
+//
+//                      vmul.xyz vf7,
+//                  vf5,
+//                  vf5
+//
+//                      vaddy.x vf7,
+//                  vf7, vf7y vaddz.x vf7, vf7,
+//                  vf7z
+//
+//                      vrsqrt Q,
+//                  vf0w,
+//                  vf7x
+//
+//                      ldl t0,
+//                  0x7(a1) ldr t0,
+//                  0x0(a1)
+//
+//                      lw t1,
+//                  0x8(a1)
+//
+//                      pcpyld t0,
+//                  t1,
+//                  t0
+//
+//                      qmtc2 t0,
+//                  vf12
+//
+//                      vwaitq
+//
+//                          vmulq.xyz vf9,
+//                  vf5,
+//                  Q
+//
+//                      vaddq.x vf6,
+//                  vf0,
+//                  Q
+//
+//                      vmul.xyz vf8,
+//                  vf9,
+//                  vf12
+//
+//                      vsubx.x vf10,
+//                  vf0, vf8x vsuby.x vf10, vf10, vf8y vsubz.x vf10, vf10,
+//                  vf8z
+//
+//                      vmulx.xyz vf11,
+//                  vf9,
+//                  vf10x
+//
+//                      vsub.xyz vf11,
+//                  vf0,
+//                  vf11
+//
+//                      qmfc2 t0,
+//                  vf10
+//
+//                      bnez t0,
+//                  l_002D732C
+//
+//                      vadd.x vf10,
+//                  vf10,
+//                  vf10
+//
+//                      vmulw.xyzw vf4,
+//                  vf0,
+//                  vf0w
+//
+//                      vmr32.xyzw vf5,
+//                  vf4 vmr32.xyzw vf6, vf5 vmr32.xyzw vf7,
+//                  vf6
+//
+//                      sqc2 vf4,
+//                  0x30(s1) sqc2 vf5, 0x20(s1) sqc2 vf6,
+//                  0x10(s1)
+//
+//                      jr ra
+//
+//                          sqc2 vf7,
+//                  0x0(s1)
+//
+//                      l_002D732C
+//                  : vmulx.xyz vf14, vf5,
+//                    vf10x
+//
+//                        vsub.xyz vf12,
+//                    vf0,
+//                    vf14
+//
+//                        vaddy.x vf11,
+//                    vf0, vf5y vaddz.x vf11, vf11,
+//                    vf5z
+//
+//                        qmfc2 t0,
+//                    vf11
+//
+//                        bnez t0,
+//                    l_002D7374
+//
+//                        sqc2 vf12,
+//                    0x30(a0)
+//
+//                        addiu t6,
+//                    zero, 0x4008 addiu t6, t6, 0x7FF8 addiu t7, zero,
+//                    0x4000
+//
+//                    mfc1 s1,
+//                    f0
+//
+//                        qmfc2 t2,
+//                    vf5
+//
+//                        bgtz t2,
+//                    l_002D7450
+//
+//                        mfc1 s2,
+//                    f14
+//
+//                        bgtz t2,
+//                    l_002D7450
+//
+//                        mfc1 s2,
+//                    f15
+//
+//                        j l_002D7450
+//
+//                            mfc1 s2,
+//                    f0
+//
+//                        l_002D7374
+//                  : vaddz.x vf6, vf0, vf5z vaddy.x vf7, vf0,
+//                    vf5y
+//
+//                        qmfc2 a0,
+//                    vf6 qmfc2 a1,
+//                    vf7
+//
+//                        addi sp,
+//                    sp,
+//                    -0x10
+//
+//                    sw v0,
+//                    0x0(sp) sw v1, 0x4(sp) sw a0, 0x8(sp) sw a1,
+//                    0xC(sp)
+//
+//                        lwc1 f12,
+//                    0x8(sp)
+//
+//                        jal njAtan2b
+//
+//                            lwc1 f13,
+//                    0xC(sp)
+//
+//                        swc1 f0,
+//                    0xC(sp)
+//
+//                        lw v0,
+//                    0x0(sp) lw v1, 0x4(sp) lw t2,
+//                    0xC(sp)
+//
+//                        addi sp,
+//                    sp,
+//                    0x10
+//
+//                    qmtc2 t2,
+//                    vf12
+//
+//                        vmulx.x vf12,
+//                    vf12,
+//                    vf4x
+//
+//                        vdiv Q,
+//                    vf12x,
+//                    vf3w
+//
+//                        vmul.xyz vf6,
+//                    vf5,
+//                    vf5
+//
+//                        vaddy.x vf7,
+//                    vf0, vf5y vaddz.x vf7, vf7,
+//                    vf5z
+//
+//                        vwaitq
+//
+//                            vaddq.x vf12,
+//                    vf0,
+//                    Q
+//
+//                        vftoi0.xyzw vf12,
+//                    vf12
+//
+//                        qmfc2 t3,
+//                    vf12
+//
+//                        sw t3,
+//                    0x0(s1)
+//
+//                        vsqrt Q,
+//                    vf7x
+//
+//                        addi sp,
+//                    sp,
+//                    -0x10
+//
+//                    sw v0,
+//                    0x0(sp) sw v1,
+//                    0x4(sp)
+//
+//                        vwaitq
+//
+//                            vaddq.x vf6,
+//                    vf0,
+//                    Q
+//
+//                        qmfc2 a0,
+//                    vf5 qmfc2 a1,
+//                    vf6
+//
+//                        sw a0,
+//                    0x8(sp) sw a1,
+//                    0xC(sp)
+//
+//                        lwc1 f12,
+//                    0x8(sp)
+//
+//                        jal njAtan2b
+//
+//                            lwc1 f13,
+//                    0xC(sp)
+//
+//                        swc1 f0,
+//                    0xC(sp)
+//
+//                        lw v0,
+//                    0x0(sp) lw v1, 0x4(sp) lw t2,
+//                    0xC(sp)
+//
+//                        addi sp,
+//                    sp,
+//                    0x10
+//
+//                    qmtc2 t2,
+//                    vf12
+//
+//                        vmulx.x vf12,
+//                    vf12,
+//                    vf4x
+//
+//                        vdiv Q,
+//                    vf12x,
+//                    vf3w
+//
+//                        vwaitq
+//
+//                            vaddq.x vf12,
+//                    vf0,
+//                    Q
+//
+//                        vsubx.x vf12,
+//                    vf0,
+//                    vf12x
+//
+//                        vftoi0.xyzw vf12,
+//                    vf12
+//
+//                        qmfc2 t3,
+//                    vf12
+//
+//                        sw t3,
+//                    0x0(s2).set reorder " : : " r "(pl), " f "(&mat), " r "(&lAngleX), " r "(&lAngleZ) : 
+//     );
+//
+// l_002D7450:
+//     njUnitRotPortion(&mat);
+//
+//     njRotateX(&mat, lAngleX);
+//     njRotateZ(&mat, lAngleZ);
+//
+//     njScale(&mat, 1.0f, -1.0f, 1.0f);
+//
+//     njRotateZ(&mat, -lAngleZ);
+//     njRotateX(&mat, -lAngleX);
+//
+//     njMultiMatrix(m, &mat);
 }
 
 // 100% matching!
-void	njCalcPoint(NJS_MATRIX *m, NJS_POINT3 *ps, NJS_POINT3 *pd)
+void njCalcPoint(NJS_MATRIX* m, NJS_POINT3* ps, NJS_POINT3* pd)
 {
-    if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        ldl         t0, 7(%1)
-        ldr         t0, 0(%1)
-        
-        lw          t1, 8(%1)
-        
-        pcpyld      t0, t1, t0
-    
-        qmtc2       t0, vf4
-    
-        lqc2        vf5, 0(%0)
-        lqc2        vf6, 0x10(%0)
-        lqc2        vf7, 0x20(%0)
-        lqc2        vf8, 0x30(%0)
-
-        vmulax.xyz  ACC,  vf5, vf4
-        
-        vmadday.xyz ACC,  vf6, vf4
-        vmaddaz.xyz ACC,  vf7, vf4
-        vmaddw.xyz  vf18, vf8, vf0
-
-        qmfc2       t0, vf18
-    
-        pcpyud      t1, t0, t0
-    
-        sdl         t0, 7(%2)
-        sdr         t0, 0(%2)
-        
-        sw          t1, 8(%2)
-    .set reorder
-    " : : "r"(m), "r"(ps), "r"(pd) : 
-    );
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder ldl t0,
+    //              7(% 1) ldr t0,
+    //              0(% 1)
+    //
+    //                  lw t1,
+    //              8(% 1)
+    //
+    //                  pcpyld t0,
+    //              t1,
+    //              t0
+    //
+    //                  qmtc2 t0,
+    //              vf4
+    //
+    //                  lqc2 vf5,
+    //              0(% 0) lqc2 vf6, 0x10(% 0) lqc2 vf7, 0x20(% 0) lqc2 vf8,
+    //              0x30(% 0)
+    //
+    //                  vmulax.xyz ACC,
+    //              vf5,
+    //              vf4
+    //
+    //                  vmadday.xyz ACC,
+    //              vf6, vf4 vmaddaz.xyz ACC, vf7, vf4 vmaddw.xyz vf18, vf8,
+    //              vf0
+    //
+    //                  qmfc2 t0,
+    //              vf18
+    //
+    //                  pcpyud t1,
+    //              t0,
+    //              t0
+    //
+    //                  sdl t0,
+    //              7(% 2) sdr t0,
+    //              0(% 2)
+    //
+    //                  sw t1,
+    //              8(% 2).set reorder " : : " r "(m), " r "(ps), " r "(pd) : 
+    // );
 }
 
 // 100% matching!
 void njCalcPoint4(NJS_MATRIX* pMatrix, NJS_POINT4* pSrcPoint, NJS_POINT4* pDstPoint)
 {
-    if (pMatrix == NULL)
-    {
-        pMatrix = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        lqc2        vf4, 0(%1)
-        lqc2        vf5, 0(%0)
-        lqc2        vf6, 0x10(%0)
-        lqc2        vf7, 0x20(%0)
-        lqc2        vf8, 0x30(%0)
-
-        vmulax.xyz  ACC,  vf5, vf4x
-        
-        vmadday.xyz ACC,  vf6, vf4y
-        vmaddaz.xyz ACC,  vf7, vf4z
-        vmaddw.xyz  vf18, vf8, vf0w
-    
-        sqc2        vf18, 0(%2)
-    .set reorder
-    " : : "r"(pMatrix), "r"(pSrcPoint), "r"(pDstPoint) : 
-    );
+// if (pMatrix == NULL) {
+    //     pMatrix = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder lqc2 vf4,
+    //              0(% 1) lqc2 vf5, 0(% 0) lqc2 vf6, 0x10(% 0) lqc2 vf7, 0x20(% 0) lqc2 vf8,
+    //              0x30(% 0)
+    //
+    //                  vmulax.xyz ACC,
+    //              vf5,
+    //              vf4x
+    //
+    //                  vmadday.xyz ACC,
+    //              vf6, vf4y vmaddaz.xyz ACC, vf7, vf4z vmaddw.xyz vf18, vf8,
+    //              vf0w
+    //
+    //                  sqc2 vf18,
+    //              0(% 2).set reorder " : : " r "(pMatrix), " r "(pSrcPoint), " r "(pDstPoint) : 
+    // );
 }
 
 // 100% matching!
 void njCalcPointCN(NJS_POINT3* pSrcPoint, NJS_POINT3* pDstPoint)
 {
-    asm volatile
-    ("
-    .set noreorder
-        ldl         t2, 7(%0)
-        ldr         t2, 0(%0)
-        
-        lw          t3, 8(%0)
-        
-        pcpyld      t2, t3, t2
-    
-        qmtc2       t2, vf4
-    
-        vmulax.xyz  ACC, vf28, vf4
-        
-        vmadday.xyz ACC, vf29, vf4
-        vmaddaz.xyz ACC, vf30, vf4
-
-        vmaddw.xyz  vf18, vf31, vf0
-
-        qmfc2       t0, vf18
-    
-        pcpyud      t1, t0, t0
-    
-        sdl         t0, 7(%1)
-        sdr         t0, 0(%1)
-        
-        sw          t1, 8(%1)
-    .set reorder
-    " : : "r"(pSrcPoint), "r"(pDstPoint) : 
-    );
+// asm volatile("
+    //                  .set noreorder ldl t2,
+    //              7(% 0) ldr t2,
+    //              0(% 0)
+    //
+    //                  lw t3,
+    //              8(% 0)
+    //
+    //                  pcpyld t2,
+    //              t3,
+    //              t2
+    //
+    //                  qmtc2 t2,
+    //              vf4
+    //
+    //                  vmulax.xyz ACC,
+    //              vf28,
+    //              vf4
+    //
+    //                  vmadday.xyz ACC,
+    //              vf29, vf4 vmaddaz.xyz ACC, vf30,
+    //              vf4
+    //
+    //                  vmaddw.xyz vf18,
+    //              vf31,
+    //              vf0
+    //
+    //                  qmfc2 t0,
+    //              vf18
+    //
+    //                  pcpyud t1,
+    //              t0,
+    //              t0
+    //
+    //                  sdl t0,
+    //              7(% 1) sdr t0,
+    //              0(% 1)
+    //
+    //                  sw t1,
+    //              8(% 1).set reorder " : : " r "(pSrcPoint), " r "(pDstPoint) : 
+    // );
 }
 
 // 100% matching!
-void	njAddVector(NJS_VECTOR *vd, NJS_VECTOR *vs)
+void njAddVector(NJS_VECTOR* vd, NJS_VECTOR* vs)
 {
-	asm volatile
-    ("
-    .set noreorder
-        lwc1   f8, NJS_VECTOR.x(%0)
-        lwc1   f9, NJS_VECTOR.y(%0)
-        lwc1  f10, NJS_VECTOR.z(%0)
-
-        lwc1  f11, NJS_VECTOR.x(%1)
-        lwc1  f12, NJS_VECTOR.y(%1)
-        lwc1  f13, NJS_VECTOR.z(%1)
-
-        add.s  f8,  f8, f11
-        add.s  f9,  f9, f12
-        add.s f10, f10, f13
-
-        swc1   f8, NJS_VECTOR.x(%0)
-        swc1   f9, NJS_VECTOR.y(%0)
-        swc1  f10, NJS_VECTOR.z(%0)
-    .set reorder
-    " : : "r"(vd), "r"(vs) : 
-    );
+// asm volatile("
+    //                  .set noreorder lwc1 f8,
+    //              NJS_VECTOR.x(% 0) lwc1 f9, NJS_VECTOR.y(% 0) lwc1 f10,
+    //              NJS_VECTOR.z(% 0)
+    //
+    //                  lwc1 f11,
+    //              NJS_VECTOR.x(% 1) lwc1 f12, NJS_VECTOR.y(% 1) lwc1 f13,
+    //              NJS_VECTOR
+    //                  .z(% 1)
+    //
+    //                      add.s f8,
+    //              f8, f11 add.s f9, f9, f12 add.s f10, f10,
+    //              f13
+    //
+    //                  swc1 f8,
+    //              NJS_VECTOR.x(% 0) swc1 f9, NJS_VECTOR.y(% 0) swc1 f10, NJS_VECTOR.z(% 0).set reorder " : : " r "(vd), " r "(vs) : 
+    // );
 }
 
 // 100% matching!
-void	njSubVector(NJS_VECTOR *vd, NJS_VECTOR *vs)
+void njSubVector(NJS_VECTOR* vd, NJS_VECTOR* vs)
 {
-	asm volatile
-    ("
-    .set noreorder
-        lwc1   f8, NJS_VECTOR.x(%0)
-        lwc1   f9, NJS_VECTOR.y(%0)
-        lwc1  f10, NJS_VECTOR.z(%0)
-
-        lwc1  f11, NJS_VECTOR.x(%1)
-        lwc1  f12, NJS_VECTOR.y(%1)
-        lwc1  f13, NJS_VECTOR.z(%1)
-
-        sub.s  f8,  f8, f11
-        sub.s  f9,  f9, f12
-        sub.s f10, f10, f13
-
-        swc1   f8, NJS_VECTOR.x(%0)
-        swc1   f9, NJS_VECTOR.y(%0)
-        swc1  f10, NJS_VECTOR.z(%0)
-    .set reorder
-    " : : "r"(vd), "r"(vs) : 
-    );
+// asm volatile("
+    //                  .set noreorder lwc1 f8,
+    //              NJS_VECTOR.x(% 0) lwc1 f9, NJS_VECTOR.y(% 0) lwc1 f10,
+    //              NJS_VECTOR.z(% 0)
+    //
+    //                  lwc1 f11,
+    //              NJS_VECTOR.x(% 1) lwc1 f12, NJS_VECTOR.y(% 1) lwc1 f13,
+    //              NJS_VECTOR
+    //                  .z(% 1)
+    //
+    //                      sub.s f8,
+    //              f8, f11 sub.s f9, f9, f12 sub.s f10, f10,
+    //              f13
+    //
+    //                  swc1 f8,
+    //              NJS_VECTOR.x(% 0) swc1 f9, NJS_VECTOR.y(% 0) swc1 f10, NJS_VECTOR.z(% 0).set reorder " : : " r "(vd), " r "(vs) : 
+    // );
 }
 
 // 100% matching!
-void	njCalcVector(NJS_MATRIX *m, NJS_VECTOR *vs, NJS_VECTOR *vd)
+void njCalcVector(NJS_MATRIX* m, NJS_VECTOR* vs, NJS_VECTOR* vd)
 {
-    if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        ldl         t0, 7(%1)
-        ldr         t0, 0(%1)
-        
-        lw          t1, 8(%1)
-        
-        pcpyld      t0, t1, t0
-    
-        qmtc2       t0, vf4
-    
-        lqc2        vf7, 0(%0)
-        lqc2        vf8, 0x10(%0)
-        lqc2        vf9, 0x20(%0)
-
-        vmulax.xyz  ACC,  vf7, vf4
-        
-        vmadday.xyz ACC,  vf8, vf4
-        vmaddz.xyz  vf18, vf9, vf4
-
-        qmfc2       t0, vf18
-    
-        pcpyud      t1, t0, t0
-    
-        sdl         t0, 7(%2)
-        sdr         t0, 0(%2)
-        
-        sw          t1, 8(%2)
-    .set reorder
-    " : : "r"(m), "r"(vs), "r"(vd) : 
-    );
+// if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder ldl t0,
+    //              7(% 1) ldr t0,
+    //              0(% 1)
+    //
+    //                  lw t1,
+    //              8(% 1)
+    //
+    //                  pcpyld t0,
+    //              t1,
+    //              t0
+    //
+    //                  qmtc2 t0,
+    //              vf4
+    //
+    //                  lqc2 vf7,
+    //              0(% 0) lqc2 vf8, 0x10(% 0) lqc2 vf9,
+    //              0x20(% 0)
+    //
+    //                  vmulax.xyz ACC,
+    //              vf7,
+    //              vf4
+    //
+    //                  vmadday.xyz ACC,
+    //              vf8, vf4 vmaddz.xyz vf18, vf9,
+    //              vf4
+    //
+    //                  qmfc2 t0,
+    //              vf18
+    //
+    //                  pcpyud t1,
+    //              t0,
+    //              t0
+    //
+    //                  sdl t0,
+    //              7(% 2) sdr t0,
+    //              0(% 2)
+    //
+    //                  sw t1,
+    //              8(% 2).set reorder " : : " r "(m), " r "(vs), " r "(vd) : 
+    // );
 }
 
 // 100% matching!
-Float	njUnitVector(NJS_VECTOR *v)
+Float njUnitVector(NJS_VECTOR* v)
 {
-	float ret;
-
-    asm volatile
-    ("
-    .set noreorder
-        ldl       a4, 0x7(%1)
-        ldr       a4,   0(%1)
-     
-        lw        a5, NJS_VECTOR.z(%1) 
-     
-        pcpyld    a4, a5, a4
-     
-        qmtc2.ni  a4, vf4
-     
-        vmul.xyz  vf5, vf4, vf4
-     
-        vaddy.x   vf5, vf5, vf5
-        vaddz.x   vf5, vf5, vf5
-     
-        vrsqrt    Q, vf0w, vf5
-     
-        vwaitq   
-
-        vmulq.xyz vf6, vf4, Q
-        vmulq.x   vf7, vf5, Q
-
-        qmfc2.ni  a6, vf6
-
-        pcpyud    a7, a6, a6
-
-        sdl       a6, 0x7(%1)
-        sdr       a6,   0(%1)
-     
-        sw        a7, NJS_VECTOR.z(%1) 
-     
-        qmfc2.ni  v0, vf7
-
-        mtc1      v0, %0
-    .set reorder
-    " : "=r"(ret) : "r"(v) : 
-    );
-
-    return ret;
+// float ret;
+    //
+    // asm volatile("
+    //                  .set noreorder ldl a4,
+    //              0x7(% 1) ldr a4,
+    //              0(% 1)
+    //
+    //                  lw a5,
+    //              NJS_VECTOR.z(% 1)
+    //
+    //                  pcpyld a4,
+    //              a5,
+    //              a4
+    //
+    //                  qmtc2.ni a4,
+    //              vf4
+    //
+    //                  vmul.xyz vf5,
+    //              vf4,
+    //              vf4
+    //
+    //                  vaddy.x vf5,
+    //              vf5, vf5 vaddz.x vf5, vf5,
+    //              vf5
+    //
+    //                  vrsqrt Q,
+    //              vf0w,
+    //              vf5
+    //
+    //                  vwaitq
+    //
+    //                      vmulq.xyz vf6,
+    //              vf4, Q vmulq.x vf7, vf5,
+    //              Q
+    //
+    //                  qmfc2.ni a6,
+    //              vf6
+    //
+    //                  pcpyud a7,
+    //              a6,
+    //              a6
+    //
+    //                  sdl a6,
+    //              0x7(% 1) sdr a6,
+    //              0(% 1)
+    //
+    //                  sw a7,
+    //              NJS_VECTOR
+    //                  .z(% 1)
+    //
+    //                      qmfc2.ni v0,
+    //              vf7
+    //
+    //                  mtc1 v0,
+    //              % 0 .set reorder " : " = r "(ret) : " r "(v) : 
+    // );
+    //
+    // return ret;
 }
 
 // 100% matching!
-Float	njScalor(NJS_VECTOR *v)
+Float njScalor(NJS_VECTOR* v)
 {
-	float ret;
-
-    asm volatile
-    ("
-    .set noreorder
-        ldl      a4, 0x7(%1)
-        ldr      a4,   0(%1)
-     
-        lw       a5, NJS_VECTOR.z(%1) 
-     
-        pcpyld   a4, a5, a4
-     
-        qmtc2.ni a4, vf4
-     
-        vmul.xyz vf5, vf4, vf4
-     
-        vaddy.x  vf5, vf5, vf5
-        vaddz.x  vf5, vf5, vf5
-     
-        vsqrt    Q, vf5
-     
-        vwaitq   
-     
-        vaddq.x  vf6, vf0, Q
-     
-        qmfc2.ni v0, vf6
-
-        mtc1     v0, %0
-    .set reorder
-    " : "=r"(ret) : "r"(v) : 
-    );
-
-    return ret;
+// float ret;
+    //
+    // asm volatile("
+    //                  .set noreorder ldl a4,
+    //              0x7(% 1) ldr a4,
+    //              0(% 1)
+    //
+    //                  lw a5,
+    //              NJS_VECTOR.z(% 1)
+    //
+    //                  pcpyld a4,
+    //              a5,
+    //              a4
+    //
+    //                  qmtc2.ni a4,
+    //              vf4
+    //
+    //                  vmul.xyz vf5,
+    //              vf4,
+    //              vf4
+    //
+    //                  vaddy.x vf5,
+    //              vf5, vf5 vaddz.x vf5, vf5,
+    //              vf5
+    //
+    //                  vsqrt Q,
+    //              vf5
+    //
+    //                  vwaitq
+    //
+    //                      vaddq.x vf6,
+    //              vf0,
+    //              Q
+    //
+    //                  qmfc2.ni v0,
+    //              vf6
+    //
+    //                  mtc1 v0,
+    //              % 0 .set reorder " : " = r "(ret) : " r "(v) : 
+    // );
+    //
+    // return ret;
 }
 
 // 100% matching!
-Float	njScalor2(NJS_VECTOR *v)
+Float njScalor2(NJS_VECTOR* v)
 {
-	float ret;
-
-    asm volatile
-    ("
-    .set noreorder
-        ldl      a4, 0x7(%1)
-        ldr      a4,   0(%1)
-     
-        lw       a5, NJS_VECTOR.z(%1) 
-     
-        pcpyld   a4, a5, a4
-     
-        qmtc2.ni a4, vf4
-     
-        vmul.xyz vf5, vf4, vf4
-     
-        vaddy.x  vf5, vf5, vf5
-        vaddz.x  vf6, vf5, vf5
-     
-        qmfc2.ni v0, vf6
-        
-        mtc1     v0, %0
-    .set reorder
-    " : "=r"(ret) : "r"(v) : 
-    );
-
-    return ret;
+// float ret;
+    //
+    // asm volatile("
+    //                  .set noreorder ldl a4,
+    //              0x7(% 1) ldr a4,
+    //              0(% 1)
+    //
+    //                  lw a5,
+    //              NJS_VECTOR.z(% 1)
+    //
+    //                  pcpyld a4,
+    //              a5,
+    //              a4
+    //
+    //                  qmtc2.ni a4,
+    //              vf4
+    //
+    //                  vmul.xyz vf5,
+    //              vf4,
+    //              vf4
+    //
+    //                  vaddy.x vf5,
+    //              vf5, vf5 vaddz.x vf6, vf5,
+    //              vf5
+    //
+    //                  qmfc2.ni v0,
+    //              vf6
+    //
+    //                  mtc1 v0,
+    //              % 0 .set reorder " : " = r "(ret) : " r "(v) : 
+    // );
+    //
+    // return ret;
 }
 
 // 100% matching!
-void	njProjectScreen(NJS_MATRIX *m, NJS_POINT3 *p3, NJS_POINT2 *p2)
+void njProjectScreen(NJS_MATRIX* m, NJS_POINT3* p3, NJS_POINT2* p2)
 {
-    NJS_POINT3 Point;
-    
-    if (m == NULL)
-    {
-        m = pNaMatMatrixStuckPtr;
-    }
-    
-    njMulMatrixCN(&NaViewScreenMatrix, m);
-    
-    njCalcPointCN(p3, &Point);
-    
-    asm volatile
-    ("
-    .set noreorder
-        mfc1     t0, %2
-        
-        qmtc2    t0, vf4
-
-        vdiv     Q, vf4x, vf18z
-
-        lw       t1, fNaViwOffsetX
-        lw       t2, fNaViwOffsetY
-        
-        qmtc2    t1, vf5
-        qmtc2    t2, vf6
-
-        vwaitq
-
-        vaddq.z  vf8, vf0, Q
-
-        vmulq.xy vf7, vf18, Q
-        
-        vaddx.x  vf8, vf7, vf5
-        vaddx.y  vf8, vf7, vf6
-
-        qmfc2    t0, vf8
-    
-        pcpyud   t1, t0, t0
-    
-        sdl      t0, 7(%0)
-        sdr      t0, 0(%0)
-        
-        sw       t1, 8(%1)
-    .set reorder
-    " : : "r"(p2), "r"(&Point), "f"(_nj_screen_.dist) : 
-    );
-}
-
-// 100% matching! 
-Float	njOuterProduct(NJS_VECTOR *v1, NJS_VECTOR *v2, NJS_VECTOR *ov)
-{
-	float ret;
-
-	asm volatile
-    ("
-    .set noreorder
-        ldl      a4, 0x7(%1)
-        ldr      a4,   0(%1)
-     
-        lw       a5, NJS_VECTOR.z(%1) 
-
-        ldl      a6, 0x7(%2)
-        ldr      a6,   0(%2)
-     
-        lw       a7, NJS_VECTOR.z(%2) 
-     
-        pcpyld   a4, a5, a4
-        pcpyld   a6, a7, a6
-     
-        qmtc2.ni a4, vf4
-        qmtc2.ni a6, vf5
-
-        vopmula  ACC, vf4, vf5
-        vopmsub  vf6, vf5, vf4
-     
-        vmul.xyz vf7, vf6, vf6
-     
-        vaddy.x  vf7, vf7, vf7
-        vaddz.x  vf7, vf7, vf7
-
-        vsqrt    Q, vf7
-
-        qmfc2.ni a4, vf6
-
-        pcpyud   a5, a4, a4
-
-        sdl      a4, 0x7(%3)
-        sdr      a4,   0(%3)
-
-        sw       a5, NJS_VECTOR.z(%3)
-
-        vwaitq
-
-        vaddq.x  vf8, vf0, Q
-     
-        qmfc2.ni v0, vf8
-        
-        mtc1     v0, %0
-    .set reorder
-    " : "=r"(ret) : "r"(v1), "r"(v2), "r"(ov) : 
-    );
-
-    return ret;
-}
-
-// 100% matching! 
-Float	njInnerProduct(NJS_VECTOR *v1, NJS_VECTOR *v2)
-{
-	float ret;
-
-	asm volatile
-    ("
-    .set noreorder
-        ldl      a4, 0x7(%1)
-        ldr      a4,   0(%1)
-     
-        lw       a5, NJS_VECTOR.z(%1) 
-
-        ldl      a6, 0x7(%2)
-        ldr      a6,   0(%2)
-     
-        lw       a7, NJS_VECTOR.z(%2) 
-     
-        pcpyld   a4, a5, a4
-        pcpyld   a6, a7, a6
-     
-        qmtc2.ni a4, vf4
-        qmtc2.ni a6, vf5
-     
-        vmul.xyz vf6,  vf4, vf5
-     
-        vaddy.x  vf6,  vf6, vf6
-        vaddz.x  vf14, vf6, vf6
-     
-        qmfc2.ni v0, vf14
-        
-        mtc1     v0, %0
-    .set reorder
-    " : "=r"(ret) : "r"(v1), "r"(v2) : 
-    );
-
-    return ret;
-}
-
-// 100% matching! 
-void njTranslateEx(NJS_VECTOR *v)
-{
-    asm volatile
-    ("
-    .set noreorder
-        ldl         a4, 0x7(%0)
-        ldr         a4,   0(%0)
-
-        lw          a5, NJS_VECTOR.z(%0) 
-
-        pcpyld      a4, a5, a4
-
-        qmtc2.ni    a4, vf4
-
-        lqc2        vf28,    0(%1)
-        lqc2        vf29, 0x10(%1)
-        lqc2        vf30, 0x20(%1)
-        lqc2        vf31, 0x30(%1)
-
-        vmulax.xyz  ACC,  vf28, vf4
-        
-        vmadday.xyz ACC,  vf29, vf4
-        vmaddaz.xyz ACC,  vf30, vf4
-        vmaddw.xyz  vf31, vf31, vf0
-    
-        sqc2        vf31, 0x30(%1)
-    .set reorder
-    " : : "r"(v), "r"(pNaMatMatrixStuckPtr) : 
-    );
-}
-
-// 100% matching! 
-void njRotateEx( Angle *ang, Sint32 lv )
-{
-	if (lv != 0) 
-    {
-        njRotateY(NULL, ang[1]);
-        njRotateX(NULL, ang[0]);
-        njRotateZ(NULL, ang[2]);
-    }
-    else
-    {
-        njRotateZ(NULL, ang[2]);
-        njRotateY(NULL, ang[1]);
-        njRotateX(NULL, ang[0]);
-    }
-}
-
-// 100% matching! 
-void njScaleEx(NJS_VECTOR *v)
-{
-    asm volatile
-    ("
-    .set noreorder
-        lqc2     vf28,    0(%1)
-        lqc2     vf29, 0x10(%1)
-        lqc2     vf30, 0x20(%1)
-        
-        ldl      a4, 0x7(%0)
-        ldr      a4,   0(%0)
-        
-        lw       a5, NJS_VECTOR.z(%0) 
-        
-        pcpyld   a4, a5, a4
-        
-        qmtc2.ni a4, vf4
-        
-        vmulx    vf28, vf28, vf4
-        vmuly    vf29, vf29, vf4
-        vmulz    vf30, vf30, vf4
-        
-        sqc2     vf28,    0(%1)
-        sqc2     vf29, 0x10(%1)
-        sqc2     vf30, 0x20(%1)
-    .set reorder
-    " : : "r"(v), "r"(pNaMatMatrixStuckPtr) : 
-    );
+// NJS_POINT3 Point;
+    //
+    // if (m == NULL) {
+    //     m = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // njMulMatrixCN(&NaViewScreenMatrix, m);
+    //
+    // njCalcPointCN(p3, &Point);
+    //
+    // asm volatile("
+    //                  .set noreorder mfc1 t0,
+    //              % 2
+    //
+    //                  qmtc2 t0,
+    //              vf4
+    //
+    //                  vdiv Q,
+    //              vf4x,
+    //              vf18z
+    //
+    //                  lw t1,
+    //              fNaViwOffsetX lw t2,
+    //              fNaViwOffsetY
+    //
+    //                  qmtc2 t1,
+    //              vf5 qmtc2 t2,
+    //              vf6
+    //
+    //                  vwaitq
+    //
+    //                      vaddq.z vf8,
+    //              vf0,
+    //              Q
+    //
+    //                  vmulq.xy vf7,
+    //              vf18,
+    //              Q
+    //
+    //                  vaddx.x vf8,
+    //              vf7, vf5 vaddx.y vf8, vf7,
+    //              vf6
+    //
+    //                  qmfc2 t0,
+    //              vf8
+    //
+    //                  pcpyud t1,
+    //              t0,
+    //              t0
+    //
+    //                  sdl t0,
+    //              7(% 0) sdr t0,
+    //              0(% 0)
+    //
+    //                  sw t1,
+    //              8(% 1).set reorder " : : " r "(p2), " r "(&Point), " f "(_nj_screen_.dist) : 
+    // );
 }
 
 // 100% matching!
-Bool njPushMatrixEx( void )
+Float njOuterProduct(NJS_VECTOR* v1, NJS_VECTOR* v2, NJS_VECTOR* ov)
 {
-    njPushMatrix(NULL);
+// float ret;
+    //
+    // asm volatile("
+    //                  .set noreorder ldl a4,
+    //              0x7(% 1) ldr a4,
+    //              0(% 1)
+    //
+    //                  lw a5,
+    //              NJS_VECTOR.z(% 1)
+    //
+    //                  ldl a6,
+    //              0x7(% 2) ldr a6,
+    //              0(% 2)
+    //
+    //                  lw a7,
+    //              NJS_VECTOR.z(% 2)
+    //
+    //                  pcpyld a4,
+    //              a5, a4 pcpyld a6, a7,
+    //              a6
+    //
+    //                  qmtc2.ni a4,
+    //              vf4 qmtc2.ni a6,
+    //              vf5
+    //
+    //                  vopmula ACC,
+    //              vf4, vf5 vopmsub vf6, vf5,
+    //              vf4
+    //
+    //                  vmul.xyz vf7,
+    //              vf6,
+    //              vf6
+    //
+    //                  vaddy.x vf7,
+    //              vf7, vf7 vaddz.x vf7, vf7,
+    //              vf7
+    //
+    //                  vsqrt Q,
+    //              vf7
+    //
+    //                  qmfc2.ni a4,
+    //              vf6
+    //
+    //                  pcpyud a5,
+    //              a4,
+    //              a4
+    //
+    //                  sdl a4,
+    //              0x7(% 3) sdr a4,
+    //              0(% 3)
+    //
+    //                  sw a5,
+    //              NJS_VECTOR
+    //                  .z(% 3)
+    //
+    //                      vwaitq
+    //
+    //                          vaddq.x vf8,
+    //              vf0,
+    //              Q
+    //
+    //                  qmfc2.ni v0,
+    //              vf8
+    //
+    //                  mtc1 v0,
+    //              % 0 .set reorder " : " = r "(ret) : " r "(v1), " r "(v2), " r "(ov) : 
+    // );
+    //
+    // return ret;
 }
 
 // 100% matching!
-Bool njPopMatrixEx( void )
+Float njInnerProduct(NJS_VECTOR* v1, NJS_VECTOR* v2)
 {
-    njPopMatrix(1);
+// float ret;
+    //
+    // asm volatile("
+    //                  .set noreorder ldl a4,
+    //              0x7(% 1) ldr a4,
+    //              0(% 1)
+    //
+    //                  lw a5,
+    //              NJS_VECTOR.z(% 1)
+    //
+    //                  ldl a6,
+    //              0x7(% 2) ldr a6,
+    //              0(% 2)
+    //
+    //                  lw a7,
+    //              NJS_VECTOR.z(% 2)
+    //
+    //                  pcpyld a4,
+    //              a5, a4 pcpyld a6, a7,
+    //              a6
+    //
+    //                  qmtc2.ni a4,
+    //              vf4 qmtc2.ni a6,
+    //              vf5
+    //
+    //                  vmul.xyz vf6,
+    //              vf4,
+    //              vf5
+    //
+    //                  vaddy.x vf6,
+    //              vf6, vf6 vaddz.x vf14, vf6,
+    //              vf6
+    //
+    //                  qmfc2.ni v0,
+    //              vf14
+    //
+    //                  mtc1 v0,
+    //              % 0 .set reorder " : " = r "(ret) : " r "(v1), " r "(v2) : 
+    // );
+    //
+    // return ret;
 }
 
-// 100% matching! 
+// 100% matching!
+void njTranslateEx(NJS_VECTOR* v)
+{
+// asm volatile("
+    //                  .set noreorder ldl a4,
+    //              0x7(% 0) ldr a4,
+    //              0(% 0)
+    //
+    //                  lw a5,
+    //              NJS_VECTOR.z(% 0)
+    //
+    //                  pcpyld a4,
+    //              a5,
+    //              a4
+    //
+    //                  qmtc2.ni a4,
+    //              vf4
+    //
+    //                  lqc2 vf28,
+    //              0(% 1) lqc2 vf29, 0x10(% 1) lqc2 vf30, 0x20(% 1) lqc2 vf31,
+    //              0x30(% 1)
+    //
+    //                  vmulax.xyz ACC,
+    //              vf28,
+    //              vf4
+    //
+    //                  vmadday.xyz ACC,
+    //              vf29, vf4 vmaddaz.xyz ACC, vf30, vf4 vmaddw.xyz vf31, vf31,
+    //              vf0
+    //
+    //                  sqc2 vf31,
+    //              0x30(% 1).set reorder " : : " r "(v), " r "(pNaMatMatrixStuckPtr) : 
+    // );
+}
+
+// 100% matching!
+void njRotateEx(Angle* ang, Sint32 lv)
+{
+// if (lv != 0) {
+    //     njRotateY(NULL, ang[1]);
+    //     njRotateX(NULL, ang[0]);
+    //     njRotateZ(NULL, ang[2]);
+    // } else {
+    //     njRotateZ(NULL, ang[2]);
+    //     njRotateY(NULL, ang[1]);
+    //     njRotateX(NULL, ang[0]);
+    // }
+}
+
+// 100% matching!
+void njScaleEx(NJS_VECTOR* v)
+{
+// asm volatile("
+    //                  .set noreorder lqc2 vf28,
+    //              0(% 1) lqc2 vf29, 0x10(% 1) lqc2 vf30,
+    //              0x20(% 1)
+    //
+    //                  ldl a4,
+    //              0x7(% 0) ldr a4,
+    //              0(% 0)
+    //
+    //                  lw a5,
+    //              NJS_VECTOR.z(% 0)
+    //
+    //                  pcpyld a4,
+    //              a5,
+    //              a4
+    //
+    //                  qmtc2.ni a4,
+    //              vf4
+    //
+    //                  vmulx vf28,
+    //              vf28, vf4 vmuly vf29, vf29, vf4 vmulz vf30, vf30,
+    //              vf4
+    //
+    //                  sqc2 vf28,
+    //              0(% 1) sqc2 vf29, 0x10(% 1) sqc2 vf30, 0x20(% 1).set reorder " : : " r "(v), " r "(pNaMatMatrixStuckPtr) : 
+    // );
+}
+
+// 100% matching!
+Bool njPushMatrixEx(void)
+{
+// njPushMatrix(NULL);
+}
+
+// 100% matching!
+Bool njPopMatrixEx(void)
+{
+// njPopMatrix(1);
+}
+
+// 100% matching!
 void njRotTransPers(NJS_POINT3* pPoint, NJS_SCRVECTOR* pScreen)
 {
-	njMulMatrixCN(&NaViewScreenMatrix, NULL);
-
-    njCalcPointCN(pPoint, (NJS_POINT3*)&pScreen->x);
-
-    asm volatile
-    ("
-    .set noreorder
-        vdiv     Q, vf0w, vf18z
-
-        mfc1     t0, %2
-
-        lw       t1, fNaViwOffsetX
-        lw       t2, fNaViwOffsetY
-
-        qmtc2    t0, vf4
-        qmtc2    t1, vf5
-        qmtc2    t2, vf6
-
-        vwaitq
-
-        vmulq.x  vf8,  vf4,  Q
-
-        vaddq.z  vf14, vf0,  Q
-
-        vmulx.xy vf8,  vf18, vf8
-        
-        vaddx.x  vf14, vf8,  vf5
-        vaddx.y  vf14, vf8,  vf6
-
-        qmfc2    a6, vf14
-    
-        pcpyud   a7, a6, a6
-    
-        sdl      a6, 7(%1)
-        sdr      a6, 0(%1)
-        
-        sw       a7, NJS_SCRVECTOR.iz(%1)
-    .set reorder
-    " : : "r"(pPoint), "r"(pScreen), "f"(_nj_screen_.dist) : 
-    );
-
-    pScreen->fog = njCalcFogPower(pScreen->z);
+// njMulMatrixCN(&NaViewScreenMatrix, NULL);
+    //
+    // njCalcPointCN(pPoint, (NJS_POINT3*) &pScreen->x);
+    //
+    // asm volatile("
+    //                  .set noreorder vdiv Q,
+    //              vf0w,
+    //              vf18z
+    //
+    //                  mfc1 t0,
+    //              % 2
+    //
+    //                  lw t1,
+    //              fNaViwOffsetX lw t2,
+    //              fNaViwOffsetY
+    //
+    //                  qmtc2 t0,
+    //              vf4 qmtc2 t1, vf5 qmtc2 t2,
+    //              vf6
+    //
+    //                  vwaitq
+    //
+    //                      vmulq.x vf8,
+    //              vf4,
+    //              Q
+    //
+    //                  vaddq.z vf14,
+    //              vf0,
+    //              Q
+    //
+    //                  vmulx.xy vf8,
+    //              vf18,
+    //              vf8
+    //
+    //                  vaddx.x vf14,
+    //              vf8, vf5 vaddx.y vf14, vf8,
+    //              vf6
+    //
+    //                  qmfc2 a6,
+    //              vf14
+    //
+    //                  pcpyud a7,
+    //              a6,
+    //              a6
+    //
+    //                  sdl a6,
+    //              7(% 1) sdr a6,
+    //              0(% 1)
+    //
+    //                  sw a7,
+    //              NJS_SCRVECTOR.iz(% 1).set reorder " : : " r "(pPoint), " r "(pScreen), " f "(_nj_screen_.dist) : 
+    // );
+    //
+    // pScreen->fog = njCalcFogPower(pScreen->z);
 }
 
 // 100% matching!
 void njRotTrans(NJS_POINT3* pPoint, NJS_POINT3* pOut)
 {
-	njMulMatrixCN(&NaViewScreenMatrix, NULL);
-    
-    njCalcPointCN(pPoint, pOut);
+// njMulMatrixCN(&NaViewScreenMatrix, NULL);
+    //
+    // njCalcPointCN(pPoint, pOut);
 }
 
 // 100% matching!
 void njPers(NJS_SCRVECTOR* pScreen)
 {
-    asm volatile
-    ("
-    .set noreorder
-        ldl      t0, 7(%0)
-        ldr      t0, 0(%0)
-        
-        lw       t1, 8(%0)
-        
-        pcpyld   t0, t1, t0
-
-        qmtc2    t0, vf18
-
-        vdiv     Q, vf0w, vf18z
-
-        mfc1     t0, %1
-
-        lw       t1, fNaViwOffsetX
-        lw       t2, fNaViwOffsetY
-
-        qmtc2    t0, vf4
-        qmtc2    t1, vf5
-        qmtc2    t2, vf6
-
-        vwaitq
-
-        vmulq.x  vf8, vf4, Q
-
-        vaddq.z  vf14, vf0, Q
-
-        vmulx.xy vf8, vf18, vf8
-        
-        vaddx.x  vf14, vf8, vf5
-        vaddx.y  vf14, vf8, vf6
-
-        qmfc2    t2, vf14
-    
-        pcpyud   t3, t2, t2
-    
-        sdl      t2, 7(%0)
-        sdr      t2, 0(%0)
-        
-        sw       t3, 12(%0)
-    .set reorder
-    " : : "r"(pScreen), "f"(_nj_screen_.dist) : 
-    );
+// asm volatile("
+    //                  .set noreorder ldl t0,
+    //              7(% 0) ldr t0,
+    //              0(% 0)
+    //
+    //                  lw t1,
+    //              8(% 0)
+    //
+    //                  pcpyld t0,
+    //              t1,
+    //              t0
+    //
+    //                  qmtc2 t0,
+    //              vf18
+    //
+    //                  vdiv Q,
+    //              vf0w,
+    //              vf18z
+    //
+    //                  mfc1 t0,
+    //              % 1
+    //
+    //                  lw t1,
+    //              fNaViwOffsetX lw t2,
+    //              fNaViwOffsetY
+    //
+    //                  qmtc2 t0,
+    //              vf4 qmtc2 t1, vf5 qmtc2 t2,
+    //              vf6
+    //
+    //                  vwaitq
+    //
+    //                      vmulq.x vf8,
+    //              vf4,
+    //              Q
+    //
+    //                  vaddq.z vf14,
+    //              vf0,
+    //              Q
+    //
+    //                  vmulx.xy vf8,
+    //              vf18,
+    //              vf8
+    //
+    //                  vaddx.x vf14,
+    //              vf8, vf5 vaddx.y vf14, vf8,
+    //              vf6
+    //
+    //                  qmfc2 t2,
+    //              vf14
+    //
+    //                  pcpyud t3,
+    //              t2,
+    //              t2
+    //
+    //                  sdl t2,
+    //              7(% 0) sdr t2,
+    //              0(% 0)
+    //
+    //                  sw t3,
+    //              12(% 0).set reorder " : : " r "(pScreen), " f "(_nj_screen_.dist) : 
+    // );
 }
 
 // 100% matching!
-void njCopyMatrix(NJS_MATRIX* pDstMat, NJS_MATRIX* pSrcMat) 
+void njCopyMatrix(NJS_MATRIX* pDstMat, NJS_MATRIX* pSrcMat)
 {
-    asm volatile
-    ("
-    .set noreorder
-        lqc2 vf4, 0(%1) 
-        lqc2 vf5, 0x10(%1) 
-        lqc2 vf6, 0x20(%1) 
-        lqc2 vf7, 0x30(%1) 
-    
-        sqc2 vf4, 0(%0) 
-        sqc2 vf5, 0x10(%0) 
-        sqc2 vf6, 0x20(%0) 
-        sqc2 vf7, 0x30(%0) 
-    .set reorder
-    " : : "r"(pDstMat), "r"(pSrcMat) : 
-    );
+// asm volatile("
+    //                  .set noreorder lqc2 vf4,
+    //              0(% 1) lqc2 vf5, 0x10(% 1) lqc2 vf6, 0x20(% 1) lqc2 vf7,
+    //              0x30(% 1)
+    //
+    //                  sqc2 vf4,
+    //              0(% 0) sqc2 vf5, 0x10(% 0) sqc2 vf6, 0x20(% 0) sqc2 vf7, 0x30(% 0).set reorder " : : " r "(pDstMat), " r "(pSrcMat) : 
+    // );
 }
 
 // 100% matching!
 void njMulMatrixCN(NJS_MATRIX* pSrcMat1, NJS_MATRIX* pSrcMat2)
 {
-    if (pSrcMat2 == NULL)
-    {
-        pSrcMat2 = pNaMatMatrixStuckPtr;
-    }
-
-    asm volatile
-    ("
-    .set noreorder
-        lqc2         vf4,  0(%0)
-        lqc2         vf5,  0x10(%0)
-        lqc2         vf6,  0x20(%0)
-        lqc2         vf7,  0x30(%0)
-        lqc2         vf8,  0(%1)
-        lqc2         vf9,  0x10(%1)
-        lqc2         vf10, 0x20(%1)
-        lqc2         vf11, 0x30(%1)
-
-        vmulax.xyzw  ACC,  vf4, vf8
-        
-        vmadday.xyzw ACC,  vf5, vf8
-        vmaddz.xyzw  vf28, vf6, vf8
-        
-        vmulax.xyzw  ACC,  vf4, vf9
-
-        vmadday.xyzw ACC,  vf5, vf9
-        vmaddz.xyzw  vf29, vf6, vf9
-        
-        vmulax.xyzw  ACC,  vf4, vf10
-
-        vmadday.xyzw ACC,  vf5, vf10
-        vmaddz.xyzw  vf30, vf6, vf10
-        
-        vmulax.xyzw  ACC,  vf4, vf11
-
-        vmadday.xyzw ACC,  vf5, vf11
-        vmaddaz.xyzw ACC,  vf6, vf11
-        vmaddw.xyzw  vf31, vf7, vf0
-    .set reorder
-    " : : "r"(pSrcMat1), "r"(pSrcMat2) : 
-    );
+// if (pSrcMat2 == NULL) {
+    //     pSrcMat2 = pNaMatMatrixStuckPtr;
+    // }
+    //
+    // asm volatile("
+    //                  .set noreorder lqc2 vf4,
+    //              0(% 0) lqc2 vf5, 0x10(% 0) lqc2 vf6, 0x20(% 0) lqc2 vf7, 0x30(% 0) lqc2 vf8, 0(% 1) lqc2 vf9, 0x10(% 1) lqc2 vf10,
+    //              0x20(% 1) lqc2 vf11,
+    //              0x30(% 1)
+    //
+    //                  vmulax.xyzw ACC,
+    //              vf4,
+    //              vf8
+    //
+    //                  vmadday.xyzw ACC,
+    //              vf5, vf8 vmaddz.xyzw vf28, vf6,
+    //              vf8
+    //
+    //                  vmulax.xyzw ACC,
+    //              vf4,
+    //              vf9
+    //
+    //                  vmadday.xyzw ACC,
+    //              vf5, vf9 vmaddz.xyzw vf29, vf6,
+    //              vf9
+    //
+    //                  vmulax.xyzw ACC,
+    //              vf4,
+    //              vf10
+    //
+    //                  vmadday.xyzw ACC,
+    //              vf5, vf10 vmaddz.xyzw vf30, vf6,
+    //              vf10
+    //
+    //                  vmulax.xyzw ACC,
+    //              vf4,
+    //              vf11
+    //
+    //                  vmadday.xyzw ACC,
+    //              vf5, vf11 vmaddaz.xyzw ACC, vf6, vf11 vmaddw.xyzw vf31, vf7, vf0.set reorder " : : " r "(pSrcMat1), " r "(pSrcMat2) : 
+    // );
 }

@@ -1,10 +1,10 @@
 #ifndef _ADX_TLK2_H_
 #define _ADX_TLK2_H_
 
-#include <../../../recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
-#include <../../../recvx-decomp-cri/cri/mwlib/include/sj.h>
+#include <recvx-decomp-cri/cri/mwlib/ee/include/cri_xpt.h>
+#include <recvx-decomp-cri/cri/mwlib/include/sj.h>
 #include "override_adxt.h"
-#include <../../../recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
+#include <recvx-decomp-cri/cri/mwlib/include/cri_adxt.h>
 #include "macros.h"
 
 void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);

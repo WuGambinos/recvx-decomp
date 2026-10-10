@@ -649,10 +649,8 @@ void bhEne18_MV01(BH_PWORK* epw)
             epw->mdflg |= 2;
             epw->ct0 = 0;
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
-            epw->shp_ct = bhEne_GetShapeCnt(SpawnAttacker, epw->ct0);
+            epw->shp_ct = bhEne_GetShapeCnt(HeartBeat, epw->ct0);
             
             if (epw->shp_ct < 1000.0f)
             {
@@ -706,8 +704,6 @@ void bhEne18_MV02(BH_PWORK* epw)
             njAddVector((NJS_VECTOR *)&((*(ATR_WORK **)(epw->exp0 + 0x14))->px), (NJS_VECTOR *)&ep->px);
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             epw->shp_ct = bhEne_GetShapeCnt(SpawnAttacker, epw->ct0);
             
@@ -795,8 +791,6 @@ void bhEne18_MV04(BH_PWORK* epw)
             njAddVector((NJS_VECTOR *)&((*(ATR_WORK **)(epw->exp0 + 0x14))->px), (NJS_VECTOR *)&ep->px);
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (epw->type == 1) 
             {
@@ -883,8 +877,6 @@ void bhEne18_MV05(BH_PWORK* epw)
             njAddVector((NJS_VECTOR *)&((*(ATR_WORK **)(epw->exp0 + 0x14))->px), (NJS_VECTOR *)&ep->px);
             
             epw->mode3++;
-        
-            /* fallthrough */
         case 1:
             if (epw->type == 1) 
             {

@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 99.78255,
+    "fuzzy_match_percent": 99.7826,
     "total_code": "1904472",
-    "matched_code": "1620404",
-    "matched_code_percent": 85.08416,
+    "matched_code": "1622444",
+    "matched_code_percent": 85.19128,
     "total_data": "28428164",
     "matched_data": "28399956",
     "matched_data_percent": 99.90078,
     "total_functions": 4529,
-    "matched_functions": 4305,
-    "matched_functions_percent": 95.05409,
+    "matched_functions": 4307,
+    "matched_functions_percent": 95.09826,
     "total_units": 200
   },
   "units": [
@@ -8641,16 +8641,16 @@
     {
       "name": "ps2/veronica/prog/en08",
       "measures": {
-        "fuzzy_match_percent": 99.97218,
+        "fuzzy_match_percent": 100.0,
         "total_code": "2876",
-        "matched_code": "836",
-        "matched_code_percent": 29.068151,
+        "matched_code": "2876",
+        "matched_code_percent": 100.0,
         "total_data": "48",
         "matched_data": "48",
         "matched_data_percent": 100.0,
         "total_functions": 9,
-        "matched_functions": 7,
-        "matched_functions_percent": 77.77778,
+        "matched_functions": 9,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
@@ -8671,7 +8671,7 @@
         {
           "name": ".text",
           "size": "2928",
-          "fuzzy_match_percent": 99.97218,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -8704,14 +8704,14 @@
         {
           "name": "bhEne08_MV00",
           "size": "1004",
-          "fuzzy_match_percent": 99.96016,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "400"
         },
         {
           "name": "bhEne08_MV01",
           "size": "1036",
-          "fuzzy_match_percent": 99.96139,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1408"
         },
@@ -42251,16 +42251,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 99.772514,
+        "fuzzy_match_percent": 99.77257,
         "total_code": "1820460",
-        "matched_code": "1536392",
-        "matched_code_percent": 84.39581,
+        "matched_code": "1538432",
+        "matched_code_percent": 84.50787,
         "total_data": "28336764",
         "matched_data": "28333668",
         "matched_data_percent": 99.989075,
         "total_functions": 3834,
-        "matched_functions": 3610,
-        "matched_functions_percent": 94.15754,
+        "matched_functions": 3612,
+        "matched_functions_percent": 94.2097,
         "total_units": 152
       }
     },

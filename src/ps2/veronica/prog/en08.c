@@ -32,6 +32,8 @@ MoveMode2_proc bhEne08_MoveMode2[3] =
     bhEne08_MV02
 };
 
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
 // 100% matching! 
 void bhEne08(BH_PWORK* epw)
 {
@@ -81,7 +83,7 @@ void bhEne08_Move(BH_PWORK* epw)
     bhEne08_MoveMode2[epw->mode2](epw); 
 }
 
-// 99.96% matching
+// 100% matching! 
 void bhEne08_MV00(BH_PWORK* epw)
 {
 	NJS_POINT3 pos;
@@ -164,7 +166,7 @@ void bhEne08_MV00(BH_PWORK* epw)
     }
 }
 
-// 99.96% matching
+// 100% matching! 
 void bhEne08_MV01(BH_PWORK* epw)
 {
 	NJS_POINT3 pos;

@@ -9,6 +9,7 @@ elf
 iso
 include/recvx-decomp-ps2_sdk
 include/recvx-decomp-ps2_sdk303
+.cache
 
 // ignored files 
 compile_config.json

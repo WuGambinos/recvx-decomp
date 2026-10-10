@@ -55,7 +55,6 @@
 #include <sifrpc.h>
 
 #include <NJS_TYPES.h>
-#include <SCE_TYPEs.h>
 
 typedef struct {
 	// total size: 0x8

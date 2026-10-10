@@ -1,5 +1,6 @@
 JPN_DIR := $(wildcard src/JPN/ps2/veronica/prog/*.c)
 PS2_DIR := $(wildcard src/ps2/veronica/prog/*.c)
+PROG_DIR := src/ps2/veronica/prog
 
 SRCS := $(PS2_DIR) 
 

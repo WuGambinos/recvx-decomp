@@ -2,7 +2,6 @@
 //#include <string.h>
 
 // EE library
-#include <PREFIX_PS2_DEBUG.h>
 #include <eeregs.h>
 
 #include "ps2/veronica/prog/override_katana.h"

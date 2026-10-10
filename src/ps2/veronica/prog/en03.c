@@ -474,6 +474,8 @@ void (*bhEne03_DeadMode2[6])(BH_PWORK*) =
 	bhEne03_DD05
 };
 
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
 // 100% matching!
 void bhEne03(BH_PWORK* epw)
 {
@@ -2323,7 +2325,7 @@ void bhEne03_MV15(BH_PWORK* epw)
     }
 }
 
-// 97.12% matching
+// 100% matching!
 void bhEne03_MV16(BH_PWORK* epw)
 {
     switch (epw->mode3)
@@ -4231,7 +4233,7 @@ void bhEne03_Die(BH_PWORK* epw)
 	bhEne03_DeadMode2[epw->mode2](epw);
 }
 
-// 98.20% matching
+// 100% matching!
 void bhEne03_DD00(BH_PWORK* epw)
 {
     switch (epw->mode3) 
@@ -4452,7 +4454,7 @@ void bhEne03_DD01(BH_PWORK* epw)
 
 #pragma divbyzerocheck off
 
-// 99% matching
+// 100% matching!
 void bhEne03_DD02(BH_PWORK* epw)
 {
     NJS_MKEY* mkfP;    
@@ -7271,7 +7273,7 @@ void bhEne03_CallSE(BH_PWORK* epw)
     }
 }
 
-// 99.96% matching
+// 100% matching!
 void bhEne03_Acid(BH_PWORK* epw, int type)
 {
     int eno;   

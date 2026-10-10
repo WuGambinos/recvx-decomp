@@ -357,6 +357,8 @@ void (*bhEne23_DeadMode2[4])(BH_PWORK*) =
 NJS_POINT3 spl_016[20];
 NJS_POINT3 spl_023[25];*/
 
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
 // 100% matching!
 void bhEne23(BH_PWORK* epw)
 {
@@ -2567,7 +2569,7 @@ void bhEne23_DD00(BH_PWORK* epw)
 
 #pragma divbyzerocheck on 
 
-// 99.82% matching
+// 100% matching!
 void bhEne23_DD01(BH_PWORK* epw) 
 {
     int mtn[2][2] = { { 40, 47 }, { 45, 49 } }; 
@@ -2772,7 +2774,7 @@ void bhEne23_DD02()
 
 #pragma divbyzerocheck on 
 
-// 99.81% matching
+// 100% matching!
 void bhEne23_DD03(BH_PWORK* epw)
 {
     int mtn[2][2] = { { 54, 48 }, { 55, 50 } }; 
@@ -3728,7 +3730,7 @@ void bhEne23_PlayerControl(BH_PWORK* epw)
     }
 }
 
-// 99.96% matching
+// 100% matching!
 void bhEne23_Acid(BH_PWORK* epw)
 {
     int eno;   

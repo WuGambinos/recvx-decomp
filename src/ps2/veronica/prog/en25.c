@@ -175,7 +175,6 @@ void bhEne25_MV01(BH_PWORK* epw)
     case 0:
         epw->ct0 = 12;
         epw->mode3++;
-        // Fallthrough
     case 1:
         if (epw->ct0-- == 0)
         {
@@ -260,7 +259,6 @@ void bhEne25_MV02(BH_PWORK* epw)
         CallSystemSe(0, 0x80000203);
 
         epw->mode3++;
-        // Fallthrough
     case 1:
         EXP0_ATR(0)->py = epw->mlwP->owP->mtx[13];
 
@@ -287,7 +285,6 @@ void bhEne25_MV03(BH_PWORK* epw)
         epw->mtn_add = 0;
         epw->ct0 = 20;
         epw->mode3++;
-        // Fallthrough
     case 1:
         if (epw->ct0-- == 0)
         {
@@ -374,7 +371,6 @@ void bhEne25_PlayerControl(BH_PWORK* epw)
             bhEne_BloodPool(epw, &pos, epw->ay, &BloodParam);
 
             plp->mode3++;
-            // Fallthrough
         case 1:
             plp->py = -30.0f;
             plp->mode3++;

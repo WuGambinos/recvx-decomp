@@ -176,6 +176,8 @@ void (*bhEne14_DamageMode2[2])(BH_PWORK*) =
 	bhEne14_DG01
 };
 
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
 // 100% matching!
 void bhEne14(BH_PWORK* epw)
 {
@@ -500,7 +502,7 @@ void bhEne14_MV03()
 
 }
 
-// 99.97% matching
+// 100% matching!
 void bhEne14_MV04(BH_PWORK* epw)
 {
 	float dist;
@@ -716,7 +718,7 @@ void bhEne14_MV10()
 
 }
 
-// 99.95% matching
+// 100% matching!
 void bhEne14_MV11(BH_PWORK* epw)
 {
 	float dist;
@@ -1307,7 +1309,7 @@ int bhEne14_HitMark(BH_PWORK* epw)
     return epw->total_dam;
 }
 
-// 99.96% matching
+// 100% matching!
 void bhEne14_Acid(BH_PWORK* epw, int se)
 {
 	int eno; 

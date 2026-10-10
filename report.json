@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 99.78245,
+    "fuzzy_match_percent": 99.78255,
     "total_code": "1904472",
-    "matched_code": "1615460",
-    "matched_code_percent": 84.82456,
+    "matched_code": "1620404",
+    "matched_code_percent": 85.08416,
     "total_data": "28428164",
     "matched_data": "28399956",
     "matched_data_percent": 99.90078,
     "total_functions": 4529,
-    "matched_functions": 4302,
-    "matched_functions_percent": 94.987854,
+    "matched_functions": 4305,
+    "matched_functions_percent": 95.05409,
     "total_units": 200
   },
   "units": [
@@ -10336,16 +10336,16 @@
     {
       "name": "ps2/veronica/prog/en14",
       "measures": {
-        "fuzzy_match_percent": 99.98475,
+        "fuzzy_match_percent": 100.0,
         "total_code": "13116",
-        "matched_code": "8172",
-        "matched_code_percent": 62.30558,
+        "matched_code": "13116",
+        "matched_code_percent": 100.0,
         "total_data": "2080",
         "matched_data": "2080",
         "matched_data_percent": 100.0,
         "total_functions": 34,
-        "matched_functions": 31,
-        "matched_functions_percent": 91.17647,
+        "matched_functions": 34,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
@@ -10372,7 +10372,7 @@
         {
           "name": ".text",
           "size": "13280",
-          "fuzzy_match_percent": 99.98475,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -10454,7 +10454,7 @@
         {
           "name": "bhEne14_MV04",
           "size": "2384",
-          "fuzzy_match_percent": 99.966446,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "2160"
         },
@@ -10503,7 +10503,7 @@
         {
           "name": "bhEne14_MV11",
           "size": "1504",
-          "fuzzy_match_percent": 99.94681,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "4640"
         },
@@ -10587,7 +10587,7 @@
         {
           "name": "bhEne14_Acid",
           "size": "1056",
-          "fuzzy_match_percent": 99.96212,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "10800"
         },
@@ -42251,16 +42251,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 99.77241,
+        "fuzzy_match_percent": 99.772514,
         "total_code": "1820460",
-        "matched_code": "1531448",
-        "matched_code_percent": 84.12423,
+        "matched_code": "1536392",
+        "matched_code_percent": 84.39581,
         "total_data": "28336764",
         "matched_data": "28333668",
         "matched_data_percent": 99.989075,
         "total_functions": 3834,
-        "matched_functions": 3607,
-        "matched_functions_percent": 94.07929,
+        "matched_functions": 3610,
+        "matched_functions_percent": 94.15754,
         "total_units": 152
       }
     },

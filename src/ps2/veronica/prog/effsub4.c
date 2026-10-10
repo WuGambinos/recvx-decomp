@@ -15,6 +15,8 @@
 #include "../../../ps2/veronica/prog/sdfunc.h"
 #include "../../../ps2/veronica/prog/zonzon.h"
 
+#pragma optimization_level 4 // TODO: remove this pragma and compile the file passing the -O4,p flag instead 
+
 // 100% matching!
 void bhEff_SetPtcl(BH_PWORK* epw, NJS_POINT3* pos, int tex_id)
 {
@@ -1728,7 +1730,7 @@ void bhEff_Sub363(O_WRK* op)
             if ((op->type == 0) || (op->type == 2) || (op->type == 4))
             {
                 op->py += (op->yn * op->spd) - (op->ofy * op->ct2);
-
+                
                 op->ax += 4096;
             } 
             else

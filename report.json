@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 99.77887,
+    "fuzzy_match_percent": 99.77971,
     "total_code": "1904472",
-    "matched_code": "1599032",
-    "matched_code_percent": 83.96196,
+    "matched_code": "1603392",
+    "matched_code_percent": 84.190895,
     "total_data": "28428164",
-    "matched_data": "28399524",
-    "matched_data_percent": 99.899254,
+    "matched_data": "28399956",
+    "matched_data_percent": 99.90078,
     "total_functions": 4529,
-    "matched_functions": 4290,
-    "matched_functions_percent": 94.7229,
+    "matched_functions": 4291,
+    "matched_functions_percent": 94.74497,
     "total_units": 200
   },
   "units": [
@@ -16588,16 +16588,16 @@
     {
       "name": "ps2/veronica/prog/effsub1",
       "measures": {
-        "fuzzy_match_percent": 99.902695,
+        "fuzzy_match_percent": 99.92145,
         "total_code": "85296",
-        "matched_code": "59188",
-        "matched_code_percent": 69.3913,
+        "matched_code": "63548",
+        "matched_code_percent": 74.50291,
         "total_data": "12648",
-        "matched_data": "12216",
-        "matched_data_percent": 96.58444,
+        "matched_data": "12648",
+        "matched_data_percent": 100.0,
         "total_functions": 74,
-        "matched_functions": 67,
-        "matched_functions_percent": 90.54054,
+        "matched_functions": 68,
+        "matched_functions_percent": 91.89189,
         "total_units": 1
       },
       "sections": [
@@ -16618,13 +16618,13 @@
         {
           "name": ".rodata",
           "size": "432",
-          "fuzzy_match_percent": 93.61702,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
           "name": ".text",
           "size": "85840",
-          "fuzzy_match_percent": 99.902695,
+          "fuzzy_match_percent": 99.92145,
           "metadata": {}
         },
         {
@@ -16664,7 +16664,7 @@
         {
           "name": "bhEff000",
           "size": "4360",
-          "fuzzy_match_percent": 99.633026,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1488"
         },
@@ -42251,16 +42251,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 99.76866,
+        "fuzzy_match_percent": 99.76955,
         "total_code": "1820460",
-        "matched_code": "1515020",
-        "matched_code_percent": 83.221825,
+        "matched_code": "1519380",
+        "matched_code_percent": 83.46132,
         "total_data": "28336764",
-        "matched_data": "28333236",
-        "matched_data_percent": 99.98755,
+        "matched_data": "28333668",
+        "matched_data_percent": 99.989075,
         "total_functions": 3834,
-        "matched_functions": 3595,
-        "matched_functions_percent": 93.766304,
+        "matched_functions": 3596,
+        "matched_functions_percent": 93.79238,
         "total_units": 152
       }
     },

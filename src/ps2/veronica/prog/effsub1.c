@@ -18,6 +18,8 @@
 #include "../../../ps2/veronica/prog/weapon.h"
 #include "../../../ps2/veronica/prog/main.h"
 
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
 // 100% matching!
 void bhEffDmy(O_WRK* op)
 {
@@ -251,7 +253,7 @@ void bhEff2D(O_WRK* op)
     }
 }
 
-// 99.62% matching (matches on GC)
+// 100% matching!
 void bhEff000(O_WRK* op) 
 {
     NJS_POINT3 pos; 

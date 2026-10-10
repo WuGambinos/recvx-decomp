@@ -1,6 +1,6 @@
 {
   "measures": {
-    "fuzzy_match_percent": 99.777275,
+    "fuzzy_match_percent": 99.77887,
     "total_code": "1904472",
     "matched_code": "1599032",
     "matched_code_percent": 83.96196,
@@ -1189,7 +1189,7 @@
     {
       "name": "ps2/veronica/prog/player",
       "measures": {
-        "fuzzy_match_percent": 99.88028,
+        "fuzzy_match_percent": 99.88138,
         "total_code": "73172",
         "matched_code": "43728",
         "matched_code_percent": 59.760563,
@@ -1225,7 +1225,7 @@
         {
           "name": ".text",
           "size": "73440",
-          "fuzzy_match_percent": 99.88028,
+          "fuzzy_match_percent": 99.88138,
           "metadata": {}
         },
         {
@@ -1363,7 +1363,7 @@
         {
           "name": "bhCPM2_act_wlk",
           "size": "1740",
-          "fuzzy_match_percent": 99.37471,
+          "fuzzy_match_percent": 99.42069,
           "metadata": {},
           "address": "17520"
         },
@@ -27107,7 +27107,7 @@
     {
       "name": "ps2/veronica/prog/gameover",
       "measures": {
-        "fuzzy_match_percent": 99.09073,
+        "fuzzy_match_percent": 99.58609,
         "total_code": "6040",
         "matched_code": "664",
         "matched_code_percent": 10.993377,
@@ -27143,7 +27143,7 @@
         {
           "name": ".text",
           "size": "6048",
-          "fuzzy_match_percent": 99.09073,
+          "fuzzy_match_percent": 99.58609,
           "metadata": {}
         },
         {
@@ -27176,7 +27176,7 @@
         {
           "name": "bhMainGameOver",
           "size": "3888",
-          "fuzzy_match_percent": 98.834366,
+          "fuzzy_match_percent": 99.60391,
           "metadata": {},
           "address": "1664"
         },
@@ -42251,7 +42251,7 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 99.767,
+        "fuzzy_match_percent": 99.76866,
         "total_code": "1820460",
         "matched_code": "1515020",
         "matched_code_percent": 83.221825,

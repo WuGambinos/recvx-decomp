@@ -63,6 +63,8 @@ const unsigned short cnt_mes[17] =
     0xFFFF
 };
 
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
 // 100% matching!
 void bhControlGameOver()
 {
@@ -213,7 +215,7 @@ void bhInitGameOver()
     }
 }
 
-// 99.26% matching
+// 99.60% matching
 void bhMainGameOver() 
 {
     GV_WORK* gv;     

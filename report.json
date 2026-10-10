@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 99.7826,
+    "fuzzy_match_percent": 99.782684,
     "total_code": "1904472",
-    "matched_code": "1622444",
-    "matched_code_percent": 85.19128,
+    "matched_code": "1626288",
+    "matched_code_percent": 85.39312,
     "total_data": "28428164",
     "matched_data": "28399956",
     "matched_data_percent": 99.90078,
     "total_functions": 4529,
-    "matched_functions": 4307,
-    "matched_functions_percent": 95.09826,
+    "matched_functions": 4310,
+    "matched_functions_percent": 95.1645,
     "total_units": 200
   },
   "units": [
@@ -7918,16 +7918,16 @@
     {
       "name": "ps2/veronica/prog/en06",
       "measures": {
-        "fuzzy_match_percent": 99.94341,
+        "fuzzy_match_percent": 99.95037,
         "total_code": "22972",
-        "matched_code": "13808",
-        "matched_code_percent": 60.10796,
+        "matched_code": "17652",
+        "matched_code_percent": 76.84137,
         "total_data": "1376",
         "matched_data": "1376",
         "matched_data_percent": 100.0,
         "total_functions": 36,
-        "matched_functions": 29,
-        "matched_functions_percent": 80.55556,
+        "matched_functions": 32,
+        "matched_functions_percent": 88.88889,
         "total_units": 1
       },
       "sections": [
@@ -7948,7 +7948,7 @@
         {
           "name": ".text",
           "size": "23152",
-          "fuzzy_match_percent": 99.94341,
+          "fuzzy_match_percent": 99.95037,
           "metadata": {}
         },
         {
@@ -8009,14 +8009,14 @@
         {
           "name": "bhEne06_MV02",
           "size": "1672",
-          "fuzzy_match_percent": 99.952156,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "3360"
         },
         {
           "name": "bhEne06_MV03",
           "size": "1444",
-          "fuzzy_match_percent": 99.9723,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5040"
         },
@@ -8191,7 +8191,7 @@
         {
           "name": "bhEne06_SetRinpunEffect",
           "size": "728",
-          "fuzzy_match_percent": 99.94505,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "20592"
         },
@@ -42251,16 +42251,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 99.77257,
+        "fuzzy_match_percent": 99.77265,
         "total_code": "1820460",
-        "matched_code": "1538432",
-        "matched_code_percent": 84.50787,
+        "matched_code": "1542276",
+        "matched_code_percent": 84.719025,
         "total_data": "28336764",
         "matched_data": "28333668",
         "matched_data_percent": 99.989075,
         "total_functions": 3834,
-        "matched_functions": 3612,
-        "matched_functions_percent": 94.2097,
+        "matched_functions": 3615,
+        "matched_functions_percent": 94.28795,
         "total_units": 152
       }
     },

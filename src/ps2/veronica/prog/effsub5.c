@@ -5453,8 +5453,6 @@ void bhEff248(O_WRK* op)
     }
 }
 
-#pragma divbyzerocheck off 
-
 // 100% matching!
 void bhEff249(O_WRK* op)
 {

@@ -55,6 +55,8 @@ void(*bhEne30_DeadMode2[2])(BH_PWORK*) = {
     bhEne30_DD01,
 };
 
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
 // 100% matching!
 void bhEne30(BH_PWORK* epw) 
 {
@@ -562,7 +564,7 @@ void bhEne30_MV05(BH_PWORK* epw)
 }
 
 
-// 99.95% matching!
+// 100% matching!
 void bhEne30_MV06(BH_PWORK* epw) 
 {
 

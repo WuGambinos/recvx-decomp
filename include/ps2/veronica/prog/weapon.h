@@ -2,6 +2,7 @@
 #define _WEAPON_H_
 
 #include "types.h"
+#include "mwcc_hacks.h"
 
 void bhSetWeapon(O_WRK* op, int wpn_no, int flg);
 void bhObjWpn(BH_PWORK* op);

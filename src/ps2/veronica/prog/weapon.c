@@ -124,6 +124,8 @@ const int WpnAngTab[21][3] =
 };
 /*unsigned int HitWalEff[8]; - unused */
 
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
 // 100% matching! 
 void bhSetWeapon(O_WRK* op, int wpn_no, int flg)
 {
@@ -1144,7 +1146,7 @@ void bhCheckKnifeAtari(GA_WORK* gap)
     }
 }
 
-// 100% matching1
+// 100% matching!
 int bhCheckFlyAtari(GA_WORK* gap, int eidx)
 {
     NJS_CAPSULE wal; 
@@ -1254,7 +1256,7 @@ int bhCheckFlyAtari(GA_WORK* gap, int eidx)
     return id;
 }
 
-// 99.09% matching (matches on NGC)
+// 100% matching!
 void bhSetBowDamage()
 {
     NJS_VECTOR sca; 
@@ -1628,7 +1630,7 @@ int bhCheckCapCol2Capsule(BH_PWORK* pp, NJS_CAPSULE* cap, NJS_POINT3* hps)
     return -1;
 }
 
-// 100% matching1
+// 100% matching!
 void bhSetGunSplash(GA_WORK* gap, NJS_POINT3* pos, int wattr)
 {
     NJS_VECTOR vec; 
@@ -1702,7 +1704,7 @@ void bhSetGunSplash(GA_WORK* gap, NJS_POINT3* pos, int wattr)
     }
 }
 
-// 99.93% matching
+// 100% matching!
 void bhSetExplosion(NJS_POINT3* pos) 
 {
     POINT pnt;    
@@ -1808,7 +1810,7 @@ void bhSetExplosion(NJS_POINT3* pos)
     } 
 }
 
-// 99.91% matching
+// 100% matching!
 void bhSetExplosionEffect(NJS_POINT3* pos) 
 {
     NJS_VECTOR vc0; 

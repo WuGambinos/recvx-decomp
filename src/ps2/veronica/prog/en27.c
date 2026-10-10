@@ -37,6 +37,8 @@ bhEne27_MoveMode2_proc bhEne27_MoveMode2[3] =
 	bhEne27_MV02
 }; 
 
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
 // 100% matching!
 void bhEne27(BH_PWORK* epw)
 {
@@ -50,7 +52,7 @@ void bhEne27(BH_PWORK* epw)
     }
 }
 
-// 99.94% matching
+// 100% matching!
 void bhEne27_Init(BH_PWORK* epw)
 {
     ATR_WORK* fp;   

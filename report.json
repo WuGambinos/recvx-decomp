@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 99.78201,
+    "fuzzy_match_percent": 99.78206,
     "total_code": "1904472",
-    "matched_code": "1607536",
-    "matched_code_percent": 84.408485,
+    "matched_code": "1609700",
+    "matched_code_percent": 84.52212,
     "total_data": "28428164",
     "matched_data": "28399956",
     "matched_data_percent": 99.90078,
     "total_functions": 4529,
-    "matched_functions": 4295,
-    "matched_functions_percent": 94.8333,
+    "matched_functions": 4297,
+    "matched_functions_percent": 94.87746,
     "total_units": 200
   },
   "units": [
@@ -14280,16 +14280,16 @@
     {
       "name": "ps2/veronica/prog/en27",
       "measures": {
-        "fuzzy_match_percent": 99.98945,
+        "fuzzy_match_percent": 100.0,
         "total_code": "3792",
-        "matched_code": "3104",
-        "matched_code_percent": 81.856544,
+        "matched_code": "3792",
+        "matched_code_percent": 100.0,
         "total_data": "80",
         "matched_data": "80",
         "matched_data_percent": 100.0,
         "total_functions": 13,
-        "matched_functions": 12,
-        "matched_functions_percent": 92.30769,
+        "matched_functions": 13,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
@@ -14310,7 +14310,7 @@
         {
           "name": ".text",
           "size": "3872",
-          "fuzzy_match_percent": 99.98945,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -14329,7 +14329,7 @@
         {
           "name": "bhEne27_Init",
           "size": "688",
-          "fuzzy_match_percent": 99.941864,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "112"
         },
@@ -14721,16 +14721,16 @@
     {
       "name": "ps2/veronica/prog/en30",
       "measures": {
-        "fuzzy_match_percent": 99.99226,
+        "fuzzy_match_percent": 100.0,
         "total_code": "10340",
-        "matched_code": "8864",
-        "matched_code_percent": 85.725334,
+        "matched_code": "10340",
+        "matched_code_percent": 100.0,
         "total_data": "224",
         "matched_data": "224",
         "matched_data_percent": 100.0,
         "total_functions": 24,
-        "matched_functions": 23,
-        "matched_functions_percent": 95.83333,
+        "matched_functions": 24,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
@@ -14751,7 +14751,7 @@
         {
           "name": ".text",
           "size": "10464",
-          "fuzzy_match_percent": 99.99226,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -14840,7 +14840,7 @@
         {
           "name": "bhEne30_MV06",
           "size": "1476",
-          "fuzzy_match_percent": 99.9458,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "5712"
         },
@@ -42251,16 +42251,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 99.77195,
+        "fuzzy_match_percent": 99.772,
         "total_code": "1820460",
-        "matched_code": "1523524",
-        "matched_code_percent": 83.68896,
+        "matched_code": "1525688",
+        "matched_code_percent": 83.80782,
         "total_data": "28336764",
         "matched_data": "28333668",
         "matched_data_percent": 99.989075,
         "total_functions": 3834,
-        "matched_functions": 3600,
-        "matched_functions_percent": 93.89671,
+        "matched_functions": 3602,
+        "matched_functions_percent": 93.948875,
         "total_units": 152
       }
     },

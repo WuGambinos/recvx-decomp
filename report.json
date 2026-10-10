@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 99.77971,
+    "fuzzy_match_percent": 99.77933,
     "total_code": "1904472",
-    "matched_code": "1603392",
-    "matched_code_percent": 84.190895,
+    "matched_code": "1605720",
+    "matched_code_percent": 84.31313,
     "total_data": "28428164",
     "matched_data": "28399956",
     "matched_data_percent": 99.90078,
     "total_functions": 4529,
-    "matched_functions": 4291,
-    "matched_functions_percent": 94.74497,
+    "matched_functions": 4293,
+    "matched_functions_percent": 94.78914,
     "total_units": 200
   },
   "units": [
@@ -17162,7 +17162,7 @@
     {
       "name": "ps2/veronica/prog/effsub1b",
       "measures": {
-        "fuzzy_match_percent": 98.91145,
+        "fuzzy_match_percent": 98.86326,
         "total_code": "17844",
         "matched_code": "8800",
         "matched_code_percent": 49.316296,
@@ -17198,7 +17198,7 @@
         {
           "name": ".text",
           "size": "17904",
-          "fuzzy_match_percent": 98.91145,
+          "fuzzy_match_percent": 98.86326,
           "metadata": {}
         },
         {
@@ -17252,7 +17252,7 @@
         {
           "name": "bhDraw137",
           "size": "1828",
-          "fuzzy_match_percent": 93.380745,
+          "fuzzy_match_percent": 92.910286,
           "metadata": {},
           "address": "7616"
         },
@@ -17288,16 +17288,16 @@
     {
       "name": "ps2/veronica/prog/effsub2",
       "measures": {
-        "fuzzy_match_percent": 99.97223,
+        "fuzzy_match_percent": 99.97543,
         "total_code": "37444",
-        "matched_code": "32532",
-        "matched_code_percent": 86.881744,
+        "matched_code": "34860",
+        "matched_code_percent": 93.09903,
         "total_data": "8064",
         "matched_data": "8064",
         "matched_data_percent": 100.0,
         "total_functions": 44,
-        "matched_functions": 41,
-        "matched_functions_percent": 93.181816,
+        "matched_functions": 43,
+        "matched_functions_percent": 97.72727,
         "total_units": 1
       },
       "sections": [
@@ -17324,7 +17324,7 @@
         {
           "name": ".text",
           "size": "37712",
-          "fuzzy_match_percent": 99.97223,
+          "fuzzy_match_percent": 99.97543,
           "metadata": {}
         },
         {
@@ -17336,7 +17336,7 @@
         {
           "name": "bhEff_E00_Mince",
           "size": "1792",
-          "fuzzy_match_percent": 99.95536,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         },
@@ -17420,7 +17420,7 @@
         {
           "name": "bhEff_E02_SandParticle2",
           "size": "536",
-          "fuzzy_match_percent": 99.92538,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "8816"
         },
@@ -42251,16 +42251,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 99.76955,
+        "fuzzy_match_percent": 99.76914,
         "total_code": "1820460",
-        "matched_code": "1519380",
-        "matched_code_percent": 83.46132,
+        "matched_code": "1521708",
+        "matched_code_percent": 83.5892,
         "total_data": "28336764",
         "matched_data": "28333668",
         "matched_data_percent": 99.989075,
         "total_functions": 3834,
-        "matched_functions": 3596,
-        "matched_functions_percent": 93.79238,
+        "matched_functions": 3598,
+        "matched_functions_percent": 93.84455,
         "total_units": 152
       }
     },

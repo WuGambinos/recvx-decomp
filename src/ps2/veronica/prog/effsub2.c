@@ -19,7 +19,9 @@
 #include "../../../ps2/veronica/prog/ps2_NinjaPtcl.h"
 #include "../../../ps2/veronica/prog/zonzon1.h"
 
-// 99.93% matching
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
+// 100% matching!
 void bhEff_E00_Mince(O_WRK* op) 
 {
     NJS_POINT3 n;
@@ -1332,7 +1334,7 @@ void bhEff_E02_SandParticle(O_WRK* op)
     }
 }
 
-// 99.93% matching
+// 100% matching!
 void bhEff_E02_SandParticle2(O_WRK* op) 
 {
     O_WRK* opw;

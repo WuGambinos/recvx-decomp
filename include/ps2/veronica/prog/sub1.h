@@ -46,7 +46,7 @@ void MainCommand(S_WORK* st);
 void StatusCancel(S_WORK* st);
 void WeaponSet(unsigned int wpncsr, unsigned int lt_c);
 void ItemCommand(S_WORK* st);
-void ArmsSet(S_WORK* st, unsigned char flg);
+void ArmsSet(S_WORK* st, int wpnr_no);
 void WindowJyoutai(S_WORK* st);
 void ItemCommandErase(S_WORK* st, int param);
 void ItemCombination(S_WORK* st);

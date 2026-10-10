@@ -4972,7 +4972,7 @@ void ItemCommand(S_WORK* st)
 }
 
 // 100% matching!
-void ArmsSet(S_WORK* st, unsigned char flg)
+void ArmsSet(S_WORK* st, int wpnr_no) // second parameter is not present on DWARF
 {
     PARTS* pb, *pb99;             
     unsigned int itemid;  

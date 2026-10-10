@@ -1074,7 +1074,7 @@ void bhEne17_MV02(BH_PWORK* epw)
     }
 }
 
-// 100% matching1
+// 100% matching!
 void bhEne17_MV03(BH_PWORK* epw)
 {
     NJS_VECTOR ofs;

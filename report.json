@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 99.771,
+    "fuzzy_match_percent": 99.77099,
     "total_code": "1904472",
-    "matched_code": "1585056",
-    "matched_code_percent": 83.2281,
+    "matched_code": "1586424",
+    "matched_code_percent": 83.29994,
     "total_data": "28428164",
     "matched_data": "28396324",
     "matched_data_percent": 99.888,
     "total_functions": 4529,
-    "matched_functions": 4279,
-    "matched_functions_percent": 94.48002,
+    "matched_functions": 4281,
+    "matched_functions_percent": 94.52418,
     "total_units": 200
   },
   "units": [
@@ -15261,16 +15261,16 @@
     {
       "name": "ps2/veronica/prog/zonzon1",
       "measures": {
-        "fuzzy_match_percent": 99.9906,
+        "fuzzy_match_percent": 100.0,
         "total_code": "8512",
-        "matched_code": "7144",
-        "matched_code_percent": 83.92857,
+        "matched_code": "8512",
+        "matched_code_percent": 100.0,
         "total_data": "176",
         "matched_data": "176",
         "matched_data_percent": 100.0,
         "total_functions": 33,
-        "matched_functions": 31,
-        "matched_functions_percent": 93.93939,
+        "matched_functions": 33,
+        "matched_functions_percent": 100.0,
         "total_units": 1
       },
       "sections": [
@@ -15291,7 +15291,7 @@
         {
           "name": ".text",
           "size": "8640",
-          "fuzzy_match_percent": 99.9906,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -15303,14 +15303,14 @@
         {
           "name": "bhEne_SetMinceEffect",
           "size": "716",
-          "fuzzy_match_percent": 99.94414,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         },
         {
           "name": "bhEne_SetMinceEffect2",
           "size": "652",
-          "fuzzy_match_percent": 99.93865,
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "720"
         },
@@ -22027,7 +22027,7 @@
     {
       "name": "ps2/veronica/prog/light",
       "measures": {
-        "fuzzy_match_percent": 99.32357,
+        "fuzzy_match_percent": 99.31427,
         "total_code": "8604",
         "matched_code": "684",
         "matched_code_percent": 7.949791,
@@ -22063,7 +22063,7 @@
         {
           "name": ".text",
           "size": "8624",
-          "fuzzy_match_percent": 99.32357,
+          "fuzzy_match_percent": 99.31427,
           "metadata": {}
         },
         {
@@ -22110,7 +22110,7 @@
         {
           "name": "bhSetHalfLight",
           "size": "848",
-          "fuzzy_match_percent": 99.43396,
+          "fuzzy_match_percent": 99.33962,
           "metadata": {},
           "address": "7616"
         },
@@ -42251,16 +42251,16 @@
       "id": "game",
       "name": "Main Game",
       "measures": {
-        "fuzzy_match_percent": 99.76044,
+        "fuzzy_match_percent": 99.76042,
         "total_code": "1820460",
-        "matched_code": "1501044",
-        "matched_code_percent": 82.4541,
+        "matched_code": "1502412",
+        "matched_code_percent": 82.52925,
         "total_data": "28336764",
         "matched_data": "28330036",
         "matched_data_percent": 99.97626,
         "total_functions": 3834,
-        "matched_functions": 3584,
-        "matched_functions_percent": 93.47939,
+        "matched_functions": 3586,
+        "matched_functions_percent": 93.53156,
         "total_units": 152
       }
     },

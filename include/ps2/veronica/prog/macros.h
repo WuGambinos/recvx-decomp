@@ -40,35 +40,22 @@
 #define EXP0_I(o) (*(int   *)((char *)epw->exp0 + (o)))
 #define EXP0_F(o) (*(float *)((char *)epw->exp0 + (o)))
 
-#define EPW_EXP1_C(o) (*(char  *)((char *)epw->exp1 + (o)))
 #define EPW_EXP1_UC(o) (*(unsigned char  *)((char *)epw->exp1 + (o)))
-#define EPW_EXP1_S(o) (*(short *)((char *)epw->exp1 + (o)))
-#define EPW_EXP1_US(o) (*(unsigned short *)((char *)epw->exp1 + (o)))
 #define EPW_EXP1_I(o) (*(int   *)((char *)epw->exp1 + (o)))
-#define EPW_EXP1_F(o) (*(float *)((char *)epw->exp1 + (o)))
 
 #define EXP1_UC(o) (*(unsigned char  *)((unsigned char *)plp->exp1 + (o)))
-#define EXP1_C(o) (*(char  *)((char *)plp->exp1 + (o)))
 #define EXP1_S(o) (*(short *)((char *)plp->exp1 + (o)))
 #define EXP1_I(o) (*(int   *)((char *)plp->exp1 + (o)))
 #define EXP1_F(o) (*(float *)((char *)plp->exp1 + (o)))
 
-#define EP_EXP0_C(o)  (*(char           *)((char *)ep->exp0 + (o)))
-#define EP_EXP0_UC(o) (*(unsigned char  *)((char *)ep->exp0 + (o)))
-#define EP_EXP0_S(o)  (*(short          *)((char *)ep->exp0 + (o)))
-#define EP_EXP0_US(o) (*(unsigned short *)((char *)ep->exp0 + (o)))
 #define EP_EXP0_I(o)  (*(int            *)((char *)ep->exp0 + (o)))
 #define EP_EXP0_F(o)  (*(float          *)((char *)ep->exp0 + (o)))
 
-#define PEXP0_UC(o) (*(unsigned char  *)((char *)plp->exp0 + (o)))
-#define PEXP0_S(o) (*(short *)((char *)plp->exp0 + (o)))
 #define PEXP0_I(o) (*(int   *)((char *)plp->exp0 + (o)))
 #define PEXP0_F(o) (*(float *)((char *)plp->exp0 + (o)))
 
 #define EPP_EXP0_UC(o) (*(unsigned char *)((char *)epp->exp0 + (o)))
-#define EPP_EXP0_S(o) (*(short *)((char *)epp->exp0 + (o)))
 #define EPP_EXP0_I(o) (*(int   *)((char *)epp->exp0 + (o)))
-#define EPP_EXP0_F(o) (*(float *)((char *)epp->exp0 + (o)))
 
 #define EXP0_P3_X(i) (*(float *)((char *)epw->exp0 + ((i) * 12) + 0x28))
 #define EXP0_P3_Y(i) (*(float *)((char *)epw->exp0 + ((i) * 12) + 0x2C))

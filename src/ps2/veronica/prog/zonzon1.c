@@ -48,7 +48,9 @@ unsigned int BloodCol[4][2] =
     { 0xFF3F0000, 0xFF2F0000 }
 };
 
-// 99.94% matching (matches on GC)
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
+// 100% matching!
 void bhEne_SetMinceEffect(BH_PWORK* epw, int type, int num)
 {
     int eno; 
@@ -88,7 +90,7 @@ void bhEne_SetMinceEffect(BH_PWORK* epw, int type, int num)
     }
 }
 
-// 99.94% matching (matches on GC)
+// 100% matching!
 void bhEne_SetMinceEffect2(BH_PWORK* epw, int type, float size, int num)
 {
     int eno; 

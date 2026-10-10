@@ -2,6 +2,7 @@
 #define _ZONZON1_H_
 
 #include "types.h"
+#include "mwcc_hacks.h"
 
 typedef struct BT_WK 
 {

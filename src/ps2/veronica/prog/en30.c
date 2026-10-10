@@ -264,7 +264,6 @@ void bhEne30_MV01(BH_PWORK* epw)
         epw->ct1 = 0;
         epw->ayp = epw->ay;
         epw->mode3 += 1;
-        /* fallthrough */
     case 1:
         ep = ene;
         wdist = 100.0f;
@@ -395,8 +394,6 @@ void bhEne30_MV02(BH_PWORK* epw)
 
         bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x1230B);
         epw->mode3 += 1;
-        /* fallthrough */
-        
     case 1:
         epw->shp_ct += 300.0f;
         if (!(epw->shp_ct < 1000.0f)) {
@@ -588,8 +585,6 @@ void bhEne30_MV06(BH_PWORK* epw)
         epw->mdflg &= ~1;
         epw->flg |= 0x68;
         epw->mode3 += 1;
-        /* fallthrough */
-
     case 1:
         bhAddSpeed(epw, 0);
         if (epw->ct0 < 10) {
@@ -812,8 +807,6 @@ void bhEne30_DD00(BH_PWORK* epw)
         epw->mlwP->objP[16].evalflags |= 8;
         bhEne_CallSE(epw, (NJS_POINT3*)&epw->px, 0x1230E);
         epw->mode3++;
-        /* fallthrough */
-        
     case 1:
         if (epw->ct0-- == 0) {
             epw->mtn_add = 0;
@@ -848,8 +841,6 @@ void bhEne30_DD00(BH_PWORK* epw)
         bhEne_SetBloodEffectBurst(epw, 3, 7, NULL, 0);
         epw->ct0 = 60;
         epw->mode3++;
-        /* fallthrough */
-        
     case 3:
         
         if (epw->ct0-- == 0) {

@@ -127,11 +127,11 @@ void bhEne17_AxsCheck(BH_PWORK* epw)
 {
 	BH_PWORK* epp;
     O_WORK* owk;
-    NJS_POINT3 ps;    // r29+0x98
-    NJS_POINT3 pd;    // r29+0xA8
+    NJS_POINT3 ps;   
+    NJS_POINT3 pd;    
     int i;
-    float idata[6][3];    // r29+0x50
-    NJS_SPLINE attr;    // r29+0xB8
+    float idata[6][3];    
+    NJS_SPLINE attr;    
     int iparam;
     float fparam;
 

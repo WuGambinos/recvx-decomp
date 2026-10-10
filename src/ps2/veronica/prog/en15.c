@@ -243,6 +243,8 @@ static void (*Ply_func[8])(BH_PWORK*) =
 /*static JOINT_PARE jointTree[11];
 static char joint_tree_buf[12];*/
 
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
 // TODO: find a way to match LockLeg without using this
 static inline int LockLeg_CheckEnd(int prm0, char prm1)
 {
@@ -261,7 +263,7 @@ static inline int LockLeg_CheckEnd(int prm0, char prm1)
     return (temp != 0) ? 1 : 0;
 }
 
-// 99.80% matching
+// 100% matching!
 static int target_direction(BH_PWORK* epw)
 {
     float ans;
@@ -2875,7 +2877,7 @@ static int AbleToFall(BH_PWORK* pp)
     return 0;
 }
 
-// 100% matching! (on decomp.me)
+// 100% matching! 
 static int _DrivePlayer(BH_PWORK* epw) // signature different from DWARF
 {
     int ans;

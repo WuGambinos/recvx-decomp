@@ -3345,7 +3345,7 @@ void bhCPM2_act_kdd()
     }
 }
 
-// 99.54% matching
+// 100% matching!
 void bhCPM2_act_dnu()
 {
 	short ayn;
@@ -3500,11 +3500,12 @@ void bhCPM2_act_dnu()
             plp->frm_no = 0;
             
             plp->mtn_md |= 0x100;
+            return;
         }
     }
 }
 
-// 99.71% matching
+// 100% matching!
 void bhCPM2_act_dnd()
 {
 	ATR_WORK* hp;
@@ -3720,11 +3721,12 @@ void bhCPM2_act_dnd()
             plp->frm_no = 0;
             
             plp->mtn_md |= 0x100;
+            return;
         }
     }
 }
 
-// 98.91% matching
+// 100% matching!
 void bhCPM2_act_psh()
 {
 	float* trsz;
@@ -3879,7 +3881,7 @@ void bhCPM2_act_psh()
             plp->ar = PlyInfo[sys->ply_id][0];
         }
 
-        break;
+        return;
     }
 }
 
@@ -4320,7 +4322,7 @@ void bhCPM2_act_hsd()
     }
 }
 
-// 98.19% matching
+// 100% matching!
 void bhCPM2_act_rpsh()
 {
 	short ayn;
@@ -4473,7 +4475,7 @@ void bhCPM2_act_rpsh()
             plp->stflg &= ~0x10080;
         }
 
-        break;
+        return;
     }
 }
 

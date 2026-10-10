@@ -143,6 +143,8 @@ unsigned int ulDrawGeneralPurposeWater;
 extern void VU0_WAVE_INIT() __attribute__((section(".vutext")));
 extern void VU0_WAVE_CALC() __attribute__((section(".vutext")));
 
+STRIPPED_DOUBLE_CODE(); // check the "mwcc_hacks" header for more info
+
 // 100% matching! 
 void bhInitObjItm()
 {
@@ -736,7 +738,7 @@ void bhSetAlphaFadeObject(O_WRK* op, int jntno, int jnt_n, int alpha, int count)
     fwk[1] = count;
 }
 
-// 91.58% matching
+// 100% matching!
 void bhControlAlphaFadeObject(O_WRK* op) 
 { 
     NJS_CNK_OBJECT* objp; 
@@ -2118,7 +2120,7 @@ void bhObj012(O_WRK* op)
     hp->pz = op->mlwP->owP->mtx[14];
 }
 
-// 99.96% matching
+// 100% matching!
 void bhObjClpn(O_WRK* op)
 {
     BH_PWORK* pp;   

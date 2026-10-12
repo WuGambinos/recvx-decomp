@@ -1,3 +1,7 @@
+## RECVX-PC 
+A WIP PC port of Resident Evil Code Veronica X (PS2)
+
+
 # recvx-decomp
 
 [![Build Status]][actions] [![Code Progress]][progress] [![Data Progress]][progress] 

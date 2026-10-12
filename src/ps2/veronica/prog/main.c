@@ -44,9 +44,6 @@ unsigned char* keepmem;
 unsigned char* njpmemp __attribute__((aligned(64)));
 unsigned char* vwbmemp;
 unsigned char* vebmemp;
-/* unused below:
-char BIO_CURRENT[64];
-unsigned char* fsize;*/
 
 NJS_MATRIX* cmat = &crmat;
 float BHD_ASPECT_X = 1.174f;

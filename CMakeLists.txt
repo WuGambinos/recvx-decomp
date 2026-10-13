@@ -27,9 +27,12 @@ set(EE2 "${CMAKE_SOURCE_DIR}/include/recvx-decomp-ps2_sdk/usr/local/sce/ee/gcc/e
 set(KATANA "${CMAKE_SOURCE_DIR}/include/recvx-decomp-katana/KATANA/Include/")
 set(MWLIB "${CMAKE_SOURCE_DIR}/include/recvx-decomp-cri/cri/mwlib/include/")
 set(MWLIB_EE "${CMAKE_SOURCE_DIR}/include/recvx-decomp-cri/cri/mwlib/ee/include/")
+set(PC_PORT "${CMAKE_SOURCE_DIR}/include/pc")
 
 add_executable(recvx
     src/pc/main.c
+    src/pc/afs.c
+    src/pc/tim2.c
     ${PS2_DIR}
 )
 
@@ -41,6 +44,7 @@ target_include_directories(recvx PUBLIC
     ${COMMON}
     ${MWLIB}
     ${MWLIB_EE}
+    ${PC_PORT}
 )
 
 target_compile_options(recvx PUBLIC 
@@ -56,4 +60,6 @@ target_compile_options(recvx PUBLIC
     -w
 )
 
-target_link_libraries(recvx SDL3::SDL3)
+target_link_libraries(recvx 
+    SDL3::SDL3 
+)

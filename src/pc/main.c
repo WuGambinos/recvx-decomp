@@ -1,9 +1,12 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_gpu.h>
 #include <SDL3/SDL_init.h>
-#include <stdio.h>
 #define SDL_MAIN_USE_CALLBACKS
 #include <SDL3/SDL_main.h>
+#include <stdio.h>
+#include <dirent.h>
+
+#include "pc/afs.h"
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
@@ -39,6 +42,24 @@ void InputEvent(SDL_Event* event)
 
 SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
 {
+
+    /*
+    struct dirent *de;
+    DIR* dr = opendir("game_files");
+
+    if (dr == NULL) {
+        SDL_Log("Couldn't open directory\n");
+        return 0;
+    }
+
+    while ((de = readdir(dr)) != NULL)
+        SDL_Log("%s\n", de->d_name);
+
+    closedir(dr);
+    */
+
+    read_afs("game_files/ADV.afs");
+
     if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMEPAD)) {
         SDL_Log("SDL couldn't be initialized: %s", SDL_GetError());
         return SDL_APP_FAILURE;
@@ -74,7 +95,8 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
     my_app_state->game_ready = true;
     my_app_state->last_ns = SDL_GetTicksNS();
 
-    return SDL_APP_CONTINUE;
+    //return SDL_APP_CONTINUE;
+    return SDL_APP_FAILURE; // DONT WANT TO ITERATE RIGHT NOW
 }
 
 SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)

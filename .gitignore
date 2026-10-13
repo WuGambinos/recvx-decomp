@@ -12,6 +12,8 @@ include/recvx-decomp-ps2_sdk303
 .cache
 cmake_build
 deps
+game_files
+libs
 
 // ignored files 
 compile_config.json

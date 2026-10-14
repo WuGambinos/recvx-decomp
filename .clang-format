@@ -1,0 +1,14 @@
+# Format Style Options - Created with Clang Power Tools
+---
+BasedOnStyle: Google
+DerivePointerAlignment: false
+IndentCaseBlocks: false
+IndentWidth: 4
+SpaceAfterCStyleCast: true
+TabWidth: 4
+ColumnLimit: 135
+AllowShortFunctionsOnASingleLine: None
+BreakBeforeBraces: Custom 
+BraceWrapping: 
+  AfterFunction: true
+...

@@ -36,7 +36,7 @@
 #include "../../../ps2/veronica/prog/sync.h"
 #include "../../../ps2/veronica/prog/main.h"
 
-//#include <string.h>
+#include <string.h>
 
 static unsigned char FileWait;
 static unsigned char VibWait;

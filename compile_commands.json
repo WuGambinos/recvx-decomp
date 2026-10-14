@@ -1,0 +1,26 @@
+[
+{
+  "directory": "E:/Programming/Code Veronica/recvx-decomp/cmake_build",
+  "command": "C:\\Users\\Ghostface\\scoop\\apps\\mingw\\current\\bin\\cc.exe -DPC @CMakeFiles/recvx.dir/includes_C.rsp -std=gnu99 -idirafter \"E:/Programming/Code Veronica/recvx-decomp/include/recvx-decomp-katana/KATANA/Include/\" -Wno-implicit-int -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast -w -o CMakeFiles\\recvx.dir\\src\\pc\\main.c.obj -c \"E:\\Programming\\Code Veronica\\recvx-decomp\\src\\pc\\main.c\"",
+  "file": "E:/Programming/Code Veronica/recvx-decomp/src/pc/main.c",
+  "output": "CMakeFiles/recvx.dir/src/pc/main.c.obj"
+},
+{
+  "directory": "E:/Programming/Code Veronica/recvx-decomp/cmake_build",
+  "command": "C:\\Users\\Ghostface\\scoop\\apps\\mingw\\current\\bin\\cc.exe -DPC @CMakeFiles/recvx.dir/includes_C.rsp -std=gnu99 -idirafter \"E:/Programming/Code Veronica/recvx-decomp/include/recvx-decomp-katana/KATANA/Include/\" -Wno-implicit-int -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast -w -o CMakeFiles\\recvx.dir\\src\\pc\\stubs.c.obj -c \"E:\\Programming\\Code Veronica\\recvx-decomp\\src\\pc\\stubs.c\"",
+  "file": "E:/Programming/Code Veronica/recvx-decomp/src/pc/stubs.c",
+  "output": "CMakeFiles/recvx.dir/src/pc/stubs.c.obj"
+},
+{
+  "directory": "E:/Programming/Code Veronica/recvx-decomp/cmake_build",
+  "command": "C:\\Users\\Ghostface\\scoop\\apps\\mingw\\current\\bin\\cc.exe -DPC @CMakeFiles/recvx.dir/includes_C.rsp -std=gnu99 -idirafter \"E:/Programming/Code Veronica/recvx-decomp/include/recvx-decomp-katana/KATANA/Include/\" -Wno-implicit-int -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast -w -o CMakeFiles\\recvx.dir\\src\\ps2\\veronica\\prog\\adv.c.obj -c \"E:\\Programming\\Code Veronica\\recvx-decomp\\src\\ps2\\veronica\\prog\\adv.c\"",
+  "file": "E:/Programming/Code Veronica/recvx-decomp/src/ps2/veronica/prog/adv.c",
+  "output": "CMakeFiles/recvx.dir/src/ps2/veronica/prog/adv.c.obj"
+},
+{
+  "directory": "E:/Programming/Code Veronica/recvx-decomp/cmake_build",
+  "command": "C:\\Users\\Ghostface\\scoop\\apps\\mingw\\current\\bin\\cc.exe -DPC @CMakeFiles/recvx.dir/includes_C.rsp -std=gnu99 -idirafter \"E:/Programming/Code Veronica/recvx-decomp/include/recvx-decomp-katana/KATANA/Include/\" -Wno-implicit-int -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast -w -o CMakeFiles\\recvx.dir\\src\\ps2\\veronica\\prog\\flag.c.obj -c \"E:\\Programming\\Code Veronica\\recvx-decomp\\src\\ps2\\veronica\\prog\\flag.c\"",
+  "file": "E:/Programming/Code Veronica/recvx-decomp/src/ps2/veronica/prog/flag.c",
+  "output": "CMakeFiles/recvx.dir/src/ps2/veronica/prog/flag.c.obj"
+}
+]
